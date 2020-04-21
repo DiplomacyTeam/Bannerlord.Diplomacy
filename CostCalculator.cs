@@ -19,7 +19,7 @@ namespace DiplomacyFixes
             if(!Settings.Instance.ScalingInfluenceCosts)
                 return Settings.Instance.DeclareWarInfluenceCost;
 
-            return getKingdomTierCount() * 5;
+            return getKingdomTierCount() * Settings.Instance.ScalingInfluenceCostMultiplier;
         }
 
         public static float determineInfluenceCostForMakingPeace()
@@ -29,7 +29,7 @@ namespace DiplomacyFixes
             if (!Settings.Instance.ScalingInfluenceCosts)
                 return Settings.Instance.MakePeaceInfluenceCost;
 
-            return getKingdomTierCount() * 5;
+            return getKingdomTierCount() * Settings.Instance.ScalingInfluenceCostMultiplier;
         }
 
         private static int getKingdomTierCount()

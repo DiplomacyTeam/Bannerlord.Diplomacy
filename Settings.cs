@@ -21,7 +21,7 @@ namespace DiplomacyFixes
 
         [SettingProperty("Scaling Influence Cost Multiplier", 0f, 100f, false, "Multiplier for the scaling influence costs.")]
         [SettingPropertyGroup("Kingdom Diplomacy Settings", false)]
-        public float ScalingInfluenceCostMultiplier { get; set; } = 1.0f;
+        public float ScalingInfluenceCostMultiplier { get; set; } = 5.0f;
 
         [SettingProperty("Flat Declare War Influence Cost", 0, 10000, false, "Influence cost for declaring war on another kingdom.")]
         [SettingPropertyGroup("Kingdom Diplomacy Settings", false)]
