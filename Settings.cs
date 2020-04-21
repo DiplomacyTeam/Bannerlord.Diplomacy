@@ -29,7 +29,14 @@ namespace DiplomacyFixes
 
         [SettingProperty("Flat Make Peace Influence Cost", 0, 10000, false, "Influence cost for making peace with another kingdom. Default value is 100.")]
         [SettingPropertyGroup("Kingdom Diplomacy Settings", false)]
-
         public int MakePeaceInfluenceCost { get; set; } = 100;
+
+        [SettingProperty("Minimum War Duration in Days", 0, 500, false, "The minimum duration (in days) that a war can last before proposing peace. Default value is 10.")]
+        [SettingPropertyGroup("Kingdom Diplomacy Settings", false)]
+        public int MinimumWarDurationInDays { get; set; } = 10;
+
+        [SettingProperty("Declare War Cooldown in Days", 0, 500, false, "The minimum duration (in days) to declare war after making peace. Default value is 10.")]
+        [SettingPropertyGroup("Kingdom Diplomacy Settings", false)]
+        public int DeclareWarCooldownInDays { get; set; } = 10;
     }
 }
