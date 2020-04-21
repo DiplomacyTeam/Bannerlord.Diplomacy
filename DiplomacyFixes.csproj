@@ -34,11 +34,11 @@
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\BannerLord Mods\libs\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="MBOptionScreen, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\MBOptionScreen.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\BannerLord Mods\libs\MBOptionScreen.dll</HintPath>
     </Reference>
     <Reference Include="SandBox">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll</HintPath>
@@ -266,8 +266,6 @@
   <ItemGroup>
     <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\DiplomacyControls.xml" />
     <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\DiplomacyPanel.xml" />
-    <Content Include="libs\0Harmony.dll" />
-    <Content Include="libs\MBOptionScreen.dll" />
     <Content Include="SubModule.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -275,9 +273,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(ProjectDir)\libs\MBOptionScreen.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
-    <Copy SourceFiles="$(ProjectDir)\libs\0Harmony.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
+	<Copy SourceFiles="$(TargetDir)\0Harmony.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
+	<Copy SourceFiles="$(TargetDir)\MBOptionScreen.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(ProjectDir)\SubModule.xml" DestinationFolder="$(MOD_FOLDER)" />
     <Copy SourceFiles="@(GUI)" DestinationFolder="$(MOD_FOLDER)\GUI\%(RecursiveDir)" />
   </Target>
