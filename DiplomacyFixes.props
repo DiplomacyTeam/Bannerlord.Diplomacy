@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+
+    <!-- Path to Mount and Blade folder -->
+    <MOUNT_AND_BLADE_DIR>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\</MOUNT_AND_BLADE_DIR>
+
+    <!-- Path to mod folder-->
+    <MOD_FOLDER>$(MOUNT_AND_BLADE_DIR)Modules\DiplomacyFixes\</MOD_FOLDER>
+
+  </PropertyGroup>
+</Project>

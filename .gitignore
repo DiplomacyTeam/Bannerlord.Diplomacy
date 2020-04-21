@@ -2,4 +2,6 @@
 *.sln
 obj
 *.suo
-libs
+libs/*
+bin
+*.pdb
