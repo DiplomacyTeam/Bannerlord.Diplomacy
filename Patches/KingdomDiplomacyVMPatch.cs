@@ -1,6 +1,10 @@
 ﻿using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.Core;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DiplomacyFixes.Patches
 {
@@ -11,10 +15,18 @@ namespace DiplomacyFixes.Patches
         [HarmonyPatch("OnDeclareWar")]
         public static bool OnDeclareWarPatch(KingdomTruceItemVM item, KingdomDiplomacyVM __instance)
         {
-            float influenceCost = CostCalculator.determineInfluenceCostForDeclaringWar();
-            CostUtil.deductInfluenceFromPlayerClan(influenceCost);
-            DeclareWarAction.Apply(item.Faction1, item.Faction2);
-            __instance.RefreshValues();
+            List<string> warExceptions = WarAndPeaceConditions.canDeclareWarExceptions(item);
+            if (warExceptions.IsEmpty())
+            {
+                float influenceCost = CostCalculator.determineInfluenceCostForDeclaringWar();
+                CostUtil.deductInfluenceFromPlayerClan(influenceCost);
+                DeclareWarAction.Apply(item.Faction1, item.Faction2);
+                __instance.RefreshValues();
+            }
+            else
+            {
+                MessageHelper.SendFailedActionMessage("Cannot declare war on this kingdom. ", warExceptions);
+            }
             return false;
         }
 
@@ -22,10 +34,18 @@ namespace DiplomacyFixes.Patches
         [HarmonyPatch("OnDeclarePeace")]
         public static bool OnDeclarePeacePatch(KingdomWarItemVM item, KingdomDiplomacyVM __instance)
         {
-            float influenceCost = CostCalculator.determineInfluenceCostForMakingPeace();
-            CostUtil.deductInfluenceFromPlayerClan(influenceCost);
-            MakePeaceAction.Apply(item.Faction1, item.Faction2);
-            __instance.RefreshValues();
+            List<string> peaceExceptions = WarAndPeaceConditions.canMakePeaceExceptions(item);
+            if (peaceExceptions.IsEmpty())
+            {
+                float influenceCost = CostCalculator.determineInfluenceCostForMakingPeace();
+                CostUtil.deductInfluenceFromPlayerClan(influenceCost);
+                MakePeaceAction.Apply(item.Faction1, item.Faction2);
+                __instance.RefreshValues();
+            }
+            else
+            {
+                MessageHelper.SendFailedActionMessage("Cannot make peace with this kingdom. ", peaceExceptions);
+            }
             return false;
         }
     }

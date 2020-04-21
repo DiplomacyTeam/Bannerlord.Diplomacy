@@ -254,6 +254,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageHelper.cs" />
+    <Compile Include="WarAndPeaceConditions.cs" />
     <Compile Include="CostCalculator.cs" />
     <Compile Include="CostUtil.cs" />
     <Compile Include="MySubModule.cs" />
@@ -269,7 +271,7 @@
     <Content Include="SubModule.xml" />
   </ItemGroup>
   <ItemGroup>
-    <GUI Include="GUI\**/*.*"/>
+    <GUI Include="GUI\**/*.*" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
