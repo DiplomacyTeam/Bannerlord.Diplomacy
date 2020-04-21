@@ -11,7 +11,7 @@ namespace DiplomacyFixes
 
         public override string ModName { get; } = "Diplomacy Fixes";
 
-        [SettingProperty("Enable Flat Influence Costs For Diplomacy Actions", false, "If disabled, this removes all costs for diplomacy actions. Default value is true.")]
+        [SettingProperty("Disable all influence costs.", false, "If disabled, this removes all costs for diplomacy actions. Default value is true.")]
         [SettingPropertyGroup("Kingdom Diplomacy Settings", true)]
         public bool EnableInfluenceCostsForDiplomacyActions { get; set; } = true;
 
