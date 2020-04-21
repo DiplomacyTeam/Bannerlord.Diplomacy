@@ -294,6 +294,12 @@
 												<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@ActionName" />
 											</Children>
 										</ButtonWidget>
+										<TextWidget DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" PositionYOffset="40" Brush="Kingdom.GeneralButtons.Text" Text="@InfluenceCost">
+											<Children>
+												<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Sprite="SPKingdom\influence_icon_small" />
+											</Children>
+										</TextWidget>
+
 									</Children>
 								</Widget>
 
