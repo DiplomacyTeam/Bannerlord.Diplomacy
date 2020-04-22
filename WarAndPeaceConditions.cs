@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
-using TaleWorlds.Core;
 
 namespace DiplomacyFixes
 {
@@ -11,8 +10,8 @@ namespace DiplomacyFixes
     {
         private const string NOT_ENOUGH_INFLUENCE = "Not enough influence!";
         private const string ACTIVE_QUEST = "There is an active quest preventing it!";
-        private const string TOO_SOON = "This war hasn't gone on long enough to consider peace!";
-        private const string DECLARE_WAR_COOLDOWN = "Cannot declare war so soon after making peace!";
+        private const string TOO_SOON = "This war hasn't gone on long enough to consider peace! It has only been {0} days out of a required {1} days.";
+        private const string DECLARE_WAR_COOLDOWN = "Cannot declare war so soon after making peace! It has only been {0} days out of a required {1} days.";
 
         public static List<string> canMakePeaceExceptions(KingdomWarItemVM item)
         {
@@ -34,10 +33,12 @@ namespace DiplomacyFixes
             {
                 if (war.AreFactionsAtWar(item.Faction1, item.Faction2))
                 {
-                    bool hasEnoughTimeElapsed = war.StartDate.ElapsedDaysUntilNow >= Settings.Instance.MinimumWarDurationInDays;
+                    float elapsedDaysUntilNow = war.StartDate.ElapsedDaysUntilNow;
+                    int minimumWarDurationInDays = Settings.Instance.MinimumWarDurationInDays;
+                    bool hasEnoughTimeElapsed = elapsedDaysUntilNow >= minimumWarDurationInDays;
                     if (!hasEnoughTimeElapsed)
                     {
-                        exceptionList.Add(TOO_SOON);
+                        exceptionList.Add(string.Format(TOO_SOON, elapsedDaysUntilNow.ToString("0"), minimumWarDurationInDays));
                     }
                     break;
                 }
@@ -56,9 +57,12 @@ namespace DiplomacyFixes
 
             if (CooldownManager.GetLastWarTimeWithFaction(item.Faction2).HasValue)
             {
-                bool hasEnoughTimeElapsed = CooldownManager.GetLastWarTimeWithFaction(item.Faction2).Value.ElapsedDaysUntilNow >= Settings.Instance.DeclareWarCooldownInDays;
-                if (!hasEnoughTimeElapsed) {
-                    exceptionList.Add(DECLARE_WAR_COOLDOWN);
+                float elapsedDaysUntilNow = CooldownManager.GetLastWarTimeWithFaction(item.Faction2).Value.ElapsedDaysUntilNow;
+                int declareWarCooldownInDays = Settings.Instance.DeclareWarCooldownInDays;
+                bool hasEnoughTimeElapsed = elapsedDaysUntilNow >= declareWarCooldownInDays;
+                if (!hasEnoughTimeElapsed)
+                {
+                    exceptionList.Add(string.Format(DECLARE_WAR_COOLDOWN, elapsedDaysUntilNow.ToString("0"), declareWarCooldownInDays));
                 }
             }
             return exceptionList;
