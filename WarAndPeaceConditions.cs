@@ -23,7 +23,7 @@ namespace DiplomacyFixes
             {
                 exceptionList.Add(ACTIVE_QUEST);
             }
-            bool hasEnoughInfluence = Hero.MainHero.Clan.Influence > CostCalculator.determineInfluenceCostForMakingPeace();
+            bool hasEnoughInfluence = Hero.MainHero.Clan.Influence > CostCalculator.DetermineInfluenceCostForMakingPeace();
             if (!hasEnoughInfluence)
             {
                 exceptionList.Add(NOT_ENOUGH_INFLUENCE);
@@ -50,7 +50,7 @@ namespace DiplomacyFixes
         public static List<string> canDeclareWarExceptions(KingdomTruceItemVM item)
         {
             List<string> exceptionList = new List<string>();
-            bool hasEnoughInfluence = Hero.MainHero.Clan.Influence > CostCalculator.determineInfluenceCostForDeclaringWar();
+            bool hasEnoughInfluence = Hero.MainHero.Clan.Influence > CostCalculator.DetermineInfluenceCostForDeclaringWar();
             if (!hasEnoughInfluence)
             {
                 exceptionList.Add(NOT_ENOUGH_INFLUENCE);

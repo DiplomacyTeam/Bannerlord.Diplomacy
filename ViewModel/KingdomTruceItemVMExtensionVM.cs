@@ -8,12 +8,14 @@ namespace DiplomacyFixes.ViewModel
 {
     public class KingdomTruceItemVMExtensionVM : KingdomTruceItemVM
     {
-        private static string INFLUENCE_COST = "Influence Cost: {0}";
+        // private static string INFLUENCE_COST = "Influence Cost: {0}";
 
         public KingdomTruceItemVMExtensionVM(IFaction faction1, IFaction faction2, Action<KingdomDiplomacyItemVM> onSelection, Action<KingdomTruceItemVM> onAction) : base(faction1, faction2, onSelection, onAction)
         {
             _isOptionAvailable = true;
-            _influenceCost = String.Format(INFLUENCE_COST, 0);
+            _influenceCost = 0;
+            _isMessengerAvailable = true;
+            _sendMessengerInfluenceCost = 0;
             UpdateDiplomacyProperties();
         }
 
@@ -21,11 +23,53 @@ namespace DiplomacyFixes.ViewModel
         {
             base.UpdateDiplomacyProperties();
             this._isOptionAvailable = WarAndPeaceConditions.canDeclareWarExceptions(this).IsEmpty();
-            this._influenceCost = String.Format(INFLUENCE_COST, (int)CostCalculator.determineInfluenceCostForDeclaringWar());
+            this._influenceCost = (int)CostCalculator.DetermineInfluenceCostForDeclaringWar();
+            float sendMessengerInfluenceCost = CostCalculator.DetermineInfluenceCostForSendingMessenger();
+            this._isMessengerAvailable = MessengerUtil.CanSendMessengerWithInfluenceCost(Faction2Leader.Hero, sendMessengerInfluenceCost);
+            this._sendMessengerInfluenceCost = (int)sendMessengerInfluenceCost;
+        }
+
+        protected void SendMessenger()
+        {
+            MessengerUtil.SendMessengerWithInfluenceCost(Faction2Leader.Hero, CostCalculator.DetermineInfluenceCostForSendingMessenger());
         }
 
         [DataSourceProperty]
-        public string InfluenceCost
+        public int SendMessengerInfluenceCost
+        {
+            get
+            {
+                return this._sendMessengerInfluenceCost;
+            }
+            set
+            {
+                if (value != this._sendMessengerInfluenceCost)
+                {
+                    this._sendMessengerInfluenceCost = value;
+                    base.OnPropertyChanged("SendMessengerInfluenceCost");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsMessengerAvailable
+        {
+            get
+            {
+                return this._isMessengerAvailable;
+            }
+            set
+            {
+                if (value != this._isMessengerAvailable)
+                {
+                    this._isMessengerAvailable = value;
+                    base.OnPropertyChanged("IsMessengerAvailable");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public int InfluenceCost
         {
             get
             {
@@ -59,6 +103,8 @@ namespace DiplomacyFixes.ViewModel
         }
 
         private bool _isOptionAvailable;
-        private string _influenceCost;
+        private int _influenceCost;
+        private bool _isMessengerAvailable;
+        private int _sendMessengerInfluenceCost;
     }
 }

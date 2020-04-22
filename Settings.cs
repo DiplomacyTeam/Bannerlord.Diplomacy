@@ -31,6 +31,10 @@ namespace DiplomacyFixes
         [SettingPropertyGroup("Kingdom Diplomacy Settings", false)]
         public int MakePeaceInfluenceCost { get; set; } = 100;
 
+        [SettingProperty("Send Messenger Influence Cost", 0, 10000, false, "Influence cost for sending a messenger to another leader. Default value is 20.")]
+        [SettingPropertyGroup("Kingdom Diplomacy Settings", false)]
+        public int SendMessengerInfluenceCost { get; set; } = 100;
+
         [SettingProperty("Minimum War Duration in Days", 0, 500, false, "The minimum duration (in days) that a war can last before proposing peace. Default value is 10.")]
         [SettingPropertyGroup("Kingdom Diplomacy Settings", false)]
         public int MinimumWarDurationInDays { get; set; } = 10;

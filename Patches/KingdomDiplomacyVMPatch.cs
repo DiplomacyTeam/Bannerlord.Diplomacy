@@ -25,7 +25,7 @@ namespace DiplomacyFixes.Patches
             List<string> warExceptions = WarAndPeaceConditions.canDeclareWarExceptions(item);
             if (warExceptions.IsEmpty())
             {
-                float influenceCost = CostCalculator.determineInfluenceCostForDeclaringWar();
+                float influenceCost = CostCalculator.DetermineInfluenceCostForDeclaringWar();
                 CostUtil.deductInfluenceFromPlayerClan(influenceCost);
                 DeclareWarAction.Apply(item.Faction1, item.Faction2);
                 try
@@ -51,7 +51,7 @@ namespace DiplomacyFixes.Patches
             List<string> peaceExceptions = WarAndPeaceConditions.canMakePeaceExceptions(item);
             if (peaceExceptions.IsEmpty())
             {
-                float influenceCost = CostCalculator.determineInfluenceCostForMakingPeace();
+                float influenceCost = CostCalculator.DetermineInfluenceCostForMakingPeace();
                 CostUtil.deductInfluenceFromPlayerClan(influenceCost);
                 MakePeaceAction.Apply(item.Faction1, item.Faction2);
                 try
