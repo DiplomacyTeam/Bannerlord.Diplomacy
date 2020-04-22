@@ -107,6 +107,9 @@ namespace DiplomacyFixes.Patches
 
             __instance.PlayerTruces = playerTruces;
             __instance.PlayerWars = playerWars;
+
+            MethodInfo setDefaultSelectedItem = __instance.GetType().GetMethod("SetDefaultSelectedItem", BindingFlags.NonPublic | BindingFlags.Instance);
+            setDefaultSelectedItem.Invoke(__instance, new object[] { });
         }
     }
 }
