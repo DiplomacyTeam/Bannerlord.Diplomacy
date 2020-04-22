@@ -5,6 +5,9 @@ using TaleWorlds.Core;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace DiplomacyFixes.Patches
 {
@@ -21,7 +24,14 @@ namespace DiplomacyFixes.Patches
                 float influenceCost = CostCalculator.determineInfluenceCostForDeclaringWar();
                 CostUtil.deductInfluenceFromPlayerClan(influenceCost);
                 DeclareWarAction.Apply(item.Faction1, item.Faction2);
-                __instance.RefreshValues();
+                try
+                {
+                    __instance.RefreshValues();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "");
+                }
             }
             else
             {
@@ -40,7 +50,14 @@ namespace DiplomacyFixes.Patches
                 float influenceCost = CostCalculator.determineInfluenceCostForMakingPeace();
                 CostUtil.deductInfluenceFromPlayerClan(influenceCost);
                 MakePeaceAction.Apply(item.Faction1, item.Faction2);
-                __instance.RefreshValues();
+                try
+                {
+                    __instance.RefreshValues();
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show(e.Message, "");
+                }
             }
             else
             {
