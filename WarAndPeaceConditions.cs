@@ -14,7 +14,7 @@ namespace DiplomacyFixes
         private const string TOO_SOON = "This war hasn't gone on long enough to consider peace! It has only been {0} days out of a required {1} days.";
         private const string DECLARE_WAR_COOLDOWN = "Cannot declare war so soon after making peace! It has only been {0} days out of a required {1} days.";
 
-        public static List<string> canMakePeaceExceptions(KingdomWarItemVM item)
+        public static List<string> CanMakePeaceExceptions(KingdomWarItemVM item)
         {
             List<string> exceptionList = new List<string>();
             ThirdPhase thirdPhase = StoryMode.StoryMode.Current.MainStoryLine.ThirdPhase;
@@ -47,7 +47,7 @@ namespace DiplomacyFixes
             return exceptionList;
         }
 
-        public static List<string> canDeclareWarExceptions(KingdomTruceItemVM item)
+        public static List<string> CanDeclareWarExceptions(KingdomTruceItemVM item)
         {
             List<string> exceptionList = new List<string>();
             bool hasEnoughInfluence = Hero.MainHero.Clan.Influence > CostCalculator.DetermineInfluenceCostForDeclaringWar();

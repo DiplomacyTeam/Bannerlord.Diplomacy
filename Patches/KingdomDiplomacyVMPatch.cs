@@ -22,7 +22,7 @@ namespace DiplomacyFixes.Patches
         [HarmonyPatch("OnDeclareWar")]
         public static bool OnDeclareWarPatch(KingdomTruceItemVM item, KingdomDiplomacyVM __instance)
         {
-            List<string> warExceptions = WarAndPeaceConditions.canDeclareWarExceptions(item);
+            List<string> warExceptions = WarAndPeaceConditions.CanDeclareWarExceptions(item);
             if (warExceptions.IsEmpty())
             {
                 float influenceCost = CostCalculator.DetermineInfluenceCostForDeclaringWar();
@@ -48,7 +48,7 @@ namespace DiplomacyFixes.Patches
         [HarmonyPatch("OnDeclarePeace")]
         public static bool OnDeclarePeacePatch(KingdomWarItemVM item, KingdomDiplomacyVM __instance)
         {
-            List<string> peaceExceptions = WarAndPeaceConditions.canMakePeaceExceptions(item);
+            List<string> peaceExceptions = WarAndPeaceConditions.CanMakePeaceExceptions(item);
             if (peaceExceptions.IsEmpty())
             {
                 float influenceCost = CostCalculator.DetermineInfluenceCostForMakingPeace();

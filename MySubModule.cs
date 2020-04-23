@@ -38,6 +38,7 @@ namespace DiplomacyFixes
             {
                 CampaignGameStarter gameStarter = (CampaignGameStarter) gameStarterObject;
                 gameStarter.AddBehavior(new DeclareWarCooldown());
+                gameStarter.AddBehavior(new MessengerArrived());
             }
             base.OnGameStart(game, gameStarterObject);
         }

@@ -257,9 +257,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CampaignEventBehaviors\DeclareWarCooldown.cs" />
+    <Compile Include="CampaignEventBehaviors\MessengerArrived.cs" />
     <Compile Include="MessageHelper.cs" />
     <Compile Include="CooldownManager.cs" />
-    <Compile Include="MessengerUtil.cs" />
+    <Compile Include="Messengers\Messenger.cs" />
+    <Compile Include="Messengers\MessengerManager.cs" />
     <Compile Include="ViewModel\KingdomTruceItemVMExtensionVM.cs" />
     <Compile Include="ViewModel\KingdomWarItemVMExtensionVM.cs" />
     <Compile Include="WarAndPeaceConditions.cs" />

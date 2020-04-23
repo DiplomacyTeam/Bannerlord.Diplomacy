@@ -42,5 +42,9 @@ namespace DiplomacyFixes
         [SettingProperty("Declare War Cooldown in Days", 0, 500, false, "The minimum duration (in days) to declare war after making peace. Default value is 10.")]
         [SettingPropertyGroup("Kingdom Diplomacy Settings", false)]
         public int DeclareWarCooldownInDays { get; set; } = 10;
+
+        [SettingProperty("Messenger Travel Time in Days", 0, 500, false, "The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3.")]
+        [SettingPropertyGroup("Kingdom Diplomacy Settings", false)]
+        public int MessengerTravelTime { get; set; } = 3;
     }
 }
