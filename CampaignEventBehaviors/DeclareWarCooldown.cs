@@ -1,26 +1,30 @@
-﻿using HarmonyLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Actions;
 
-namespace DiplomacyFixes.Patches
+namespace DiplomacyFixes.CampaignEventBehaviors
 {
-    [HarmonyPatch(typeof(MakePeaceAction))]
-    class MakePeaceActionPatch
+    class DeclareWarCooldown : CampaignBehaviorBase
     {
-        [HarmonyPostfix]
-        [HarmonyPatch("Apply")]
-        public static void ApplyPatch(IFaction faction1, IFaction faction2)
+        public override void RegisterEvents()
+        {
+            CampaignEvents.MakePeace.AddNonSerializedListener(this, new Action<IFaction, IFaction>(this.RegisterDeclareWarCooldown));
+        }
+
+        private void RegisterDeclareWarCooldown(IFaction faction1, IFaction faction2)
         {
             if (Hero.MainHero.MapFaction.Equals(faction1) || Hero.MainHero.MapFaction.Equals(faction2))
             {
                 IFaction factionToUpdate = Hero.MainHero.MapFaction.Equals(faction1) ? faction2 : faction1;
                 CooldownManager.UpdateLastWarTime(factionToUpdate, CampaignTime.Now);
             }
+        }
+
+        public override void SyncData(IDataStore dataStore)
+        {
         }
     }
 }

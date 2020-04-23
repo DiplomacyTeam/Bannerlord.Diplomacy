@@ -256,10 +256,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CampaignEventBehaviors\DeclareWarCooldown.cs" />
     <Compile Include="MessageHelper.cs" />
     <Compile Include="CooldownManager.cs" />
     <Compile Include="MessengerUtil.cs" />
-    <Compile Include="Patches\MakePeaceActionPatch.cs" />
     <Compile Include="ViewModel\KingdomTruceItemVMExtensionVM.cs" />
     <Compile Include="ViewModel\KingdomWarItemVMExtensionVM.cs" />
     <Compile Include="WarAndPeaceConditions.cs" />

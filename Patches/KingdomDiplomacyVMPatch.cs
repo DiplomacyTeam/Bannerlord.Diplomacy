@@ -70,7 +70,6 @@ namespace DiplomacyFixes.Patches
             return false;
         }
 
-
         [HarmonyPostfix]
         [HarmonyPatch("RefreshDiplomacyList")]
         public static void RefreshDiplomacyListPatch(KingdomDiplomacyVM __instance)
