@@ -265,8 +265,8 @@
     <Compile Include="ViewModel\KingdomTruceItemVMExtensionVM.cs" />
     <Compile Include="ViewModel\KingdomWarItemVMExtensionVM.cs" />
     <Compile Include="WarAndPeaceConditions.cs" />
-    <Compile Include="CostCalculator.cs" />
-    <Compile Include="CostUtil.cs" />
+    <Compile Include="DiplomacyCostCalculator.cs" />
+    <Compile Include="DiplomacyCostManager.cs" />
     <Compile Include="MySubModule.cs" />
     <Compile Include="Patches\KingdomDiplomacyVMPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

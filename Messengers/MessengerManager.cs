@@ -84,7 +84,7 @@ namespace DiplomacyFixes.Messengers
 
         public void SendMessengerWithInfluenceCost(Hero targetHero, float influenceCost)
         {
-            CostUtil.deductInfluenceFromPlayerClan(influenceCost);
+            DiplomacyCostManager.deductInfluenceFromPlayerClan(influenceCost);
             SendMessenger(targetHero);
         }
 

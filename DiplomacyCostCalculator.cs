@@ -3,7 +3,7 @@ using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes
 {
-    class CostCalculator
+    class DiplomacyCostCalculator
     {
         public static float DetermineInfluenceCostForDeclaringWar()
         {

@@ -2,7 +2,7 @@
 
 namespace DiplomacyFixes
 {
-    class CostUtil
+    class DiplomacyCostManager
     {
         public static void deductInfluenceFromPlayerClan(float influenceCost)
         {

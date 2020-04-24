@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiplomacyFixes.Messengers;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Core;
@@ -22,16 +23,16 @@ namespace DiplomacyFixes.ViewModel
         protected override void UpdateDiplomacyProperties()
         {
             base.UpdateDiplomacyProperties();
-            this._isOptionAvailable = WarAndPeaceConditions.canDeclareWarExceptions(this).IsEmpty();
-            this._influenceCost = (int)CostCalculator.DetermineInfluenceCostForDeclaringWar();
-            float sendMessengerInfluenceCost = CostCalculator.DetermineInfluenceCostForSendingMessenger();
-            this._isMessengerAvailable = MessengerUtil.CanSendMessengerWithInfluenceCost(Faction2Leader.Hero, sendMessengerInfluenceCost);
+            this._isOptionAvailable = WarAndPeaceConditions.CanDeclareWarExceptions(this).IsEmpty();
+            this._influenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar();
+            float sendMessengerInfluenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
+            this._isMessengerAvailable = MessengerManager.CanSendMessengerWithInfluenceCost(Faction2Leader.Hero, sendMessengerInfluenceCost);
             this._sendMessengerInfluenceCost = (int)sendMessengerInfluenceCost;
         }
 
         protected void SendMessenger()
         {
-            MessengerUtil.SendMessengerWithInfluenceCost(Faction2Leader.Hero, CostCalculator.DetermineInfluenceCostForSendingMessenger());
+            MessengerManager.Instance.SendMessengerWithInfluenceCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger());
         }
 
         [DataSourceProperty]
