@@ -1,7 +1,9 @@
 ﻿using DiplomacyFixes.CampaignEventBehaviors;
 using HarmonyLib;
 using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -13,17 +15,7 @@ namespace DiplomacyFixes
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
-            try
-            {
-                new Harmony("mod.diplomacyfixes").PatchAll();
-                InformationManager.DisplayMessage(new InformationMessage($"Diplomacy Fixes {"Patch Succeeded!"}"));
-                FileLog.Log("Harmony Patching Succeeded!");
-            }
-            catch (Exception ex)
-            {
-                FileLog.Log("Overall Patcher " + ex.Message);
-                InformationManager.DisplayMessage(new InformationMessage($"Diplomacy Fixes {"Patch Failed"} exception: {ex.Message}"));
-            }
+            new Harmony("mod.diplomacyfixes").PatchAll();
         }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
@@ -31,12 +23,11 @@ namespace DiplomacyFixes
             base.OnBeforeInitialModuleScreenSetAsRoot();
             InformationManager.DisplayMessage(new InformationMessage("Loaded Diplomacy Fixes!!!", Color.FromUint(4282569842U)));
         }
-
         protected override void OnGameStart(Game game, IGameStarter gameStarterObject)
         {
-            if(game.GameType is Campaign)
+            if (game.GameType is Campaign)
             {
-                CampaignGameStarter gameStarter = (CampaignGameStarter) gameStarterObject;
+                CampaignGameStarter gameStarter = (CampaignGameStarter)gameStarterObject;
                 gameStarter.AddBehavior(new DeclareWarCooldown());
                 gameStarter.AddBehavior(new MessengerArrived());
             }
