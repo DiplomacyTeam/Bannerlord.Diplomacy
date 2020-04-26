@@ -34,7 +34,7 @@ namespace DiplomacyFixes
             {
                 inquiryText.AddRange(new string[] 
                 {
-                    "They are willing to pay war reparations of ",
+                    " They are willing to pay war reparations of ",
                     payment.ToString(),
                     " denars."
                 });
