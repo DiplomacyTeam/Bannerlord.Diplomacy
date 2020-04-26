@@ -13,10 +13,11 @@ namespace DiplomacyFixes.Messengers
     {
 
         private static MessengerManager _instance;
-        public static MessengerManager Instance {
+        public static MessengerManager Instance
+        {
             get
             {
-                if(_instance == null)
+                if (_instance == null)
                 {
                     _instance = new MessengerManager();
                 }
@@ -57,7 +58,7 @@ namespace DiplomacyFixes.Messengers
 
         public void StartDialogue(Hero targetHero)
         {
-            Mission conversationMission = (Mission) Campaign.Current.CampaignMissionManager.OpenConversationMission(
+            Mission conversationMission = (Mission)Campaign.Current.CampaignMissionManager.OpenConversationMission(
                 new ConversationCharacterData(Hero.MainHero.CharacterObject, null, false, false, false, false),
                 new ConversationCharacterData(targetHero.CharacterObject, null, false, false, false, false), "", "");
             conversationMission.AddListener(this);
@@ -66,19 +67,32 @@ namespace DiplomacyFixes.Messengers
 
         private TextObject GetMessengerArrivedText(IFaction faction1, IFaction faction2)
         {
-            TextObject textObject = new TextObject("The messenger from {FACTION1_NAME} has arrived at {FACTION2_NAME}'s leader.", null);
-            textObject.SetTextVariable("FACTION1_NAME", faction1.EncyclopediaLinkWithName);
-            textObject.SetTextVariable("FACTION2_NAME", faction2.EncyclopediaLinkWithName);
+            TextObject textObject = new TextObject("The messenger from {FACTION1_NAME} has arrived at the {FACTION2_NAME} leader.", null);
+            textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
+            textObject.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
             return textObject;
         }
 
         private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, int travelDays)
         {
-            TextObject textObject = new TextObject("The messenger from {FACTION1_NAME} will arrive at {FACTION2_NAME}'s leader in {TRAVEL_DAYS} {DAY_WORD}.", null);
-            textObject.SetTextVariable("FACTION1_NAME", faction1.EncyclopediaLinkWithName);
-            textObject.SetTextVariable("FACTION2_NAME", faction2.EncyclopediaLinkWithName);
-            textObject.SetTextVariable("TRAVEL_DAYS", travelDays);
-            textObject.SetTextVariable("DAY_WORD", travelDays > 1 ? "days" : "day");
+            TextObject textObject = new TextObject("The messenger from {FACTION1_NAME} will arrive at the {FACTION2_NAME} leader {TRAVEL_TIME}.", null);
+            textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
+            textObject.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
+
+            string travelTime;
+            switch (travelDays)
+            {
+                case 0:
+                    travelTime = "immediately";
+                    break;
+                case 1:
+                    travelTime = "in 1 day";
+                    break;
+                default:
+                    travelTime = string.Concat(new string[] { "in ", travelDays.ToString(), " days" });
+                    break;
+            }
+            textObject.SetTextVariable("TRAVEL_TIME", travelTime);
             return textObject;
         }
 
