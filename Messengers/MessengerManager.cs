@@ -1,42 +1,33 @@
 ﻿using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.SaveSystem;
 
 namespace DiplomacyFixes.Messengers
 {
     class MessengerManager : IMissionListener
     {
+        private List<Messenger> _messengers;
+        public MBReadOnlyList<Messenger> Messengers { get; }
 
-        private static MessengerManager _instance;
-        public static MessengerManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new MessengerManager();
-                }
-                return _instance;
-            }
-        }
-
-        public List<Messenger> Messengers { get; }
         public bool CanStartMessengerConversation { get; private set; }
         private Messenger _activeMessenger;
-        private MessengerManager()
+        internal MessengerManager(List<Messenger> messengers)
         {
-            Messengers = new List<Messenger>();
+            _messengers = messengers;
+            Messengers = new MBReadOnlyList<Messenger>(_messengers);
             CanStartMessengerConversation = true;
         }
 
         public void SendMessenger(Hero targetHero)
         {
-            Messengers.Add(new Messenger(targetHero, CampaignTime.Now));
             InformationManager.ShowInquiry(new InquiryData(new TextObject("{=zv12jjyW}Messenger Sent").ToString(), GetMessengerSentText(Hero.MainHero.MapFaction, targetHero.MapFaction, Settings.Instance.MessengerTravelTime).ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), "", delegate ()
             {
             }, null, ""), false);
+            _messengers.Add(new Messenger(targetHero, CampaignTime.Now));
         }
 
         public void MessengerArrived(Messenger messenger)
@@ -108,7 +99,7 @@ namespace DiplomacyFixes.Messengers
 
         public void OnEndMission()
         {
-            Messengers.Remove(_activeMessenger);
+            _messengers.Remove(_activeMessenger);
             _activeMessenger = null;
             CanStartMessengerConversation = true;
         }

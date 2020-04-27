@@ -33,6 +33,15 @@ namespace DiplomacyFixes
             return String.Concat(inquiryText);
         }
 
+        private static string CreateMakePeaceDueToWarExhaustionInquiryText(Kingdom kingdom, IFaction faction)
+        {
+            TextObject peaceText = new TextObject("{=HWiDa4R1}Exhausted from the war, the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}.");
+            peaceText.SetTextVariable("KINGDOM", kingdom.Name.ToString());
+            peaceText.SetTextVariable("PLAYER_KINGDOM", faction.Name.ToString());
+
+            return peaceText.ToString();
+        }
+
         private static void CreatePeaceInqiry(Kingdom kingdom, IFaction faction, int payment)
         {
             InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceInquiryText(kingdom, faction, payment), true, true, new TextObject("{=3fTqLwkC}Accept").ToString(), new TextObject("{=dRoMejb0}Decline").ToString(), () =>
@@ -52,6 +61,27 @@ namespace DiplomacyFixes
             {
                 KingdomPeaceAction.AcceptPeace(kingdom, faction, num2);
             }
+        }
+
+        public static void ApplyPeaceDueToWarExhaustion(Kingdom kingdom, IFaction faction)
+        {
+            if (PlayerHelpers.IsPlayerLeaderOfFaction(faction))
+            {
+                KingdomPeaceAction.CreatePeaceInqiryDueToWarExhaustion(kingdom, faction);
+            }
+            else
+            {
+                KingdomPeaceAction.AcceptPeace(kingdom, faction, 0);
+            }
+        }
+
+        private static void CreatePeaceInqiryDueToWarExhaustion(Kingdom kingdom, IFaction faction)
+        {
+            int payment = 0;
+            InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceDueToWarExhaustionInquiryText(kingdom, faction), true, true, new TextObject("{=Y94H6XnK}Accept").ToString(), new TextObject("{=cOgmdp9e}Decline").ToString(), () =>
+            {
+                KingdomPeaceAction.AcceptPeace(kingdom, faction, payment);
+            }, null, ""), true);
         }
     }
 }

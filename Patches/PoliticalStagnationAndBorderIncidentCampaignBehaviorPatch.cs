@@ -10,6 +10,7 @@ namespace DiplomacyFixes.Patches
     [HarmonyPatch(typeof(PoliticalStagnationAndBorderIncidentCampaignBehavior))]
     class PoliticalStagnationAndBorderIncidentCampaignBehaviorPatch
     {
+
         [HarmonyPrefix]
         [HarmonyPatch("ThinkAboutDeclaringWar")]
         public static bool ThinkAboutDeclaringWarPatch(Kingdom kingdom)
@@ -18,6 +19,7 @@ namespace DiplomacyFixes.Patches
             {
                 return true;
             }
+
             return !PlayerHelpers.IsPlayerLeaderOfFaction(kingdom);
         }
 
@@ -41,6 +43,11 @@ namespace DiplomacyFixes.Patches
             int num2 = 0;
             foreach (IFaction faction2 in possibleKingdomsToDeclarePeace)
             {
+                if (CooldownManager.HasActiveWarCooldown(kingdom, faction2))
+                {
+                    continue;
+                }
+
                 float scoreOfDeclaringPeace = Campaign.Current.Models.DiplomacyModel.GetScoreOfDeclaringPeace(kingdom, faction2);
                 float scoreOfDeclaringPeace2 = Campaign.Current.Models.DiplomacyModel.GetScoreOfDeclaringPeace(faction2, kingdom);
                 if (Math.Max(scoreOfDeclaringPeace, scoreOfDeclaringPeace2) > num && scoreOfDeclaringPeace > 0f)

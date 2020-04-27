@@ -1,55 +1,45 @@
-﻿using HarmonyLib;
-using StoryMode.StoryModePhases;
+﻿using StoryMode.StoryModePhases;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapNotificationTypes;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.SaveSystem;
 
 namespace DiplomacyFixes
 {
+    [SaveableClass(2)]
     class WarExhaustionManager
     {
-        private static WarExhaustionManager _instance;
-        private Dictionary<HashSet<Kingdom>, float> _warExhaustion;
-        private HashSet<HashSet<Kingdom>> _knownKingdomCombinations;
+
+        [SaveableField(0)]
+        private Dictionary<string, float> _warExhaustion;
+        private HashSet<Tuple<Kingdom, Kingdom>> _knownKingdomCombinations;
         private HashSet<Kingdom> _knownKingdoms;
 
-        private const float MaxWarExhaustion = 100f;
-        private const float MinWarExhaustion = 0f;
+        internal static float MaxWarExhaustion { get { return 100f; } }
+        internal static float MinWarExhaustion { get { return 0; } }
 
-        public static WarExhaustionManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new WarExhaustionManager();
-                }
-                return _instance;
-            }
-        }
 
-        private WarExhaustionManager()
+        private float Fuzziness { get { return MBRandom.RandomFloatRanged(BaseFuzzinessMin, BaseFuzzinessMax); } }
+
+        private float BaseFuzzinessMin { get { return 0.5f; } }
+        private float BaseFuzzinessMax { get { return 1.5f; } }
+
+        internal WarExhaustionManager()
         {
-            this._warExhaustion = new Dictionary<HashSet<Kingdom>, float>(HashSet<Kingdom>.CreateSetComparer());
-            HashSet<HashSet<Kingdom>> combinations = new HashSet<HashSet<Kingdom>>(HashSet<Kingdom>.CreateSetComparer());
-            combinations.UnionWith(
-                from item1 in Kingdom.All
-                from item2 in Kingdom.All
-                where String.Compare(item1.Name.ToString(), item2.Name.ToString()) < 0
-                select new HashSet<Kingdom>() { item1, item2 });
-            this._knownKingdoms = new HashSet<Kingdom>(Kingdom.All);
-            this._knownKingdomCombinations = combinations;
+            this._warExhaustion = new Dictionary<string, float>();
+            this._knownKingdomCombinations = new HashSet<Tuple<Kingdom, Kingdom>>();
+            this._knownKingdoms = new HashSet<Kingdom>();
         }
 
         public float GetWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
-            if (_warExhaustion.TryGetValue(new HashSet<Kingdom>() { kingdom1, kingdom2 }, out float warExhaustion))
+
+            if (_warExhaustion.TryGetValue(CreateKey(kingdom1, kingdom2), out float warExhaustion))
             {
                 return warExhaustion;
             }
@@ -59,81 +49,132 @@ namespace DiplomacyFixes
             }
         }
 
-        private void AddWarExhaustion(HashSet<Kingdom> kingdoms)
+        private string CreateKey(Kingdom kingdom1, Kingdom kingdom2)
         {
-            if (_warExhaustion.TryGetValue(kingdoms, out float currentValue))
+            return CreateKey(new Tuple<Kingdom, Kingdom>(kingdom1, kingdom2));
+        }
+
+        private string CreateKey(Tuple<Kingdom, Kingdom> kingdoms)
+        {
+            return string.Join("+", kingdoms.Item1.StringId, kingdoms.Item2.StringId);
+        }
+
+        private void AddDailyWarExhaustion(Tuple<Kingdom, Kingdom> kingdoms)
+        {
+            string key = CreateKey(kingdoms);
+            float warExhaustionToAdd = GetDailyWarExhaustionDelta();
+            AddWarExhaustion(key, warExhaustionToAdd, true);
+        }
+
+        public void AddCasualtyWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, int casualties)
+        {
+            string key = CreateKey(kingdom1, kingdom2);
+            float warExhaustionToAdd = Settings.Instance.WarExhaustionPerCasualty * casualties;
+            AddWarExhaustion(key, warExhaustionToAdd, true);
+        }
+
+        public void AddSiegeWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            string key = CreateKey(kingdom1, kingdom2);
+            float warExhaustionToAdd = Settings.Instance.WarExhaustionPerSiege;
+            AddWarExhaustion(key, warExhaustionToAdd, true);
+        }
+
+        private void AddWarExhaustion(string key, float warExhaustionToAdd, bool addFuzziness)
+        {
+            float finalWarExhaustionDelta = warExhaustionToAdd;
+            if (addFuzziness)
             {
-                _warExhaustion[kingdoms] = MBMath.ClampFloat(currentValue += Settings.Instance.WarExhaustionMultiplier, MinWarExhaustion, MaxWarExhaustion);
+                finalWarExhaustionDelta *= Fuzziness;
+            }
+            if (_warExhaustion.TryGetValue(key, out float currentValue))
+            {
+                _warExhaustion[key] = MBMath.ClampFloat(currentValue += finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
             }
             else
             {
-                _warExhaustion[kingdoms] = MBMath.ClampFloat(Settings.Instance.WarExhaustionMultiplier, MinWarExhaustion, MaxWarExhaustion);
+                _warExhaustion[key] = MBMath.ClampFloat(finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
             }
         }
 
-        private void RemoveWarExhaustion(HashSet<Kingdom> kingdoms)
+        private float GetDailyWarExhaustionDelta()
         {
-            if (_warExhaustion.TryGetValue(kingdoms, out float currentValue))
+            return Settings.Instance.WarExhaustionPerDay;
+        }
+
+        private void RemoveDailyWarExhaustion(Tuple<Kingdom, Kingdom> kingdoms)
+        {
+            string key = CreateKey(kingdoms);
+            if (_warExhaustion.TryGetValue(key, out float currentValue))
             {
-                _warExhaustion[kingdoms] = MBMath.ClampFloat(currentValue -= Settings.Instance.WarExhaustionMultiplier, MinWarExhaustion, MaxWarExhaustion);
+                float warExhaustionToRemove = GetDailyWarExhaustionDelta();
+                _warExhaustion[key] = MBMath.ClampFloat(currentValue -= warExhaustionToRemove, MinWarExhaustion, MaxWarExhaustion);
             }
         }
 
-        public void UpdateWarExhaustionForAllKingdoms()
+        public void UpdateDailyWarExhaustionForAllKingdoms()
         {
             UpdateKnownKingdoms();
 
-            foreach (HashSet<Kingdom> kingdoms in _knownKingdomCombinations)
+            foreach (Tuple<Kingdom, Kingdom> kingdoms in _knownKingdomCombinations)
             {
-                UpdateWarExhaustion(kingdoms);
+                UpdateDailyWarExhaustion(kingdoms);
             }
         }
 
         private void UpdateKnownKingdoms()
         {
-            IEnumerable<Kingdom> kingdomsToAdd = Kingdom.All.Except(_knownKingdoms);
+            IEnumerable<Kingdom> kingdomsToAdd;
+            if (_knownKingdoms == null)
+            {
+                _knownKingdoms = new HashSet<Kingdom>();
+                _knownKingdomCombinations = new HashSet<Tuple<Kingdom, Kingdom>>();
+                kingdomsToAdd = Kingdom.All;
+
+            }
+            else
+            {
+                kingdomsToAdd = Kingdom.All.Except(_knownKingdoms);
+            }
+
             if (kingdomsToAdd.Any())
             {
                 _knownKingdomCombinations.UnionWith(
                 from item1 in Kingdom.All
                 from item2 in Kingdom.All
-                where String.Compare(item1.Name.ToString(), item2.Name.ToString()) < 0
-                select new HashSet<Kingdom>() { item1, item2 });
+                where String.Compare(item1.Name.ToString(), item2.Name.ToString()) != 0
+                select new Tuple<Kingdom, Kingdom>(item1, item2));
                 _knownKingdoms.UnionWith(kingdomsToAdd);
             }
         }
 
-        private void UpdateWarExhaustion(HashSet<Kingdom> kingdoms)
+        private void UpdateDailyWarExhaustion(Tuple<Kingdom, Kingdom> kingdoms)
         {
-            if (kingdoms.Count != 2)
-            {
-                throw new MBIllegalValueException("Can only update war exhaustion when there are two kingdoms provided.");
-            }
 
-            if (!IsValidQuestState(kingdoms))
+            if (FactionManager.IsAtWarAgainstFaction(kingdoms.Item1, kingdoms.Item2))
             {
-                return;
-            }
-
-            if (FactionManager.IsAtWarAgainstFaction(kingdoms.First(), kingdoms.First(element => element != kingdoms.First())))
-            {
-                AddWarExhaustion(kingdoms);
+                IEnumerable<CampaignWar> campaignWars = Campaign.Current.FactionManager.FindCampaignWarsBetweenFactions(kingdoms.Item1, kingdoms.Item2);
+                CampaignWar campaignWar = null;
+                if (campaignWars?.Any() == true)
+                {
+                    campaignWar = (from war in campaignWars
+                                   orderby war.StartDate
+                                   select war).FirstOrDefault();
+                }
+                if (campaignWar == null || (float)Math.Round(campaignWar.StartDate.ElapsedDaysUntilNow) >= 1.0f)
+                {
+                    AddDailyWarExhaustion(kingdoms);
+                }
             }
             else
             {
-                RemoveWarExhaustion(kingdoms);
+                RemoveDailyWarExhaustion(kingdoms);
             }
         }
 
-        private bool IsValidQuestState(HashSet<Kingdom> kingdoms)
+        public bool HasMaxWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
-            bool isValidQuestState = true;
-            if (kingdoms.Any(kingdom => kingdom == Hero.MainHero.MapFaction))
-            {
-                ThirdPhase thirdPhase = StoryMode.StoryMode.Current.MainStoryLine.ThirdPhase;
-                isValidQuestState = thirdPhase == null || thirdPhase.OppositionKingdoms.Intersect(kingdoms).IsEmpty();
-            }
-            return isValidQuestState;
+            return GetWarExhaustion(kingdom1, kingdom2) >= MaxWarExhaustion;
         }
     }
 }

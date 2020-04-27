@@ -28,6 +28,11 @@
     <string id="dRoMejb0" text="Decline" />
 
     <string id="cXfcwzPp" text="Send Messenger" />
+
+    <!-- -
+    ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
+    -->
+    <string id="HWiDa4R1" text="Exhausted from the war, the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}." />
     <!--
     ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
     -->

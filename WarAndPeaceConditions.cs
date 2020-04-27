@@ -60,9 +60,10 @@ namespace DiplomacyFixes
                 exceptionList.Add(new TextObject(NOT_ENOUGH_INFLUENCE));
             }
 
-            if (CooldownManager.GetLastWarTimeWithFaction(item.Faction2).HasValue)
+            CampaignTime? lastWarTimeWithPlayerFaction = CooldownManager.GetLastWarTimeWithPlayerFaction(item.Faction2);
+            if (lastWarTimeWithPlayerFaction.HasValue)
             {
-                float elapsedDaysUntilNow = CooldownManager.GetLastWarTimeWithFaction(item.Faction2).Value.ElapsedDaysUntilNow;
+                float elapsedDaysUntilNow = lastWarTimeWithPlayerFaction.Value.ElapsedDaysUntilNow;
                 int declareWarCooldownInDays = Settings.Instance.DeclareWarCooldownInDays;
                 bool hasEnoughTimeElapsed = elapsedDaysUntilNow >= declareWarCooldownInDays;
                 if (!hasEnoughTimeElapsed)

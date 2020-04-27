@@ -1,38 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.SaveSystem;
 
 namespace DiplomacyFixes
 {
+    [SaveableClass(3)]
     class CooldownManager
     {
-        private static Dictionary<IFaction, CampaignTime> _lastWarTime;
 
-        public static void UpdateLastWarTime(IFaction faction, CampaignTime campaignTime)
+        internal static Dictionary<string, CampaignTime> LastWarTime { get; private set; } = new Dictionary<string, CampaignTime>(); 
+
+        [SaveableField(1)]
+        private Dictionary<string, CampaignTime> _lastWarTime;
+
+        internal CooldownManager()
         {
-            InitializeLastWarTime();
-            _lastWarTime[faction] = campaignTime;
+            _lastWarTime = new Dictionary<string, CampaignTime>();
+            LastWarTime = _lastWarTime;
         }
 
-        public static Nullable<CampaignTime> GetLastWarTimeWithFaction(IFaction faction)
+        public void UpdateLastWarTime(IFaction faction1, IFaction faction2, CampaignTime campaignTime)
         {
-            InitializeLastWarTime();
-            if (_lastWarTime.TryGetValue(faction, out CampaignTime value))
+            string key = CreateKey(faction1, faction2);
+            _lastWarTime[key] = campaignTime;
+        }
+
+        private static string CreateKey(IFaction faction1, IFaction faction2)
+        {
+            List<IFaction> factions = new List<IFaction> { faction1, faction2 };
+            IEnumerable<string> keyArguments = factions.OrderBy(faction => faction.StringId).Select(faction => faction.StringId);
+            return string.Join("+", keyArguments);
+        }
+
+        public static CampaignTime? GetLastWarTimeBetweenFactions(IFaction faction1, IFaction faction2)
+        {
+            if (LastWarTime.TryGetValue(CreateKey(faction1, faction2), out CampaignTime value))
             {
                 return value;
             }
             else
             {
-                return null;
+                return default;
             }
         }
 
-        public static void InitializeLastWarTime()
+        public static bool HasActiveWarCooldown(IFaction faction1, IFaction faction2)
         {
-            if (_lastWarTime == null)
+            CampaignTime? campaignTime = GetLastWarTimeBetweenFactions(faction1, faction2);
+            if(campaignTime.HasValue)
             {
-                _lastWarTime = new Dictionary<IFaction, CampaignTime>();
+                return campaignTime.Value.ElapsedDaysUntilNow < Settings.Instance.DeclareWarCooldownInDays;
+            } else
+            {
+                return false;
             }
+        }
+
+        public static Nullable<CampaignTime> GetLastWarTimeWithPlayerFaction(IFaction faction)
+        {
+            return GetLastWarTimeBetweenFactions(faction, Hero.MainHero.MapFaction);
+        }
+
+        internal void sync()
+        {
+            LastWarTime = _lastWarTime;
         }
     }
 }

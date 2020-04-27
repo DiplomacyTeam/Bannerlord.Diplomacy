@@ -46,7 +46,7 @@ namespace DiplomacyFixes.ViewModel
 
 		protected void SendMessenger()
 		{
-			MessengerManager.Instance.SendMessengerWithInfluenceCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger());
+			Events.Instance.OnMessengerSent(Faction2Leader.Hero);
 			this.UpdateDiplomacyProperties();
 		}
 

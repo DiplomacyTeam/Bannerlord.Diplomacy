@@ -58,5 +58,21 @@ namespace DiplomacyFixes
         [SettingPropertyInteger("{=nnXi6MmH}Messenger Travel Time in Days", 0, 500, RequireRestart = false, HintText = "{=zkvCGLuK}The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3.")]
         [SettingPropertyGroup(HeadingMessengers)]
         public int MessengerTravelTime { get; set; } = 3;
+
+        [SettingPropertyBool("Enable War Exhaustion", RequireRestart = false, HintText = "If disabled, this disables the war exhaustion mechanic. Default value is enabled.")]
+        [SettingPropertyGroup("War Exhaustion", isMainToggle: true)]
+        public bool EnableWarExhaustion { get; set; } = true;
+
+        [SettingPropertyFloatingInteger("War Exhaustion Per Day", 0f, 5f, RequireRestart = false, HintText = "The amount of war exhaustion added per day a war is ongoing.")]
+        [SettingPropertyGroup("War Exhaustion")]
+        public float WarExhaustionPerDay { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("War Exhaustion Per Casualty", 0f, 0.1f, RequireRestart = false, HintText = "The amount of war exhaustion added when a faction has a battle casualty.")]
+        [SettingPropertyGroup("War Exhaustion")]
+        public float WarExhaustionPerCasualty { get; set; } = 0.01f;
+
+        [SettingPropertyFloatingInteger("War Exhaustion Per Siege", 0f, 50f, RequireRestart = false, HintText = "The amount of war exhaustion added when a faction loses a city.")]
+        [SettingPropertyGroup("War Exhaustion")]
+        public float WarExhaustionPerSiege { get; set; } = 10f;
     }
 }
