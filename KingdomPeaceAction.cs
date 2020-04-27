@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
+using TaleWorlds.TwoDimension;
 
 namespace DiplomacyFixes
 {
@@ -19,32 +21,25 @@ namespace DiplomacyFixes
 
         private static string CreateMakePeaceInquiryText(Kingdom kingdom, IFaction faction, int payment)
         {
+            TextObject peaceText = new TextObject("{=t0ZS9maD}{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}.");
+            peaceText.SetTextVariable("KINGDOM_LEADER", kingdom.Leader.Name.ToString());
+            peaceText.SetTextVariable("KINGDOM", kingdom.Name.ToString());
+            peaceText.SetTextVariable("PLAYER_KINGDOM", faction.Name.ToString());
             List<string> inquiryText = new List<string>();
-            inquiryText.AddRange(new string[]
-            {
-                kingdom.Leader.Name.ToString(),
-                " of the ",
-                kingdom.Name.ToString(),
-                " is proposing peace with the ",
-                faction.Name.ToString(),
-                "."
-            });
+            inquiryText.Add(peaceText.ToString());
 
             if (payment > 0)
             {
-                inquiryText.AddRange(new string[] 
-                {
-                    " They are willing to pay war reparations of ",
-                    payment.ToString(),
-                    " denars."
-                });
+                TextObject warReparationText = new TextObject("{=ZrwszZww} They are willing to pay war reparations of {DENARS} denars.");
+                warReparationText.SetTextVariable("DENARS", payment);
+                inquiryText.Add(warReparationText.ToString());
             }
             return String.Concat(inquiryText);
         }
 
         private static void CreatePeaceInqiry(Kingdom kingdom, IFaction faction, int payment)
         {
-            InformationManager.ShowInquiry(new InquiryData("Peace Proposal", CreateMakePeaceInquiryText(kingdom, faction, payment), true, true, "Accept", "Decline", () =>
+            InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceInquiryText(kingdom, faction, payment), true, true, new TextObject("{=Y94H6XnK}Accept").ToString(), new TextObject("{=cOgmdp9e}Decline").ToString(), () =>
             {
                 KingdomPeaceAction.AcceptPeace(kingdom, faction, payment);
             }, null, ""), true);

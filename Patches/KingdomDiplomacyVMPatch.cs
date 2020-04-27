@@ -12,6 +12,7 @@ using TaleWorlds.Library;
 using DiplomacyFixes.ViewModel;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.Patches
 {
@@ -22,7 +23,7 @@ namespace DiplomacyFixes.Patches
         [HarmonyPatch("OnDeclareWar")]
         public static bool OnDeclareWarPatch(KingdomTruceItemVM item, KingdomDiplomacyVM __instance)
         {
-            List<string> warExceptions = WarAndPeaceConditions.CanDeclareWarExceptions(item);
+            List<TextObject> warExceptions = WarAndPeaceConditions.CanDeclareWarExceptions(item);
             if (warExceptions.IsEmpty())
             {
                 float influenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar();
@@ -39,7 +40,7 @@ namespace DiplomacyFixes.Patches
             }
             else
             {
-                MessageHelper.SendFailedActionMessage("Cannot declare war on this kingdom. ", warExceptions);
+                MessageHelper.SendFailedActionMessage("{=v0cDMIcl}Cannot declare war on this kingdom. ", warExceptions);
             }
             return false;
         }
@@ -48,7 +49,7 @@ namespace DiplomacyFixes.Patches
         [HarmonyPatch("OnDeclarePeace")]
         public static bool OnDeclarePeacePatch(KingdomWarItemVM item, KingdomDiplomacyVM __instance)
         {
-            List<string> peaceExceptions = WarAndPeaceConditions.CanMakePeaceExceptions(item);
+            List<TextObject> peaceExceptions = WarAndPeaceConditions.CanMakePeaceExceptions(item);
             if (peaceExceptions.IsEmpty())
             {
                 float influenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace();
@@ -65,7 +66,7 @@ namespace DiplomacyFixes.Patches
             }
             else
             {
-                MessageHelper.SendFailedActionMessage("Cannot make peace with this kingdom. ", peaceExceptions);
+                MessageHelper.SendFailedActionMessage("{=Pqk3WuGz}Cannot make peace with this kingdom. ", peaceExceptions);
             }
             return false;
         }

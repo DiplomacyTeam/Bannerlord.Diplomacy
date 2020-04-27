@@ -293,7 +293,7 @@
 											<Children>
 												<ButtonWidget DataSource="{CurrentSelectedDiplomacyItem}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="SendMessenger" IsEnabled="@IsMessengerAvailable">
 													<Children>
-														<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="Send Messenger" />
+														<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@SendMessengerActionName" />
 														<Widget UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="250">
 															<Children>
 																<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@SendMessengerInfluenceCost">

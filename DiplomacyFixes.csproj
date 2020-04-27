@@ -284,6 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\DiplomacyPanel.xml" />
+    <Content Include="ModuleData\Languages\std_module_strings_xml.xml" />
     <Content Include="SubModule.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <ModuleData Include="ModuleData\**/*.*" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
@@ -299,6 +301,7 @@
     <Copy SourceFiles="$(TargetDir)\MBOptionScreen.v2.0.6.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(ProjectDir)\SubModule.xml" DestinationFolder="$(MOD_FOLDER)" />
     <Copy SourceFiles="@(GUI)" DestinationFolder="$(MOD_FOLDER)\GUI\%(RecursiveDir)" />
+	<Copy SourceFiles="@(ModuleData)" DestinationFolder="$(MOD_FOLDER)\ModuleData\%(RecursiveDir)" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>

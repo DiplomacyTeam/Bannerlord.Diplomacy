@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="English" />
+  </tags>
+  <strings>
+    <string id="TS1iV2pO" text="Not enough influence!" />
+    <string id="XQFxDr11" text="There is an active quest preventing it!" />
+    <string id="ONNcmltF" text="This war hasn't gone on long enough to consider peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
+    <string id="jPHYDjXQ" text="Cannot declare war so soon after making peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
+
+    <string id="v0cDMIcl" text="Cannot declare war on this kingdom. " />
+    <string id="Pqk3WuGz" text="Cannot make peace with this kingdom. " />
+    <string id="zv12jjyW" text="Messenger Sent" />
+    <string id="uy86VZX2" text="Messenger Arrived" />
+    
+    
+    <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at the {FACTION2_NAME} leader." />
+    <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at the {FACTION2_NAME} leader in {TRAVEL_TIME} days." />
+
+    <string id="t0ZS9maD" text="{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}." />
+    <string id="ZrwszZww" text=" They are willing to pay war reparations of {DENARS} denars." />
+
+
+    <string id="BkGSVccZ" text="Peace Proposal" />
+    <string id="dRoMejb0" text="Decline" />
+
+    <string id="cXfcwzPp" text="Send Messenger" />
+    <!--
+    ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
+    -->
+
+    <string id="sBw5Qzq3" text="Kingdom Diplomacy" />
+    <string id="ZRlNvsev" text="Minimum War Duration in Days" />
+    <string id="vuFT5ns8" text="The minimum duration (in days) that a war can last before proposing peace. Default value is 10." />
+    <string id="4MzQHMVj" text="Declare War Cooldown in Days" />
+    <string id="q2duqN8d" text="The minimum duration (in days) to declare war after making peace. Default value is 10." />
+    <string id="6m1SspFW" text="Enable Player Kingdom Diplomacy Control" />
+    <string id="N5EouSSj" text="Gives the player total control over their kingdom's war and peace declarations." />
+
+    
+    <string id="SEViwYTl" text="Influence Costs" />
+    <string id="K2vLGalN" text="If disabled, this removes all costs for war and peace declaration actions. Default value is true." />
+    <string id="9PlT57Nl" text="Influence Costs/Scaling" />
+    <string id="xfVFBxfj" text="If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is true." />
+    <string id="TvAYJv5Q" text="Scaling Influence Cost Multiplier" />
+    <string id="AQ5gRYN6" text="Multiplier for the scaling influence costs. Default value is 5." />
+
+    <string id="BazjeCZw" text="Influence Costs/Flat" />
+    <string id="OnTeAgin" text="Flat Declare War Influence Cost" />
+    <string id="O5XvybTI" text="Influence cost for declaring war on another kingdom. Default value is 100." />
+    <string id="iNsXQD2q" text="Flat Make Peace Influence Cost" />
+    <string id="WB5zdvdT" text="Influence cost for making peace with another kingdom. Default value is 100." />
+    
+    <string id="nueOs6m9" text="Messengers" />
+    <string id="qeDOmURl" text="Send Messenger Influence Cost" />
+    <string id="Lkos6GQb" text="Influence cost for sending a messenger to another leader. Default value is 20." />
+
+    <string id="nnXi6MmH" text="Messenger Travel Time in Days" />
+    <string id="zkvCGLuK" text="The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3." />
+    
+  </strings>
+</base>

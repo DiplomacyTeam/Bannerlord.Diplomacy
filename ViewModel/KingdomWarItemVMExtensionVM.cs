@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.ViewModel
 {
@@ -28,6 +29,7 @@ namespace DiplomacyFixes.ViewModel
 			float sendMessengerInfluenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
 			UpdateActionAvailability();
 			this.SendMessengerInfluenceCost = (int)sendMessengerInfluenceCost;
+			this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
 		}
 
 		private void UpdateActionAvailability()
@@ -117,9 +119,27 @@ namespace DiplomacyFixes.ViewModel
 			}
 		}
 
+		[DataSourceProperty]
+		public string SendMessengerActionName
+		{
+			get
+			{
+				return this._sendMessengerActionName;
+			}
+			set
+			{
+				if(value != this._sendMessengerActionName)
+				{
+					this._sendMessengerActionName = value;
+					base.OnPropertyChanged("SendMessengerActionName");
+				}
+			}
+		}
+
 		private bool _isOptionAvailable;
 		private int _influenceCost;
 		private bool _isMessengerAvailable;
 		private int _sendMessengerInfluenceCost;
+		private string _sendMessengerActionName;
 	}
 }

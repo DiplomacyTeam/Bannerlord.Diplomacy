@@ -6,50 +6,55 @@ namespace DiplomacyFixes
 {
     class Settings : AttributeSettings<Settings>
     {
+        private const string HeadingKingdomDiplomacy = "{=sBw5Qzq3}Kingdom Diplomacy";
+        private const string HeadingInfluenceCostsScaling = "{=9PlT57Nl}Influence Costs/Scaling";
+        private const string HeadingInfluenceCostsFlat = "{=BazjeCZw}Influence Costs/Flat";
+        private const string HeadingMessengers = "{=nueOs6m9}Messengers";
+
         public override string Id { get; set; } = "DiplomacyFixesSettings_1";
 
         public override string ModuleFolderName { get; } = "DiplomacyFixes";
 
         public override string ModName { get; } = "Diplomacy Fixes";
 
-        [SettingPropertyBool(displayName: "Enable Player Kingdom Diplomacy Control", Order = 0, RequireRestart = false, HintText = "Gives the player total control over their kingdom's war and peace declarations.")]
-        [SettingPropertyGroup("Kingdom Diplomacy")]
+        [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 0, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool PlayerDiplomacyControl { get; set; } = true;
 
-        [SettingPropertyBool(displayName: "Enable Influence Costs", RequireRestart = false, HintText = "If disabled, this removes all costs for war and peace declaration actions. Default value is true.")]
-        [SettingPropertyGroup("Influence Costs", isMainToggle: true)]
+        [SettingPropertyBool(displayName: "Enable Influence Costs", RequireRestart = false, HintText = "{=K2vLGalN}If disabled, this removes all costs for war and peace declaration actions. Default value is true.")]
+        [SettingPropertyGroup("{=SEViwYTl}Influence Costs", isMainToggle: true)]
         public bool EnableInfluenceCostsForDiplomacyActions { get; set; } = true;
 
-        [SettingPropertyBool(displayName: "Enable Scaling Influence Cost", Order = 0, RequireRestart = false, HintText = "If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is true.")]
-        [SettingPropertyGroup("Influence Costs/Scaling", IsMainToggle = true)]
+        [SettingPropertyBool(displayName: "Enable Scaling Influence Cost", Order = 0, RequireRestart = false, HintText = "{=xfVFBxfj}If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is true.")]
+        [SettingPropertyGroup(HeadingInfluenceCostsScaling, IsMainToggle = true)]
         public bool ScalingInfluenceCosts { get; set; } = true;
 
-        [SettingPropertyFloatingInteger(displayName: "Scaling Influence Cost Multiplier", 0, 100, Order = 1, RequireRestart = false, HintText = "Multiplier for the scaling influence costs. Default value is 5.")]
-        [SettingPropertyGroup("Influence Costs/Scaling", order:0)]
+        [SettingPropertyFloatingInteger(displayName: "{=TvAYJv5Q}Scaling Influence Cost Multiplier", 0, 100, Order = 1, RequireRestart = false, HintText = "{=AQ5gRYN6}Multiplier for the scaling influence costs. Default value is 5.")]
+        [SettingPropertyGroup(HeadingInfluenceCostsScaling, order:0)]
         public float ScalingInfluenceCostMultiplier { get; set; } = 5.0f;
 
-        [SettingPropertyInteger(displayName: "Flat Declare War Influence Cost", 0, 10000, Order = 2, RequireRestart = false, HintText = "Influence cost for declaring war on another kingdom. Default value is 100.")]
-        [SettingPropertyGroup("Influence Costs/Flat", order:1)]
+        [SettingPropertyInteger(displayName: "{=OnTeAgin}Flat Declare War Influence Cost", 0, 10000, Order = 2, RequireRestart = false, HintText = "{=O5XvybTI}Influence cost for declaring war on another kingdom. Default value is 100.")]
+        [SettingPropertyGroup(HeadingInfluenceCostsFlat, order:1)]
         public int DeclareWarInfluenceCost { get; set; } = 100;
 
-        [SettingPropertyInteger("Flat Make Peace Influence Cost", 0, 10000, Order = 3, RequireRestart = false, HintText ="Influence cost for making peace with another kingdom. Default value is 100.")]
-        [SettingPropertyGroup("Influence Costs/Flat")]
+        [SettingPropertyInteger("{=iNsXQD2q}Flat Make Peace Influence Cost", 0, 10000, Order = 3, RequireRestart = false, HintText = "{=WB5zdvdT}Influence cost for making peace with another kingdom. Default value is 100.")]
+        [SettingPropertyGroup(HeadingInfluenceCostsFlat)]
         public int MakePeaceInfluenceCost { get; set; } = 100;
 
-        [SettingPropertyInteger("Minimum War Duration in Days", 0, 500, Order = 1, RequireRestart = false, HintText = "The minimum duration (in days) that a war can last before proposing peace. Default value is 10.")]
-        [SettingPropertyGroup("Kingdom Diplomacy")]
+        [SettingPropertyInteger("{=ZRlNvsev}Minimum War Duration in Days", 0, 500, Order = 1, RequireRestart = false, HintText = "{=vuFT5ns8}The minimum duration (in days) that a war can last before proposing peace. Default value is 10.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int MinimumWarDurationInDays { get; set; } = 10;
 
-        [SettingPropertyInteger("Declare War Cooldown in Days", 0, 500, Order = 2, RequireRestart = false, HintText ="The minimum duration (in days) to declare war after making peace. Default value is 10.")]
-        [SettingPropertyGroup("Kingdom Diplomacy")]
+        [SettingPropertyInteger("{=4MzQHMVj}Declare War Cooldown in Days", 0, 500, Order = 2, RequireRestart = false, HintText = "{=q2duqN8d}The minimum duration (in days) to declare war after making peace. Default value is 10.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int DeclareWarCooldownInDays { get; set; } = 10;
 
-        [SettingPropertyInteger("Send Messenger Influence Cost", 0, 10000, RequireRestart = false, HintText = "Influence cost for sending a messenger to another leader. Default value is 20.")]
-        [SettingPropertyGroup("Messengers")]
+        [SettingPropertyInteger("{=qeDOmURl}Send Messenger Influence Cost", 0, 10000, RequireRestart = false, HintText = "{=Lkos6GQb}Influence cost for sending a messenger to another leader. Default value is 20.")]
+        [SettingPropertyGroup(HeadingMessengers)]
         public int SendMessengerInfluenceCost { get; set; } = 100;
 
-        [SettingPropertyInteger("Messenger Travel Time in Days", 0, 500, RequireRestart = false, HintText = "The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3.")]
-        [SettingPropertyGroup("Messengers")]
+        [SettingPropertyInteger("{=nnXi6MmH}Messenger Travel Time in Days", 0, 500, RequireRestart = false, HintText = "{=zkvCGLuK}The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3.")]
+        [SettingPropertyGroup(HeadingMessengers)]
         public int MessengerTravelTime { get; set; } = 3;
     }
 }

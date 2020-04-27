@@ -37,7 +37,7 @@ namespace DiplomacyFixes.Messengers
         public void SendMessenger(Hero targetHero)
         {
             Messengers.Add(new Messenger(targetHero, CampaignTime.Now));
-            InformationManager.ShowInquiry(new InquiryData("Messenger Sent", GetMessengerSentText(Hero.MainHero.MapFaction, targetHero.MapFaction, Settings.Instance.MessengerTravelTime).ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), "", delegate ()
+            InformationManager.ShowInquiry(new InquiryData(new TextObject("{=zv12jjyW}Messenger Sent").ToString(), GetMessengerSentText(Hero.MainHero.MapFaction, targetHero.MapFaction, Settings.Instance.MessengerTravelTime).ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), "", delegate ()
             {
             }, null, ""), false);
         }
@@ -48,7 +48,7 @@ namespace DiplomacyFixes.Messengers
             {
                 CanStartMessengerConversation = false;
                 _activeMessenger = messenger;
-                InformationManager.ShowInquiry(new InquiryData("Messenger Arrived", GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction).ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), "", delegate ()
+                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Arrived").ToString(), GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction).ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), "", delegate ()
                 {
                     StartDialogue(messenger.TargetHero);
                 }, null, ""), true);
@@ -67,7 +67,7 @@ namespace DiplomacyFixes.Messengers
 
         private TextObject GetMessengerArrivedText(IFaction faction1, IFaction faction2)
         {
-            TextObject textObject = new TextObject("The messenger from {FACTION1_NAME} has arrived at the {FACTION2_NAME} leader.", null);
+            TextObject textObject = new TextObject("{=YnRmSele}The messenger from {FACTION1_NAME} has arrived at the {FACTION2_NAME} leader.", null);
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             textObject.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
             return textObject;
@@ -75,24 +75,10 @@ namespace DiplomacyFixes.Messengers
 
         private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, int travelDays)
         {
-            TextObject textObject = new TextObject("The messenger from {FACTION1_NAME} will arrive at the {FACTION2_NAME} leader {TRAVEL_TIME}.", null);
+            TextObject textObject = new TextObject("{=bVUJYWVK}The messenger from {FACTION1_NAME} will arrive at the {FACTION2_NAME} leader in {TRAVEL_TIME} days.", null);
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             textObject.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
-
-            string travelTime;
-            switch (travelDays)
-            {
-                case 0:
-                    travelTime = "immediately";
-                    break;
-                case 1:
-                    travelTime = "in 1 day";
-                    break;
-                default:
-                    travelTime = string.Concat(new string[] { "in ", travelDays.ToString(), " days" });
-                    break;
-            }
-            textObject.SetTextVariable("TRAVEL_TIME", travelTime);
+            textObject.SetTextVariable("TRAVEL_TIME", travelDays);
             return textObject;
         }
 
