@@ -23,7 +23,7 @@
          </SubModule>
 		 <SubModule>
 			 <Name value="MBOptionScreen" />
-			 <DLLName value="MBOptionScreen.dll" />
+			 <DLLName value="MBOptionScreen.v2.0.6.dll" />
 			 <SubModuleClassType value="MBOptionScreen.MBOptionScreenSubModule" />
 			 <Tags>
 				 <Tag key="DedicatedServerType" value="none" />
