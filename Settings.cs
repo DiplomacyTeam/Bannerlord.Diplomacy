@@ -25,11 +25,11 @@ namespace DiplomacyFixes
         public bool ScalingInfluenceCosts { get; set; } = true;
 
         [SettingPropertyFloatingInteger(displayName: "Scaling Influence Cost Multiplier", 0, 100, Order = 1, RequireRestart = false, HintText = "Multiplier for the scaling influence costs. Default value is 5.")]
-        [SettingPropertyGroup("Influence Costs/Scaling")]
+        [SettingPropertyGroup("Influence Costs/Scaling", order:0)]
         public float ScalingInfluenceCostMultiplier { get; set; } = 5.0f;
 
-        [SettingPropertyInteger(displayName: "Flat Declare War Influence Cost", 0, 100, Order = 2, RequireRestart = false, HintText = "Influence cost for declaring war on another kingdom. Default value is 100.")]
-        [SettingPropertyGroup("Influence Costs/Flat")]
+        [SettingPropertyInteger(displayName: "Flat Declare War Influence Cost", 0, 10000, Order = 2, RequireRestart = false, HintText = "Influence cost for declaring war on another kingdom. Default value is 100.")]
+        [SettingPropertyGroup("Influence Costs/Flat", order:1)]
         public int DeclareWarInfluenceCost { get; set; } = 100;
 
         [SettingPropertyInteger("Flat Make Peace Influence Cost", 0, 10000, Order = 3, RequireRestart = false, HintText ="Influence cost for making peace with another kingdom. Default value is 100.")]
