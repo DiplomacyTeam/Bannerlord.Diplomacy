@@ -13,26 +13,39 @@ namespace DiplomacyFixes.ViewModel
 
         public KingdomWarItemVMExtensionVM(CampaignWar war, Action<KingdomWarItemVM> onSelect, Action<KingdomWarItemVM> onAction) : base(war, onSelect, onAction)
         {
-			_isOptionAvailable = true;
-			_influenceCost = 0;
-			_isMessengerAvailable = true;
-			_sendMessengerInfluenceCost = 0;
+			this.IsOptionAvailable = true;
+			this.InfluenceCost = 0;
+			this.IsMessengerAvailable = true;
+			this.SendMessengerInfluenceCost = 0;
 			UpdateDiplomacyProperties();
 		}
 
 		protected override void UpdateDiplomacyProperties()
 		{
 			base.UpdateDiplomacyProperties();
-			this._isOptionAvailable = WarAndPeaceConditions.CanMakePeaceExceptions(this).IsEmpty();
-			this._influenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace();
+			this.IsOptionAvailable = WarAndPeaceConditions.CanMakePeaceExceptions(this).IsEmpty();
+			this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace();
 			float sendMessengerInfluenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
-			this._sendMessengerInfluenceCost = (int)sendMessengerInfluenceCost;
-			this._isMessengerAvailable = MessengerManager.CanSendMessengerWithInfluenceCost(Faction2Leader.Hero, sendMessengerInfluenceCost);
+			UpdateActionAvailability();
+			this.SendMessengerInfluenceCost = (int)sendMessengerInfluenceCost;
+		}
+
+		private void UpdateActionAvailability()
+		{
+			float sendMessengerInfluenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
+			this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithInfluenceCost(Faction2Leader.Hero, sendMessengerInfluenceCost);
+		}
+
+		protected override void OnSelect()
+		{
+			base.OnSelect();
+			UpdateActionAvailability();
 		}
 
 		protected void SendMessenger()
 		{
 			MessengerManager.Instance.SendMessengerWithInfluenceCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger());
+			this.UpdateDiplomacyProperties();
 		}
 
 		[DataSourceProperty]

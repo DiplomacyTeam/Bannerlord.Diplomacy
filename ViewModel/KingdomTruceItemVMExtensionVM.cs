@@ -13,26 +13,39 @@ namespace DiplomacyFixes.ViewModel
 
         public KingdomTruceItemVMExtensionVM(IFaction faction1, IFaction faction2, Action<KingdomDiplomacyItemVM> onSelection, Action<KingdomTruceItemVM> onAction) : base(faction1, faction2, onSelection, onAction)
         {
-            _isOptionAvailable = true;
-            _influenceCost = 0;
-            _isMessengerAvailable = true;
-            _sendMessengerInfluenceCost = 0;
+            this.IsOptionAvailable = true;
+            this.InfluenceCost = 0;
+            this.IsMessengerAvailable = true;
+            this.SendMessengerInfluenceCost = 0;
             UpdateDiplomacyProperties();
         }
 
         protected override void UpdateDiplomacyProperties()
         {
             base.UpdateDiplomacyProperties();
-            this._isOptionAvailable = WarAndPeaceConditions.CanDeclareWarExceptions(this).IsEmpty();
-            this._influenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar();
+            this.IsOptionAvailable = WarAndPeaceConditions.CanDeclareWarExceptions(this).IsEmpty();
+            this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar();
             float sendMessengerInfluenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
-            this._isMessengerAvailable = MessengerManager.CanSendMessengerWithInfluenceCost(Faction2Leader.Hero, sendMessengerInfluenceCost);
-            this._sendMessengerInfluenceCost = (int)sendMessengerInfluenceCost;
+            UpdateActionAvailability();
+            this.SendMessengerInfluenceCost = (int)sendMessengerInfluenceCost;
+        }
+
+        private void UpdateActionAvailability()
+        {
+            float sendMessengerInfluenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
+            this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithInfluenceCost(Faction2Leader.Hero, sendMessengerInfluenceCost);
+        }
+
+        protected override void OnSelect()
+        {
+            base.OnSelect();
+            UpdateActionAvailability();
         }
 
         protected void SendMessenger()
         {
             MessengerManager.Instance.SendMessengerWithInfluenceCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger());
+            this.UpdateDiplomacyProperties();
         }
 
         [DataSourceProperty]
