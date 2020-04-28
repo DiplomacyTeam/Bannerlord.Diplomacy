@@ -1,4 +1,5 @@
 ﻿using SandBox;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using TaleWorlds.CampaignSystem;
@@ -25,12 +26,12 @@ namespace DiplomacyFixes.Messengers
             }
         }
 
-        public MBBindingList<Messenger> Messengers { get; }
+        public List<Messenger> Messengers { get; }
         public bool CanStartMessengerConversation { get; private set; }
         private Messenger _activeMessenger;
         private MessengerManager()
         {
-            Messengers = new MBBindingList<Messenger>();
+            Messengers = new List<Messenger>();
             CanStartMessengerConversation = true;
         }
 
