@@ -9,11 +9,11 @@ using TaleWorlds.Localization;
 namespace DiplomacyFixes.ViewModel
 {
 	public class KingdomWarItemVMExtensionVM : KingdomWarItemVM
-    {
+	{
 		// private static string INFLUENCE_COST = "Influence Cost: {0}";
 
-        public KingdomWarItemVMExtensionVM(CampaignWar war, Action<KingdomWarItemVM> onSelect, Action<KingdomWarItemVM> onAction) : base(war, onSelect, onAction)
-        {
+		public KingdomWarItemVMExtensionVM(CampaignWar war, Action<KingdomWarItemVM> onSelect, Action<KingdomWarItemVM> onAction) : base(war, onSelect, onAction)
+		{
 			this.IsOptionAvailable = true;
 			this.InfluenceCost = 0;
 			this.IsMessengerAvailable = true;
@@ -128,7 +128,7 @@ namespace DiplomacyFixes.ViewModel
 			}
 			set
 			{
-				if(value != this._sendMessengerActionName)
+				if (value != this._sendMessengerActionName)
 				{
 					this._sendMessengerActionName = value;
 					base.OnPropertyChanged("SendMessengerActionName");

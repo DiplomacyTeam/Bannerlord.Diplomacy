@@ -1,6 +1,5 @@
 ﻿using DiplomacyFixes.Messengers;
 using System;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors

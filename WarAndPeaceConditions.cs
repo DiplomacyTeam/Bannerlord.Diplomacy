@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
-using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
 namespace DiplomacyFixes
@@ -42,7 +41,7 @@ namespace DiplomacyFixes
                     if (!hasEnoughTimeElapsed)
                     {
                         TextObject textObject = new TextObject(TOO_SOON);
-                        textObject.SetTextVariable("ELAPSED_DAYS", (float) Math.Floor(elapsedDaysUntilNow));
+                        textObject.SetTextVariable("ELAPSED_DAYS", (float)Math.Floor(elapsedDaysUntilNow));
                         textObject.SetTextVariable("REQUIRED_DAYS", minimumWarDurationInDays);
                         exceptionList.Add(textObject);
                     }

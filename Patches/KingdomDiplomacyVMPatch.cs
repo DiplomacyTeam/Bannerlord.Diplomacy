@@ -1,17 +1,15 @@
-﻿using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
+﻿using DiplomacyFixes.ViewModel;
 using HarmonyLib;
-using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.Core;
-using System.Text;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using System.Diagnostics;
-using System.Windows.Forms;
-using TaleWorlds.Library;
-using DiplomacyFixes.ViewModel;
 using System.Reflection;
+using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.Patches
