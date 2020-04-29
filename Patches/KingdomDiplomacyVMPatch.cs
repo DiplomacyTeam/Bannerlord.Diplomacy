@@ -40,7 +40,7 @@ namespace DiplomacyFixes.Patches
             }
             else
             {
-                MessageHelper.SendFailedActionMessage("{=v0cDMIcl}Cannot declare war on this kingdom. ", warExceptions);
+                MessageHelper.SendFailedActionMessage(new TextObject("{=v0cDMIcl}Cannot declare war on this kingdom. ").ToString(), warExceptions);
             }
             return false;
         }
@@ -66,7 +66,7 @@ namespace DiplomacyFixes.Patches
             }
             else
             {
-                MessageHelper.SendFailedActionMessage("{=Pqk3WuGz}Cannot make peace with this kingdom. ", peaceExceptions);
+                MessageHelper.SendFailedActionMessage(new TextObject("{=Pqk3WuGz}Cannot make peace with this kingdom. ").ToString(), peaceExceptions);
             }
             return false;
         }

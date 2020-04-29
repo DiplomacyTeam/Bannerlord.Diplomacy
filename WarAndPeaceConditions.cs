@@ -1,4 +1,5 @@
 ﻿using StoryMode.StoryModePhases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -41,7 +42,7 @@ namespace DiplomacyFixes
                     if (!hasEnoughTimeElapsed)
                     {
                         TextObject textObject = new TextObject(TOO_SOON);
-                        textObject.SetTextVariable("ELAPSED_DAYS", elapsedDaysUntilNow);
+                        textObject.SetTextVariable("ELAPSED_DAYS", (float) Math.Floor(elapsedDaysUntilNow));
                         textObject.SetTextVariable("REQUIRED_DAYS", minimumWarDurationInDays);
                         exceptionList.Add(textObject);
                     }
@@ -68,7 +69,7 @@ namespace DiplomacyFixes
                 if (!hasEnoughTimeElapsed)
                 {
                     TextObject textObject = new TextObject(DECLARE_WAR_COOLDOWN);
-                    textObject.SetTextVariable("ELAPSED_DAYS", elapsedDaysUntilNow);
+                    textObject.SetTextVariable("ELAPSED_DAYS", (float)Math.Floor(elapsedDaysUntilNow));
                     textObject.SetTextVariable("REQUIRED_DAYS", declareWarCooldownInDays);
                     exceptionList.Add(textObject);
                 }
