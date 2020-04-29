@@ -16,17 +16,17 @@ namespace DiplomacyFixes
 
         public override string ModuleFolderName { get; } = "DiplomacyFixes";
 
-        public override string ModName { get; } = "Diplomacy Fixes";
+        public override string ModName { get; } = "{=MYz8nKqq}Diplomacy Fixes";
 
         [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 0, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool PlayerDiplomacyControl { get; set; } = true;
 
-        [SettingPropertyBool(displayName: "Enable Influence Costs", Order = -1, RequireRestart = false, HintText = "{=K2vLGalN}If disabled, this removes all costs for war and peace declaration actions. Default value is true.")]
+        [SettingPropertyBool(displayName: "{=WbOKuWbQ}Enable Influence Costs", Order = -1, RequireRestart = false, HintText = "{=K2vLGalN}If disabled, this removes all costs for war and peace declaration actions. Default value is true.")]
         [SettingPropertyGroup(HeadingInfluenceCosts, isMainToggle: true)]
         public bool EnableInfluenceCostsForDiplomacyActions { get; set; } = true;
 
-        [SettingPropertyBool(displayName: "Enable Scaling Influence Cost", Order = 0, RequireRestart = false, HintText = "{=xfVFBxfj}If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is true.")]
+        [SettingPropertyBool(displayName: "{=P1g6Ht1e}Enable Scaling Influence Cost", Order = 0, RequireRestart = false, HintText = "{=xfVFBxfj}If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is true.")]
         [SettingPropertyGroup(HeadingInfluenceCosts)]
         public bool ScalingInfluenceCosts { get; set; } = true;
 

@@ -35,7 +35,7 @@ namespace DiplomacyFixes
 
         private static void CreatePeaceInqiry(Kingdom kingdom, IFaction faction, int payment)
         {
-            InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceInquiryText(kingdom, faction, payment), true, true, new TextObject("{=Y94H6XnK}Accept").ToString(), new TextObject("{=cOgmdp9e}Decline").ToString(), () =>
+            InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceInquiryText(kingdom, faction, payment), true, true, new TextObject("{=3fTqLwkC}Accept").ToString(), new TextObject("{=dRoMejb0}Decline").ToString(), () =>
             {
                 KingdomPeaceAction.AcceptPeace(kingdom, faction, payment);
             }, null, ""), true);

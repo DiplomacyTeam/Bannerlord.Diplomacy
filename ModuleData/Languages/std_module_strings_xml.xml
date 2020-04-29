@@ -4,6 +4,9 @@
     <tag language="English" />
   </tags>
   <strings>
+    <string id="MYz8nKqq" text="Diplomacy Fixes" />
+    <string id="hPERH3u4" text="Loaded Diplomacy Fixes!!!" />
+    
     <string id="TS1iV2pO" text="Not enough influence!" />
     <string id="XQFxDr11" text="There is an active quest preventing it!" />
     <string id="ONNcmltF" text="This war hasn't gone on long enough to consider peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
@@ -14,15 +17,14 @@
     <string id="zv12jjyW" text="Messenger Sent" />
     <string id="uy86VZX2" text="Messenger Arrived" />
     
-    
     <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at the {FACTION2_NAME} leader." />
     <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at the {FACTION2_NAME} leader in {TRAVEL_TIME} days." />
 
     <string id="t0ZS9maD" text="{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}." />
     <string id="ZrwszZww" text=" They are willing to pay war reparations of {DENARS} denars." />
 
-
     <string id="BkGSVccZ" text="Peace Proposal" />
+    <string id="3fTqLwkC" text="Accept" />
     <string id="dRoMejb0" text="Decline" />
 
     <string id="cXfcwzPp" text="Send Messenger" />
@@ -38,7 +40,9 @@
     <string id="6m1SspFW" text="Enable Player Kingdom Diplomacy Control" />
     <string id="N5EouSSj" text="Gives the player total control over their kingdom's war and peace declarations." />
 
-    
+    <string id="WbOKuWbQ" text="Enable Influence Costs" />
+    <string id="P1g6Ht1e" text="Enable Scaling Influence Cost" />
+
     <string id="SEViwYTl" text="Influence Costs" />
     <string id="K2vLGalN" text="If disabled, this removes all costs for war and peace declaration actions. Default value is true." />
     <string id="9PlT57Nl" text="Influence Costs/Scaling" />
