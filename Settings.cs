@@ -1,6 +1,7 @@
 ﻿using MBOptionScreen.Attributes;
 using MBOptionScreen.Attributes.v2;
 using MBOptionScreen.Settings;
+using TaleWorlds.Localization;
 
 namespace DiplomacyFixes
 {
@@ -16,7 +17,7 @@ namespace DiplomacyFixes
 
         public override string ModuleFolderName { get; } = "DiplomacyFixes";
 
-        public override string ModName { get; } = "{=MYz8nKqq}Diplomacy Fixes";
+        public override string ModName { get; } = new TextObject("{=MYz8nKqq}Diplomacy Fixes").ToString();
 
         [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 0, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
