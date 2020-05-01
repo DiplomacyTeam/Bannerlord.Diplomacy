@@ -12,6 +12,7 @@ namespace DiplomacyFixes
         private const string HeadingInfluenceCostsFlat = "{=BazjeCZw}Influence Costs/Flat";
         private const string HeadingMessengers = "{=nueOs6m9}Messengers";
         private const string HeadingInfluenceCosts = "{=SEViwYTl}Influence Costs";
+        private const string HeadingWarExhaustion = "{=V542tneW}War Exhaustion";
 
         public override string Id { get; set; } = "DiplomacyFixesSettings_1";
 
@@ -51,7 +52,7 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int DeclareWarCooldownInDays { get; set; } = 10;
 
-        [SettingPropertyInteger("{=qeDOmURl}Send Messenger Influence Cost", 0, 10000, RequireRestart = false, HintText = "{=Lkos6GQb}Influence cost for sending a messenger to another leader. Default value is 20.")]
+        [SettingPropertyInteger("{=qeDOmURl}Send Messenger Influence Cost", 0, 10000, RequireRestart = false, HintText = "{=Lkos6GQb}Influence cost for sending a messenger to another leader. Default value is 100.")]
         [SettingPropertyGroup(HeadingMessengers)]
         public int SendMessengerInfluenceCost { get; set; } = 100;
 
@@ -59,20 +60,20 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingMessengers)]
         public int MessengerTravelTime { get; set; } = 3;
 
-        [SettingPropertyBool("Enable War Exhaustion", RequireRestart = false, HintText = "If disabled, this disables the war exhaustion mechanic. Default value is enabled.")]
-        [SettingPropertyGroup("War Exhaustion", isMainToggle: true)]
+        [SettingPropertyBool("{=lSttctYC}Enable War Exhaustion", RequireRestart = false, HintText = "{=Cxyn9ROT}If disabled, this disables the war exhaustion mechanic. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingWarExhaustion, isMainToggle: true)]
         public bool EnableWarExhaustion { get; set; } = true;
 
-        [SettingPropertyFloatingInteger("War Exhaustion Per Day", 0f, 5f, RequireRestart = false, HintText = "The amount of war exhaustion added per day a war is ongoing.")]
-        [SettingPropertyGroup("War Exhaustion")]
+        [SettingPropertyFloatingInteger("{=8TFQWL55}War Exhaustion Per Day", 0f, 5f, RequireRestart = false, HintText = "{=lgza5wDq}The amount of war exhaustion added per day a war is ongoing. Default value is 1.0.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerDay { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("War Exhaustion Per Casualty", 0f, 0.1f, RequireRestart = false, HintText = "The amount of war exhaustion added when a faction has a battle casualty.")]
-        [SettingPropertyGroup("War Exhaustion")]
+        [SettingPropertyFloatingInteger("{=s6dNpM6M}War Exhaustion Per Casualty", 0f, 0.1f, RequireRestart = false, HintText = "{=NcJtGeM7}The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.01.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerCasualty { get; set; } = 0.01f;
 
-        [SettingPropertyFloatingInteger("War Exhaustion Per Siege", 0f, 50f, RequireRestart = false, HintText = "The amount of war exhaustion added when a faction loses a city.")]
-        [SettingPropertyGroup("War Exhaustion")]
+        [SettingPropertyFloatingInteger("{=gGIaLKHk}War Exhaustion Per Siege", 0f, 50f, RequireRestart = false, HintText = "{=mCEa773h}The amount of war exhaustion added when a faction loses a city. Default value is 10.0.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerSiege { get; set; } = 10f;
     }
 }

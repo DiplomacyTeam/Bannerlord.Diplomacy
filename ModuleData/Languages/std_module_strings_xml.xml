@@ -63,10 +63,21 @@
     
     <string id="nueOs6m9" text="Messengers" />
     <string id="qeDOmURl" text="Send Messenger Influence Cost" />
-    <string id="Lkos6GQb" text="Influence cost for sending a messenger to another leader. Default value is 20." />
+    <string id="Lkos6GQb" text="Influence cost for sending a messenger to another leader. Default value is 100." />
 
     <string id="nnXi6MmH" text="Messenger Travel Time in Days" />
     <string id="zkvCGLuK" text="The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3." />
+
+
+    <string id="V542tneW" text="War Exhaustion" />
+    <string id="lSttctYC" text="Enable War Exhaustion" />
+    <string id="Cxyn9ROT" text="If disabled, this disables the war exhaustion mechanic. Default value is enabled." />
+    <string id="8TFQWL55" text="War Exhaustion Per Day" />
+    <string id="lgza5wDq" text="The amount of war exhaustion added per day a war is ongoing. Default value is 1.0." />
+    <string id="s6dNpM6M" text="War Exhaustion Per Casualty" />
+    <string id="NcJtGeM7" text="The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.01." />
+    <string id="gGIaLKHk" text="War Exhaustion Per Siege" />
+    <string id="mCEa773h" text="The amount of war exhaustion added when a faction loses a city. Default value is 10.0." />
     
   </strings>
 </base>
