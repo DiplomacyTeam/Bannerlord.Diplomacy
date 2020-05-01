@@ -22,6 +22,7 @@ namespace DiplomacyFixes.Messengers
         internal MessengerManager()
         {
             _messengers = new List<Messenger>();
+            Messengers = new MBReadOnlyList<Messenger>(_messengers);
             CanStartMessengerConversation = true;
         }
 
