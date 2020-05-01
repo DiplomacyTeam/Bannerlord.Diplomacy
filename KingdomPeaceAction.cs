@@ -43,7 +43,7 @@ namespace DiplomacyFixes
             return peaceText.ToString();
         }
 
-        private static void CreatePeaceInqiry(Kingdom kingdom, IFaction faction, int payment)
+        private static void CreatePeaceInquiry(Kingdom kingdom, IFaction faction, int payment)
         {
             InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceInquiryText(kingdom, faction, payment), true, true, new TextObject("{=3fTqLwkC}Accept").ToString(), new TextObject("{=dRoMejb0}Decline").ToString(), () =>
             {
@@ -65,7 +65,7 @@ namespace DiplomacyFixes
             {
                 if (!CooldownManager.HasPeaceProposalCooldown(kingdom))
                 {
-                    KingdomPeaceAction.CreatePeaceInqiry(kingdom, faction, num2);
+                    KingdomPeaceAction.CreatePeaceInquiry(kingdom, faction, num2);
                 }
             }
         }
@@ -80,12 +80,12 @@ namespace DiplomacyFixes
             {
                 if (!CooldownManager.HasPeaceProposalCooldown(kingdom))
                 {
-                    KingdomPeaceAction.CreatePeaceInqiryDueToWarExhaustion(kingdom, faction);
+                    KingdomPeaceAction.CreatePeaceInquiryDueToWarExhaustion(kingdom, faction);
                 }
             }
         }
 
-        private static void CreatePeaceInqiryDueToWarExhaustion(Kingdom kingdom, IFaction faction)
+        private static void CreatePeaceInquiryDueToWarExhaustion(Kingdom kingdom, IFaction faction)
         {
             int payment = 0;
             InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceDueToWarExhaustionInquiryText(kingdom, faction), true, true, new TextObject("{=Y94H6XnK}Accept").ToString(), new TextObject("{=cOgmdp9e}Decline").ToString(), () =>
