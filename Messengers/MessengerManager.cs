@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -8,17 +9,19 @@ using TaleWorlds.SaveSystem;
 
 namespace DiplomacyFixes.Messengers
 {
+    [SaveableClass(4)]
     class MessengerManager : IMissionListener
     {
+        [SaveableField(1)]
         private List<Messenger> _messengers;
-        public MBReadOnlyList<Messenger> Messengers { get; }
+        
+        public MBReadOnlyList<Messenger> Messengers { get; private set; }
 
         public bool CanStartMessengerConversation { get; private set; }
         private Messenger _activeMessenger;
-        internal MessengerManager(List<Messenger> messengers)
+        internal MessengerManager()
         {
-            _messengers = messengers;
-            Messengers = new MBReadOnlyList<Messenger>(_messengers);
+            _messengers = new List<Messenger>();
             CanStartMessengerConversation = true;
         }
 
@@ -42,6 +45,12 @@ namespace DiplomacyFixes.Messengers
                 }, null, ""), true);
 
             }
+        }
+
+        internal void Sync()
+        {
+            Messengers = new MBReadOnlyList<Messenger>(_messengers);
+            CanStartMessengerConversation = true;
         }
 
         public void StartDialogue(Hero targetHero)

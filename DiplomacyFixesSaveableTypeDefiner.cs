@@ -19,6 +19,7 @@ namespace DiplomacyFixes
             base.AddClassDefinition(typeof(Messenger), 1);
             base.AddClassDefinition(typeof(WarExhaustionManager), 2);
             base.AddClassDefinition(typeof(CooldownManager), 3);
+            base.AddClassDefinition(typeof(MessengerManager), 4);
         }
 
         protected override void DefineContainerDefinitions()

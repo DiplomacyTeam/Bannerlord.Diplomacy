@@ -263,8 +263,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CampaignEventBehaviors\CooldownBehaviors.cs" />
-    <Compile Include="CampaignEventBehaviors\MessengerArrived.cs" />
+    <Compile Include="CampaignEventBehaviors\CooldownBehavior.cs" />
+    <Compile Include="CampaignEventBehaviors\MessengerBehavior.cs" />
     <Compile Include="DiplomacyFixesSaveableTypeDefiner.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="MessageHelper.cs" />

@@ -25,8 +25,8 @@ namespace DiplomacyFixes
             if (game.GameType is Campaign)
             {
                 CampaignGameStarter gameStarter = (CampaignGameStarter)gameStarterObject;
-                gameStarter.AddBehavior(new CooldownBehaviors());
-                gameStarter.AddBehavior(new MessengerArrived());
+                gameStarter.AddBehavior(new CooldownBehavior());
+                gameStarter.AddBehavior(new MessengerBehavior());
                 gameStarter.AddBehavior(new WarExhaustionBehavior());
             }
             base.OnGameStart(game, gameStarterObject);

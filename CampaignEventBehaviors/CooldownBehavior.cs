@@ -3,11 +3,11 @@ using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
 {
-    class CooldownBehaviors : CampaignBehaviorBase
+    class CooldownBehavior : CampaignBehaviorBase
     {
         private CooldownManager _cooldownManager;
 
-        public CooldownBehaviors()
+        public CooldownBehavior()
         {
             this._cooldownManager = new CooldownManager();
         }

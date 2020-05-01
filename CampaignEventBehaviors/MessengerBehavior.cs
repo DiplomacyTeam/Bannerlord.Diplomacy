@@ -6,16 +6,13 @@ using TaleWorlds.SaveSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
 {
-    class MessengerArrived : CampaignBehaviorBase
+    class MessengerBehavior : CampaignBehaviorBase
     {
-        [SaveableField(1)]
-        private List<Messenger> _messengers;
         private MessengerManager _messengerManager;
 
-        public MessengerArrived()
+        public MessengerBehavior()
         {
-            this._messengers = new List<Messenger>();
-            this._messengerManager = new MessengerManager(_messengers);
+            this._messengerManager = new MessengerManager();
         }
 
         public override void RegisterEvents()
@@ -43,8 +40,8 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         public override void SyncData(IDataStore dataStore)
         {
-            dataStore.SyncData("_messengers", ref _messengers);
-            _messengerManager = new MessengerManager(_messengers);
+            dataStore.SyncData("_messengerManager", ref _messengerManager);
+            _messengerManager.Sync();
         }
     }
 }
