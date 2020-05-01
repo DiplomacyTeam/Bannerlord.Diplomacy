@@ -263,7 +263,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CampaignEventBehaviors\DeclareWarCooldown.cs" />
+    <Compile Include="CampaignEventBehaviors\CooldownBehaviors.cs" />
     <Compile Include="CampaignEventBehaviors\MessengerArrived.cs" />
     <Compile Include="DiplomacyFixesSaveableTypeDefiner.cs" />
     <Compile Include="Events.cs" />

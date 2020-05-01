@@ -23,6 +23,7 @@ namespace DiplomacyFixes
 		}
 
 		private readonly MbEvent<Hero> _messengerSent = new MbEvent<Hero>();
+		private readonly MbEvent<Kingdom> _peaceProposalSent = new MbEvent<Kingdom>();
 
 		public static IMbEvent<Hero> MessengerSent
 		{
@@ -32,10 +33,23 @@ namespace DiplomacyFixes
 			}
 		}
 
+		public static IMbEvent<Kingdom> PeaceProposalSent
+		{
+			get
+			{
+				return Instance._peaceProposalSent;
+			}
+		}
+
 		// Token: 0x0600057B RID: 1403 RVA: 0x0001F898 File Offset: 0x0001DA98
 		internal void OnMessengerSent(Hero hero)
 		{
 			Instance._messengerSent.Invoke(hero);
+		}
+
+		internal void OnPeaceProposalSent(Kingdom kingdom)
+		{
+			Instance._peaceProposalSent.Invoke(kingdom);
 		}
 
 	}

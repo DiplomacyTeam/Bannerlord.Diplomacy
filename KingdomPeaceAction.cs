@@ -9,6 +9,7 @@ namespace DiplomacyFixes
 {
     class KingdomPeaceAction
     {
+
         private static void AcceptPeace(Kingdom kingdom, IFaction faction, int payment)
         {
             GiveGoldAction.ApplyBetweenCharacters(kingdom.Leader, faction.Leader, payment, false);
@@ -47,31 +48,40 @@ namespace DiplomacyFixes
             InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceInquiryText(kingdom, faction, payment), true, true, new TextObject("{=3fTqLwkC}Accept").ToString(), new TextObject("{=dRoMejb0}Decline").ToString(), () =>
             {
                 KingdomPeaceAction.AcceptPeace(kingdom, faction, payment);
-            }, null, ""), true);
+            }, () =>
+            {
+                Events.Instance.OnPeaceProposalSent(kingdom);
+            }, ""), true);
         }
 
 
         public static void ApplyPeace(Kingdom kingdom, IFaction faction, int num2)
         {
-            if (PlayerHelpers.IsPlayerLeaderOfFaction(faction))
+            if (!PlayerHelpers.IsPlayerLeaderOfFaction(faction))
             {
-                KingdomPeaceAction.CreatePeaceInqiry(kingdom, faction, num2);
+                KingdomPeaceAction.AcceptPeace(kingdom, faction, num2);
             }
             else
             {
-                KingdomPeaceAction.AcceptPeace(kingdom, faction, num2);
+                if (!CooldownManager.HasPeaceProposalCooldown(kingdom))
+                {
+                    KingdomPeaceAction.CreatePeaceInqiry(kingdom, faction, num2);
+                }
             }
         }
 
         public static void ApplyPeaceDueToWarExhaustion(Kingdom kingdom, IFaction faction)
         {
-            if (PlayerHelpers.IsPlayerLeaderOfFaction(faction))
+            if (!PlayerHelpers.IsPlayerLeaderOfFaction(faction))
             {
-                KingdomPeaceAction.CreatePeaceInqiryDueToWarExhaustion(kingdom, faction);
+                KingdomPeaceAction.AcceptPeace(kingdom, faction, 0);
             }
             else
             {
-                KingdomPeaceAction.AcceptPeace(kingdom, faction, 0);
+                if (!CooldownManager.HasPeaceProposalCooldown(kingdom))
+                {
+                    KingdomPeaceAction.CreatePeaceInqiryDueToWarExhaustion(kingdom, faction);
+                }
             }
         }
 
@@ -81,7 +91,10 @@ namespace DiplomacyFixes
             InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceDueToWarExhaustionInquiryText(kingdom, faction), true, true, new TextObject("{=Y94H6XnK}Accept").ToString(), new TextObject("{=cOgmdp9e}Decline").ToString(), () =>
             {
                 KingdomPeaceAction.AcceptPeace(kingdom, faction, payment);
-            }, null, ""), true);
+            }, () =>
+            {
+                Events.Instance.OnPeaceProposalSent(kingdom);
+            }, ""), true);
         }
     }
 }

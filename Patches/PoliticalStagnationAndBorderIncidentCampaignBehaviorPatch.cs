@@ -43,7 +43,7 @@ namespace DiplomacyFixes.Patches
             int num2 = 0;
             foreach (IFaction faction2 in possibleKingdomsToDeclarePeace)
             {
-                if (CooldownManager.HasActiveWarCooldown(kingdom, faction2))
+                if (CooldownManager.HasDeclareWarCooldown(kingdom, faction2))
                 {
                     continue;
                 }
