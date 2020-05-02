@@ -64,16 +64,28 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingWarExhaustion, isMainToggle: true)]
         public bool EnableWarExhaustion { get; set; } = true;
 
+        [SettingPropertyFloatingInteger("{=}Max War Exhaustion", 0f, 1000f, RequireRestart = false, HintText = "{=}The amount of war exhaustion that forces a faction to propose peace. Default value is 100.0.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public float MaxWarExhaustion { get; set; } = 100f;
+
         [SettingPropertyFloatingInteger("{=8TFQWL55}War Exhaustion Per Day", 0f, 5f, RequireRestart = false, HintText = "{=lgza5wDq}The amount of war exhaustion added per day a war is ongoing. Default value is 1.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerDay { get; set; } = 1.0f;
 
-        [SettingPropertyFloatingInteger("{=s6dNpM6M}War Exhaustion Per Casualty", 0f, 0.1f, RequireRestart = false, HintText = "{=NcJtGeM7}The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.01.")]
+        [SettingPropertyFloatingInteger("{=s6dNpM6M}War Exhaustion Per Casualty", 0f, 0.1f, "0.000", RequireRestart = false, HintText = "{=NcJtGeM7}The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.01.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerCasualty { get; set; } = 0.01f;
 
         [SettingPropertyFloatingInteger("{=gGIaLKHk}War Exhaustion Per Siege", 0f, 50f, RequireRestart = false, HintText = "{=mCEa773h}The amount of war exhaustion added when a faction loses a city. Default value is 10.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerSiege { get; set; } = 10f;
+
+        [SettingPropertyFloatingInteger("{=}War Exhaustion Per Raid", 0f, 50f, RequireRestart = false, HintText = "{=}The amount of war exhaustion added when a faction's village is raided. Default value is 3.0.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public float WarExhaustionPerRaid { get; set; } = 3f;
+
+        [SettingPropertyFloatingInteger("{=}War Exhaustion Decay per Day", 0f, 50f, RequireRestart = false, HintText = "{=}The amount of war exhaustion decay per day the factions are at peace. Default value is 1.0.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public float WarExhaustionDecayPerDay { get; set; } = 1.0f;
     }
 }

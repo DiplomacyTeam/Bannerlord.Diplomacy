@@ -17,8 +17,8 @@ namespace DiplomacyFixes
         private HashSet<Tuple<Kingdom, Kingdom>> _knownKingdomCombinations;
         private HashSet<Kingdom> _knownKingdoms;
 
-        internal static float MaxWarExhaustion { get { return 100f; } }
-        internal static float MinWarExhaustion { get { return 0; } }
+        internal static float MaxWarExhaustion { get { return Settings.Instance.MaxWarExhaustion; } }
+        internal static float MinWarExhaustion { get { return 0f; } }
 
 
         private float Fuzziness { get { return MBRandom.RandomFloatRanged(BaseFuzzinessMin, BaseFuzzinessMax); } }
@@ -58,23 +58,31 @@ namespace DiplomacyFixes
 
         private void AddDailyWarExhaustion(Tuple<Kingdom, Kingdom> kingdoms)
         {
-            string key = CreateKey(kingdoms);
             float warExhaustionToAdd = GetDailyWarExhaustionDelta();
-            AddWarExhaustion(key, warExhaustionToAdd, true);
+            AddWarExhaustion(kingdoms.Item1, kingdoms.Item2, warExhaustionToAdd);
         }
 
         public void AddCasualtyWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, int casualties)
         {
-            string key = CreateKey(kingdom1, kingdom2);
             float warExhaustionToAdd = Settings.Instance.WarExhaustionPerCasualty * casualties;
-            AddWarExhaustion(key, warExhaustionToAdd, true);
+            AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd);
         }
 
         public void AddSiegeWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
-            string key = CreateKey(kingdom1, kingdom2);
             float warExhaustionToAdd = Settings.Instance.WarExhaustionPerSiege;
-            AddWarExhaustion(key, warExhaustionToAdd, true);
+            AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd);
+        }
+
+        public void AddRaidWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            float warExhaustionToAdd = Settings.Instance.WarExhaustionPerRaid;
+            AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd);
+        }
+
+        private void AddWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, float warExhaustionToAdd)
+        {
+            AddWarExhaustion(CreateKey(kingdom1, kingdom2), warExhaustionToAdd, true);
         }
 
         private void AddWarExhaustion(string key, float warExhaustionToAdd, bool addFuzziness)
@@ -104,7 +112,7 @@ namespace DiplomacyFixes
             string key = CreateKey(kingdoms);
             if (_warExhaustion.TryGetValue(key, out float currentValue))
             {
-                float warExhaustionToRemove = GetDailyWarExhaustionDelta();
+                float warExhaustionToRemove = Settings.Instance.WarExhaustionDecayPerDay;
                 _warExhaustion[key] = MBMath.ClampFloat(currentValue -= warExhaustionToRemove, MinWarExhaustion, MaxWarExhaustion);
             }
         }

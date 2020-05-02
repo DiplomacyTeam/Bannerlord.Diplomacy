@@ -1,5 +1,7 @@
 ﻿using StoryMode.StoryModePhases;
+using System;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
 {
@@ -16,7 +18,31 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         {
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
             CampaignEvents.SiegeCompletedEvent.AddNonSerializedListener(this, SiegeCompleted);
+            CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, RaidCompleted);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, MapEventEnded);
+        }
+
+        private void RaidCompleted(BattleSideEnum battleSide, MapEvent mapEvent)
+        {
+            if (!Settings.Instance.EnableWarExhaustion)
+            {
+                return;
+            }
+
+            if (battleSide != BattleSideEnum.Attacker)
+            {
+                return;
+            }
+
+            Kingdom attackerKingdom = mapEvent.AttackerSide.LeaderParty.MapFaction as Kingdom;
+            Kingdom defenderKingdom = mapEvent.DefenderSide.LeaderParty.MapFaction as Kingdom;
+
+            if (attackerKingdom == null || defenderKingdom == null)
+            {
+                return;
+            }
+
+            _warExhaustionManager.AddRaidWarExhaustion(defenderKingdom, attackerKingdom);
         }
 
         private void MapEventEnded(MapEvent mapEvent)
