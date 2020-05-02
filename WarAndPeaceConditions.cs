@@ -30,24 +30,16 @@ namespace DiplomacyFixes
                 exceptionList.Add(new TextObject(NOT_ENOUGH_INFLUENCE));
             }
 
-            IEnumerable<CampaignWar> campaignWars = FactionManager.Instance.FindCampaignWarsBetweenFactions(item.Faction1, item.Faction2);
-            foreach (CampaignWar war in campaignWars)
+
+            bool hasEnoughTimeElapsed = HasEnoughTimeElapsedBetweenWars(item.Faction1, item.Faction2, out float elapsedDaysUntilNow);
+            if (!hasEnoughTimeElapsed)
             {
-                if (war.AreFactionsAtWar(item.Faction1, item.Faction2))
-                {
-                    float elapsedDaysUntilNow = war.StartDate.ElapsedDaysUntilNow;
-                    int minimumWarDurationInDays = Settings.Instance.MinimumWarDurationInDays;
-                    bool hasEnoughTimeElapsed = elapsedDaysUntilNow >= minimumWarDurationInDays;
-                    if (!hasEnoughTimeElapsed)
-                    {
-                        TextObject textObject = new TextObject(TOO_SOON);
-                        textObject.SetTextVariable("ELAPSED_DAYS", (float)Math.Floor(elapsedDaysUntilNow));
-                        textObject.SetTextVariable("REQUIRED_DAYS", minimumWarDurationInDays);
-                        exceptionList.Add(textObject);
-                    }
-                    break;
-                }
+                TextObject textObject = new TextObject(TOO_SOON);
+                textObject.SetTextVariable("ELAPSED_DAYS", (float)Math.Floor(elapsedDaysUntilNow));
+                textObject.SetTextVariable("REQUIRED_DAYS", Settings.Instance.MinimumWarDurationInDays);
+                exceptionList.Add(textObject);
             }
+
             return exceptionList;
         }
 
@@ -75,6 +67,37 @@ namespace DiplomacyFixes
                 }
             }
             return exceptionList;
+        }
+
+        public static bool CanProposePeace(IFaction faction1, IFaction faction2)
+        {
+            return HasEnoughTimeElapsedBetweenWars(faction1, faction2);
+        }
+
+        public static bool CanDeclareWar(IFaction faction1, IFaction faction2)
+        {
+            return !CooldownManager.HasDeclareWarCooldown(faction1, faction2);
+        }
+
+        private static bool HasEnoughTimeElapsedBetweenWars(IFaction faction1, IFaction faction2, out float elapsedTime)
+        {
+            elapsedTime = -1f;
+            IEnumerable<CampaignWar> campaignWars = FactionManager.Instance.FindCampaignWarsBetweenFactions(faction1, faction2);
+            if (campaignWars != null && campaignWars.Any())
+            {
+                foreach (CampaignWar war in campaignWars)
+                {
+                    elapsedTime = war.StartDate.ElapsedDaysUntilNow;
+                    int minimumWarDurationInDays = Settings.Instance.MinimumWarDurationInDays;
+                    return elapsedTime >= minimumWarDurationInDays;
+                }
+            }
+            return true;
+        }
+
+        private static bool HasEnoughTimeElapsedBetweenWars(IFaction faction1, IFaction faction2)
+        {
+            return HasEnoughTimeElapsedBetweenWars(faction1, faction2, out float elapsedTime);
         }
     }
 }

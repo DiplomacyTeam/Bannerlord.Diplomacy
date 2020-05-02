@@ -3,7 +3,10 @@ using Helpers;
 using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.LogEntries;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.Core;
 
 namespace DiplomacyFixes.Patches
 {
@@ -20,7 +23,47 @@ namespace DiplomacyFixes.Patches
                 return true;
             }
 
-            return !PlayerHelpers.IsPlayerLeaderOfFaction(kingdom);
+            if (PlayerHelpers.IsPlayerLeaderOfFaction(kingdom))
+            {
+                return false;
+            }
+
+            List<IFaction> possibleKingdomsToDeclareWar = FactionHelper.GetPossibleKingdomsToDeclareWar(kingdom);
+            float num = 0f;
+            IFaction faction = null;
+            foreach (IFaction faction2 in possibleKingdomsToDeclareWar)
+            {
+                if (!WarAndPeaceConditions.CanDeclareWar(kingdom, faction2))
+                {
+                    continue;
+                }
+
+                IEnumerable<LogEntry> gameActionLogs = Campaign.Current.LogEntryHistory.GameActionLogs;
+                bool flag = false;
+                foreach (LogEntry logEntry in gameActionLogs)
+                {
+                    if (logEntry is MakePeaceLogEntry && CampaignTime.Now.ToHours - logEntry.GameTime.ToHours < 600.0 && ((((MakePeaceLogEntry)logEntry).Faction1 == kingdom.MapFaction && ((MakePeaceLogEntry)logEntry).Faction2 == faction2.MapFaction) || (((MakePeaceLogEntry)logEntry).Faction1 == faction2.MapFaction && ((MakePeaceLogEntry)logEntry).Faction2 == kingdom.MapFaction)))
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag)
+                {
+                    float scoreOfDeclaringWar = Campaign.Current.Models.DiplomacyModel.GetScoreOfDeclaringWar(kingdom, faction2, false);
+                    if (scoreOfDeclaringWar > num)
+                    {
+                        faction = faction2;
+                        num = scoreOfDeclaringWar;
+                    }
+                }
+            }
+            if (faction != null && MBRandom.RandomFloat < Math.Min(0.5f, num / 400000f))
+            {
+                DeclareWarAction.ApplyDeclareWarOverProvocation(kingdom, faction);
+            }
+
+            return false;
         }
 
         [HarmonyPrefix]
@@ -43,7 +86,7 @@ namespace DiplomacyFixes.Patches
             int num2 = 0;
             foreach (IFaction faction2 in possibleKingdomsToDeclarePeace)
             {
-                if (CooldownManager.HasDeclareWarCooldown(kingdom, faction2))
+                if (!WarAndPeaceConditions.CanProposePeace(kingdom, faction2))
                 {
                     continue;
                 }
