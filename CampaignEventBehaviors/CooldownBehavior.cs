@@ -1,5 +1,4 @@
-﻿using System;
-using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
 {
@@ -14,7 +13,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         public override void RegisterEvents()
         {
-            CampaignEvents.MakePeace.AddNonSerializedListener(this, this.RegisterDeclareWarCooldown);
+            CampaignEvents.MakePeace.AddNonSerializedListener(this, RegisterDeclareWarCooldown);
             Events.PeaceProposalSent.AddNonSerializedListener(this, RegisterPeaceProposalCooldown);
         }
 
@@ -31,7 +30,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_cooldownManager", ref _cooldownManager);
-            _cooldownManager.sync();
+            _cooldownManager.Sync();
         }
     }
 }

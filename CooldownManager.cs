@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
@@ -31,7 +29,7 @@ namespace DiplomacyFixes
 
         public void UpdateLastPeaceProposalTime(Kingdom kingdom, CampaignTime campaignTime)
         {
-            LastPeaceProposalTime[kingdom] = campaignTime;
+            _lastPeaceProposalTime[kingdom] = campaignTime;
         }
 
         public void UpdateLastWarTime(IFaction faction1, IFaction faction2, CampaignTime campaignTime)
@@ -62,10 +60,11 @@ namespace DiplomacyFixes
         public static bool HasDeclareWarCooldown(IFaction faction1, IFaction faction2)
         {
             CampaignTime? campaignTime = GetLastWarTimeBetweenFactions(faction1, faction2);
-            if(campaignTime.HasValue)
+            if (campaignTime.HasValue)
             {
                 return campaignTime.Value.ElapsedDaysUntilNow < Settings.Instance.DeclareWarCooldownInDays;
-            } else
+            }
+            else
             {
                 return false;
             }
@@ -83,13 +82,14 @@ namespace DiplomacyFixes
 
         public static CampaignTime? GetLastPeaceProposalTime(Kingdom kingdom)
         {
-            if(LastPeaceProposalTime.TryGetValue(kingdom, out CampaignTime value)) {
+            if (LastPeaceProposalTime.TryGetValue(kingdom, out CampaignTime value))
+            {
                 return value;
             }
             return default;
         }
 
-        internal void sync()
+        internal void Sync()
         {
             LastWarTime = _lastWarTime;
             LastPeaceProposalTime = _lastPeaceProposalTime;

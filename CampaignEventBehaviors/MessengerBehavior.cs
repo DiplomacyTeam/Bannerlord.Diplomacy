@@ -1,8 +1,6 @@
 ﻿using DiplomacyFixes.Messengers;
 using System;
-using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.SaveSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
 {
@@ -17,8 +15,8 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         public override void RegisterEvents()
         {
-            Events.MessengerSent.AddNonSerializedListener(this, new Action<Hero>(this.OnMessengerSent));
-            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, new Action(this.HasMessengerArrived));
+            Events.MessengerSent.AddNonSerializedListener(this, OnMessengerSent);
+            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HasMessengerArrived);
         }
 
         private void OnMessengerSent(Hero hero)

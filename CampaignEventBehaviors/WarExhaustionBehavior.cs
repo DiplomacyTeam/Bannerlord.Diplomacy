@@ -1,9 +1,4 @@
 ﻿using StoryMode.StoryModePhases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
@@ -26,7 +21,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void MapEventEnded(MapEvent mapEvent)
         {
-            if(!Settings.Instance.EnableWarExhaustion)
+            if (!Settings.Instance.EnableWarExhaustion)
             {
                 return;
             }
@@ -34,7 +29,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             Kingdom attackerSide = mapEvent.AttackerSide.LeaderParty.MapFaction as Kingdom;
             Kingdom defenderSide = mapEvent.DefenderSide.LeaderParty.MapFaction as Kingdom;
 
-            if(!(attackerSide != null && defenderSide != null))
+            if (attackerSide == null || defenderSide == null)
             {
                 return;
             }
@@ -69,7 +64,8 @@ namespace DiplomacyFixes.CampaignEventBehaviors
                 return;
             }
 
-            if (!(isWin && isSiege)) {
+            if (!(isWin && isSiege))
+            {
                 return;
             }
 
@@ -96,9 +92,9 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         private bool IsValidQuestState(Kingdom kingdom1, Kingdom kingdom2)
         {
             bool isValidQuestState = true;
-            if (kingdom1 == Hero.MainHero.MapFaction || kingdom2 == Hero.MainHero.MapFaction)
+            Kingdom opposingKingdom = PlayerHelpers.GetOpposingKingdomIfPlayerKingdomProvided(kingdom1, kingdom2);
+            if (opposingKingdom != null)
             {
-                Kingdom opposingKingdom = kingdom1 == Hero.MainHero.MapFaction ? kingdom2 : kingdom1;
                 ThirdPhase thirdPhase = StoryMode.StoryMode.Current.MainStoryLine.ThirdPhase;
                 isValidQuestState = thirdPhase == null || !thirdPhase.OppositionKingdoms.Contains(opposingKingdom);
             }
