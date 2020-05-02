@@ -272,6 +272,7 @@
     <Compile Include="Messengers\Messenger.cs" />
     <Compile Include="Messengers\MessengerManager.cs" />
     <Compile Include="KingdomPeaceAction.cs" />
+    <Compile Include="Patches\DiplomaticBartersBehaviorPatch.cs" />
     <Compile Include="Patches\PoliticalStagnationAndBorderIncidentCampaignBehaviorPatch.cs" />
     <Compile Include="PlayerHelpers.cs" />
     <Compile Include="ViewModel\KingdomTruceItemVMExtensionVM.cs" />
