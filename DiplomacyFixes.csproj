@@ -264,6 +264,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CampaignEventBehaviors\CooldownBehavior.cs" />
+    <Compile Include="CampaignEventBehaviors\KeepFiefAfterSiegeBehavior.cs" />
     <Compile Include="CampaignEventBehaviors\MessengerBehavior.cs" />
     <Compile Include="DiplomacyFixesSaveableTypeDefiner.cs" />
     <Compile Include="Events.cs" />

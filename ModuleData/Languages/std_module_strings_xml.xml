@@ -29,6 +29,9 @@
 
     <string id="cXfcwzPp" text="Send Messenger" />
 
+    <string id="N06wk0dB" text="Settlement Captured" />
+    <string id="Zy0yjTha" text="As the capturer of {SETTLEMENT_NAME}, you have the right of first refusal. Would you like to claim this fief?" />
+
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
     -->

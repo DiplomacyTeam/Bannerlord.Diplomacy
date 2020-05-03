@@ -28,6 +28,7 @@ namespace DiplomacyFixes
                 gameStarter.AddBehavior(new CooldownBehavior());
                 gameStarter.AddBehavior(new MessengerBehavior());
                 gameStarter.AddBehavior(new WarExhaustionBehavior());
+                gameStarter.AddBehavior(new KeepFiefAfterSiegeBehavior());
             }
             base.OnGameStart(game, gameStarterObject);
         }
