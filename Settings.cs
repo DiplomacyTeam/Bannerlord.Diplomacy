@@ -64,7 +64,7 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingWarExhaustion, isMainToggle: true)]
         public bool EnableWarExhaustion { get; set; } = true;
 
-        [SettingPropertyFloatingInteger("{=}Max War Exhaustion", 0f, 1000f, RequireRestart = false, HintText = "{=}The amount of war exhaustion that forces a faction to propose peace. Default value is 100.0.")]
+        [SettingPropertyFloatingInteger("{=Bh7vme9y}Max War Exhaustion", 0f, 1000f, RequireRestart = false, HintText = "{=6Ij1WEWz}The amount of war exhaustion that forces a faction to propose peace. Default value is 100.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float MaxWarExhaustion { get; set; } = 100f;
 
@@ -80,11 +80,11 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerSiege { get; set; } = 10f;
 
-        [SettingPropertyFloatingInteger("{=}War Exhaustion Per Raid", 0f, 50f, RequireRestart = false, HintText = "{=}The amount of war exhaustion added when a faction's village is raided. Default value is 3.0.")]
+        [SettingPropertyFloatingInteger("{=eWVGwf2m}War Exhaustion Per Raid", 0f, 50f, RequireRestart = false, HintText = "{=ufHDJt8H}The amount of war exhaustion added when a faction's village is raided. Default value is 3.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerRaid { get; set; } = 3f;
 
-        [SettingPropertyFloatingInteger("{=}War Exhaustion Decay per Day", 0f, 50f, RequireRestart = false, HintText = "{=}The amount of war exhaustion decay per day the factions are at peace. Default value is 1.0.")]
+        [SettingPropertyFloatingInteger("{=Fyion5Hw}War Exhaustion Decay per Day", 0f, 50f, RequireRestart = false, HintText = "{=o99AUWR8}The amount of war exhaustion decay per day the factions are at peace. Default value is 1.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionDecayPerDay { get; set; } = 1.0f;
     }

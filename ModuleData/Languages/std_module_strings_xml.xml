@@ -79,5 +79,12 @@
     <string id="gGIaLKHk" text="War Exhaustion Per Siege" />
     <string id="mCEa773h" text="The amount of war exhaustion added when a faction loses a city. Default value is 10.0." />
     
+    <string id="Bh7vme9y" text="Max War Exhaustion" />
+    <string id="6Ij1WEWz" text="The amount of war exhaustion that forces a faction to propose peace. Default value is 100.0." />
+    <string id="eWVGwf2m" text="War Exhaustion Per Raid" />
+    <string id="ufHDJt8H" text="The amount of war exhaustion added when a faction's village is raided. Default value is 3.0." />
+    <string id="Fyion5Hw" text="War Exhaustion Decay per Day" />
+    <string id="o99AUWR8" text="The amount of war exhaustion decay per day the factions are at peace. Default value is 1.0." />
+
   </strings>
 </base>
