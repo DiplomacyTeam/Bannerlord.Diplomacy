@@ -24,6 +24,10 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool PlayerDiplomacyControl { get; set; } = true;
 
+        [SettingPropertyBool(displayName: "{=tis8Ddzn}Allow Player To Claim Player-Taken Settlements", Order = 0, RequireRestart = true, HintText = "{=TfxLCxcD}Gives the player the option to claim a settlement that they have taken rather than let it go to an election.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public bool EnableFiefFirstRight { get; set; } = true;
+
         [SettingPropertyBool(displayName: "{=WbOKuWbQ}Enable Influence Costs", Order = -1, RequireRestart = false, HintText = "{=K2vLGalN}If disabled, this removes all costs for war and peace declaration actions. Default value is true.")]
         [SettingPropertyGroup(HeadingInfluenceCosts, isMainToggle: true)]
         public bool EnableInfluenceCostsForDiplomacyActions { get; set; } = true;

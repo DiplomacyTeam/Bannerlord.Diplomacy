@@ -47,6 +47,8 @@
     <string id="q2duqN8d" text="The minimum duration (in days) to declare war after making peace. Default value is 10." />
     <string id="6m1SspFW" text="Enable Player Kingdom Diplomacy Control" />
     <string id="N5EouSSj" text="Gives the player total control over their kingdom's war and peace declarations." />
+    <string id="tis8Ddzn" text="Allow Player To Claim Player-Taken Settlements" />
+    <string id="TfxLCxcD" text="Gives the player the option to claim a settlement that they have taken rather than let it go to an election." />
 
     <string id="WbOKuWbQ" text="Enable Influence Costs" />
     <string id="P1g6Ht1e" text="Enable Scaling Influence Cost" />
