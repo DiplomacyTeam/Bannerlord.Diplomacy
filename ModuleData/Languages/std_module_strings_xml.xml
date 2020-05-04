@@ -17,8 +17,8 @@
     <string id="zv12jjyW" text="Messenger Sent" />
     <string id="uy86VZX2" text="Messenger Arrived" />
     
-    <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at the {FACTION2_NAME} leader." />
-    <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at the {FACTION2_NAME} leader in {TRAVEL_TIME} days." />
+    <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {HERO_NAME} of {FACTION2_NAME}." />
+    <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_NAME} in {TRAVEL_TIME} days." />
 
     <string id="t0ZS9maD" text="{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}." />
     <string id="ZrwszZww" text=" They are willing to pay war reparations of {DENARS} denars." />

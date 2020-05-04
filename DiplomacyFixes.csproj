@@ -274,8 +274,10 @@
     <Compile Include="Messengers\MessengerManager.cs" />
     <Compile Include="KingdomPeaceAction.cs" />
     <Compile Include="Patches\DiplomaticBartersBehaviorPatch.cs" />
+    <Compile Include="Patches\EncyclopediaDataPatch.cs" />
     <Compile Include="Patches\PoliticalStagnationAndBorderIncidentCampaignBehaviorPatch.cs" />
     <Compile Include="PlayerHelpers.cs" />
+    <Compile Include="ViewModel\EncyclopediaHeroPageVMExtensionVM.cs" />
     <Compile Include="ViewModel\KingdomTruceItemVMExtensionVM.cs" />
     <Compile Include="ViewModel\KingdomWarItemVMExtensionVM.cs" />
     <Compile Include="WarAndPeaceConditions.cs" />
@@ -289,6 +291,7 @@
     <Compile Include="WarExhaustionManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GUI\Prefabs\Encyclopedia\EncyclopediaSubPages\EncyclopediaHeroPage.xml" />
     <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\DiplomacyPanel.xml" />
     <Content Include="ModuleData\Languages\std_module_strings_xml.xml" />
     <Content Include="SubModule.xml" />
