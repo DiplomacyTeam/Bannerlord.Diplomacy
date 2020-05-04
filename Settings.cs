@@ -64,7 +64,7 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingMessengers)]
         public int MessengerTravelTime { get; set; } = 3;
 
-        [SettingPropertyBool("{=lSttctYC}Enable War Exhaustion", RequireRestart = false, HintText = "{=Cxyn9ROT}If disabled, this disables the war exhaustion mechanic. Default value is enabled.")]
+        [SettingPropertyBool("{=lSttctYC}Enable War Exhaustion", RequireRestart = true, HintText = "{=Cxyn9ROT}If disabled, this disables the war exhaustion mechanic. Default value is enabled.")]
         [SettingPropertyGroup(HeadingWarExhaustion, isMainToggle: true)]
         public bool EnableWarExhaustion { get; set; } = true;
 

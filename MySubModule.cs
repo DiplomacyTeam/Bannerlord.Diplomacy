@@ -27,7 +27,10 @@ namespace DiplomacyFixes
                 CampaignGameStarter gameStarter = (CampaignGameStarter)gameStarterObject;
                 gameStarter.AddBehavior(new CooldownBehavior());
                 gameStarter.AddBehavior(new MessengerBehavior());
-                gameStarter.AddBehavior(new WarExhaustionBehavior());
+                if (Settings.Instance.EnableWarExhaustion)
+                {
+                    gameStarter.AddBehavior(new WarExhaustionBehavior());
+                }
                 if (Settings.Instance.EnableFiefFirstRight)
                 {
                     gameStarter.AddBehavior(new KeepFiefAfterSiegeBehavior());

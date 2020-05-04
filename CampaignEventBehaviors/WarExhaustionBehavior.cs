@@ -24,11 +24,6 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void RaidCompleted(BattleSideEnum battleSide, MapEvent mapEvent)
         {
-            if (!Settings.Instance.EnableWarExhaustion)
-            {
-                return;
-            }
-
             if (battleSide != BattleSideEnum.Attacker)
             {
                 return;
@@ -47,11 +42,6 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void MapEventEnded(MapEvent mapEvent)
         {
-            if (!Settings.Instance.EnableWarExhaustion)
-            {
-                return;
-            }
-
             Kingdom attackerSide = mapEvent.AttackerSide.LeaderParty.MapFaction as Kingdom;
             Kingdom defenderSide = mapEvent.DefenderSide.LeaderParty.MapFaction as Kingdom;
 
@@ -66,11 +56,6 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void OnDailyTick()
         {
-            if (!Settings.Instance.EnableWarExhaustion)
-            {
-                return;
-            }
-
             _warExhaustionManager.UpdateDailyWarExhaustionForAllKingdoms();
 
             foreach (Kingdom kingdom in Kingdom.All)
@@ -85,11 +70,6 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void SiegeCompleted(Settlement settlement, MobileParty mobileParty, bool isWin, bool isSiege)
         {
-            if (!Settings.Instance.EnableWarExhaustion)
-            {
-                return;
-            }
-
             if (!(isWin && isSiege))
             {
                 return;
