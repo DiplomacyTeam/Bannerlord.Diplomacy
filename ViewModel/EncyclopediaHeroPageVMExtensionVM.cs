@@ -33,6 +33,11 @@ namespace DiplomacyFixes.ViewModel
             UpdateIsMessengerAvailable();
         }
 
+        private void ExecuteLink(string link)
+        {
+            Campaign.Current.EncyclopediaManager.GoToLink(link);
+        }
+
         [DataSourceProperty]
         public int SendMessengerInfluenceCost
         {
