@@ -49,26 +49,6 @@
                             </EncyclopediaHeroTraitVisualWidget>
                           </ItemTemplate>
                         </ListPanel>
-
-                        <Widget HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" MarginTop="10">
-                          <Children>
-                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" HorizontalAlignment="Center" UpdateChildrenStates="true" Command.Click="SendMessenger" IsEnabled="@IsMessengerAvailable">
-                              <Children>
-                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@SendMessengerActionName" />
-                                <Widget UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="250">
-                                  <Children>
-                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@SendMessengerInfluenceCost">
-                                      <Children>
-                                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-25" Sprite="SaveLoad\icon_influence" />
-                                      </Children>
-                                    </TextWidget>
-                                  </Children>
-                                </Widget>
-                              </Children>
-                            </ButtonWidget>
-                          </Children>
-                        </Widget>
-
                       </Children>
                     </ListPanel>
 
@@ -125,6 +105,25 @@
                                     <!--Hero Info Text-->
                                     <RichTextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="StretchToParent" Brush="Encyclopedia.SubPage.Info.Text" Text="@InformationText" MarginTop="25" MarginLeft="15" MarginRight="25" ClipContents="false"/>
 
+                                    <Widget HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" MarginTop="10">
+                                      <Children>
+                                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" HorizontalAlignment="Center" UpdateChildrenStates="true" Command.Click="SendMessenger" IsEnabled="@IsMessengerAvailable">
+                                          <Children>
+                                            <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@SendMessengerActionName" />
+                                            <Widget UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="250">
+                                              <Children>
+                                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@SendMessengerInfluenceCost">
+                                                  <Children>
+                                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-20" Sprite="SaveLoad\icon_influence" />
+                                                  </Children>
+                                                </TextWidget>
+                                              </Children>
+                                            </Widget>
+                                          </Children>
+                                        </ButtonWidget>
+                                      </Children>
+                                    </Widget>
+
                                     <!--Clan Divider-->
                                     <EncyclopediaDivider MarginTop="20" Parameter.Title="Info" Parameter.ItemList="..\InfoContainer"/>
 
@@ -143,7 +142,7 @@
 
                                                 <!--Value Label-->
                                                 <AutoHideRichTextWidget HeightSizePolicy ="CoverChildren" WidthSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="Encyclopedia.Stat.ValueText" Text="@Value" PositionYOffset="2" />
-                                              
+
                                               </Children>
                                             </ListPanel>
 
