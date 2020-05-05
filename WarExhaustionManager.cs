@@ -82,6 +82,10 @@ namespace DiplomacyFixes
 
         private void AddWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, float warExhaustionToAdd)
         {
+            if (kingdom1.StringId == null || kingdom2.StringId == null)
+            {
+                return;
+            }
             AddWarExhaustion(CreateKey(kingdom1, kingdom2), warExhaustionToAdd, true);
         }
 
