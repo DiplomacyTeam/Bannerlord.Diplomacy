@@ -55,9 +55,17 @@ namespace DiplomacyFixes.Messengers
 
         public void StartDialogue(Hero targetHero)
         {
+            PartyBase heroParty = Hero.MainHero.PartyBelongedTo?.Party;
+            PartyBase targetParty = targetHero.PartyBelongedTo?.Party;
+            if (heroParty != null && targetParty != null)
+            {
+                PlayerEncounter.Start();
+                PlayerEncounter.Current.SetupFields(heroParty, targetParty);
+            }
             Mission conversationMission = (Mission)Campaign.Current.CampaignMissionManager.OpenConversationMission(
-                new ConversationCharacterData(Hero.MainHero.CharacterObject, null, false, false, false, false),
-                new ConversationCharacterData(targetHero.CharacterObject, null, false, false, false, false), "", "");
+                new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true, false, false, false),
+                new ConversationCharacterData(targetHero.CharacterObject, targetParty, true, false, false, false),
+                "", "");
             conversationMission.AddListener(this);
         }
 
@@ -114,6 +122,11 @@ namespace DiplomacyFixes.Messengers
             _messengers.Remove(_activeMessenger);
             _activeMessenger = null;
             CanStartMessengerConversation = true;
+
+            if (PlayerEncounter.Current != null)
+            {
+                PlayerEncounter.Finish();
+            }
         }
 
         public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
