@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -18,6 +22,8 @@ namespace DiplomacyFixes.Messengers
 
         public bool CanStartMessengerConversation { get; private set; }
         private Messenger _activeMessenger;
+
+        private PlayerEncounter savedPlayerEncounter;
         internal MessengerManager()
         {
             _messengers = new List<Messenger>();
@@ -33,9 +39,23 @@ namespace DiplomacyFixes.Messengers
             _messengers.Add(new Messenger(targetHero, CampaignTime.Now));
         }
 
-        public void MessengerArrived(Messenger messenger)
+        public void MessengerArrived()
         {
-            if (CanStartMessengerConversation)
+            foreach (Messenger messenger in Messengers.ToList())
+            {
+                if (messenger.DispatchTime.ElapsedDaysUntilNow >= Settings.Instance.MessengerTravelTime)
+                {
+                    if (MessengerArrived(messenger))
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        private bool MessengerArrived(Messenger messenger)
+        {
+            if (CanStartMessengerConversation && IsTargetHeroAvailable(messenger.TargetHero) && PartyBase.MainParty != null && PlayerEncounter.Current == null)
             {
                 CanStartMessengerConversation = false;
                 _activeMessenger = messenger;
@@ -43,8 +63,14 @@ namespace DiplomacyFixes.Messengers
                 {
                     StartDialogue(messenger.TargetHero);
                 }, null, ""), true);
-
+                return true;
             }
+            else if (messenger.TargetHero.IsDead)
+            {
+                _messengers.Remove(_activeMessenger);
+            }
+
+            return false;
         }
 
         internal void Sync()
@@ -55,20 +81,18 @@ namespace DiplomacyFixes.Messengers
 
         public void StartDialogue(Hero targetHero)
         {
-            PartyBase heroParty = Hero.MainHero.PartyBelongedTo?.Party;
-            PartyBase targetParty = targetHero.PartyBelongedTo?.Party;
-            if (heroParty != null && targetParty != null)
-            {
-                PlayerEncounter.Start();
-                PlayerEncounter.Current.SetupFields(heroParty, targetParty);
-            }
+            // We have null checked both of these at this point
+            PartyBase heroParty = PartyBase.MainParty;
+            PartyBase targetParty = targetHero.PartyBelongedTo.Party;
+
+            PlayerEncounter.Start();
+            PlayerEncounter.Current.SetupFields(heroParty, targetParty);
             Mission conversationMission = (Mission)Campaign.Current.CampaignMissionManager.OpenConversationMission(
                 new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true, false, false, false),
                 new ConversationCharacterData(targetHero.CharacterObject, targetParty, true, false, false, false),
                 "", "");
             conversationMission.AddListener(this);
         }
-
 
         private TextObject GetMessengerArrivedText(IFaction faction1, IFaction faction2, Hero targetHero)
         {
@@ -95,18 +119,19 @@ namespace DiplomacyFixes.Messengers
             SendMessenger(targetHero);
         }
 
-        public static bool CanSendMessenger(Hero opposingLeader)
+        public static bool IsTargetHeroAvailable(Hero opposingLeader)
         {
             bool unavailable = opposingLeader.IsDead
                 || opposingLeader.IsOccupiedByAnEvent()
                 || opposingLeader.IsPrisoner
-                || opposingLeader.IsHumanPlayerCharacter;
+                || opposingLeader.IsHumanPlayerCharacter
+                || opposingLeader.PartyBelongedTo?.Party == null;
             return !unavailable;
         }
 
         public static bool CanSendMessengerWithInfluenceCost(Hero opposingLeader, float influenceCost)
         {
-            return Clan.PlayerClan.Influence >= influenceCost && CanSendMessenger(opposingLeader);
+            return Clan.PlayerClan.Influence >= influenceCost && IsTargetHeroAvailable(opposingLeader);
         }
 
         public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
@@ -122,7 +147,7 @@ namespace DiplomacyFixes.Messengers
             _messengers.Remove(_activeMessenger);
             _activeMessenger = null;
             CanStartMessengerConversation = true;
-
+            
             if (PlayerEncounter.Current != null)
             {
                 PlayerEncounter.Finish();

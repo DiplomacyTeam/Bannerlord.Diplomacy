@@ -26,14 +26,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         public void HasMessengerArrived()
         {
-            foreach (Messenger messenger in _messengerManager.Messengers)
-            {
-                if (messenger.DispatchTime.ElapsedDaysUntilNow > Settings.Instance.MessengerTravelTime)
-                {
-                    _messengerManager.MessengerArrived(messenger);
-                    break;
-                }
-            }
+            _messengerManager.MessengerArrived();
         }
 
         public override void SyncData(IDataStore dataStore)
