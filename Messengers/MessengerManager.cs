@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Helpers;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -83,14 +84,23 @@ namespace DiplomacyFixes.Messengers
         {
             // We have null checked both of these at this point
             PartyBase heroParty = PartyBase.MainParty;
-            PartyBase targetParty = targetHero.PartyBelongedTo.Party;
+            PartyBase targetParty = targetHero.PartyBelongedTo?.Party;
 
-            PlayerEncounter.Start();
-            PlayerEncounter.Current.SetupFields(heroParty, targetParty);
+            bool isCivilian = true;
+            if (heroParty != null && targetParty != null)
+            {
+                PlayerEncounter.Start();
+                PlayerEncounter.Current.SetupFields(heroParty, targetParty);
+                isCivilian = false;
+            }
+            
+            string specialScene = "";
+            string sceneLevels = "";
+
             Mission conversationMission = (Mission)Campaign.Current.CampaignMissionManager.OpenConversationMission(
-                new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true, false, false, false),
-                new ConversationCharacterData(targetHero.CharacterObject, targetParty, true, false, false, false),
-                "", "");
+                new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true, false, false, isCivilian),
+                new ConversationCharacterData(targetHero.CharacterObject, targetParty, true, false, false, isCivilian),
+                specialScene, sceneLevels);
             conversationMission.AddListener(this);
         }
 
@@ -121,11 +131,9 @@ namespace DiplomacyFixes.Messengers
 
         public static bool IsTargetHeroAvailable(Hero opposingLeader)
         {
-            bool unavailable = opposingLeader.IsDead
-                || opposingLeader.IsOccupiedByAnEvent()
-                || opposingLeader.IsPrisoner
+            bool unavailable = opposingLeader.IsOccupiedByAnEvent()
                 || opposingLeader.IsHumanPlayerCharacter
-                || opposingLeader.PartyBelongedTo?.Party == null;
+                || !opposingLeader.IsActive;
             return !unavailable;
         }
 
