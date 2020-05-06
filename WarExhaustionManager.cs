@@ -17,6 +17,8 @@ namespace DiplomacyFixes
         private HashSet<Tuple<Kingdom, Kingdom>> _knownKingdomCombinations;
         private HashSet<Kingdom> _knownKingdoms;
 
+        public static WarExhaustionManager Instance { get; internal set; }
+
         internal static float MaxWarExhaustion { get { return Settings.Instance.MaxWarExhaustion; } }
         internal static float MinWarExhaustion { get { return 0f; } }
 
@@ -31,6 +33,7 @@ namespace DiplomacyFixes
             this._warExhaustion = new Dictionary<string, float>();
             this._knownKingdomCombinations = new HashSet<Tuple<Kingdom, Kingdom>>();
             this._knownKingdoms = new HashSet<Kingdom>();
+            Instance = this;
         }
 
         public float GetWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
@@ -184,6 +187,11 @@ namespace DiplomacyFixes
         public bool HasMaxWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
             return GetWarExhaustion(kingdom1, kingdom2) >= MaxWarExhaustion;
+        }
+
+        public void Sync()
+        {
+            Instance = this;
         }
     }
 }
