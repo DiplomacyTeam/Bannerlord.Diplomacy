@@ -64,7 +64,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         private void AggregateKeepFiefDecisions(KingdomDecision kingdomDecision, bool isPlayerInvolved)
         {
             SettlementClaimantDecision settlementClaimantDecision = kingdomDecision as SettlementClaimantDecision;
-            if (isPlayerInvolved && settlementClaimantDecision != null && settlementClaimantDecision.Settlement.LastAttackerParty.LeaderHero.IsHumanPlayerCharacter)
+            if (isPlayerInvolved && (settlementClaimantDecision?.Settlement?.LastAttackerParty?.LeaderHero?.IsHumanPlayerCharacter ?? false))
             {
                 _decisionsToProcess.Add(settlementClaimantDecision);
             }
