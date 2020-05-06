@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -55,7 +57,11 @@ namespace DiplomacyFixes.Messengers
 
         private bool MessengerArrived(Messenger messenger)
         {
-            if (CanStartMessengerConversation && IsTargetHeroAvailable(messenger.TargetHero) && PartyBase.MainParty != null && PlayerEncounter.Current == null)
+            if (CanStartMessengerConversation 
+                && IsTargetHeroAvailable(messenger.TargetHero) 
+                && PartyBase.MainParty != null 
+                && PlayerEncounter.Current == null 
+                && GameStateManager.Current.ActiveState is MapState)
             {
                 CanStartMessengerConversation = false;
                 _activeMessenger = messenger;
