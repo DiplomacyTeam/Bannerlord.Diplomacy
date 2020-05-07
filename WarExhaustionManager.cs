@@ -4,6 +4,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 
 namespace DiplomacyFixes
@@ -12,8 +13,14 @@ namespace DiplomacyFixes
     class WarExhaustionManager
     {
 
+        // legacy war exhaustion dictionary using stringId
         [SaveableField(0)]
         private Dictionary<string, float> _warExhaustion;
+
+        // new war exhaustion dictionary using Id
+        [SaveableField(1)]
+        private Dictionary<string, float> _warExhaustionById;
+
         private HashSet<Tuple<Kingdom, Kingdom>> _knownKingdomCombinations;
         private HashSet<Kingdom> _knownKingdoms;
 
@@ -30,7 +37,7 @@ namespace DiplomacyFixes
 
         internal WarExhaustionManager()
         {
-            this._warExhaustion = new Dictionary<string, float>();
+            this._warExhaustionById = new Dictionary<string, float>();
             this._knownKingdomCombinations = new HashSet<Tuple<Kingdom, Kingdom>>();
             this._knownKingdoms = new HashSet<Kingdom>();
             Instance = this;
@@ -39,7 +46,7 @@ namespace DiplomacyFixes
         public float GetWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
             string key = CreateKey(kingdom1, kingdom2);
-            if (key != null && _warExhaustion.TryGetValue(key, out float warExhaustion))
+            if (key != null && _warExhaustionById.TryGetValue(key, out float warExhaustion))
             {
                 return warExhaustion;
             }
@@ -51,7 +58,7 @@ namespace DiplomacyFixes
 
         private static bool KingdomsAreValid(Kingdom kingdom1, Kingdom kingdom2)
         {
-            return kingdom1.StringId != null && kingdom2.StringId != null;
+            return kingdom1.Id != null && kingdom2.Id != null;
         }
 
         private string CreateKey(Kingdom kingdom1, Kingdom kingdom2)
@@ -63,7 +70,7 @@ namespace DiplomacyFixes
         {
             if (KingdomsAreValid(kingdoms.Item1, kingdoms.Item2))
             {
-                return string.Join("+", kingdoms.Item1.StringId, kingdoms.Item2.StringId);
+                return string.Join("+", kingdoms.Item1.Id, kingdoms.Item2.Id);
             }
             else
             {
@@ -111,13 +118,13 @@ namespace DiplomacyFixes
             {
                 finalWarExhaustionDelta *= Fuzziness;
             }
-            if (_warExhaustion.TryGetValue(key, out float currentValue))
+            if (_warExhaustionById.TryGetValue(key, out float currentValue))
             {
-                _warExhaustion[key] = MBMath.ClampFloat(currentValue += finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
+                _warExhaustionById[key] = MBMath.ClampFloat(currentValue += finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
             }
             else
             {
-                _warExhaustion[key] = MBMath.ClampFloat(finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
+                _warExhaustionById[key] = MBMath.ClampFloat(finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
             }
         }
 
@@ -129,10 +136,10 @@ namespace DiplomacyFixes
         private void RemoveDailyWarExhaustion(Tuple<Kingdom, Kingdom> kingdoms)
         {
             string key = CreateKey(kingdoms);
-            if (key != null && _warExhaustion.TryGetValue(key, out float currentValue))
+            if (key != null && _warExhaustionById.TryGetValue(key, out float currentValue))
             {
                 float warExhaustionToRemove = Settings.Instance.WarExhaustionDecayPerDay;
-                _warExhaustion[key] = MBMath.ClampFloat(currentValue -= warExhaustionToRemove, MinWarExhaustion, MaxWarExhaustion);
+                _warExhaustionById[key] = MBMath.ClampFloat(currentValue -= warExhaustionToRemove, MinWarExhaustion, MaxWarExhaustion);
             }
         }
 
@@ -166,7 +173,7 @@ namespace DiplomacyFixes
                 _knownKingdomCombinations.UnionWith(
                 from item1 in Kingdom.All
                 from item2 in Kingdom.All
-                where String.Compare(item1.Name.ToString(), item2.Name.ToString()) != 0
+                where item1.Id != item2.Id
                 select new Tuple<Kingdom, Kingdom>(item1, item2));
                 _knownKingdoms.UnionWith(kingdomsToAdd);
             }
@@ -204,6 +211,36 @@ namespace DiplomacyFixes
         public void Sync()
         {
             Instance = this;
+            MigrateLegacyWarExhaustionDictionary();
+        }
+
+
+        /// <summary>
+        /// Migrates old-style war exhaustion dictionaries that are keyed by stringId to new ones keyed by MBGUID internal id.
+        /// </summary>
+        private void MigrateLegacyWarExhaustionDictionary()
+        {
+            if (_warExhaustion != null && _warExhaustion.Any())
+            {
+                _warExhaustionById = new Dictionary<string, float>();
+                foreach (string oldKey in _warExhaustion.Keys)
+                {
+                    string[] kingdomNames = oldKey.Split(new char[] { '+' });
+                    if (kingdomNames.Length != 2)
+                    {
+                        continue;
+                    }
+                    Kingdom kingdom1 = Kingdom.All.FirstOrDefault(kingdom => kingdomNames[0] == kingdom.StringId);
+                    Kingdom kingdom2 = Kingdom.All.FirstOrDefault(kingdom => kingdomNames[1] == kingdom.StringId);
+
+                    string newKey = CreateKey(kingdom1, kingdom2);
+                    if (newKey != null)
+                    {
+                        _warExhaustionById[newKey] = _warExhaustion[oldKey];
+                    }
+                }
+                _warExhaustion = null;
+            }
         }
     }
 }
