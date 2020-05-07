@@ -334,15 +334,14 @@
                         <ButtonWidget DataSource="{CurrentSelectedDiplomacyItem}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ExecuteAction" IsEnabled="true">
                           <Children>
                             <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@ActionName" />
-                            <Widget UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="250">
+                            <ListPanel UpdateChildrenStates="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="230" LayoutImp.LayoutMethod="HorizontalLeftToRight">
                               <Children>
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@InfluenceCost">
-                                  <Children>
-                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-20" Sprite="SPKingdom\influence_icon_small" />
-                                  </Children>
-                                </TextWidget>
+                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="0" Sprite="SPKingdom\influence_icon_small" />
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@InfluenceCost" />
+                                <Widget IsVisible="@IsGoldCostVisible" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" MarginLeft="5" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="0" Sprite="SaveLoad\icon_gold" />
+                                <TextWidget IsVisible="@IsGoldCostVisible" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@GoldCost"/>
                               </Children>
-                            </Widget>
+                            </ListPanel>
                           </Children>
                         </ButtonWidget>
                       </Children>
@@ -354,8 +353,6 @@
           </Children>
         </ListPanel>
       </Children>
-
     </Widget>
-
   </Window>
 </Prefab>

@@ -2,6 +2,7 @@
 using Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.LogEntries;
@@ -28,12 +29,12 @@ namespace DiplomacyFixes.Patches
                 return false;
             }
 
-            List<IFaction> possibleKingdomsToDeclareWar = FactionHelper.GetPossibleKingdomsToDeclareWar(kingdom);
+            IEnumerable<Kingdom> possibleKingdomsToDeclareWar = FactionHelper.GetPossibleKingdomsToDeclareWar(kingdom).Select(faction => faction as Kingdom);
             float num = 0f;
-            IFaction faction = null;
-            foreach (IFaction faction2 in possibleKingdomsToDeclareWar)
+            Kingdom otherKingdom = null;
+            foreach (Kingdom currentKingdom in possibleKingdomsToDeclareWar)
             {
-                if (!WarAndPeaceConditions.CanDeclareWar(kingdom, faction2))
+                if (!WarAndPeaceConditions.CanDeclareWar(kingdom, currentKingdom))
                 {
                     continue;
                 }
@@ -42,7 +43,7 @@ namespace DiplomacyFixes.Patches
                 bool flag = false;
                 foreach (LogEntry logEntry in gameActionLogs)
                 {
-                    if (logEntry is MakePeaceLogEntry && CampaignTime.Now.ToHours - logEntry.GameTime.ToHours < 600.0 && ((((MakePeaceLogEntry)logEntry).Faction1 == kingdom.MapFaction && ((MakePeaceLogEntry)logEntry).Faction2 == faction2.MapFaction) || (((MakePeaceLogEntry)logEntry).Faction1 == faction2.MapFaction && ((MakePeaceLogEntry)logEntry).Faction2 == kingdom.MapFaction)))
+                    if (logEntry is MakePeaceLogEntry && CampaignTime.Now.ToHours - logEntry.GameTime.ToHours < 600.0 && ((((MakePeaceLogEntry)logEntry).Faction1 == kingdom.MapFaction && ((MakePeaceLogEntry)logEntry).Faction2 == currentKingdom.MapFaction) || (((MakePeaceLogEntry)logEntry).Faction1 == currentKingdom.MapFaction && ((MakePeaceLogEntry)logEntry).Faction2 == kingdom.MapFaction)))
                     {
                         flag = true;
                         break;
@@ -50,17 +51,17 @@ namespace DiplomacyFixes.Patches
                 }
                 if (!flag)
                 {
-                    float scoreOfDeclaringWar = Campaign.Current.Models.DiplomacyModel.GetScoreOfDeclaringWar(kingdom, faction2, false);
+                    float scoreOfDeclaringWar = Campaign.Current.Models.DiplomacyModel.GetScoreOfDeclaringWar(kingdom, currentKingdom, false);
                     if (scoreOfDeclaringWar > num)
                     {
-                        faction = faction2;
+                        otherKingdom = currentKingdom;
                         num = scoreOfDeclaringWar;
                     }
                 }
             }
-            if (faction != null && MBRandom.RandomFloat < Math.Min(0.5f, num / 400000f))
+            if (otherKingdom != null && MBRandom.RandomFloat < Math.Min(0.5f, num / 400000f))
             {
-                DeclareWarAction.ApplyDeclareWarOverProvocation(kingdom, faction);
+                DeclareWarAction.ApplyDeclareWarOverProvocation(kingdom, otherKingdom);
             }
 
             return false;
@@ -80,34 +81,28 @@ namespace DiplomacyFixes.Patches
                 return false;
             }
 
-            List<IFaction> possibleKingdomsToDeclarePeace = FactionHelper.GetPossibleKingdomsToDeclarePeace(kingdom);
-            float num = 0f;
-            IFaction faction = null;
-            int num2 = 0;
-            foreach (IFaction faction2 in possibleKingdomsToDeclarePeace)
+            IEnumerable<Kingdom> possibleKingdomsToDeclarePeace = FactionHelper.GetPossibleKingdomsToDeclarePeace(kingdom).Select(faction => faction as Kingdom);
+            float maximumScoreOfDeclaringPiece = 0f;
+            Kingdom otherKingdom = null;
+            foreach (Kingdom currentKingdom in possibleKingdomsToDeclarePeace)
             {
-                if (!WarAndPeaceConditions.CanProposePeace(kingdom, faction2))
+                if (!WarAndPeaceConditions.CanProposePeace(kingdom, currentKingdom))
                 {
                     continue;
                 }
 
-                float scoreOfDeclaringPeace = Campaign.Current.Models.DiplomacyModel.GetScoreOfDeclaringPeace(kingdom, faction2);
-                float scoreOfDeclaringPeace2 = Campaign.Current.Models.DiplomacyModel.GetScoreOfDeclaringPeace(faction2, kingdom);
-                if (Math.Max(scoreOfDeclaringPeace, scoreOfDeclaringPeace2) > num && scoreOfDeclaringPeace > 0f)
+                float scoreOfDeclaringPeace = Campaign.Current.Models.DiplomacyModel.GetScoreOfDeclaringPeace(kingdom, currentKingdom);
+                float scoreOfDeclaringPeace2 = Campaign.Current.Models.DiplomacyModel.GetScoreOfDeclaringPeace(currentKingdom, kingdom);
+                if (Math.Max(scoreOfDeclaringPeace, scoreOfDeclaringPeace2) > maximumScoreOfDeclaringPiece && scoreOfDeclaringPeace > 0f)
                 {
-                    faction = faction2;
-                    if (scoreOfDeclaringPeace2 < 0f)
-                    {
-                        num2 = -(int)(scoreOfDeclaringPeace2 + 1f);
-                    }
-                    num = Math.Max(scoreOfDeclaringPeace, scoreOfDeclaringPeace2);
+                    otherKingdom = currentKingdom;
+                    maximumScoreOfDeclaringPiece = Math.Max(scoreOfDeclaringPeace, scoreOfDeclaringPeace2);
                 }
             }
-            float num3 = (kingdom.Leader.Gold < 10000) ? 3f : ((float)(3.0 + (Math.Sqrt((double)((float)kingdom.Leader.Gold / 10000f)) - 1.0)));
-            int num4 = (int)Math.Min((float)kingdom.Leader.Gold / num3, num / 2f);
-            if (num > 0f && num2 < num4)
+
+            if (maximumScoreOfDeclaringPiece > 0f)
             {
-                KingdomPeaceAction.ApplyPeace(kingdom, faction, num2);
+                KingdomPeaceAction.ApplyPeace(kingdom, otherKingdom);
             }
 
             return false;

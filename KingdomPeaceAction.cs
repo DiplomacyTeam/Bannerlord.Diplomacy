@@ -10,10 +10,16 @@ namespace DiplomacyFixes
     class KingdomPeaceAction
     {
 
-        private static void AcceptPeace(Kingdom kingdom, IFaction faction, int payment)
+        private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment, float influenceCost)
         {
-            GiveGoldAction.ApplyBetweenCharacters(kingdom.Leader, faction.Leader, payment, false);
-            MakePeaceAction.Apply(kingdom, faction);
+            DiplomacyCostManager.PayWarReparations(kingdomMakingPeace, otherKingdom, payment);
+            DiplomacyCostManager.deductInfluenceFromKingdom(kingdomMakingPeace, influenceCost);
+            MakePeaceAction.Apply(kingdomMakingPeace, otherKingdom);
+        }
+
+        private static void AcceptPeaceDueToWarExhaustion(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
+        {
+            AcceptPeace(kingdomMakingPeace, otherKingdom, 0, 0f);
         }
 
         private static string CreateMakePeaceInquiryText(Kingdom kingdom, IFaction faction, int payment)
@@ -43,57 +49,62 @@ namespace DiplomacyFixes
             return peaceText.ToString();
         }
 
-        private static void CreatePeaceInquiry(Kingdom kingdom, IFaction faction, int payment)
+        private static void CreatePeaceInquiry(Kingdom kingdom, Kingdom faction, int payment, float influenceCost)
         {
             InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceInquiryText(kingdom, faction, payment), true, true, new TextObject("{=3fTqLwkC}Accept").ToString(), new TextObject("{=dRoMejb0}Decline").ToString(), () =>
             {
-                KingdomPeaceAction.AcceptPeace(kingdom, faction, payment);
+                KingdomPeaceAction.AcceptPeace(kingdom, faction, payment, influenceCost);
             }, () =>
             {
                 Events.Instance.OnPeaceProposalSent(kingdom);
             }, ""), true);
         }
 
-
-        public static void ApplyPeace(Kingdom kingdom, IFaction faction, int num2)
+        public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool payCosts = true)
         {
-            if (!PlayerHelpers.IsPlayerLeaderOfFaction(faction))
+            int payment = payCosts ? DiplomacyCostCalculator.DetermineGoldCostForMakingPeace(kingdomMakingPeace, otherKingdom) : 0;
+            float influenceCost = payCosts ? DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace(kingdomMakingPeace) : 0f;
+            ApplyPeace(kingdomMakingPeace, otherKingdom, payment, influenceCost);
+        }
+
+        public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment, float influenceCost)
+        {
+            if (!PlayerHelpers.IsPlayerLeaderOfFaction(otherKingdom))
             {
-                KingdomPeaceAction.AcceptPeace(kingdom, faction, num2);
+                KingdomPeaceAction.AcceptPeace(kingdomMakingPeace, otherKingdom, payment, influenceCost);
             }
             else
             {
-                if (!CooldownManager.HasPeaceProposalCooldown(kingdom))
+                if (!CooldownManager.HasPeaceProposalCooldown(kingdomMakingPeace))
                 {
-                    KingdomPeaceAction.CreatePeaceInquiry(kingdom, faction, num2);
+                    KingdomPeaceAction.CreatePeaceInquiry(kingdomMakingPeace, otherKingdom, payment, influenceCost);
                 }
             }
         }
 
-        public static void ApplyPeaceDueToWarExhaustion(Kingdom kingdom, IFaction faction)
+        public static void ApplyPeaceDueToWarExhaustion(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
         {
-            if (!PlayerHelpers.IsPlayerLeaderOfFaction(faction))
+            if (!PlayerHelpers.IsPlayerLeaderOfFaction(otherKingdom))
             {
-                KingdomPeaceAction.AcceptPeace(kingdom, faction, 0);
+                KingdomPeaceAction.AcceptPeaceDueToWarExhaustion(kingdomMakingPeace, otherKingdom);
             }
             else
             {
-                if (!CooldownManager.HasPeaceProposalCooldown(kingdom))
+                if (!CooldownManager.HasPeaceProposalCooldown(kingdomMakingPeace))
                 {
-                    KingdomPeaceAction.CreatePeaceInquiryDueToWarExhaustion(kingdom, faction);
+                    KingdomPeaceAction.CreatePeaceInquiryDueToWarExhaustion(kingdomMakingPeace, otherKingdom);
                 }
             }
         }
 
-        private static void CreatePeaceInquiryDueToWarExhaustion(Kingdom kingdom, IFaction faction)
+        private static void CreatePeaceInquiryDueToWarExhaustion(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
         {
-            int payment = 0;
-            InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceDueToWarExhaustionInquiryText(kingdom, faction), true, true, new TextObject("{=Y94H6XnK}Accept").ToString(), new TextObject("{=cOgmdp9e}Decline").ToString(), () =>
+            InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceDueToWarExhaustionInquiryText(kingdomMakingPeace, otherKingdom), true, true, new TextObject("{=Y94H6XnK}Accept").ToString(), new TextObject("{=cOgmdp9e}Decline").ToString(), () =>
             {
-                KingdomPeaceAction.AcceptPeace(kingdom, faction, payment);
+                KingdomPeaceAction.AcceptPeaceDueToWarExhaustion(kingdomMakingPeace, otherKingdom);
             }, () =>
             {
-                Events.Instance.OnPeaceProposalSent(kingdom);
+                Events.Instance.OnPeaceProposalSent(kingdomMakingPeace);
             }, ""), true);
         }
     }

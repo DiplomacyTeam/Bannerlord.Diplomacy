@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
 namespace DiplomacyFixes
@@ -11,27 +12,42 @@ namespace DiplomacyFixes
     class WarAndPeaceConditions
     {
         private const string NOT_ENOUGH_INFLUENCE = "{=TS1iV2pO}Not enough influence!";
+        private const string NOT_ENOUGH_GOLD = "{=}Not enough gold!";
         private const string ACTIVE_QUEST = "{=XQFxDr11}There is an active quest preventing it!";
         private const string TOO_SOON = "{=ONNcmltF}This war hasn't gone on long enough to consider peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.";
         private const string DECLARE_WAR_COOLDOWN = "{=jPHYDjXQ}Cannot declare war so soon after making peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.";
 
         public static List<TextObject> CanMakePeaceExceptions(KingdomWarItemVM item)
         {
+            return CanMakePeaceExceptions(item.Faction1 as Kingdom, item.Faction2 as Kingdom, true);
+        }
+
+        private static List<TextObject> CanMakePeaceExceptions(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        {
             List<TextObject> exceptionList = new List<TextObject>();
-            ThirdPhase thirdPhase = StoryMode.StoryMode.Current.MainStoryLine.ThirdPhase;
-            bool isValidQuestState = thirdPhase == null || !thirdPhase.OppositionKingdoms.Contains(item.Faction2);
-            if (!isValidQuestState)
+            if (kingdomMakingPeace.Leader.IsHumanPlayerCharacter)
             {
-                exceptionList.Add(new TextObject(ACTIVE_QUEST));
+                ThirdPhase thirdPhase = StoryMode.StoryMode.Current.MainStoryLine.ThirdPhase;
+                bool isValidQuestState = thirdPhase == null || !thirdPhase.OppositionKingdoms.Contains(otherKingdom);
+                if (!isValidQuestState)
+                {
+                    exceptionList.Add(new TextObject(ACTIVE_QUEST));
+                }
             }
-            bool hasEnoughInfluence = Hero.MainHero.Clan.Influence > DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace();
+            Hero heroPayingCosts = forcePlayerCharacterCosts ? Hero.MainHero : kingdomMakingPeace.Leader;
+            bool hasEnoughInfluence = heroPayingCosts.Clan.Influence >= DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace(kingdomMakingPeace);
             if (!hasEnoughInfluence)
             {
                 exceptionList.Add(new TextObject(NOT_ENOUGH_INFLUENCE));
             }
 
+            bool hasEnoughGold = heroPayingCosts.Gold >= DiplomacyCostCalculator.DetermineGoldCostForMakingPeace(kingdomMakingPeace, otherKingdom);
+            if (!hasEnoughGold)
+            {
+                exceptionList.Add(new TextObject(NOT_ENOUGH_GOLD));
+            }
 
-            bool hasEnoughTimeElapsed = HasEnoughTimeElapsedBetweenWars(item.Faction1, item.Faction2, out float elapsedDaysUntilNow);
+            bool hasEnoughTimeElapsed = HasEnoughTimeElapsedBetweenWars(kingdomMakingPeace, otherKingdom, out float elapsedDaysUntilNow);
             if (!hasEnoughTimeElapsed)
             {
                 TextObject textObject = new TextObject(TOO_SOON);
@@ -45,14 +61,20 @@ namespace DiplomacyFixes
 
         public static List<TextObject> CanDeclareWarExceptions(KingdomTruceItemVM item)
         {
+            return CanDeclareWarExceptions(item.Faction1 as Kingdom, item.Faction2 as Kingdom, true);
+        }
+
+        private static List<TextObject> CanDeclareWarExceptions(Kingdom kingdomDeclaringWar, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        {
             List<TextObject> exceptionList = new List<TextObject>();
-            bool hasEnoughInfluence = Hero.MainHero.Clan.Influence > DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar();
+            Hero heroPayingCosts = forcePlayerCharacterCosts ? Hero.MainHero : kingdomDeclaringWar.Leader;
+            bool hasEnoughInfluence = heroPayingCosts.Clan.Influence >= DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(kingdomDeclaringWar);
             if (!hasEnoughInfluence)
             {
                 exceptionList.Add(new TextObject(NOT_ENOUGH_INFLUENCE));
             }
 
-            CampaignTime? lastWarTimeWithPlayerFaction = CooldownManager.GetLastWarTimeWithPlayerFaction(item.Faction2);
+            CampaignTime? lastWarTimeWithPlayerFaction = CooldownManager.GetLastWarTimeWithPlayerFaction(otherKingdom);
             if (lastWarTimeWithPlayerFaction.HasValue)
             {
                 float elapsedDaysUntilNow = lastWarTimeWithPlayerFaction.Value.ElapsedDaysUntilNow;
@@ -69,14 +91,14 @@ namespace DiplomacyFixes
             return exceptionList;
         }
 
-        public static bool CanProposePeace(IFaction faction1, IFaction faction2)
+        public static bool CanProposePeace(Kingdom kingdomProposingPeace, Kingdom otherKingdom)
         {
-            return HasEnoughTimeElapsedBetweenWars(faction1, faction2);
+            return CanMakePeaceExceptions(kingdomProposingPeace, otherKingdom).IsEmpty();
         }
 
-        public static bool CanDeclareWar(IFaction faction1, IFaction faction2)
+        public static bool CanDeclareWar(Kingdom kingdomDeclaringWar, Kingdom otherKingdom)
         {
-            return !CooldownManager.HasDeclareWarCooldown(faction1, faction2);
+            return CanDeclareWarExceptions(kingdomDeclaringWar, otherKingdom).IsEmpty();
         }
 
         private static bool HasEnoughTimeElapsedBetweenWars(IFaction faction1, IFaction faction2, out float elapsedTime)
@@ -93,11 +115,6 @@ namespace DiplomacyFixes
                 }
             }
             return true;
-        }
-
-        private static bool HasEnoughTimeElapsedBetweenWars(IFaction faction1, IFaction faction2)
-        {
-            return HasEnoughTimeElapsedBetweenWars(faction1, faction2, out float elapsedTime);
         }
     }
 }

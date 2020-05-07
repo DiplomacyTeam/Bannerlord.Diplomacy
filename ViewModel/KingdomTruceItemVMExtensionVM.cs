@@ -17,6 +17,7 @@ namespace DiplomacyFixes.ViewModel
             this.IsOptionAvailable = true;
             this.InfluenceCost = 0;
             this.IsMessengerAvailable = true;
+            this.IsGoldCostVisible = false;
             this.SendMessengerInfluenceCost = 0;
             UpdateDiplomacyProperties();
         }
@@ -25,10 +26,11 @@ namespace DiplomacyFixes.ViewModel
         {
             base.UpdateDiplomacyProperties();
             this.IsOptionAvailable = WarAndPeaceConditions.CanDeclareWarExceptions(this).IsEmpty();
-            this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar();
+            this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(Faction1 as Kingdom);
             float sendMessengerInfluenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
             UpdateActionAvailability();
             this.SendMessengerInfluenceCost = (int)sendMessengerInfluenceCost;
+            this.IsGoldCostVisible = false;
             this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
         }
 
@@ -135,10 +137,28 @@ namespace DiplomacyFixes.ViewModel
             }
         }
 
+        [DataSourceProperty]
+        public bool IsGoldCostVisible
+        {
+            get
+            {
+                return this._isGoldCostVisible;
+            }
+            set
+            {
+                if (value != this._isGoldCostVisible)
+                {
+                    this._isGoldCostVisible = value;
+                    base.OnPropertyChanged("IsGoldCostVisible");
+                }
+            }
+        }
+
         private bool _isOptionAvailable;
         private int _influenceCost;
         private bool _isMessengerAvailable;
         private int _sendMessengerInfluenceCost;
         private string _sendMessengerActionName;
+        private bool _isGoldCostVisible;
     }
 }

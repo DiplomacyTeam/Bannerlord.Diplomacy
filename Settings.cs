@@ -14,6 +14,8 @@ namespace DiplomacyFixes
         private const string HeadingInfluenceCosts = "{=SEViwYTl}Influence Costs";
         private const string HeadingWarExhaustion = "{=V542tneW}War Exhaustion";
 
+        private const string HeadingGoldCosts = "{=}Gold Costs";
+
         public override string Id { get; set; } = "DiplomacyFixesSettings_1";
 
         public override string ModuleFolderName { get; } = "DiplomacyFixes";
@@ -39,6 +41,10 @@ namespace DiplomacyFixes
         [SettingPropertyFloatingInteger(displayName: "{=TvAYJv5Q}Scaling Influence Cost Multiplier", 0, 100, Order = 1, RequireRestart = false, HintText = "{=AQ5gRYN6}Multiplier for the scaling influence costs. Default value is 5.")]
         [SettingPropertyGroup(HeadingInfluenceCosts, order: 0)]
         public float ScalingInfluenceCostMultiplier { get; set; } = 5.0f;
+
+        [SettingPropertyFloatingInteger(displayName: "{=}Scaling War Reparations Gold Cost Multiplier", 0, 10000, Order = 0, RequireRestart = false, HintText = "{=}Multiplier for the scaling of war reparations gold costs. Default value is 100.")]
+        [SettingPropertyGroup(HeadingGoldCosts, order: 0)]
+        public float ScalingWarReparationsGoldCostMultiplier { get; set; } = 100.0f;
 
         [SettingPropertyInteger(displayName: "{=OnTeAgin}Flat Declare War Influence Cost", 0, 10000, Order = 2, RequireRestart = false, HintText = "{=O5XvybTI}Influence cost for declaring war on another kingdom. Default value is 100.")]
         [SettingPropertyGroup(HeadingInfluenceCosts, order: 1)]
@@ -91,5 +97,6 @@ namespace DiplomacyFixes
         [SettingPropertyFloatingInteger("{=Fyion5Hw}War Exhaustion Decay per Day", 0f, 50f, RequireRestart = false, HintText = "{=o99AUWR8}The amount of war exhaustion decay per day the factions are at peace. Default value is 1.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionDecayPerDay { get; set; } = 1.0f;
+        
     }
 }

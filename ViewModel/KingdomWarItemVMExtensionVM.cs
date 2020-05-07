@@ -16,6 +16,8 @@ namespace DiplomacyFixes.ViewModel
         {
             this.IsOptionAvailable = true;
             this.InfluenceCost = 0;
+            this.GoldCost = 0;
+            this.IsGoldCostVisible = true;
             this.IsMessengerAvailable = true;
             this.SendMessengerInfluenceCost = 0;
             UpdateDiplomacyProperties();
@@ -25,7 +27,9 @@ namespace DiplomacyFixes.ViewModel
         {
             base.UpdateDiplomacyProperties();
             this.IsOptionAvailable = WarAndPeaceConditions.CanMakePeaceExceptions(this).IsEmpty();
-            this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace();
+            this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace(Faction1 as Kingdom);
+            this.GoldCost = DiplomacyCostCalculator.DetermineGoldCostForMakingPeace(this.Faction1 as Kingdom, this.Faction2 as Kingdom);
+            this.IsGoldCostVisible = true;
             float sendMessengerInfluenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
             UpdateActionAvailability();
             this.SendMessengerInfluenceCost = (int)sendMessengerInfluenceCost;
@@ -111,6 +115,41 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
+        public int GoldCost
+        {
+            get
+            {
+                return this._goldCost;
+            }
+            set
+            {
+                if (value != this._goldCost)
+                {
+                    this._goldCost = value;
+                    base.OnPropertyChanged("GoldCost");
+                }
+            }
+        }
+
+
+        [DataSourceProperty]
+        public bool IsGoldCostVisible
+        {
+            get
+            {
+                return this._isGoldCostVisible;
+            }
+            set
+            {
+                if (value != this._isGoldCostVisible)
+                {
+                    this._isGoldCostVisible = value;
+                    base.OnPropertyChanged("IsGoldCostVisible");
+                }
+            }
+        }
+
+        [DataSourceProperty]
         public bool IsOptionAvailable
         {
             get
@@ -146,8 +185,10 @@ namespace DiplomacyFixes.ViewModel
 
         private bool _isOptionAvailable;
         private int _influenceCost;
+        private int _goldCost;
         private bool _isMessengerAvailable;
         private int _sendMessengerInfluenceCost;
         private string _sendMessengerActionName;
+        private bool _isGoldCostVisible;
     }
 }
