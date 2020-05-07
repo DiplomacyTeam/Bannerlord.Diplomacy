@@ -38,8 +38,8 @@ namespace DiplomacyFixes
 
         public float GetWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
-
-            if (_warExhaustion.TryGetValue(CreateKey(kingdom1, kingdom2), out float warExhaustion))
+            string key = CreateKey(kingdom1, kingdom2);
+            if (key != null && _warExhaustion.TryGetValue(key, out float warExhaustion))
             {
                 return warExhaustion;
             }
@@ -49,6 +49,11 @@ namespace DiplomacyFixes
             }
         }
 
+        private static bool KingdomsAreValid(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            return kingdom1.StringId != null && kingdom2.StringId != null;
+        }
+
         private string CreateKey(Kingdom kingdom1, Kingdom kingdom2)
         {
             return CreateKey(new Tuple<Kingdom, Kingdom>(kingdom1, kingdom2));
@@ -56,7 +61,14 @@ namespace DiplomacyFixes
 
         private string CreateKey(Tuple<Kingdom, Kingdom> kingdoms)
         {
-            return string.Join("+", kingdoms.Item1.StringId, kingdoms.Item2.StringId);
+            if (KingdomsAreValid(kingdoms.Item1, kingdoms.Item2))
+            {
+                return string.Join("+", kingdoms.Item1.StringId, kingdoms.Item2.StringId);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private void AddDailyWarExhaustion(Tuple<Kingdom, Kingdom> kingdoms)
@@ -85,11 +97,11 @@ namespace DiplomacyFixes
 
         private void AddWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, float warExhaustionToAdd)
         {
-            if (kingdom1.StringId == null || kingdom2.StringId == null)
+            string key = CreateKey(kingdom1, kingdom2);
+            if (key != null)
             {
-                return;
+                AddWarExhaustion(key, warExhaustionToAdd, true);
             }
-            AddWarExhaustion(CreateKey(kingdom1, kingdom2), warExhaustionToAdd, true);
         }
 
         private void AddWarExhaustion(string key, float warExhaustionToAdd, bool addFuzziness)
@@ -117,7 +129,7 @@ namespace DiplomacyFixes
         private void RemoveDailyWarExhaustion(Tuple<Kingdom, Kingdom> kingdoms)
         {
             string key = CreateKey(kingdoms);
-            if (_warExhaustion.TryGetValue(key, out float currentValue))
+            if (key != null && _warExhaustion.TryGetValue(key, out float currentValue))
             {
                 float warExhaustionToRemove = Settings.Instance.WarExhaustionDecayPerDay;
                 _warExhaustion[key] = MBMath.ClampFloat(currentValue -= warExhaustionToRemove, MinWarExhaustion, MaxWarExhaustion);
