@@ -220,7 +220,7 @@ namespace DiplomacyFixes
         /// </summary>
         private void MigrateLegacyWarExhaustionDictionary()
         {
-            if (_warExhaustion != null && _warExhaustion.Any())
+            if (_warExhaustion != null)
             {
                 _warExhaustionById = new Dictionary<string, float>();
                 foreach (string oldKey in _warExhaustion.Keys)
