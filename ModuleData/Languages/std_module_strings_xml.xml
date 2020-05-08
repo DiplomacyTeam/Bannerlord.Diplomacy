@@ -34,6 +34,8 @@
     
     <string id="XmVTQ0bH" text="War Exhaustion" />
 
+    <string id="IWZ91JVk" text="Not enough gold!" />
+
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
     -->
@@ -93,5 +95,9 @@
     <string id="Fyion5Hw" text="War Exhaustion Decay per Day" />
     <string id="o99AUWR8" text="The amount of war exhaustion decay per day the factions are at peace. Default value is 1.0." />
 
+    <string id="Ckd1Lsoa" text="Gold Costs" />
+    <string id="HFtZsD6v" text="Scaling War Reparations Gold Cost Multiplier" />
+    <string id="MIhbrqbr" text="Multiplier for the scaling of war reparations gold costs. Default value is 100." />
+    
   </strings>
 </base>

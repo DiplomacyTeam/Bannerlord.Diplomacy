@@ -12,7 +12,7 @@ namespace DiplomacyFixes
     class WarAndPeaceConditions
     {
         private const string NOT_ENOUGH_INFLUENCE = "{=TS1iV2pO}Not enough influence!";
-        private const string NOT_ENOUGH_GOLD = "{=}Not enough gold!";
+        private const string NOT_ENOUGH_GOLD = "{=IWZ91JVk}Not enough gold!";
         private const string ACTIVE_QUEST = "{=XQFxDr11}There is an active quest preventing it!";
         private const string TOO_SOON = "{=ONNcmltF}This war hasn't gone on long enough to consider peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.";
         private const string DECLARE_WAR_COOLDOWN = "{=jPHYDjXQ}Cannot declare war so soon after making peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.";

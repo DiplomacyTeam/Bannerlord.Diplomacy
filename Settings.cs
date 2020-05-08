@@ -14,7 +14,7 @@ namespace DiplomacyFixes
         private const string HeadingInfluenceCosts = "{=SEViwYTl}Influence Costs";
         private const string HeadingWarExhaustion = "{=V542tneW}War Exhaustion";
 
-        private const string HeadingGoldCosts = "{=}Gold Costs";
+        private const string HeadingGoldCosts = "{=Ckd1Lsoa}Gold Costs";
 
         public override string Id { get; set; } = "DiplomacyFixesSettings_1";
 
@@ -42,7 +42,7 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingInfluenceCosts, order: 0)]
         public float ScalingInfluenceCostMultiplier { get; set; } = 5.0f;
 
-        [SettingPropertyFloatingInteger(displayName: "{=}Scaling War Reparations Gold Cost Multiplier", 0, 10000, Order = 0, RequireRestart = false, HintText = "{=}Multiplier for the scaling of war reparations gold costs. Default value is 100.")]
+        [SettingPropertyFloatingInteger(displayName: "{=HFtZsD6v}Scaling War Reparations Gold Cost Multiplier", 0, 10000, Order = 0, RequireRestart = false, HintText = "{=MIhbrqbr}Multiplier for the scaling of war reparations gold costs. Default value is 100.")]
         [SettingPropertyGroup(HeadingGoldCosts, order: 0)]
         public float ScalingWarReparationsGoldCostMultiplier { get; set; } = 100.0f;
 
