@@ -233,6 +233,11 @@ namespace DiplomacyFixes
                     Kingdom kingdom1 = Kingdom.All.FirstOrDefault(kingdom => kingdomNames[0] == kingdom.StringId);
                     Kingdom kingdom2 = Kingdom.All.FirstOrDefault(kingdom => kingdomNames[1] == kingdom.StringId);
 
+                    if (kingdom1 == null || kingdom2 == null)
+                    {
+                        continue;
+                    }
+
                     string newKey = CreateKey(kingdom1, kingdom2);
                     if (newKey != null)
                     {
