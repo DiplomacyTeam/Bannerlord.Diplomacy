@@ -11,7 +11,7 @@ namespace DiplomacyFixes.Patches
         [HarmonyPatch("ConsiderWar")]
         public static bool ConsiderWarPatch(IFaction mapFaction, IFaction otherMapFaction)
         {
-            return !CooldownManager.HasDeclareWarCooldown(mapFaction, otherMapFaction);
+            return !CooldownManager.HasDeclareWarCooldown(mapFaction, otherMapFaction, out _);
         }
     }
 }

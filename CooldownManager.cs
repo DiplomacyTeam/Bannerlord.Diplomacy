@@ -57,22 +57,46 @@ namespace DiplomacyFixes
             }
         }
 
-        public static bool HasDeclareWarCooldown(IFaction faction1, IFaction faction2)
+        public static bool HasDeclareWarCooldown(IFaction faction1, IFaction faction2, out float elapsedTime)
         {
             CampaignTime? campaignTime = GetLastWarTimeBetweenFactions(faction1, faction2);
             if (campaignTime.HasValue)
             {
+                elapsedTime = campaignTime.Value.ElapsedDaysUntilNow;
                 return campaignTime.Value.ElapsedDaysUntilNow < Settings.Instance.DeclareWarCooldownInDays;
             }
             else
             {
+                elapsedTime = default;
                 return false;
             }
         }
 
-        public static bool HasPeaceProposalCooldown(Kingdom kingdom)
+        public static bool HasPeaceProposalCooldownWithPlayerKingdom(Kingdom kingdom)
         {
             return GetLastPeaceProposalTime(kingdom).HasValue && GetLastPeaceProposalTime(kingdom).Value.ElapsedDaysUntilNow < MinimumDaysBetweenPeaceProposals;
+        }
+
+        public static bool HasPeaceProposalCooldown(Kingdom kingdomProposingPeace, Kingdom otherKingdom)
+        {
+            return (!HasExceededMinimumWarDuration(kingdomProposingPeace, otherKingdom, out float elapsedTime)
+                || (PlayerHelpers.IsPlayerLeaderOfFaction(otherKingdom) && HasPeaceProposalCooldownWithPlayerKingdom(kingdomProposingPeace)));
+        }
+
+        public static bool HasExceededMinimumWarDuration(IFaction faction1, IFaction faction2, out float elapsedTime)
+        {
+            elapsedTime = -1f;
+            IEnumerable<CampaignWar> campaignWars = FactionManager.Instance.FindCampaignWarsBetweenFactions(faction1, faction2);
+            if (campaignWars != null && campaignWars.Any())
+            {
+                foreach (CampaignWar war in campaignWars)
+                {
+                    elapsedTime = war.StartDate.ElapsedDaysUntilNow;
+                    int minimumWarDurationInDays = Settings.Instance.MinimumWarDurationInDays;
+                    return elapsedTime >= minimumWarDurationInDays;
+                }
+            }
+            return true;
         }
 
         public static CampaignTime? GetLastWarTimeWithPlayerFaction(IFaction faction)

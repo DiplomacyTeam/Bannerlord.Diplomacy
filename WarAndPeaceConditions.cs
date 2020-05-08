@@ -47,7 +47,7 @@ namespace DiplomacyFixes
                 exceptionList.Add(new TextObject(NOT_ENOUGH_GOLD));
             }
 
-            bool hasEnoughTimeElapsed = HasEnoughTimeElapsedBetweenWars(kingdomMakingPeace, otherKingdom, out float elapsedDaysUntilNow);
+            bool hasEnoughTimeElapsed = CooldownManager.HasExceededMinimumWarDuration(kingdomMakingPeace, otherKingdom, out float elapsedDaysUntilNow);
             if (!hasEnoughTimeElapsed)
             {
                 TextObject textObject = new TextObject(TOO_SOON);
@@ -74,19 +74,15 @@ namespace DiplomacyFixes
                 exceptionList.Add(new TextObject(NOT_ENOUGH_INFLUENCE));
             }
 
-            CampaignTime? lastWarTimeWithPlayerFaction = CooldownManager.GetLastWarTimeWithPlayerFaction(otherKingdom);
-            if (lastWarTimeWithPlayerFaction.HasValue)
+            bool hasDeclareWarCooldown = CooldownManager.HasDeclareWarCooldown(kingdomDeclaringWar, otherKingdom, out float elapsedTime);
+            if (hasDeclareWarCooldown)
             {
-                float elapsedDaysUntilNow = lastWarTimeWithPlayerFaction.Value.ElapsedDaysUntilNow;
-                int declareWarCooldownInDays = Settings.Instance.DeclareWarCooldownInDays;
-                bool hasEnoughTimeElapsed = elapsedDaysUntilNow >= declareWarCooldownInDays;
-                if (!hasEnoughTimeElapsed)
-                {
-                    TextObject textObject = new TextObject(DECLARE_WAR_COOLDOWN);
-                    textObject.SetTextVariable("ELAPSED_DAYS", (float)Math.Floor(elapsedDaysUntilNow));
-                    textObject.SetTextVariable("REQUIRED_DAYS", declareWarCooldownInDays);
-                    exceptionList.Add(textObject);
-                }
+                int declareWarCooldownDuration = Settings.Instance.DeclareWarCooldownInDays;
+
+                TextObject textObject = new TextObject(DECLARE_WAR_COOLDOWN);
+                textObject.SetTextVariable("ELAPSED_DAYS", (float)Math.Floor(elapsedTime));
+                textObject.SetTextVariable("REQUIRED_DAYS", declareWarCooldownDuration);
+                exceptionList.Add(textObject);
             }
             return exceptionList;
         }
@@ -99,22 +95,6 @@ namespace DiplomacyFixes
         public static bool CanDeclareWar(Kingdom kingdomDeclaringWar, Kingdom otherKingdom)
         {
             return CanDeclareWarExceptions(kingdomDeclaringWar, otherKingdom).IsEmpty();
-        }
-
-        private static bool HasEnoughTimeElapsedBetweenWars(IFaction faction1, IFaction faction2, out float elapsedTime)
-        {
-            elapsedTime = -1f;
-            IEnumerable<CampaignWar> campaignWars = FactionManager.Instance.FindCampaignWarsBetweenFactions(faction1, faction2);
-            if (campaignWars != null && campaignWars.Any())
-            {
-                foreach (CampaignWar war in campaignWars)
-                {
-                    elapsedTime = war.StartDate.ElapsedDaysUntilNow;
-                    int minimumWarDurationInDays = Settings.Instance.MinimumWarDurationInDays;
-                    return elapsedTime >= minimumWarDurationInDays;
-                }
-            }
-            return true;
         }
     }
 }

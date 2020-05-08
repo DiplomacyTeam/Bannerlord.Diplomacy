@@ -75,7 +75,7 @@ namespace DiplomacyFixes
             }
             else
             {
-                if (!CooldownManager.HasPeaceProposalCooldown(kingdomMakingPeace))
+                if (!CooldownManager.HasPeaceProposalCooldownWithPlayerKingdom(kingdomMakingPeace))
                 {
                     KingdomPeaceAction.CreatePeaceInquiry(kingdomMakingPeace, otherKingdom, payment, influenceCost);
                 }
@@ -90,7 +90,7 @@ namespace DiplomacyFixes
             }
             else
             {
-                if (!CooldownManager.HasPeaceProposalCooldown(kingdomMakingPeace))
+                if (!CooldownManager.HasPeaceProposalCooldownWithPlayerKingdom(kingdomMakingPeace))
                 {
                     KingdomPeaceAction.CreatePeaceInquiryDueToWarExhaustion(kingdomMakingPeace, otherKingdom);
                 }
