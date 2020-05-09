@@ -62,9 +62,9 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int DeclareWarCooldownInDays { get; set; } = 10;
 
-        [SettingPropertyInteger("{=qeDOmURl}Send Messenger Influence Cost", 0, 10000, RequireRestart = false, HintText = "{=Lkos6GQb}Influence cost for sending a messenger to another leader. Default value is 100.")]
+        [SettingPropertyInteger("{=qeDOmURl}Send Messenger Influence Cost", 0, 10000, RequireRestart = false, HintText = "{=Lkos6GQb}Influence cost for sending a messenger to another leader. Default value is 10.")]
         [SettingPropertyGroup(HeadingMessengers)]
-        public int SendMessengerInfluenceCost { get; set; } = 100;
+        public int SendMessengerInfluenceCost { get; set; } = 10;
 
         [SettingPropertyInteger("{=nnXi6MmH}Messenger Travel Time in Days", 0, 500, RequireRestart = false, HintText = "{=zkvCGLuK}The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3.")]
         [SettingPropertyGroup(HeadingMessengers)]

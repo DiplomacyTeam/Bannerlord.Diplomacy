@@ -72,7 +72,7 @@
     
     <string id="nueOs6m9" text="Messengers" />
     <string id="qeDOmURl" text="Send Messenger Influence Cost" />
-    <string id="Lkos6GQb" text="Influence cost for sending a messenger to another leader. Default value is 100." />
+    <string id="Lkos6GQb" text="Influence cost for sending a messenger to another leader. Default value is 10." />
 
     <string id="nnXi6MmH" text="Messenger Travel Time in Days" />
     <string id="zkvCGLuK" text="The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3." />
