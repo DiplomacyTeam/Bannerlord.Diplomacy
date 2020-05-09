@@ -13,21 +13,26 @@ namespace DiplomacyFixes
         private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment, float influenceCost)
         {
             DiplomacyCostManager.PayWarReparations(kingdomMakingPeace, otherKingdom, payment);
-            DiplomacyCostManager.deductInfluenceFromKingdom(kingdomMakingPeace, influenceCost);
+            DiplomacyCostManager.DeductInfluenceFromKingdom(kingdomMakingPeace, influenceCost);
             MakePeaceAction.Apply(kingdomMakingPeace, otherKingdom);
         }
 
-        private static void AcceptPeaceDueToWarExhaustion(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
+        private static string CreateMakePeaceInquiryText(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment)
         {
-            AcceptPeace(kingdomMakingPeace, otherKingdom, 0, 0f);
-        }
-
-        private static string CreateMakePeaceInquiryText(Kingdom kingdom, IFaction faction, int payment)
-        {
-            TextObject peaceText = new TextObject("{=t0ZS9maD}{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}.");
-            peaceText.SetTextVariable("KINGDOM_LEADER", kingdom.Leader.Name.ToString());
-            peaceText.SetTextVariable("KINGDOM", kingdom.Name.ToString());
-            peaceText.SetTextVariable("PLAYER_KINGDOM", faction.Name.ToString());
+            TextObject peaceText;
+            if (WarExhaustionManager.Instance.HasMaxWarExhaustion(kingdomMakingPeace, otherKingdom))
+            {
+                peaceText = new TextObject("{=HWiDa4R1}Exhausted from the war, the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}.");
+                peaceText.SetTextVariable("KINGDOM", kingdomMakingPeace.Name.ToString());
+                peaceText.SetTextVariable("PLAYER_KINGDOM", otherKingdom.Name.ToString());
+            }
+            else
+            {
+                peaceText = new TextObject("{=t0ZS9maD}{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}.");
+                peaceText.SetTextVariable("KINGDOM_LEADER", kingdomMakingPeace.Leader.Name.ToString());
+                peaceText.SetTextVariable("KINGDOM", kingdomMakingPeace.Name.ToString());
+                peaceText.SetTextVariable("PLAYER_KINGDOM", otherKingdom.Name.ToString());
+            }
             List<string> inquiryText = new List<string>();
             inquiryText.Add(peaceText.ToString());
 
@@ -37,7 +42,7 @@ namespace DiplomacyFixes
                 warReparationText.SetTextVariable("DENARS", payment);
                 inquiryText.Add(warReparationText.ToString());
             }
-            return String.Concat(inquiryText);
+            return string.Concat(inquiryText);
         }
 
         private static string CreateMakePeaceDueToWarExhaustionInquiryText(Kingdom kingdom, IFaction faction)
@@ -80,32 +85,6 @@ namespace DiplomacyFixes
                     KingdomPeaceAction.CreatePeaceInquiry(kingdomMakingPeace, otherKingdom, payment, influenceCost);
                 }
             }
-        }
-
-        public static void ApplyPeaceDueToWarExhaustion(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
-        {
-            if (!otherKingdom.Leader.IsHumanPlayerCharacter)
-            {
-                KingdomPeaceAction.AcceptPeaceDueToWarExhaustion(kingdomMakingPeace, otherKingdom);
-            }
-            else
-            {
-                if (!CooldownManager.HasPeaceProposalCooldownWithPlayerKingdom(kingdomMakingPeace))
-                {
-                    KingdomPeaceAction.CreatePeaceInquiryDueToWarExhaustion(kingdomMakingPeace, otherKingdom);
-                }
-            }
-        }
-
-        private static void CreatePeaceInquiryDueToWarExhaustion(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
-        {
-            InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceDueToWarExhaustionInquiryText(kingdomMakingPeace, otherKingdom), true, true, new TextObject("{=Y94H6XnK}Accept").ToString(), new TextObject("{=cOgmdp9e}Decline").ToString(), () =>
-            {
-                KingdomPeaceAction.AcceptPeaceDueToWarExhaustion(kingdomMakingPeace, otherKingdom);
-            }, () =>
-            {
-                Events.Instance.OnPeaceProposalSent(kingdomMakingPeace);
-            }, ""), true);
         }
     }
 }

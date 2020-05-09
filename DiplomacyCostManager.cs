@@ -1,18 +1,22 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade.GauntletUI.Widgets.Clan;
 
 namespace DiplomacyFixes
 {
     class DiplomacyCostManager
     {
-        public static void deductInfluenceFromKingdom(Kingdom kingdom, float influenceCost)
+        public static void DeductInfluenceFromKingdom(Kingdom kingdom, float influenceCost)
         {
-            kingdom.Leader.Clan.Influence -= influenceCost;
+            kingdom.Leader.Clan.Influence = MBMath.ClampFloat(kingdom.Leader.Clan.Influence - influenceCost, 0f, float.MaxValue);
         }
 
         public static void deductInfluenceFromPlayerClan(float influenceCost)
         {
             Clan clan = Hero.MainHero.Clan;
-            clan.Influence -= influenceCost;
+            clan.Influence = MBMath.ClampFloat(clan.Influence - influenceCost, 0f, float.MaxValue);
         }
 
         public static void addInfluenceToPlayerClan(float addedInfluence)
@@ -43,21 +47,14 @@ namespace DiplomacyFixes
 
         public static void PayWarReparations(Kingdom kingdom, Kingdom otherKingdom, int goldCost)
         {
-            if (goldCost <= (kingdom.Leader.Gold / 2))
+            if (goldCost >= kingdom.Leader.Gold)
             {
-                kingdom.Leader.ChangeHeroGold(-goldCost);
-            }
+                GiveGoldAction.ApplyBetweenCharacters(kingdom.Leader, otherKingdom.Leader, kingdom.Leader.Gold);
+            } 
             else
             {
-                int totalKingdomWealth = DiplomacyCostCalculator.GetTotalKingdomWealth(kingdom);
-                foreach (Hero hero in kingdom.Heroes)
-                {
-                    float proportionalWealth = hero.Gold / totalKingdomWealth;
-                    int heroShare = (int)(proportionalWealth * goldCost);
-                    hero.ChangeHeroGold(-heroShare);
-                }
+                GiveGoldAction.ApplyBetweenCharacters(kingdom.Leader, otherKingdom.Leader, goldCost);
             }
-            otherKingdom.Leader.ChangeHeroGold(goldCost);
         }
     }
 }

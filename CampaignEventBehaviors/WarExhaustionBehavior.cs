@@ -89,7 +89,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             {
                 if (_warExhaustionManager.HasMaxWarExhaustion(kingdom, targetKingdom) && IsValidQuestState(kingdom, targetKingdom))
                 {
-                    KingdomPeaceAction.ApplyPeaceDueToWarExhaustion(kingdom, targetKingdom);
+                    KingdomPeaceAction.ApplyPeace(kingdom, targetKingdom);
                 }
             }
         }
