@@ -35,6 +35,8 @@ namespace DiplomacyFixes
         private float BaseFuzzinessMin { get { return 0.5f; } }
         private float BaseFuzzinessMax { get { return 1.5f; } }
 
+        public static float DefaultMaxWarExhaustion { get; } = 100f;
+
         internal WarExhaustionManager()
         {
             this._warExhaustionById = new Dictionary<string, float>();

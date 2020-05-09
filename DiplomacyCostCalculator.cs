@@ -47,7 +47,7 @@ namespace DiplomacyFixes
                 float kingdomMakingPeaceWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(kingdomMakingPeace, otherKingdom);
                 float otherKingdomWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(otherKingdom, kingdomMakingPeace);
                 float relativeWarExhaustion = (kingdomMakingPeaceWarExhaustion + 1f) / (otherKingdomWarExhaustion + 1f) - 1f; ;
-                warExhaustionMultiplier = MBMath.ClampFloat(relativeWarExhaustion, 0, (((100f / Settings.Instance.MaxWarExhaustion) / 20) * kingdomMakingPeaceWarExhaustion) - 1f);
+                warExhaustionMultiplier = MBMath.ClampFloat(relativeWarExhaustion, 0, (((WarExhaustionManager.DefaultMaxWarExhaustion / Settings.Instance.MaxWarExhaustion) / 20) * kingdomMakingPeaceWarExhaustion) - 1f);
             }
 
             return Math.Min((int)(GetKingdomTierCount(kingdomMakingPeace) * Settings.Instance.ScalingWarReparationsGoldCostMultiplier * warExhaustionMultiplier), kingdomMakingPeace.Leader.Gold / 2);
