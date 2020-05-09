@@ -1,5 +1,6 @@
 ﻿using StoryMode.StoryModePhases;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
@@ -16,7 +17,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
-            CampaignEvents.SiegeCompletedEvent.AddNonSerializedListener(this, SiegeCompleted);
+            CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, OnSettlementOwnerChanged);
             CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, RaidCompleted);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, MapEventEnded);
         }
@@ -67,19 +68,19 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             }
         }
 
-        private void SiegeCompleted(Settlement settlement, MobileParty mobileParty, bool isWin, bool isSiege)
+        public void OnSettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
         {
-            if (!(isWin && isSiege))
+            if (detail != ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.BySiege)
             {
                 return;
             }
 
-            Kingdom previousOwner = settlement.OwnerClan.MapFaction as Kingdom;
-            Kingdom newOwner = mobileParty.MapFaction as Kingdom;
+            Kingdom previousOwnerKingdom = oldOwner.MapFaction as Kingdom;
+            Kingdom newOwnerKingdom = newOwner.MapFaction as Kingdom;
 
-            if (previousOwner != null && newOwner != null && previousOwner != newOwner)
+            if (previousOwnerKingdom != null && newOwnerKingdom != null && previousOwnerKingdom != newOwnerKingdom)
             {
-                _warExhaustionManager.AddSiegeWarExhaustion(previousOwner, newOwner);
+                _warExhaustionManager.AddSiegeWarExhaustion(previousOwnerKingdom, newOwnerKingdom);
             }
         }
 
