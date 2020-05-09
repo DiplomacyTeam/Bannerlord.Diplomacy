@@ -69,7 +69,7 @@ namespace DiplomacyFixes
 
         public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment, float influenceCost)
         {
-            if (!PlayerHelpers.IsPlayerLeaderOfFaction(otherKingdom))
+            if (!otherKingdom.Leader.IsHumanPlayerCharacter)
             {
                 KingdomPeaceAction.AcceptPeace(kingdomMakingPeace, otherKingdom, payment, influenceCost);
             }
@@ -84,7 +84,7 @@ namespace DiplomacyFixes
 
         public static void ApplyPeaceDueToWarExhaustion(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
         {
-            if (!PlayerHelpers.IsPlayerLeaderOfFaction(otherKingdom))
+            if (!otherKingdom.Leader.IsHumanPlayerCharacter)
             {
                 KingdomPeaceAction.AcceptPeaceDueToWarExhaustion(kingdomMakingPeace, otherKingdom);
             }

@@ -59,7 +59,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
             foreach (Kingdom kingdom in Kingdom.All)
             {
-                if (PlayerHelpers.IsPlayerLeaderOfFaction(kingdom))
+                if (kingdom.Leader.IsHumanPlayerCharacter)
                 {
                     continue;
                 }

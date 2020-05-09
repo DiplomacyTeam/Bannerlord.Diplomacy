@@ -24,7 +24,7 @@ namespace DiplomacyFixes.Patches
                 return true;
             }
 
-            if (PlayerHelpers.IsPlayerLeaderOfFaction(kingdom))
+            if (kingdom.Leader.IsHumanPlayerCharacter)
             {
                 return false;
             }
@@ -76,7 +76,7 @@ namespace DiplomacyFixes.Patches
                 return true;
             }
 
-            if (PlayerHelpers.IsPlayerLeaderOfFaction(kingdom))
+            if (kingdom.Leader.IsHumanPlayerCharacter)
             {
                 return false;
             }

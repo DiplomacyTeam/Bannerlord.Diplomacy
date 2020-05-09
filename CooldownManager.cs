@@ -80,7 +80,7 @@ namespace DiplomacyFixes
         public static bool HasPeaceProposalCooldown(Kingdom kingdomProposingPeace, Kingdom otherKingdom)
         {
             return (!HasExceededMinimumWarDuration(kingdomProposingPeace, otherKingdom, out float elapsedTime)
-                || (PlayerHelpers.IsPlayerLeaderOfFaction(otherKingdom) && HasPeaceProposalCooldownWithPlayerKingdom(kingdomProposingPeace)));
+                || (otherKingdom.Leader.IsHumanPlayerCharacter && HasPeaceProposalCooldownWithPlayerKingdom(kingdomProposingPeace)));
         }
 
         public static bool HasExceededMinimumWarDuration(IFaction faction1, IFaction faction2, out float elapsedTime)
