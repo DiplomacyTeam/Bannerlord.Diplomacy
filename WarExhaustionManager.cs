@@ -213,11 +213,11 @@ namespace DiplomacyFixes
         public void Sync()
         {
             Instance = this;
-            MigrateLegacyWarExhaustionDictionary();
             if (this._warExhaustionById == null)
             {
                 this._warExhaustionById = new Dictionary<string, float>();
             }
+            MigrateLegacyWarExhaustionDictionary();
         }
 
 
@@ -228,7 +228,6 @@ namespace DiplomacyFixes
         {
             if (_warExhaustion != null)
             {
-                _warExhaustionById = new Dictionary<string, float>();
                 foreach (string oldKey in _warExhaustion.Keys)
                 {
                     string[] kingdomNames = oldKey.Split(new char[] { '+' });

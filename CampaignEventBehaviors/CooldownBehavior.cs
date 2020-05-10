@@ -30,6 +30,10 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_cooldownManager", ref _cooldownManager);
+            if (_cooldownManager == null)
+            {
+                _cooldownManager = new CooldownManager();
+            }
             _cooldownManager.Sync();
         }
     }
