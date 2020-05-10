@@ -83,50 +83,51 @@ namespace DiplomacyFixes
         private void AddDailyWarExhaustion(Tuple<Kingdom, Kingdom> kingdoms)
         {
             float warExhaustionToAdd = GetDailyWarExhaustionDelta();
-            AddWarExhaustion(kingdoms.Item1, kingdoms.Item2, warExhaustionToAdd);
+            AddWarExhaustion(kingdoms.Item1, kingdoms.Item2, warExhaustionToAdd, WarExhaustionType.Daily);
         }
 
         public void AddCasualtyWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, int casualties)
         {
             float warExhaustionToAdd = Settings.Instance.WarExhaustionPerCasualty * casualties;
-            AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd);
+            AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd, WarExhaustionType.Casualty);
         }
 
         public void AddSiegeWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
             float warExhaustionToAdd = Settings.Instance.WarExhaustionPerSiege;
-            AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd);
+            AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd, WarExhaustionType.Siege);
         }
 
         public void AddRaidWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
             float warExhaustionToAdd = Settings.Instance.WarExhaustionPerRaid;
-            AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd);
+            AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd, WarExhaustionType.Raid);
         }
 
-        private void AddWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, float warExhaustionToAdd)
+        private void AddWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, float warExhaustionToAdd, WarExhaustionType warExhaustionType, bool addFuzziness = true)
         {
             string key = CreateKey(kingdom1, kingdom2);
             if (key != null)
             {
-                AddWarExhaustion(key, warExhaustionToAdd, true);
-            }
-        }
+                float finalWarExhaustionDelta = warExhaustionToAdd;
+                if (addFuzziness)
+                {
+                    finalWarExhaustionDelta *= Fuzziness;
+                }
+                if (_warExhaustionById.TryGetValue(key, out float currentValue))
+                {
+                    _warExhaustionById[key] = MBMath.ClampFloat(currentValue += finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
+                }
+                else
+                {
+                    _warExhaustionById[key] = MBMath.ClampFloat(finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
+                }
 
-        private void AddWarExhaustion(string key, float warExhaustionToAdd, bool addFuzziness)
-        {
-            float finalWarExhaustionDelta = warExhaustionToAdd;
-            if (addFuzziness)
-            {
-                finalWarExhaustionDelta *= Fuzziness;
-            }
-            if (_warExhaustionById.TryGetValue(key, out float currentValue))
-            {
-                _warExhaustionById[key] = MBMath.ClampFloat(currentValue += finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
-            }
-            else
-            {
-                _warExhaustionById[key] = MBMath.ClampFloat(finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
+                if (Settings.Instance.EnableWarExhaustionDebugMessages && kingdom1 == Hero.MainHero.MapFaction)
+                {
+                    string information = string.Format("Added {0} {1} war exhaustion to {2}'s war with {3}", finalWarExhaustionDelta, Enum.GetName(typeof(WarExhaustionType), warExhaustionType),  kingdom1.Name, kingdom2.Name);
+                    InformationManager.DisplayMessage(new InformationMessage(information, Color.FromUint(4282569842U)));
+                }
             }
         }
 
@@ -251,6 +252,14 @@ namespace DiplomacyFixes
                 }
                 _warExhaustion = null;
             }
+        }
+
+        private enum WarExhaustionType
+        {
+            Casualty,
+            Raid,
+            Siege,
+            Daily
         }
     }
 }
