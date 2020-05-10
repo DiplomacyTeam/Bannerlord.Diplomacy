@@ -31,11 +31,14 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_messengerManager", ref _messengerManager);
-            if (_messengerManager == null)
+            if (dataStore.IsLoading)
             {
-                this._messengerManager = new MessengerManager();
+                if (_messengerManager == null)
+                {
+                    this._messengerManager = new MessengerManager();
+                }
+                this._messengerManager.Sync();
             }
-            this._messengerManager.Sync();
         }
     }
 }

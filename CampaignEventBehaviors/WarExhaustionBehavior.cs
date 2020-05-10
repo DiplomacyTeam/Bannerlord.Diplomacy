@@ -110,11 +110,14 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_warExhaustionManager", ref _warExhaustionManager);
-            if (_warExhaustionManager == null)
+            if (dataStore.IsLoading)
             {
-                this._warExhaustionManager = new WarExhaustionManager();
+                if (_warExhaustionManager == null)
+                {
+                    this._warExhaustionManager = new WarExhaustionManager();
+                }
+                this._warExhaustionManager.Sync();
             }
-            this._warExhaustionManager.Sync();
         }
     }
 }
