@@ -214,6 +214,10 @@ namespace DiplomacyFixes
         {
             Instance = this;
             MigrateLegacyWarExhaustionDictionary();
+            if (this._warExhaustionById == null)
+            {
+                this._warExhaustionById = new Dictionary<string, float>();
+            }
         }
 
 
