@@ -133,7 +133,7 @@ namespace DiplomacyFixes.Messengers
         {
             bool unavailable = opposingLeader.IsOccupiedByAnEvent()
                 || opposingLeader.IsHumanPlayerCharacter
-                || !opposingLeader.IsActive;
+                || !(opposingLeader.IsActive || (opposingLeader.IsWanderer && opposingLeader.HeroState == Hero.CharacterStates.NotSpawned));
             return !unavailable;
         }
 
