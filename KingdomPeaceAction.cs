@@ -20,7 +20,7 @@ namespace DiplomacyFixes
         private static string CreateMakePeaceInquiryText(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment)
         {
             TextObject peaceText;
-            if (WarExhaustionManager.Instance.HasMaxWarExhaustion(kingdomMakingPeace, otherKingdom))
+            if (Settings.Instance.EnableWarExhaustion && WarExhaustionManager.Instance.HasMaxWarExhaustion(kingdomMakingPeace, otherKingdom))
             {
                 peaceText = new TextObject("{=HWiDa4R1}Exhausted from the war, the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}.");
                 peaceText.SetTextVariable("KINGDOM", kingdomMakingPeace.Name.ToString());
