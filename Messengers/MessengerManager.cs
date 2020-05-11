@@ -82,18 +82,20 @@ namespace DiplomacyFixes.Messengers
 
         public void StartDialogue(Hero targetHero)
         {
-            // We have null checked both of these at this point
+
             PartyBase heroParty = PartyBase.MainParty;
             PartyBase targetParty = targetHero.PartyBelongedTo?.Party;
-
-            bool isCivilian = true;
-            if (heroParty != null && targetParty != null)
-            {
-                PlayerEncounter.Start();
-                PlayerEncounter.Current.SetupFields(heroParty, targetParty);
-                isCivilian = false;
-            }
             
+            bool isCivilian = false;
+            if (targetParty == null)
+            {
+                targetParty = targetHero.CurrentSettlement?.Party ?? targetHero.BornSettlement?.Party;
+                isCivilian = true;
+            }
+
+            PlayerEncounter.Start();
+            PlayerEncounter.Current.SetupFields(heroParty, targetParty);
+
             string specialScene = "";
             string sceneLevels = "";
 
