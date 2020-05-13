@@ -1,0 +1,85 @@
+<Prefab>
+  <Constants>
+
+    <Constant Name="Kingdom.Item.Tuple.Width" BrushLayer="Default" BrushName="Kingdom.Item.Tuple" BrushValueType="Width" />
+    <Constant Name="Kingdom.Item.Tuple.Height" BrushLayer="Default" BrushName="Kingdom.Item.Tuple" BrushValueType="Height" />
+
+    <Constant Name="Kingdom.Fiefs.Sort.1.Width" BrushLayer="Default" BrushName="Kingdom.Fiefs.Sort.1" BrushValueType="Width" />
+
+    <Constant Name="Kingdom.Fiefs.Sort.2.Width" BrushLayer="Default" BrushName="Kingdom.Fiefs.Sort.2" BrushValueType="Width" />
+
+    <Constant Name="Kingdom.Fiefs.Sort.3.Width" BrushLayer="Default" BrushName="Kingdom.Fiefs.Sort.3" BrushValueType="Width" />
+
+    <Constant Name="Kingdom.Fiefs.Sort.4.Width" BrushLayer="Default" BrushName="Kingdom.Fiefs.Sort.4" BrushValueType="Width" />
+
+    <Constant Name="Kingdom.Fiefs.Sort.5.Width" BrushLayer="Default" BrushName="Kingdom.Fiefs.Sort.5" BrushValueType="Width" />
+
+    <Constant Name="Banner.Width" BrushLayer="Default" BrushName="Flat.Tuple.Banner.Small" BrushValueType="Width" />
+    <Constant Name="Banner.Height" BrushLayer="Default" BrushName="Flat.Tuple.Banner.Small" BrushValueType="Height" />
+
+    <Constant Name="Banner.Width.Scaled" MultiplyResult="0.30" Value="!Banner.Width" />
+    <Constant Name="Banner.Height.Scaled" MultiplyResult="0.38" Value="!Banner.Height"/>
+
+  </Constants>
+  <Window>
+    <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="470" SuggestedHeight="!Kingdom.Item.Tuple.Height" Brush="Kingdom.Item.Tuple" Command.Click="OnSelect" IsSelected="@IsSelected">
+      <Children>
+
+        <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent">
+          <Children>
+
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Kingdom.Fiefs.Sort.1.Width" VerticalAlignment="Center" Command.Click="ExecuteLink" IsEnabled="false">
+              <Children>
+
+                <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="74" SuggestedHeight="74" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="@SettlementImagePath" />
+                <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="82" SuggestedHeight="82" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="SPKingdom\portrait_slot_square" />
+                <HintWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+              </Children>
+            </ButtonWidget>
+
+            <!--Settlement Name-->
+            <RichTextWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Kingdom.Fiefs.Sort.2.Width" Brush="ArmyManagement.Army.Tuple.Name" Text="@Name" IsEnabled="false"/>
+
+            <!--Settlement Owned Villages Visual-->
+            <!--<Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Kingdom.Fiefs.Sort.5.Width" VerticalAlignment="Center" IsEnabled="false">
+              <Children>
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Kingdom.GeneralTupleValues.Text" IntText="@NumOfVillages" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+              </Children>
+            </Widget>-->
+
+            <!--Settlement Prosperity-->
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Kingdom.Fiefs.Sort.4.Width" VerticalAlignment="Center" IsEnabled="false">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="ArmyManagement.Army.Tuple.Name" IntText="@Prosperity" />
+              </Children>
+            </Widget>
+
+            <!--Settlement Garrison And Militia-->
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Kingdom.Fiefs.Sort.5.Width" VerticalAlignment="Center" IsEnabled="false">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="ArmyManagement.Army.Tuple.Name" IntText="@Garrison" />
+              </Children>
+            </Widget>
+
+            <!--Settlement Food-->
+            <!--<Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Kingdom.Fiefs.Sort.3.Width" VerticalAlignment="Center" IsEnabled="false">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralTupleValues.Text" Text="@FoodText" />
+              </Children>
+            </Widget>-->
+
+            <!--Settlement Militia-->
+            <!--<Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Kingdom.Fiefs.Sort.1.Width" VerticalAlignment="Center" IsEnabled="false">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralTupleValues.Text" Text="@MilitiaText" />
+              </Children>
+            </Widget>-->
+
+          </Children>
+        </ListPanel>
+
+
+      </Children>
+    </ButtonWidget>
+  </Window>
+</Prefab>

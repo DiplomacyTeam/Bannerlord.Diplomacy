@@ -19,6 +19,7 @@ namespace DiplomacyFixes
 
         private readonly MbEvent<Hero> _messengerSent = new MbEvent<Hero>();
         private readonly MbEvent<Kingdom> _peaceProposalSent = new MbEvent<Kingdom>();
+        private readonly MbEvent<Town> _fiefGranted = new MbEvent<Town>();
 
         public static IMbEvent<Hero> MessengerSent
         {
@@ -36,6 +37,14 @@ namespace DiplomacyFixes
             }
         }
 
+        public static IMbEvent<Town> FiefGranted
+        {
+            get
+            {
+                return Instance._fiefGranted;
+            }
+        }
+
         internal void OnMessengerSent(Hero hero)
         {
             Instance._messengerSent.Invoke(hero);
@@ -44,6 +53,11 @@ namespace DiplomacyFixes
         internal void OnPeaceProposalSent(Kingdom kingdom)
         {
             Instance._peaceProposalSent.Invoke(kingdom);
+        }
+
+        internal void OnFiefGranted(Town fief)
+        {
+            Instance._fiefGranted.Invoke(fief);
         }
 
     }

@@ -105,9 +105,14 @@
                                     <!--Hero Info Text-->
                                     <RichTextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="StretchToParent" Brush="Encyclopedia.SubPage.Info.Text" Text="@InformationText" MarginTop="25" MarginLeft="15" MarginRight="25" ClipContents="false"/>
 
-                                    <Widget HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" MarginTop="10">
+                                    <ListPanel HorizontalAlignment="Center" HeightSizePolicy ="CoverChildren" WidthSizePolicy="CoverChildren" MarginTop="10">
                                       <Children>
-                                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" HorizontalAlignment="Center" UpdateChildrenStates="true" Command.Click="SendMessenger" IsEnabled="@IsMessengerAvailable">
+                                        <ButtonWidget IsVisible="@CanGrantFief" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" MarginLeft="5" MarginRight="5" HorizontalAlignment="Right" UpdateChildrenStates="true" Command.Click="GrantFief">
+                                          <Children>
+                                            <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@GrantFiefActionName" />
+                                          </Children>
+                                        </ButtonWidget>
+                                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" MarginLeft="5" MarginRight="5" Brush="ButtonBrush2" HorizontalAlignment="Left" UpdateChildrenStates="true" Command.Click="SendMessenger" IsEnabled="@IsMessengerAvailable">
                                           <Children>
                                             <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@SendMessengerActionName" />
                                             <Widget UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="250">
@@ -121,8 +126,9 @@
                                             </Widget>
                                           </Children>
                                         </ButtonWidget>
+
                                       </Children>
-                                    </Widget>
+                                    </ListPanel>
 
                                     <!--Clan Divider-->
                                     <EncyclopediaDivider MarginTop="20" Parameter.Title="Info" Parameter.ItemList="..\InfoContainer"/>
