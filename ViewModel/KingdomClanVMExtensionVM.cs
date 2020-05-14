@@ -17,7 +17,6 @@ namespace DiplomacyFixes.ViewModel
     {
         private bool _canGrantFiefToClan;
         private GrantFiefInterface _grantFiefInterface;
-        private string _grantFiefActionName;
 
         public KingdomClanVMExtensionVM(Action<TaleWorlds.CampaignSystem.Election.KingdomDecision> forceDecide) : base(forceDecide) {
             Events.FiefGranted.AddNonSerializedListener(this, this.RefreshCanGrantFief);
@@ -53,18 +52,6 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
-        public string GrantFiefActionName
-        {
-            get { return this._grantFiefActionName; }
-
-            set
-            {
-                if (value != this._grantFiefActionName)
-                {
-                    this._grantFiefActionName = value;
-                    base.OnPropertyChanged("GrantFiefActionName");
-                }
-            }
-        }
+        public string GrantFiefActionName { get; }
     }
 }

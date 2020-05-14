@@ -11,11 +11,6 @@ namespace DiplomacyFixes.ViewModel
     class GrantFiefItemVM : TaleWorlds.Library.ViewModel
     {
         public Settlement Settlement { get; private set; }
-        private int _prosperity;
-        private string _settlementImagePath;
-        private string _name;
-        private int _defenders;
-        private string _iconPath;
         private bool _isSelected;
         private readonly Action<GrantFiefItemVM> _onSelect;
 
@@ -68,88 +63,18 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
-        public string IconPath
-        {
-            get
-            {
-                return this._iconPath;
-            }
-            set
-            {
-                if (value != this._iconPath)
-                {
-                    this._iconPath = value;
-                    base.OnPropertyChanged("IconPath");
-                }
-            }
-        }
+        public string IconPath { get; }
 
         [DataSourceProperty]
-        public int Garrison
-        {
-            get
-            {
-                return this._defenders;
-            }
-            set
-            {
-                if (value != this._defenders)
-                {
-                    this._defenders = value;
-                    base.OnPropertyChanged("Defenders");
-                }
-            }
-        }
+        public int Garrison { get; }
 
         [DataSourceProperty]
-        public string Name
-        {
-            get
-            {
-                return this._name;
-            }
-            set
-            {
-                if (value != this._name)
-                {
-                    this._name = value;
-                    base.OnPropertyChanged("Name");
-                }
-            }
-        }
+        public string Name { get; }
 
         [DataSourceProperty]
-        public int Prosperity
-        {
-            get
-            {
-                return this._prosperity;
-            }
-            set
-            {
-                if (value != this._prosperity)
-                {
-                    this._prosperity = value;
-                    base.OnPropertyChanged("Prosperity");
-                }
-            }
-        }
+        public int Prosperity { get; }
 
         [DataSourceProperty]
-        public string SettlementImagePath
-        {
-            get
-            {
-                return this._settlementImagePath;
-            }
-            set
-            {
-                if (value != this._settlementImagePath)
-                {
-                    this._settlementImagePath = value;
-                    base.OnPropertyChanged("SettlementImagePath");
-                }
-            }
-        }
+        public string SettlementImagePath { get; }
     }
 }
