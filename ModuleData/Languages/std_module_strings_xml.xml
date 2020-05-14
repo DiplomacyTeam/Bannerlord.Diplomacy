@@ -37,6 +37,8 @@
     <string id="IWZ91JVk" text="Not enough gold!" />
     
     <string id="LpoyhORp" text="Grant Fief" />
+    <string id="jznJfkfU" text="Fief Granted" />
+    <string id="cXbgaPSm" text="{SETTLEMENT_NAME} was granted to {CLAN_NAME}."/>
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||

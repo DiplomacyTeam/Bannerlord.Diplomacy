@@ -46,6 +46,11 @@ namespace DiplomacyFixes.ViewModel
         public void OnGrantFief()
         {
             GrantFiefAction.Apply(this.SelectedSettlementItem.Settlement, this._targetHero.Clan);
+            TextObject text = new TextObject("{=cXbgaPSm}{SETTLEMENT_NAME} was granted to {CLAN_NAME}.");
+            text.SetTextVariable("SETTLEMENT_NAME", this.SelectedSettlementItem.Settlement.Name);
+            text.SetTextVariable("CLAN_NAME", this._targetHero.Clan.Name);
+
+            InformationManager.ShowInquiry(new InquiryData(new TextObject("{=jznJfkfU}Fief Granted").ToString(), text.ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), null, null, null), false);
             _onComplete.Invoke();
         }
 
