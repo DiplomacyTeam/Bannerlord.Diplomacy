@@ -12,9 +12,7 @@ namespace DiplomacyFixes.ViewModel
     {
         private int _sendMessengerInfluenceCost;
         private bool _isMessengerAvailable;
-        private string _sendMessengerActionName;
         private bool _canGrantFief;
-        private string _grantFiefActionName;
         private readonly Hero _hero;
 
         private GrantFiefInterface _grantFiefInterface;
@@ -42,7 +40,6 @@ namespace DiplomacyFixes.ViewModel
         protected void SendMessenger()
         {
             Events.Instance.OnMessengerSent(_hero);
-            UpdateSendMessengerInfluenceCost();
             UpdateIsMessengerAvailable();
         }
 
@@ -74,27 +71,7 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
-        public int SendMessengerInfluenceCost
-        {
-            get
-            {
-                UpdateSendMessengerInfluenceCost();
-                return this._sendMessengerInfluenceCost;
-            }
-            set
-            {
-                if (value != this._sendMessengerInfluenceCost)
-                {
-                    this._sendMessengerInfluenceCost = value;
-                    base.OnPropertyChanged("SendMessengerInfluenceCost");
-                }
-            }
-        }
-
-        private void UpdateSendMessengerInfluenceCost()
-        {
-            SendMessengerInfluenceCost = Settings.Instance.SendMessengerInfluenceCost;
-        }
+        public int SendMessengerInfluenceCost { get; } = Settings.Instance.SendMessengerInfluenceCost;
 
         [DataSourceProperty]
         public bool IsMessengerAvailable
@@ -120,37 +97,9 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
-        public string SendMessengerActionName
-        {
-            get
-            {
-                return this._sendMessengerActionName;
-            }
-            set
-            {
-                if (value != this._sendMessengerActionName)
-                {
-                    this._sendMessengerActionName = value;
-                    base.OnPropertyChanged("SendMessengerActionName");
-                }
-            }
-        }
+        public string SendMessengerActionName { get; private set; }
 
         [DataSourceProperty]
-        public string GrantFiefActionName
-        {
-            get
-            {
-                return this._grantFiefActionName;
-            }
-            set
-            {
-                if (value != this._grantFiefActionName)
-                {
-                    this._grantFiefActionName = value;
-                    base.OnPropertyChanged("GrantFiefActionName");
-                }
-            }
-        }
+        public string GrantFiefActionName { get; private set; }
     }
 }

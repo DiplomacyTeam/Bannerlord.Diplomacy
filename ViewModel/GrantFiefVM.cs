@@ -12,6 +12,8 @@ namespace DiplomacyFixes.ViewModel
     internal class GrantFiefVM : TaleWorlds.Library.ViewModel
     {
         private Action _onComplete;
+        private Hero _targetHero;
+        private MBBindingList<GrantFiefItemVM> _settlements;
 
         public GrantFiefVM(Hero hero, Action onComplete)
         {
@@ -27,15 +29,11 @@ namespace DiplomacyFixes.ViewModel
             this.SortController = new GrantFiefSortControllerVM(ref _settlements);
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             this.CancelText = GameTexts.FindText("str_cancel", null).ToString();
-            this.RefreshValues();
-        }
-
-        public override void RefreshValues()
-        {
             this.NameText = GameTexts.FindText("str_scoreboard_header", "name").ToString();
             this.TypeText = GameTexts.FindText("str_sort_by_type_label", null).ToString();
             this.ProsperityText = GameTexts.FindText("str_prosperity_abbr", null).ToString();
             this.DefendersText = GameTexts.FindText("str_sort_by_defenders_label", null).ToString();
+            this.RefreshValues();
         }
 
         public void OnSelect(GrantFiefItemVM grantFiefItem)
@@ -56,7 +54,6 @@ namespace DiplomacyFixes.ViewModel
             _onComplete.Invoke();
         }
 
-        private Hero _targetHero;
 
         [DataSourceProperty]
         public MBBindingList<GrantFiefItemVM> Settlements
@@ -74,111 +71,26 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
-        public GrantFiefSortControllerVM SortController
-        {
-            get { return this._sortController; }
-            set
-            {
-                if (value != this._sortController)
-                {
-                    this._sortController = value;
-                    base.OnPropertyChanged("SortController");
-                }
-            }
-        }
-
-        private MBBindingList<GrantFiefItemVM> _settlements;
-        private GrantFiefSortControllerVM _sortController;
-        private string _nameText;
-        private string _prosperityText;
-        private string _defendersText;
-        private string _typeText;
-        private string _grantFiefActionName;
-        private string _cancelText;
+        public GrantFiefSortControllerVM SortController { get; }
 
         public GrantFiefItemVM SelectedSettlementItem { get; private set; }
 
         [DataSourceProperty]
-        public string NameText
-        {
-            get { return this._nameText; }
-            private set
-            {
-                if (value != this._nameText)
-                {
-                    this._nameText = value;
-                }
-                base.OnPropertyChanged("NameText");
-            }
-        }
-        [DataSourceProperty]
-        public string TypeText
-        {
-            get { return this._typeText; }
-            private set
-            {
-                if (value != this._typeText)
-                {
-                    this._typeText = value;
-                }
-                base.OnPropertyChanged("TypeText");
-            }
-        }
-        [DataSourceProperty]
-        public string ProsperityText
-        {
-            get { return this._prosperityText; }
-            private set
-            {
-                if (value != this._prosperityText)
-                {
-                    this._prosperityText = value;
-                }
-                base.OnPropertyChanged("ProsperityText");
-            }
-        }
-        [DataSourceProperty]
-        public string DefendersText
-        {
-            get { return this._defendersText; }
-            private set
-            {
-                if (value != this._defendersText)
-                {
-                    this._defendersText = value;
-                }
-                base.OnPropertyChanged("DefendersText");
-            }
-        }
+        public string NameText { get; }
 
         [DataSourceProperty]
-        public string GrantFiefActionName
-        {
-            get { return this._grantFiefActionName; }
-
-            set
-            {
-                if (value != this._grantFiefActionName)
-                {
-                    this._grantFiefActionName = value;
-                    base.OnPropertyChanged("GrantFiefActionName");
-                }
-            }
-        }
+        public string TypeText { get; }
 
         [DataSourceProperty]
-        public string CancelText
-        {
-            get { return this._cancelText; }
+        public string ProsperityText { get; }
 
-            set
-            {
-                if (value != this._cancelText)
-                {
-                    this._cancelText = value;
-                    base.OnPropertyChanged("CancelText");
-                }
-            }
-        }
+        [DataSourceProperty]
+        public string DefendersText { get; }
+
+        [DataSourceProperty]
+        public string GrantFiefActionName { get; }
+
+        [DataSourceProperty]
+        public string CancelText { get; }
     }
 }
