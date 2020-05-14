@@ -10,7 +10,6 @@ namespace DiplomacyFixes.ViewModel
 {
     class EncyclopediaHeroPageVMExtensionVM : EncyclopediaHeroPageVM
     {
-        private int _sendMessengerInfluenceCost;
         private bool _isMessengerAvailable;
         private bool _canGrantFief;
         private readonly Hero _hero;
@@ -21,8 +20,7 @@ namespace DiplomacyFixes.ViewModel
         {
             this._grantFiefInterface = new GrantFiefInterface();
             _hero = (base.Obj as Hero);
-            float sendMessengerInfluenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
-            this.SendMessengerInfluenceCost = (int)sendMessengerInfluenceCost;
+            this.SendMessengerInfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
             this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
 

@@ -116,7 +116,6 @@ namespace DiplomacyFixes.ViewModel
         public string SendMessengerActionName { get; }
 
         private bool _isOptionAvailable;
-        private int _influenceCost;
         private int _goldCost;
         private bool _isMessengerAvailable;
     }
