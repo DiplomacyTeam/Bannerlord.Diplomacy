@@ -87,6 +87,8 @@
     <string id="NcJtGeM7" text="The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.01." />
     <string id="gGIaLKHk" text="War Exhaustion Per Siege" />
     <string id="mCEa773h" text="The amount of war exhaustion added when a faction loses a city. Default value is 10.0." />
+    <string id="jI9NSxtz" text="Enable Player War Exhaustion Debug Messages" />
+    <string id="LYyNbQds" text="Enables debug messages for war exhaustion added to the player kingdom. Default value is false."/>
     
     <string id="Bh7vme9y" text="Max War Exhaustion" />
     <string id="6Ij1WEWz" text="The amount of war exhaustion that forces a faction to propose peace. Default value is 100.0." />
