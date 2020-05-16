@@ -24,6 +24,7 @@ namespace DiplomacyFixes
         {
             if (game.GameType is Campaign)
             {
+                Events.Instance = new Events();
                 CampaignGameStarter gameStarter = (CampaignGameStarter)gameStarterObject;
                 gameStarter.AddBehavior(new CooldownBehavior());
                 gameStarter.AddBehavior(new MessengerBehavior());
