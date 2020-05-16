@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.GauntletInterfaces;
+using DiplomacyFixes.GrantFief;
 using DiplomacyFixes.Messengers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
@@ -23,15 +24,7 @@ namespace DiplomacyFixes.ViewModel
             this.SendMessengerInfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
             this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
-
-            if (_hero.Clan != Clan.PlayerClan && _hero.MapFaction.Leader == Hero.MainHero && _hero.MapFaction is Kingdom)
-            {
-                CanGrantFief = true;
-            }
-            else
-            {
-                CanGrantFief = false;
-            }
+            this.CanGrantFief = GrantFiefAction.CanGrantFief(this._hero.Clan, out _);
             base.RefreshValues();
         }
 

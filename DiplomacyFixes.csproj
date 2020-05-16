@@ -269,7 +269,7 @@
     <Compile Include="DiplomacyFixesSaveableTypeDefiner.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="GauntletInterfaces\GrantFiefInterface.cs" />
-    <Compile Include="GrantFiefAction.cs" />
+    <Compile Include="GrantFief\GrantFiefAction.cs" />
     <Compile Include="Patches\KingdomManagementVMPatch.cs" />
     <Compile Include="ViewModel\GrantFiefItemVM.cs" />
     <Compile Include="ViewModel\GrantFiefSortControllerVM.cs" />

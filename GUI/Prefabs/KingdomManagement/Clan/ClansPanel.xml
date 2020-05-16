@@ -262,18 +262,18 @@
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginRight="50" VerticalAlignment="Top">
                       <Children>
 
-                        <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="@CanGrantFiefToClan" Text="@SupportActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
+                        <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="250" MarginLeft="25" MarginRight="25" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="@CanGrantFiefToClan" Text="@GrantFiefExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
 
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center" MarginTop="5">
                           <Children>
-                            <!--Support Button-->
+                            <!--Grant Fief Button-->
                             <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center" Brush="ButtonBrush2" Command.Click="GrantFief" IsEnabled="@CanGrantFiefToClan" UpdateChildrenStates="true">
                               <Children>
                                 <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="@CanGrantFiefToClan" Text="@GrantFiefActionName" />
                               </Children>
                             </ButtonWidget>
 
-                            <HintWidget DataSource="{SupportHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                            <HintWidget DataSource="{GrantFiefHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
                           </Children>
                         </Widget>
 
@@ -281,7 +281,7 @@
                     </ListPanel>
 
                     <!--Support-->
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginRight="50" VerticalAlignment="Bottom">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginLeft="50" MarginRight="50" VerticalAlignment="Bottom">
                       <Children>
 
                         <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="@CanExpelCurrentClan" Text="@SupportActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
