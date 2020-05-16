@@ -45,6 +45,8 @@
     <string id="D61vzEC7" text="You don't have any fiefs to grant." />
     <string id="98hwXUTp" text="Grant fiefs to clans in your kingdom" />
 
+    <string id="QVp4v2MG" text="War exhaustion is too high to declare war. Current war exhaustion is {CURRENT_WAR_EXHAUSTION} and {LOW_WAR_EXHAUSTION_THRESHOLD} is the lowest allowed." />
+
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
     -->

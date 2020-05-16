@@ -16,6 +16,7 @@ namespace DiplomacyFixes
         private const string ACTIVE_QUEST = "{=XQFxDr11}There is an active quest preventing it!";
         private const string TOO_SOON = "{=ONNcmltF}This war hasn't gone on long enough to consider peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.";
         private const string DECLARE_WAR_COOLDOWN = "{=jPHYDjXQ}Cannot declare war so soon after making peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.";
+        private const string WAR_EXHAUSTION_TOO_HIGH = "{=QVp4v2MG}War exhaustion is too high to declare war. Current war exhaustion is {CURRENT_WAR_EXHAUSTION} and {LOW_WAR_EXHAUSTION_THRESHOLD} is the lowest allowed.";
 
         public static List<TextObject> CanMakePeaceExceptions(KingdomWarItemVM item)
         {
@@ -75,6 +76,21 @@ namespace DiplomacyFixes
             }
 
             bool hasDeclareWarCooldown = CooldownManager.HasDeclareWarCooldown(kingdomDeclaringWar, otherKingdom, out float elapsedTime);
+            bool hasLowWarExhaustion = true;
+            if (Settings.Instance.EnableWarExhaustion)
+            {
+                hasLowWarExhaustion = WarExhaustionManager.Instance.HasLowWarExhaustion(kingdomDeclaringWar, otherKingdom);
+            }
+
+            if (!hasLowWarExhaustion)
+            {
+                int lowWarExhaustionThreshold = (int) WarExhaustionManager.GetLowWarExhaustion();
+                TextObject textObject = new TextObject(WAR_EXHAUSTION_TOO_HIGH);
+                textObject.SetTextVariable("LOW_WAR_EXHAUSTION_THRESHOLD", lowWarExhaustionThreshold);
+                textObject.SetTextVariable("CURRENT_WAR_EXHAUSTION", (int) Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion(kingdomDeclaringWar, otherKingdom)));
+                exceptionList.Add(textObject);
+            }
+
             if (hasDeclareWarCooldown)
             {
                 int declareWarCooldownDuration = Settings.Instance.DeclareWarCooldownInDays;

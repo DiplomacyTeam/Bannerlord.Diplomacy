@@ -23,6 +23,14 @@ namespace DiplomacyFixes.ViewModel
         {
             base.UpdateDiplomacyProperties();
             UpdateActionAvailability();
+
+            if (Settings.Instance.EnableWarExhaustion)
+            {
+                this.Stats.Insert(1, new KingdomWarComparableStatVM(
+                    (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)this.Faction1, (Kingdom)this.Faction2)),
+                    (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)this.Faction2, (Kingdom)this.Faction1)),
+                    new TextObject("{=XmVTQ0bH}War Exhaustion"), this._faction1Color, this._faction2Color, null));
+            }
         }
 
         private void UpdateActionAvailability()
