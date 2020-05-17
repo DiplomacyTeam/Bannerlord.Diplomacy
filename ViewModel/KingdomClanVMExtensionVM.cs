@@ -1,12 +1,8 @@
 ﻿using DiplomacyFixes.GauntletInterfaces;
 using DiplomacyFixes.GrantFief;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomClan;
 using TaleWorlds.Core.ViewModelCollection;
@@ -22,13 +18,31 @@ namespace DiplomacyFixes.ViewModel
         private GrantFiefInterface _grantFiefInterface;
         private HintViewModel _grantFiefHint;
 
+        private Action _executeExpel;
+        private Action _executeSupport;
+
         public KingdomClanVMExtensionVM(Action<TaleWorlds.CampaignSystem.Election.KingdomDecision> forceDecide) : base(forceDecide) {
+            this._executeExpel = () => typeof(KingdomClanVM).GetMethod("ExecuteExpelCurrentClan", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(this, new object[] { });
+            this._executeSupport = () => typeof(KingdomClanVM).GetMethod("ExecuteSupport", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(this, new object[] { });
+
+
             Events.FiefGranted.AddNonSerializedListener(this, this.RefreshCanGrantFief);
             this._grantFiefInterface = new GrantFiefInterface();
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             this.GrantFiefExplanationText = new TextObject("{=98hwXUTp}Grant fiefs to clans in your kingdom").ToString();
             base.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
             RefreshCanGrantFief();
+        }
+
+        private void ExecuteExpelCurrentClan()
+        {
+            this._executeExpel();
+        }
+
+        // Token: 0x06000ACA RID: 2762 RVA: 0x0002BE9C File Offset: 0x0002A09C
+        private void ExecuteSupport()
+        {
+            this._executeSupport();
         }
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
