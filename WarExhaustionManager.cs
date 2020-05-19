@@ -4,7 +4,6 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 
 namespace DiplomacyFixes
@@ -125,7 +124,7 @@ namespace DiplomacyFixes
 
                 if (Settings.Instance.EnableWarExhaustionDebugMessages && kingdom1 == Hero.MainHero.MapFaction)
                 {
-                    string information = string.Format("Added {0} {1} war exhaustion to {2}'s war with {3}", finalWarExhaustionDelta, Enum.GetName(typeof(WarExhaustionType), warExhaustionType),  kingdom1.Name, kingdom2.Name);
+                    string information = string.Format("Added {0} {1} war exhaustion to {2}'s war with {3}", finalWarExhaustionDelta, Enum.GetName(typeof(WarExhaustionType), warExhaustionType), kingdom1.Name, kingdom2.Name);
                     InformationManager.DisplayMessage(new InformationMessage(information, Color.FromUint(4282569842U)));
                 }
             }

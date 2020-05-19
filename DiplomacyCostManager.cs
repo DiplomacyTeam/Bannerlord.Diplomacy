@@ -1,8 +1,6 @@
-﻿using System;
-using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade.GauntletUI.Widgets.Clan;
 
 namespace DiplomacyFixes
 {
@@ -50,7 +48,7 @@ namespace DiplomacyFixes
             if (goldCost >= kingdom.Leader.Gold)
             {
                 GiveGoldAction.ApplyBetweenCharacters(kingdom.Leader, otherKingdom.Leader, kingdom.Leader.Gold);
-            } 
+            }
             else
             {
                 GiveGoldAction.ApplyBetweenCharacters(kingdom.Leader, otherKingdom.Leader, goldCost);

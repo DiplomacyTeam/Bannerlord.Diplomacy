@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.ViewModel;
+using DiplomacyFixes.WarPeace;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;

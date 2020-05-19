@@ -287,7 +287,15 @@
     <Compile Include="ViewModel\KingdomClanVMExtensionVM.cs" />
     <Compile Include="ViewModel\KingdomTruceItemVMExtensionVM.cs" />
     <Compile Include="ViewModel\KingdomWarItemVMExtensionVM.cs" />
-    <Compile Include="WarAndPeaceConditions.cs" />
+    <Compile Include="WarPeace\Conditions\DeclareWarCooldownCondition.cs" />
+    <Compile Include="WarPeace\Conditions\HasLowWarExhaustionCondition.cs" />
+    <Compile Include="WarPeace\Conditions\HasEnoughInfluenceForWarCondition.cs" />
+    <Compile Include="WarPeace\Conditions\HasEnoughTimeElapsedForPeaceCondition.cs" />
+    <Compile Include="WarPeace\Conditions\HasEnoughGoldForPeaceCondition.cs" />
+    <Compile Include="WarPeace\Conditions\HasEnoughInfluenceForPeaceCondition.cs" />
+    <Compile Include="WarPeace\Conditions\SatisfiesQuestConditionsForPeaceCondition.cs" />
+    <Compile Include="WarPeace\Conditions\ICondition.cs" />
+    <Compile Include="WarPeace\WarAndPeaceConditions.cs" />
     <Compile Include="DiplomacyCostCalculator.cs" />
     <Compile Include="DiplomacyCostManager.cs" />
     <Compile Include="MySubModule.cs" />

@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.Messengers;
+using DiplomacyFixes.WarPeace;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
