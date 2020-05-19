@@ -1,9 +1,9 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.WarPeace.Conditions
+namespace DiplomacyFixes
 {
-    interface ICondition
+    interface IDiplomacyCondition
     {
         bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false);
     }

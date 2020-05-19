@@ -1,17 +1,13 @@
 ﻿using DiplomacyFixes.ViewModel;
-using DiplomacyFixes.WarPeace;
 using HarmonyLib;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
-using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.Patches
 {
@@ -22,24 +18,16 @@ namespace DiplomacyFixes.Patches
         [HarmonyPatch("OnDeclareWar")]
         public static bool OnDeclareWarPatch(KingdomTruceItemVM item, KingdomDiplomacyVM __instance)
         {
-            List<TextObject> warExceptions = WarAndPeaceConditions.CanDeclareWarExceptions(item);
-            if (warExceptions.IsEmpty())
+            float influenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(item.Faction1 as Kingdom);
+            DiplomacyCostManager.deductInfluenceFromPlayerClan(influenceCost);
+            DeclareWarAction.Apply(item.Faction1, item.Faction2);
+            try
             {
-                float influenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(item.Faction1 as Kingdom);
-                DiplomacyCostManager.deductInfluenceFromPlayerClan(influenceCost);
-                DeclareWarAction.Apply(item.Faction1, item.Faction2);
-                try
-                {
-                    __instance.RefreshValues();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message, "");
-                }
+                __instance.RefreshValues();
             }
-            else
+            catch (Exception e)
             {
-                MessageHelper.SendFailedActionMessage(new TextObject("{=v0cDMIcl}Cannot declare war on this kingdom. ").ToString(), warExceptions);
+                MessageBox.Show(e.Message, "");
             }
             return false;
         }
@@ -48,22 +36,14 @@ namespace DiplomacyFixes.Patches
         [HarmonyPatch("OnDeclarePeace")]
         public static bool OnDeclarePeacePatch(KingdomWarItemVM item, KingdomDiplomacyVM __instance)
         {
-            List<TextObject> peaceExceptions = WarAndPeaceConditions.CanMakePeaceExceptions(item);
-            if (peaceExceptions.IsEmpty())
+            KingdomPeaceAction.ApplyPeace(item.Faction1 as Kingdom, item.Faction2 as Kingdom, forcePlayerCharacterCosts: true);
+            try
             {
-                KingdomPeaceAction.ApplyPeace(item.Faction1 as Kingdom, item.Faction2 as Kingdom, forcePlayerCharacterCosts: true);
-                try
-                {
-                    __instance.RefreshValues();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message, "");
-                }
+                __instance.RefreshValues();
             }
-            else
+            catch (Exception e)
             {
-                MessageHelper.SendFailedActionMessage(new TextObject("{=Pqk3WuGz}Cannot make peace with this kingdom. ").ToString(), peaceExceptions);
+                MessageBox.Show(e.Message, "");
             }
             return false;
         }
@@ -75,9 +55,9 @@ namespace DiplomacyFixes.Patches
             MBBindingList<KingdomWarItemVM> playerWars = new MBBindingList<KingdomWarItemVM>();
             MBBindingList<KingdomTruceItemVM> playerTruces = new MBBindingList<KingdomTruceItemVM>();
 
-            MethodInfo onDiplomacyItemSelection = __instance.GetType().GetMethod("OnDiplomacyItemSelection", BindingFlags.NonPublic | BindingFlags.Instance);
-            MethodInfo onDeclareWarMethod = __instance.GetType().GetMethod("OnDeclareWar", BindingFlags.NonPublic | BindingFlags.Instance);
-            MethodInfo onProposePeaceMethod = __instance.GetType().GetMethod("OnDeclarePeace", BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo onDiplomacyItemSelection = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo onDeclareWarMethod = typeof(KingdomDiplomacyVM).GetMethod("OnDeclareWar", BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo onProposePeaceMethod = typeof(KingdomDiplomacyVM).GetMethod("OnDeclarePeace", BindingFlags.NonPublic | BindingFlags.Instance);
 
             Action<KingdomTruceItemVM> onDeclareWarAction = (Action<KingdomTruceItemVM>)Delegate.CreateDelegate(typeof(Action<KingdomTruceItemVM>), __instance, onDeclareWarMethod);
             Action<KingdomWarItemVM> onProposePeaceAction = (Action<KingdomWarItemVM>)Delegate.CreateDelegate(typeof(Action<KingdomWarItemVM>), __instance, onProposePeaceMethod);
@@ -96,7 +76,7 @@ namespace DiplomacyFixes.Patches
             }
             foreach (Kingdom kingdom in Kingdom.All)
             {
-                if (kingdom != playerKingdom && !kingdom.IsDeactivated && (FactionManager.IsAlliedWithFaction(kingdom, playerKingdom) || FactionManager.IsNeutralWithFaction(kingdom, playerKingdom)))
+                if (kingdom != playerKingdom && !kingdom.IsDeactivated && FactionManager.IsNeutralWithFaction(kingdom, playerKingdom))
                 {
                     playerTruces.Add(new KingdomTruceItemVMExtensionVM(playerKingdom, kingdom, onItemSelectedAction, onDeclareWarAction));
                 }
@@ -105,7 +85,7 @@ namespace DiplomacyFixes.Patches
             __instance.PlayerTruces = playerTruces;
             __instance.PlayerWars = playerWars;
 
-            MethodInfo setDefaultSelectedItem = __instance.GetType().GetMethod("SetDefaultSelectedItem", BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo setDefaultSelectedItem = typeof(KingdomDiplomacyVM).GetMethod("SetDefaultSelectedItem", BindingFlags.NonPublic | BindingFlags.Instance);
             setDefaultSelectedItem.Invoke(__instance, new object[] { });
         }
     }

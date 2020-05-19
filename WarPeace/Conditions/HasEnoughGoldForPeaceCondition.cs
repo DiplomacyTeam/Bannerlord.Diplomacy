@@ -3,7 +3,7 @@ using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.WarPeace.Conditions
 {
-    class HasEnoughGoldForPeaceCondition : ICondition
+    class HasEnoughGoldForPeaceCondition : IDiplomacyCondition
     {
         private const string NOT_ENOUGH_GOLD = "{=IWZ91JVk}Not enough gold!";
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)

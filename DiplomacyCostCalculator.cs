@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiplomacyFixes.Alliance;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
@@ -73,5 +74,17 @@ namespace DiplomacyFixes
             return tierTotal;
         }
 
+        internal static float DetermineInfluenceCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool isPlayerRequested = false)
+        {
+            const float baseInfluenceCost = 100f;
+            if (isPlayerRequested)
+            {
+                return MBMath.ClampFloat((float)Math.Pow(AllianceScoringModel.FormAllianceScoreThreshold / Math.Max(AllianceScoringModel.GetFormAllianceScore(kingdom, otherKingdom), 1f), 4), 1f, 256f) * baseInfluenceCost;
+            }
+            else
+            {
+                return baseInfluenceCost;
+            }
+        }
     }
 }

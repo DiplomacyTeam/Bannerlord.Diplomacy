@@ -8,8 +8,9 @@ namespace DiplomacyFixes
     [SaveableClass(3)]
     class CooldownManager
     {
-        internal static Dictionary<string, CampaignTime> LastWarTime { get; private set; } = new Dictionary<string, CampaignTime>();
-        internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime { get; private set; } = new Dictionary<Kingdom, CampaignTime>();
+        internal static Dictionary<string, CampaignTime> LastWarTime { get; private set; }
+        internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime { get; private set; }
+        internal static Dictionary<string, CampaignTime> LastAllianceFormedTime { get; private set; }
 
         [SaveableField(1)]
         private Dictionary<string, CampaignTime> _lastWarTime;
@@ -17,14 +18,19 @@ namespace DiplomacyFixes
         [SaveableField(2)]
         private Dictionary<Kingdom, CampaignTime> _lastPeaceProposalTime;
 
+        [SaveableField(3)]
+        private Dictionary<string, CampaignTime> _lastAllianceFormedTime;
+
         private static float MinimumDaysBetweenPeaceProposals { get { return 5f; } }
 
         internal CooldownManager()
         {
             _lastWarTime = new Dictionary<string, CampaignTime>();
             _lastPeaceProposalTime = new Dictionary<Kingdom, CampaignTime>();
+            _lastAllianceFormedTime = new Dictionary<string, CampaignTime>();
             LastWarTime = _lastWarTime;
             LastPeaceProposalTime = _lastPeaceProposalTime;
+            LastAllianceFormedTime = _lastAllianceFormedTime;
         }
 
         public void UpdateLastPeaceProposalTime(Kingdom kingdom, CampaignTime campaignTime)
@@ -36,6 +42,27 @@ namespace DiplomacyFixes
         {
             string key = CreateKey(faction1, faction2);
             _lastWarTime[key] = campaignTime;
+        }
+
+        public void UpdateLastAllianceFormedTime(Kingdom kingdom1, Kingdom kingdom2, CampaignTime campaignTime)
+        {
+            string key = CreateKey(kingdom1, kingdom2);
+            _lastAllianceFormedTime[key] = campaignTime;
+        }
+
+        public static bool HasBreakAllianceCooldown(Kingdom kingdom1, Kingdom kingdom2, out float elapsedDaysUntilNow)
+        {
+            bool hasBreakAllianceCooldown = false;
+            if (LastAllianceFormedTime.TryGetValue(CreateKey(kingdom1, kingdom2), out CampaignTime value))
+            {
+                hasBreakAllianceCooldown = (elapsedDaysUntilNow = value.ElapsedDaysUntilNow) < Settings.Instance.MinimumAllianceDuration;
+            }
+            else
+            {
+                elapsedDaysUntilNow = default;
+            }
+
+            return hasBreakAllianceCooldown;
         }
 
         private static string CreateKey(IFaction faction1, IFaction faction2)
@@ -115,8 +142,23 @@ namespace DiplomacyFixes
 
         internal void Sync()
         {
+            if (_lastWarTime == null)
+            {
+                _lastWarTime = new Dictionary<string, CampaignTime>();
+            }
+            if (_lastPeaceProposalTime == null)
+            {
+                _lastPeaceProposalTime = new Dictionary<Kingdom, CampaignTime>();
+
+            }
+            if (_lastAllianceFormedTime == null)
+            {
+                _lastAllianceFormedTime = new Dictionary<string, CampaignTime>();
+            }
+
             LastWarTime = _lastWarTime;
             LastPeaceProposalTime = _lastPeaceProposalTime;
+            LastAllianceFormedTime = _lastAllianceFormedTime;
         }
     }
 }

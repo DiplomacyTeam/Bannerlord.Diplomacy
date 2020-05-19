@@ -4,7 +4,7 @@ using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.WarPeace.Conditions
 {
-    class HasEnoughTimeElapsedForPeaceCondition : ICondition
+    class HasEnoughTimeElapsedForPeaceCondition : IDiplomacyCondition
     {
         private const string TOO_SOON = "{=ONNcmltF}This war hasn't gone on long enough to consider peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.";
 

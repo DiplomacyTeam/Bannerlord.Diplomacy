@@ -36,6 +36,7 @@ namespace DiplomacyFixes
                 {
                     gameStarter.AddBehavior(new KeepFiefAfterSiegeBehavior());
                 }
+                gameStarter.AddBehavior(new AllianceBehavior());
             }
             base.OnGameStart(game, gameStarterObject);
         }

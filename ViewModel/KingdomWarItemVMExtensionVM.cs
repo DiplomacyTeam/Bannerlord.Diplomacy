@@ -1,9 +1,11 @@
 ﻿using DiplomacyFixes.Messengers;
 using DiplomacyFixes.WarPeace;
 using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
@@ -37,6 +39,8 @@ namespace DiplomacyFixes.ViewModel
         {
             this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithInfluenceCost(Faction2Leader.Hero, this.SendMessengerInfluenceCost);
             this.IsOptionAvailable = WarAndPeaceConditions.CanMakePeaceExceptions(this).IsEmpty();
+            string makePeaceException = WarAndPeaceConditions.CanMakePeaceExceptions(this).FirstOrDefault()?.ToString();
+            this.ActionHint = makePeaceException != null ? new HintViewModel(makePeaceException) : new HintViewModel();
         }
 
         protected override void OnSelect()
@@ -112,6 +116,24 @@ namespace DiplomacyFixes.ViewModel
                 }
             }
         }
+
+        [DataSourceProperty]
+        public HintViewModel ActionHint
+        {
+            get
+            {
+                return this._actionHint;
+            }
+            set
+            {
+                if (value != this._actionHint)
+                {
+                    this._actionHint = value;
+                    base.OnPropertyChanged("ActionHint");
+                }
+            }
+        }
+        private HintViewModel _actionHint;
 
         [DataSourceProperty]
         public string SendMessengerActionName { get; }

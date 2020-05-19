@@ -4,7 +4,7 @@ using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.WarPeace.Conditions
 {
-    class DeclareWarCooldownCondition : ICondition
+    class DeclareWarCooldownCondition : IDiplomacyCondition
     {
         private const string DECLARE_WAR_COOLDOWN = "{=jPHYDjXQ}Cannot declare war so soon after making peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.";
 

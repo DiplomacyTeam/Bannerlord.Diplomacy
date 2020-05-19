@@ -1,4 +1,6 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using DiplomacyFixes.Alliance;
+using System;
+using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
 {
@@ -15,6 +17,12 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         {
             CampaignEvents.MakePeace.AddNonSerializedListener(this, RegisterDeclareWarCooldown);
             Events.PeaceProposalSent.AddNonSerializedListener(this, RegisterPeaceProposalCooldown);
+            Events.AllianceFormed.AddNonSerializedListener(this, RegisterAllianceFormedCooldown);
+        }
+
+        private void RegisterAllianceFormedCooldown(AllianceFormedEvent allianceFormedEvent)
+        {
+            _cooldownManager.UpdateLastAllianceFormedTime(allianceFormedEvent.Kingdom, allianceFormedEvent.OtherKingdom, CampaignTime.Now);
         }
 
         private void RegisterDeclareWarCooldown(IFaction faction1, IFaction faction2)

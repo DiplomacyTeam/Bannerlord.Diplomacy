@@ -263,11 +263,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alliance\AllianceConditions.cs" />
+    <Compile Include="Alliance\AllianceFormedEvent.cs" />
+    <Compile Include="Alliance\AllianceScoringModel.cs" />
+    <Compile Include="Alliance\BreakAllianceAction.cs" />
+    <Compile Include="Alliance\Conditions\AtPeaceCondition.cs" />
+    <Compile Include="Alliance\Conditions\HasEnoughInfluenceCondition.cs" />
+    <Compile Include="Alliance\Conditions\NotAlreadyInAllianceCondition.cs" />
+    <Compile Include="Alliance\Conditions\TimeElapsedSinceAllianceFormedDuration.cs" />
+    <Compile Include="Alliance\Conditions\TimeElapsedSinceLastWarCondition.cs" />
+    <Compile Include="Alliance\DeclareAllianceAction.cs" />
+    <Compile Include="CampaignEventBehaviors\AllianceBehavior.cs" />
     <Compile Include="CampaignEventBehaviors\CooldownBehavior.cs" />
     <Compile Include="CampaignEventBehaviors\KeepFiefAfterSiegeBehavior.cs" />
     <Compile Include="CampaignEventBehaviors\MessengerBehavior.cs" />
     <Compile Include="DiplomacyFixesSaveableTypeDefiner.cs" />
     <Compile Include="Events.cs" />
+    <Compile Include="Extensions\BaseKingdomInfoExtension.cs" />
     <Compile Include="GauntletInterfaces\GrantFiefInterface.cs" />
     <Compile Include="GrantFief\GrantFiefAction.cs" />
     <Compile Include="Patches\KingdomManagementVMPatch.cs" />
@@ -284,7 +296,9 @@
     <Compile Include="Patches\PoliticalStagnationAndBorderIncidentCampaignBehaviorPatch.cs" />
     <Compile Include="PlayerHelpers.cs" />
     <Compile Include="ViewModel\EncyclopediaHeroPageVMExtensionVM.cs" />
+    <Compile Include="ViewModel\KingdomAllianceItemVM.cs" />
     <Compile Include="ViewModel\KingdomClanVMExtensionVM.cs" />
+    <Compile Include="ViewModel\KingdomDiplomacyVMExtensionVM.cs" />
     <Compile Include="ViewModel\KingdomTruceItemVMExtensionVM.cs" />
     <Compile Include="ViewModel\KingdomWarItemVMExtensionVM.cs" />
     <Compile Include="WarPeace\Conditions\DeclareWarCooldownCondition.cs" />
@@ -294,7 +308,7 @@
     <Compile Include="WarPeace\Conditions\HasEnoughGoldForPeaceCondition.cs" />
     <Compile Include="WarPeace\Conditions\HasEnoughInfluenceForPeaceCondition.cs" />
     <Compile Include="WarPeace\Conditions\SatisfiesQuestConditionsForPeaceCondition.cs" />
-    <Compile Include="WarPeace\Conditions\ICondition.cs" />
+    <Compile Include="IDiplomacyCondition.cs" />
     <Compile Include="WarPeace\WarAndPeaceConditions.cs" />
     <Compile Include="DiplomacyCostCalculator.cs" />
     <Compile Include="DiplomacyCostManager.cs" />

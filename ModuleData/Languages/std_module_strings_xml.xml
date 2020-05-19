@@ -46,6 +46,22 @@
     <string id="98hwXUTp" text="Grant fiefs to clans in your kingdom" />
 
     <string id="QVp4v2MG" text="War exhaustion is too high to declare war. Current war exhaustion is {CURRENT_WAR_EXHAUSTION} and {LOW_WAR_EXHAUSTION_THRESHOLD} is the highest allowed." />
+    
+    <string id="DrnXprup" text="You have been at war too recently to consider an alliance. It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
+    <string id="KHJyWj9H" text="Cannot already be in an alliance." />
+    <string id="UQZmdLzc" text="Cannot be at war." />
+    <string id="PdN5g5ub" text="Alliance Formed" />
+    <string id="3pbwc8sh" text="Alliance Proposal"/>
+    <string id="QbOqatd7" text="{KINGDOM} is proposing an alliance with {PLAYER_KINGDOM}." />
+
+    <string id="384jX28Q" text="{KINGDOM} is breaking the alliance with {PLAYER_KINGDOM}."/>
+    <string id="D1ZQKZr1" text="Alliance Broken" />
+    
+    <string id="0WPWbx70" text="Form Alliance" />
+    <string id="K4GraLTn" text="Break Alliance" />
+    
+    <string id="VvTTrRpl" text="This faction is not interested in forming an alliance with you." />
+    <string id="wst0lArp" text="This alliance hasn't gone on long enough to consider breaking it! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
@@ -64,6 +80,9 @@
     <string id="N5EouSSj" text="Gives the player total control over their kingdom's war and peace declarations." />
     <string id="tis8Ddzn" text="Allow Player To Claim Player-Taken Settlements" />
     <string id="TfxLCxcD" text="Gives the player the option to claim a settlement that they have taken rather than let it go to an election." />
+    <string id="H6XMjwpF" text="Minimum Alliance Duration in Days" />
+    <string id="RrsWhIWi" text="The minimum duration (in days) that an alliance can last. Default value is 10." />
+    
 
     <string id="WbOKuWbQ" text="Enable Influence Costs" />
     <string id="P1g6Ht1e" text="Enable Scaling Influence Cost" />
@@ -111,6 +130,7 @@
     <string id="Ckd1Lsoa" text="Gold Costs" />
     <string id="HFtZsD6v" text="Scaling War Reparations Gold Cost Multiplier" />
     <string id="MIhbrqbr" text="Multiplier for the scaling of war reparations gold costs. Default value is 100." />
+    
     
   </strings>
 </base>

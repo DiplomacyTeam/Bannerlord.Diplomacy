@@ -9,7 +9,7 @@ namespace DiplomacyFixes.WarPeace
 {
     class WarAndPeaceConditions
     {
-        private static List<ICondition> peaceConditions = new List<ICondition>
+        private static List<IDiplomacyCondition> _peaceConditions = new List<IDiplomacyCondition>
         {
             new SatisfiesQuestConditionsForPeaceCondition(),
             new HasEnoughGoldForPeaceCondition(),
@@ -17,7 +17,7 @@ namespace DiplomacyFixes.WarPeace
             new HasEnoughTimeElapsedForPeaceCondition()
         };
 
-        private static List<ICondition> warConditions = new List<ICondition>
+        private static List<IDiplomacyCondition> _warConditions = new List<IDiplomacyCondition>
         {
             new HasEnoughInfluenceForWarCondition(),
             new HasLowWarExhaustionCondition(),
@@ -31,7 +31,7 @@ namespace DiplomacyFixes.WarPeace
 
         private static List<TextObject> CanMakePeaceExceptions(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
-            return peaceConditions.Select((condition) =>
+            return _peaceConditions.Select((condition) =>
             {
                 condition.ApplyCondition(kingdomMakingPeace, otherKingdom, out TextObject textObject, forcePlayerCharacterCosts);
                 return textObject;
@@ -45,7 +45,7 @@ namespace DiplomacyFixes.WarPeace
 
         private static List<TextObject> CanDeclareWarExceptions(Kingdom kingdomDeclaringWar, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
-            return warConditions.Select((condition) =>
+            return _warConditions.Select((condition) =>
             {
                 condition.ApplyCondition(kingdomDeclaringWar, otherKingdom, out TextObject textObject, forcePlayerCharacterCosts);
                 return textObject;
@@ -54,12 +54,12 @@ namespace DiplomacyFixes.WarPeace
 
         public static bool CanProposePeace(Kingdom kingdomProposingPeace, Kingdom otherKingdom)
         {
-            return peaceConditions.Select(condition => condition.ApplyCondition(kingdomProposingPeace, otherKingdom, out _)).All(x => x);
+            return _peaceConditions.Select(condition => condition.ApplyCondition(kingdomProposingPeace, otherKingdom, out _)).All(x => x);
         }
 
         public static bool CanDeclareWar(Kingdom kingdomDeclaringWar, Kingdom otherKingdom)
         {
-            return warConditions.Select(condition => condition.ApplyCondition(kingdomDeclaringWar, otherKingdom, out _)).All(x => x);
+            return _warConditions.Select(condition => condition.ApplyCondition(kingdomDeclaringWar, otherKingdom, out _)).All(x => x);
         }
     }
 }

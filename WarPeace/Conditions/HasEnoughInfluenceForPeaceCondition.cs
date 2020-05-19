@@ -3,7 +3,7 @@ using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.WarPeace.Conditions
 {
-    class HasEnoughInfluenceForPeaceCondition : ICondition
+    class HasEnoughInfluenceForPeaceCondition : IDiplomacyCondition
     {
         private const string NOT_ENOUGH_INFLUENCE = "{=TS1iV2pO}Not enough influence!";
 

@@ -62,6 +62,10 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int DeclareWarCooldownInDays { get; set; } = 10;
 
+        [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 3, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance can last. Default value is 10.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public int MinimumAllianceDuration { get; internal set; } = 10;
+
         [SettingPropertyInteger("{=qeDOmURl}Send Messenger Influence Cost", 0, 10000, RequireRestart = false, HintText = "{=Lkos6GQb}Influence cost for sending a messenger to another leader. Default value is 10.")]
         [SettingPropertyGroup(HeadingMessengers)]
         public int SendMessengerInfluenceCost { get; set; } = 10;
@@ -101,5 +105,6 @@ namespace DiplomacyFixes
         [SettingPropertyBool("{=jI9NSxtz}Enable Player War Exhaustion Debug Messages", Order = 100, RequireRestart = false, HintText = "{=LYyNbQds}Enables debug messages for war exhaustion added to the player kingdom. Default value is false.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public bool EnableWarExhaustionDebugMessages { get; internal set; } = false;
+        
     }
 }
