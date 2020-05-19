@@ -94,7 +94,7 @@ namespace DiplomacyFixes.Messengers
             }
 
             PlayerEncounter.Start();
-            PlayerEncounter.Current.SetupFields(heroParty, targetParty);
+            PlayerEncounter.Current.SetupFields(heroParty, targetParty ?? heroParty);
 
             string specialScene = "";
             string sceneLevels = "";
