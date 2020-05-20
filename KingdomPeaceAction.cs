@@ -9,10 +9,17 @@ namespace DiplomacyFixes
     class KingdomPeaceAction
     {
 
-        private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment, float influenceCost)
+        private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment, float influenceCost, bool forcePlayerCharacterCosts)
         {
             DiplomacyCostManager.PayWarReparations(kingdomMakingPeace, otherKingdom, payment);
-            DiplomacyCostManager.DeductInfluenceFromKingdom(kingdomMakingPeace, influenceCost);
+            if (forcePlayerCharacterCosts)
+            {
+                DiplomacyCostManager.deductInfluenceFromPlayerClan(influenceCost);
+            }
+            else
+            {
+                DiplomacyCostManager.DeductInfluenceFromKingdom(kingdomMakingPeace, influenceCost);
+            }
             MakePeaceAction.Apply(kingdomMakingPeace, otherKingdom);
         }
 
@@ -57,32 +64,29 @@ namespace DiplomacyFixes
         {
             InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceInquiryText(kingdom, faction, payment), true, true, new TextObject("{=3fTqLwkC}Accept").ToString(), new TextObject("{=dRoMejb0}Decline").ToString(), () =>
             {
-                KingdomPeaceAction.AcceptPeace(kingdom, faction, payment, influenceCost);
+                KingdomPeaceAction.AcceptPeace(kingdom, faction, payment, influenceCost, false);
             }, () =>
             {
                 Events.Instance.OnPeaceProposalSent(kingdom);
             }, ""), true);
         }
 
-        public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool payCosts = true)
+        public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool payCosts = true, bool forcePlayerCharacterCosts = false)
         {
             int payment = payCosts ? DiplomacyCostCalculator.DetermineGoldCostForMakingPeace(kingdomMakingPeace, otherKingdom) : 0;
             float influenceCost = payCosts ? DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace(kingdomMakingPeace) : 0f;
-            ApplyPeace(kingdomMakingPeace, otherKingdom, payment, influenceCost);
+            ApplyPeace(kingdomMakingPeace, otherKingdom, payment, influenceCost, forcePlayerCharacterCosts);
         }
 
-        public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment, float influenceCost)
+        public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment, float influenceCost, bool forcePlayerCharacterCosts = false)
         {
             if (!otherKingdom.Leader.IsHumanPlayerCharacter)
             {
-                KingdomPeaceAction.AcceptPeace(kingdomMakingPeace, otherKingdom, payment, influenceCost);
+                KingdomPeaceAction.AcceptPeace(kingdomMakingPeace, otherKingdom, payment, influenceCost, forcePlayerCharacterCosts);
             }
-            else
+            else if (!CooldownManager.HasPeaceProposalCooldownWithPlayerKingdom(kingdomMakingPeace))
             {
-                if (!CooldownManager.HasPeaceProposalCooldownWithPlayerKingdom(kingdomMakingPeace))
-                {
-                    KingdomPeaceAction.CreatePeaceInquiry(kingdomMakingPeace, otherKingdom, payment, influenceCost);
-                }
+                KingdomPeaceAction.CreatePeaceInquiry(kingdomMakingPeace, otherKingdom, payment, influenceCost);
             }
         }
     }

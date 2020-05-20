@@ -51,7 +51,7 @@ namespace DiplomacyFixes.Patches
             List<TextObject> peaceExceptions = WarAndPeaceConditions.CanMakePeaceExceptions(item);
             if (peaceExceptions.IsEmpty())
             {
-                KingdomPeaceAction.ApplyPeace(item.Faction1 as Kingdom, item.Faction2 as Kingdom);
+                KingdomPeaceAction.ApplyPeace(item.Faction1 as Kingdom, item.Faction2 as Kingdom, forcePlayerCharacterCosts: true);
                 try
                 {
                     __instance.RefreshValues();
