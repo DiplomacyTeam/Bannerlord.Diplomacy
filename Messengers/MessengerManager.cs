@@ -17,14 +17,12 @@ namespace DiplomacyFixes.Messengers
 
         public MBReadOnlyList<Messenger> Messengers { get; private set; }
 
-        public bool CanStartMessengerConversation { get; private set; }
         private Messenger _activeMessenger;
 
         internal MessengerManager()
         {
             _messengers = new List<Messenger>();
             Messengers = new MBReadOnlyList<Messenger>(_messengers);
-            CanStartMessengerConversation = true;
         }
 
         public void SendMessenger(Hero targetHero)
@@ -51,13 +49,8 @@ namespace DiplomacyFixes.Messengers
 
         private bool MessengerArrived(Messenger messenger)
         {
-            if (CanStartMessengerConversation
-                && IsTargetHeroAvailable(messenger.TargetHero)
-                && PartyBase.MainParty != null
-                && PlayerEncounter.Current == null
-                && GameStateManager.Current.ActiveState is MapState)
+            if (IsTargetHeroAvailable(messenger.TargetHero) && IsPlayerHeroAvailable())
             {
-                CanStartMessengerConversation = false;
                 _activeMessenger = messenger;
                 InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Arrived").ToString(), GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero).ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), "", delegate ()
                 {
@@ -73,10 +66,17 @@ namespace DiplomacyFixes.Messengers
             return false;
         }
 
+        private static bool IsPlayerHeroAvailable()
+        {
+            MapState mapState = null;
+            return PartyBase.MainParty != null
+                && PlayerEncounter.Current == null
+                && ((mapState = GameStateManager.Current.ActiveState as MapState) != null && !mapState.AtMenu);
+        }
+
         internal void Sync()
         {
             Messengers = new MBReadOnlyList<Messenger>(_messengers);
-            CanStartMessengerConversation = true;
         }
 
         public void StartDialogue(Hero targetHero)
@@ -98,6 +98,7 @@ namespace DiplomacyFixes.Messengers
             string specialScene = "";
             string sceneLevels = "";
 
+            Campaign.Current.CurrentConversationContext = ConversationContext.Default;
             Mission conversationMission = (Mission)Campaign.Current.CampaignMissionManager.OpenConversationMission(
                 new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true, false, false, isCivilian),
                 new ConversationCharacterData(targetHero.CharacterObject, targetParty, true, false, false, isCivilian),
@@ -155,7 +156,6 @@ namespace DiplomacyFixes.Messengers
         {
             _messengers.Remove(_activeMessenger);
             _activeMessenger = null;
-            CanStartMessengerConversation = true;
 
             if (PlayerEncounter.Current != null)
             {
