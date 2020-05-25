@@ -11,7 +11,7 @@ namespace DiplomacyFixes.Extensions
             var kingdomPositions = kingdom.Settlements.Where(go => go.IsTown || go.IsCastle).Select(go => go.Position2D);
             var kingdomToCheckPositions = kingdomToCheck.Settlements.Where(go => go.IsTown || go.IsCastle).Select(go => go.Position2D);
 
-            if ((kingdomPositions?.Any() ?? false) || (kingdomToCheckPositions?.Any() ?? false))
+            if ((kingdomPositions?.Any() ?? false) && (kingdomToCheckPositions?.Any() ?? false))
             {
                 return false;
             }
