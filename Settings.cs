@@ -1,11 +1,11 @@
-﻿using MBOptionScreen.Attributes;
-using MBOptionScreen.Attributes.v2;
-using MBOptionScreen.Settings;
+﻿using MCM.Abstractions.Attributes;
+using MCM.Abstractions.Attributes.v2;
+using MCM.Abstractions.Settings.Base.Global;
 using TaleWorlds.Localization;
 
 namespace DiplomacyFixes
 {
-    class Settings : AttributeSettings<Settings>
+    class Settings : AttributeGlobalSettings<Settings>
     {
         private const string HeadingKingdomDiplomacy = "{=sBw5Qzq3}Kingdom Diplomacy";
         private const string HeadingInfluenceCostsScaling = "{=9PlT57Nl}Influence Costs/Scaling";
@@ -16,11 +16,11 @@ namespace DiplomacyFixes
 
         private const string HeadingGoldCosts = "{=Ckd1Lsoa}Gold Costs";
 
-        public override string Id { get; set; } = "DiplomacyFixesSettings_1";
+        public override string Id { get; } = "DiplomacyFixesSettings_1";
 
-        public override string ModuleFolderName { get; } = "DiplomacyFixes";
+        public override string FolderName { get; } = "DiplomacyFixes";
 
-        public override string ModName { get; } = new TextObject("{=MYz8nKqq}Diplomacy Fixes").ToString();
+        public override string DisplayName { get; } = new TextObject("{=MYz8nKqq}Diplomacy Fixes").ToString();
 
         [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 0, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
@@ -31,7 +31,7 @@ namespace DiplomacyFixes
         public bool EnableFiefFirstRight { get; set; } = true;
 
         [SettingPropertyBool(displayName: "{=WbOKuWbQ}Enable Influence Costs", Order = -1, RequireRestart = false, HintText = "{=K2vLGalN}If disabled, this removes all costs for war and peace declaration actions. Default value is true.")]
-        [SettingPropertyGroup(HeadingInfluenceCosts, isMainToggle: true)]
+        [SettingPropertyGroup(HeadingInfluenceCosts, IsMainToggle = true)]
         public bool EnableInfluenceCostsForDiplomacyActions { get; set; } = true;
 
         [SettingPropertyBool(displayName: "{=P1g6Ht1e}Enable Scaling Influence Cost", Order = 0, RequireRestart = false, HintText = "{=xfVFBxfj}If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is true.")]
@@ -39,15 +39,15 @@ namespace DiplomacyFixes
         public bool ScalingInfluenceCosts { get; set; } = true;
 
         [SettingPropertyFloatingInteger(displayName: "{=TvAYJv5Q}Scaling Influence Cost Multiplier", 0, 100, Order = 1, RequireRestart = false, HintText = "{=AQ5gRYN6}Multiplier for the scaling influence costs. Default value is 5.")]
-        [SettingPropertyGroup(HeadingInfluenceCosts, order: 0)]
+        [SettingPropertyGroup(HeadingInfluenceCosts, GroupOrder = 0)]
         public float ScalingInfluenceCostMultiplier { get; set; } = 5.0f;
 
         [SettingPropertyFloatingInteger(displayName: "{=HFtZsD6v}Scaling War Reparations Gold Cost Multiplier", 0, 10000, Order = 0, RequireRestart = false, HintText = "{=MIhbrqbr}Multiplier for the scaling of war reparations gold costs. Default value is 100.")]
-        [SettingPropertyGroup(HeadingGoldCosts, order: 0)]
+        [SettingPropertyGroup(HeadingGoldCosts, GroupOrder = 1)]
         public float ScalingWarReparationsGoldCostMultiplier { get; set; } = 100.0f;
 
         [SettingPropertyInteger(displayName: "{=OnTeAgin}Flat Declare War Influence Cost", 0, 10000, Order = 2, RequireRestart = false, HintText = "{=O5XvybTI}Influence cost for declaring war on another kingdom. Default value is 100.")]
-        [SettingPropertyGroup(HeadingInfluenceCosts, order: 1)]
+        [SettingPropertyGroup(HeadingInfluenceCosts)]
         public int DeclareWarInfluenceCost { get; set; } = 100;
 
         [SettingPropertyInteger("{=iNsXQD2q}Flat Make Peace Influence Cost", 0, 10000, Order = 3, RequireRestart = false, HintText = "{=WB5zdvdT}Influence cost for making peace with another kingdom. Default value is 100.")]
@@ -75,7 +75,7 @@ namespace DiplomacyFixes
         public int MessengerTravelTime { get; set; } = 3;
 
         [SettingPropertyBool("{=lSttctYC}Enable War Exhaustion", RequireRestart = true, HintText = "{=Cxyn9ROT}If disabled, this disables the war exhaustion mechanic. Default value is enabled.")]
-        [SettingPropertyGroup(HeadingWarExhaustion, isMainToggle: true)]
+        [SettingPropertyGroup(HeadingWarExhaustion, IsMainToggle = true)]
         public bool EnableWarExhaustion { get; set; } = true;
 
         [SettingPropertyFloatingInteger("{=Bh7vme9y}Max War Exhaustion", 0f, 1000f, RequireRestart = false, HintText = "{=6Ij1WEWz}The amount of war exhaustion that forces a faction to propose peace. Default value is 100.0.")]

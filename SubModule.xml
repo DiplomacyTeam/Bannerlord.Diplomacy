@@ -1,35 +1,35 @@
- <Module>
-     <Name value="Diplomacy Fixes"/>
-     <Id value="DiplomacyFixes"/>
-     <Version value="v1.4.0"/>
-     <SingleplayerModule value="true"/>
-     <MultiplayerModule value="false"/>
-     <DependedModules>
-         <DependedModule Id="Native"/>
-         <DependedModule Id="SandBoxCore"/>
-         <DependedModule Id="Sandbox"/>
-         <DependedModule Id="CustomBattle"/>
-         <DependedModule Id="StoryMode" />
-     </DependedModules>
-     <SubModules>
-         <SubModule>
-             <Name value="DiplomacyFixes"/>
-             <DLLName value="DiplomacyFixes.dll"/>
-             <SubModuleClassType value="DiplomacyFixes.MySubModule"/>
-             <Tags>
-                 <Tag key="DedicatedServerType" value="none" />
-                 <Tag key="IsNoRenderModeElement" value="false" />
-             </Tags>
-         </SubModule>
-		 <SubModule>
-			 <Name value="MBOptionScreen" />
-			 <DLLName value="MBOptionScreen.v2.0.10.dll" />
-			 <SubModuleClassType value="MBOptionScreen.MBOptionScreenSubModuleV2010" />
-			 <Tags>
-				 <Tag key="DedicatedServerType" value="none" />
-				 <Tag key="IsNoRenderModeElement" value="false" />
-			 </Tags>
-		 </SubModule>
-     </SubModules>
-     <Xmls/>
- </Module>
+<Module>
+  <Name value="Diplomacy Fixes"/>
+  <Id value="DiplomacyFixes"/>
+  <Version value="v1.4.0"/>
+  <SingleplayerModule value="true"/>
+  <MultiplayerModule value="false"/>
+  <DependedModules>
+    <DependedModule Id="Native"/>
+    <DependedModule Id="SandBoxCore"/>
+    <DependedModule Id="Sandbox"/>
+    <DependedModule Id="CustomBattle"/>
+    <DependedModule Id="StoryMode" />
+  </DependedModules>
+  <SubModules>
+    <SubModule>
+      <Name value="DiplomacyFixes"/>
+      <DLLName value="DiplomacyFixes.dll"/>
+      <SubModuleClassType value="DiplomacyFixes.MySubModule"/>
+      <Tags>
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
+    </SubModule>
+    <SubModule>
+      <Name value="MCMv3 Integrated Loader"/>
+      <DLLName value="MCMv3.dll"/>
+      <SubModuleClassType value="MCM.IntegratedLoaderSubModule"/>
+      <Tags>
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
+    </SubModule>
+  </SubModules>
+  <Xmls/>
+</Module>

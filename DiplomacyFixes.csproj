@@ -40,8 +40,14 @@
     <Reference Include="0Harmony, Version=2.0.0.10, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.2.0.0.10\lib\net472\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="MBOptionScreen.v2.0.10, Version=2.0.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bannerlord.MBOptionScreen.2.0.10\lib\net472\MBOptionScreen.v2.0.10.dll</HintPath>
+    <Reference Include="MCMv3, Version=3.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bannerlord.MCM.Integrated.3.1.4\lib\net472\MCMv3.dll</HintPath>
+    </Reference>
+    <Reference Include="MCMv3.Implementation.v3.1.4, Version=3.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bannerlord.MCM.Integrated.3.1.4\lib\net472\MCMv3.Implementation.v3.1.4.dll</HintPath>
+    </Reference>
+    <Reference Include="MCMv3.UI.v3.1.4, Version=3.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bannerlord.MCM.Integrated.3.1.4\lib\net472\MCMv3.UI.v3.1.4.dll</HintPath>
     </Reference>
     <Reference Include="SandBox">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll</HintPath>
@@ -340,7 +346,9 @@
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(TargetDir)\0Harmony.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
-    <Copy SourceFiles="$(TargetDir)\MBOptionScreen.v2.0.10.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
+	<Copy SourceFiles="$(TargetDir)\MCMv3.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
+	<Copy SourceFiles="$(TargetDir)\MCMv3.Implementation.v3.1.4.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
+    <Copy SourceFiles="$(TargetDir)\MCMv3.UI.v3.1.4.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(ProjectDir)\SubModule.xml" DestinationFolder="$(MOD_FOLDER)" />
     <Copy SourceFiles="@(GUI)" DestinationFolder="$(MOD_FOLDER)\GUI\%(RecursiveDir)" />
     <Copy SourceFiles="@(ModuleData)" DestinationFolder="$(MOD_FOLDER)\ModuleData\%(RecursiveDir)" />
