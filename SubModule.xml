@@ -1,7 +1,7 @@
 <Module>
   <Name value="Diplomacy Fixes"/>
   <Id value="DiplomacyFixes"/>
-  <Version value="v1.4.0"/>
+  <Version value="v1.4.1"/>
   <SingleplayerModule value="true"/>
   <MultiplayerModule value="false"/>
   <DependedModules>
