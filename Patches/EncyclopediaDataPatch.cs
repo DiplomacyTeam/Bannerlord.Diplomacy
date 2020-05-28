@@ -18,6 +18,11 @@ namespace DiplomacyFixes.Patches
                 EncyclopediaPageArgs args = (EncyclopediaPageArgs)typeof(EncyclopediaPageVM).GetField("_args", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(__result);
                 __result = new EncyclopediaHeroPageVMExtensionVM(args);
             }
+            else if (__result is EncyclopediaFactionPageVM)
+            {
+                EncyclopediaPageArgs args = (EncyclopediaPageArgs)typeof(EncyclopediaPageVM).GetField("_args", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(__result);
+                __result = new EncyclopediaFactionPageVMExtensionVM(args);
+            }
         }
     }
 }

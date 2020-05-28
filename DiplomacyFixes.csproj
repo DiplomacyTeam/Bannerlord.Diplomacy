@@ -289,6 +289,7 @@
     <Compile Include="GauntletInterfaces\GrantFiefInterface.cs" />
     <Compile Include="GrantFief\GrantFiefAction.cs" />
     <Compile Include="Patches\KingdomManagementVMPatch.cs" />
+    <Compile Include="ViewModel\EncyclopediaFactionPageVMExtensionVM.cs" />
     <Compile Include="ViewModel\GrantFiefItemVM.cs" />
     <Compile Include="ViewModel\GrantFiefSortControllerVM.cs" />
     <Compile Include="ViewModel\GrantFiefVM.cs" />
@@ -326,6 +327,7 @@
     <Compile Include="WarExhaustionManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GUI\Prefabs\Encyclopedia\EncyclopediaSubPages\EncyclopediaFactionPage.xml" />
     <Content Include="GUI\Prefabs\Encyclopedia\EncyclopediaSubPages\EncyclopediaHeroPage.xml" />
     <Content Include="GUI\Prefabs\GrantFief\GrantFiefTuple.xml" />
     <Content Include="GUI\Prefabs\GrantFief\GrantFief.xml" />
@@ -346,8 +348,8 @@
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(TargetDir)\0Harmony.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
-	<Copy SourceFiles="$(TargetDir)\MCMv3.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
-	<Copy SourceFiles="$(TargetDir)\MCMv3.Implementation.v3.1.4.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
+    <Copy SourceFiles="$(TargetDir)\MCMv3.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
+    <Copy SourceFiles="$(TargetDir)\MCMv3.Implementation.v3.1.4.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(TargetDir)\MCMv3.UI.v3.1.4.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(ProjectDir)\SubModule.xml" DestinationFolder="$(MOD_FOLDER)" />
     <Copy SourceFiles="@(GUI)" DestinationFolder="$(MOD_FOLDER)\GUI\%(RecursiveDir)" />

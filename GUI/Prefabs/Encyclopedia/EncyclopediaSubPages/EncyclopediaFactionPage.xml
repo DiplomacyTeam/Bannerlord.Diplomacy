@@ -1,0 +1,172 @@
+<Prefab>
+  <Constants>
+
+    <Constant Name="Encyclopedia.Canvas.Width" BrushName="Encyclopedia.Canvas" BrushLayer="Default" BrushValueType="Width"/>
+    <Constant Name="Encyclopedia.Canvas.Height" BrushName="Encyclopedia.Canvas" BrushLayer="Default" BrushValueType="Height"/>
+
+    <Constant Name="Encyclopedia.Width" Value="!Encyclopedia.Canvas.Width" Additive="-35"/>
+    <Constant Name="Encyclopedia.Height" Value="!Encyclopedia.Canvas.Height" Additive="-198"/>
+
+  </Constants>
+
+  <Window>
+    <Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" Brush="Encyclopedia.Page.SoundBrush">
+      <Children>
+
+        <Widget HeightSizePolicy ="Fixed" WidthSizePolicy="Fixed" SuggestedHeight="!Encyclopedia.Height" SuggestedWidth="!Encyclopedia.Width" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="210" MarginBottom="117" DoNotAcceptEvents="true">
+          <Children>
+
+            <ListPanel HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true">
+              <Children>
+
+                <!--Left Side Faction Image Properties-->
+                <Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="Fixed" SuggestedWidth="370">
+                  <Children>
+
+                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="10" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                      <Children>
+
+                        <!--Kingdom Name-->
+                        <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"  Brush="Encyclopedia.SubPage.Title.Text" Brush.TextHorizontalAlignment="Center" Text="@NameText" />
+
+                        <!--Banner-->
+                        <MaskedTextureWidget DataSource="{Banner}" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="243" SuggestedHeight="398" HorizontalAlignment="Center" Brush="Encyclopedia.Faction.Banner" OverlayTextureScale="1.5"/>
+
+                      </Children>
+                    </ListPanel>
+
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="2" HorizontalAlignment="Right" MarginRight="15" Sprite="Encyclopedia\divider_vertical" />
+
+                  </Children>
+                </Widget>
+
+                <ScrollbarWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="Fixed" Id="RightSideScrollbar" SuggestedWidth="20" MinValue = "0" MaxValue = "100" MarginLeft="10" MarginBottom="15" MarginTop="15" AlignmentAxis="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Handle = "RightSideScrollbarHandle">
+                  <Children>
+                    <Widget Id="RightSideScrollbarHandle" WidthSizePolicy = "StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment = "Center"/>
+                  </Children>
+                </ScrollbarWidget>
+
+                <ScrollablePanel Id="RightSideScrollablePanel"  HeightSizePolicy ="StretchToParent"  WidthSizePolicy="StretchToParent" InnerPanel="RightSideRect\RightSideList" ClipRect="RightSideRect" MouseScrollAxis="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalScrollbar="..\RightSideScrollbar" AutoHideScrollBars="false" MarginBottom="10">
+                  <Children>
+
+                    <!--Right Side Character Clan, Friends, Enemies-->
+                    <Widget Id="RightSideRect" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" ClipContents="true" >
+                      <Children>
+
+                        <ListPanel Id="RightSideList" HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" >
+                          <Children>
+
+                            <!--Leader, Members, Allies, Enemies, Settlements-->
+                            <Widget HeightSizePolicy ="CoverChildren" WidthSizePolicy="Fixed" SuggestedWidth="739" DoNotAcceptEvents="true" >
+                              <Children>
+
+                                <ListPanel HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" LayoutImp.LayoutMethod = "VerticalBottomToTop" DoNotAcceptEvents="true">
+                                  <Children>
+
+                                    <!--Kingdom Info Text-->
+                                    <RichTextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="StretchToParent" Brush="Encyclopedia.SubPage.Info.Text" Text="@InformationText" MarginTop="25" MarginLeft="20" MarginRight="25"/>
+
+                                    <!--Leader Divider-->
+                                    <EncyclopediaDivider MarginTop="20" Parameter.Title="@LeaderText" Parameter.ItemList="..\Leader"/>
+
+                                    <!--Leader-->
+                                    <EncyclopediaSubPageElement Id="Leader" Parameter.ElementDataSource="{Leader}" HorizontalAlignment="Left" SuggestedHeight="89" SuggestedWidth="123" MarginLeft="20" MarginTop="10"/>
+
+                                    <!--Clans Divider-->
+                                    <EncyclopediaDivider MarginTop="50" Parameter.Title="@ClansText" Parameter.ItemList="..\ClansGrid"/>
+
+                                    <!--Clans Grid-->
+                                    <GridWidget Id="ClansGrid" DataSource="{Clans}" WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" SuggestedWidth="350" SuggestedHeight="350" DefaultCellWidth="100" DefaultCellHeight="100" HorizontalAlignment="Left" ColumnCount="7" MarginTop="10" MarginLeft="15" >
+                                      <ItemTemplate>
+
+                                        <!--Clan-->
+                                        <EncyclopediaClanSubPageElement/>
+
+                                      </ItemTemplate>
+                                    </GridWidget>
+
+                                    <!--Settlements Divider-->
+                                    <EncyclopediaDivider MarginTop="35" Parameter.Title="@SettlementsText" Parameter.ItemList="..\SettlementsGrid"/>
+
+                                    <!--Settlements Grid-->
+                                    <GridWidget Id="SettlementsGrid" DataSource="{Settlements}" WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" SuggestedWidth="350" SuggestedHeight="350" DefaultCellWidth="100" DefaultCellHeight="140" HorizontalAlignment="Left" MarginLeft="25" ColumnCount="7" MarginTop="10" >
+                                      <ItemTemplate>
+
+                                        <!--Settlement-->
+                                        <ButtonWidget DoNotPassEventsToChildren="true" Command.Click="ExecuteLink" WidthSizePolicy = "Fixed" HeightSizePolicy = "Fixed" SuggestedHeight="90" SuggestedWidth="90" Brush="Encyclopedia.SubPage.Element">
+                                          <Children>
+
+                                            <Widget Id="VillageImage" WidthSizePolicy = "Fixed" HeightSizePolicy = "Fixed" SuggestedHeight="80" SuggestedWidth="80" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="@FileName"/>
+                                            <HintWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+                                            <TextWidget HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" VerticalAlignment="Top" Text="@NameText" Brush="Encyclopedia.SubPage.Element.Name.Text" PositionYOffset="95" Brush.FontSize="18"/>
+
+                                          </Children>
+                                        </ButtonWidget>
+
+                                      </ItemTemplate>
+                                    </GridWidget>
+
+
+                                    <!--Enemies Divider-->
+                                    <EncyclopediaDivider MarginTop="35" Parameter.Title="@EnemiesText" Parameter.ItemList="..\EnemiesGrid"/>
+
+                                    <!--Enemies Grid-->
+                                    <GridWidget Id="EnemiesGrid" DataSource="{Enemies}" WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" SuggestedWidth="350" SuggestedHeight="350" DefaultCellWidth="100" DefaultCellHeight="100" HorizontalAlignment="Left" MarginLeft="25" ColumnCount="7" MarginTop="10" >
+                                      <ItemTemplate>
+
+                                        <!--Member-->
+                                        <EncyclopediaClanSubPageElement/>
+
+                                      </ItemTemplate>
+                                    </GridWidget>
+
+                                    <!--Enemies Divider-->
+                                    <EncyclopediaDivider MarginTop="35" Parameter.Title="@AlliesText" Parameter.ItemList="..\AlliesGrid"/>
+
+                                    <!--Enemies Grid-->
+                                    <GridWidget Id="AlliesGrid" DataSource="{Allies}" WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" SuggestedWidth="350" SuggestedHeight="350" DefaultCellWidth="100" DefaultCellHeight="100" HorizontalAlignment="Left" MarginLeft="25" ColumnCount="7" MarginTop="10" >
+                                      <ItemTemplate>
+
+                                        <!--Member-->
+                                        <EncyclopediaClanSubPageElement/>
+
+                                      </ItemTemplate>
+                                    </GridWidget>
+
+                                  </Children>
+                                </ListPanel>
+
+                              </Children>
+                            </Widget>
+
+                            <!--Event Log-->
+                            <Widget HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" >
+                              <Children>
+
+                                <ListPanel DataSource="{History}" HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" LayoutImp.LayoutMethod = "VerticalBottomToTop" MarginTop="34" MarginLeft="19" MarginRight="10">
+                                  <ItemTemplate>
+                                    <EncyclopediaSubPageHistoryElement/>
+                                  </ItemTemplate>
+                                </ListPanel>
+
+                              </Children>
+                            </Widget>
+
+                          </Children>
+                        </ListPanel>
+
+                      </Children>
+                    </Widget>
+
+                  </Children>
+                </ScrollablePanel>
+
+              </Children>
+            </ListPanel>
+
+          </Children>
+        </Widget>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

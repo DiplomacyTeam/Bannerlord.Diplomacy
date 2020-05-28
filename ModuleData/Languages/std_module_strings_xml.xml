@@ -62,6 +62,8 @@
     
     <string id="VvTTrRpl" text="This faction is not interested in forming an alliance with you." />
     <string id="wst0lArp" text="This alliance hasn't gone on long enough to consider breaking it! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
+    
+    <string id="KqfNSsBE" text="Allies" />
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
