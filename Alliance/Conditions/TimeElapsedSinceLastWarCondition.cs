@@ -28,11 +28,11 @@ namespace DiplomacyFixes.Alliance.Conditions
 
             double daysSinceLastWar = CampaignTime.Now.ToDays - lastPeaceTime.ToDays;
             bool hasEnoughTimeElapsed = lastPeaceTime == CampaignTime.Never || daysSinceLastWar > MinimumTimeFromLastWar;
-            if(!hasEnoughTimeElapsed)
+            if (!hasEnoughTimeElapsed)
             {
                 textObject = new TextObject(TOO_SOON);
-                textObject.SetTextVariable("ELAPSED_DAYS", (int) daysSinceLastWar);
-                textObject.SetTextVariable("REQUIRED_DAYS", (int) MinimumTimeFromLastWar);
+                textObject.SetTextVariable("ELAPSED_DAYS", (int)daysSinceLastWar);
+                textObject.SetTextVariable("REQUIRED_DAYS", (int)MinimumTimeFromLastWar);
             }
             return hasEnoughTimeElapsed;
         }

@@ -52,11 +52,11 @@ namespace DiplomacyFixes.Alliance
             }
 
             // existing alliances
-            totalScore -= (int) AllianceScore.ExistingAlliance * Kingdom.All.Except(new[] { kingdom, otherKingdom }).Where(curKingdom => FactionManager.IsAlliedWithFaction(kingdom, curKingdom)).Count();
+            totalScore -= (int)AllianceScore.ExistingAlliance * Kingdom.All.Except(new[] { kingdom, otherKingdom }).Where(curKingdom => FactionManager.IsAlliedWithFaction(kingdom, curKingdom)).Count();
 
             // relation modifier
             float relationModifier = MBMath.ClampFloat((float)Math.Log((kingdom.Leader.GetRelation(otherKingdom.Leader) + 100f) / 100f, 1.5), -1, 1);
-            totalScore += (int) AllianceScore.Relationship * relationModifier;
+            totalScore += (int)AllianceScore.Relationship * relationModifier;
 
             return totalScore;
         }

@@ -2,7 +2,6 @@
 using DiplomacyFixes.Messengers;
 using DiplomacyFixes.WarPeace;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
@@ -134,8 +133,9 @@ namespace DiplomacyFixes.ViewModel
         [DataSourceProperty]
         public bool IsAllianceAvailable
         {
-            get { 
-                return this._isAllianceAvailable; 
+            get
+            {
+                return this._isAllianceAvailable;
             }
             set
             {

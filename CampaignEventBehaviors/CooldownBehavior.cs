@@ -1,5 +1,4 @@
 ﻿using DiplomacyFixes.Alliance;
-using System;
 using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors

@@ -20,7 +20,7 @@ namespace DiplomacyFixes.Alliance.Conditions
                 hasEnoughInfluence = influenceCost <= kingdom.Leader.Clan.Influence;
             }
 
-            if(!hasEnoughInfluence)
+            if (!hasEnoughInfluence)
             {
                 textObject = new TextObject(NOT_ENOUGH_INFLUENCE);
             }

@@ -105,6 +105,6 @@ namespace DiplomacyFixes
         [SettingPropertyBool("{=jI9NSxtz}Enable Player War Exhaustion Debug Messages", Order = 100, RequireRestart = false, HintText = "{=LYyNbQds}Enables debug messages for war exhaustion added to the player kingdom. Default value is false.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public bool EnableWarExhaustionDebugMessages { get; internal set; } = false;
-        
+
     }
 }

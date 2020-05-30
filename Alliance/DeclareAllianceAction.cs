@@ -20,7 +20,7 @@ namespace DiplomacyFixes.Alliance
                     textObject.ToString(),
                     true,
                     true,
-                    new TextObject("{=3fTqLwkC}Accept").ToString(), 
+                    new TextObject("{=3fTqLwkC}Accept").ToString(),
                     new TextObject("{=dRoMejb0}Decline").ToString(),
                     () => ApplyInternal(kingdom, otherKingdom, forcePlayerCharacterCosts),
                     null,
