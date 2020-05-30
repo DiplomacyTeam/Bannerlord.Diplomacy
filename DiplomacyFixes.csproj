@@ -288,7 +288,9 @@
     <Compile Include="Extensions\BaseKingdomInfoExtension.cs" />
     <Compile Include="GauntletInterfaces\GrantFiefInterface.cs" />
     <Compile Include="GrantFief\GrantFiefAction.cs" />
+    <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\Relationship.xml" />
     <Compile Include="Patches\KingdomManagementVMPatch.cs" />
+    <Compile Include="ViewModel\DiplomacyFactionRelationshipVM.cs" />
     <Compile Include="ViewModel\EncyclopediaFactionPageVMExtensionVM.cs" />
     <Compile Include="ViewModel\GrantFiefItemVM.cs" />
     <Compile Include="ViewModel\GrantFiefSortControllerVM.cs" />

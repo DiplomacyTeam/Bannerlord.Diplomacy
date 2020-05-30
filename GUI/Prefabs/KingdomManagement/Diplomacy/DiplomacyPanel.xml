@@ -266,6 +266,7 @@
                       </Children>
                     </ListPanel>
 
+
                     <Widget HeightSizePolicy="Fixed" SuggestedHeight="600" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" MarginTop="0">
                       <Children>
                         <ScrollbarWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="Fixed" Id="RightSideScrollbar" SuggestedWidth="20" MinValue = "0" MaxValue = "100" AlignmentAxis="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Handle = "RightSideScrollbarHandle">
@@ -274,50 +275,104 @@
                           </Children>
                         </ScrollbarWidget>
 
-                        <ScrollablePanel VerticalAlignment="Center" HorizontalAlignment="Center"  WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" AutoHideScrollBars="false" ClipRect="StatsListRect" InnerPanel="StatsListRect\StatsList" VerticalScrollbar="..\RightSideScrollbar">
+                        <ScrollablePanel VerticalAlignment="Center" HorizontalAlignment="Center"  WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" AutoHideScrollBars="false" ClipRect="StatsListRect" InnerPanel="StatsListRect\InnerPanel" VerticalScrollbar="..\RightSideScrollbar">
                           <Children>
-                            <Widget Id="StatsListRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true">
+                            <Widget Id="StatsListRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" LayoutImp.LayoutMethod="VerticalBottomToTop">
                               <Children>
-                                <!-- Comparing Bars -->
-                                <ListPanel Id="StatsList" DataSource="{CurrentSelectedDiplomacyItem\Stats}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
-                                  <ItemTemplate>
-                                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="20" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                                <ListPanel Id="InnerPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
+                                  <Children>
+                                    <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
                                       <Children>
-                                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" SuggestedHeight="!Stat.Name.Height" Brush="Kingdom.Wars.Stat.Name.Text" Text="@Name" />
-                                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="!Stat.Height" HorizontalAlignment="Center" MarginLeft="10" MarginRight="10" MarginTop="5">
+                                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" >
                                           <Children>
-
-                                            <!-- Faction 1 Bar -->
-                                            <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="400" SuggestedHeight="35" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.Color="#00000040" FillWidget="FillWidget" InitialAmount="@Faction1Percentage" IsDirectionUpward="false" MaxAmount="100">
-                                              <Children>
-                                                <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.5" Brush.Color="@Faction1Color">
-                                                  <Children>
-                                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="-60" MarginTop="5" Brush="Kingdom.Wars.Stat.Value.Text" ClipContents="false" IntText="@Faction1Value" />
-                                                  </Children>
-                                                </Widget>
-                                              </Children>
-                                            </FillBarHorizontalWidget>
-                                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="35" Sprite="SPKingdom\Diplomacy\bar_seperator" />
-
-                                            <!-- Faction 2 Bar -->
-                                            <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="400" SuggestedHeight="35" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.Color="#00000040" FillWidget="FillWidget" InitialAmount="@Faction2Percentage" IsDirectionRightward="true" MaxAmount="100">
-                                              <Children>
-                                                <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.5" Brush.Color="@Faction2Color">
-                                                  <Children>
-                                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="60" MarginTop="5" Brush="Kingdom.Wars.Stat.Value.Text" ClipContents="false" IntText="@Faction2Value" />
-                                                  </Children>
-                                                </Widget>
-                                              </Children>
-                                            </FillBarHorizontalWidget>
-
-                                            <!-- Empty Vertical Space Widget -->
-
-                                            <!-- <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="!Stat.Name.Height" /> -->
+                                            <TextWidget Brush="Kingdom.Wars.Stat.Name.Text" ClipContents="false" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="Wars" />
+                                          </Children>
+                                        </Widget>
+                                        <ListPanel VerticalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" >
+                                          <Children>
+                                            <ListPanel MarginRight="20" DataSource="{Faction1Wars}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
+                                              <ItemTemplate>
+                                                <!--Member-->
+                                                <Relationship/>
+                                              </ItemTemplate>
+                                            </ListPanel>
+                                            <Widget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="85" Sprite="Encyclopedia\divider_vertical"/>
+                                            <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{Faction2Wars}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                                              <ItemTemplate>
+                                                <!--Member-->
+                                                <Relationship/>
+                                              </ItemTemplate>
+                                            </ListPanel>
+                                          </Children>
+                                        </ListPanel>
+                                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="20">
+                                          <Children>
+                                            <TextWidget Brush="Kingdom.Wars.Stat.Name.Text" ClipContents="false" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="Alliances" />
+                                          </Children>
+                                        </Widget>
+                                        <ListPanel VerticalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" >
+                                          <Children>
+                                            <ListPanel MarginRight="20" DataSource="{Faction1Allies}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
+                                              <ItemTemplate>
+                                                <!--Member-->
+                                                <Relationship/>
+                                              </ItemTemplate>
+                                            </ListPanel>
+                                            <Widget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="85" Sprite="Encyclopedia\divider_vertical"/>
+                                            <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{Faction2Allies}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                                              <ItemTemplate>
+                                                <!--Member-->
+                                                <Relationship/>
+                                              </ItemTemplate>
+                                            </ListPanel>
                                           </Children>
                                         </ListPanel>
                                       </Children>
                                     </ListPanel>
-                                  </ItemTemplate>
+
+
+                                    <!-- Comparing Bars -->
+                                    <ListPanel Id="StatsList" DataSource="{CurrentSelectedDiplomacyItem\Stats}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
+                                      <ItemTemplate>
+                                        <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="20" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                                          <Children>
+                                            <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" SuggestedHeight="!Stat.Name.Height" Brush="Kingdom.Wars.Stat.Name.Text" Text="@Name" />
+                                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="!Stat.Height" HorizontalAlignment="Center" MarginLeft="10" MarginRight="10" MarginTop="5">
+                                              <Children>
+
+                                                <!-- Faction 1 Bar -->
+                                                <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="400" SuggestedHeight="35" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.Color="#00000040" FillWidget="FillWidget" InitialAmount="@Faction1Percentage" IsDirectionUpward="false" MaxAmount="100">
+                                                  <Children>
+                                                    <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.5" Brush.Color="@Faction1Color">
+                                                      <Children>
+                                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="-60" MarginTop="5" Brush="Kingdom.Wars.Stat.Value.Text" ClipContents="false" IntText="@Faction1Value" />
+                                                      </Children>
+                                                    </Widget>
+                                                  </Children>
+                                                </FillBarHorizontalWidget>
+                                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="35" Sprite="SPKingdom\Diplomacy\bar_seperator" />
+
+                                                <!-- Faction 2 Bar -->
+                                                <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="400" SuggestedHeight="35" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.Color="#00000040" FillWidget="FillWidget" InitialAmount="@Faction2Percentage" IsDirectionRightward="true" MaxAmount="100">
+                                                  <Children>
+                                                    <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.5" Brush.Color="@Faction2Color">
+                                                      <Children>
+                                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="60" MarginTop="5" Brush="Kingdom.Wars.Stat.Value.Text" ClipContents="false" IntText="@Faction2Value" />
+                                                      </Children>
+                                                    </Widget>
+                                                  </Children>
+                                                </FillBarHorizontalWidget>
+
+                                                <!-- Empty Vertical Space Widget -->
+
+                                                <!-- <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="!Stat.Name.Height" /> -->
+                                              </Children>
+                                            </ListPanel>
+                                          </Children>
+                                        </ListPanel>
+                                      </ItemTemplate>
+                                    </ListPanel>
+                                  </Children>
                                 </ListPanel>
                               </Children>
                             </Widget>

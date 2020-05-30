@@ -1,0 +1,32 @@
+﻿<Prefab>
+  <Constants>
+
+    <Constant Name="Encyclopedia.SubPage.Element.Width" BrushName="Encyclopedia.SubPage.Element" BrushLayer="Default" BrushValueType="Width"/>
+    <Constant Name="Encyclopedia.SubPage.Element.Height" BrushName="Encyclopedia.SubPage.Element" BrushLayer="Default" BrushValueType="Height"/>
+
+    <Constant Name="BannerBrush" BooleanCheck="*IsBig" OnFalse="Encyclopedia.Clan.SubElement.Banner" OnTrue="Encyclopedia.Clan.SubElement.Banner.Big" />
+    <Constant Name="ScaleFactor" BooleanCheck="*IsBig" OnFalse="1.5" OnTrue="2.1" />
+
+  </Constants>
+  <Window>
+
+    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+      <Children>
+        <ButtonWidget Command.Click="ExecuteLink" DoNotPassEventsToChildren="true" WidthSizePolicy = "Fixed" HeightSizePolicy = "Fixed" SuggestedHeight="!Encyclopedia.SubPage.Element.Height" SuggestedWidth="!Encyclopedia.SubPage.Element.Width" HorizontalAlignment="Center" Brush="Encyclopedia.SubPage.Element" MarginLeft="7" MarginRight="7">
+          <Children>
+            <!--NOT Destroyed Element Image-->
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+              <Children>
+                <MaskedTextureWidget Id="ElementImage" DataSource="{ImageIdentifier}" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" Brush="!BannerBrush" HorizontalAlignment="Center" MarginRight="3" MarginLeft="3" MarginBottom="3" MarginTop="3" OverlayTextureScale="!ScaleFactor"/>
+              </Children>
+            </Widget>
+            <!--Element Hint-->
+            <HintWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+          </Children>
+        </ButtonWidget>
+        <!--Element Name-->
+        <TextWidget MarginTop="5" HorizontalAlignment="Center" WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" Text="@NameText" Brush="Encyclopedia.SubPage.Element.Name.Text"/>
+      </Children>
+    </ListPanel>
+  </Window>
+</Prefab>
