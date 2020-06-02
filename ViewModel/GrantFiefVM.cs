@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
@@ -21,7 +22,7 @@ namespace DiplomacyFixes.ViewModel
             this.Settlements = new MBBindingList<GrantFiefItemVM>();
             foreach (Town settlement in Clan.PlayerClan.Fortifications)
             {
-                _settlements.Add(new GrantFiefItemVM(settlement.Owner.Settlement, this.OnSelect));
+                _settlements.Add(new GrantFiefItemVM(settlement.Owner.Settlement, _targetHero, this.OnSelect));
             }
             this.SelectedSettlementItem = this.Settlements.FirstOrDefault();
             this.SelectedSettlementItem.IsSelected = true;
@@ -32,6 +33,8 @@ namespace DiplomacyFixes.ViewModel
             this.TypeText = GameTexts.FindText("str_sort_by_type_label", null).ToString();
             this.ProsperityText = GameTexts.FindText("str_prosperity_abbr", null).ToString();
             this.DefendersText = GameTexts.FindText("str_sort_by_defenders_label", null).ToString();
+            this.RelationText = new TextObject("{=bCOCjOQM}Relat.").ToString();
+            this.RelationHint = new HintViewModel(new TextObject("{=RxawrCjg}Relationship Gain with Grantee").ToString());
             this.RefreshValues();
         }
 
@@ -96,5 +99,11 @@ namespace DiplomacyFixes.ViewModel
 
         [DataSourceProperty]
         public string CancelText { get; }
+
+        [DataSourceProperty]
+        public string RelationText { get; }
+
+        [DataSourceProperty]
+        public HintViewModel RelationHint { get; }
     }
 }

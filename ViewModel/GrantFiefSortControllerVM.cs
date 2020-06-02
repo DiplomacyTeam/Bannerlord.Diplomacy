@@ -12,6 +12,7 @@ namespace DiplomacyFixes.ViewModel
             this._typeComparer = new GrantFiefSortControllerVM.ItemTypeComparer();
             this._prosperityComparer = new GrantFiefSortControllerVM.ItemProsperityComparer();
             this._defendersComparer = new GrantFiefSortControllerVM.ItemDefendersComparer();
+            this._relationComparer = new GrantFiefSortControllerVM.ItemRelationComparer();
             this._nameComparer = new GrantFiefSortControllerVM.ItemNameComparer();
         }
 
@@ -57,6 +58,20 @@ namespace DiplomacyFixes.ViewModel
             this.IsProsperitySelected = true;
         }
 
+        private void ExecuteSortByRelation()
+        {
+            int relationState = this.RelationState;
+            this.SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            this.RelationState = (relationState + 1) % 3;
+            if (this.RelationState == 0)
+            {
+                this.RelationState++;
+            }
+            this._relationComparer.SetSortMode(this.RelationState == 1);
+            this._listToControl.Sort(this._relationComparer);
+            this.IsRelationSelected = true;
+        }
+
         private void ExecuteSortByDefenders()
         {
             int defendersState = this.DefendersState;
@@ -78,10 +93,12 @@ namespace DiplomacyFixes.ViewModel
             this.NameState = (int)state;
             this.ProsperityState = (int)state;
             this.DefendersState = (int)state;
+            this.RelationState = (int)state;
             this.IsTypeSelected = false;
             this.IsNameSelected = false;
             this.IsProsperitySelected = false;
             this.IsDefendersSelected = false;
+            this.IsRelationSelected = false;
         }
 
         [DataSourceProperty]
@@ -131,6 +148,23 @@ namespace DiplomacyFixes.ViewModel
                 {
                     this._prosperityState = value;
                     base.OnPropertyChanged("ProsperityState");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public int RelationState
+        {
+            get
+            {
+                return this._relationState;
+            }
+            set
+            {
+                if (value != this._relationState)
+                {
+                    this._relationState = value;
+                    base.OnPropertyChanged("RelationState");
                 }
             }
         }
@@ -220,11 +254,30 @@ namespace DiplomacyFixes.ViewModel
             }
         }
 
+        [DataSourceProperty]
+        public bool IsRelationSelected
+        {
+            get
+            {
+                return this._isRelationSelected;
+            }
+            set
+            {
+                if (value != this._isRelationSelected)
+                {
+                    this._isRelationSelected = value;
+                    base.OnPropertyChanged("IsRelationSelected");
+                }
+            }
+        }
+
         private readonly MBBindingList<GrantFiefItemVM> _listToControl;
 
         private readonly GrantFiefSortControllerVM.ItemTypeComparer _typeComparer;
 
         private readonly GrantFiefSortControllerVM.ItemProsperityComparer _prosperityComparer;
+
+        private readonly GrantFiefSortControllerVM.ItemRelationComparer _relationComparer;
 
         private readonly GrantFiefSortControllerVM.ItemDefendersComparer _defendersComparer;
 
@@ -236,6 +289,8 @@ namespace DiplomacyFixes.ViewModel
 
         private int _prosperityState;
 
+        private int _relationState;
+
         private int _defendersState;
 
         private bool _isTypeSelected;
@@ -243,6 +298,8 @@ namespace DiplomacyFixes.ViewModel
         private bool _isNameSelected;
 
         private bool _isProsperitySelected;
+
+        private bool _isRelationSelected;
 
         private bool _isDefendersSelected;
 
@@ -310,6 +367,18 @@ namespace DiplomacyFixes.ViewModel
                     return y.Prosperity.CompareTo(x.Prosperity) * -1;
                 }
                 return y.Prosperity.CompareTo(x.Prosperity);
+            }
+        }
+
+        private class ItemRelationComparer : GrantFiefSortControllerVM.ItemComparerBase
+        {
+            public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
+            {
+                if (this._isAcending)
+                {
+                    return y.RelationBonus.CompareTo(x.RelationBonus) * -1;
+                }
+                return y.RelationBonus.CompareTo(x.RelationBonus);
             }
         }
 

@@ -22,7 +22,7 @@
 
   </Constants>
   <Window>
-    <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="470" SuggestedHeight="!Kingdom.Item.Tuple.Height" Brush="Kingdom.Item.Tuple" Command.Click="OnSelect" IsSelected="@IsSelected">
+    <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="550" SuggestedHeight="!Kingdom.Item.Tuple.Height" Brush="Kingdom.Item.Tuple" Command.Click="OnSelect" IsSelected="@IsSelected">
       <Children>
 
         <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent">
@@ -58,6 +58,13 @@
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Kingdom.Fiefs.Sort.5.Width" VerticalAlignment="Center" IsEnabled="false">
               <Children>
                 <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="ArmyManagement.Army.Tuple.Name" IntText="@Garrison" />
+              </Children>
+            </Widget>
+
+            <!--Settlement Relation Bonus For Granting -->
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Kingdom.Fiefs.Sort.4.Width" VerticalAlignment="Center" IsEnabled="false">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="ArmyManagement.Army.Tuple.Name" IntText="@RelationBonus" />
               </Children>
             </Widget>
 

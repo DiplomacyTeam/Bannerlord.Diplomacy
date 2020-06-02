@@ -81,6 +81,17 @@
                                   </Children>
                                 </SortButtonWidget>
 
+                                <SortButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Fiefs.Sort.4.Width" SuggestedHeight="!Kingdom.Fiefs.Sort.4.Height" Brush="Kingdom.Fiefs.Sort.4" Command.Click="ExecuteSortByRelation" IsSelected="@IsRelationSelected" SortState="@RelationState" SortVisualWidget="TextWidget\RelationSortVisualWidget" UpdateChildrenStates="true">
+                                  <Children>
+                                    <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@RelationText">
+                                      <Children>
+                                        <Widget Id="RelationSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="15" Brush="ArmyManagement.Sort.ArrowBrush" />
+                                      </Children>
+                                    </TextWidget>
+                                    <HintWidget DataSource="{..\RelationHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                                  </Children>
+                                </SortButtonWidget>
+
                                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Scroll.Header.Width" SuggestedHeight="!Kingdom.Scroll.Header.Height" HorizontalAlignment="Right" Brush="Scroll.Header" />
 
                               </Children>

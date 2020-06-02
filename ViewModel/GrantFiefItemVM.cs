@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiplomacyFixes.GrantFief;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
@@ -10,7 +11,7 @@ namespace DiplomacyFixes.ViewModel
         private bool _isSelected;
         private readonly Action<GrantFiefItemVM> _onSelect;
 
-        public GrantFiefItemVM(Settlement settlement, Action<GrantFiefItemVM> onSelect)
+        public GrantFiefItemVM(Settlement settlement, Hero targetHero, Action<GrantFiefItemVM> onSelect)
         {
             this.Settlement = settlement;
             this.Name = settlement.Name.ToString();
@@ -29,6 +30,7 @@ namespace DiplomacyFixes.ViewModel
             }
             this.Garrison = this.Settlement.Town.GarrisonParty?.Party.NumberOfAllMembers ?? 0;
             this._onSelect = onSelect;
+            this.RelationBonus = GrantFiefAction.PreviewRelationChange(this.Settlement, targetHero);
         }
 
         public void ExecuteLink()
@@ -72,5 +74,8 @@ namespace DiplomacyFixes.ViewModel
 
         [DataSourceProperty]
         public string SettlementImagePath { get; }
+
+        [DataSourceProperty]
+        public int RelationBonus { get; }
     }
 }
