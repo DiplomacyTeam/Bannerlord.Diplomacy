@@ -68,7 +68,7 @@ namespace DiplomacyFixes
 
         [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 3, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance can last. Default value is 10.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public int MinimumAllianceDuration { get; internal set; } = 10;
+        public int MinimumAllianceDuration { get; set; } = 10;
 
         [SettingPropertyInteger("{=qeDOmURl}Send Messenger Influence Cost", 0, 10000, RequireRestart = false, HintText = "{=Lkos6GQb}Influence cost for sending a messenger to another leader. Default value is 10.")]
         [SettingPropertyGroup(HeadingMessengers)]
