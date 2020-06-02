@@ -64,6 +64,7 @@
     <string id="wst0lArp" text="This alliance hasn't gone on long enough to consider breaking it! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
     
     <string id="KqfNSsBE" text="Allies" />
+    <string id="Dirltd6Z" text="Alliances are disabled." />
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
@@ -133,6 +134,7 @@
     <string id="HFtZsD6v" text="Scaling War Reparations Gold Cost Multiplier" />
     <string id="MIhbrqbr" text="Multiplier for the scaling of war reparations gold costs. Default value is 100." />
     
-    
+    <string id="2XC8QHkl" text="Enable Alliances" />
+    <string id="5YJBZx28" text="If disabled, this disables the ability to form alliances for both player and AI factions. Default value is enabled." />
   </strings>
 </base>

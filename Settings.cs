@@ -62,6 +62,10 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int DeclareWarCooldownInDays { get; set; } = 10;
 
+        [SettingPropertyBool("{=2XC8QHkl}Enable Alliances", RequireRestart = false, HintText = "{=5YJBZx28}If disabled, this disables the ability to form alliances for both player and AI factions. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public bool EnableAlliances { get; set; } = true;
+
         [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 3, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance can last. Default value is 10.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int MinimumAllianceDuration { get; internal set; } = 10;

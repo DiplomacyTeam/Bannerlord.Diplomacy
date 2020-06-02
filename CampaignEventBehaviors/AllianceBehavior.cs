@@ -73,29 +73,56 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void DailyTickClan(Clan clan)
         {
+            if (!Settings.Instance.EnableAlliances)
+            {
+                BreakAllAlliances(clan);
+                return;
+            }
+
             if (clan.Leader == clan.Kingdom?.Leader && clan.Leader != Hero.MainHero)
             {
                 Kingdom kingdom = clan.Kingdom;
-                List<Kingdom> alliedKingdoms = Kingdom.All.Where(otherKingdom => otherKingdom != kingdom).Where(otherKingdom => FactionManager.IsAlliedWithFaction(kingdom, otherKingdom)).ToList();
+                ConsiderBreakingAlliances(kingdom);
+                ConsiderFormingAlliances(kingdom);
+            }
+        }
 
-                foreach (Kingdom alliedKingdom in alliedKingdoms)
+        private static void ConsiderFormingAlliances(Kingdom kingdom)
+        {
+            List<Kingdom> potentialAllies = Kingdom.All.Where(otherKingdom => otherKingdom != kingdom).Where(otherKingdom => AllianceConditions.CanFormAlliance(kingdom, otherKingdom)).ToList();
+
+            foreach (Kingdom potentialAlly in potentialAllies)
+            {
+                if (MBRandom.RandomFloat < 0.05f && AllianceScoringModel.ShouldFormAlliance(kingdom, potentialAlly))
                 {
-                    if (MBRandom.RandomFloat < 0.05f && AllianceConditions.CanBreakAlliance(kingdom, alliedKingdom) && !AllianceScoringModel.ShouldFormAlliance(kingdom, alliedKingdom))
-                    {
-                        BreakAllianceAction.Apply(kingdom, alliedKingdom);
-                    }
-                }
-
-                List<Kingdom> potentialAllies = Kingdom.All.Where(otherKingdom => otherKingdom != kingdom).Where(otherKingdom => AllianceConditions.CanFormAlliance(kingdom, otherKingdom)).ToList();
-
-                foreach (Kingdom potentialAlly in potentialAllies)
-                {
-                    if (MBRandom.RandomFloat < 0.05f && AllianceScoringModel.ShouldFormAlliance(kingdom, potentialAlly))
-                    {
-                        DeclareAllianceAction.Apply(kingdom, potentialAlly);
-                    }
+                    DeclareAllianceAction.Apply(kingdom, potentialAlly);
                 }
             }
+        }
+
+        private static void ConsiderBreakingAlliances(Kingdom kingdom)
+        {
+            List<Kingdom> alliedKingdoms = Kingdom.All.Where(otherKingdom => otherKingdom != kingdom).Where(otherKingdom => FactionManager.IsAlliedWithFaction(kingdom, otherKingdom)).ToList();
+
+            foreach (Kingdom alliedKingdom in alliedKingdoms)
+            {
+                if (MBRandom.RandomFloat < 0.05f && AllianceConditions.CanBreakAlliance(kingdom, alliedKingdom) && !AllianceScoringModel.ShouldFormAlliance(kingdom, alliedKingdom))
+                {
+                    BreakAllianceAction.Apply(kingdom, alliedKingdom);
+                }
+            }
+        }
+
+        private static void BreakAllAlliances(Clan clan)
+        {
+            Kingdom kingdom = clan.Kingdom;
+            List<Kingdom> alliedKingdoms = Kingdom.All.Where(otherKingdom => otherKingdom != kingdom).Where(otherKingdom => FactionManager.IsAlliedWithFaction(kingdom, otherKingdom)).ToList();
+
+            foreach (Kingdom alliedKingdom in alliedKingdoms)
+            {
+                BreakAllianceAction.Apply(kingdom, alliedKingdom);
+            }
+            return;
         }
 
         public override void SyncData(IDataStore dataStore)

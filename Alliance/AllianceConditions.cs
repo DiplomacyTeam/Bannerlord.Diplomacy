@@ -11,6 +11,7 @@ namespace DiplomacyFixes.Alliance
     {
         private static List<IDiplomacyCondition> _declareAllianceConditions = new List<IDiplomacyCondition>
         {
+            new AlliancesEnabledCondition(),
             new AtPeaceCondition(),
             new TimeElapsedSinceLastWarCondition(),
             new NotAlreadyInAllianceCondition(),

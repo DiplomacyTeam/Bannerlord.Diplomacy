@@ -273,6 +273,7 @@
     <Compile Include="Alliance\AllianceFormedEvent.cs" />
     <Compile Include="Alliance\AllianceScoringModel.cs" />
     <Compile Include="Alliance\BreakAllianceAction.cs" />
+    <Compile Include="Alliance\Conditions\AlliancesEnabled.cs" />
     <Compile Include="Alliance\Conditions\AtPeaceCondition.cs" />
     <Compile Include="Alliance\Conditions\HasEnoughInfluenceCondition.cs" />
     <Compile Include="Alliance\Conditions\NotAlreadyInAllianceCondition.cs" />
