@@ -14,7 +14,8 @@ namespace DiplomacyFixes.WarPeace
             new SatisfiesQuestConditionsForPeaceCondition(),
             new HasEnoughGoldForPeaceCondition(),
             new HasEnoughInfluenceForPeaceCondition(),
-            new HasEnoughTimeElapsedForPeaceCondition()
+            new HasEnoughTimeElapsedForPeaceCondition(),
+            new NoPlayerSiegeCondition()
         };
 
         private static List<IDiplomacyCondition> _warConditions = new List<IDiplomacyCondition>

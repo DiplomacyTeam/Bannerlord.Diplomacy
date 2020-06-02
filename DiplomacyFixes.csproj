@@ -317,6 +317,7 @@
     <Compile Include="WarPeace\Conditions\HasEnoughTimeElapsedForPeaceCondition.cs" />
     <Compile Include="WarPeace\Conditions\HasEnoughGoldForPeaceCondition.cs" />
     <Compile Include="WarPeace\Conditions\HasEnoughInfluenceForPeaceCondition.cs" />
+    <Compile Include="WarPeace\Conditions\NoSiegeCondition.cs" />
     <Compile Include="WarPeace\Conditions\SatisfiesQuestConditionsForPeaceCondition.cs" />
     <Compile Include="IDiplomacyCondition.cs" />
     <Compile Include="WarPeace\WarAndPeaceConditions.cs" />
