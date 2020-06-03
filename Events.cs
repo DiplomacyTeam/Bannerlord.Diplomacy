@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.Alliance;
+using System;
 using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes
@@ -11,6 +12,10 @@ namespace DiplomacyFixes
         private readonly MbEvent<Kingdom> _peaceProposalSent = new MbEvent<Kingdom>();
         private readonly MbEvent<Town> _fiefGranted = new MbEvent<Town>();
         private readonly MbEvent<AllianceFormedEvent> _allianceFormed = new MbEvent<AllianceFormedEvent>();
+        private readonly MbEvent<Settlement> _playerSettlementTaken = new MbEvent<Settlement>();
+
+
+
 
         public static IMbEvent<AllianceFormedEvent> AllianceFormed
         {
@@ -44,6 +49,14 @@ namespace DiplomacyFixes
             }
         }
 
+        public static IMbEvent<Settlement> PlayerSettlementTaken
+        {
+            get
+            {
+                return Instance._playerSettlementTaken;
+            }
+        }
+
         internal void OnMessengerSent(Hero hero)
         {
             Instance._messengerSent.Invoke(hero);
@@ -62,6 +75,11 @@ namespace DiplomacyFixes
         internal void OnAllianceFormed(AllianceFormedEvent allianceFormedEvent)
         {
             Instance._allianceFormed.Invoke(allianceFormedEvent);
+        }
+
+        internal void OnPlayerSettlementTaken(Settlement currentSettlement)
+        {
+            Instance._playerSettlementTaken.Invoke(currentSettlement);
         }
 
     }
