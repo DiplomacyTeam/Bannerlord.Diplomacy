@@ -37,8 +37,8 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.0.0.10, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.0.0.10\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.0.1\lib\net472\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="MCMv3, Version=3.1.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bannerlord.MCM.Integrated.3.1.4\lib\net472\MCMv3.dll</HintPath>
@@ -292,6 +292,7 @@
     <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\Relationship.xml" />
     <Compile Include="Patches\GameMenusCallbacksPatch.cs" />
     <Compile Include="Patches\KingdomManagementVMPatch.cs" />
+    <Compile Include="Patches\UrbanCharactersCampaignBehaviorPatch.cs" />
     <Compile Include="ViewModel\DiplomacyFactionRelationshipVM.cs" />
     <Compile Include="ViewModel\EncyclopediaFactionPageVMExtensionVM.cs" />
     <Compile Include="ViewModel\GrantFiefItemVM.cs" />
