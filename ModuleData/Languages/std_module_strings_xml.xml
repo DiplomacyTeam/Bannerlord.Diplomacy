@@ -141,5 +141,13 @@
     
     <string id="2XC8QHkl" text="Enable Alliances" />
     <string id="5YJBZx28" text="If disabled, this disables the ability to form alliances for both player and AI factions. Default value is enabled." />
+    
+    
+    <string id="OfEMJWiR" text="Relation" />
+    <string id="6l9QNMrB" text="Grant Fief Postiive Relation Multiplier" />
+    <string id="FQaghHo7" text="Multiplier for the relation gain when granting fiefs. Default value is 1." />
+    <string id="9qKclHq3" text="Grant Fief Relation Penalty" />
+    <string id="fgc8Dvg0" text="The relation penalty assessed when granting a fief to another clan. Default value is -2."/>
+    
   </strings>
 </base>

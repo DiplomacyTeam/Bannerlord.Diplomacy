@@ -13,6 +13,7 @@ namespace DiplomacyFixes
         private const string HeadingMessengers = "{=nueOs6m9}Messengers";
         private const string HeadingInfluenceCosts = "{=SEViwYTl}Influence Costs";
         private const string HeadingWarExhaustion = "{=V542tneW}War Exhaustion";
+        private const string HeadingRelations = "{=OfEMJWiR}Relation";
 
         private const string HeadingGoldCosts = "{=Ckd1Lsoa}Gold Costs";
 
@@ -108,7 +109,15 @@ namespace DiplomacyFixes
 
         [SettingPropertyBool("{=jI9NSxtz}Enable Player War Exhaustion Debug Messages", Order = 100, RequireRestart = false, HintText = "{=LYyNbQds}Enables debug messages for war exhaustion added to the player kingdom. Default value is false.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
-        public bool EnableWarExhaustionDebugMessages { get; internal set; } = false;
+        public bool EnableWarExhaustionDebugMessages { get; set; } = false;
 
+
+        [SettingPropertyFloatingInteger("{=6l9QNMrB}Grant Fief Positive Relation Multiplier", 0f, 3f, RequireRestart = false, HintText = "{=FQaghHo7}Multiplier for the relation gain when granting fiefs. Default value is 1.")]
+        [SettingPropertyGroup(HeadingRelations)]
+        public float GrantFiefPositiveRelationMultiplier { get; set; } = 1.0f;
+
+        [SettingPropertyInteger("{=9qKclHq3}Grant Fief Relation Penalty", -50, 0, RequireRestart = false, HintText = "{=fgc8Dvg0}The relation penalty assessed when granting a fief to another clan. Default value is -2.")]
+        [SettingPropertyGroup(HeadingRelations)]
+        public int GrantFiefRelationPenalty { get; set; } = -2;
     }
 }

@@ -64,7 +64,7 @@
             <!--Settlement Relation Bonus For Granting -->
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Kingdom.Fiefs.Sort.4.Width" VerticalAlignment="Center" IsEnabled="false">
               <Children>
-                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="ArmyManagement.Army.Tuple.Name" IntText="@RelationBonus" />
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="ArmyManagement.Army.Tuple.Name" Text="@RelationBonus" />
               </Children>
             </Widget>
 

@@ -1,29 +1,35 @@
 ﻿using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.GrantFief
 {
     class GrantFiefAction
     {
-        public static void Apply(Settlement settlement, Clan clan)
+        public static void Apply(Settlement settlement, Clan grantedClan)
         {
-            ChangeOwnerOfSettlementAction.ApplyByDefault(clan.Leader, settlement);
+            ChangeOwnerOfSettlementAction.ApplyByDefault(grantedClan.Leader, settlement);
 
             int relationChange = CalculateBaseRelationChange(settlement);
-            ChangeRelationAction.ApplyPlayerRelation(clan.Leader, relationChange);
+            ChangeRelationAction.ApplyPlayerRelation(grantedClan.Leader, relationChange);
+
+            foreach (Clan clan in Clan.PlayerClan.Kingdom.Clans.Where(clan => clan != grantedClan && clan != Clan.PlayerClan))
+            {
+                ChangeRelationAction.ApplyPlayerRelation(clan.Leader, Settings.Instance.GrantFiefRelationPenalty);
+            }
 
             Events.Instance.OnFiefGranted(settlement.Town);
         }
 
         private static int CalculateBaseRelationChange(Settlement settlement)
         {
-            return (int)Math.Round(Math.Max(5, Math.Log(settlement.Prosperity / 1000, 1.1f)));
+            int baseRelationChange = (int)Math.Round(Math.Max(5, Math.Log(settlement.Prosperity / 1000, 1.1f)));
+            return (int) (baseRelationChange * Settings.Instance.GrantFiefPositiveRelationMultiplier);
         }
 
-        public static int PreviewRelationChange(Settlement settlement, Hero hero)
+        public static int PreviewPositiveRelationChange(Settlement settlement, Hero hero)
         {
             int relationChange = CalculateBaseRelationChange(settlement);
             ExplainedNumber explainedNumber = new ExplainedNumber((float)relationChange, new StatExplainer(), null);

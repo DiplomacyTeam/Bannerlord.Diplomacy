@@ -30,7 +30,7 @@ namespace DiplomacyFixes.ViewModel
             }
             this.Garrison = this.Settlement.Town.GarrisonParty?.Party.NumberOfAllMembers ?? 0;
             this._onSelect = onSelect;
-            this.RelationBonus = GrantFiefAction.PreviewRelationChange(this.Settlement, targetHero);
+            this.RelationBonus = String.Concat(new string[] { GrantFiefAction.PreviewPositiveRelationChange(this.Settlement, targetHero).ToString(), "+" });
         }
 
         public void ExecuteLink()
@@ -76,6 +76,6 @@ namespace DiplomacyFixes.ViewModel
         public string SettlementImagePath { get; }
 
         [DataSourceProperty]
-        public int RelationBonus { get; }
+        public string RelationBonus { get; }
     }
 }
