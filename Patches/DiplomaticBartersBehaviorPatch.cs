@@ -9,9 +9,9 @@ namespace DiplomacyFixes.Patches
     {
         [HarmonyPrefix]
         [HarmonyPatch("ConsiderWar")]
-        public static bool ConsiderWarPatch(IFaction mapFaction, IFaction otherMapFaction)
+        public static bool ConsiderWarPatch(Clan clan, IFaction otherMapFaction)
         {
-            return !CooldownManager.HasDeclareWarCooldown(mapFaction, otherMapFaction, out _);
+            return !CooldownManager.HasDeclareWarCooldown(clan, otherMapFaction, out _);
         }
     }
 }

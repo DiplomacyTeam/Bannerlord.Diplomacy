@@ -2,8 +2,10 @@
 using DiplomacyFixes.Messengers;
 using DiplomacyFixes.WarPeace;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
@@ -14,14 +16,13 @@ namespace DiplomacyFixes.ViewModel
 {
     public class KingdomTruceItemVMExtensionVM : KingdomTruceItemVM
     {
-        // private static string INFLUENCE_COST = "Influence Cost: {0}";
 
         public KingdomTruceItemVMExtensionVM(IFaction faction1, IFaction faction2, Action<KingdomDiplomacyItemVM> onSelection, Action<KingdomTruceItemVM> onAction) : base(faction1, faction2, onSelection, onAction)
         {
             this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
             this.AllianceActionName = new TextObject("{=0WPWbx70}Form Alliance").ToString();
             this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(Faction1 as Kingdom);
-
+            this.ActionName = GameTexts.FindText("str_kingdom_declate_war_action", null).ToString();
             UpdateDiplomacyProperties();
         }
 
@@ -49,30 +50,9 @@ namespace DiplomacyFixes.ViewModel
             this.Faction2Wars.Clear();
             this.Faction2Allies.Clear();
 
-            foreach (CampaignWar campaignWar in from w in FactionManager.Instance.CampaignWars
-                                                orderby w.Side1[0].Name.ToString()
-                                                select w)
-            {
-                if (campaignWar.Side1[0] is Kingdom && campaignWar.Side2[0] is Kingdom && !campaignWar.Side1[0].IsMinorFaction && !campaignWar.Side2[0].IsMinorFaction)
-                {
 
-                    bool isFaction1War = (campaignWar.Side1[0] == Faction1 || campaignWar.Side2[0] == Faction1);
-                    bool isFaction2War = (campaignWar.Side1[0] == Faction2 || campaignWar.Side2[0] == Faction2);
-                    if (isFaction1War && isFaction2War)
-                    {
-                        continue;
-                    }
-
-                    if (isFaction1War)
-                    {
-                        Faction1Wars.Add(new DiplomacyFactionRelationshipVM(campaignWar.Side1[0] == Faction1 ? campaignWar.Side2[0] : campaignWar.Side1[0]));
-                    }
-                    if (isFaction2War)
-                    {
-                        Faction2Wars.Add(new DiplomacyFactionRelationshipVM(campaignWar.Side1[0] == Faction2 ? campaignWar.Side2[0] : campaignWar.Side1[0]));
-                    }
-                }
-            }
+            AddWarRelationships(Faction1.Stances);
+            AddWarRelationships(Faction2.Stances);
 
             foreach (Kingdom kingdom in Kingdom.All)
             {
@@ -96,9 +76,45 @@ namespace DiplomacyFixes.ViewModel
                 this.Stats.Insert(1, new KingdomWarComparableStatVM(
                     (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)this.Faction1, (Kingdom)this.Faction2)),
                     (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)this.Faction2, (Kingdom)this.Faction1)),
-                    new TextObject("{=XmVTQ0bH}War Exhaustion"), this._faction1Color, this._faction2Color, null));
+                    new TextObject("{=XmVTQ0bH}War Exhaustion"), this._faction1Color, this._faction2Color, 100, null));
             }
+        }
 
+        private void AddWarRelationships(IEnumerable<StanceLink> stances)
+        {
+            foreach (StanceLink stanceLink in from x in stances
+                                              where x.IsAtWar
+                                              select x into w
+                                              orderby w.Faction1.Name.ToString() + w.Faction2.Name.ToString()
+                                              select w)
+            {
+                if (stanceLink.Faction1 is Kingdom && stanceLink.Faction2 is Kingdom && !stanceLink.Faction1.IsMinorFaction && !stanceLink.Faction2.IsMinorFaction)
+                {
+
+                    bool isFaction1War = stanceLink.Faction1 == Faction1 || stanceLink.Faction2 == Faction1;
+                    bool isFaction2War = stanceLink.Faction1 == Faction2 || stanceLink.Faction2 == Faction2;
+                    if (isFaction1War && isFaction2War)
+                    {
+                        continue;
+                    }
+
+                    if (isFaction1War)
+                    {
+                        Faction1Wars.Add(new DiplomacyFactionRelationshipVM(stanceLink.Faction1 == Faction1 ? stanceLink.Faction2 : stanceLink.Faction1));
+                    }
+                    if (isFaction2War)
+                    {
+                        Faction2Wars.Add(new DiplomacyFactionRelationshipVM(stanceLink.Faction1 == Faction2 ? stanceLink.Faction2 : stanceLink.Faction1));
+                    }
+                }
+            }
+        }
+
+        private void ExecuteExecutiveAction()
+        {
+            float influenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(Faction1 as Kingdom);
+            DiplomacyCostManager.deductInfluenceFromPlayerClan(influenceCost);
+            DeclareWarAction.Apply(Faction1, Faction2);
         }
 
         protected virtual void UpdateActionAvailability()
@@ -111,12 +127,6 @@ namespace DiplomacyFixes.ViewModel
             this.ActionHint = declareWarException != null ? new HintViewModel(declareWarException) : new HintViewModel();
             this.AllianceHint = allianceException != null ? new HintViewModel(allianceException) : new HintViewModel();
             this.AllianceInfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForFormingAlliance(Faction1 as Kingdom, Faction2 as Kingdom, true);
-        }
-
-        protected override void OnSelect()
-        {
-            base.OnSelect();
-            UpdateActionAvailability();
         }
 
         protected void SendMessenger()
@@ -163,6 +173,9 @@ namespace DiplomacyFixes.ViewModel
                 }
             }
         }
+
+        [DataSourceProperty]
+        public string ActionName { get; protected set; }
 
         [DataSourceProperty]
         public int SendMessengerInfluenceCost { get; } = (int)DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();

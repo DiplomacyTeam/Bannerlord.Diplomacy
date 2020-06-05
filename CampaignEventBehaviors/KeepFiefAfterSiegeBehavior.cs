@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using System.Reflection;
-using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
@@ -17,19 +14,13 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void KeepFief(Settlement settlement)
         {
-            SettlementClaimantDecision settlementClaimantDecision =
-                Campaign.Current.KingdomDecisions.OfType<SettlementClaimantDecision>()?.Where(decision => decision.Settlement == settlement).FirstOrDefault();
-            if (settlementClaimantDecision != null)
-            {
-                Hero capturerHero = (Hero)typeof(SettlementClaimantDecision).GetField("_capturerHero", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(settlementClaimantDecision);
-                if (capturerHero.IsHumanPlayerCharacter)
+                if (settlement.Town.IsOwnerUnassigned && (settlement.LastAttackerParty?.LeaderHero?.IsHumanPlayerCharacter ?? false))
                 {
-                    ShowKeepFiefInquiry(settlement, settlementClaimantDecision);
+                    ShowKeepFiefInquiry(settlement);
                 }
-            }
         }
 
-        private void ShowKeepFiefInquiry(Settlement settlement, SettlementClaimantDecision settlementClaimantDecision)
+        private void ShowKeepFiefInquiry(Settlement settlement)
         {
             InformationManager.ShowInquiry(
                 new InquiryData(
@@ -40,10 +31,13 @@ namespace DiplomacyFixes.CampaignEventBehaviors
                     new TextObject("{=cOgmdp9e}Decline").ToString(),
                     () =>
                         {
+                            settlement.Town.IsOwnerUnassigned = false;
                             ChangeOwnerOfSettlementAction.ApplyByDefault(Hero.MainHero, settlement);
-                            Campaign.Current.RemoveDecision(settlementClaimantDecision);
                         },
-                    null,
+                    () =>
+                        {
+                            settlement.Town.IsOwnerUnassigned = true;
+                        },
                     ""),
                 true);
         }

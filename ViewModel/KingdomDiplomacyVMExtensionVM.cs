@@ -12,45 +12,41 @@ namespace DiplomacyFixes.ViewModel
 {
     class KingdomDiplomacyVMExtensionVM : KingdomDiplomacyVM
     {
-        private MBBindingList<KingdomTruceItemVM> _playerAlliances;
-        private Kingdom _playerKingdom;
-        private MethodInfo _onSelectionMethodInfo;
-        private string _numOfPlayerAlliancesText;
+		private MBBindingList<KingdomTruceItemVM> _playerAlliances;
+		private Kingdom _playerKingdom;
+		private MethodInfo _onSelectionMethodInfo;
+		private string _numOfPlayerAlliancesText;
 
-        public KingdomDiplomacyVMExtensionVM(Action<KingdomDecision> forceDecision) : base(forceDecision)
-        {
-            this._playerKingdom = (Hero.MainHero.MapFaction as Kingdom);
-            this._onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
-            this.PlayerAlliancesText = new TextObject("Alliances").ToString();
-            Events.AllianceFormed.AddNonSerializedListener(this, this.AllianceFormed);
-            this.RefreshAlliances();
-        }
+		public KingdomDiplomacyVMExtensionVM(Action<KingdomDecision> forceDecision) : base(forceDecision) {
+			this._playerKingdom = (Hero.MainHero.MapFaction as Kingdom);
+			this._onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
+			this.PlayerAlliancesText = new TextObject("Alliances").ToString();
+			Events.AllianceFormed.AddNonSerializedListener(this, (x) => RefreshValues());
+			CampaignEvents.WarDeclared.AddNonSerializedListener(this, (x,y) => RefreshValues());
+			CampaignEvents.MakePeace.AddNonSerializedListener(this, (x,y) => RefreshValues());
+			this.RefreshAlliances();
+		}
 
-        private void AllianceFormed(AllianceFormedEvent allianceFormedEvent)
-        {
-            this.RefreshValues();
-        }
+		public override void RefreshValues()
+		{
+			base.RefreshValues();
+			RefreshAlliances();
+		}
 
-        public override void RefreshValues()
-        {
-            base.RefreshValues();
-            RefreshAlliances();
-        }
+		private void RefreshAlliances()
+		{
+			if (this.PlayerAlliances == null)
+			{
+				this.PlayerAlliances = new MBBindingList<KingdomTruceItemVM>();
+			}
 
-        private void RefreshAlliances()
-        {
-            if (this.PlayerAlliances == null)
-            {
-                this.PlayerAlliances = new MBBindingList<KingdomTruceItemVM>();
-            }
+			this.PlayerAlliances.Clear();
 
-            this.PlayerAlliances.Clear();
-
-            foreach (Kingdom kingdom in Kingdom.All)
-            {
-                if (kingdom != this._playerKingdom && !kingdom.IsDeactivated && (FactionManager.IsAlliedWithFaction(kingdom, this._playerKingdom)))
-                {
-                    this.PlayerAlliances.Add(new KingdomAllianceItemVM(this._playerKingdom, kingdom, this.OnDiplomacyItemSelection, this.BreakAlliance));
+			foreach (Kingdom kingdom in Kingdom.All)
+			{
+				if (kingdom != this._playerKingdom && !kingdom.IsEliminated && (FactionManager.IsAlliedWithFaction(kingdom, this._playerKingdom)))
+				{
+					this.PlayerAlliances.Add(new KingdomAllianceItemVM(this._playerKingdom, kingdom, this.OnDiplomacyItemSelection, this.BreakAlliance));
                 }
             }
 

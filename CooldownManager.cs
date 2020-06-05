@@ -113,15 +113,12 @@ namespace DiplomacyFixes
         public static bool HasExceededMinimumWarDuration(IFaction faction1, IFaction faction2, out float elapsedTime)
         {
             elapsedTime = -1f;
-            IEnumerable<CampaignWar> campaignWars = FactionManager.Instance.FindCampaignWarsBetweenFactions(faction1, faction2);
-            if (campaignWars != null && campaignWars.Any())
+            StanceLink stanceLink = faction1.GetStanceWith(faction2);
+            if (stanceLink?.IsAtWar ?? false)
             {
-                foreach (CampaignWar war in campaignWars)
-                {
-                    elapsedTime = war.StartDate.ElapsedDaysUntilNow;
-                    int minimumWarDurationInDays = Settings.Instance.MinimumWarDurationInDays;
-                    return elapsedTime >= minimumWarDurationInDays;
-                }
+                elapsedTime = stanceLink.WarStartDate.ElapsedDaysUntilNow;
+                int minimumWarDurationInDays = Settings.Instance.MinimumWarDurationInDays;
+                return elapsedTime >= minimumWarDurationInDays;
             }
             return true;
         }

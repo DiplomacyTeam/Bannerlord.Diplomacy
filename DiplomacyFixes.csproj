@@ -289,6 +289,7 @@
     <Compile Include="Extensions\BaseKingdomInfoExtension.cs" />
     <Compile Include="GauntletInterfaces\GrantFiefInterface.cs" />
     <Compile Include="GrantFief\GrantFiefAction.cs" />
+    <Compile Include="Patches\KingdomDecisionProposalBehaviorPatch.cs" />
     <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\Relationship.xml" />
     <Compile Include="Patches\GameMenusCallbacksPatch.cs" />
     <Compile Include="Patches\KingdomManagementVMPatch.cs" />
@@ -305,7 +306,6 @@
     <Compile Include="KingdomPeaceAction.cs" />
     <Compile Include="Patches\DiplomaticBartersBehaviorPatch.cs" />
     <Compile Include="Patches\EncyclopediaDataPatch.cs" />
-    <Compile Include="Patches\PoliticalStagnationAndBorderIncidentCampaignBehaviorPatch.cs" />
     <Compile Include="PlayerHelpers.cs" />
     <Compile Include="ViewModel\EncyclopediaHeroPageVMExtensionVM.cs" />
     <Compile Include="ViewModel\KingdomAllianceItemVM.cs" />
@@ -354,8 +354,8 @@
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(TargetDir)\0Harmony.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
-    <Copy SourceFiles="$(TargetDir)\MCMv3.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
-    <Copy SourceFiles="$(TargetDir)\MCMv3.Implementation.v3.1.4.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
+	<Copy SourceFiles="$(TargetDir)\MCMv3.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
+	<Copy SourceFiles="$(TargetDir)\MCMv3.Implementation.v3.1.4.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(TargetDir)\MCMv3.UI.v3.1.4.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(ProjectDir)\SubModule.xml" DestinationFolder="$(MOD_FOLDER)" />
     <Copy SourceFiles="@(GUI)" DestinationFolder="$(MOD_FOLDER)\GUI\%(RecursiveDir)" />

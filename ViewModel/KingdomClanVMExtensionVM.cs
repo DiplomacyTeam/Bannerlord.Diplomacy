@@ -26,7 +26,6 @@ namespace DiplomacyFixes.ViewModel
             this._executeExpel = () => typeof(KingdomClanVM).GetMethod("ExecuteExpelCurrentClan", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(this, new object[] { });
             this._executeSupport = () => typeof(KingdomClanVM).GetMethod("ExecuteSupport", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(this, new object[] { });
 
-
             Events.FiefGranted.AddNonSerializedListener(this, this.RefreshCanGrantFief);
             this._grantFiefInterface = new GrantFiefInterface();
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();

@@ -184,20 +184,10 @@ namespace DiplomacyFixes
         private void UpdateDailyWarExhaustion(Tuple<Kingdom, Kingdom> kingdoms)
         {
 
-            if (FactionManager.IsAtWarAgainstFaction(kingdoms.Item1, kingdoms.Item2))
+            StanceLink stanceLink = kingdoms.Item1.GetStanceWith(kingdoms.Item2);
+            if (stanceLink?.IsAtWar ?? false && (float)Math.Round(stanceLink.WarStartDate.ElapsedDaysUntilNow) >= 1.0f)
             {
-                IEnumerable<CampaignWar> campaignWars = Campaign.Current.FactionManager.FindCampaignWarsBetweenFactions(kingdoms.Item1, kingdoms.Item2);
-                CampaignWar campaignWar = null;
-                if (campaignWars?.Any() == true)
-                {
-                    campaignWar = (from war in campaignWars
-                                   orderby war.StartDate
-                                   select war).FirstOrDefault();
-                }
-                if (campaignWar == null || (float)Math.Round(campaignWar.StartDate.ElapsedDaysUntilNow) >= 1.0f)
-                {
-                    AddDailyWarExhaustion(kingdoms);
-                }
+                AddDailyWarExhaustion(kingdoms);
             }
             else
             {

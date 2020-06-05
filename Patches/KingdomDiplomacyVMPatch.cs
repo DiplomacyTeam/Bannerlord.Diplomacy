@@ -14,40 +14,6 @@ namespace DiplomacyFixes.Patches
     [HarmonyPatch(typeof(KingdomDiplomacyVM))]
     class KingdomDiplomacyVMPatch
     {
-        [HarmonyPrefix]
-        [HarmonyPatch("OnDeclareWar")]
-        public static bool OnDeclareWarPatch(KingdomTruceItemVM item, KingdomDiplomacyVM __instance)
-        {
-            float influenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(item.Faction1 as Kingdom);
-            DiplomacyCostManager.deductInfluenceFromPlayerClan(influenceCost);
-            DeclareWarAction.Apply(item.Faction1, item.Faction2);
-            try
-            {
-                __instance.RefreshValues();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "");
-            }
-            return false;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch("OnDeclarePeace")]
-        public static bool OnDeclarePeacePatch(KingdomWarItemVM item, KingdomDiplomacyVM __instance)
-        {
-            KingdomPeaceAction.ApplyPeace(item.Faction1 as Kingdom, item.Faction2 as Kingdom, forcePlayerCharacterCosts: true);
-            try
-            {
-                __instance.RefreshValues();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "");
-            }
-            return false;
-        }
-
         [HarmonyPostfix]
         [HarmonyPatch("RefreshDiplomacyList")]
         public static void RefreshDiplomacyListPatch(KingdomDiplomacyVM __instance)
@@ -65,18 +31,20 @@ namespace DiplomacyFixes.Patches
 
             Kingdom playerKingdom = Clan.PlayerClan.Kingdom;
 
-            foreach (CampaignWar campaignWar in from w in FactionManager.Instance.CampaignWars
-                                                orderby w.Side1[0].Name.ToString()
-                                                select w)
+            foreach (StanceLink stanceLink in from x in playerKingdom.Stances
+                                              where x.IsAtWar
+                                              select x into w
+                                              orderby w.Faction1.Name.ToString() + w.Faction2.Name.ToString()
+                                              select w)
             {
-                if (campaignWar.Side1[0] is Kingdom && campaignWar.Side2[0] is Kingdom && !campaignWar.Side1[0].IsMinorFaction && !campaignWar.Side2[0].IsMinorFaction && (campaignWar.Side1[0] == playerKingdom || campaignWar.Side2[0] == playerKingdom))
+                if (stanceLink.Faction1 is Kingdom && stanceLink.Faction2 is Kingdom && !stanceLink.Faction1.IsMinorFaction && !stanceLink.Faction2.IsMinorFaction)
                 {
-                    playerWars.Add(new KingdomWarItemVMExtensionVM(campaignWar, onItemSelectedAction, onProposePeaceAction));
+                    playerWars.Add(new KingdomWarItemVMExtensionVM(stanceLink, onItemSelectedAction, onProposePeaceAction));
                 }
             }
             foreach (Kingdom kingdom in Kingdom.All)
             {
-                if (kingdom != playerKingdom && !kingdom.IsDeactivated && FactionManager.IsNeutralWithFaction(kingdom, playerKingdom))
+                if (kingdom != playerKingdom && !kingdom.IsEliminated && FactionManager.IsNeutralWithFaction(kingdom, playerKingdom))
                 {
                     playerTruces.Add(new KingdomTruceItemVMExtensionVM(playerKingdom, kingdom, onItemSelectedAction, onDeclareWarAction));
                 }
