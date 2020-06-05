@@ -21,9 +21,15 @@ namespace DiplomacyFixes.ViewModel
 			this._playerKingdom = (Hero.MainHero.MapFaction as Kingdom);
 			this._onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
 			this.PlayerAlliancesText = new TextObject("Alliances").ToString();
-			Events.AllianceFormed.AddNonSerializedListener(this, (x) => RefreshValues());
-			CampaignEvents.WarDeclared.AddNonSerializedListener(this, (x,y) => RefreshValues());
-			CampaignEvents.MakePeace.AddNonSerializedListener(this, (x,y) => RefreshValues());
+            Events.AllianceFormed.AddNonSerializedListener(this, (x) => RefreshValues());
+            CampaignEvents.WarDeclared.AddNonSerializedListener(this, (x, y) =>
+            {
+                if (Hero.MainHero.MapFaction is Kingdom)
+                {
+                    RefreshValues();
+                }
+            });
+            CampaignEvents.MakePeace.AddNonSerializedListener(this, (x,y) => RefreshValues());
 			this.RefreshAlliances();
 		}
 
