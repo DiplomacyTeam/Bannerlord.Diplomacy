@@ -10,6 +10,13 @@ namespace DiplomacyFixes.WarPeace.Conditions
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
             textObject = null;
+
+            // Currently this cost is not assessed on AI leaders, but only through the Kingdom Diplomacy screen.
+            if (!forcePlayerCharacterCosts)
+            {
+                return true;
+            }
+
             Hero heroPayingCosts = forcePlayerCharacterCosts ? Hero.MainHero : kingdom.Leader;
             bool hasEnoughInfluence = heroPayingCosts.Clan.Influence >= DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(kingdom);
             if (!hasEnoughInfluence)
