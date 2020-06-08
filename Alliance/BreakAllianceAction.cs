@@ -35,6 +35,7 @@ namespace DiplomacyFixes.Alliance
         private static void ApplyInternal(Kingdom kingdom, Kingdom otherKingdom)
         {
             FactionManager.SetNeutral(kingdom, otherKingdom);
+            Events.Instance.OnAllianceBroken(new AllianceEvent(kingdom, otherKingdom));
         }
     }
 }

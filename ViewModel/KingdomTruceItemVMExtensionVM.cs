@@ -110,7 +110,7 @@ namespace DiplomacyFixes.ViewModel
             }
         }
 
-        private void ExecuteExecutiveAction()
+        protected virtual void ExecuteExecutiveAction()
         {
             float influenceCost = DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(Faction1 as Kingdom);
             DiplomacyCostManager.deductInfluenceFromPlayerClan(influenceCost);

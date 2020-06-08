@@ -17,7 +17,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             Events.AllianceFormed.AddNonSerializedListener(this, this.AllianceFormed);
         }
 
-        private void AllianceFormed(AllianceFormedEvent allianceFormedEvent)
+        private void AllianceFormed(AllianceEvent allianceFormedEvent)
         {
             TextObject textObject = new TextObject("{=PdN5g5ub}{KINGDOM} has formed an alliance with {OTHER_KINGDOM}!");
             textObject.SetTextVariable("KINGDOM", allianceFormedEvent.Kingdom.Name);

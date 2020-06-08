@@ -44,7 +44,7 @@ namespace DiplomacyFixes.Alliance
             {
                 DiplomacyCostManager.DeductInfluenceFromKingdom(kingdom, influenceCost);
             }
-            Events.Instance.OnAllianceFormed(new AllianceFormedEvent(kingdom, otherKingdom));
+            Events.Instance.OnAllianceFormed(new AllianceEvent(kingdom, otherKingdom));
         }
     }
 }

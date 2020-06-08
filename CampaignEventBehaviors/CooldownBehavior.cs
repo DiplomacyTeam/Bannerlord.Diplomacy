@@ -19,7 +19,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             Events.AllianceFormed.AddNonSerializedListener(this, RegisterAllianceFormedCooldown);
         }
 
-        private void RegisterAllianceFormedCooldown(AllianceFormedEvent allianceFormedEvent)
+        private void RegisterAllianceFormedCooldown(AllianceEvent allianceFormedEvent)
         {
             _cooldownManager.UpdateLastAllianceFormedTime(allianceFormedEvent.Kingdom, allianceFormedEvent.OtherKingdom, CampaignTime.Now);
         }

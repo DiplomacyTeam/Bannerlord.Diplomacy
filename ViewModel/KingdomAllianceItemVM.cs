@@ -27,5 +27,10 @@ namespace DiplomacyFixes.ViewModel
             this.ActionHint = breakAllianceException != null ? new HintViewModel(breakAllianceException) : new HintViewModel();
             this.IsOptionAvailable = breakAllianceException == null;
         }
+
+        protected override void ExecuteExecutiveAction()
+        {
+            BreakAllianceAction.Apply(Faction1 as Kingdom, Faction2 as Kingdom);
+        }
     }
 }

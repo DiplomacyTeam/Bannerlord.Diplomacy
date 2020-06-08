@@ -273,7 +273,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alliance\AllianceConditions.cs" />
-    <Compile Include="Alliance\AllianceFormedEvent.cs" />
+    <Compile Include="Alliance\AllianceEvent.cs" />
     <Compile Include="Alliance\AllianceScoringModel.cs" />
     <Compile Include="Alliance\BreakAllianceAction.cs" />
     <Compile Include="Alliance\Conditions\AlliancesEnabled.cs" />
@@ -360,7 +360,7 @@
     <Copy SourceFiles="$(TargetDir)\MCMv3.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(TargetDir)\MCMv3.Implementation.v3.1.5.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(TargetDir)\MCMv3.UI.v3.1.5.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
-	<Copy SourceFiles="$(TargetDir)\Bannerlord.UIExtenderEx.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
+    <Copy SourceFiles="$(TargetDir)\Bannerlord.UIExtenderEx.dll" DestinationFolder="$(MOD_FOLDER)\bin\Win64_Shipping_Client\" />
     <Copy SourceFiles="$(ProjectDir)\SubModule.xml" DestinationFolder="$(MOD_FOLDER)" />
     <Copy SourceFiles="@(GUI)" DestinationFolder="$(MOD_FOLDER)\GUI\%(RecursiveDir)" />
     <Copy SourceFiles="@(ModuleData)" DestinationFolder="$(MOD_FOLDER)\ModuleData\%(RecursiveDir)" />

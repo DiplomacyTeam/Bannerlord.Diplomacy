@@ -15,13 +15,16 @@ namespace DiplomacyFixes.ViewModel
 		private MBBindingList<KingdomTruceItemVM> _playerAlliances;
 		private Kingdom _playerKingdom;
 		private MethodInfo _onSelectionMethodInfo;
-		private string _numOfPlayerAlliancesText;
+        private MethodInfo _executeActionMethodInfo;
+        private string _numOfPlayerAlliancesText;
 
 		public KingdomDiplomacyVMExtensionVM(Action<KingdomDecision> forceDecision) : base(forceDecision) {
 			this._playerKingdom = (Hero.MainHero.MapFaction as Kingdom);
 			this._onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
-			this.PlayerAlliancesText = new TextObject("Alliances").ToString();
+            this._executeActionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("ExecuteAction", BindingFlags.Instance | BindingFlags.NonPublic);
+            this.PlayerAlliancesText = new TextObject("Alliances").ToString();
             Events.AllianceFormed.AddNonSerializedListener(this, (x) => RefreshValues());
+            Events.AllianceBroken.AddNonSerializedListener(this, (x) => RefreshValues());
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, (x, y) =>
             {
                 if (Hero.MainHero.MapFaction is Kingdom)
@@ -71,6 +74,11 @@ namespace DiplomacyFixes.ViewModel
         private void OnDiplomacyItemSelection(KingdomDiplomacyItemVM item)
         {
             this._onSelectionMethodInfo.Invoke(this as KingdomDiplomacyVM, new object[] { item });
+        }
+
+        private void ExecuteAction()
+        {
+            this._executeActionMethodInfo.Invoke(this as KingdomDiplomacyVM, new object[] { });
         }
 
         [DataSourceProperty]

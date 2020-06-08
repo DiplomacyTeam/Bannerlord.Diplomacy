@@ -2,9 +2,9 @@
 
 namespace DiplomacyFixes.Alliance
 {
-    class AllianceFormedEvent
+    class AllianceEvent
     {
-        public AllianceFormedEvent(Kingdom kingdom, Kingdom otherKingdom)
+        public AllianceEvent(Kingdom kingdom, Kingdom otherKingdom)
         {
             this.Kingdom = kingdom;
             this.OtherKingdom = otherKingdom;
