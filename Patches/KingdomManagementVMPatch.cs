@@ -34,5 +34,13 @@ namespace DiplomacyFixes.Patches
                 setCurrentCategoryMethodInfo.Invoke(__instance, new object[] { __instance.Diplomacy });
             }
         }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("ExecuteClose")]
+        public static void ExecuteClosePatch(KingdomManagementVM __instance)
+        {
+            ((KingdomDiplomacyVMExtensionVM) __instance.Diplomacy).OnClose();
+            ((KingdomClanVMExtensionVM)__instance.Clan).OnClose();
+        }
     }
 }

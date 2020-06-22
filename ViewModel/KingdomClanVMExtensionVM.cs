@@ -34,6 +34,11 @@ namespace DiplomacyFixes.ViewModel
             RefreshCanGrantFief();
         }
 
+        public void OnClose()
+        {
+            Events.RemoveListeners(this);
+        }
+
         private void ExecuteExpelCurrentClan()
         {
             this._executeExpel();

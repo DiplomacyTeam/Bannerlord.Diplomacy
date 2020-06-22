@@ -36,7 +36,13 @@ namespace DiplomacyFixes.ViewModel
 			this.RefreshAlliances();
 		}
 
-		public override void RefreshValues()
+        public void OnClose()
+        {
+            Events.RemoveListeners(this);
+            CampaignEvents.RemoveListeners(this);
+        }
+
+        public override void RefreshValues()
 		{
 			base.RefreshValues();
 			RefreshAlliances();

@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.Alliance;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes
@@ -13,6 +14,20 @@ namespace DiplomacyFixes
         private readonly MbEvent<AllianceEvent> _allianceFormed = new MbEvent<AllianceEvent>();
         private readonly MbEvent<AllianceEvent> _allianceBroken = new MbEvent<AllianceEvent>();
         private readonly MbEvent<Settlement> _playerSettlementTaken = new MbEvent<Settlement>();
+        private List<object> _listeners;
+
+        public Events()
+        {
+            _listeners = new List<object>
+            {
+                _allianceBroken,
+                _allianceFormed,
+                _fiefGranted,
+                _messengerSent,
+                _peaceProposalSent,
+                _playerSettlementTaken
+            };
+        }
 
         public static IMbEvent<AllianceEvent> AllianceFormed
         {
@@ -92,5 +107,17 @@ namespace DiplomacyFixes
             Instance._playerSettlementTaken.Invoke(currentSettlement);
         }
 
+        public static void RemoveListeners(object o)
+        {
+            Events.Instance.RemoveListenersInternal(o);
+        }
+
+        internal void RemoveListenersInternal(object obj)
+        {
+            foreach (dynamic listener in _listeners)
+            {
+                listener.ClearListeners(obj);
+            }
+        }
     }
 }
