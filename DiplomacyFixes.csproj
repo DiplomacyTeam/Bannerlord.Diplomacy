@@ -294,6 +294,8 @@
     <Compile Include="GauntletInterfaces\GrantFiefInterface.cs" />
     <Compile Include="GrantFief\GrantFiefAction.cs" />
     <Compile Include="Patches\KingdomDecisionProposalBehaviorPatch.cs" />
+    <Compile Include="Widgets\KingdomDiplomacyPanelTabControlWidget.cs" />
+    <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\OverviewTab.xml" />
     <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\Relationship.xml" />
     <Compile Include="Patches\GameMenusCallbacksPatch.cs" />
     <Compile Include="Patches\KingdomManagementVMPatch.cs" />
@@ -343,6 +345,7 @@
     <Content Include="GUI\Prefabs\GrantFief\GrantFief.xml" />
     <Content Include="GUI\Prefabs\KingdomManagement\Clan\ClansPanel.xml" />
     <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\DiplomacyPanel.xml" />
+    <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\StatsTab.xml" />
     <Content Include="ModuleData\Languages\std_module_strings_xml.xml" />
     <Content Include="SubModule.xml" />
   </ItemGroup>

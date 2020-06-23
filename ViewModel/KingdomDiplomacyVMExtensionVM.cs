@@ -17,8 +17,10 @@ namespace DiplomacyFixes.ViewModel
 		private MethodInfo _onSelectionMethodInfo;
         private MethodInfo _executeActionMethodInfo;
         private string _numOfPlayerAlliancesText;
+        private bool _showStats;
+        private bool _showOverview;
 
-		public KingdomDiplomacyVMExtensionVM(Action<KingdomDecision> forceDecision) : base(forceDecision) {
+        public KingdomDiplomacyVMExtensionVM(Action<KingdomDecision> forceDecision) : base(forceDecision) {
 			this._playerKingdom = (Hero.MainHero.MapFaction as Kingdom);
 			this._onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
             this._executeActionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("ExecuteAction", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -34,6 +36,7 @@ namespace DiplomacyFixes.ViewModel
             });
             CampaignEvents.MakePeace.AddNonSerializedListener(this, (x,y) => RefreshValues());
 			this.RefreshAlliances();
+            this.ExecuteShowOverview();
 		}
 
         public void OnClose()
@@ -47,6 +50,52 @@ namespace DiplomacyFixes.ViewModel
 			base.RefreshValues();
 			RefreshAlliances();
 		}
+
+        private void ExecuteShowStats()
+        {
+            this.ShowOverview = false;
+            this.ShowStats = true;
+        }
+
+        private void ExecuteShowOverview()
+        {
+            this.ShowOverview = true;
+            this.ShowStats = false;
+        }
+
+        [DataSourceProperty]
+        public bool ShowOverview
+        {
+            get
+            {
+                return this._showOverview;
+            }
+            set
+            {
+                if (value != this._showOverview)
+                {
+                    this._showOverview = value;
+                    base.OnPropertyChanged("ShowOverview");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool ShowStats
+        {
+            get
+            {
+                return this._showStats;
+            }
+            set
+            {
+                if (value != this._showStats)
+                {
+                    this._showStats = value;
+                    base.OnPropertyChanged("ShowStats");
+                }
+            }
+        }
 
 		private void RefreshAlliances()
 		{
