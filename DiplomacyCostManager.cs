@@ -6,6 +6,20 @@ namespace DiplomacyFixes
 {
     class DiplomacyCostManager
     {
+
+        public static void ApplyDiplomacyCostToPlayer(DiplomacyCost diplomacyCost)
+        {
+            if (diplomacyCost.Type == DiplomacyCostType.GOLD)
+            {
+                deductGoldFromPlayer((int) diplomacyCost.Value);
+            }
+
+            if (diplomacyCost.Type == DiplomacyCostType.INFLUENCE)
+            {
+                deductInfluenceFromPlayerClan(diplomacyCost.Value);
+            }
+        }
+
         public static void DeductInfluenceFromKingdom(Kingdom kingdom, float influenceCost)
         {
             kingdom.Leader.Clan.Influence = MBMath.ClampFloat(kingdom.Leader.Clan.Influence - influenceCost, 0f, float.MaxValue);

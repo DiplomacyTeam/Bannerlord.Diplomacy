@@ -119,7 +119,7 @@ namespace DiplomacyFixes.ViewModel
 
         protected virtual void UpdateActionAvailability()
         {
-            this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithInfluenceCost(Faction2Leader.Hero, this.SendMessengerInfluenceCost);
+            this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
             this.IsOptionAvailable = WarAndPeaceConditions.CanDeclareWarExceptions(this).IsEmpty();
             string allianceException = AllianceConditions.CanFormAllianceExceptions(this, true).FirstOrDefault()?.ToString();
             this.IsAllianceAvailable = allianceException == null;

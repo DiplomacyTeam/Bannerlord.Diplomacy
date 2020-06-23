@@ -113,7 +113,7 @@ namespace DiplomacyFixes.ViewModel
 
         private void UpdateActionAvailability()
         {
-            this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithInfluenceCost(Faction2Leader.Hero, this.SendMessengerInfluenceCost);
+            this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
             this.IsOptionAvailable = WarAndPeaceConditions.CanMakePeaceExceptions(this).IsEmpty();
             string makePeaceException = WarAndPeaceConditions.CanMakePeaceExceptions(this).FirstOrDefault()?.ToString();
             this.ActionHint = makePeaceException != null ? new HintViewModel(makePeaceException) : new HintViewModel();
@@ -129,7 +129,7 @@ namespace DiplomacyFixes.ViewModel
         public string ActionName { get; protected set; }
 
         [DataSourceProperty]
-        public int SendMessengerInfluenceCost { get; } = (int)DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
+        public int SendMessengerInfluenceCost { get; } = (int)DiplomacyCostCalculator.DetermineCostForSendingMessenger().Value;
 
         [DataSourceProperty]
         public bool IsMessengerAvailable

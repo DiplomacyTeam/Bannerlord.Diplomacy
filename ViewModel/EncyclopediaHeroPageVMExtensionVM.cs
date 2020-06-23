@@ -14,14 +14,17 @@ namespace DiplomacyFixes.ViewModel
         private bool _isMessengerAvailable;
         private bool _canGrantFief;
         private readonly Hero _hero;
-
+        private readonly DiplomacyCost _sendMessengerCost;
         private GrantFiefInterface _grantFiefInterface;
 
         public EncyclopediaHeroPageVMExtensionVM(EncyclopediaPageArgs args) : base(args)
         {
             this._grantFiefInterface = new GrantFiefInterface();
             _hero = (base.Obj as Hero);
-            this.SendMessengerInfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
+            this._sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger();
+            this.SendMessengerCost = (int)_sendMessengerCost.Value;
+            DiplomacyCostType type = DiplomacyCostCalculator.DetermineCostForSendingMessenger().Type;
+            this.SendMessengerCostTypeIsGold = type == DiplomacyCostType.GOLD;
             this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             this.CanGrantFief = GrantFiefAction.CanGrantFief(this._hero.Clan, out _);
@@ -62,7 +65,10 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
-        public int SendMessengerInfluenceCost { get; } = Settings.Instance.SendMessengerInfluenceCost;
+        public int SendMessengerCost { get; }
+
+        [DataSourceProperty]
+        public bool SendMessengerCostTypeIsGold { get; }
 
         [DataSourceProperty]
         public bool IsMessengerAvailable
@@ -84,7 +90,7 @@ namespace DiplomacyFixes.ViewModel
 
         private void UpdateIsMessengerAvailable()
         {
-            IsMessengerAvailable = MessengerManager.CanSendMessengerWithInfluenceCost(this._hero, SendMessengerInfluenceCost);
+            IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(this._hero, _sendMessengerCost);
         }
 
         [DataSourceProperty]

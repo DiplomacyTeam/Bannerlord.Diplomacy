@@ -125,9 +125,9 @@ namespace DiplomacyFixes.Messengers
             return textObject;
         }
 
-        public void SendMessengerWithInfluenceCost(Hero targetHero, float influenceCost)
+        public void SendMessengerWithCost(Hero targetHero, DiplomacyCost diplomacyCost)
         {
-            DiplomacyCostManager.deductInfluenceFromPlayerClan(influenceCost);
+            DiplomacyCostManager.ApplyDiplomacyCostToPlayer(diplomacyCost);
             SendMessenger(targetHero);
         }
 
@@ -139,9 +139,22 @@ namespace DiplomacyFixes.Messengers
             return !unavailable;
         }
 
-        public static bool CanSendMessengerWithInfluenceCost(Hero opposingLeader, float influenceCost)
+        public static bool CanSendMessengerWithCost(Hero opposingLeader, DiplomacyCost diplomacyCost)
         {
-            return Clan.PlayerClan.Influence >= influenceCost && IsTargetHeroAvailable(opposingLeader);
+            bool canPayCost;
+            if (diplomacyCost.Type == DiplomacyCostType.GOLD)
+            {
+                canPayCost = Hero.MainHero.Gold >= (int)diplomacyCost.Value;
+            }
+            else if (diplomacyCost.Type == DiplomacyCostType.INFLUENCE)
+            {
+                canPayCost = Clan.PlayerClan.Influence >= diplomacyCost.Value;
+            }
+            else
+            {
+                return false;
+            }
+            return canPayCost && IsTargetHeroAvailable(opposingLeader);
         }
 
         public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)

@@ -21,7 +21,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void OnMessengerSent(Hero hero)
         {
-            _messengerManager.SendMessengerWithInfluenceCost(hero, DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger());
+            _messengerManager.SendMessengerWithCost(hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
         }
 
         public void HasMessengerArrived()

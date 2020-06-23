@@ -27,6 +27,23 @@ namespace DiplomacyFixes
             return (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance.ScalingInfluenceCostMultiplier);
         }
 
+        public static DiplomacyCost DetermineCostForSendingMessenger()
+        {
+            if (!Settings.Instance.EnableInfluenceCostsForDiplomacyActions)
+            {
+                return new DiplomacyCost(0f, DiplomacyCostType.INFLUENCE);
+            }
+
+            if (Clan.PlayerClan.MapFaction.IsKingdomFaction)
+            {
+                return new DiplomacyCost(DetermineInfluenceCostForSendingMessenger(), DiplomacyCostType.INFLUENCE);
+            }
+            else
+            {
+                return new DiplomacyCost(Settings.Instance.SendMessengerGoldCost, DiplomacyCostType.GOLD);
+            }
+        }
+
         public static float DetermineInfluenceCostForSendingMessenger()
         {
             if (!Settings.Instance.EnableInfluenceCostsForDiplomacyActions)
