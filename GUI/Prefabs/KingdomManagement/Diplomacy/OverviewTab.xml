@@ -4,55 +4,85 @@
   <Window>
     <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" IsVisible="@ShowOverview" MarginTop="20">
       <Children>
-    <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
-      <Children>
-        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" >
+        <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
           <Children>
-            <TextWidget Brush="Kingdom.Wars.Stat.Name.Text" ClipContents="false" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="Wars" />
-          </Children>
-        </Widget>
-        <ListPanel VerticalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" >
-          <Children>
-            <ListPanel MarginRight="20" DataSource="{Faction1Wars}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
-              <ItemTemplate>
-                <!--Member-->
-                <Relationship/>
-              </ItemTemplate>
+            
+            <!-- Wars -->
+            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" >
+              <Children>
+                <TextWidget Brush="Kingdom.Wars.Stat.Name.Text" ClipContents="false" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="@WarsText" />
+              </Children>
+            </Widget>
+            <ListPanel VerticalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" >
+              <Children>
+                <ListPanel MarginRight="20" DataSource="{Faction1Wars}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
+                  <ItemTemplate>
+                    <!--Member-->
+                    <Relationship/>
+                  </ItemTemplate>
+                </ListPanel>
+                <Widget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="85" Sprite="Encyclopedia\divider_vertical"/>
+                <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{Faction2Wars}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                  <ItemTemplate>
+                    <!--Member-->
+                    <Relationship/>
+                  </ItemTemplate>
+                </ListPanel>
+              </Children>
             </ListPanel>
-            <Widget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="85" Sprite="Encyclopedia\divider_vertical"/>
-            <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{Faction2Wars}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
-              <ItemTemplate>
-                <!--Member-->
-                <Relationship/>
-              </ItemTemplate>
+            
+            
+            <!-- Alliances -->
+            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="20">
+              <Children>
+                <TextWidget Brush="Kingdom.Wars.Stat.Name.Text" ClipContents="false" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="@AllianceText" />
+              </Children>
+            </Widget>
+            <ListPanel VerticalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" >
+              <Children>
+                <ListPanel MarginRight="20" DataSource="{Faction1Allies}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
+                  <ItemTemplate>
+                    <!--Member-->
+                    <Relationship/>
+                  </ItemTemplate>
+                </ListPanel>
+                <Widget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="85" Sprite="Encyclopedia\divider_vertical"/>
+                <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{Faction2Allies}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                  <ItemTemplate>
+                    <!--Member-->
+                    <Relationship/>
+                  </ItemTemplate>
+                </ListPanel>
+              </Children>
             </ListPanel>
-          </Children>
-        </ListPanel>
-        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="20">
-          <Children>
-            <TextWidget Brush="Kingdom.Wars.Stat.Name.Text" ClipContents="false" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="Alliances" />
-          </Children>
-        </Widget>
-        <ListPanel VerticalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" >
-          <Children>
-            <ListPanel MarginRight="20" DataSource="{Faction1Allies}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
-              <ItemTemplate>
-                <!--Member-->
-                <Relationship/>
-              </ItemTemplate>
-            </ListPanel>
-            <Widget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="85" Sprite="Encyclopedia\divider_vertical"/>
-            <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{Faction2Allies}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
-              <ItemTemplate>
-                <!--Member-->
-                <Relationship/>
-              </ItemTemplate>
+
+            
+            <!-- Pacts -->
+            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="20">
+              <Children>
+                <TextWidget Brush="Kingdom.Wars.Stat.Name.Text" ClipContents="false" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="@PactsText" />
+              </Children>
+            </Widget>
+            <ListPanel VerticalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" >
+              <Children>
+                <ListPanel MarginRight="20" DataSource="{Faction1Pacts}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
+                  <ItemTemplate>
+                    <!--Member-->
+                    <Relationship/>
+                  </ItemTemplate>
+                </ListPanel>
+                <Widget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="85" Sprite="Encyclopedia\divider_vertical"/>
+                <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{Faction2Pacts}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                  <ItemTemplate>
+                    <!--Member-->
+                    <Relationship/>
+                  </ItemTemplate>
+                </ListPanel>
+              </Children>
             </ListPanel>
           </Children>
         </ListPanel>
       </Children>
-    </ListPanel>
-    </Children>
-      </Widget>
+    </Widget>
   </Window>
 </Prefab>

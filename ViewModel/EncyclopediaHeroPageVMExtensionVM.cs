@@ -1,4 +1,5 @@
-﻿using DiplomacyFixes.GauntletInterfaces;
+﻿using DiplomacyFixes.Costs;
+using DiplomacyFixes.GauntletInterfaces;
 using DiplomacyFixes.GrantFief;
 using DiplomacyFixes.Messengers;
 using TaleWorlds.CampaignSystem;
@@ -23,8 +24,7 @@ namespace DiplomacyFixes.ViewModel
             _hero = (base.Obj as Hero);
             this._sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger();
             this.SendMessengerCost = (int)_sendMessengerCost.Value;
-            DiplomacyCostType type = DiplomacyCostCalculator.DetermineCostForSendingMessenger().Type;
-            this.SendMessengerCostTypeIsGold = type == DiplomacyCostType.GOLD;
+            this.SendMessengerCostTypeIsGold = DiplomacyCostCalculator.DetermineCostForSendingMessenger() is GoldCost;
             this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             this.CanGrantFief = GrantFiefAction.CanGrantFief(this._hero.Clan, out _);

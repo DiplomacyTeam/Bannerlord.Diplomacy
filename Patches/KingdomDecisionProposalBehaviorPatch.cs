@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.WarPeace;
+﻿using DiplomacyFixes.DiplomaticAction.WarPeace;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;

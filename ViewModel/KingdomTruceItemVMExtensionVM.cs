@@ -1,6 +1,8 @@
-﻿using DiplomacyFixes.Alliance;
+﻿using DiplomacyFixes.DiplomaticAction;
+using DiplomacyFixes.DiplomaticAction.Alliance;
+using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
+using DiplomacyFixes.DiplomaticAction.WarPeace;
 using DiplomacyFixes.Messengers;
-using DiplomacyFixes.WarPeace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,15 @@ namespace DiplomacyFixes.ViewModel
             this.AllianceActionName = new TextObject("{=0WPWbx70}Form Alliance").ToString();
             this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(Faction1 as Kingdom);
             this.ActionName = GameTexts.FindText("str_kingdom_declate_war_action", null).ToString();
+            this.NonAggressionPactActionName = new TextObject("{=9pY0NQrk}Form Pact").ToString();
+            
+            TextObject textObject = new TextObject("{=9zlQNtlX}Form a non-aggression pact lasting {PACT_DURATION_DAYS} days.");
+            textObject.SetTextVariable("PACT_DURATION_DAYS", Settings.Instance.NonAggressionPactDuration);
+            this.NonAggressionPactHelpText = textObject.ToString();
+
+            this.AllianceText = new TextObject("{=zpNalMeA}Alliances").ToString();
+            this.WarsText = new TextObject("{=y5tXjbLK}Wars").ToString();
+            this.PactsText = new TextObject("{=noWHMN1W}Non-Aggression Pacts").ToString();
             UpdateDiplomacyProperties();
         }
 
@@ -44,11 +55,21 @@ namespace DiplomacyFixes.ViewModel
             {
                 this.Faction2Allies = new MBBindingList<DiplomacyFactionRelationshipVM>();
             }
+            if (this.Faction1Pacts == null)
+            {
+                this.Faction1Pacts = new MBBindingList<DiplomacyFactionRelationshipVM>();
+            }
+            if (this.Faction2Pacts == null)
+            {
+                this.Faction2Pacts = new MBBindingList<DiplomacyFactionRelationshipVM>();
+            }
 
             this.Faction1Wars.Clear();
             this.Faction1Allies.Clear();
             this.Faction2Wars.Clear();
             this.Faction2Allies.Clear();
+            this.Faction1Pacts.Clear();
+            this.Faction2Pacts.Clear();
 
 
             AddWarRelationships(Faction1.Stances);
@@ -65,7 +86,19 @@ namespace DiplomacyFixes.ViewModel
                 {
                     Faction2Allies.Add(new DiplomacyFactionRelationshipVM(kingdom));
                 }
+
+                if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, Faction1 as Kingdom))
+                {
+                    Faction1Pacts.Add(new DiplomacyFactionRelationshipVM(kingdom));
+                }
+
+                if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, Faction2 as Kingdom))
+                {
+                    Faction2Pacts.Add(new DiplomacyFactionRelationshipVM(kingdom));
+                }
+
             }
+
 
             base.UpdateDiplomacyProperties();
             UpdateActionAvailability();
@@ -126,7 +159,11 @@ namespace DiplomacyFixes.ViewModel
             string declareWarException = WarAndPeaceConditions.CanDeclareWarExceptions(this).FirstOrDefault()?.ToString();
             this.ActionHint = declareWarException != null ? new HintViewModel(declareWarException) : new HintViewModel();
             this.AllianceHint = allianceException != null ? new HintViewModel(allianceException) : new HintViewModel();
-            this.AllianceInfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForFormingAlliance(Faction1 as Kingdom, Faction2 as Kingdom, true);
+            string nonAggressionPactException = NonAggressionPactConditions.Instance.CanExecuteActionExceptions(this, true).FirstOrDefault()?.ToString();
+            this.IsNonAggressionPactAvailable = nonAggressionPactException == null;
+            this.NonAggressionPactHint = nonAggressionPactException != null ? new HintViewModel(nonAggressionPactException) : new HintViewModel();
+            this.AllianceInfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForFormingAlliance(Faction1 as Kingdom, Faction2 as Kingdom, true).Value;
+            this.NonAggressionPactInfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(Faction1 as Kingdom, true).Value;
         }
 
         protected void SendMessenger()
@@ -138,6 +175,12 @@ namespace DiplomacyFixes.ViewModel
         protected void FormAlliance()
         {
             DeclareAllianceAction.Apply(this.Faction1 as Kingdom, this.Faction2 as Kingdom, true);
+        }
+
+        protected void ProposeNonAggressionPact()
+        {
+            FormNonAggressionPactAction.Apply(this.Faction1 as Kingdom, this.Faction2 as Kingdom, true);
+            this.UpdateDiplomacyProperties();
         }
 
         [DataSourceProperty]
@@ -175,8 +218,50 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
+        public bool IsNonAggressionPactAvailable
+        {
+            get
+            {
+                return this._isNonAggressionPactAvailable;
+            }
+            set
+            {
+                if (value != this._isNonAggressionPactAvailable)
+                {
+                    this._isNonAggressionPactAvailable = value;
+                    base.OnPropertyChanged("IsNonAggressionPactAvailable");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public int NonAggressionPactInfluenceCost
+        {
+            get
+            {
+                return this._nonAggressionPactInfluenceCost;
+            }
+            set
+            {
+                if (value != this._nonAggressionPactInfluenceCost)
+                {
+                    this._nonAggressionPactInfluenceCost = value;
+                    base.OnPropertyChanged("NonAggressionPactInfluenceCost");
+                }
+            }
+        }
+
+        [DataSourceProperty]
         public string ActionName { get; protected set; }
 
+        [DataSourceProperty]
+        public string NonAggressionPactActionName { get; }
+        [DataSourceProperty]
+        public string AllianceText { get; }
+        [DataSourceProperty]
+        public string WarsText { get; }
+        [DataSourceProperty]
+        public string PactsText { get; }
         [DataSourceProperty]
         public int SendMessengerInfluenceCost { get; } = (int)DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
 
@@ -234,6 +319,7 @@ namespace DiplomacyFixes.ViewModel
             }
         }
 
+        [DataSourceProperty]
         public HintViewModel AllianceHint
         {
             get
@@ -246,6 +332,23 @@ namespace DiplomacyFixes.ViewModel
                 {
                     this._allianceHint = value;
                     base.OnPropertyChanged("AllianceHint");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public HintViewModel NonAggressionPactHint
+        {
+            get
+            {
+                return this._nonAggressionPactHint;
+            }
+            set
+            {
+                if (value != this._nonAggressionPactHint)
+                {
+                    this._nonAggressionPactHint = value;
+                    base.OnPropertyChanged("NonAggressionPactHint");
                 }
             }
         }
@@ -318,6 +421,40 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
+        public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Pacts
+        {
+            get
+            {
+                return this._faction1Pacts;
+            }
+            set
+            {
+                if (value != this._faction1Pacts)
+                {
+                    this._faction1Pacts = value;
+                    base.OnPropertyChanged("Faction1Pacts");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Pacts
+        {
+            get
+            {
+                return this._faction2Pacts;
+            }
+            set
+            {
+                if (value != this._faction2Pacts)
+                {
+                    this._faction2Pacts = value;
+                    base.OnPropertyChanged("Faction2Pacts");
+                }
+            }
+        }
+
+        [DataSourceProperty]
         public string SendMessengerActionName { get; private set; }
         [DataSourceProperty]
         public string AllianceActionName { get; }
@@ -329,16 +466,23 @@ namespace DiplomacyFixes.ViewModel
 
         [DataSourceProperty]
         public ImageIdentifierVM Faction2Image { get; private set; }
+        [DataSourceProperty]
+        public string NonAggressionPactHelpText { get; }
 
         private bool _isOptionAvailable;
         private bool _isMessengerAvailable;
         private bool _isAllianceAvailable;
+        private bool _isNonAggressionPactAvailable;
         private int _allianceInfluenceCost;
+        private int _nonAggressionPactInfluenceCost;
         private HintViewModel _allianceHint;
+        private HintViewModel _nonAggressionPactHint;
         private HintViewModel _actionHint;
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction1Wars;
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction1Allies;
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction2Wars;
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction2Allies;
+        private MBBindingList<DiplomacyFactionRelationshipVM> _faction1Pacts;
+        private MBBindingList<DiplomacyFactionRelationshipVM> _faction2Pacts;
     }
 }

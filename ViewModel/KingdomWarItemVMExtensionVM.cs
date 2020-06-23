@@ -1,5 +1,6 @@
-﻿using DiplomacyFixes.Messengers;
-using DiplomacyFixes.WarPeace;
+﻿using DiplomacyFixes.DiplomaticAction;
+using DiplomacyFixes.DiplomaticAction.WarPeace;
+using DiplomacyFixes.Messengers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,9 @@ namespace DiplomacyFixes.ViewModel
             this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace(Faction1 as Kingdom);
             this.GoldCost = DiplomacyCostCalculator.DetermineGoldCostForMakingPeace(this.Faction1 as Kingdom, this.Faction2 as Kingdom);
             this.ActionName = GameTexts.FindText("str_kingdom_propose_peace_action", null).ToString();
+            this.AllianceText = new TextObject("{=zpNalMeA}Alliances").ToString();
+            this.WarsText = new TextObject("{=y5tXjbLK}Wars").ToString();
+            this.PactsText = new TextObject("{=noWHMN1W}Non-Aggression Pacts").ToString();
             UpdateDiplomacyProperties();
         }
 
@@ -42,11 +46,21 @@ namespace DiplomacyFixes.ViewModel
             {
                 this.Faction2Allies = new MBBindingList<DiplomacyFactionRelationshipVM>();
             }
+            if (this.Faction1Pacts == null)
+            {
+                this.Faction1Pacts = new MBBindingList<DiplomacyFactionRelationshipVM>();
+            }
+            if (this.Faction2Pacts == null)
+            {
+                this.Faction2Pacts = new MBBindingList<DiplomacyFactionRelationshipVM>();
+            }
 
             this.Faction1Wars.Clear();
             this.Faction1Allies.Clear();
             this.Faction2Wars.Clear();
             this.Faction2Allies.Clear();
+            this.Faction1Pacts.Clear();
+            this.Faction2Pacts.Clear();
 
             AddWarRelationships(Faction1.Stances);
             AddWarRelationships(Faction2.Stances);
@@ -61,6 +75,16 @@ namespace DiplomacyFixes.ViewModel
                 if (FactionManager.IsAlliedWithFaction(kingdom, Faction2) && kingdom != Faction2)
                 {
                     Faction2Allies.Add(new DiplomacyFactionRelationshipVM(kingdom));
+                }
+
+                if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, Faction1 as Kingdom))
+                {
+                    Faction1Pacts.Add(new DiplomacyFactionRelationshipVM(kingdom));
+                }
+
+                if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, Faction2 as Kingdom))
+                {
+                    Faction2Pacts.Add(new DiplomacyFactionRelationshipVM(kingdom));
                 }
             }
 
@@ -276,7 +300,49 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
+        public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Pacts
+        {
+            get
+            {
+                return this._faction1Pacts;
+            }
+            set
+            {
+                if (value != this._faction1Pacts)
+                {
+                    this._faction1Pacts = value;
+                    base.OnPropertyChanged("Faction1Pacts");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Pacts
+        {
+            get
+            {
+                return this._faction2Pacts;
+            }
+            set
+            {
+                if (value != this._faction2Pacts)
+                {
+                    this._faction2Pacts = value;
+                    base.OnPropertyChanged("Faction2Pacts");
+                }
+            }
+        }
+
+        [DataSourceProperty]
         public string SendMessengerActionName { get; }
+
+        [DataSourceProperty]
+        public string AllianceText { get; }
+        [DataSourceProperty]
+        public string WarsText { get; }
+        [DataSourceProperty]
+        public string PactsText { get; }
+
 
         private bool _isOptionAvailable;
         private int _goldCost;
@@ -286,5 +352,7 @@ namespace DiplomacyFixes.ViewModel
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction1Allies;
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction2Wars;
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction2Allies;
+        private MBBindingList<DiplomacyFactionRelationshipVM> _faction1Pacts;
+        private MBBindingList<DiplomacyFactionRelationshipVM> _faction2Pacts;
     }
 }

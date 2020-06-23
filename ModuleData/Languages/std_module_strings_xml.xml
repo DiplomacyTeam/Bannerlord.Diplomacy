@@ -70,6 +70,18 @@
     
     <string id="bCOCjOQM" text="Relat." />
     <string id="RxawrCjg" text="Relationship Gain with Grantee"/>
+    
+    <string id="fXcEtO29" text="Cannot have an active non-aggression pact." />
+    
+    <string id="zpNalMeA" text ="Alliances" />
+    <string id="y5tXjbLK" text ="Wars" />
+    <string id="noWHMN1W" text ="Non-Aggression Pacts" />
+    
+    <string id="yj4XFa5T" text="Non-Aggression Pact Proposal"/>
+    <string id="gyLjlpJB" text="{KINGDOM} is proposing a non-aggression pact with {PLAYER_KINGDOM}."/>
+    
+    <string id="9pY0NQrk" text="Form Pact"/>
+    <string id="9zlQNtlX" text="Form a non-aggression pact lasting {PACT_DURATION_DAYS} days."/>
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
@@ -90,6 +102,8 @@
     <string id="TfxLCxcD" text="Gives the player the option to claim a settlement that they have taken rather than let it go to an election." />
     <string id="H6XMjwpF" text="Minimum Alliance Duration in Days" />
     <string id="RrsWhIWi" text="The minimum duration (in days) that an alliance can last. Default value is 10." />
+    <string id="V35hUfcc" text="Non-Aggression Pact Duration in Days"/>
+    <string id="KXLGZEPh" text="The duration (in days) that a non-aggression pact will last. Default value is 100."/>
     
 
     <string id="WbOKuWbQ" text="Enable Influence Costs" />

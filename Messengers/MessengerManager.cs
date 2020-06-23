@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DiplomacyFixes.Costs;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -127,7 +128,7 @@ namespace DiplomacyFixes.Messengers
 
         public void SendMessengerWithCost(Hero targetHero, DiplomacyCost diplomacyCost)
         {
-            DiplomacyCostManager.ApplyDiplomacyCostToPlayer(diplomacyCost);
+            diplomacyCost.ApplyCost();
             SendMessenger(targetHero);
         }
 
@@ -141,19 +142,7 @@ namespace DiplomacyFixes.Messengers
 
         public static bool CanSendMessengerWithCost(Hero opposingLeader, DiplomacyCost diplomacyCost)
         {
-            bool canPayCost;
-            if (diplomacyCost.Type == DiplomacyCostType.GOLD)
-            {
-                canPayCost = Hero.MainHero.Gold >= (int)diplomacyCost.Value;
-            }
-            else if (diplomacyCost.Type == DiplomacyCostType.INFLUENCE)
-            {
-                canPayCost = Clan.PlayerClan.Influence >= diplomacyCost.Value;
-            }
-            else
-            {
-                return false;
-            }
+            bool canPayCost = diplomacyCost.CanPayCost();
             return canPayCost && IsTargetHeroAvailable(opposingLeader);
         }
 

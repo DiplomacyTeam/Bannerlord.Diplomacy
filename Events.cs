@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.Alliance;
+﻿using DiplomacyFixes.DiplomaticAction.Alliance;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 

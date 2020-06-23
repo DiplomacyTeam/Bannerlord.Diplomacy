@@ -71,6 +71,10 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int MinimumAllianceDuration { get; set; } = 10;
 
+        [SettingPropertyInteger("{=V35hUfcc}Non-Aggression Pact Duration in Days", 0, 1000, Order = 4, RequireRestart = false, HintText = "{=KXLGZEPh}The duration (in days) that a non-aggression pact will last. Default value is 100.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public int NonAggressionPactDuration { get; set; } = 100;
+
         [SettingPropertyInteger("{=qeDOmURl}Send Messenger Influence Cost", 0, 10000, RequireRestart = false, HintText = "{=Lkos6GQb}Influence cost for sending a messenger to another leader. Default value is 10.")]
         [SettingPropertyGroup(HeadingMessengers)]
         public int SendMessengerInfluenceCost { get; set; } = 10;
