@@ -30,7 +30,7 @@ namespace DiplomacyFixes.ViewModel
         {
             if (this.DiplomacyProperties == null)
             {
-                this.DiplomacyProperties = new DiplomacyProperties(Faction1, Faction2);
+                this.DiplomacyProperties = new DiplomacyPropertiesVM(Faction1, Faction2);
             }
             this.DiplomacyProperties.UpdateDiplomacyProperties();
 
@@ -157,7 +157,7 @@ namespace DiplomacyFixes.ViewModel
         [DataSourceProperty]
         public string PactsText { get; }
         [DataSourceProperty]
-        public DiplomacyProperties DiplomacyProperties { get; private set; }
+        public DiplomacyPropertiesVM DiplomacyProperties { get; private set; }
 
         private bool _isOptionAvailable;
         private int _goldCost;

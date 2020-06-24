@@ -275,7 +275,7 @@
     <Compile Include="CampaignEventBehaviors\DiplomaticAgreementBehavior.cs" />
     <Compile Include="Costs\GoldCost.cs" />
     <Compile Include="Costs\InfluenceCost.cs" />
-    <Compile Include="DiplomacyProperties.cs" />
+    <Compile Include="ViewModel\DiplomacyPropertiesVM.cs" />
     <Compile Include="DiplomaticAction\Alliance\AllianceConditions.cs" />
     <Compile Include="DiplomaticAction\Alliance\AllianceEvent.cs" />
     <Compile Include="DiplomaticAction\Alliance\AllianceScoringModel.cs" />
