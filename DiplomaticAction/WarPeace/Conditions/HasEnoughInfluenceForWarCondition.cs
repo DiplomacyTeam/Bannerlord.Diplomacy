@@ -18,7 +18,7 @@ namespace DiplomacyFixes.DiplomaticAction.WarPeace.Conditions
             }
 
             Hero heroPayingCosts = forcePlayerCharacterCosts ? Hero.MainHero : kingdom.Leader;
-            bool hasEnoughInfluence = heroPayingCosts.Clan.Influence >= DiplomacyCostCalculator.DetermineInfluenceCostForDeclaringWar(kingdom);
+            bool hasEnoughInfluence = heroPayingCosts.Clan.Influence >= DiplomacyCostCalculator.DetermineCostForDeclaringWar(kingdom);
             if (!hasEnoughInfluence)
             {
                 textObject = new TextObject(NOT_ENOUGH_INFLUENCE);

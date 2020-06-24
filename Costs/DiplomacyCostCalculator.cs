@@ -8,7 +8,7 @@ namespace DiplomacyFixes
 {
     class DiplomacyCostCalculator
     {
-        public static float DetermineInfluenceCostForDeclaringWar(Kingdom kingdom)
+        public static float DetermineCostForDeclaringWar(Kingdom kingdom)
         {
             if (!Settings.Instance.EnableInfluenceCostsForDiplomacyActions)
                 return 0f;
@@ -18,14 +18,15 @@ namespace DiplomacyFixes
             return (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance.ScalingInfluenceCostMultiplier);
         }
 
-        public static float DetermineInfluenceCostForMakingPeace(Kingdom kingdom)
+        public static DiplomacyCost DetermineCostForMakingPeace(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
         {
+            Clan clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
             if (!Settings.Instance.EnableInfluenceCostsForDiplomacyActions)
-                return 0f;
+                return new InfluenceCost(clanPayingInfluence, 0f);
             if (!Settings.Instance.ScalingInfluenceCosts)
-                return Settings.Instance.MakePeaceInfluenceCost;
+                return new InfluenceCost(clanPayingInfluence, Settings.Instance.MakePeaceInfluenceCost);
 
-            return (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance.ScalingInfluenceCostMultiplier);
+            return new InfluenceCost(clanPayingInfluence, (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance.ScalingInfluenceCostMultiplier));
         }
 
         public static DiplomacyCost DetermineCostForFormingNonAggressionPact(Kingdom kingdom, bool forcePlayerCharacterCosts = false)

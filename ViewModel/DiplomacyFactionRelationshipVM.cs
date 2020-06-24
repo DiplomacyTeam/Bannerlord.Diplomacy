@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System.Collections.Generic;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 
@@ -12,14 +13,25 @@ namespace DiplomacyFixes.ViewModel
 
         public DiplomacyFactionRelationshipVM(IFaction faction)
         {
-            this._faction = faction;
+            this.Faction = faction;
             this.ImageIdentifier = new ImageIdentifierVM(BannerCode.CreateFrom(faction.Banner), true);
-            this.NameText = this._faction.Name.ToString();
+            this.NameText = this.Faction.Name.ToString();
         }
 
         private void ExecuteLink()
         {
-            Campaign.Current.EncyclopediaManager.GoToLink(this._faction.EncyclopediaLink);
+            Campaign.Current.EncyclopediaManager.GoToLink(this.Faction.EncyclopediaLink);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is DiplomacyFactionRelationshipVM vM &&
+                   EqualityComparer<IFaction>.Default.Equals(Faction, vM.Faction);
+        }
+
+        public override int GetHashCode()
+        {
+            return -301155118 + EqualityComparer<IFaction>.Default.GetHashCode(Faction);
         }
 
         [DataSourceProperty]
@@ -55,5 +67,7 @@ namespace DiplomacyFixes.ViewModel
                 }
             }
         }
+
+        public IFaction Faction { get => _faction; set => _faction = value; }
     }
 }

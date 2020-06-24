@@ -10,8 +10,7 @@ namespace DiplomacyFixes.DiplomaticAction.WarPeace.Conditions
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
             textObject = null;
-            Hero heroPayingCosts = forcePlayerCharacterCosts ? Hero.MainHero : kingdom.Leader;
-            bool hasEnoughInfluence = heroPayingCosts.Clan.Influence >= DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace(kingdom);
+            bool hasEnoughInfluence = DiplomacyCostCalculator.DetermineCostForMakingPeace(kingdom, forcePlayerCharacterCosts).CanPayCost();
             if (!hasEnoughInfluence)
             {
                 textObject = new TextObject(NOT_ENOUGH_INFLUENCE);

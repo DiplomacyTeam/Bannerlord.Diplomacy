@@ -15,14 +15,14 @@
             </Widget>
             <ListPanel VerticalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" >
               <Children>
-                <ListPanel MarginRight="20" DataSource="{Faction1Wars}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
+                <ListPanel MarginRight="20" DataSource="{DiplomacyProperties\Faction1Wars}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
                   <ItemTemplate>
                     <!--Member-->
                     <Relationship/>
                   </ItemTemplate>
                 </ListPanel>
                 <Widget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="85" Sprite="Encyclopedia\divider_vertical"/>
-                <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{Faction2Wars}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{DiplomacyProperties\Faction2Wars}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
                   <ItemTemplate>
                     <!--Member-->
                     <Relationship/>
@@ -40,14 +40,14 @@
             </Widget>
             <ListPanel VerticalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" >
               <Children>
-                <ListPanel MarginRight="20" DataSource="{Faction1Allies}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
+                <ListPanel MarginRight="20" DataSource="{DiplomacyProperties\Faction1Allies}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
                   <ItemTemplate>
                     <!--Member-->
                     <Relationship/>
                   </ItemTemplate>
                 </ListPanel>
                 <Widget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="85" Sprite="Encyclopedia\divider_vertical"/>
-                <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{Faction2Allies}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{DiplomacyProperties\Faction2Allies}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
                   <ItemTemplate>
                     <!--Member-->
                     <Relationship/>
@@ -65,14 +65,14 @@
             </Widget>
             <ListPanel VerticalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" >
               <Children>
-                <ListPanel MarginRight="20" DataSource="{Faction1Pacts}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
+                <ListPanel MarginRight="20" DataSource="{DiplomacyProperties\Faction1Pacts}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalRightToLeft">
                   <ItemTemplate>
                     <!--Member-->
                     <Relationship/>
                   </ItemTemplate>
                 </ListPanel>
                 <Widget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="85" Sprite="Encyclopedia\divider_vertical"/>
-                <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{Faction2Pacts}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                <ListPanel VerticalAlignment="Center" MarginLeft="20" DataSource="{DiplomacyProperties\Faction2Pacts}" HorizontalAlignment="Right" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
                   <ItemTemplate>
                     <!--Member-->
                     <Relationship/>
