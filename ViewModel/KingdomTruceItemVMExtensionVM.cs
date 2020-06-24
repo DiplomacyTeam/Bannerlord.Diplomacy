@@ -20,7 +20,7 @@ namespace DiplomacyFixes.ViewModel
         {
             this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
             this.AllianceActionName = new TextObject("{=0WPWbx70}Form Alliance").ToString();
-            this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForDeclaringWar(Faction1 as Kingdom);
+            this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForDeclaringWar(Faction1 as Kingdom, true).Value;
             this.ActionName = GameTexts.FindText("str_kingdom_declate_war_action", null).ToString();
             this.NonAggressionPactActionName = new TextObject("{=9pY0NQrk}Form Pact").ToString();
             
@@ -57,8 +57,7 @@ namespace DiplomacyFixes.ViewModel
 
         protected virtual void ExecuteExecutiveAction()
         {
-            float influenceCost = DiplomacyCostCalculator.DetermineCostForDeclaringWar(Faction1 as Kingdom);
-            DiplomacyCostManager.deductInfluenceFromPlayerClan(influenceCost);
+            DiplomacyCostCalculator.DetermineCostForDeclaringWar(Faction1 as Kingdom, true).ApplyCost();
             DeclareWarAction.Apply(Faction1, Faction2);
         }
 

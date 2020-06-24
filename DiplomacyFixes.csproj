@@ -274,6 +274,7 @@
   <ItemGroup>
     <Compile Include="CampaignEventBehaviors\DiplomaticAgreementBehavior.cs" />
     <Compile Include="Costs\GoldCost.cs" />
+    <Compile Include="Costs\HybridCost.cs" />
     <Compile Include="Costs\InfluenceCost.cs" />
     <Compile Include="ViewModel\DiplomacyPropertiesVM.cs" />
     <Compile Include="DiplomaticAction\Alliance\AllianceConditions.cs" />
