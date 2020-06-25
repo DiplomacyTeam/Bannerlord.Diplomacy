@@ -1,6 +1,8 @@
 ﻿using DiplomacyFixes.DiplomaticAction;
 using DiplomacyFixes.DiplomaticAction.Alliance;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
@@ -17,7 +19,13 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         public override void RegisterEvents()
         {
+            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, this.UpdateDiplomaticAgreements);
             Events.AllianceFormed.AddNonSerializedListener(this, this.ExpireNonAggressionPact);
+        }
+
+        private void UpdateDiplomaticAgreements()
+        {
+            DiplomaticAgreementManager.Instance.Agreements.Values.SelectMany(x => x).ToList().ForEach(x => x.TryExpireNotification());
         }
 
         private void ExpireNonAggressionPact(AllianceEvent obj)

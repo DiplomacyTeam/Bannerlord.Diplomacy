@@ -35,7 +35,7 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
         private static void ApplyInternal(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts)
         {
             DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(kingdom, forcePlayerCharacterCosts).ApplyCost();
-            DiplomaticAgreementManager.Instance.RegisterAgreement(kingdom, otherKingdom, new NonAggressionPactAgreement(CampaignTime.Now, CampaignTime.DaysFromNow(Settings.Instance.NonAggressionPactDuration)));
+            DiplomaticAgreementManager.Instance.RegisterAgreement(kingdom, otherKingdom, new NonAggressionPactAgreement(CampaignTime.Now, CampaignTime.DaysFromNow(Settings.Instance.NonAggressionPactDuration), kingdom, otherKingdom));
         }
     }
 }

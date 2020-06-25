@@ -87,6 +87,9 @@
     <string id="OvbY5qxL" text="Overview"/>
     
     <string id="UDC8eW7s" text="{ALLIED_KINGDOM} is joining their ally, {KINGDOM}, in the war against {ENEMY_KINGDOM}."/>
+    
+    <string id="pdI7Tjtj" text="Non-Aggression Pact Expired"/>
+    <string id="uWY09LJb" text="The non-aggression pact between {KINGDOM} and {OTHER_KINGDOM} has expired."/>
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||

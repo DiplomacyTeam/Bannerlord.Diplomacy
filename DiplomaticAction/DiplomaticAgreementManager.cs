@@ -20,11 +20,13 @@ namespace DiplomacyFixes.DiplomaticAction
             Instance = this;
         }
 
+        public Dictionary<FactionMapping, List<DiplomaticAgreement>> Agreements { get { return _agreements; } }
+
         public bool HasNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, out NonAggressionPactAgreement pactAgreement) 
         {
             if (this._agreements.TryGetValue(new FactionMapping(kingdom, otherKingdom), out List<DiplomaticAgreement> agreements))
             {
-                IEnumerable<DiplomaticAgreement> enumerable = agreements.Where(agreement => agreement.GetAgreementType() == AgreementType.NonAggressionPact && CampaignTime.Now <= agreement.EndDate);
+                IEnumerable<DiplomaticAgreement> enumerable = agreements.Where(agreement => agreement.GetAgreementType() == AgreementType.NonAggressionPact && !agreement.IsExpired());
                 pactAgreement = enumerable.OfType<NonAggressionPactAgreement>().FirstOrDefault();
                 return enumerable.Any();
             }
