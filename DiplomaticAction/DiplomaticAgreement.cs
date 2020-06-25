@@ -13,8 +13,7 @@ namespace DiplomacyFixes.DiplomaticAction
         public CampaignTime EndDate { get; protected set; }
         [SaveableProperty(3)]
         public FactionMapping Factions { get; set; }
-
-        [SaveableProperty(3)]
+        [SaveableProperty(4)]
         public bool ExpireNotified { get; protected set; }
 
         public DiplomaticAgreement(CampaignTime startdate, CampaignTime endDate, Kingdom kingdom, Kingdom otherKingdom) : this(startdate, endDate, new FactionMapping(kingdom, otherKingdom)) { }
