@@ -265,14 +265,14 @@
                         <!--Overview Tab-->
                         <ButtonWidget Id="OverviewButton" MarginLeft="5" MarginRight="5" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" Command.Click="ExecuteShowOverview" UpdateChildrenStates="true">
                           <Children>
-                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.GeneralButtons.Text" Text="Overview" />
+                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.GeneralButtons.Text" Text="@OverviewText" />
                           </Children>
                         </ButtonWidget>
 
                         <!--Stats Tab-->
                         <ButtonWidget Id="StatsButton" MarginLeft="5" MarginRight="5" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" Command.Click="ExecuteShowStats" UpdateChildrenStates="true">
                           <Children>
-                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.GeneralButtons.Text" Text="Stats" />
+                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.GeneralButtons.Text" Text="@StatsText" />
                           </Children>
                         </ButtonWidget>
                       </Children>

@@ -24,7 +24,10 @@ namespace DiplomacyFixes.ViewModel
 			this._playerKingdom = (Hero.MainHero.MapFaction as Kingdom);
 			this._onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
             this._executeActionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("ExecuteAction", BindingFlags.Instance | BindingFlags.NonPublic);
-            this.PlayerAlliancesText = new TextObject("Alliances").ToString();
+            this.PlayerAlliancesText = new TextObject("{=zpNalMeA}Alliances").ToString();
+            this.StatsText = new TextObject("{=1occw3EF}Stats").ToString();
+            this.OverviewText = new TextObject("{=OvbY5qxL}Overview").ToString();
+
             Events.AllianceFormed.AddNonSerializedListener(this, (x) => RefreshValues());
             Events.AllianceBroken.AddNonSerializedListener(this, (x) => RefreshValues());
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, (x, y) =>
@@ -138,6 +141,10 @@ namespace DiplomacyFixes.ViewModel
 
         [DataSourceProperty]
         public string PlayerAlliancesText { get; }
+        [DataSourceProperty]
+        public string StatsText { get; }
+        [DataSourceProperty]
+        public string OverviewText { get; }
 
         [DataSourceProperty]
         public string NumOfPlayerAlliancesText
