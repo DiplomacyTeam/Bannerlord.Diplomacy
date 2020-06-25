@@ -26,7 +26,11 @@ namespace DiplomacyFixes.DiplomaticAction
         }
 
         public abstract AgreementType GetAgreementType();
-        public abstract void Expire();
+        public virtual void Expire()
+        {
+            this.EndDate = CampaignTime.Now - CampaignTime.Milliseconds(1);
+            this.TryExpireNotification();
+        }
         public void TryExpireNotification()
         {
             if (!ExpireNotified && IsExpired())
@@ -39,7 +43,7 @@ namespace DiplomacyFixes.DiplomaticAction
 
         public bool IsExpired()
         {
-            return CampaignTime.Now > EndDate;
+            return EndDate.IsPast;
         }
     }
 
