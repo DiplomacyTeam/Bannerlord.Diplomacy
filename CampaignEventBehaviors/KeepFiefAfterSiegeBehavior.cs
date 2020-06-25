@@ -14,10 +14,10 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void KeepFief(Settlement settlement)
         {
-                if (settlement.Town.IsOwnerUnassigned && (settlement.LastAttackerParty?.LeaderHero?.IsHumanPlayerCharacter ?? false))
-                {
-                    ShowKeepFiefInquiry(settlement);
-                }
+            if (settlement.Town.IsOwnerUnassigned && (settlement.LastAttackerParty?.LeaderHero?.IsHumanPlayerCharacter ?? false))
+            {
+                ShowKeepFiefInquiry(settlement);
+            }
         }
 
         private void ShowKeepFiefInquiry(Settlement settlement)

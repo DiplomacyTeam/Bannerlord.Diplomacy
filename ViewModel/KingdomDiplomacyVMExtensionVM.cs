@@ -12,17 +12,18 @@ namespace DiplomacyFixes.ViewModel
 {
     class KingdomDiplomacyVMExtensionVM : KingdomDiplomacyVM, ICloseableVM
     {
-		private MBBindingList<KingdomTruceItemVM> _playerAlliances;
-		private Kingdom _playerKingdom;
-		private MethodInfo _onSelectionMethodInfo;
+        private MBBindingList<KingdomTruceItemVM> _playerAlliances;
+        private Kingdom _playerKingdom;
+        private MethodInfo _onSelectionMethodInfo;
         private MethodInfo _executeActionMethodInfo;
         private string _numOfPlayerAlliancesText;
         private bool _showStats;
         private bool _showOverview;
 
-        public KingdomDiplomacyVMExtensionVM(Action<KingdomDecision> forceDecision) : base(forceDecision) {
-			this._playerKingdom = (Hero.MainHero.MapFaction as Kingdom);
-			this._onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
+        public KingdomDiplomacyVMExtensionVM(Action<KingdomDecision> forceDecision) : base(forceDecision)
+        {
+            this._playerKingdom = (Hero.MainHero.MapFaction as Kingdom);
+            this._onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
             this._executeActionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("ExecuteAction", BindingFlags.Instance | BindingFlags.NonPublic);
             this.PlayerAlliancesText = new TextObject("{=zpNalMeA}Alliances").ToString();
             this.StatsText = new TextObject("{=1occw3EF}Stats").ToString();
@@ -37,10 +38,10 @@ namespace DiplomacyFixes.ViewModel
                     RefreshValues();
                 }
             });
-            CampaignEvents.MakePeace.AddNonSerializedListener(this, (x,y) => RefreshValues());
-			this.RefreshAlliances();
+            CampaignEvents.MakePeace.AddNonSerializedListener(this, (x, y) => RefreshValues());
+            this.RefreshAlliances();
             this.ExecuteShowOverview();
-		}
+        }
 
         public void OnClose()
         {
@@ -49,10 +50,10 @@ namespace DiplomacyFixes.ViewModel
         }
 
         public override void RefreshValues()
-		{
-			base.RefreshValues();
-			RefreshAlliances();
-		}
+        {
+            base.RefreshValues();
+            RefreshAlliances();
+        }
 
         private void ExecuteShowStats()
         {
@@ -100,20 +101,20 @@ namespace DiplomacyFixes.ViewModel
             }
         }
 
-		private void RefreshAlliances()
-		{
-			if (this.PlayerAlliances == null)
-			{
-				this.PlayerAlliances = new MBBindingList<KingdomTruceItemVM>();
-			}
+        private void RefreshAlliances()
+        {
+            if (this.PlayerAlliances == null)
+            {
+                this.PlayerAlliances = new MBBindingList<KingdomTruceItemVM>();
+            }
 
-			this.PlayerAlliances.Clear();
+            this.PlayerAlliances.Clear();
 
-			foreach (Kingdom kingdom in Kingdom.All)
-			{
-				if (kingdom != this._playerKingdom && !kingdom.IsEliminated && (FactionManager.IsAlliedWithFaction(kingdom, this._playerKingdom)))
-				{
-					this.PlayerAlliances.Add(new KingdomAllianceItemVM(this._playerKingdom, kingdom, this.OnDiplomacyItemSelection, this.BreakAlliance));
+            foreach (Kingdom kingdom in Kingdom.All)
+            {
+                if (kingdom != this._playerKingdom && !kingdom.IsEliminated && (FactionManager.IsAlliedWithFaction(kingdom, this._playerKingdom)))
+                {
+                    this.PlayerAlliances.Add(new KingdomAllianceItemVM(this._playerKingdom, kingdom, this.OnDiplomacyItemSelection, this.BreakAlliance));
                 }
             }
 

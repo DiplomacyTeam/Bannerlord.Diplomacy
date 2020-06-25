@@ -26,7 +26,7 @@ namespace DiplomacyFixes.GrantFief
         private static int CalculateBaseRelationChange(Settlement settlement)
         {
             int baseRelationChange = (int)Math.Round(Math.Max(5, Math.Log(settlement.Prosperity / 1000, 1.1f)));
-            return (int) (baseRelationChange * Settings.Instance.GrantFiefPositiveRelationMultiplier);
+            return (int)(baseRelationChange * Settings.Instance.GrantFiefPositiveRelationMultiplier);
         }
 
         public static int PreviewPositiveRelationChange(Settlement settlement, Hero hero)
@@ -34,7 +34,7 @@ namespace DiplomacyFixes.GrantFief
             int relationChange = CalculateBaseRelationChange(settlement);
             ExplainedNumber explainedNumber = new ExplainedNumber((float)relationChange, new StatExplainer(), null);
             Campaign.Current.Models.DiplomacyModel.GetRelationIncreaseFactor(Hero.MainHero, hero, ref explainedNumber);
-            relationChange = (int) Math.Floor(explainedNumber.ResultNumber);
+            relationChange = (int)Math.Floor(explainedNumber.ResultNumber);
             return relationChange;
         }
 

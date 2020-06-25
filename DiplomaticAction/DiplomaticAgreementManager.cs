@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
@@ -22,7 +21,7 @@ namespace DiplomacyFixes.DiplomaticAction
 
         public Dictionary<FactionMapping, List<DiplomaticAgreement>> Agreements { get { return _agreements; } }
 
-        public bool HasNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, out NonAggressionPactAgreement pactAgreement) 
+        public bool HasNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, out NonAggressionPactAgreement pactAgreement)
         {
             if (this._agreements.TryGetValue(new FactionMapping(kingdom, otherKingdom), out List<DiplomaticAgreement> agreements))
             {

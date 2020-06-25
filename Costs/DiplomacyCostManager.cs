@@ -1,7 +1,5 @@
-﻿using DiplomacyFixes.Costs;
-using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.Library;
 
 namespace DiplomacyFixes
 {

@@ -39,7 +39,7 @@ namespace DiplomacyFixes.Patches
         [HarmonyPatch("ExecuteClose")]
         public static void ExecuteClosePatch(KingdomManagementVM __instance)
         {
-            ((KingdomDiplomacyVMExtensionVM) __instance.Diplomacy).OnClose();
+            ((KingdomDiplomacyVMExtensionVM)__instance.Diplomacy).OnClose();
             ((KingdomClanVMExtensionVM)__instance.Clan).OnClose();
         }
     }

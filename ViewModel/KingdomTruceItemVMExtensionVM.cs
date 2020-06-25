@@ -24,7 +24,7 @@ namespace DiplomacyFixes.ViewModel
             this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForDeclaringWar(Faction1 as Kingdom, true).Value;
             this.ActionName = GameTexts.FindText("str_kingdom_declate_war_action", null).ToString();
             this.NonAggressionPactActionName = new TextObject("{=9pY0NQrk}Form Pact").ToString();
-            
+
             TextObject textObject = new TextObject("{=9zlQNtlX}Form a non-aggression pact lasting {PACT_DURATION_DAYS} days.");
             textObject.SetTextVariable("PACT_DURATION_DAYS", Settings.Instance.NonAggressionPactDuration);
             this.NonAggressionPactHelpText = textObject.ToString();

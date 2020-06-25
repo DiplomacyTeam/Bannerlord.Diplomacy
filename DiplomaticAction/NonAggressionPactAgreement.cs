@@ -36,7 +36,7 @@ namespace DiplomacyFixes.DiplomaticAction
                         null,
                         null,
                         ""), true);
-            } 
+            }
             else
             {
                 InformationManager.DisplayMessage(new InformationMessage(textObject.ToString()));

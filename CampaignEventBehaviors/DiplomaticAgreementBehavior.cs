@@ -1,7 +1,5 @@
 ﻿using DiplomacyFixes.DiplomaticAction;
 using DiplomacyFixes.DiplomaticAction.Alliance;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 
@@ -30,7 +28,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void ExpireNonAggressionPact(AllianceEvent obj)
         {
-            if(DiplomaticAgreementManager.Instance.HasNonAggressionPact(obj.Kingdom, obj.OtherKingdom, out NonAggressionPactAgreement pactAgreement))
+            if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(obj.Kingdom, obj.OtherKingdom, out NonAggressionPactAgreement pactAgreement))
             {
                 pactAgreement.Expire();
             }

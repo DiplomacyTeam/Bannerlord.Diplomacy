@@ -5,7 +5,7 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance.Conditions
 {
     class HasEnoughInfluenceCondition : IDiplomacyCondition
     {
-        
+
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
             textObject = null;

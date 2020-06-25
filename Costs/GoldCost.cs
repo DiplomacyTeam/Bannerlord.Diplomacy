@@ -8,7 +8,7 @@ namespace DiplomacyFixes.Costs
         private readonly Hero _giver;
         private readonly Hero _receiver;
 
-        public GoldCost(Hero giver, Hero receiver, float value) : base(value) 
+        public GoldCost(Hero giver, Hero receiver, float value) : base(value)
         {
             this._giver = giver;
             this._receiver = receiver;

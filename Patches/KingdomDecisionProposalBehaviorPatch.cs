@@ -1,10 +1,5 @@
 ﻿using DiplomacyFixes.DiplomaticAction.WarPeace;
 using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
@@ -23,7 +18,8 @@ namespace DiplomacyFixes.Patches
             {
                 __result = false;
                 return false;
-            } else
+            }
+            else
             {
                 return true;
             }

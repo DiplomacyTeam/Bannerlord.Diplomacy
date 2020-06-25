@@ -1,6 +1,4 @@
-﻿using TaleWorlds.CampaignSystem;
-
-namespace DiplomacyFixes.ViewModel
+﻿namespace DiplomacyFixes.ViewModel
 {
     internal interface ICloseableVM
     {

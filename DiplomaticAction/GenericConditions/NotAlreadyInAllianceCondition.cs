@@ -5,7 +5,7 @@ namespace DiplomacyFixes.DiplomaticAction.GenericConditions
 {
     class NotAlreadyInAllianceCondition : IDiplomacyCondition
     {
-        
+
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
             textObject = null;

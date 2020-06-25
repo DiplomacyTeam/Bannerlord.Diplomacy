@@ -1,5 +1,4 @@
-﻿using DiplomacyFixes.Costs;
-using DiplomacyFixes.GauntletInterfaces;
+﻿using DiplomacyFixes.GauntletInterfaces;
 using DiplomacyFixes.GrantFief;
 using System;
 using System.ComponentModel;

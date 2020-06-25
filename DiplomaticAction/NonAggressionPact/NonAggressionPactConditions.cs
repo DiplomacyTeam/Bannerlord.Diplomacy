@@ -16,13 +16,16 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
 
         public NonAggressionPactConditions() : base(_formNonAggressionPactConditions) { }
 
-        public static DiplomaticConditions Instance { 
-            get {
-                if(_instance == null)
+        public static DiplomaticConditions Instance
+        {
+            get
+            {
+                if (_instance == null)
                 {
                     _instance = new NonAggressionPactConditions();
                 }
                 return _instance;
-            } }
+            }
+        }
     }
 }
