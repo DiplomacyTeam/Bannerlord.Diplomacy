@@ -255,11 +255,33 @@
                   </Children>
                 </ListPanel>
 
-                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="-20" IsVisible="@IsAcceptableItemSelected">
+                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginLeft="50" PositionYOffset="-20" IsVisible="@IsAcceptableItemSelected">
                   <Children>
 
+                    <!--Donate Gold-->
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginLeft="10" MarginRight="10" VerticalAlignment="Bottom">
+                      <Children>
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center" MarginTop="5">
+                          <Children>
+                            <!--Donate Gold Button-->
+                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center" Brush="ButtonBrush2" Command.Click="DonateGold" IsEnabled="@CanDonateGold" UpdateChildrenStates="true">
+                              <Children>
+                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@DonateGoldActionName" />
+                              </Children>
+                            </ButtonWidget>
+                          </Children>
+                        </Widget>
+                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
+                          <Children>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" MarginLeft="5" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" />
+                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@DonationAmount"/>
+                          </Children>
+                        </ListPanel>
+                      </Children>
+                    </ListPanel>
+
                     <!--Grant Fief-->
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginRight="50" VerticalAlignment="Top">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginLeft="10" MarginRight="10" VerticalAlignment="Top">
                       <Children>
 
                         <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="250" MarginLeft="25" MarginRight="25" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="@CanGrantFiefToClan" Text="@GrantFiefExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
@@ -281,7 +303,7 @@
                     </ListPanel>
 
                     <!--Support-->
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginLeft="50" MarginRight="50" VerticalAlignment="Bottom">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginLeft="10" MarginRight="10" VerticalAlignment="Bottom">
                       <Children>
 
                         <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="@CanExpelCurrentClan" Text="@SupportActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
@@ -310,7 +332,7 @@
                     </ListPanel>
 
                     <!--Expel-->
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginLeft="50" VerticalAlignment="Bottom">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginLeft="10" MarginRight="10" VerticalAlignment="Bottom">
                       <Children>
 
                         <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="@CanExpelCurrentClan" Text="@ExpelActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>

@@ -10,7 +10,7 @@ using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.ViewModel
 {
-    class KingdomDiplomacyVMExtensionVM : KingdomDiplomacyVM
+    class KingdomDiplomacyVMExtensionVM : KingdomDiplomacyVM, ICloseableVM
     {
 		private MBBindingList<KingdomTruceItemVM> _playerAlliances;
 		private Kingdom _playerKingdom;

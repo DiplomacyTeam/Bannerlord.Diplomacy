@@ -1,9 +1,11 @@
-﻿using DiplomacyFixes.GauntletInterfaces;
+﻿using DiplomacyFixes.Costs;
+using DiplomacyFixes.GauntletInterfaces;
 using DiplomacyFixes.GrantFief;
 using System;
 using System.ComponentModel;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomClan;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Engine.Screens;
@@ -12,7 +14,7 @@ using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.ViewModel
 {
-    class KingdomClanVMExtensionVM : KingdomClanVM, INotifyPropertyChanged
+    class KingdomClanVMExtensionVM : KingdomClanVM, INotifyPropertyChanged, ICloseableVM
     {
         private bool _canGrantFiefToClan;
         private GrantFiefInterface _grantFiefInterface;
@@ -20,6 +22,7 @@ namespace DiplomacyFixes.ViewModel
 
         private Action _executeExpel;
         private Action _executeSupport;
+        private bool _canDonateGold;
 
         public KingdomClanVMExtensionVM(Action<TaleWorlds.CampaignSystem.Election.KingdomDecision> forceDecide) : base(forceDecide)
         {
@@ -30,8 +33,10 @@ namespace DiplomacyFixes.ViewModel
             this._grantFiefInterface = new GrantFiefInterface();
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             this.GrantFiefExplanationText = new TextObject("{=98hwXUTp}Grant fiefs to clans in your kingdom").ToString();
+            this.DonateGoldActionName = new TextObject("Donate Gold").ToString();
             base.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
             RefreshCanGrantFief();
+            RefreshCanDonateGold();
         }
 
         public void OnClose()
@@ -44,7 +49,6 @@ namespace DiplomacyFixes.ViewModel
             this._executeExpel();
         }
 
-        // Token: 0x06000ACA RID: 2762 RVA: 0x0002BE9C File Offset: 0x0002A09C
         private void ExecuteSupport()
         {
             this._executeSupport();
@@ -63,6 +67,13 @@ namespace DiplomacyFixes.ViewModel
             this._grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, this.CurrentSelectedClan.Clan.Leader);
         }
 
+        private void DonateGold()
+        {
+            GiveGoldToClanAction.ApplyFromHeroToClan(Hero.MainHero, this.CurrentSelectedClan.Clan, DonationAmount);
+            RefreshCanDonateGold();
+        }
+
+
         private void RefreshCanGrantFief(Town town)
         {
             base.RefreshClan();
@@ -73,6 +84,26 @@ namespace DiplomacyFixes.ViewModel
         {
             this.CanGrantFiefToClan = GrantFiefAction.CanGrantFief(this.CurrentSelectedClan.Clan, out string hint);
             this.GrantFiefHint = this.CanGrantFiefToClan ? new HintViewModel() : new HintViewModel(hint, null);
+        }
+
+        private void RefreshCanDonateGold()
+        {
+            this.CanDonateGold = Hero.MainHero.Gold >= DonationAmount;
+        }
+
+        [DataSourceProperty]
+        public bool CanDonateGold
+        {
+            get { return this._canDonateGold; }
+
+            set
+            {
+                if (value != this._canDonateGold)
+                {
+                    this._canDonateGold = value;
+                    base.OnPropertyChanged("CanDonateGold");
+                }
+            }
         }
 
         [DataSourceProperty]
@@ -112,5 +143,10 @@ namespace DiplomacyFixes.ViewModel
 
         [DataSourceProperty]
         public string GrantFiefExplanationText { get; }
+        [DataSourceProperty]
+        public string DonateGoldActionName { get; }
+
+        [DataSourceProperty]
+        public int DonationAmount { get; } = 1000;
     }
 }
