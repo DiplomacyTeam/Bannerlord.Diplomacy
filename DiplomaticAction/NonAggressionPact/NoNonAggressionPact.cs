@@ -9,7 +9,7 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
             textObject = null;
-            bool hasNonAggressionPact = DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, otherKingdom);
+            bool hasNonAggressionPact = DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, otherKingdom, out _);
 
             if (hasNonAggressionPact)
             {

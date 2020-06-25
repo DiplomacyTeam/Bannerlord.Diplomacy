@@ -8,9 +8,9 @@ namespace DiplomacyFixes.DiplomaticAction
     abstract class DiplomaticAgreement
     {
         [SaveableProperty(1)]
-        public CampaignTime StartDate { get; private set; }
+        public CampaignTime StartDate { get; protected set; }
         [SaveableProperty(2)]
-        public CampaignTime EndDate { get; private set; }
+        public CampaignTime EndDate { get; protected set; }
         
         public DiplomaticAgreement(CampaignTime startdate, CampaignTime endDate)
         {
@@ -19,6 +19,7 @@ namespace DiplomacyFixes.DiplomaticAction
         }
 
         public abstract AgreementType GetAgreementType();
+        public abstract void Expire();
     }
 
     public enum AgreementType

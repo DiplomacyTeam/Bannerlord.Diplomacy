@@ -10,6 +10,11 @@ namespace DiplomacyFixes.DiplomaticAction
         {
         }
 
+        public override void Expire()
+        {
+            this.EndDate = CampaignTime.Now - CampaignTime.Milliseconds(1);
+        }
+
         public override AgreementType GetAgreementType()
         {
             return AgreementType.NonAggressionPact;

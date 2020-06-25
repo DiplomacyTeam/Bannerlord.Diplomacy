@@ -74,12 +74,12 @@ namespace DiplomacyFixes.ViewModel
                     Faction2Allies.Add(new DiplomacyFactionRelationshipVM(kingdom));
                 }
 
-                if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, Faction1 as Kingdom))
+                if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, Faction1 as Kingdom, out _))
                 {
                     Faction1Pacts.Add(new DiplomacyFactionRelationshipVM(kingdom));
                 }
 
-                if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, Faction2 as Kingdom))
+                if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, Faction2 as Kingdom, out _))
                 {
                     Faction2Pacts.Add(new DiplomacyFactionRelationshipVM(kingdom));
                 }

@@ -20,14 +20,17 @@ namespace DiplomacyFixes.DiplomaticAction
             Instance = this;
         }
 
-        public bool HasNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom) 
+        public bool HasNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, out NonAggressionPactAgreement pactAgreement) 
         {
             if (this._agreements.TryGetValue(new FactionMapping(kingdom, otherKingdom), out List<DiplomaticAgreement> agreements))
             {
-                return agreements.Where(agreement => agreement.GetAgreementType() == AgreementType.NonAggressionPact && CampaignTime.Now <= agreement.EndDate).Any();
+                IEnumerable<DiplomaticAgreement> enumerable = agreements.Where(agreement => agreement.GetAgreementType() == AgreementType.NonAggressionPact && CampaignTime.Now <= agreement.EndDate);
+                pactAgreement = enumerable.OfType<NonAggressionPactAgreement>().FirstOrDefault();
+                return enumerable.Any();
             }
             else
             {
+                pactAgreement = null;
                 return false;
             }
         }
@@ -44,7 +47,6 @@ namespace DiplomacyFixes.DiplomaticAction
                 this._agreements[factionMapping] = new List<DiplomaticAgreement>() { diplomaticAgreement };
             }
         }
-
         public void Sync()
         {
             Instance = this;

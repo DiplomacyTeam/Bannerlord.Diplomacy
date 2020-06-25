@@ -1,4 +1,6 @@
 ﻿using DiplomacyFixes.DiplomaticAction;
+using DiplomacyFixes.DiplomaticAction.Alliance;
+using System;
 using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
@@ -15,6 +17,15 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         public override void RegisterEvents()
         {
+            Events.AllianceFormed.AddNonSerializedListener(this, this.ExpireNonAggressionPact);
+        }
+
+        private void ExpireNonAggressionPact(AllianceEvent obj)
+        {
+            if(DiplomaticAgreementManager.Instance.HasNonAggressionPact(obj.Kingdom, obj.OtherKingdom, out NonAggressionPactAgreement pactAgreement))
+            {
+                pactAgreement.Expire();
+            }
         }
 
         public override void SyncData(IDataStore dataStore)
