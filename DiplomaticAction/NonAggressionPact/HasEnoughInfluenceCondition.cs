@@ -8,7 +8,7 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
             textObject = null;
-            DiplomacyCost influenceCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(kingdom, forcePlayerCharacterCosts);
+            DiplomacyCost influenceCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts).InfluenceCost;
             bool hasEnoughInfluence = influenceCost.CanPayCost();
 
             if (!hasEnoughInfluence)

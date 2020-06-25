@@ -276,6 +276,7 @@
     <Compile Include="Costs\GoldCost.cs" />
     <Compile Include="Costs\HybridCost.cs" />
     <Compile Include="Costs\InfluenceCost.cs" />
+    <Compile Include="DiplomaticAction\NonAggressionPact\HasEnoughGoldCondition.cs" />
     <Compile Include="ViewModel\DiplomacyPropertiesVM.cs" />
     <Compile Include="DiplomaticAction\Alliance\AllianceConditions.cs" />
     <Compile Include="DiplomaticAction\Alliance\AllianceEvent.cs" />

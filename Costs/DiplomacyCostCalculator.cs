@@ -1,6 +1,7 @@
 ﻿using DiplomacyFixes.Costs;
 using DiplomacyFixes.DiplomaticAction.Alliance;
 using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
@@ -27,10 +28,22 @@ namespace DiplomacyFixes
             if (!Settings.Instance.ScalingInfluenceCosts)
                 return new InfluenceCost(clanPayingInfluence, Settings.Instance.MakePeaceInfluenceCost);
 
-            return new InfluenceCost(clanPayingInfluence, (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance.ScalingInfluenceCostMultiplier));
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom));
         }
 
-        public static DiplomacyCost DetermineCostForFormingNonAggressionPact(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
+        private static float GetKingdomScalingFactor(Kingdom kingdom)
+        {
+            return (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance.ScalingInfluenceCostMultiplier);
+        }
+
+        public static HybridCost DetermineCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        {
+            return new HybridCost(
+                DetermineInfluenceCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts),
+                DetermineGoldCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts));
+        }
+
+        public static InfluenceCost DetermineInfluenceCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
             Clan clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
             if (!Settings.Instance.EnableInfluenceCostsForDiplomacyActions)
@@ -38,7 +51,25 @@ namespace DiplomacyFixes
             if (!Settings.Instance.ScalingInfluenceCosts)
                 return new InfluenceCost(clanPayingInfluence, Settings.Instance.MakePeaceInfluenceCost);
 
-            return new InfluenceCost(clanPayingInfluence, (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance.ScalingInfluenceCostMultiplier));
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom));
+        }
+
+        private static GoldCost DetermineGoldCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        {
+            Hero giver = forcePlayerCharacterCosts ? Hero.MainHero : kingdom.Leader;
+
+            float otherKingdomWarLoad = GetKingdomWarLoad(otherKingdom) + 1;
+
+            int baseGoldCost = 500;
+            int goldCostFactor = 100;
+            int goldCost = (int)((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * goldCostFactor) + baseGoldCost);
+
+            return new GoldCost(giver, otherKingdom.Leader, goldCost);
+        }
+
+        private static float GetKingdomWarLoad(Kingdom kingdom)
+        {
+            return FactionManager.GetEnemyFactions(kingdom)?.Select(x => x.TotalStrength).Aggregate(0f, (result, item) => result + item) / kingdom.TotalStrength ?? 0f;
         }
 
         public static DiplomacyCost DetermineCostForSendingMessenger()
@@ -82,7 +113,7 @@ namespace DiplomacyFixes
                 warExhaustionMultiplier = MBMath.ClampFloat(relativeWarExhaustion, 0, (((WarExhaustionManager.DefaultMaxWarExhaustion / Settings.Instance.MaxWarExhaustion) / 20) * kingdomMakingPeaceWarExhaustion) - 1f);
             }
 
-            return Math.Min((int)(GetKingdomTierCount(kingdomMakingPeace) * Settings.Instance.ScalingWarReparationsGoldCostMultiplier * warExhaustionMultiplier), kingdomMakingPeace.Leader.Gold / 2);
+            return Math.Min((int)(GetKingdomScalingFactor(kingdomMakingPeace) * warExhaustionMultiplier), kingdomMakingPeace.Leader.Gold / 2);
         }
 
         public static int GetTotalKingdomWealth(Kingdom kingdom)

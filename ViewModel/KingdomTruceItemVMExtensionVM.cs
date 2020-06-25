@@ -1,4 +1,5 @@
-﻿using DiplomacyFixes.DiplomaticAction.Alliance;
+﻿using DiplomacyFixes.Costs;
+using DiplomacyFixes.DiplomaticAction.Alliance;
 using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
 using DiplomacyFixes.DiplomaticAction.WarPeace;
 using DiplomacyFixes.Messengers;
@@ -74,7 +75,11 @@ namespace DiplomacyFixes.ViewModel
             this.IsNonAggressionPactAvailable = nonAggressionPactException == null;
             this.NonAggressionPactHint = nonAggressionPactException != null ? new HintViewModel(nonAggressionPactException) : new HintViewModel();
             this.AllianceInfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForFormingAlliance(Faction1 as Kingdom, Faction2 as Kingdom, true).Value;
-            this.NonAggressionPactInfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(Faction1 as Kingdom, true).Value;
+
+            HybridCost nonAggressionPactCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(Faction1 as Kingdom, Faction2 as Kingdom, true);
+
+            this.NonAggressionPactInfluenceCost = (int)nonAggressionPactCost.InfluenceCost.Value;
+            this.NonAggressionPactGoldCost = (int)nonAggressionPactCost.GoldCost.Value;
         }
 
         protected void SendMessenger()
@@ -158,6 +163,23 @@ namespace DiplomacyFixes.ViewModel
                 {
                     this._nonAggressionPactInfluenceCost = value;
                     base.OnPropertyChanged("NonAggressionPactInfluenceCost");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public int NonAggressionPactGoldCost
+        {
+            get
+            {
+                return this._nonAggressionPactGoldCost;
+            }
+            set
+            {
+                if (value != this._nonAggressionPactGoldCost)
+                {
+                    this._nonAggressionPactGoldCost = value;
+                    base.OnPropertyChanged("NonAggressionPactGoldCost");
                 }
             }
         }
@@ -290,5 +312,6 @@ namespace DiplomacyFixes.ViewModel
         private HintViewModel _allianceHint;
         private HintViewModel _nonAggressionPactHint;
         private HintViewModel _actionHint;
+        private int _nonAggressionPactGoldCost;
     }
 }

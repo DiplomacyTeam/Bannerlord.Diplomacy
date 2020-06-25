@@ -10,6 +10,7 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
             new AtPeaceCondition(),
             new NotAlreadyInAllianceCondition(),
             new HasEnoughInfluenceCondition(),
+            new HasEnoughGoldCondition(),
             new NoNonAggressionPactCondition()
         };
 
