@@ -299,7 +299,7 @@
     <Compile Include="DiplomaticAction\GenericConditions\NotAlreadyInAllianceCondition.cs" />
     <Compile Include="DiplomaticAction\NonAggressionPact\FormNonAggressionPactAction.cs" />
     <Compile Include="DiplomaticAction\NonAggressionPact\HasEnoughInfluenceCondition.cs" />
-    <Compile Include="DiplomaticAction\NonAgressionPactAgreement.cs" />
+    <Compile Include="DiplomaticAction\NonAggressionPactAgreement.cs" />
     <Compile Include="DiplomaticAction\NonAggressionPact\NoNonAggressionPact.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Extensions\BaseKingdomInfoExtension.cs" />
