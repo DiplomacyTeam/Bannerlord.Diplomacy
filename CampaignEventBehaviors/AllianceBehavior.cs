@@ -61,7 +61,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
                     }
 
                     DeclareWarAction.Apply(alliedKingdom, enemyKingdom);
-                    TextObject textObject = new TextObject("{ALLIED_KINGDOM} is joining their ally, {KINGDOM}, in the war against {ENEMY_KINGDOM}.");
+                    TextObject textObject = new TextObject("{=UDC8eW7s}{ALLIED_KINGDOM} is joining their ally, {KINGDOM}, in the war against {ENEMY_KINGDOM}.");
                     textObject.SetTextVariable("ALLIED_KINGDOM", alliedKingdom.Name);
                     textObject.SetTextVariable("KINGDOM", kingdom.Name);
                     textObject.SetTextVariable("ENEMY_KINGDOM", kingdomToDeclareWarOn.Name);
