@@ -116,7 +116,7 @@ namespace DiplomacyFixes
 
         [SettingPropertyFloatingInteger("{=Fyion5Hw}War Exhaustion Decay per Day", 0f, 50f, RequireRestart = false, HintText = "{=o99AUWR8}The amount of war exhaustion decay per day the factions are at peace. Default value is 1.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
-        public float WarExhaustionDecayPerDay { get; set; } = 1.0f;
+        public float WarExhaustionDecayPerDay { get; set; } = 2.0f;
 
         [SettingPropertyBool("{=jI9NSxtz}Enable Player War Exhaustion Debug Messages", Order = 100, RequireRestart = false, HintText = "{=LYyNbQds}Enables debug messages for war exhaustion added to the player kingdom. Default value is false.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
