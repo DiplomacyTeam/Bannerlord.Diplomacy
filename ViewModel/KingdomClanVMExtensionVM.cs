@@ -58,6 +58,7 @@ namespace DiplomacyFixes.ViewModel
             if (e.PropertyName == "CurrentSelectedClan")
             {
                 RefreshCanGrantFief();
+                RefreshCanDonateGold();
             }
         }
 
@@ -87,7 +88,7 @@ namespace DiplomacyFixes.ViewModel
 
         private void RefreshCanDonateGold()
         {
-            this.CanDonateGold = Hero.MainHero.Gold >= DonationAmount;
+            this.CanDonateGold = this.CurrentSelectedClan.Clan != Clan.PlayerClan && Hero.MainHero.Gold >= DonationAmount;
         }
 
         [DataSourceProperty]
