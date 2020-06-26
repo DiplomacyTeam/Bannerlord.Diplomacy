@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.CampaignEventBehaviors;
+using DiplomacyFixes.Models;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -38,6 +39,11 @@ namespace DiplomacyFixes
                 }
                 gameStarter.AddBehavior(new AllianceBehavior());
                 gameStarter.AddBehavior(new DiplomaticAgreementBehavior());
+
+                if (Settings.Instance.EnableInfluenceBalancing)
+                {
+                    gameStarter.AddModel(new InfluenceModel());
+                }
             }
             base.OnGameStart(game, gameStarterObject);
         }

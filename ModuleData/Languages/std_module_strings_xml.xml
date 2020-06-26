@@ -90,6 +90,10 @@
     
     <string id="pdI7Tjtj" text="Non-Aggression Pact Expired"/>
     <string id="uWY09LJb" text="The non-aggression pact between {KINGDOM} and {OTHER_KINGDOM} has expired."/>
+    
+    <string id="dUCOV7km" text="Corruption (too many fiefs)"/>
+    <string id="koTNaZUX" text="Influence Decay (too much influence)"/>
+    <string id="uZc8Hg01" text="Maximum Influence Loss"/>
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
@@ -172,6 +176,25 @@
     <string id="FQaghHo7" text="Multiplier for the relation gain when granting fiefs. Default value is 1." />
     <string id="9qKclHq3" text="Grant Fief Relation Penalty" />
     <string id="fgc8Dvg0" text="The relation penalty assessed when granting a fief to another clan. Default value is -2."/>
+    
+    <string id="8ZPKToTq" text="Influence Balancing"/>
+    <string id="4jlYRUdZ" text="Enable Influence Balancing"/>
+    <string id="tOMN9DQD" text="Enables influence balancing. May need to be disabled for mod compatibility."/>
+    
+    <string id="vzKRX2JA" text="Influence Decay"/>
+    <string id="szYr4OTG" text="Enable Influence Decay" />
+    <string id="rKS9z4Sz" text="Enables influence decay, which gradually decays influence each day. Default value is enabled."/>
+    
+    <string id="pVE1yNlm" text="Influence Decay Threshold"/>
+    <string id="MnLk08uW" text="The amount of influence exempt from influence decay. Default value is 1000."/>
+    <string id="WTeM4Rba" text="Maximum Influence Loss per Day"/>
+    <string id="CGixJ6ng" text="The maximum amount of daily influence loss. Default value is 20."/>
+    <string id="yob5ZHtz" text="Influence Decay Percentage per Day"/>
+    <string id="IYFl4kJx" text="The percentage of influence that decays away per day. Default value is 2.0." />
+    
+    <string id="e5fHDXgl" text="Corruption" />
+    <string id="KWAH0S4h" text="Enable Corruption" />
+    <string id="trgnZ0pn" text="Enables corruption, which gradually decays a clan's influence each day when holding too many fiefs. Default value is enabled."/>
     
   </strings>
 </base>
