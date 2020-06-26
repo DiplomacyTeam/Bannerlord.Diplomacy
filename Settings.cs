@@ -114,7 +114,7 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerRaid { get; set; } = 3f;
 
-        [SettingPropertyFloatingInteger("{=Fyion5Hw}War Exhaustion Decay per Day", 0f, 50f, RequireRestart = false, HintText = "{=o99AUWR8}The amount of war exhaustion decay per day the factions are at peace. Default value is 1.0.")]
+        [SettingPropertyFloatingInteger("{=Fyion5Hw}War Exhaustion Decay per Day", 0f, 50f, RequireRestart = false, HintText = "{=o99AUWR8}The amount of war exhaustion decay per day the factions are at peace. Default value is 2.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionDecayPerDay { get; set; } = 2.0f;
 
