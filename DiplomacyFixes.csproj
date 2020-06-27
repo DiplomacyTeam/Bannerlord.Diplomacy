@@ -277,7 +277,7 @@
     <Compile Include="Costs\HybridCost.cs" />
     <Compile Include="Costs\InfluenceCost.cs" />
     <Compile Include="DiplomaticAction\NonAggressionPact\HasEnoughGoldCondition.cs" />
-    <Compile Include="Models\InfluenceModel.cs" />
+    <Compile Include="Patches\DefaultClanPoliticsModelPatch.cs" />
     <Compile Include="Patches\GiveGoldToClanActionPatch.cs" />
     <Compile Include="ViewModel\ICloseableVM.cs" />
     <Compile Include="ViewModel\DiplomacyPropertiesVM.cs" />

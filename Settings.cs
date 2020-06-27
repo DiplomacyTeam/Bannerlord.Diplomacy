@@ -131,7 +131,7 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingRelations)]
         public int GrantFiefRelationPenalty { get; set; } = -2;
 
-        [SettingPropertyBool("{=4jlYRUdZ}Enable Influence Balancing", RequireRestart = true, HintText = "{=tOMN9DQD}Enables influence balancing. May need to be disabled for mod compatibility.")]
+        [SettingPropertyBool("{=4jlYRUdZ}Enable Influence Balancing", RequireRestart = false, HintText = "{=tOMN9DQD}Enables influence balancing. May need to be disabled for mod compatibility.")]
         [SettingPropertyGroup(HeadingInfluenceBalancing, IsMainToggle = true, GroupOrder = 6)]
         public bool EnableInfluenceBalancing { get; set; } = true;
 
