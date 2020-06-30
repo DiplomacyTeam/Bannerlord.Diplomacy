@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using DiplomacyFixes.Influence;
+using HarmonyLib;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
@@ -19,13 +20,11 @@ namespace DiplomacyFixes.Patches
 
                 if (Settings.Instance.EnableCorruption)
                 {
-                    int numFiefsTooMany = clan.Fiefs.Count() - clan.Tier;
-                    if (numFiefsTooMany > 0)
+                    float corruption = clan.GetCorruption();
+                    if (corruption > 0)
                     {
-                        int factor = numFiefsTooMany > 5 ? -2 : -1;
-                        float corruption = numFiefsTooMany * factor;
-                        explanation?.AddLine(new TextObject("{=dUCOV7km}Corruption (too many fiefs)").ToString(), corruption);
-                        influenceChange += corruption;
+                        explanation?.AddLine(new TextObject("{=dUCOV7km}Corruption (too many fiefs)").ToString(), -corruption);
+                        influenceChange -= corruption;
                     }
                 }
 
