@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.Influence;
+﻿using DiplomacyFixes.Extensions;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -53,8 +53,6 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             return (int)Math.Min(Campaign.Current.Models.SettlementValueModel.CalculateValueForFaction(settlement, targetClan), targetClan.Gold * 0.8);
         }
 
-        public override void SyncData(IDataStore dataStore)
-        {
-        }
+        public override void SyncData(IDataStore dataStore) { }
     }
 }

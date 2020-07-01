@@ -19,6 +19,7 @@ namespace DiplomacyFixes
             base.AddClassDefinition(typeof(DiplomaticAgreement), 5);
             base.AddClassDefinition(typeof(NonAggressionPactAgreement), 6);
             base.AddClassDefinition(typeof(DiplomaticAgreementManager), 7);
+            base.AddClassDefinition(typeof(ExpansionismManager), 8);
         }
 
         protected override void DefineStructTypes()

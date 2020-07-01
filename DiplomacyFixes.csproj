@@ -273,12 +273,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CampaignEventBehaviors\DiplomaticAgreementBehavior.cs" />
+    <Compile Include="CampaignEventBehaviors\ExpansionismBehavior.cs" />
     <Compile Include="CampaignEventBehaviors\MaintainInfluenceBehavior.cs" />
     <Compile Include="Costs\GoldCost.cs" />
     <Compile Include="Costs\HybridCost.cs" />
     <Compile Include="Costs\InfluenceCost.cs" />
     <Compile Include="DiplomaticAction\NonAggressionPact\HasEnoughGoldCondition.cs" />
-    <Compile Include="Influence\Corruption.cs" />
+    <Compile Include="ExpansionismManager.cs" />
+    <Compile Include="Extensions\ClanExtensions.cs" />
     <Compile Include="Patches\DefaultClanPoliticsModelPatch.cs" />
     <Compile Include="Patches\GiveGoldToClanActionPatch.cs" />
     <Compile Include="ViewModel\ICloseableVM.cs" />

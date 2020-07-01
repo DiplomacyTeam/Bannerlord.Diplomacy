@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.Influence;
+﻿using DiplomacyFixes.Extensions;
 using HarmonyLib;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
