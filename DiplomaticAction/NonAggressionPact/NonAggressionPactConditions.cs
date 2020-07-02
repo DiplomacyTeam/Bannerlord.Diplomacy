@@ -11,7 +11,8 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
             new NotAlreadyInAllianceCondition(),
             new HasEnoughInfluenceCondition(),
             new HasEnoughGoldCondition(),
-            new NoNonAggressionPactCondition()
+            new NoNonAggressionPactCondition(),
+            new HasEnoughScoreCondition()
         };
 
         public NonAggressionPactConditions() : base(_formNonAggressionPactConditions) { }

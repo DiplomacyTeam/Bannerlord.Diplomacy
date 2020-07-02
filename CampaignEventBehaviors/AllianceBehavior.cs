@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.DiplomaticAction.Alliance;
+using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;

@@ -39,6 +39,7 @@ namespace DiplomacyFixes
                 gameStarter.AddBehavior(new AllianceBehavior());
                 gameStarter.AddBehavior(new DiplomaticAgreementBehavior());
                 gameStarter.AddBehavior(new MaintainInfluenceBehavior());
+                gameStarter.AddBehavior(new ExpansionismBehavior());
             }
             base.OnGameStart(game, gameStarterObject);
         }
