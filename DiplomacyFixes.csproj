@@ -281,6 +281,7 @@
     <Compile Include="DiplomaticAction\NonAggressionPact\HasEnoughGoldCondition.cs" />
     <Compile Include="ExpansionismManager.cs" />
     <Compile Include="Extensions\ClanExtensions.cs" />
+    <Compile Include="Extensions\KingdomExtensions.cs" />
     <Compile Include="Patches\DefaultClanPoliticsModelPatch.cs" />
     <Compile Include="Patches\GiveGoldToClanActionPatch.cs" />
     <Compile Include="ViewModel\ICloseableVM.cs" />

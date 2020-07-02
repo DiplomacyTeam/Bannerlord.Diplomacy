@@ -23,10 +23,5 @@ namespace DiplomacyFixes.Extensions
             int numFiefsTooMany = clan.Fiefs.Count() - clan.Tier;
             return numFiefsTooMany >= 0;
         }
-
-        public static float GetExpansionism(this Clan clan)
-        {
-            return clan.MapFaction.IsKingdomFaction ? ExpansionismManager.Instance.GetExpansionism(clan.MapFaction) : 0f;
-        }
     }
 }

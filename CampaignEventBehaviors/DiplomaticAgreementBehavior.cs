@@ -1,7 +1,10 @@
 ﻿using DiplomacyFixes.DiplomaticAction;
 using DiplomacyFixes.DiplomaticAction.Alliance;
+using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
+using DiplomacyFixes.Extensions;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
 {
@@ -18,7 +21,31 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         public override void RegisterEvents()
         {
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, this.UpdateDiplomaticAgreements);
+            CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, this.ConsiderDiplomaticAgreements);
             Events.AllianceFormed.AddNonSerializedListener(this, this.ExpireNonAggressionPact);
+        }
+
+        private void ConsiderDiplomaticAgreements(Clan clan)
+        {
+            // only apply to kingdom leader clans
+            if (clan.MapFaction.IsKingdomFaction && clan.MapFaction.Leader == clan.Leader && !clan.Leader.IsHumanPlayerCharacter)
+            {
+                this.ConsiderNonAggressionPact(clan.MapFaction as Kingdom);
+            }
+        }
+
+        private void ConsiderNonAggressionPact(Kingdom proposingKingdom)
+        {
+            if (MBRandom.RandomFloat < 0.10f)
+            {
+                Kingdom proposedKingdom = Kingdom.All.Where(kingdom => kingdom != proposingKingdom)?
+                    .Where(kingdom => NonAggressionPactConditions.Instance.CanExecuteAction(proposingKingdom, kingdom))
+                    .OrderByDescending(kingdom => kingdom.GetExpansionism()).FirstOrDefault();
+
+                if (proposedKingdom != null) {
+                    FormNonAggressionPactAction.Apply(proposingKingdom, proposedKingdom);
+                }
+            }
         }
 
         private void UpdateDiplomaticAgreements()
