@@ -87,14 +87,14 @@ namespace DiplomacyFixes.ViewModel
             this.NonAggressionPactGoldCost = (int)nonAggressionPactCost.GoldCost.Value;
 
 
-            this.UpdateAllianceScoreTooltip();
+            this.AllianceScoreHint = this.UpdateDiplomacyTooltip(AllianceScoringModel.GetFormAllianceScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer()));
+            this.NonAggressionPactScoreHint = this.UpdateDiplomacyTooltip(NonAggressionPactScoringModel.GetFormNonAggressionPactScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer()));
         }
 
         private static readonly TextObject _plusStr = new TextObject("{=eTw2aNV5}+", null);
         private static readonly TextObject _changeStr = new TextObject("Required Score", null);
-        private void UpdateAllianceScoreTooltip()
+        private BasicTooltipViewModel UpdateDiplomacyTooltip(ExplainedNumber explainedNumber)
         {
-            ExplainedNumber explainedNumber = AllianceScoringModel.GetFormAllianceScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer());
             List<TooltipProperty> list = new List<TooltipProperty>();
             {
                 string value = string.Format("{0:0.##}", explainedNumber.ResultNumber);
@@ -114,7 +114,7 @@ namespace DiplomacyFixes.ViewModel
                 string value = string.Format("{0:0.##}", AllianceScoringModel.FormAllianceScoreThreshold);
                 list.Add(new TooltipProperty(_changeStr.ToString(), value, 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
             }
-            this.AllianceScoreHint = new BasicTooltipViewModel(() => list);
+            return new BasicTooltipViewModel(() => list);
         }
 
         protected void SendMessenger()
@@ -356,6 +356,23 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
+        public BasicTooltipViewModel NonAggressionPactScoreHint
+        {
+            get
+            {
+                return this._nonAggressionPactScoreHint;
+            }
+            set
+            {
+                if (value != this._nonAggressionPactScoreHint)
+                {
+                    this._nonAggressionPactScoreHint = value;
+                    base.OnPropertyChanged("NonAggressionPactScoreHint");
+                }
+            }
+        }
+
+        [DataSourceProperty]
         public string SendMessengerActionName { get; private set; }
         [DataSourceProperty]
         public string AllianceActionName { get; }
@@ -384,5 +401,6 @@ namespace DiplomacyFixes.ViewModel
         private int _nonAggressionPactGoldCost;
         private BasicTooltipViewModel _allianceScoreHint;
         private int _allianceGoldCost;
+        private BasicTooltipViewModel _nonAggressionPactScoreHint;
     }
 }

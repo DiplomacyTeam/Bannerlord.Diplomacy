@@ -309,13 +309,14 @@
 
                 <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush.FontSize="40" IsHidden="@IsAcceptableItemSelected" Text="@NoItemSelectedText" />
 
-                <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" MarginBottom="5" IsVisible="@IsTruce" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                <!-- Form Non-Aggression Pact Button -->
+                <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" MarginBottom="5" IsVisible="@IsTruce">
                   <Children>
-                    <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="360" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" IsEnabled="true" Text="@NonAggressionPactHelpText" DoNotAcceptEvents="true" ClipContents="false"/>
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center">
                       <Children>
                         <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ProposeNonAggressionPact" IsEnabled="@IsNonAggressionPactAvailable">
                           <Children>
+                            <TextWidget HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="360" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="true" Text="@NonAggressionPactHelpText" DoNotAcceptEvents="true" ClipContents="false" PositionYOffset="-30"/>
                             <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@NonAggressionPactActionName" />
                             <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
                               <Children>
@@ -328,6 +329,12 @@
                           </Children>
                         </ButtonWidget>
                         <HintWidget DataSource="{NonAggressionPactHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+
+                      </Children>
+                    </Widget>
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Right" Sprite="MapBar\monocular_icon" VerticalAlignment="Center">
+                      <Children>
+                        <HintWidget Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" DataSource="{NonAggressionPactScoreHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  />
                       </Children>
                     </Widget>
                   </Children>
