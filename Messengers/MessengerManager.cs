@@ -51,16 +51,20 @@ namespace DiplomacyFixes.Messengers
         {
             if (IsTargetHeroAvailable(messenger.TargetHero) && IsPlayerHeroAvailable())
             {
-                _activeMessenger = messenger;
-                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Arrived").ToString(), GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero).ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), "", delegate ()
+                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Arrived").ToString(), GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero).ToString(), true, true, GameTexts.FindText("str_ok", null).ToString(), new TextObject("{=kMjfN2fB}Cancel Messenger").ToString(), delegate ()
                 {
+                    _activeMessenger = messenger;
                     StartDialogue(messenger.TargetHero);
-                }, null, ""), true);
+                },
+                () =>
+                {
+                    _messengers.Remove(messenger);
+                }, ""), true);
                 return true;
             }
             else if (messenger.TargetHero.IsDead)
             {
-                _messengers.Remove(_activeMessenger);
+                _messengers.Remove(messenger);
             }
 
             return false;
