@@ -96,6 +96,12 @@
     <string id="uZc8Hg01" text="Maximum Influence Loss"/>
     
     <string id="kMjfN2fB" text="Cancel Messenger"/>
+    
+    <string id="q5qphBwi" text="Weak Faction"/>
+    <string id="sygtLRqA" text="Relationship"/>
+    
+    <string id="cmOSpfyW" text="Alliance with {ALLIED_KINGDOM}"/>
+    <string id="RqQ4oqvl"  text="War with {ENEMY_KINGDOM}"/>
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||

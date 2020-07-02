@@ -1,5 +1,4 @@
 ﻿using DiplomacyFixes.Costs;
-using DiplomacyFixes.DiplomaticAction.Alliance;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -9,6 +8,9 @@ namespace DiplomacyFixes
 {
     class DiplomacyCostCalculator
     {
+        private static float AllianceFactor { get; } = 5.0f;
+        private static float PeaceFactor { get; } = 2.0f;
+
         public static DiplomacyCost DetermineCostForDeclaringWar(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
         {
             Clan clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
@@ -28,7 +30,7 @@ namespace DiplomacyFixes
             if (!Settings.Instance.ScalingInfluenceCosts)
                 return new InfluenceCost(clanPayingInfluence, Settings.Instance.MakePeaceInfluenceCost);
 
-            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom));
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * PeaceFactor);
         }
 
         private static float GetKingdomScalingFactor(Kingdom kingdom)
@@ -136,17 +138,35 @@ namespace DiplomacyFixes
             return tierTotal;
         }
 
-        internal static DiplomacyCost DetermineCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool isPlayerRequested = false)
+        public static HybridCost DetermineCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
-            const float baseInfluenceCost = 100f;
-            if (isPlayerRequested)
-            {
-                return new InfluenceCost(Clan.PlayerClan, MBMath.ClampFloat((float)Math.Pow(AllianceScoringModel.FormAllianceScoreThreshold / Math.Max(AllianceScoringModel.GetFormAllianceScore(kingdom, otherKingdom), 1f), 4), 1f, 256f) * baseInfluenceCost);
-            }
-            else
-            {
-                return new InfluenceCost(kingdom.Leader.Clan, baseInfluenceCost);
-            }
+            return new HybridCost(
+                DetermineInfluenceCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts),
+                DetermineGoldCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts));
+        }
+
+        private static InfluenceCost DetermineInfluenceCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        {
+            Clan clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
+            if (!Settings.Instance.EnableInfluenceCostsForDiplomacyActions)
+                return new InfluenceCost(clanPayingInfluence, 0f);
+            if (!Settings.Instance.ScalingInfluenceCosts)
+                return new InfluenceCost(clanPayingInfluence, Settings.Instance.MakePeaceInfluenceCost * 2.0f);
+
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * AllianceFactor);
+        }
+
+        private static GoldCost DetermineGoldCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        {
+            Hero giver = forcePlayerCharacterCosts ? Hero.MainHero : kingdom.Leader;
+
+            float otherKingdomWarLoad = GetKingdomWarLoad(otherKingdom) + 1;
+
+            int baseGoldCost = 500;
+            int goldCostFactor = 100;
+            int goldCost = (int)((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * AllianceFactor * goldCostFactor) + baseGoldCost);
+
+            return new GoldCost(giver, otherKingdom.Leader, goldCost);
         }
     }
 }

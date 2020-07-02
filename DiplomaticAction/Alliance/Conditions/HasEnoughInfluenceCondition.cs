@@ -9,7 +9,7 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance.Conditions
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
             textObject = null;
-            bool hasEnoughInfluence = DiplomacyCostCalculator.DetermineCostForFormingAlliance(kingdom, otherKingdom, true).CanPayCost();
+            bool hasEnoughInfluence = DiplomacyCostCalculator.DetermineCostForFormingAlliance(kingdom, otherKingdom, true).InfluenceCost.CanPayCost();
             if (!hasEnoughInfluence)
             {
                 textObject = new TextObject(StringConstants.NOT_ENOUGH_INFLUENCE);

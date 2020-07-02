@@ -16,7 +16,8 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance
             new AtPeaceCondition(),
             new TimeElapsedSinceLastWarCondition(),
             new NotAlreadyInAllianceCondition(),
-            new HasEnoughInfluenceCondition()
+            new HasEnoughInfluenceCondition(),
+            new HasEnoughGoldCondition()
         };
 
         private static List<IDiplomacyCondition> _breakAllianceConditions = new List<IDiplomacyCondition>
@@ -37,7 +38,7 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance
                 return textObject;
             }).OfType<TextObject>().ToList();
 
-            if (AllianceScoringModel.GetFormAllianceScore(item.Faction2 as Kingdom, item.Faction1 as Kingdom) < AllianceScoringModel.FormAllianceScoreThreshold)
+            if (AllianceScoringModel.GetFormAllianceScore(item.Faction2 as Kingdom, item.Faction1 as Kingdom).ResultNumber < AllianceScoringModel.FormAllianceScoreThreshold)
             {
                 TextObject scoreTooLow = new TextObject("{=VvTTrRpl}This faction is not interested in forming an alliance with you.");
                 textObjects.Add(scoreTooLow);

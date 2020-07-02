@@ -4,6 +4,7 @@ using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
 using DiplomacyFixes.DiplomaticAction.WarPeace;
 using DiplomacyFixes.Messengers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -62,6 +63,7 @@ namespace DiplomacyFixes.ViewModel
             DeclareWarAction.Apply(Faction1, Faction2);
         }
 
+
         protected virtual void UpdateActionAvailability()
         {
             this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
@@ -74,12 +76,45 @@ namespace DiplomacyFixes.ViewModel
             string nonAggressionPactException = NonAggressionPactConditions.Instance.CanExecuteActionExceptions(this, true).FirstOrDefault()?.ToString();
             this.IsNonAggressionPactAvailable = nonAggressionPactException == null;
             this.NonAggressionPactHint = nonAggressionPactException != null ? new HintViewModel(nonAggressionPactException) : new HintViewModel();
-            this.AllianceInfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForFormingAlliance(Faction1 as Kingdom, Faction2 as Kingdom, true).Value;
+
+            HybridCost allianceCost = DiplomacyCostCalculator.DetermineCostForFormingAlliance(Faction1 as Kingdom, Faction2 as Kingdom, true);
+            this.AllianceInfluenceCost = (int)allianceCost.InfluenceCost.Value;
+            this.AllianceGoldCost = (int)allianceCost.GoldCost.Value;
+
 
             HybridCost nonAggressionPactCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(Faction1 as Kingdom, Faction2 as Kingdom, true);
-
             this.NonAggressionPactInfluenceCost = (int)nonAggressionPactCost.InfluenceCost.Value;
             this.NonAggressionPactGoldCost = (int)nonAggressionPactCost.GoldCost.Value;
+
+
+            this.UpdateAllianceScoreTooltip();
+        }
+
+        private static readonly TextObject _plusStr = new TextObject("{=eTw2aNV5}+", null);
+        private static readonly TextObject _changeStr = new TextObject("Required Score", null);
+        private void UpdateAllianceScoreTooltip()
+        {
+            ExplainedNumber explainedNumber = AllianceScoringModel.GetFormAllianceScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer());
+            List<TooltipProperty> list = new List<TooltipProperty>();
+            {
+                string value = string.Format("{0:0.##}", explainedNumber.ResultNumber);
+                list.Add(new TooltipProperty(new TextObject("Current Score").ToString(), value, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+            }
+            if (explainedNumber.Explainer.Lines.Count > 0)
+            {
+                foreach (StatExplainer.ExplanationLine explanationLine in explainedNumber.Explainer.Lines)
+                {
+                    string value = string.Format("{0}{1:0.##}", (explanationLine.Number > 0.001f) ? _plusStr.ToString() : "", explanationLine.Number);
+                    list.Add(new TooltipProperty(explanationLine.Name, value, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                }
+            }
+            list.Add(new TooltipProperty("", string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
+            {
+                float changeValue = explainedNumber.ResultNumber;
+                string value = string.Format("{0:0.##}", AllianceScoringModel.FormAllianceScoreThreshold);
+                list.Add(new TooltipProperty(_changeStr.ToString(), value, 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
+            }
+            this.AllianceScoreHint = new BasicTooltipViewModel(() => list);
         }
 
         protected void SendMessenger()
@@ -128,6 +163,23 @@ namespace DiplomacyFixes.ViewModel
                 if (value != this._allianceInfluenceCost)
                 {
                     this._allianceInfluenceCost = value;
+                    base.OnPropertyChanged("AllianceInfluenceCost");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public int AllianceGoldCost
+        {
+            get
+            {
+                return this._allianceGoldCost;
+            }
+            set
+            {
+                if (value != this._allianceGoldCost)
+                {
+                    this._allianceGoldCost = value;
                     base.OnPropertyChanged("AllianceInfluenceCost");
                 }
             }
@@ -287,6 +339,23 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
+        public BasicTooltipViewModel AllianceScoreHint
+        {
+            get
+            {
+                return this._allianceScoreHint;
+            }
+            set
+            {
+                if (value != this._allianceScoreHint)
+                {
+                    this._allianceScoreHint = value;
+                    base.OnPropertyChanged("AllianceScoreHint");
+                }
+            }
+        }
+
+        [DataSourceProperty]
         public string SendMessengerActionName { get; private set; }
         [DataSourceProperty]
         public string AllianceActionName { get; }
@@ -313,5 +382,7 @@ namespace DiplomacyFixes.ViewModel
         private HintViewModel _nonAggressionPactHint;
         private HintViewModel _actionHint;
         private int _nonAggressionPactGoldCost;
+        private BasicTooltipViewModel _allianceScoreHint;
+        private int _allianceGoldCost;
     }
 }
