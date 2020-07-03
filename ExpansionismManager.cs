@@ -1,5 +1,8 @@
 ﻿
+using DiplomacyFixes.Extensions;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
@@ -14,6 +17,14 @@ namespace DiplomacyFixes
         public static ExpansionismManager Instance { get; private set; }
         public float SiegeExpansionism { get { return 20f; } }
         public float ExpansionismDecayPerDay { get { return 1f; } }
+        public float MinimumExpansionismPerFief { get { return 5f; } }
+        public float CriticalExpansionism { get { return 100f; } }
+
+
+        public float GetMinimumExpansionism(Kingdom kingdom)
+        {
+            return kingdom.Fiefs.Count() * MinimumExpansionismPerFief;
+        }
 
         public ExpansionismManager()
         {
@@ -36,7 +47,8 @@ namespace DiplomacyFixes
         {
             if(this._expansionism.TryGetValue(faction, out float value))
             {
-                this._expansionism[faction] = value - ExpansionismDecayPerDay;
+                float minimumExpansionism = faction.IsKingdomFaction ? (faction as Kingdom).GetMinimumExpansionism() : default;
+                this._expansionism[faction] = Math.Max(value - ExpansionismDecayPerDay, minimumExpansionism);
             }
         }
 
