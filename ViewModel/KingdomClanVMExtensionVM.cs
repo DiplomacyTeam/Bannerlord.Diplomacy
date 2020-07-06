@@ -32,7 +32,7 @@ namespace DiplomacyFixes.ViewModel
             this._grantFiefInterface = new GrantFiefInterface();
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             this.GrantFiefExplanationText = new TextObject("{=98hwXUTp}Grant fiefs to clans in your kingdom").ToString();
-            this.DonateGoldActionName = new TextObject("Donate Gold").ToString();
+            this.DonateGoldActionName = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
             base.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
             RefreshCanGrantFief();
             RefreshCanDonateGold();
