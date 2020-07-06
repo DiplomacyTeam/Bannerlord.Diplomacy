@@ -1,5 +1,4 @@
 ﻿using DiplomacyFixes.DiplomaticAction.Alliance;
-using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -94,7 +93,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
             foreach (Kingdom potentialAlly in potentialAllies)
             {
-                if (MBRandom.RandomFloat < 0.05f && AllianceScoringModel.ShouldFormAlliance(kingdom, potentialAlly))
+                if (MBRandom.RandomFloat < 0.05f && AllianceScoringModel.Instance.ShouldFormBidirectional(kingdom, potentialAlly))
                 {
                     DeclareAllianceAction.Apply(kingdom, potentialAlly);
                 }
@@ -107,7 +106,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
             foreach (Kingdom alliedKingdom in alliedKingdoms)
             {
-                if (MBRandom.RandomFloat < 0.05f && AllianceConditions.CanBreakAlliance(kingdom, alliedKingdom) && !AllianceScoringModel.ShouldFormAlliance(kingdom, alliedKingdom))
+                if (MBRandom.RandomFloat < 0.05f && AllianceConditions.CanBreakAlliance(kingdom, alliedKingdom) && !AllianceScoringModel.Instance.ShouldForm(kingdom, alliedKingdom))
                 {
                     BreakAllianceAction.Apply(kingdom, alliedKingdom);
                 }

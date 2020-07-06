@@ -107,6 +107,8 @@
 
     <string id="Gzq6VHPt" text="Donate Gold"/>
 
+    <string id="CxdpR6w4" text="Expansionism"/>
+
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
     -->
@@ -207,6 +209,20 @@
     <string id="e5fHDXgl" text="Corruption" />
     <string id="KWAH0S4h" text="Enable Corruption" />
     <string id="trgnZ0pn" text="Enables corruption, which gradually decays a clan's influence each day when holding too many fiefs. Default value is enabled."/>
+    
+    
+    <string id="ZqQaUIil" text="Expansionism"/>
+    <string id="2raR1ZHv" text="Coalitions"/>
+    <string id="Pr4dcRKm" text="Minimum Expansionism Per Fief"/>
+    <string id="9qcAWjI7" text="The minimum amount of expansionism a fief contributes. Default value is 3."/>
+    <string id="MnhMW8iq" text="Expansionism Per Siege"/>
+    <string id="lCbie62E" text="Expanionism added per successful siege. Default value is 20."/>
+    <string id="mEXGC0h3" text="Expansionism Decay Per Day"/>
+    <string id="kgPeQvqE" text="The amount of expansionism that decays each day. Default value is 1."/>
+    <string id="ZIf1tRII" text="Enable Coalitions"/>
+    <string id="8v8q0OGu" text="Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled."/>
+    <string id="1kSd88X5" text="Expansionism Threshold"/>
+    <string id="EUnASoee" text="The amount of expansionism a faction requires before a coalition is formed against it. Default value is 100."/>
     
   </strings>
 </base>

@@ -1,8 +1,5 @@
-﻿using DiplomacyFixes.DiplomaticAction;
-using DiplomacyFixes.DiplomaticAction.WarPeace;
+﻿using DiplomacyFixes.DiplomaticAction.WarPeace;
 using DiplomacyFixes.Extensions;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -28,7 +25,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void DailyTick()
         {
-            if (MBRandom.RandomFloat < 0.05f)
+            if (Settings.Instance.EnableCoalitions && MBRandom.RandomFloat < 0.05f)
             {
                 ConsiderCoalition();
             }
@@ -36,7 +33,10 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void ConsiderCoalition()
         {
-            Kingdom kingdomWithCriticalExpansionism = Kingdom.All.Where(kingdom => kingdom.GetExpansionism() > _expansionismManager.CriticalExpansionism).OrderByDescending(kingdom => kingdom.GetExpansionism()).FirstOrDefault();
+            Kingdom kingdomWithCriticalExpansionism = Kingdom.All
+                .Where(kingdom => kingdom.GetExpansionism() > _expansionismManager.CriticalExpansionism && kingdom.IsStrong())
+                .OrderByDescending(kingdom => kingdom.GetExpansionism())
+                .FirstOrDefault();
             if (kingdomWithCriticalExpansionism != null)
             {
                 List<Kingdom> potentialCoaliationMembers =
@@ -48,21 +48,25 @@ namespace DiplomacyFixes.CampaignEventBehaviors
                 }
 
 
-                List<Kingdom> currentEnemies = Kingdom.All.Where(kingdom => kingdom.IsAtWarWith(kingdomWithCriticalExpansionism)).ToList();
-                List<Kingdom> newEnemies = new List<Kingdom>();
+                IEnumerable<Kingdom> currentEnemies = Kingdom.All.Where(kingdom => kingdom.IsAtWarWith(kingdomWithCriticalExpansionism));
+                List<Kingdom> coalition = new List<Kingdom>(currentEnemies);
 
                 potentialCoaliationMembers.Shuffle();
                 foreach (Kingdom potenatialCoalitionMember in potentialCoaliationMembers)
                 {
-                    if (kingdomWithCriticalExpansionism.TotalStrength > currentEnemies.Select(kingdom => kingdom.TotalStrength).Sum())
+                    if (kingdomWithCriticalExpansionism.TotalStrength > coalition.Select(kingdom => kingdom.TotalStrength).Sum())
                     {
-                        newEnemies.Add(potenatialCoalitionMember);
-                        DeclareWarAction.Apply(potenatialCoalitionMember, kingdomWithCriticalExpansionism);
+                        coalition.Add(potenatialCoalitionMember);
                     }
                     else
                     {
                         break;
                     }
+                }
+
+                foreach (Kingdom kingdom in coalition.Except(currentEnemies))
+                {
+                    DeclareWarAction.Apply(kingdom, kingdomWithCriticalExpansionism);
                 }
             }
         }

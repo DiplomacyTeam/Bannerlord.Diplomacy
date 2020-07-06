@@ -15,10 +15,10 @@ namespace DiplomacyFixes
         private Dictionary<IFaction, float> _expansionism;
 
         public static ExpansionismManager Instance { get; private set; }
-        public float SiegeExpansionism { get { return 20f; } }
-        public float ExpansionismDecayPerDay { get { return 1f; } }
-        public float MinimumExpansionismPerFief { get { return 5f; } }
-        public float CriticalExpansionism { get { return 100f; } }
+        public float SiegeExpansionism { get { return Settings.Instance.ExpanisonismPerSiege; } }
+        public float ExpansionismDecayPerDay { get { return Settings.Instance.ExpansionismDecayPerDay; } }
+        public float MinimumExpansionismPerFief { get { return Settings.Instance.MinimumExpansionismPerFief; } }
+        public float CriticalExpansionism { get { return Settings.Instance.CriticalExpansionism; } }
 
 
         public float GetMinimumExpansionism(Kingdom kingdom)
@@ -40,7 +40,12 @@ namespace DiplomacyFixes
         public void AddSiegeScore(IFaction faction)
         {
             this._expansionism.TryGetValue(faction, out float value);
-            this._expansionism[faction] = value + SiegeExpansionism;
+            this._expansionism[faction] = Math.Max(value, GetMinimumExpansionism(faction) - MinimumExpansionismPerFief) + SiegeExpansionism;
+        }
+
+        private static float GetMinimumExpansionism(IFaction faction)
+        {
+            return faction.IsKingdomFaction ? (faction as Kingdom).GetMinimumExpansionism() : default;
         }
 
         public void ApplyExpansionismDecay(IFaction faction)
@@ -48,7 +53,7 @@ namespace DiplomacyFixes
             if(this._expansionism.TryGetValue(faction, out float value))
             {
                 float minimumExpansionism = faction.IsKingdomFaction ? (faction as Kingdom).GetMinimumExpansionism() : default;
-                this._expansionism[faction] = Math.Max(value - ExpansionismDecayPerDay, minimumExpansionism);
+                this._expansionism[faction] = Math.Max(value - ExpansionismDecayPerDay, GetMinimumExpansionism(faction));
             }
         }
 

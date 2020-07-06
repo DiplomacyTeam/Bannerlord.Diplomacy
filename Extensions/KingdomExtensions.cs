@@ -11,6 +11,11 @@ namespace DiplomacyFixes.Extensions
             return ExpansionismManager.Instance.GetExpansionism(kingdom);
         }
 
+        public static float GetExpansionismDiplomaticPenalty(this Kingdom kingdom)
+        {
+            return GetExpansionism(kingdom) - 50;
+        }
+
         public static float GetMinimumExpansionism(this Kingdom kingdom)
         {
             return ExpansionismManager.Instance.GetMinimumExpansionism(kingdom); 
@@ -24,6 +29,30 @@ namespace DiplomacyFixes.Extensions
             }
             StanceLink stanceLink = faction1.GetStanceWith(faction2);
             return stanceLink.IsAllied;
+        }
+
+        public static bool IsStrong(this Kingdom kingdom)
+        {
+            float medianStrength = GetMedianStrength();
+            return kingdom.TotalStrength > medianStrength;
+        }
+
+        private static float GetMedianStrength()
+        {
+            float medianStrength;
+            float[] kingdomStrengths = Kingdom.All.Select(curKingdom => curKingdom.TotalStrength).OrderBy(a => a).ToArray();
+
+            int halfIndex = kingdomStrengths.Count() / 2;
+
+            if ((kingdomStrengths.Length % 2) == 0)
+            {
+                medianStrength = (kingdomStrengths.ElementAt(halfIndex) + kingdomStrengths.ElementAt(halfIndex - 1)) / 2;
+            }
+            else
+            {
+                medianStrength = kingdomStrengths.ElementAt(halfIndex);
+            }
+            return medianStrength;
         }
     }
 }

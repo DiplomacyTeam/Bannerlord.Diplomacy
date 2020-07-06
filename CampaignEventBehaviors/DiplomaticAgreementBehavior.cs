@@ -40,7 +40,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             {
                 Kingdom proposedKingdom = Kingdom.All.Except(new Kingdom[] { proposingKingdom })?
                     .Where(kingdom => NonAggressionPactConditions.Instance.CanExecuteAction(proposingKingdom, kingdom))
-                    .Where(kingdom => NonAggressionPactScoringModel.ShouldFormNonAggressionPact(proposingKingdom, kingdom))
+                    .Where(kingdom => NonAggressionPactScoringModel.Instance.ShouldFormBidirectional(proposingKingdom, kingdom))
                     .OrderByDescending(kingdom => kingdom.GetExpansionism()).FirstOrDefault();
 
                 if (proposedKingdom != null) {

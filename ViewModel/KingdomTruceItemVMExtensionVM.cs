@@ -87,8 +87,8 @@ namespace DiplomacyFixes.ViewModel
             this.NonAggressionPactGoldCost = (int)nonAggressionPactCost.GoldCost.Value;
 
 
-            this.AllianceScoreHint = this.UpdateDiplomacyTooltip(AllianceScoringModel.GetFormAllianceScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer()));
-            this.NonAggressionPactScoreHint = this.UpdateDiplomacyTooltip(NonAggressionPactScoringModel.GetFormNonAggressionPactScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer()));
+            this.AllianceScoreHint = this.UpdateDiplomacyTooltip(AllianceScoringModel.Instance.GetScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer()));
+            this.NonAggressionPactScoreHint = this.UpdateDiplomacyTooltip(NonAggressionPactScoringModel.Instance.GetScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer()));
         }
 
         private static readonly TextObject _plusStr = new TextObject("{=eTw2aNV5}+", null);
@@ -111,7 +111,7 @@ namespace DiplomacyFixes.ViewModel
             list.Add(new TooltipProperty("", string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
             {
                 float changeValue = explainedNumber.ResultNumber;
-                string value = string.Format("{0:0.##}", AllianceScoringModel.FormAllianceScoreThreshold);
+                string value = string.Format("{0:0.##}", AllianceScoringModel.Instance.ScoreThreshold);
                 list.Add(new TooltipProperty(_changeStr.ToString(), value, 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
             }
             return new BasicTooltipViewModel(() => list);
