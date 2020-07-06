@@ -1,5 +1,6 @@
 ﻿using DiplomacyFixes.GauntletInterfaces;
 using DiplomacyFixes.GrantFief;
+using DiplomacyFixes.Usurp;
 using System;
 using System.ComponentModel;
 using System.Reflection;
@@ -22,6 +23,9 @@ namespace DiplomacyFixes.ViewModel
         private Action _executeExpel;
         private Action _executeSupport;
         private bool _canDonateGold;
+        private bool _canUsurpThrone;
+        private bool _showUsurpThrone;
+        private int _usurpThroneInfluenceCost;
 
         public KingdomClanVMExtensionVM(Action<TaleWorlds.CampaignSystem.Election.KingdomDecision> forceDecide) : base(forceDecide)
         {
@@ -33,9 +37,12 @@ namespace DiplomacyFixes.ViewModel
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             this.GrantFiefExplanationText = new TextObject("{=98hwXUTp}Grant fiefs to clans in your kingdom").ToString();
             this.DonateGoldActionName = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
+            this.UsurpThroneActionName = new TextObject("{=N7goPgiq}Usurp Throne").ToString();
+            this.UsurpThroneExplanationText = new TextObject("{=WVe7QwhW}Usurp the throne of this kingdom").ToString();
             base.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
             RefreshCanGrantFief();
             RefreshCanDonateGold();
+            RefreshCanUsurpThrone();
         }
 
         public void OnClose()
@@ -59,7 +66,21 @@ namespace DiplomacyFixes.ViewModel
             {
                 RefreshCanGrantFief();
                 RefreshCanDonateGold();
+                RefreshCanUsurpThrone();
             }
+        }
+
+        private void RefreshCanUsurpThrone()
+        {
+            this.ShowUsurpThrone = CurrentSelectedClan.Clan == Clan.PlayerClan;
+            this.CanUsurpThrone = UsurpKingdomAction.CanUsurp(Clan.PlayerClan);
+            this.UsurpThroneInfluenceCost = (int)UsurpKingdomAction.GetUsurpInfluenceCost(Clan.PlayerClan);
+        }
+
+        public void UsurpThrone()
+        {
+            UsurpKingdomAction.Apply(Clan.PlayerClan);
+            RefreshClan();
         }
 
         public void GrantFief()
@@ -144,9 +165,57 @@ namespace DiplomacyFixes.ViewModel
         [DataSourceProperty]
         public string GrantFiefExplanationText { get; }
         [DataSourceProperty]
+        public string UsurpThroneActionName { get; }
+        [DataSourceProperty]
+        public string UsurpThroneExplanationText { get; }
+        [DataSourceProperty]
         public string DonateGoldActionName { get; }
 
         [DataSourceProperty]
         public int DonationAmount { get; } = 1000;
+        [DataSourceProperty]
+        public bool ShowUsurpThrone
+        {
+            get { return this._showUsurpThrone; }
+
+            set
+            {
+                if (value != this._showUsurpThrone)
+                {
+                    this._showUsurpThrone = value;
+                    base.OnPropertyChanged("ShowUsurpThrone");
+                }
+            }
+
+        }
+
+        [DataSourceProperty]
+        public bool CanUsurpThrone
+        {
+            get { return this._canUsurpThrone; }
+
+            set
+            {
+                if (value != this._canUsurpThrone)
+                {
+                    this._canUsurpThrone = value;
+                    base.OnPropertyChanged("CanUsurpThrone");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public int UsurpThroneInfluenceCost {
+            get { return this._usurpThroneInfluenceCost; }
+
+            set
+            {
+                if (value != this._usurpThroneInfluenceCost)
+                {
+                    this._usurpThroneInfluenceCost = value;
+                    base.OnPropertyChanged("UsurpThroneInfluenceCost");
+                }
+            }
+        }
     }
 }

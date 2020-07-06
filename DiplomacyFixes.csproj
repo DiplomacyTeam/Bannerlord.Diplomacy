@@ -289,6 +289,7 @@
     <Compile Include="Extensions\KingdomExtensions.cs" />
     <Compile Include="Patches\DefaultClanPoliticsModelPatch.cs" />
     <Compile Include="Patches\GiveGoldToClanActionPatch.cs" />
+    <Compile Include="Usurp\UsurpKingdomAction.cs" />
     <Compile Include="ViewModel\ICloseableVM.cs" />
     <Compile Include="ViewModel\DiplomacyPropertiesVM.cs" />
     <Compile Include="DiplomaticAction\Alliance\AllianceConditions.cs" />
