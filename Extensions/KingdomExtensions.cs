@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 
@@ -29,6 +30,35 @@ namespace DiplomacyFixes.Extensions
             }
             StanceLink stanceLink = faction1.GetStanceWith(faction2);
             return stanceLink.IsAllied;
+        }
+
+        public static IEnumerable<Kingdom> GetEnemyKingdoms(this Kingdom kingdom)
+        {
+            return FactionManager.GetEnemyKingdoms(kingdom);
+        }
+
+        public static IEnumerable<Kingdom> GetAlliedKingdoms(this Kingdom kingdom)
+        {
+            foreach (StanceLink stanceLink in kingdom.Stances)
+            {
+                if (stanceLink.IsAllied)
+                {
+                    IFaction faction2 = null;
+                    if (stanceLink.Faction1 == kingdom)
+                    {
+                        faction2 = stanceLink.Faction2;
+                    }
+                    else if (stanceLink.Faction2 == kingdom)
+                    {
+                        faction2 = stanceLink.Faction1;
+                    }
+                    if (faction2 != null && faction2.IsKingdomFaction)
+                    {
+                        yield return faction2 as Kingdom;
+                    }
+                }
+            }
+            yield break;
         }
 
         public static bool IsStrong(this Kingdom kingdom)
