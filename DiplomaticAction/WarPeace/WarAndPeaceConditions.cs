@@ -1,4 +1,5 @@
-﻿using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
+﻿using DiplomacyFixes.DiplomaticAction.GenericConditions;
+using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
 using DiplomacyFixes.DiplomaticAction.WarPeace.Conditions;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,8 @@ namespace DiplomacyFixes.DiplomaticAction.WarPeace
             new HasEnoughInfluenceForWarCondition(),
             new HasLowWarExhaustionCondition(),
             new DeclareWarCooldownCondition(),
-            new NoNonAggressionPactCondition()
+            new NoNonAggressionPactCondition(),
+            new NotAlreadyInAllianceCondition()
         };
 
         public static List<TextObject> CanMakePeaceExceptions(KingdomWarItemVM item)
