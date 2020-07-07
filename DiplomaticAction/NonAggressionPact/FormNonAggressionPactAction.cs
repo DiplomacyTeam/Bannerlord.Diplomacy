@@ -14,7 +14,6 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
                 TextObject textObject = new TextObject("{=gyLjlpJB}{KINGDOM} is proposing a non-aggression pact with {PLAYER_KINGDOM}.");
                 textObject.SetTextVariable("KINGDOM", kingdom.Name);
                 textObject.SetTextVariable("PLAYER_KINGDOM", otherKingdom.Name);
-
                 InformationManager.ShowInquiry(new InquiryData(
                     new TextObject("{=yj4XFa5T}Non-Aggression Pact Proposal").ToString(),
                     textObject.ToString(),
@@ -30,12 +29,18 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
             {
                 ApplyInternal(kingdom, otherKingdom, forcePlayerCharacterCosts);
             }
+
         }
 
         private static void ApplyInternal(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts)
         {
             DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts).ApplyCost();
             DiplomaticAgreementManager.Instance.RegisterAgreement(kingdom, otherKingdom, new NonAggressionPactAgreement(CampaignTime.Now, CampaignTime.DaysFromNow(Settings.Instance.NonAggressionPactDuration), kingdom, otherKingdom));
+
+            TextObject textObject = new TextObject("{=}The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}.");
+            textObject.SetTextVariable("KINGDOM", kingdom.Name);
+            textObject.SetTextVariable("OTHER_KINGDOM", otherKingdom.Name);
+            InformationManager.DisplayMessage(new InformationMessage(textObject.ToString()));
         }
     }
 }
