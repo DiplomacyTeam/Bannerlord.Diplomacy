@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.DiplomaticAction.Alliance;
+using DiplomacyFixes.DiplomaticAction.WarPeace;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -55,7 +56,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             {
                 foreach (Kingdom enemyKingdom in kingdomsToDeclareWarOn)
                 {
-                    if (FactionManager.IsAlliedWithFaction(alliedKingdom, enemyKingdom) || FactionManager.IsAtWarAgainstFaction(alliedKingdom, enemyKingdom))
+                    if (!WarAndPeaceConditions.CanDeclareWar(alliedKingdom, enemyKingdom))
                     {
                         continue;
                     }
