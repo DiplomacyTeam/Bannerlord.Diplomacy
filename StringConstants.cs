@@ -10,5 +10,7 @@
         public const string Decline = "{=cOgmdp9e}Decline";
 
         public const string NonAggressionPacts = "{=noWHMN1W}Non-Aggression Pacts";
+
+        public const string DaysRemaining = "{=5znwaUVC}Days Remaining: {DAYS_LEFT}";
     }
 }

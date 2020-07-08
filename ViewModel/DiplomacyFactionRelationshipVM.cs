@@ -1,21 +1,27 @@
 ﻿using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 
 namespace DiplomacyFixes.ViewModel
 {
     public class DiplomacyFactionRelationshipVM : TaleWorlds.Library.ViewModel
     {
-        private IFaction _faction;
         private ImageIdentifierVM _imageIdentifier;
         private string _nameText;
+        private HintViewModel _hint;
 
-        public DiplomacyFactionRelationshipVM(IFaction faction)
+        public IFaction Faction { get; }
+
+        public DiplomacyFactionRelationshipVM(IFaction faction) : this(faction, new HintViewModel()) { }
+
+        public DiplomacyFactionRelationshipVM(IFaction faction, HintViewModel hint)
         {
             this.Faction = faction;
             this.ImageIdentifier = new ImageIdentifierVM(BannerCode.CreateFrom(faction.Banner), true);
             this.NameText = this.Faction.Name.ToString();
+            this.Hint = hint;
         }
 
         private void ExecuteLink()
@@ -68,6 +74,21 @@ namespace DiplomacyFixes.ViewModel
             }
         }
 
-        public IFaction Faction { get => _faction; set => _faction = value; }
+        [DataSourceProperty]
+        public HintViewModel Hint
+        {
+            get
+            {
+                return this._hint;
+            }
+            set
+            {
+                if (value != this._hint)
+                {
+                    this._hint = value;
+                    base.OnPropertyChanged("Hint");
+                }
+            }
+        }
     }
 }

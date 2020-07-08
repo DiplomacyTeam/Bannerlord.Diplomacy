@@ -117,6 +117,8 @@
     <string id="vB3RrMNf" text="The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}." />
     <string id="5r6fsHgm" text="Current Score"/>
     <string id="XIBUWDlT" text="Required Score"/>
+    
+    <string id="5znwaUVC" text="Days Remaining: {DAYS_LEFT}"/>
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||

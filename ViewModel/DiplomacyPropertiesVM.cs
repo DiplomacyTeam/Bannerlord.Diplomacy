@@ -1,8 +1,11 @@
 ﻿using DiplomacyFixes.DiplomaticAction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.ViewModel
 {
@@ -74,15 +77,18 @@ namespace DiplomacyFixes.ViewModel
                     Faction2Allies.Add(new DiplomacyFactionRelationshipVM(kingdom));
                 }
 
-                if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, Faction1 as Kingdom, out _))
-                {
-                    Faction1Pacts.Add(new DiplomacyFactionRelationshipVM(kingdom));
-                }
+                AddNonAggressionPactRelationships(kingdom, Faction1, Faction1Pacts);
+                AddNonAggressionPactRelationships(kingdom, Faction2, Faction2Pacts);
+            }
+        }
 
-                if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, Faction2 as Kingdom, out _))
-                {
-                    Faction2Pacts.Add(new DiplomacyFactionRelationshipVM(kingdom));
-                }
+        private void AddNonAggressionPactRelationships(Kingdom kingdom, IFaction faction, MBBindingList<DiplomacyFactionRelationshipVM> FactionPacts)
+        {
+            if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, faction as Kingdom, out NonAggressionPactAgreement pact))
+            {
+                TextObject textObject = new TextObject(StringConstants.DaysRemaining);
+                textObject.SetTextVariable("DAYS_LEFT", (int)Math.Round(pact.EndDate.RemainingDaysFromNow));
+                FactionPacts.Add(new DiplomacyFactionRelationshipVM(kingdom, new HintViewModel(textObject.ToString())));
             }
         }
 
