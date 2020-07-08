@@ -67,6 +67,11 @@ namespace DiplomacyFixes.Extensions
             return kingdom.TotalStrength > medianStrength;
         }
 
+        public static float GetAllianceStrength(this Kingdom kingdom)
+        {
+            return kingdom.GetAlliedKingdoms().Select(curKingdom => curKingdom.TotalStrength).Sum() + kingdom.TotalStrength;
+        }
+
         private static float GetMedianStrength()
         {
             float medianStrength;

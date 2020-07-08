@@ -225,6 +225,8 @@
     <string id="8v8q0OGu" text="Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled."/>
     <string id="1kSd88X5" text="Expansionism Threshold"/>
     <string id="EUnASoee" text="The amount of expansionism a faction requires before a coalition is formed against it. Default value is 100."/>
+    <string id="zwbL9BHe" text="Coalition Chance Percentage per Day"/>
+    <string id="9ugCWA3v" text="The percentage change of a coalition forming against a faction over the expansionism threshold. Default value is 5."/>
     
   </strings>
 </base>

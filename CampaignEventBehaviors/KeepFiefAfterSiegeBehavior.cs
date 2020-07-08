@@ -27,8 +27,8 @@ namespace DiplomacyFixes.CampaignEventBehaviors
                     new TextObject("{=N06wk0dB}Settlement Captured").ToString(),
                     GetKeepFiefText(settlement).ToString(),
                     true, true,
-                    new TextObject("{=Y94H6XnK}Accept").ToString(),
-                    new TextObject("{=cOgmdp9e}Decline").ToString(),
+                    new TextObject(StringConstants.Accept).ToString(),
+                    new TextObject(StringConstants.Decline).ToString(),
                     () =>
                         {
                             settlement.Town.IsOwnerUnassigned = false;

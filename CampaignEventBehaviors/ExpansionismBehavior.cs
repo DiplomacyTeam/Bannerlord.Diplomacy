@@ -1,10 +1,12 @@
-﻿using DiplomacyFixes.DiplomaticAction.WarPeace;
+﻿using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
+using DiplomacyFixes.DiplomaticAction.WarPeace;
 using DiplomacyFixes.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
 {
@@ -25,7 +27,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void DailyTick()
         {
-            if (Settings.Instance.EnableCoalitions && MBRandom.RandomFloat < 0.05f)
+            if (Settings.Instance.EnableCoalitions && MBRandom.RandomFloat < Settings.Instance.CoalitionChancePercentage / 100)
             {
                 ConsiderCoalition();
             }
@@ -39,36 +41,100 @@ namespace DiplomacyFixes.CampaignEventBehaviors
                 .FirstOrDefault();
             if (kingdomWithCriticalExpansionism != null)
             {
-                List<Kingdom> potentialCoaliationMembers =
+                List<Kingdom> potentialCoalitionMembers =
                     Kingdom.All.Except(new Kingdom[] { kingdomWithCriticalExpansionism })
-                    .Where(kingdom => WarAndPeaceConditions.CanDeclareWar(kingdom, kingdomWithCriticalExpansionism)).ToList();
-                if (Clan.PlayerClan.Kingdom != null && Clan.PlayerClan.Kingdom.Leader.IsHumanPlayerCharacter)
+                    .Where(kingdom => WarAndPeaceConditions.CanDeclareWar(kingdom, kingdomWithCriticalExpansionism))
+                    .ToList();
+
+                List<Kingdom> oldCoalitionMembers = Kingdom.All.Where(kingdom => kingdom.IsAtWarWith(kingdomWithCriticalExpansionism)).ToList();
+                List<Kingdom> newCoalitionMembers = new List<Kingdom>();
+
+                potentialCoalitionMembers.Shuffle();
+                foreach (Kingdom potentialCoalitionMember in potentialCoalitionMembers)
                 {
-                    potentialCoaliationMembers.Remove(Clan.PlayerClan.Kingdom);
-                }
-
-
-                IEnumerable<Kingdom> currentEnemies = Kingdom.All.Where(kingdom => kingdom.IsAtWarWith(kingdomWithCriticalExpansionism));
-                List<Kingdom> coalition = new List<Kingdom>(currentEnemies);
-
-                potentialCoaliationMembers.Shuffle();
-                foreach (Kingdom potenatialCoalitionMember in potentialCoaliationMembers)
-                {
-                    if (kingdomWithCriticalExpansionism.TotalStrength > coalition.Select(kingdom => kingdom.TotalStrength).Sum())
-                    {
-                        coalition.Add(potenatialCoalitionMember);
-                    }
-                    else
+                    if (kingdomWithCriticalExpansionism.GetAllianceStrength() <= CalculateStrength(newCoalitionMembers, oldCoalitionMembers))
                     {
                         break;
                     }
+
+                    if (Clan.PlayerClan.Kingdom != null && Clan.PlayerClan.Kingdom.Leader.IsHumanPlayerCharacter && Clan.PlayerClan.Kingdom == potentialCoalitionMember)
+                    {
+                        // show inquiry
+                        continue;
+                    }
+                    HashSet<Kingdom> alliesIncluded = new HashSet<Kingdom>() { potentialCoalitionMember };
+                    alliesIncluded.UnionWith(potentialCoalitionMember.GetAlliedKingdoms().Where(alliedKingdom => WarAndPeaceConditions.CanDeclareWar(alliedKingdom, kingdomWithCriticalExpansionism)));
+                    newCoalitionMembers.AddRange(alliesIncluded);
                 }
 
-                foreach (Kingdom kingdom in coalition.Except(currentEnemies))
+                if (newCoalitionMembers.IsEmpty())
+                {
+                    return;
+                }
+
+                foreach (Kingdom kingdom in newCoalitionMembers)
                 {
                     DeclareWarAction.Apply(kingdom, kingdomWithCriticalExpansionism);
                 }
+
+                List<Kingdom> allCoalitionMembers = oldCoalitionMembers.Union(newCoalitionMembers).ToList();
+                HashSet<FactionMapping> pactsToForm = new HashSet<FactionMapping>();
+
+                foreach (Kingdom kingdom in allCoalitionMembers)
+                {
+                    foreach (Kingdom otherKingdom in allCoalitionMembers.Where(curKingdom => curKingdom != kingdom))
+                    {
+                        pactsToForm.Add(new FactionMapping(kingdom, otherKingdom));
+                    }
+                }
+
+                foreach (FactionMapping mapping in pactsToForm)
+                {
+                    if (mapping.Faction1.IsAtWarWith(mapping.Faction2))
+                    {
+                        if (WarAndPeaceConditions.CanProposePeace(mapping.Faction1 as Kingdom, mapping.Faction2 as Kingdom))
+                        {
+                            MakePeaceAction.Apply(mapping.Faction1, mapping.Faction2);
+                        }
+                        else continue;
+                    }
+
+                    if (NonAggressionPactConditions.Instance.CanExecuteAction(mapping.Faction1 as Kingdom, mapping.Faction2 as Kingdom)) {
+                        FormNonAggressionPactAction.Apply(mapping.Faction1 as Kingdom, mapping.Faction2 as Kingdom);
+                    }
+                }
+
+                TextObject coalitionkingdomname = newCoalitionMembers.OrderByDescending(kingdom => kingdom.TotalStrength).FirstOrDefault()?.Name;
+                TextObject textField = new TextObject("Calradia grows wary of the inexorable expansion of the {EXPANSIONIST_KINGDOM}. A coalition led by the {COALITION_KINGDOM} has been formed to fight them!");
+                textField.SetTextVariable("EXPANSIONIST_KINGDOM", kingdomWithCriticalExpansionism.Name);
+                textField.SetTextVariable("COALITION_KINGDOM", coalitionkingdomname);
+
+                InformationManager.ShowInquiry(
+                    new InquiryData(
+                        new TextObject("Coalition Formed").ToString(),
+                        textField.ToString(),
+                        true,
+                        false,
+                        GameTexts.FindText("str_ok", null).ToString(),
+                        null,
+                        null,
+                        null,
+                        ""), true);
             }
+        }
+
+        private float CalculateStrength(List<Kingdom> newCoalitionMembers, List<Kingdom> oldCoalitionMembers)
+        {
+            List<Kingdom> allKingdomStrengths = new List<Kingdom>();
+            allKingdomStrengths.AddRange(newCoalitionMembers);
+            allKingdomStrengths.AddRange(oldCoalitionMembers);
+
+            foreach (Kingdom kingdom in newCoalitionMembers)
+            {
+                allKingdomStrengths.AddRange(kingdom.GetAlliedKingdoms());
+            }
+
+            return allKingdomStrengths.Select(kingdom => kingdom.TotalStrength).Sum();
         }
 
         private void UpdateExpansionismDecay(Clan clan)
