@@ -6,7 +6,7 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
 {
     public class FormNonAggressionPactAction
     {
-        public static void Apply(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static void Apply(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             Kingdom playerKingdom = Clan.PlayerClan?.Kingdom;
             if (otherKingdom == playerKingdom && playerKingdom.Leader == Hero.MainHero)
@@ -21,20 +21,24 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
                     true,
                     new TextObject("{=3fTqLwkC}Accept").ToString(),
                     new TextObject("{=dRoMejb0}Decline").ToString(),
-                    () => ApplyInternal(kingdom, otherKingdom, forcePlayerCharacterCosts),
+                    () => ApplyInternal(kingdom, otherKingdom, forcePlayerCharacterCosts, bypassCosts),
                     null,
                     ""), true);
             }
             else
             {
-                ApplyInternal(kingdom, otherKingdom, forcePlayerCharacterCosts);
+                ApplyInternal(kingdom, otherKingdom, forcePlayerCharacterCosts, bypassCosts);
             }
 
         }
 
-        private static void ApplyInternal(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts)
+        private static void ApplyInternal(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts, bool bypassCosts)
         {
-            DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts).ApplyCost();
+            if (!bypassCosts)
+            {
+                DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts).ApplyCost();
+            }
+
             DiplomaticAgreementManager.Instance.RegisterAgreement(kingdom, otherKingdom, new NonAggressionPactAgreement(CampaignTime.Now, CampaignTime.DaysFromNow(Settings.Instance.NonAggressionPactDuration), kingdom, otherKingdom));
 
             TextObject textObject = new TextObject("{=}The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}.");

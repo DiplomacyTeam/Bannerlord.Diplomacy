@@ -64,11 +64,18 @@ namespace DiplomacyFixes.DiplomaticAction.WarPeace
             }, ""), true);
         }
 
-        public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
-            int payment = DiplomacyCostCalculator.DetermineGoldCostForMakingPeace(kingdomMakingPeace, otherKingdom);
-            DiplomacyCost diplomacyCost = DiplomacyCostCalculator.DetermineCostForMakingPeace(kingdomMakingPeace, forcePlayerCharacterCosts);
-            ApplyPeace(kingdomMakingPeace, otherKingdom, payment, diplomacyCost);
+            if (bypassCosts)
+            {
+                MakePeaceAction.Apply(kingdomMakingPeace, otherKingdom);
+            }
+            else
+            {
+                int payment = DiplomacyCostCalculator.DetermineGoldCostForMakingPeace(kingdomMakingPeace, otherKingdom);
+                DiplomacyCost diplomacyCost = DiplomacyCostCalculator.DetermineCostForMakingPeace(kingdomMakingPeace, forcePlayerCharacterCosts);
+                ApplyPeace(kingdomMakingPeace, otherKingdom, payment, diplomacyCost);
+            }
         }
 
         public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment, DiplomacyCost diplomacyCost)

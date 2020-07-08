@@ -3,16 +3,16 @@ using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.DiplomaticAction.Alliance.Conditions
 {
-    class HasEnoughInfluenceCondition : IDiplomacyCondition
+    class HasEnoughInfluenceCondition : AbstractCostCondition
     {
+        protected override TextObject FailedConditionText => new TextObject(StringConstants.NOT_ENOUGH_INFLUENCE);
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
+        protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
-            textObject = null;
             bool hasEnoughInfluence = DiplomacyCostCalculator.DetermineCostForFormingAlliance(kingdom, otherKingdom, true).InfluenceCost.CanPayCost();
             if (!hasEnoughInfluence)
             {
-                textObject = new TextObject(StringConstants.NOT_ENOUGH_INFLUENCE);
+                textObject = FailedConditionText;
             }
 
             return hasEnoughInfluence;

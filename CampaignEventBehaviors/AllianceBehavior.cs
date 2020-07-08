@@ -56,7 +56,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             {
                 foreach (Kingdom enemyKingdom in kingdomsToDeclareWarOn)
                 {
-                    if (!WarAndPeaceConditions.CanDeclareWar(alliedKingdom, enemyKingdom))
+                    if (!DeclareWarConditions.Instance.CanApply(alliedKingdom, enemyKingdom))
                     {
                         continue;
                     }
@@ -90,7 +90,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private static void ConsiderFormingAlliances(Kingdom kingdom)
         {
-            List<Kingdom> potentialAllies = Kingdom.All.Where(otherKingdom => otherKingdom != kingdom).Where(otherKingdom => AllianceConditions.CanFormAlliance(kingdom, otherKingdom)).ToList();
+            List<Kingdom> potentialAllies = Kingdom.All.Where(otherKingdom => otherKingdom != kingdom).Where(otherKingdom => FormAllianceConditions.Instance.CanApply(kingdom, otherKingdom)).ToList();
 
             foreach (Kingdom potentialAlly in potentialAllies)
             {
@@ -107,7 +107,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
             foreach (Kingdom alliedKingdom in alliedKingdoms)
             {
-                if (MBRandom.RandomFloat < 0.05f && AllianceConditions.CanBreakAlliance(kingdom, alliedKingdom) && !AllianceScoringModel.Instance.ShouldForm(kingdom, alliedKingdom))
+                if (MBRandom.RandomFloat < 0.05f && BreakAllianceConditions.Instance.CanApply(kingdom, alliedKingdom) && !AllianceScoringModel.Instance.ShouldForm(kingdom, alliedKingdom))
                 {
                     BreakAllianceAction.Apply(kingdom, alliedKingdom);
                 }

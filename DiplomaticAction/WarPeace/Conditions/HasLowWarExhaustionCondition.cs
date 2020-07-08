@@ -8,7 +8,7 @@ namespace DiplomacyFixes.DiplomaticAction.WarPeace.Conditions
     {
         private const string WAR_EXHAUSTION_TOO_HIGH = "{=QVp4v2MG}War exhaustion is too high to declare war. Current war exhaustion is {CURRENT_WAR_EXHAUSTION} and {LOW_WAR_EXHAUSTION_THRESHOLD} is the highest allowed.";
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
+        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
             bool hasDeclareWarCooldown = CooldownManager.HasDeclareWarCooldown(kingdom, otherKingdom, out float elapsedTime);

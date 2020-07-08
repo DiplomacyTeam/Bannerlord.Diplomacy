@@ -5,6 +5,6 @@ namespace DiplomacyFixes
 {
     interface IDiplomacyCondition
     {
-        bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false);
+        bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false);
     }
 }

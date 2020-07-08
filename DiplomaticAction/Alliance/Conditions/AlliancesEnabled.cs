@@ -7,7 +7,7 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance.Conditions
     {
         private const string ALLIANCES_DISABLED = "{=Dirltd6Z}Alliances are disabled.";
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
+        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
             bool alliancesEnabled = Settings.Instance.EnableAlliances;

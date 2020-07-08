@@ -14,7 +14,7 @@ namespace DiplomacyFixes.Patches
         public static bool ConsiderWarDecisionPatch(Clan clan, Kingdom kingdom, IFaction otherFaction, bool __result)
         {
             Kingdom otherKingdom = otherFaction as Kingdom;
-            if (otherKingdom != null && !WarAndPeaceConditions.CanDeclareWar(kingdom, otherKingdom))
+            if (otherKingdom != null && !DeclareWarConditions.Instance.CanApply(kingdom, otherKingdom))
             {
                 __result = false;
                 return false;
@@ -31,7 +31,7 @@ namespace DiplomacyFixes.Patches
         {
             decision = null;
             Kingdom otherKingdom = otherFaction as Kingdom;
-            if (otherKingdom != null && !WarAndPeaceConditions.CanProposePeace(kingdom, otherKingdom))
+            if (otherKingdom != null && !MakePeaceConditions.Instance.CanApply(kingdom, otherKingdom))
             {
                 __result = false;
                 return false;

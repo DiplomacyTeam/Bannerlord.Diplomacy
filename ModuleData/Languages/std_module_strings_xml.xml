@@ -48,7 +48,7 @@
     <string id="QVp4v2MG" text="War exhaustion is too high to declare war. Current war exhaustion is {CURRENT_WAR_EXHAUSTION} and {LOW_WAR_EXHAUSTION_THRESHOLD} is the highest allowed." />
     
     <string id="DrnXprup" text="You have been at war too recently to consider an alliance. It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
-    <string id="KHJyWj9H" text="Cannot already be in an alliance." />
+    <string id="KHJyWj9H" text="Cannot be in an alliance." />
     <string id="UQZmdLzc" text="Cannot be at war." />
     <string id="PdN5g5ub" text="Alliance Formed" />
     <string id="3pbwc8sh" text="Alliance Proposal"/>

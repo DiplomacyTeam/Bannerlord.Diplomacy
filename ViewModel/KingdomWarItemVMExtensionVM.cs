@@ -53,8 +53,8 @@ namespace DiplomacyFixes.ViewModel
         private void UpdateActionAvailability()
         {
             this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
-            this.IsOptionAvailable = WarAndPeaceConditions.CanMakePeaceExceptions(this).IsEmpty();
-            string makePeaceException = WarAndPeaceConditions.CanMakePeaceExceptions(this).FirstOrDefault()?.ToString();
+            this.IsOptionAvailable = MakePeaceConditions.Instance.CanApplyExceptions(this).IsEmpty();
+            string makePeaceException = MakePeaceConditions.Instance.CanApplyExceptions(this).FirstOrDefault()?.ToString();
             this.ActionHint = makePeaceException != null ? new HintViewModel(makePeaceException) : new HintViewModel();
         }
 

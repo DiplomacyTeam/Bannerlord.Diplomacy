@@ -67,13 +67,13 @@ namespace DiplomacyFixes.ViewModel
         protected virtual void UpdateActionAvailability()
         {
             this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
-            this.IsOptionAvailable = WarAndPeaceConditions.CanDeclareWarExceptions(this).IsEmpty();
-            string allianceException = AllianceConditions.CanFormAllianceExceptions(this, true).FirstOrDefault()?.ToString();
+            this.IsOptionAvailable = DeclareWarConditions.Instance.CanApplyExceptions(this).IsEmpty();
+            string allianceException = FormAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
             this.IsAllianceAvailable = allianceException == null;
-            string declareWarException = WarAndPeaceConditions.CanDeclareWarExceptions(this).FirstOrDefault()?.ToString();
+            string declareWarException = DeclareWarConditions.Instance.CanApplyExceptions(this).FirstOrDefault()?.ToString();
             this.ActionHint = declareWarException != null ? new HintViewModel(declareWarException) : new HintViewModel();
             this.AllianceHint = allianceException != null ? new HintViewModel(allianceException) : new HintViewModel();
-            string nonAggressionPactException = NonAggressionPactConditions.Instance.CanExecuteActionExceptions(this, true).FirstOrDefault()?.ToString();
+            string nonAggressionPactException = NonAggressionPactConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
             this.IsNonAggressionPactAvailable = nonAggressionPactException == null;
             this.NonAggressionPactHint = nonAggressionPactException != null ? new HintViewModel(nonAggressionPactException) : new HintViewModel();
 

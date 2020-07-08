@@ -8,7 +8,7 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance.Conditions
     {
         private const string TOO_SOON = "{=wst0lArp}This alliance hasn't gone on long enough to consider breaking it! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.";
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
+        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
             bool hasEnoughTimeElapsed = !CooldownManager.HasBreakAllianceCooldown(kingdom, otherKingdom, out float elapsedDaysUntilNow);

@@ -3,30 +3,18 @@ using System.Collections.Generic;
 
 namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
 {
-    class NonAggressionPactConditions : DiplomaticConditions
+    class NonAggressionPactConditions : AbstractConditionEvaluator<NonAggressionPactConditions>
     {
         private static List<IDiplomacyCondition> _formNonAggressionPactConditions = new List<IDiplomacyCondition>
         {
             new AtPeaceCondition(),
-            new NotAlreadyInAllianceCondition(),
+            new NotInAllianceCondition(),
             new HasEnoughInfluenceCondition(),
             new HasEnoughGoldCondition(),
             new NoNonAggressionPactCondition(),
             new HasEnoughScoreCondition()
         };
 
-        public NonAggressionPactConditions() : base(_formNonAggressionPactConditions) { }
-
-        public static DiplomaticConditions Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new NonAggressionPactConditions();
-                }
-                return _instance;
-            }
-        }
+        protected override List<IDiplomacyCondition> Conditions => _formNonAggressionPactConditions;
     }
 }

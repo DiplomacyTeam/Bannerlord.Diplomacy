@@ -3,16 +3,16 @@ using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.DiplomaticAction.GenericConditions
 {
-    class NotAlreadyInAllianceCondition : IDiplomacyCondition
+    class NotInAllianceCondition : IDiplomacyCondition
     {
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
+        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
             bool alreadyInAlliance = FactionManager.IsAlliedWithFaction(kingdom, otherKingdom);
             if (alreadyInAlliance)
             {
-                textObject = new TextObject(StringConstants.ALREADY_IN_ALLIANCE);
+                textObject = new TextObject(StringConstants.IN_ALLIANCE);
             }
             return !alreadyInAlliance;
         }

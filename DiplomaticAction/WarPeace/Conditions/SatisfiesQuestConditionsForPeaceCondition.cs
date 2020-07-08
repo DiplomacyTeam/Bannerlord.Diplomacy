@@ -7,7 +7,7 @@ namespace DiplomacyFixes.DiplomaticAction.WarPeace.Conditions
     class SatisfiesQuestConditionsForPeaceCondition : IDiplomacyCondition
     {
         private const string ACTIVE_QUEST = "{=XQFxDr11}There is an active quest preventing it!";
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
+        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
             ThirdPhase thirdPhase = StoryMode.StoryMode.Current.MainStoryLine.ThirdPhase;

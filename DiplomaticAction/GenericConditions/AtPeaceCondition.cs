@@ -5,7 +5,7 @@ namespace DiplomacyFixes.DiplomaticAction.GenericConditions
 {
     class AtPeaceCondition : IDiplomacyCondition
     {
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false)
+        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
             bool atWar = FactionManager.IsAtWarAgainstFaction(kingdom, otherKingdom);
