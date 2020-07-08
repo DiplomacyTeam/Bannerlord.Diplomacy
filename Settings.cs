@@ -192,7 +192,7 @@ namespace DiplomacyFixes
         [SettingPropertyInteger("{=1kSd88X5}Expansionism Threshold", 0, 10000, RequireRestart = false, HintText = "{=EUnASoee}The amount of expansionism a faction requires before a coalition is formed against it. Default value is 100.")]
         [SettingPropertyGroup(HeadingCoalitions)]
         public int CriticalExpansionism { get; set; } = 100;
-        [SettingPropertyFloatingInteger("{=zwbL9BHe}Coalition Chance Percentage per Day", 0f, 3f, RequireRestart = false, HintText = "{=9ugCWA3v}The percentage change of a coalition forming against a faction over the expansionism threshold. Default value is 5.")]
+        [SettingPropertyFloatingInteger("{=zwbL9BHe}Coalition Chance Percentage per Day", 0f, 100f, "0.00", RequireRestart = false, HintText = "{=9ugCWA3v}The percentage change of a coalition forming against a faction over the expansionism threshold. Default value is 5.")]
         [SettingPropertyGroup(HeadingCoalitions)]
         public float CoalitionChancePercentage { get; set; } = 5.0f;
     }
