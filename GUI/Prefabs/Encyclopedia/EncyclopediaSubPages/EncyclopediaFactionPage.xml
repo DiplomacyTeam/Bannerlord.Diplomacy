@@ -120,11 +120,24 @@
                                       </ItemTemplate>
                                     </GridWidget>
 
-                                    <!--Enemies Divider-->
+                                    <!--Allies Divider-->
                                     <EncyclopediaDivider MarginTop="35" Parameter.Title="@AlliesText" Parameter.ItemList="..\AlliesGrid"/>
 
-                                    <!--Enemies Grid-->
+                                    <!--Allies Grid-->
                                     <GridWidget Id="AlliesGrid" DataSource="{Allies}" WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" SuggestedWidth="350" SuggestedHeight="350" DefaultCellWidth="100" DefaultCellHeight="100" HorizontalAlignment="Left" MarginLeft="25" ColumnCount="7" MarginTop="10" >
+                                      <ItemTemplate>
+
+                                        <!--Member-->
+                                        <EncyclopediaClanSubPageElement/>
+
+                                      </ItemTemplate>
+                                    </GridWidget>
+
+                                    <!--Non-Aggression Pacts Divider-->
+                                    <EncyclopediaDivider MarginTop="35" Parameter.Title="@NonAggressionPactsText" Parameter.ItemList="..\NonAggressionPactsGrid"/>
+
+                                    <!--Non-Aggression Pacts Grid-->
+                                    <GridWidget Id="NonAggressionPactsGrid" DataSource="{NonAggressionPacts}" WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" SuggestedWidth="350" SuggestedHeight="350" DefaultCellWidth="100" DefaultCellHeight="100" HorizontalAlignment="Left" MarginLeft="25" ColumnCount="7" MarginTop="10" >
                                       <ItemTemplate>
 
                                         <!--Member-->

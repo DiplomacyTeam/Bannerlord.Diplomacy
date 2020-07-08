@@ -8,5 +8,7 @@
         public const string NOT_ENOUGH_GOLD = "{=IWZ91JVk}Not enough gold!";
         public const string Accept = "{=Y94H6XnK}Accept";
         public const string Decline = "{=cOgmdp9e}Decline";
+
+        public const string NonAggressionPacts = "{=noWHMN1W}Non-Aggression Pacts";
     }
 }

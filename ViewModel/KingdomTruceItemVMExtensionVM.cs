@@ -32,7 +32,7 @@ namespace DiplomacyFixes.ViewModel
 
             this.AllianceText = new TextObject("{=zpNalMeA}Alliances").ToString();
             this.WarsText = new TextObject("{=y5tXjbLK}Wars").ToString();
-            this.PactsText = new TextObject("{=noWHMN1W}Non-Aggression Pacts").ToString();
+            this.PactsText = new TextObject(StringConstants.NonAggressionPacts).ToString();
             UpdateDiplomacyProperties();
         }
 

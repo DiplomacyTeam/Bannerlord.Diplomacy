@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using DiplomacyFixes.DiplomaticAction;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encyclopedia;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
@@ -13,6 +14,8 @@ namespace DiplomacyFixes.ViewModel
         private string _alliesText;
         private IFaction _faction;
         private MBBindingList<EncyclopediaFactionVM> _allies;
+        private string _nonAggressionPactsText;
+        private MBBindingList<EncyclopediaFactionVM> _nonAggressionPacts;
 
         public EncyclopediaFactionPageVMExtensionVM(EncyclopediaPageArgs args) : base(args)
         {
@@ -23,6 +26,8 @@ namespace DiplomacyFixes.ViewModel
             this._faction = (base.Obj as IFaction);
             this.Allies = new MBBindingList<EncyclopediaFactionVM>();
             this.AlliesText = new TextObject("{=KqfNSsBE}Allies", null).ToString();
+            this.NonAggressionPacts = new MBBindingList<EncyclopediaFactionVM>();
+            this.NonAggressionPactsText = new TextObject(StringConstants.NonAggressionPacts, null).ToString();
             base.RefreshValues();
         }
 
@@ -37,6 +42,17 @@ namespace DiplomacyFixes.ViewModel
                 if (clanPages.IsValidEncyclopediaItem(faction) && faction != this._faction && FactionManager.IsAlliedWithFaction(this._faction, faction))
                 {
                     this.Allies.Add(new EncyclopediaFactionVM(faction));
+                }
+            }
+
+            if (this._faction.IsKingdomFaction)
+            {
+                foreach (IFaction faction in Enumerable.ThenBy<IFaction, string>(Enumerable.OrderBy<IFaction, bool>(Campaign.Current.Factions, (IFaction x) => !x.IsKingdomFaction), (IFaction f) => f.Name.ToString()))
+                {
+                    if (clanPages.IsValidEncyclopediaItem(faction) && faction != this._faction && faction.IsKingdomFaction && DiplomaticAgreementManager.Instance.HasNonAggressionPact(this._faction as Kingdom, faction as Kingdom, out _))
+                    {
+                        this.NonAggressionPacts.Add(new EncyclopediaFactionVM(faction));
+                    }
                 }
             }
 
@@ -61,6 +77,23 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
+        public string NonAggressionPactsText
+        {
+            get
+            {
+                return this._nonAggressionPactsText;
+            }
+            set
+            {
+                if (value != this._nonAggressionPactsText)
+                {
+                    this._nonAggressionPactsText = value;
+                    base.OnPropertyChanged("NonAggressionPactsText");
+                }
+            }
+        }
+
+        [DataSourceProperty]
         public MBBindingList<EncyclopediaFactionVM> Allies
         {
             get
@@ -73,6 +106,23 @@ namespace DiplomacyFixes.ViewModel
                 {
                     this._allies = value;
                     base.OnPropertyChanged("Allies");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public MBBindingList<EncyclopediaFactionVM> NonAggressionPacts
+        {
+            get
+            {
+                return this._nonAggressionPacts;
+            }
+            set
+            {
+                if (value != this._nonAggressionPacts)
+                {
+                    this._nonAggressionPacts = value;
+                    base.OnPropertyChanged("NonAggressionPacts");
                 }
             }
         }
