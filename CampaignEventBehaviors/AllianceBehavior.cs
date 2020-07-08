@@ -56,7 +56,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             {
                 foreach (Kingdom enemyKingdom in kingdomsToDeclareWarOn)
                 {
-                    if (!DeclareWarConditions.Instance.CanApply(alliedKingdom, enemyKingdom))
+                    if (!DeclareWarConditions.Instance.CanApply(alliedKingdom, enemyKingdom, bypassCosts: true))
                     {
                         continue;
                     }
