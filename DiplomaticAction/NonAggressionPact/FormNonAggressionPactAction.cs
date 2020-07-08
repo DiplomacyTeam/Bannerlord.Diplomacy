@@ -41,7 +41,7 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
 
             DiplomaticAgreementManager.Instance.RegisterAgreement(kingdom, otherKingdom, new NonAggressionPactAgreement(CampaignTime.Now, CampaignTime.DaysFromNow(Settings.Instance.NonAggressionPactDuration), kingdom, otherKingdom));
 
-            TextObject textObject = new TextObject("{=}The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}.");
+            TextObject textObject = new TextObject("{=vB3RrMNf}The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}.");
             textObject.SetTextVariable("KINGDOM", kingdom.Name);
             textObject.SetTextVariable("OTHER_KINGDOM", otherKingdom.Name);
             InformationManager.DisplayMessage(new InformationMessage(textObject.ToString()));

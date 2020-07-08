@@ -105,13 +105,13 @@ namespace DiplomacyFixes.CampaignEventBehaviors
                 }
 
                 TextObject coalitionkingdomname = newCoalitionMembers.OrderByDescending(kingdom => kingdom.TotalStrength).FirstOrDefault()?.Name;
-                TextObject textField = new TextObject("Calradia grows wary of the inexorable expansion of the {EXPANSIONIST_KINGDOM}. A coalition led by the {COALITION_KINGDOM} has been formed to fight them!");
+                TextObject textField = new TextObject("{=qbLPBlIv}Calradia grows wary of the inexorable expansion of the {EXPANSIONIST_KINGDOM}. A coalition led by the {COALITION_KINGDOM} has been formed to fight them!");
                 textField.SetTextVariable("EXPANSIONIST_KINGDOM", kingdomWithCriticalExpansionism.Name);
                 textField.SetTextVariable("COALITION_KINGDOM", coalitionkingdomname);
 
                 InformationManager.ShowInquiry(
                     new InquiryData(
-                        new TextObject("Coalition Formed").ToString(),
+                        new TextObject("{=ARNRwPrY}Coalition Formed").ToString(),
                         textField.ToString(),
                         true,
                         false,

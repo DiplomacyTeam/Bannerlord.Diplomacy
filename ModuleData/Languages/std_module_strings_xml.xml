@@ -110,6 +110,13 @@
     <string id="WVe7QwhW" text="Usurp the throne of this kingdom"/>
 
     <string id="CxdpR6w4" text="Expansionism"/>
+    
+    <string id="ARNRwPrY" text="Coalition Formed"/>
+    <string id="qbLPBlIv" text="Calradia grows wary of the inexorable expansion of the {EXPANSIONIST_KINGDOM}. A coalition led by the {COALITION_KINGDOM} has been formed to fight them!"/>
+    
+    <string id="vB3RrMNf" text="The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}." />
+    <string id="5r6fsHgm" text="Current Score"/>
+    <string id="XIBUWDlT" text="Required Score"/>
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||

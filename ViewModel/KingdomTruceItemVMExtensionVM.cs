@@ -92,13 +92,13 @@ namespace DiplomacyFixes.ViewModel
         }
 
         private static readonly TextObject _plusStr = new TextObject("{=eTw2aNV5}+", null);
-        private static readonly TextObject _changeStr = new TextObject("Required Score", null);
+        private static readonly TextObject _changeStr = new TextObject("{=XIBUWDlT}Required Score", null);
         private BasicTooltipViewModel UpdateDiplomacyTooltip(ExplainedNumber explainedNumber)
         {
             List<TooltipProperty> list = new List<TooltipProperty>();
             {
                 string value = string.Format("{0:0.##}", explainedNumber.ResultNumber);
-                list.Add(new TooltipProperty(new TextObject("Current Score").ToString(), value, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+                list.Add(new TooltipProperty(new TextObject("{=5r6fsHgm}Current Score").ToString(), value, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
             }
             if (explainedNumber.Explainer.Lines.Count > 0)
             {
