@@ -185,6 +185,10 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingExpansionism)]
         public int ExpansionismDecayPerDay { get; set; } = 1;
 
+        public bool EnableCoalitions { get; set; } = false;
+        public float CoalitionChancePercentage { get; set; } = 5.0f;
+        public int CriticalExpansionism { get; set; } = 100;
+        /*
         [SettingPropertyBool("{=ZIf1tRII}Enable Coalitions", RequireRestart = false, HintText = "{=8v8q0OGu}Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled.")]
         [SettingPropertyGroup(HeadingCoalitions, IsMainToggle = true, GroupOrder = (int)GroupOrder.HeadingCoalitions)]
         public bool EnableCoalitions { get; set; } = true;
@@ -195,5 +199,6 @@ namespace DiplomacyFixes
         [SettingPropertyFloatingInteger("{=zwbL9BHe}Coalition Chance Percentage per Day", 0f, 100f, "0.00", RequireRestart = false, HintText = "{=9ugCWA3v}The percentage change of a coalition forming against a faction over the expansionism threshold. Default value is 5.")]
         [SettingPropertyGroup(HeadingCoalitions)]
         public float CoalitionChancePercentage { get; set; } = 5.0f;
+        */
     }
 }
