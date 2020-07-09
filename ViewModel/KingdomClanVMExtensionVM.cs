@@ -26,6 +26,7 @@ namespace DiplomacyFixes.ViewModel
         private bool _canUsurpThrone;
         private bool _showUsurpThrone;
         private int _usurpThroneInfluenceCost;
+        private string _usurpThroneExplanationText;
 
         public KingdomClanVMExtensionVM(Action<TaleWorlds.CampaignSystem.Election.KingdomDecision> forceDecide) : base(forceDecide)
         {
@@ -38,7 +39,6 @@ namespace DiplomacyFixes.ViewModel
             this.GrantFiefExplanationText = new TextObject("{=98hwXUTp}Grant fiefs to clans in your kingdom").ToString();
             this.DonateGoldActionName = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
             this.UsurpThroneActionName = new TextObject("{=N7goPgiq}Usurp Throne").ToString();
-            this.UsurpThroneExplanationText = new TextObject("{=WVe7QwhW}Usurp the throne of this kingdom").ToString();
             base.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
             RefreshCanGrantFief();
             RefreshCanDonateGold();
@@ -74,6 +74,12 @@ namespace DiplomacyFixes.ViewModel
         {
             this.ShowUsurpThrone = CurrentSelectedClan.Clan == Clan.PlayerClan;
             this.CanUsurpThrone = UsurpKingdomAction.CanUsurp(Clan.PlayerClan);
+            UsurpKingdomAction.GetClanSupport(Clan.PlayerClan, out int supportingClanTiers, out int opposingClanTiers);
+
+            TextObject textObject = new TextObject("{=WVe7QwhW}Usurp the throne of this kingdom\nClan Support: {SUPPORTING_TIERS} / {OPPOSING_TIERS}");
+            textObject.SetTextVariable("SUPPORTING_TIERS", supportingClanTiers);
+            textObject.SetTextVariable("OPPOSING_TIERS", opposingClanTiers + 1);
+            this.UsurpThroneExplanationText = textObject.ToString();
             this.UsurpThroneInfluenceCost = (int)UsurpKingdomAction.GetUsurpInfluenceCost(Clan.PlayerClan);
         }
 
@@ -167,7 +173,20 @@ namespace DiplomacyFixes.ViewModel
         [DataSourceProperty]
         public string UsurpThroneActionName { get; }
         [DataSourceProperty]
-        public string UsurpThroneExplanationText { get; }
+        public string UsurpThroneExplanationText
+        {
+            get { return this._usurpThroneExplanationText; }
+
+            set
+            {
+                if (value != this._usurpThroneExplanationText)
+                {
+                    this._usurpThroneExplanationText = value;
+                    base.OnPropertyChanged("UsurpThroneExplanationText");
+                }
+            }
+
+        }
         [DataSourceProperty]
         public string DonateGoldActionName { get; }
 
@@ -205,7 +224,8 @@ namespace DiplomacyFixes.ViewModel
         }
 
         [DataSourceProperty]
-        public int UsurpThroneInfluenceCost {
+        public int UsurpThroneInfluenceCost
+        {
             get { return this._usurpThroneInfluenceCost; }
 
             set

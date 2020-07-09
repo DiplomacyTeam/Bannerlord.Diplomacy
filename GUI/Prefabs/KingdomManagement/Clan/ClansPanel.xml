@@ -367,7 +367,7 @@
 
                         <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" Text="@UsurpThroneExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
 
-                        <!--Expel Button-->
+                        <!--Usurp Button-->
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center" MarginTop="5">
                           <Children>
 
@@ -387,7 +387,6 @@
                             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Right" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
                           </Children>
                         </ListPanel>
-
                       </Children>
                     </ListPanel>
                   </Children>

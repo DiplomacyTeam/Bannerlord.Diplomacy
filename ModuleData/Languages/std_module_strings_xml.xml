@@ -107,7 +107,7 @@
 
     <string id="Gzq6VHPt" text="Donate Gold"/>
     <string id="N7goPgiq" text="Usurp Throne"/>
-    <string id="WVe7QwhW" text="Usurp the throne of this kingdom"/>
+    <string id="WVe7QwhW" text="Usurp the throne of this kingdom\nClan Support: {SUPPORTING_TIERS} / {OPPOSING_TIERS}"/>
 
     <string id="CxdpR6w4" text="Expansionism"/>
     

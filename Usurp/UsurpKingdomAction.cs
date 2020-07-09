@@ -47,13 +47,18 @@ namespace DiplomacyFixes.Usurp
             }
 
             Clan rulingClan = usurpingClan.Kingdom.RulingClan;
+            GetClanSupport(usurpingClan, out int supportingClanTiers, out int opposingClanTiers);
+            return usurpingClan.Influence > GetUsurpInfluenceCost(usurpingClan) && supportingClanTiers > opposingClanTiers;
+        }
+
+        public static void GetClanSupport(Clan usurpingClan, out int supportingClanTiers, out int opposingClanTiers)
+        {
+            Clan rulingClan = usurpingClan.Kingdom.RulingClan;
             List<Clan> supportingClans, opposingClans;
             GetClanSupport(usurpingClan, out supportingClans, out opposingClans);
 
-            int supportingClanTiers = supportingClans.Select(clan => clan.Tier).Sum() + usurpingClan.Tier;
-            int opposingClanTiers = opposingClans.Select(clan => clan.Tier).Sum() + rulingClan.Tier;
-
-            return usurpingClan.Influence > rulingClan.Influence && supportingClanTiers > opposingClanTiers;
+            supportingClanTiers = supportingClans.Select(clan => clan.Tier).Sum() + usurpingClan.Tier;
+            opposingClanTiers = opposingClans.Select(clan => clan.Tier).Sum() + rulingClan.Tier;
         }
 
         public static float GetUsurpInfluenceCost(Clan usurpingClan)
