@@ -1,41 +1,43 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.DiplomaticAction.Alliance
 {
-    class BreakAllianceAction
+    class BreakAllianceAction : AbstractDiplomaticAction<BreakAllianceAction>
     {
-        public static void Apply(Kingdom kingdom, Kingdom otherKingdom)
+        public override bool PassesConditions(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
-            Kingdom playerKingdom = Clan.PlayerClan?.Kingdom;
-            if (otherKingdom == playerKingdom && playerKingdom.Leader == Hero.MainHero)
-            {
-                TextObject textObject = new TextObject("{=384jX28Q}{KINGDOM} is breaking the alliance with {PLAYER_KINGDOM}.");
-                textObject.SetTextVariable("KINGDOM", kingdom.Name);
-                textObject.SetTextVariable("PLAYER_KINGDOM", otherKingdom.Name);
-
-                InformationManager.ShowInquiry(new InquiryData(
-                    new TextObject("{=D1ZQKZr1}Alliance Broken").ToString(),
-                    textObject.ToString(),
-                    true,
-                    false,
-                    GameTexts.FindText("str_ok", null).ToString(),
-                    null,
-                    () => ApplyInternal(kingdom, otherKingdom),
-                    null,
-                    ""), true);
-            }
-            else
-            {
-                ApplyInternal(kingdom, otherKingdom);
-            }
+            return BreakAllianceConditions.Instance.CanApply(proposingKingdom, otherKingdom, forcePlayerCharacterCosts, bypassCosts);
         }
 
-        private static void ApplyInternal(Kingdom kingdom, Kingdom otherKingdom)
+        protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom)
         {
-            FactionManager.SetNeutral(kingdom, otherKingdom);
-            Events.Instance.OnAllianceBroken(new AllianceEvent(kingdom, otherKingdom));
+            FactionManager.SetNeutral(proposingKingdom, otherKingdom);
+            Events.Instance.OnAllianceBroken(new AllianceEvent(proposingKingdom, otherKingdom));
+        }
+
+        protected override void AssessCosts(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts)
+        {
+        }
+
+        protected override void ShowPlayerInquiry(Kingdom proposingKingdom, Action acceptAction)
+        {
+            TextObject textObject = new TextObject("{=384jX28Q}{KINGDOM} is breaking the alliance with {PLAYER_KINGDOM}.");
+            textObject.SetTextVariable("KINGDOM", proposingKingdom.Name);
+            textObject.SetTextVariable("PLAYER_KINGDOM", Clan.PlayerClan.Kingdom.Name);
+
+            InformationManager.ShowInquiry(new InquiryData(
+                new TextObject("{=D1ZQKZr1}Alliance Broken").ToString(),
+                textObject.ToString(),
+                true,
+                false,
+                GameTexts.FindText("str_ok", null).ToString(),
+                null,
+                acceptAction,
+                null,
+                ""), true);
         }
     }
 }

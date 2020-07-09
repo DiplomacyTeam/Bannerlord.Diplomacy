@@ -280,6 +280,7 @@
     <Compile Include="Costs\InfluenceCost.cs" />
     <Compile Include="DiplomaticAction\AbstractConditionEvaluator.cs" />
     <Compile Include="DiplomaticAction\AbstractCostCondition.cs" />
+    <Compile Include="DiplomaticAction\AbstractDiplomaticAction.cs" />
     <Compile Include="DiplomaticAction\AbstractScoringModel.cs" />
     <Compile Include="DiplomaticAction\Alliance\BreakAllianceConditions.cs" />
     <Compile Include="DiplomaticAction\Alliance\Conditions\HasEnoughGoldCondition.cs" />
@@ -295,7 +296,7 @@
     <Compile Include="Extensions\KingdomExtensions.cs" />
     <Compile Include="Patches\DefaultClanPoliticsModelPatch.cs" />
     <Compile Include="Patches\GiveGoldToClanActionPatch.cs" />
-    <Compile Include="Usurp\UsurpKingdomAction.cs" />
+    <Compile Include="DiplomaticAction\Usurp\UsurpKingdomAction.cs" />
     <Compile Include="ViewModel\ICloseableVM.cs" />
     <Compile Include="ViewModel\DiplomacyPropertiesVM.cs" />
     <Compile Include="DiplomaticAction\Alliance\AllianceEvent.cs" />
