@@ -1,6 +1,6 @@
-﻿using DiplomacyFixes.GauntletInterfaces;
+﻿using DiplomacyFixes.DiplomaticAction.Usurp;
+using DiplomacyFixes.GauntletInterfaces;
 using DiplomacyFixes.GrantFief;
-using DiplomacyFixes.Usurp;
 using System;
 using System.ComponentModel;
 using System.Reflection;

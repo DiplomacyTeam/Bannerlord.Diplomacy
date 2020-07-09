@@ -1,10 +1,9 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 
-namespace DiplomacyFixes.Usurp
+namespace DiplomacyFixes.DiplomaticAction.Usurp
 {
     public class UsurpKingdomAction
     {
