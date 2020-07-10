@@ -9,7 +9,6 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance
         {
             new TimeElapsedSinceAllianceFormedCondition()
         };
-
-        protected override List<IDiplomacyCondition> Conditions => _breakAllianceConditions;
+        public BreakAllianceConditions() : base(_breakAllianceConditions) { }
     }
 }

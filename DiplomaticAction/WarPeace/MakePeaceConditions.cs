@@ -13,6 +13,7 @@ namespace DiplomacyFixes.DiplomaticAction.WarPeace
             new HasEnoughTimeElapsedForPeaceCondition(),
             new NoPlayerSiegeCondition()
         };
-        protected override List<IDiplomacyCondition> Conditions => _peaceConditions;
+
+        public MakePeaceConditions() : base(_peaceConditions) { }
     }
 }

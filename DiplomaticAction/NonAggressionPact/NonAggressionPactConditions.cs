@@ -15,6 +15,6 @@ namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
             new HasEnoughScoreCondition()
         };
 
-        protected override List<IDiplomacyCondition> Conditions => _formNonAggressionPactConditions;
+        public NonAggressionPactConditions() : base(_formNonAggressionPactConditions) { }
     }
 }

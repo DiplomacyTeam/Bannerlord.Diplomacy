@@ -17,6 +17,7 @@ namespace DiplomacyFixes.DiplomaticAction.WarPeace
             new NotInAllianceCondition(),
             new AtPeaceCondition()
         };
-        protected override List<IDiplomacyCondition> Conditions => _warConditions;
+
+        public DeclareWarConditions() : base(_warConditions) { }
     }
 }

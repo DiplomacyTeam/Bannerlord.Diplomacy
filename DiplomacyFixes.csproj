@@ -286,6 +286,7 @@
     <Compile Include="DiplomaticAction\Alliance\Conditions\HasEnoughGoldCondition.cs" />
     <Compile Include="DiplomaticAction\Alliance\Conditions\HasEnoughScoreCondition.cs" />
     <Compile Include="DiplomaticAction\Alliance\FormAllianceConditions.cs" />
+    <Compile Include="DiplomaticAction\GenericConditions\HasAuthorityCondition.cs" />
     <Compile Include="DiplomaticAction\NonAggressionPact\HasEnoughScoreCondition.cs" />
     <Compile Include="DiplomaticAction\NonAggressionPact\NonAggressionPactScoringModel.cs" />
     <Compile Include="DiplomaticAction\NonAggressionPact\HasEnoughGoldCondition.cs" />

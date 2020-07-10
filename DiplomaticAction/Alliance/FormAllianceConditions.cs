@@ -17,6 +17,6 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance
             new HasEnoughScoreCondition()
         };
 
-        protected override List<IDiplomacyCondition> Conditions => _formAllianceConditions;
+        public FormAllianceConditions() : base(_formAllianceConditions) { }
     }
 }

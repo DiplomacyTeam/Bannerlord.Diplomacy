@@ -67,10 +67,10 @@ namespace DiplomacyFixes.ViewModel
         protected virtual void UpdateActionAvailability()
         {
             this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
-            this.IsOptionAvailable = DeclareWarConditions.Instance.CanApplyExceptions(this).IsEmpty();
+            this.IsOptionAvailable = DeclareWarConditions.Instance.CanApplyExceptions(this, true).IsEmpty();
             string allianceException = FormAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
             this.IsAllianceAvailable = allianceException == null;
-            string declareWarException = DeclareWarConditions.Instance.CanApplyExceptions(this).FirstOrDefault()?.ToString();
+            string declareWarException = DeclareWarConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
             this.ActionHint = declareWarException != null ? new HintViewModel(declareWarException) : new HintViewModel();
             this.AllianceHint = allianceException != null ? new HintViewModel(allianceException) : new HintViewModel();
             string nonAggressionPactException = NonAggressionPactConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
