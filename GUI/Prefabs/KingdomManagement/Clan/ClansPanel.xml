@@ -377,7 +377,7 @@
                               </Children>
                             </ButtonWidget>
 
-                            <HintWidget DataSource="{ExpelHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                            <HintWidget DataSource="{UsurpThroneHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
                           </Children>
                         </Widget>
 

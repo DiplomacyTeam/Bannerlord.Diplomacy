@@ -27,6 +27,7 @@ namespace DiplomacyFixes.ViewModel
         private bool _showUsurpThrone;
         private int _usurpThroneInfluenceCost;
         private string _usurpThroneExplanationText;
+        private HintViewModel _usurpThroneHint;
 
         public KingdomClanVMExtensionVM(Action<TaleWorlds.CampaignSystem.Election.KingdomDecision> forceDecide) : base(forceDecide)
         {
@@ -73,7 +74,8 @@ namespace DiplomacyFixes.ViewModel
         private void RefreshCanUsurpThrone()
         {
             this.ShowUsurpThrone = CurrentSelectedClan.Clan == Clan.PlayerClan;
-            this.CanUsurpThrone = UsurpKingdomAction.CanUsurp(Clan.PlayerClan);
+            this.CanUsurpThrone = UsurpKingdomAction.CanUsurp(Clan.PlayerClan, out string errorMessage);
+            this.UsurpThroneHint = errorMessage != null ? new HintViewModel(errorMessage) : new HintViewModel();
             UsurpKingdomAction.GetClanSupport(Clan.PlayerClan, out int supportingClanTiers, out int opposingClanTiers);
 
             TextObject textObject = new TextObject("{=WVe7QwhW}Usurp the throne of this kingdom\nClan Support: {SUPPORTING_TIERS} / {OPPOSING_TIERS}");
@@ -234,6 +236,21 @@ namespace DiplomacyFixes.ViewModel
                 {
                     this._usurpThroneInfluenceCost = value;
                     base.OnPropertyChanged("UsurpThroneInfluenceCost");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public HintViewModel UsurpThroneHint
+        {
+            get { return this._usurpThroneHint; }
+
+            set
+            {
+                if (value != this._usurpThroneHint)
+                {
+                    this._usurpThroneHint = value;
+                    base.OnPropertyChanged("UsurpThroneHint");
                 }
             }
         }

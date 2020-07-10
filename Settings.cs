@@ -1,6 +1,7 @@
 ﻿using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
 using MCM.Abstractions.Settings.Base.Global;
+using System.Security.Permissions;
 using TaleWorlds.Localization;
 
 namespace DiplomacyFixes
@@ -184,6 +185,9 @@ namespace DiplomacyFixes
         [SettingPropertyInteger("{=mEXGC0h3}Expansionism Decay Per Day", 0, 100, RequireRestart = false, HintText = "{=kgPeQvqE}The amount of expansionism that decays each day. Default value is 1.")]
         [SettingPropertyGroup(HeadingExpansionism)]
         public int ExpansionismDecayPerDay { get; set; } = 1;
+
+        [SettingPropertyBool("{=lsyl0VSX}Storyline Protection", Order = -2, RequireRestart = false, HintText = "{=EVrErrTR}When enabled, prevents the player from breaking the main storyline. Disable when using mods like \"Just Let Me Play\". Default value is true.")]
+        public bool EnableStorylineProtection { get; set; } = true;
 
         public bool EnableCoalitions { get; set; } = false;
         public float CoalitionChancePercentage { get; set; } = 5.0f;

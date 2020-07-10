@@ -2,6 +2,9 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using StoryMode;
+using TaleWorlds.Core;
+using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.DiplomaticAction.Usurp
 {
@@ -9,6 +12,40 @@ namespace DiplomacyFixes.DiplomaticAction.Usurp
     {
         public static void Apply(Clan usurpingClan)
         {
+            if (Settings.Instance.EnableStorylineProtection && StoryMode.StoryMode.Current.MainStoryLine.MainStoryLineSide == MainStoryLineSide.None)
+            {
+                InformationManager.ShowInquiry(new InquiryData(
+                    new TextObject("{=fQxiCdBA}Main Storyline").ToString(),
+                    new TextObject("{=3wXqST66}By usurping this throne, you are committing to {STANCE} the empire in the main storyline.")
+                    .SetTextVariable("STANCE", StoryModeData.IsKingdomImperial(usurpingClan.Kingdom) ? new TextObject("{=yAFwbD9B}unifying") : new TextObject("{=IGJVx5XI}destroying"))
+                    .ToString(),
+                    true,
+                    true,
+                    new TextObject(StringConstants.Accept).ToString(),
+                    new TextObject(StringConstants.Decline).ToString(),
+                    () => ApplyInternal(usurpingClan),
+                    null,
+                    ""), true);
+            }
+            else
+            {
+                ApplyInternal(usurpingClan);
+            }
+        }
+
+        private static void ApplyInternal(Clan usurpingClan)
+        {
+            if (Settings.Instance.EnableStorylineProtection && StoryMode.StoryMode.Current.MainStoryLine.MainStoryLineSide == MainStoryLineSide.None)
+            {
+                if (StoryModeData.IsKingdomImperial(usurpingClan.Kingdom))
+                {
+                    StoryMode.StoryMode.Current.MainStoryLine.SetStoryLineSide(MainStoryLineSide.SupportImperialKingdom);
+                }
+                else
+                {
+                    StoryMode.StoryMode.Current.MainStoryLine.SetStoryLineSide(MainStoryLineSide.SupportAntiImperialKingdom);
+                }
+            }
             List<Clan> supportingClans, opposingClans;
             GetClanSupport(usurpingClan, out supportingClans, out opposingClans);
 
@@ -38,8 +75,15 @@ namespace DiplomacyFixes.DiplomaticAction.Usurp
             }
         }
 
-        public static bool CanUsurp(Clan usurpingClan)
+        public static bool CanUsurp(Clan usurpingClan, out string errorMessage)
         {
+            errorMessage = null;
+            if (Settings.Instance.EnableStorylineProtection && !StoryMode.StoryMode.Current.MainStoryLine.FirstPhase.AllPiecesCollected)
+            {
+                errorMessage = new TextObject("{=Euy6Mwcq}You must progress further in the main quest to unlock this action.").ToString();
+                return false;
+            }
+
             if (!usurpingClan.MapFaction.IsKingdomFaction || usurpingClan.Kingdom.RulingClan == usurpingClan)
             {
                 return false;

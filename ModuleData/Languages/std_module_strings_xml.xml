@@ -119,6 +119,12 @@
     <string id="XIBUWDlT" text="Required Score"/>
     
     <string id="5znwaUVC" text="Days Remaining: {DAYS_LEFT}"/>
+    
+    <string id="Euy6Mwcq" text="You must progress further in the main quest to unlock this action."/>
+    <string id="fQxiCdBA" text="Main Storyline"/>
+    <string id="3wXqST66" text="By usurping this throne, you are committing to {STANCE} the empire in the main storyline."/>
+    <string id="yAFwbD9B" text="unifying"/>
+    <string id="IGJVx5XI" text="destroying"/>
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
@@ -236,6 +242,9 @@
     <string id="EUnASoee" text="The amount of expansionism a faction requires before a coalition is formed against it. Default value is 100."/>
     <string id="zwbL9BHe" text="Coalition Chance Percentage per Day"/>
     <string id="9ugCWA3v" text="The percentage change of a coalition forming against a faction over the expansionism threshold. Default value is 5."/>
+    
+    <string id="lsyl0VSX" text ="Storyline Protection"/>
+    <string id="EVrErrTR" text="When enabled, prevents the player from breaking the main storyline. Disable when using mods like &quot;Just Let Me Play&quot;. Default value is true." />
     
   </strings>
 </base>
