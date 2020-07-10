@@ -158,6 +158,10 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             dataStore.SyncData("_expansionismManager", ref _expansionismManager);
             if (dataStore.IsLoading)
             {
+                if (_expansionismManager == null)
+                {
+                    this._expansionismManager = new ExpansionismManager();
+                }
                 this._expansionismManager.Sync();
             }
         }
