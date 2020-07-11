@@ -78,9 +78,9 @@ namespace DiplomacyFixes.DiplomaticAction.Usurp
         public static bool CanUsurp(Clan usurpingClan, out string errorMessage)
         {
             errorMessage = null;
-            if (Settings.Instance.EnableStorylineProtection && !StoryMode.StoryMode.Current.MainStoryLine.FirstPhase.AllPiecesCollected)
+            if (Settings.Instance.EnableStorylineProtection && (!(StoryMode.StoryMode.Current?.MainStoryLine?.FirstPhase?.AllPiecesCollected ?? false)))
             {
-                errorMessage = new TextObject("{=Euy6Mwcq}You must progress further in the main quest to unlock this action.").ToString();
+                errorMessage = new TextObject("{=Euy6Mwcq}You must progress further in the main quest to unlock this action. You can disable storyline protection in the mod options.").ToString();
                 return false;
             }
 
