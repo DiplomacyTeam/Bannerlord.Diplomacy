@@ -296,6 +296,7 @@
     <Compile Include="Extensions\ClanExtensions.cs" />
     <Compile Include="Extensions\KingdomExtensions.cs" />
     <Compile Include="GauntletInterfaces\DonateGoldInterface.cs" />
+    <Compile Include="Patches\SupportKingdomQuestPatch.cs" />
     <Compile Include="ViewModel\DonateGoldVM.cs" />
     <Compile Include="Patches\DefaultClanPoliticsModelPatch.cs" />
     <Compile Include="Patches\GiveGoldToClanActionPatch.cs" />
