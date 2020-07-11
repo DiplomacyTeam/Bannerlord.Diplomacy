@@ -11,6 +11,7 @@ using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.TwoDimension;
 
 namespace DiplomacyFixes.ViewModel
 {
@@ -22,7 +23,6 @@ namespace DiplomacyFixes.ViewModel
 
         private Action _executeExpel;
         private Action _executeSupport;
-        private bool _canDonateGold;
         private bool _canUsurpThrone;
         private bool _showUsurpThrone;
         private int _usurpThroneInfluenceCost;
@@ -39,10 +39,10 @@ namespace DiplomacyFixes.ViewModel
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             this.GrantFiefExplanationText = new TextObject("{=98hwXUTp}Grant fiefs to clans in your kingdom").ToString();
             this.DonateGoldActionName = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
+            this.DonateGoldExplanationText = new TextObject("{=7QvXkcxH}Donate gold to clans in your kingdom").ToString();
             this.UsurpThroneActionName = new TextObject("{=N7goPgiq}Usurp Throne").ToString();
             base.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
             RefreshCanGrantFief();
-            RefreshCanDonateGold();
             RefreshCanUsurpThrone();
         }
 
@@ -66,7 +66,6 @@ namespace DiplomacyFixes.ViewModel
             if (e.PropertyName == "CurrentSelectedClan")
             {
                 RefreshCanGrantFief();
-                RefreshCanDonateGold();
                 RefreshCanUsurpThrone();
             }
         }
@@ -98,8 +97,7 @@ namespace DiplomacyFixes.ViewModel
 
         private void DonateGold()
         {
-            GiveGoldToClanAction.ApplyFromHeroToClan(Hero.MainHero, this.CurrentSelectedClan.Clan, DonationAmount);
-            RefreshCanDonateGold();
+            new DonateGoldInterface().ShowInterface(ScreenManager.TopScreen, this.CurrentSelectedClan.Clan);
         }
 
 
@@ -113,26 +111,6 @@ namespace DiplomacyFixes.ViewModel
         {
             this.CanGrantFiefToClan = GrantFiefAction.CanGrantFief(this.CurrentSelectedClan.Clan, out string hint);
             this.GrantFiefHint = this.CanGrantFiefToClan ? new HintViewModel() : new HintViewModel(hint, null);
-        }
-
-        private void RefreshCanDonateGold()
-        {
-            this.CanDonateGold = this.CurrentSelectedClan.Clan != Clan.PlayerClan && Hero.MainHero.Gold >= DonationAmount;
-        }
-
-        [DataSourceProperty]
-        public bool CanDonateGold
-        {
-            get { return this._canDonateGold; }
-
-            set
-            {
-                if (value != this._canDonateGold)
-                {
-                    this._canDonateGold = value;
-                    base.OnPropertyChanged("CanDonateGold");
-                }
-            }
         }
 
         [DataSourceProperty]
@@ -191,9 +169,9 @@ namespace DiplomacyFixes.ViewModel
         }
         [DataSourceProperty]
         public string DonateGoldActionName { get; }
-
         [DataSourceProperty]
-        public int DonationAmount { get; } = 1000;
+        public string DonateGoldExplanationText { get; }
+
         [DataSourceProperty]
         public bool ShowUsurpThrone
         {

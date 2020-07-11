@@ -1,0 +1,47 @@
+<Prefab>
+  <Constants>
+  </Constants>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+      <Children>
+        <ListPanel HorizontalAlignment="Center" VerticalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+          <Children>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="700" SuggestedHeight="200" Sprite="StdAssets\Popup\canvas">
+              <Children>
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Frame"/>
+                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginTop="25" MarginBottom="25">
+                  <Children>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="@TitleText" HorizontalAlignment="Center"/>
+                    <SliderWidget SuggestedWidth="338" SuggestedHeight="42" VerticalAlignment="Center" HorizontalAlignment="Center"
+                              Filler="Filler" Handle="SliderHandle" MaxValueFloat="@MaxValue" MinValueFloat="@MinValue" ValueInt="@IntValue"
+                                  IsDiscrete="false" DoNotUpdateHandleSize="true">
+                      <Children>
+                        <Widget SuggestedWidth="362" SuggestedHeight="38" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Sprite="SPOptions\standart_slider_canvas" IsEnabled="false" />
+                        <Widget Id="Filler" SuggestedWidth="345" SuggestedHeight="35" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Sprite="SPOptions\standart_slider_fill" ClipContents="true" >
+                          <Children>
+                            <Widget SuggestedWidth="345" SuggestedHeight="35" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                    Sprite="SPOptions\standart_slider_fill"/>
+                          </Children>
+                        </Widget>
+                        <Widget SuggestedWidth="400" SuggestedHeight="65" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                IsEnabled="false" Sprite="SPOptions\standart_slider_frame" />
+                        <Widget Id="SliderHandle" SuggestedWidth="14" SuggestedHeight="38" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                 Brush="SPOptions.Slider.Handle" DoNotAcceptEvents="true" />
+                      </Children>
+                    </SliderWidget>
+                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Text="@GoldCost" VerticalAlignment="Center" MarginTop="10"/>
+                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Text="@RelationGain" VerticalAlignment="Center"/>
+                  </Children>
+                </ListPanel>
+              </Children>
+            </Widget>
+            <!--Close Buttons-->
+            <Standard.TriplePopupCloseButtons VerticalAlignment="Bottom" Parameter.CancelButtonAction="ExecuteCancel" Parameter.CancelButtonText="@CancelText" Parameter.DoneButtonAction="ExecutePropose" Parameter.DoneButtonText="@AcceptText" Parameter.ResetButtonAction="ExecuteReset" Parameter.ResetButtonHintDataSource="{ResetHint}" />
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

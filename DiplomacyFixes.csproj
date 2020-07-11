@@ -295,6 +295,8 @@
     <Compile Include="ExpansionismManager.cs" />
     <Compile Include="Extensions\ClanExtensions.cs" />
     <Compile Include="Extensions\KingdomExtensions.cs" />
+    <Compile Include="GauntletInterfaces\DonateGoldInterface.cs" />
+    <Compile Include="ViewModel\DonateGoldVM.cs" />
     <Compile Include="Patches\DefaultClanPoliticsModelPatch.cs" />
     <Compile Include="Patches\GiveGoldToClanActionPatch.cs" />
     <Compile Include="DiplomaticAction\Usurp\UsurpKingdomAction.cs" />
@@ -331,6 +333,7 @@
     <Compile Include="Patches\KingdomDecisionProposalBehaviorPatch.cs" />
     <Compile Include="StringConstants.cs" />
     <Compile Include="Widgets\KingdomDiplomacyPanelTabControlWidget.cs" />
+    <Content Include="GUI\Prefabs\KingdomManagement\Clan\DonateGold.xml" />
     <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\OverviewTab.xml" />
     <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\Relationship.xml" />
     <Compile Include="Patches\GameMenusCallbacksPatch.cs" />
