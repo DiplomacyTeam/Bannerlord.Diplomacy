@@ -1,4 +1,5 @@
-﻿using DiplomacyFixes.GrantFief;
+﻿using DiplomacyFixes.Extensions;
+using DiplomacyFixes.GrantFief;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -20,7 +21,7 @@ namespace DiplomacyFixes.ViewModel
             this._onComplete = onComplete;
             this._targetHero = hero;
             this.Settlements = new MBBindingList<GrantFiefItemVM>();
-            foreach (Town settlement in Clan.PlayerClan.Fortifications)
+            foreach (Town settlement in Clan.PlayerClan.GetPermanentFiefs())
             {
                 _settlements.Add(new GrantFiefItemVM(settlement.Owner.Settlement, _targetHero, this.OnSelect));
             }

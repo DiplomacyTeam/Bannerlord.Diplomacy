@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiplomacyFixes.Extensions;
+using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -49,7 +50,7 @@ namespace DiplomacyFixes.GrantFief
             {
                 reason = new TextObject("{=zdSYUnZQ}You are not the leader of your kingdom.").ToString();
             }
-            else if (Clan.PlayerClan.Fortifications.Count < 1)
+            else if (Clan.PlayerClan.GetPermanentFiefs().Count() < 1)
             {
                 reason = new TextObject("{=D61vzEC7}You don't have any fiefs to grant.").ToString();
             }
