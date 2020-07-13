@@ -41,8 +41,8 @@ namespace DiplomacyFixes.ViewModel
         private void Refresh()
         {
             this.MaxValue = Clan.PlayerClan.Gold;
-            this.GoldCost = new TextObject("Gold Cost: {GOLD_COST}").SetTextVariable("GOLD_COST", this.IntValue).ToString();
-            this.RelationGain = new TextObject("Relation Gain: {RELATION_GAIN}+").SetTextVariable("RELATION_GAIN", GetEstimatedRelationValue()).ToString();
+            this.GoldCost = new TextObject("{=e7uxH1jc}Gold Cost: {GOLD_COST}").SetTextVariable("GOLD_COST", this.IntValue).ToString();
+            this.RelationGain = new TextObject("{=4lG3JG2e}Relation Gain: {RELATION_GAIN}+").SetTextVariable("RELATION_GAIN", GetEstimatedRelationValue()).ToString();
         }
 
         private void ExecutePropose()
