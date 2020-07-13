@@ -343,7 +343,7 @@
 
                             <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center" Brush="ButtonBrush2" Command.Click="ExecuteExpelCurrentClan" IsEnabled="@CanExpelCurrentClan" UpdateChildrenStates="true">
                               <Children>
-                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="@CanExpelCurrentClan" Text="Propose" />
+                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="@CanExpelCurrentClan" Text="@ExpelActionText" />
                               </Children>
                             </ButtonWidget>
 
