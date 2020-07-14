@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -14,7 +15,7 @@ namespace DiplomacyFixes.Extensions
 
         public static float GetExpansionismDiplomaticPenalty(this Kingdom kingdom)
         {
-            return GetExpansionism(kingdom) - 50;
+            return Math.Min(-(GetExpansionism(kingdom) - 50), 0f);
         }
 
         public static float GetMinimumExpansionism(this Kingdom kingdom)

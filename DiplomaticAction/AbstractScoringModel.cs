@@ -74,7 +74,7 @@ namespace DiplomacyFixes.DiplomaticAction
             explainedNumber.Add(Scores.Relationship * relationModifier, _relationship);
 
             // expansionism modifier
-            if (otherKingdom.GetExpansionismDiplomaticPenalty() > 0)
+            if (otherKingdom.GetExpansionismDiplomaticPenalty() < 0)
             {
                 TextObject textObject = null;
                 if (explanation != null)
