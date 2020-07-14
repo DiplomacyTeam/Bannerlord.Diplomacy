@@ -57,14 +57,14 @@ namespace DiplomacyFixes.ViewModel
             float influenceValue = this.IntValue * Campaign.Current.Models.DiplomacyModel.DenarsToInfluence();
             float relationValuePerInfluence =(float)Campaign.Current.Models.DiplomacyModel.GetRelationValueOfSupportingClan() / Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfSupportingClan();
             
-            return (int) (influenceValue * relationValuePerInfluence);
+            return MBMath.Round(influenceValue * relationValuePerInfluence);
         }
 
         private int GetEstimatedRelationValue()
         {
             ExplainedNumber explainedNumber = new ExplainedNumber((float)GetBaseRelationValueOfCurrentGoldCost(), new StatExplainer(), null);
             Campaign.Current.Models.DiplomacyModel.GetRelationIncreaseFactor(Hero.MainHero, _clan.Leader, ref explainedNumber);
-            return (int) explainedNumber.ResultNumber;
+            return MBMath.Floor(explainedNumber.ResultNumber);
         }
 
         private void ExecuteCancel()
