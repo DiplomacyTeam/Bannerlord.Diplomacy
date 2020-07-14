@@ -34,7 +34,7 @@
                   <Children>
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Header.Policies.Width" SuggestedHeight="!Kingdom.Header.Policies.Height" Brush="Kingdom.Header.Policies" RenderLate="true">
                       <Children>
-                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.PoliciesCollapserTitle.Text" IsDisabled="true" Text="Diplomacy" />
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.PoliciesCollapserTitle.Text" IsDisabled="true" Text="@DiplomacyText" />
                       </Children>
                     </Widget>
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Scroll.Header.Width" SuggestedHeight="!Kingdom.Scroll.Header.Height" HorizontalAlignment="Right" Brush="Scroll.Header" />

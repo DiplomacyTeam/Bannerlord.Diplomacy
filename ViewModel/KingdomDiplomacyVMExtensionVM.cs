@@ -28,6 +28,7 @@ namespace DiplomacyFixes.ViewModel
             this.PlayerAlliancesText = new TextObject("{=zpNalMeA}Alliances").ToString();
             this.StatsText = new TextObject("{=1occw3EF}Stats").ToString();
             this.OverviewText = new TextObject("{=OvbY5qxL}Overview").ToString();
+            this.DiplomacyText = new TextObject("{=Q2vXbwvC}Diplomacy").ToString();
 
             Events.AllianceFormed.AddNonSerializedListener(this, (x) => RefreshValues());
             Events.AllianceBroken.AddNonSerializedListener(this, (x) => RefreshValues());
@@ -146,6 +147,8 @@ namespace DiplomacyFixes.ViewModel
         public string StatsText { get; }
         [DataSourceProperty]
         public string OverviewText { get; }
+        [DataSourceProperty]
+        public string DiplomacyText { get; }
 
         [DataSourceProperty]
         public string NumOfPlayerAlliancesText
