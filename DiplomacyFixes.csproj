@@ -292,10 +292,13 @@
     <Compile Include="DiplomaticAction\NonAggressionPact\HasEnoughGoldCondition.cs" />
     <Compile Include="DiplomaticAction\WarPeace\DeclareWarConditions.cs" />
     <Compile Include="DiplomaticAction\WarPeace\MakePeaceConditions.cs" />
+    <Compile Include="DiplomaticAction\WarPeace\WarDeclaredEvent.cs" />
     <Compile Include="ExpansionismManager.cs" />
+    <Compile Include="Extensions\CampaignCheatsExtension.cs" />
     <Compile Include="Extensions\ClanExtensions.cs" />
     <Compile Include="Extensions\KingdomExtensions.cs" />
     <Compile Include="GauntletInterfaces\DonateGoldInterface.cs" />
+    <Compile Include="Patches\DeclareWarActionPatch.cs" />
     <Compile Include="Patches\SupportKingdomQuestPatch.cs" />
     <Compile Include="ViewModel\DonateGoldVM.cs" />
     <Compile Include="Patches\DefaultClanPoliticsModelPatch.cs" />

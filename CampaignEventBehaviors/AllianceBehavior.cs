@@ -14,7 +14,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, this.DailyTickClan);
-            CampaignEvents.WarDeclared.AddNonSerializedListener(this, this.WarDeclared);
+            Events.WarDeclared.AddNonSerializedListener(this, this.WarDeclared);
             Events.AllianceFormed.AddNonSerializedListener(this, this.AllianceFormed);
         }
 
@@ -34,41 +34,36 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             }
         }
 
-        private void WarDeclared(IFaction faction1, IFaction faction2)
+        private void WarDeclared(WarDeclaredEvent warDeclaredEvent)
         {
-            Kingdom attackingKingdom = faction1 as Kingdom;
-            Kingdom defendingKingdom = faction2 as Kingdom;
+            Kingdom attackingKingdom = warDeclaredEvent.Faction as Kingdom;
+            Kingdom defendingKingdom = warDeclaredEvent.ProvocatorFaction as Kingdom;
 
-            if (attackingKingdom == null || defendingKingdom == null)
+            if (attackingKingdom == null || defendingKingdom == null || warDeclaredEvent.IsProvoked)
             {
                 return;
             }
 
-            AlliedKingdomDeclareWar(attackingKingdom, defendingKingdom);
-            AlliedKingdomDeclareWar(defendingKingdom, attackingKingdom);
+            SupportAlliedKingdom(defendingKingdom, attackingKingdom);
         }
 
-        private void AlliedKingdomDeclareWar(Kingdom kingdom, Kingdom kingdomToDeclareWarOn)
+        private void SupportAlliedKingdom(Kingdom kingdom, Kingdom kingdomToDeclareWarOn)
         {
             IEnumerable<Kingdom> alliedKingdoms = Kingdom.All.Where(curKingdom => kingdom != curKingdom && FactionManager.IsAlliedWithFaction(kingdom, curKingdom));
-            IEnumerable<Kingdom> kingdomsToDeclareWarOn = Kingdom.All.Where(curKingdom => FactionManager.IsAlliedWithFaction(kingdomToDeclareWarOn, curKingdom));
             foreach (Kingdom alliedKingdom in alliedKingdoms)
             {
-                foreach (Kingdom enemyKingdom in kingdomsToDeclareWarOn)
+                if (!DeclareWarConditions.Instance.CanApply(alliedKingdom, kingdomToDeclareWarOn, bypassCosts: true))
                 {
-                    if (!DeclareWarConditions.Instance.CanApply(alliedKingdom, enemyKingdom, bypassCosts: true))
-                    {
-                        continue;
-                    }
-
-                    DeclareWarAction.Apply(alliedKingdom, enemyKingdom);
-                    TextObject textObject = new TextObject("{=UDC8eW7s}{ALLIED_KINGDOM} is joining their ally, {KINGDOM}, in the war against {ENEMY_KINGDOM}.");
-                    textObject.SetTextVariable("ALLIED_KINGDOM", alliedKingdom.Name);
-                    textObject.SetTextVariable("KINGDOM", kingdom.Name);
-                    textObject.SetTextVariable("ENEMY_KINGDOM", kingdomToDeclareWarOn.Name);
-
-                    InformationManager.DisplayMessage(new InformationMessage(textObject.ToString()));
+                    continue;
                 }
+
+                DeclareWarAction.ApplyDeclareWarOverProvocation(alliedKingdom, kingdomToDeclareWarOn);
+                TextObject textObject = new TextObject("{=UDC8eW7s}{ALLIED_KINGDOM} is joining their ally, {KINGDOM}, in the war against {ENEMY_KINGDOM}.");
+                textObject.SetTextVariable("ALLIED_KINGDOM", alliedKingdom.Name);
+                textObject.SetTextVariable("KINGDOM", kingdom.Name);
+                textObject.SetTextVariable("ENEMY_KINGDOM", kingdomToDeclareWarOn.Name);
+
+                InformationManager.DisplayMessage(new InformationMessage(textObject.ToString()));
             }
         }
 

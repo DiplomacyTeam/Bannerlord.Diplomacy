@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.DiplomaticAction.Alliance;
+using DiplomacyFixes.DiplomaticAction.WarPeace;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 
@@ -14,6 +15,7 @@ namespace DiplomacyFixes
         private readonly MbEvent<AllianceEvent> _allianceFormed = new MbEvent<AllianceEvent>();
         private readonly MbEvent<AllianceEvent> _allianceBroken = new MbEvent<AllianceEvent>();
         private readonly MbEvent<Settlement> _playerSettlementTaken = new MbEvent<Settlement>();
+        private readonly MbEvent<WarDeclaredEvent> _warDeclared = new MbEvent<WarDeclaredEvent>();
         private List<object> _listeners;
 
         public Events()
@@ -25,7 +27,8 @@ namespace DiplomacyFixes
                 _fiefGranted,
                 _messengerSent,
                 _peaceProposalSent,
-                _playerSettlementTaken
+                _playerSettlementTaken,
+                _warDeclared
             };
         }
 
@@ -77,6 +80,14 @@ namespace DiplomacyFixes
             }
         }
 
+        public static IMbEvent<WarDeclaredEvent> WarDeclared
+        {
+            get
+            {
+                return Instance._warDeclared;
+            }
+        }
+
         internal void OnMessengerSent(Hero hero)
         {
             Instance._messengerSent.Invoke(hero);
@@ -105,6 +116,11 @@ namespace DiplomacyFixes
         internal void OnPlayerSettlementTaken(Settlement currentSettlement)
         {
             Instance._playerSettlementTaken.Invoke(currentSettlement);
+        }
+
+        internal void OnWarDeclared(WarDeclaredEvent warDeclaredEvent)
+        {
+            Instance._warDeclared.Invoke(warDeclaredEvent);
         }
 
         public static void RemoveListeners(object o)
