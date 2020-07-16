@@ -6,7 +6,7 @@
     <MOUNT_AND_BLADE_DIR>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\</MOUNT_AND_BLADE_DIR>
 
     <!-- Path to mod folder-->
-    <MOD_FOLDER>$(MOUNT_AND_BLADE_DIR)Modules\DiplomacyFixes\</MOD_FOLDER>
+    <MOD_FOLDER>$(MOUNT_AND_BLADE_DIR)Modules\DiplomacyFixes</MOD_FOLDER>
 
   </PropertyGroup>
 </Project>
