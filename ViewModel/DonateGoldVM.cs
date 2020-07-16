@@ -54,6 +54,11 @@ namespace DiplomacyFixes.ViewModel
 
         private int GetBaseRelationValueOfCurrentGoldCost()
         {
+            if (_clan == Clan.PlayerClan)
+            {
+                return 0;
+            }
+
             float influenceValue = this.IntValue * Campaign.Current.Models.DiplomacyModel.DenarsToInfluence();
             float relationValuePerInfluence =(float)Campaign.Current.Models.DiplomacyModel.GetRelationValueOfSupportingClan() / Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfSupportingClan();
             
