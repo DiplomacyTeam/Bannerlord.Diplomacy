@@ -298,17 +298,12 @@
     <Compile Include="Extensions\ClanExtensions.cs" />
     <Compile Include="Extensions\KingdomExtensions.cs" />
     <Compile Include="GauntletInterfaces\DonateGoldInterface.cs" />
-    <Compile Include="Intrigue\AbstractHeroIntrigue.cs" />
-    <Compile Include="Intrigue\AbstractIntrigue.cs" />
-    <Compile Include="Intrigue\AssassinateIntrigue.cs" />
-    <Compile Include="Intrigue\ChangeClanLeaderIntrigue.cs" />
     <Compile Include="Patches\DeclareWarActionPatch.cs" />
     <Compile Include="Patches\SupportKingdomQuestPatch.cs" />
     <Compile Include="ViewModel\DonateGoldVM.cs" />
     <Compile Include="Patches\DefaultClanPoliticsModelPatch.cs" />
     <Compile Include="Patches\GiveGoldToClanActionPatch.cs" />
     <Compile Include="DiplomaticAction\Usurp\UsurpKingdomAction.cs" />
-    <Compile Include="ViewModel\EncyclopediaIntrigueVM.cs" />
     <Compile Include="ViewModel\ICloseableVM.cs" />
     <Compile Include="ViewModel\DiplomacyPropertiesVM.cs" />
     <Compile Include="DiplomaticAction\Alliance\AllianceEvent.cs" />
