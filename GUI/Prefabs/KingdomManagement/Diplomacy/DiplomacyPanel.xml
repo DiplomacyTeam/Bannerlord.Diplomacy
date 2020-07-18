@@ -312,9 +312,9 @@
                 <!-- Form Non-Aggression Pact Button -->
                 <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" MarginBottom="5" IsVisible="@IsTruce">
                   <Children>
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center">
+                    <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
                       <Children>
-                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ProposeNonAggressionPact" IsEnabled="@IsNonAggressionPactAvailable">
+                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ProposeNonAggressionPact" IsEnabled="@IsNonAggressionPactAvailable">
                           <Children>
                             <TextWidget HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="360" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="true" Text="@NonAggressionPactHelpText" DoNotAcceptEvents="true" ClipContents="false" PositionYOffset="-30"/>
                             <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@NonAggressionPactActionName" />
@@ -328,7 +328,7 @@
                             </ListPanel>
                           </Children>
                         </ButtonWidget>
-                        <HintWidget DataSource="{NonAggressionPactHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                        <HintWidget DataSource="{NonAggressionPactHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
 
                       </Children>
                     </Widget>
@@ -340,20 +340,20 @@
                   </Children>
                 </ListPanel>
 
-                <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="20">
+                <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="10">
                   <Children>
                     <!-- Send Messenger Button -->
                     <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30">
                       <Children>
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center">
+                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
                           <Children>
-                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="SendMessenger" IsEnabled="@IsMessengerAvailable">
+                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="SendMessenger" IsEnabled="@IsMessengerAvailable">
                               <Children>
                                 <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@SendMessengerActionName" />
                                 <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
                                   <Children>
-                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
-                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@SendMessengerInfluenceCost"/>
+                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" />
+                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@SendMessengerGoldCost"/>
                                   </Children>
                                 </ListPanel>
                               </Children>
@@ -381,8 +381,8 @@
 
                         <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                           <Children>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
                             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="0" Brush="Kingdom.GeneralButtons.Text" IntText="@ActionInfluenceCost" IsEnabled="@IsActionEnabled"/>
-                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="10" Sprite="SPKingdom\influence_icon_small" />
                           </Children>
                         </ListPanel>
                       </Children>
@@ -391,9 +391,9 @@
                     <!-- Form Alliance Button -->
                     <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30" IsVisible="@IsTruce">
                       <Children>
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center">
+                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
                           <Children>
-                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="FormAlliance" IsEnabled="@IsAllianceAvailable">
+                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="FormAlliance" IsEnabled="@IsAllianceAvailable">
                               <Children>
                                 <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@AllianceActionName" />
                                 <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
@@ -406,7 +406,7 @@
                                 </ListPanel>
                               </Children>
                             </ButtonWidget>
-                            <HintWidget DataSource="{AllianceHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                            <HintWidget DataSource="{AllianceHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
                           </Children>
                         </Widget>
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" Sprite="MapBar\monocular_icon" VerticalAlignment="Center">
@@ -419,9 +419,9 @@
                     <!-- Declare War / Make Peace / Break Alliance Button -->
                     <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30">
                       <Children>
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center">
+                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
                           <Children>
-                            <ButtonWidget HorizontalAlignment="Center" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ExecuteExecutiveAction" IsEnabled="@IsOptionAvailable">
+                            <ButtonWidget HorizontalAlignment="Center" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ExecuteExecutiveAction" IsEnabled="@IsOptionAvailable">
                               <Children>
                                 <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@ActionName" />
                                 <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
@@ -434,7 +434,7 @@
                                 </ListPanel>
                               </Children>
                             </ButtonWidget>
-                            <HintWidget DataSource="{ActionHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                            <HintWidget DataSource="{ActionHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
                           </Children>
                         </Widget>
                       </Children>

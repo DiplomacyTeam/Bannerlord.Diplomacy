@@ -76,27 +76,7 @@ namespace DiplomacyFixes
 
         public static DiplomacyCost DetermineCostForSendingMessenger()
         {
-            if (!Settings.Instance.EnableInfluenceCostsForDiplomacyActions)
-            {
-                return new InfluenceCost(Clan.PlayerClan, 0f);
-            }
-
-            if (Clan.PlayerClan.MapFaction.IsKingdomFaction)
-            {
-                return new InfluenceCost(Clan.PlayerClan, DetermineInfluenceCostForSendingMessenger());
-            }
-            else
-            {
-                return new GoldCost(Hero.MainHero, null, Settings.Instance.SendMessengerGoldCost);
-            }
-        }
-
-        public static float DetermineInfluenceCostForSendingMessenger()
-        {
-            if (!Settings.Instance.EnableInfluenceCostsForDiplomacyActions)
-                return 0f;
-
-            return Settings.Instance.SendMessengerInfluenceCost;
+            return new GoldCost(Hero.MainHero, null, Settings.Instance.SendMessengerGoldCost);
         }
 
         public static int DetermineGoldCostForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)

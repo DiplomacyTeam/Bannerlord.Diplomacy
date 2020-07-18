@@ -97,11 +97,7 @@ namespace DiplomacyFixes
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int NonAggressionPactDuration { get; set; } = 100;
 
-        [SettingPropertyInteger("{=qeDOmURl}Send Messenger Influence Cost", 0, 10000, RequireRestart = false, HintText = "{=Lkos6GQb}Influence cost for sending a messenger to another leader. Default value is 10.")]
-        [SettingPropertyGroup(HeadingMessengers, GroupOrder = (int)GroupOrder.HeadingMessengers)]
-        public int SendMessengerInfluenceCost { get; set; } = 10;
-
-        [SettingPropertyInteger("{=nMwWHj4h}Send Messenger Gold Cost", 0, 10000, RequireRestart = false, HintText = "{=ehMf7xvE}Gold cost for sending a messenger to another character when not in a kingdom. Default value is 100.")]
+        [SettingPropertyInteger("{=nMwWHj4h}Send Messenger Gold Cost", 0, 10000, RequireRestart = false, HintText = "{=ehMf7xvE}Gold cost for sending a messenger to another character. Default value is 100.")]
         [SettingPropertyGroup(HeadingMessengers)]
         public int SendMessengerGoldCost { get; set; } = 100;
 

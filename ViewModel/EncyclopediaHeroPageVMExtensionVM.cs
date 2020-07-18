@@ -24,7 +24,6 @@ namespace DiplomacyFixes.ViewModel
             _hero = (base.Obj as Hero);
             this._sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger();
             this.SendMessengerCost = (int)_sendMessengerCost.Value;
-            this.SendMessengerCostTypeIsGold = DiplomacyCostCalculator.DetermineCostForSendingMessenger() is GoldCost;
             this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             this.CanGrantFief = GrantFiefAction.CanGrantFief(this._hero.Clan, out _);

@@ -119,8 +119,7 @@
                                               <Children>
                                                 <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@SendMessengerCost">
                                                   <Children>
-                                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" IsHidden="@SendMessengerCostTypeIsGold" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-20" Sprite="SaveLoad\icon_influence" />
-                                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" IsVisible="@SendMessengerCostTypeIsGold" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-20" Sprite="SaveLoad\icon_gold" />
+                                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-20" Sprite="SaveLoad\icon_gold" />
                                                   </Children>
                                                 </TextWidget>
                                               </Children>

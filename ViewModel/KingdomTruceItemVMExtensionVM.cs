@@ -248,7 +248,7 @@ namespace DiplomacyFixes.ViewModel
         [DataSourceProperty]
         public string PactsText { get; }
         [DataSourceProperty]
-        public int SendMessengerInfluenceCost { get; } = (int)DiplomacyCostCalculator.DetermineInfluenceCostForSendingMessenger();
+        public int SendMessengerGoldCost { get; } = (int)DiplomacyCostCalculator.DetermineCostForSendingMessenger().Value;
 
         [DataSourceProperty]
         public bool IsMessengerAvailable
