@@ -12,6 +12,8 @@ namespace DiplomacyFixes.Messengers
     [SaveableClass(4)]
     class MessengerManager : IMissionListener
     {
+        private const float MessengerHourlySpeed = 20f;
+
         [SaveableField(1)]
         private List<Messenger> _messengers;
 
@@ -37,13 +39,38 @@ namespace DiplomacyFixes.Messengers
         {
             foreach (Messenger messenger in Messengers.ToList())
             {
-                if (messenger.DispatchTime.ElapsedDaysUntilNow >= Settings.Instance.MessengerTravelTime)
+                if (IsTargetHeroAvailable(messenger.TargetHero))
+                {
+                    UpdateMessengerPosition(messenger);
+                }
+
+                if (messenger.DispatchTime.ElapsedDaysUntilNow >= Settings.Instance.MessengerTravelTime || messenger.Arrived)
                 {
                     if (MessengerArrived(messenger))
                     {
                         break;
-                    }
+                    } 
                 }
+            }
+        }
+
+        private static void UpdateMessengerPosition(Messenger messenger)
+        {
+            if (messenger.CurrentPosition.Equals(default(Vec2)))
+            {
+                return;
+            }
+
+            Vec2 targetHeroLocation = messenger.TargetHero.GetMapPoint().Position2D;
+            Vec2 distanceToGo = targetHeroLocation - messenger.CurrentPosition;
+
+            if (distanceToGo.Length <= MessengerHourlySpeed)
+            {
+                messenger.Arrived = true;
+            }
+            else
+            {
+                messenger.CurrentPosition += distanceToGo.Normalized() * MessengerHourlySpeed;
             }
         }
 
@@ -121,7 +148,7 @@ namespace DiplomacyFixes.Messengers
 
         private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, Hero targetHero, int travelDays)
         {
-            TextObject textObject = new TextObject("{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_NAME} in {TRAVEL_TIME} days.");
+            TextObject textObject = new TextObject("{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_NAME} within {TRAVEL_TIME} days.");
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             textObject.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
             textObject.SetTextVariable("HERO_NAME", targetHero.Name.ToString());
