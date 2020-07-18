@@ -12,10 +12,10 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance
             return FormAllianceConditions.Instance.CanApply(kingdom, kingdom, forcePlayerCharacterCosts, bypassCosts);
         }
 
-        protected override void ApplyInternal(Kingdom kingdom, Kingdom otherKingdom)
+        protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
-            FactionManager.DeclareAlliance(kingdom, otherKingdom);
-            Events.Instance.OnAllianceFormed(new AllianceEvent(kingdom, otherKingdom));
+            FactionManager.DeclareAlliance(proposingKingdom, otherKingdom);
+            Events.Instance.OnAllianceFormed(new AllianceEvent(proposingKingdom, otherKingdom));
         }
 
         protected override void AssessCosts(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts)

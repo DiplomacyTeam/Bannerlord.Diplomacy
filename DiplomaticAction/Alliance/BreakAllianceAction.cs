@@ -12,7 +12,7 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance
             return BreakAllianceConditions.Instance.CanApply(proposingKingdom, otherKingdom, forcePlayerCharacterCosts, bypassCosts);
         }
 
-        protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom)
+        protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
             FactionManager.SetNeutral(proposingKingdom, otherKingdom);
             Events.Instance.OnAllianceBroken(new AllianceEvent(proposingKingdom, otherKingdom));

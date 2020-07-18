@@ -26,6 +26,7 @@ namespace DiplomacyFixes
             {
                 Events.Instance = new Events();
                 CampaignGameStarter gameStarter = (CampaignGameStarter)gameStarterObject;
+                gameStarter.AddBehavior(new DiplomaticAgreementBehavior());
                 gameStarter.AddBehavior(new CooldownBehavior());
                 gameStarter.AddBehavior(new MessengerBehavior());
                 if (Settings.Instance.EnableWarExhaustion)
@@ -37,7 +38,6 @@ namespace DiplomacyFixes
                     gameStarter.AddBehavior(new KeepFiefAfterSiegeBehavior());
                 }
                 gameStarter.AddBehavior(new AllianceBehavior());
-                gameStarter.AddBehavior(new DiplomaticAgreementBehavior());
                 gameStarter.AddBehavior(new MaintainInfluenceBehavior());
                 gameStarter.AddBehavior(new ExpansionismBehavior());
             }

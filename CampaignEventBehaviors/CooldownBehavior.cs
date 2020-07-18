@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.DiplomaticAction.Alliance;
+using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
 using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
@@ -26,7 +27,14 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void RegisterDeclareWarCooldown(IFaction faction1, IFaction faction2)
         {
-            _cooldownManager.UpdateLastWarTime(faction1, faction2, CampaignTime.Now);
+            Kingdom kingdom1, kingdom2;
+            kingdom1 = faction1 as Kingdom;
+            kingdom2 = faction2 as Kingdom;
+
+            if (kingdom1 != null && kingdom2 != null)
+            {
+                FormNonAggressionPactAction.Apply(kingdom1, kingdom2, bypassCosts: true, customDurationInDays: Settings.Instance.DeclareWarCooldownInDays, queryPlayer: false);
+            }
         }
 
         private void RegisterPeaceProposalCooldown(Kingdom kingdom)

@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 
 namespace DiplomacyFixes
@@ -38,12 +41,6 @@ namespace DiplomacyFixes
             _lastPeaceProposalTime[kingdom] = campaignTime;
         }
 
-        public void UpdateLastWarTime(IFaction faction1, IFaction faction2, CampaignTime campaignTime)
-        {
-            string key = CreateKey(faction1, faction2);
-            _lastWarTime[key] = campaignTime;
-        }
-
         public void UpdateLastAllianceFormedTime(Kingdom kingdom1, Kingdom kingdom2, CampaignTime campaignTime)
         {
             string key = CreateKey(kingdom1, kingdom2);
@@ -70,6 +67,26 @@ namespace DiplomacyFixes
             List<IFaction> factions = new List<IFaction> { faction1, faction2 };
             IEnumerable<string> keyArguments = factions.OrderBy(faction => faction.StringId).Select(faction => faction.StringId);
             return string.Join("+", keyArguments);
+        }
+
+        private static bool DecodeKeyToKingdoms(string key, out Tuple<Kingdom, Kingdom> kingdoms)
+        {
+            Kingdom faction1, faction2;
+
+            string[] factionStringIds = key.Split('+');
+            faction1 = MBObjectManager.Instance.GetObject<Kingdom>(factionStringIds[0]);
+            faction2 = MBObjectManager.Instance.GetObject<Kingdom>(factionStringIds[1]);
+
+            if (faction1 != null && faction2 != null)
+            {
+                kingdoms = Tuple.Create(faction1, faction2);
+                return true;
+            }
+            else
+            {
+                kingdoms = default;
+                return false;
+            }
         }
 
         public static CampaignTime? GetLastWarTimeBetweenFactions(IFaction faction1, IFaction faction2)
@@ -156,6 +173,16 @@ namespace DiplomacyFixes
             LastWarTime = _lastWarTime;
             LastPeaceProposalTime = _lastPeaceProposalTime;
             LastAllianceFormedTime = _lastAllianceFormedTime;
+
+            foreach(string key in _lastWarTime.Keys)
+            {
+                float duration = Settings.Instance.DeclareWarCooldownInDays - _lastWarTime[key].ElapsedDaysUntilNow;
+                if (duration > 0 & DecodeKeyToKingdoms(key, out Tuple<Kingdom, Kingdom> kingdoms))
+                {
+                    FormNonAggressionPactAction.Apply(kingdoms.Item1, kingdoms.Item2, bypassCosts: true, customDurationInDays: duration, queryPlayer: false);
+                }
+            }
+            _lastWarTime.Clear();
         }
     }
 }
