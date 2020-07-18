@@ -26,8 +26,14 @@ namespace DiplomacyFixes.ViewModel
             this.SendMessengerCost = (int)_sendMessengerCost.Value;
             this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
             this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
-            this.CanGrantFief = GrantFiefAction.CanGrantFief(this._hero.Clan, out _);
             base.RefreshValues();
+            this.Recalculate();
+        }
+
+        private void Recalculate()
+        {
+            this.CanGrantFief = GrantFiefAction.CanGrantFief(this._hero.Clan, out _);
+            this.RefreshValues();
         }
 
         protected void SendMessenger()
@@ -43,7 +49,7 @@ namespace DiplomacyFixes.ViewModel
 
         private void GrantFief()
         {
-            _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, this._hero);
+            _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, this._hero, this.Recalculate);
         }
 
         [DataSourceProperty]

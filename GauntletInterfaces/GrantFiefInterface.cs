@@ -1,4 +1,5 @@
 ﻿using DiplomacyFixes.ViewModel;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;
@@ -16,7 +17,7 @@ namespace DiplomacyFixes.GauntletInterfaces
         private GrantFiefVM _vm;
         private ScreenBase _screenBase;
 
-        public void ShowFiefInterface(ScreenBase screenBase, Hero hero)
+        public void ShowFiefInterface(ScreenBase screenBase, Hero hero, Action refreshAction)
         {
             this._screenBase = screenBase;
 
@@ -32,11 +33,16 @@ namespace DiplomacyFixes.GauntletInterfaces
             _layer.IsFocusLayer = true;
             ScreenManager.TrySetFocus(_layer);
             screenBase.AddLayer(_layer);
-            _vm = new GrantFiefVM(hero, this.OnFinalize);
+            _vm = new GrantFiefVM(hero, () => this.OnFinalize(refreshAction));
             _movie = _layer.LoadMovie("GrantFief", _vm);
         }
 
-        public void OnFinalize()
+        public void ShowFiefInterface(ScreenBase screenBase, Hero hero)
+        {
+            ShowFiefInterface(screenBase, hero, () => { });
+        }
+
+        public void OnFinalize(Action action)
         {
             _screenBase.RemoveLayer(_layer);
             _layer.ReleaseMovie(_movie);
@@ -46,6 +52,7 @@ namespace DiplomacyFixes.GauntletInterfaces
             // vm.AssignParent(true);
             _vm = null;
             _screenBase = null;
+            action();
         }
     }
 }
