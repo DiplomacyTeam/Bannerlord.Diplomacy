@@ -56,12 +56,13 @@ namespace DiplomacyFixes.Messengers
 
         private static void UpdateMessengerPosition(Messenger messenger)
         {
-            if (messenger.CurrentPosition.Equals(default(Vec2)))
+            IMapPoint targetHeroLocationPoint = messenger.TargetHero.GetMapPoint();
+            if (messenger.CurrentPosition.Equals(default(Vec2)) || targetHeroLocationPoint == null)
             {
                 return;
             }
 
-            Vec2 targetHeroLocation = messenger.TargetHero.GetMapPoint().Position2D;
+            Vec2 targetHeroLocation = targetHeroLocationPoint.Position2D;
             Vec2 distanceToGo = targetHeroLocation - messenger.CurrentPosition;
 
             if (distanceToGo.Length <= MessengerHourlySpeed)
