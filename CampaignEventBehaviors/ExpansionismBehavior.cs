@@ -1,12 +1,5 @@
-﻿using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
-using DiplomacyFixes.DiplomaticAction.WarPeace;
-using DiplomacyFixes.Extensions;
-using System.Collections.Generic;
-using System.Linq;
-using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.Core;
-using TaleWorlds.Localization;
 
 namespace DiplomacyFixes.CampaignEventBehaviors
 {
@@ -22,19 +15,6 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         {
             CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, UpdateExpasionismScore);
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, UpdateExpansionismDecay);
-            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
-        }
-
-        private void DailyTick()
-        {
-            if (Settings.Instance.EnableCoalitions && MBRandom.RandomFloat < Settings.Instance.CoalitionChancePercentage / 100)
-            {
-                ConsiderCoalition();
-            }
-        }
-
-        private void ConsiderCoalition()
-        {
         }
 
         private void UpdateExpansionismDecay(Clan clan)
