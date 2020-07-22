@@ -1,4 +1,5 @@
-﻿using DiplomacyFixes.DiplomaticAction.WarPeace;
+﻿using DiplomacyFixes.Costs;
+using DiplomacyFixes.DiplomaticAction.WarPeace;
 using DiplomacyFixes.Messengers;
 using System;
 using System.Linq;
@@ -17,8 +18,9 @@ namespace DiplomacyFixes.ViewModel
         public KingdomWarItemVMExtensionVM(StanceLink stanceLink, Action<KingdomWarItemVM> onSelect, Action<KingdomWarItemVM> onAction) : base(stanceLink, onSelect, onAction)
         {
             this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
-            this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForMakingPeace(Faction1 as Kingdom).Value;
-            this.GoldCost = DiplomacyCostCalculator.DetermineGoldCostForMakingPeace(this.Faction1 as Kingdom, this.Faction2 as Kingdom);
+            HybridCost costForMakingPeace = DiplomacyCostCalculator.DetermineCostForMakingPeace(Faction1 as Kingdom, Faction2 as Kingdom, true);
+            this.InfluenceCost = (int)costForMakingPeace.InfluenceCost.Value;
+            this.GoldCost = (int)costForMakingPeace.GoldCost.Value;
             this.ActionName = GameTexts.FindText("str_kingdom_propose_peace_action", null).ToString();
             this.AllianceText = new TextObject("{=zpNalMeA}Alliances").ToString();
             this.WarsText = new TextObject("{=y5tXjbLK}Wars").ToString();

@@ -372,7 +372,6 @@
     <Compile Include="DiplomaticAction\WarPeace\Conditions\SatisfiesQuestConditionsForPeaceCondition.cs" />
     <Compile Include="IDiplomacyCondition.cs" />
     <Compile Include="Costs\DiplomacyCostCalculator.cs" />
-    <Compile Include="Costs\DiplomacyCostManager.cs" />
     <Compile Include="MySubModule.cs" />
     <Compile Include="Patches\KingdomDiplomacyVMPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
