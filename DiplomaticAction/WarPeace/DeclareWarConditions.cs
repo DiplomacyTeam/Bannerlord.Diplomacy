@@ -12,7 +12,6 @@ namespace DiplomacyFixes.DiplomaticAction.WarPeace
         {
             new HasEnoughInfluenceForWarCondition(),
             new HasLowWarExhaustionCondition(),
-            new DeclareWarCooldownCondition(),
             new NoNonAggressionPactCondition(),
             new NotInAllianceCondition(),
             new AtPeaceCondition()

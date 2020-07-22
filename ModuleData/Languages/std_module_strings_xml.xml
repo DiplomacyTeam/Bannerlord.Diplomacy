@@ -10,7 +10,6 @@
     <string id="TS1iV2pO" text="Not enough influence!" />
     <string id="XQFxDr11" text="There is an active quest preventing it!" />
     <string id="ONNcmltF" text="This war hasn't gone on long enough to consider peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
-    <string id="jPHYDjXQ" text="Cannot declare war so soon after making peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
 
     <string id="v0cDMIcl" text="Cannot declare war on this kingdom. " />
     <string id="Pqk3WuGz" text="Cannot make peace with this kingdom. " />
