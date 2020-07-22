@@ -5,13 +5,11 @@ using System;
 using System.ComponentModel;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomClan;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.TwoDimension;
 
 namespace DiplomacyFixes.ViewModel
 {

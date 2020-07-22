@@ -49,7 +49,7 @@ namespace DiplomacyFixes.Messengers
                     if (MessengerArrived(messenger))
                     {
                         break;
-                    } 
+                    }
                 }
             }
         }

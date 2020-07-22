@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.ComponentModel;
 using TaleWorlds.CampaignSystem;
 
 namespace DiplomacyFixes.DiplomaticAction

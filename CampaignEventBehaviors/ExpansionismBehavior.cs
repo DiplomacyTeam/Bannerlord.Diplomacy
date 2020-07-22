@@ -43,7 +43,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
             {
                 List<Kingdom> potentialCoalitionMembers =
                     Kingdom.All.Except(new Kingdom[] { kingdomWithCriticalExpansionism })
-                    .Where(kingdom => DeclareWarConditions.Instance.CanApply(kingdom, kingdomWithCriticalExpansionism, bypassCosts:true))
+                    .Where(kingdom => DeclareWarConditions.Instance.CanApply(kingdom, kingdomWithCriticalExpansionism, bypassCosts: true))
                     .ToList();
 
                 List<Kingdom> oldCoalitionMembers = Kingdom.All.Where(kingdom => kingdom.IsAtWarWith(kingdomWithCriticalExpansionism)).ToList();
@@ -63,7 +63,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
                         continue;
                     }
                     HashSet<Kingdom> alliesIncluded = new HashSet<Kingdom>() { potentialCoalitionMember };
-                    alliesIncluded.UnionWith(potentialCoalitionMember.GetAlliedKingdoms().Where(alliedKingdom => DeclareWarConditions.Instance.CanApply(alliedKingdom, kingdomWithCriticalExpansionism, bypassCosts:true)));
+                    alliesIncluded.UnionWith(potentialCoalitionMember.GetAlliedKingdoms().Where(alliedKingdom => DeclareWarConditions.Instance.CanApply(alliedKingdom, kingdomWithCriticalExpansionism, bypassCosts: true)));
                     newCoalitionMembers.AddRange(alliesIncluded);
                 }
 
@@ -94,13 +94,14 @@ namespace DiplomacyFixes.CampaignEventBehaviors
                     {
                         if (MakePeaceConditions.Instance.CanApply(mapping.Faction1 as Kingdom, mapping.Faction2 as Kingdom, bypassCosts: true))
                         {
-                            KingdomPeaceAction.ApplyPeace(mapping.Faction1 as Kingdom, mapping.Faction2 as Kingdom, bypassCosts:true);
+                            KingdomPeaceAction.ApplyPeace(mapping.Faction1 as Kingdom, mapping.Faction2 as Kingdom, bypassCosts: true);
                         }
                         else continue;
                     }
 
-                    if (NonAggressionPactConditions.Instance.CanApply(mapping.Faction1 as Kingdom, mapping.Faction2 as Kingdom, bypassCosts:true)) {
-                        FormNonAggressionPactAction.Apply(mapping.Faction1 as Kingdom, mapping.Faction2 as Kingdom, bypassCosts:true);
+                    if (NonAggressionPactConditions.Instance.CanApply(mapping.Faction1 as Kingdom, mapping.Faction2 as Kingdom, bypassCosts: true))
+                    {
+                        FormNonAggressionPactAction.Apply(mapping.Faction1 as Kingdom, mapping.Faction2 as Kingdom, bypassCosts: true);
                     }
                 }
 
@@ -139,7 +140,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void UpdateExpansionismDecay(Clan clan)
         {
-            if(clan.MapFaction.IsKingdomFaction && clan.Leader == clan.MapFaction.Leader)
+            if (clan.MapFaction.IsKingdomFaction && clan.Leader == clan.MapFaction.Leader)
             {
                 this._expansionismManager.ApplyExpansionismDecay(clan.MapFaction);
             }

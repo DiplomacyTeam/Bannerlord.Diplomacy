@@ -1,7 +1,6 @@
 ﻿using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
 using MCM.Abstractions.Settings.Base.Global;
-using System.Security.Permissions;
 using TaleWorlds.Localization;
 
 namespace DiplomacyFixes

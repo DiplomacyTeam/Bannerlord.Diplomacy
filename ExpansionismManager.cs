@@ -50,7 +50,7 @@ namespace DiplomacyFixes
 
         public void ApplyExpansionismDecay(IFaction faction)
         {
-            if(this._expansionism.TryGetValue(faction, out float value))
+            if (this._expansionism.TryGetValue(faction, out float value))
             {
                 float minimumExpansionism = faction.IsKingdomFaction ? (faction as Kingdom).GetMinimumExpansionism() : default;
                 this._expansionism[faction] = Math.Max(value - ExpansionismDecayPerDay, GetMinimumExpansionism(faction));

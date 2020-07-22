@@ -20,7 +20,7 @@ namespace DiplomacyFixes.Extensions
 
         public static float GetMinimumExpansionism(this Kingdom kingdom)
         {
-            return ExpansionismManager.Instance.GetMinimumExpansionism(kingdom); 
+            return ExpansionismManager.Instance.GetMinimumExpansionism(kingdom);
         }
 
         public static bool IsAlliedWith(this IFaction faction1, IFaction faction2)

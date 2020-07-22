@@ -1,6 +1,5 @@
 ﻿using DiplomacyFixes.Extensions;
 using HarmonyLib;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using TaleWorlds.Localization;

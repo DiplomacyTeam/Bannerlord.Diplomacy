@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using StoryMode;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using StoryMode;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 

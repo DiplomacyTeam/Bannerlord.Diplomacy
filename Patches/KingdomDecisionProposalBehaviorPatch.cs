@@ -14,7 +14,7 @@ namespace DiplomacyFixes.Patches
         public static bool ConsiderWarDecisionPatch(Clan clan, Kingdom kingdom, IFaction otherFaction, bool __result)
         {
             Kingdom otherKingdom = otherFaction as Kingdom;
-            if (otherKingdom != null && !DeclareWarConditions.Instance.CanApply(kingdom, otherKingdom, bypassCosts:true))
+            if (otherKingdom != null && !DeclareWarConditions.Instance.CanApply(kingdom, otherKingdom, bypassCosts: true))
             {
                 __result = false;
                 return false;

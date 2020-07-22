@@ -43,7 +43,8 @@ namespace DiplomacyFixes.CampaignEventBehaviors
                     .Where(kingdom => NonAggressionPactScoringModel.Instance.ShouldFormBidirectional(proposingKingdom, kingdom))
                     .OrderByDescending(kingdom => kingdom.GetExpansionism()).FirstOrDefault();
 
-                if (proposedKingdom != null) {
+                if (proposedKingdom != null)
+                {
                     FormNonAggressionPactAction.Apply(proposingKingdom, proposedKingdom);
                 }
             }

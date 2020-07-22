@@ -174,7 +174,7 @@ namespace DiplomacyFixes
             LastPeaceProposalTime = _lastPeaceProposalTime;
             LastAllianceFormedTime = _lastAllianceFormedTime;
 
-            foreach(string key in _lastWarTime.Keys)
+            foreach (string key in _lastWarTime.Keys)
             {
                 float duration = Settings.Instance.DeclareWarCooldownInDays - _lastWarTime[key].ElapsedDaysUntilNow;
                 if (duration > 0 & DecodeKeyToKingdoms(key, out Tuple<Kingdom, Kingdom> kingdoms))

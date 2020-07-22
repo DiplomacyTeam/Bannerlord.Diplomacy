@@ -60,8 +60,8 @@ namespace DiplomacyFixes.ViewModel
             }
 
             float influenceValue = this.IntValue * Campaign.Current.Models.DiplomacyModel.DenarsToInfluence();
-            float relationValuePerInfluence =(float)Campaign.Current.Models.DiplomacyModel.GetRelationValueOfSupportingClan() / Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfSupportingClan();
-            
+            float relationValuePerInfluence = (float)Campaign.Current.Models.DiplomacyModel.GetRelationValueOfSupportingClan() / Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfSupportingClan();
+
             return MBMath.Round(influenceValue * relationValuePerInfluence);
         }
 
