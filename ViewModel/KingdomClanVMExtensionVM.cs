@@ -40,6 +40,7 @@ namespace DiplomacyFixes.ViewModel
             this.DonateGoldExplanationText = new TextObject("{=7QvXkcxH}Donate gold to clans in your kingdom").ToString();
             this.UsurpThroneActionName = new TextObject("{=N7goPgiq}Usurp Throne").ToString();
             base.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
+            base.PropertyChangedWithValue += new PropertyChangedWithValueEventHandler(this.OnPropertyChangedWithValue);
             RefreshCanGrantFief();
             RefreshCanUsurpThrone();
         }
@@ -59,7 +60,18 @@ namespace DiplomacyFixes.ViewModel
             this._executeSupport();
         }
 
+        // e1.4.2 compatible
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "CurrentSelectedClan")
+            {
+                RefreshCanGrantFief();
+                RefreshCanUsurpThrone();
+            }
+        }
+
+        // e1.4.3 compatible
+        private void OnPropertyChangedWithValue(object sender, PropertyChangedWithValueEventArgs e)
         {
             if (e.PropertyName == "CurrentSelectedClan")
             {
