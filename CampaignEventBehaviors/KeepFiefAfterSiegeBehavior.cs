@@ -14,7 +14,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void KeepFief(Settlement settlement)
         {
-            if (settlement.Town.IsOwnerUnassigned && (settlement.LastAttackerParty?.LeaderHero?.IsHumanPlayerCharacter ?? false))
+            if (settlement.Town.IsOwnerUnassigned && (settlement.LastAttackerParty?.LeaderHero?.IsHumanPlayerCharacter ?? false) && !settlement.LastAttackerParty.LeaderHero.Clan.IsUnderMercenaryService)
             {
                 ShowKeepFiefInquiry(settlement);
             }
