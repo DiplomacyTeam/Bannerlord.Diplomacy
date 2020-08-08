@@ -34,7 +34,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
         private FiefBarterable GetBestFiefBarter(Clan ownerClan, out Clan otherClan)
         {
             Settlement settlementToTrade = ownerClan.GetPermanentFiefs().OrderBy(settlement => settlement.Prosperity).FirstOrDefault()?.Settlement;
-            Clan targetClan = (ownerClan.MapFaction as Kingdom).Clans.Where(clan => clan != ownerClan && !clan.HasMaximumFiefs() && !clan.IsUnderMercenaryService)?.OrderByDescending(clan => GetGoldValueForFief(clan, settlementToTrade))?.FirstOrDefault();
+            Clan targetClan = (ownerClan.MapFaction as Kingdom).Clans.Where(clan => clan != ownerClan && !clan.HasMaximumFiefs() && !clan.IsUnderMercenaryService && clan != Clan.PlayerClan)?.OrderByDescending(clan => GetGoldValueForFief(clan, settlementToTrade))?.FirstOrDefault();
             if (settlementToTrade != null && targetClan != null)
             {
                 FiefBarterable fiefBarterable = new FiefBarterable(settlementToTrade, ownerClan.Leader, targetClan.Leader);
