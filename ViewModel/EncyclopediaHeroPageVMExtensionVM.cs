@@ -31,7 +31,10 @@ namespace DiplomacyFixes.ViewModel
 
         private void Recalculate()
         {
-            this.CanGrantFief = GrantFiefAction.CanGrantFief(this._hero.Clan, out _);
+            if (this._hero.Clan?.Kingdom != null && Clan.PlayerClan?.Kingdom != null && this._hero.Clan.Kingdom == Clan.PlayerClan.Kingdom)
+            {
+                this.CanGrantFief = GrantFiefAction.CanGrantFief(this._hero.Clan, out _);
+            }
             this.RefreshValues();
         }
 
