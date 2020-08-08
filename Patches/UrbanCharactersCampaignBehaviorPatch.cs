@@ -26,7 +26,7 @@ namespace DiplomacyFixes.Patches
             CampaignEvents.NewCompanionAdded.AddNonSerializedListener(__instance, hero => ActivateCharacter(hero, __instance));
         }
 
-        [HarmonyPostfix, HarmonyPatch("HourlyTick")]
+        [HarmonyPostfix, HarmonyPatch("DailyTick")]
         public static void HourlyTickPatch(UrbanCharactersCampaignBehavior __instance)
         {
             Hero.MainHero.CompanionsInParty.Where(companion => companion.HeroState == Hero.CharacterStates.NotSpawned).Do(hero => ActivateCharacter(hero, __instance));

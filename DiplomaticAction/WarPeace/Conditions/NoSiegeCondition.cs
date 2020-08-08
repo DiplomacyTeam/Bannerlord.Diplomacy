@@ -12,7 +12,7 @@ namespace DiplomacyFixes.DiplomaticAction.WarPeace.Conditions
         {
             textObject = null;
             Kingdom playerKingdom = Clan.PlayerClan.Kingdom;
-            if (PlayerSiege.Current != null && (kingdom == playerKingdom || otherKingdom == playerKingdom))
+            if (kingdom == playerKingdom || otherKingdom == playerKingdom)
             {
                 Kingdom besiegedKingdom = PlayerSiege.PlayerSiegeEvent?.BesiegedSettlement?.OwnerClan.Kingdom;
                 Kingdom besiegingKingdom = PlayerSiege.PlayerSiegeEvent?.BesiegerCamp?.BesiegerParty.LeaderHero.MapFaction as Kingdom;
