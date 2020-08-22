@@ -8,10 +8,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Launcher|AnyCPU'">
-    <StartProgram>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Launcher.exe</StartProgram>
-    <StartWorkingDirectory>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\</StartWorkingDirectory>
-    <StartArguments>
-    </StartArguments>
+    <StartProgram>E:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\Bannerlord.exe</StartProgram>
+    <StartWorkingDirectory>E:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\</StartWorkingDirectory>
+    <StartArguments>/singleplayer _MODULES_%2aBannerlord.MBOptionScreen%2aBetterExceptionWindow%2aBannerlord.MBOptionScreen.MBO%2aBannerlord.MBOptionScreen.ModLib%2aNative%2aSandBoxCore%2aCustomBattle%2aSandbox%2aStoryMode%2azCulturedStart%2azzBannerlordTweaks%2aExitSettlement%2aNobleNobles%2aPartyScreenEnhancements%2aJTPrisonerRecruitment%2azzJirosExtraCompanions%2az0UnlimitedWanderers%2aAllegianceOverhaul%2aCompanionRespec%2aImprovedGarrisons%2aEconomyTweak_h%2aModLib%2aExtendConspiracyTimer%2aArenaExperience%2aTournamentFairArmour%2aTrueNobleOpinion%2aTantansTournament%2aTrueRelations%2aTruePrisoners%2aDiplomacyFixes%2a_MODULES_</StartArguments>
     <StartAction>Program</StartAction>
   </PropertyGroup>
 </Project>

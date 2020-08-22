@@ -26,7 +26,9 @@ namespace DiplomacyFixes.Patches
             CampaignEvents.NewCompanionAdded.AddNonSerializedListener(__instance, hero => ActivateCharacter(hero, __instance));
         }
 
-        [HarmonyPostfix, HarmonyPatch("DailyTick")]
+//      It Seems they changed this to "DailyTickHero" in 1.5.0
+        //[HarmonyPostfix, HarmonyPatch("DailyTick")]
+        [HarmonyPostfix, HarmonyPatch("DailyTickHero")]
         public static void HourlyTickPatch(UrbanCharactersCampaignBehavior __instance)
         {
             Hero.MainHero.CompanionsInParty.Where(companion => companion.HeroState == Hero.CharacterStates.NotSpawned).Do(hero => ActivateCharacter(hero, __instance));
