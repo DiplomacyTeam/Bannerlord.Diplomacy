@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -77,12 +78,18 @@ namespace DiplomacyFixes.Messengers
 
         private bool MessengerArrived(Messenger messenger)
         {
+            if (messenger.TargetHero.PartyBelongedTo == Hero.MainHero.PartyBelongedTo)
+            {
+                // Jiros: Added to catch crash when Hero and Target are in the same party. [v1.5.3-release]
+                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Eaten").ToString(), new TextObject("Oh no. The messenger was ambushed and eaten by a Grue while trying to reach " + messenger.TargetHero.Name).ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), null, delegate () { _messengers.Remove(messenger); }, null, ""));
+                return false;
+            }
             if (IsTargetHeroAvailable(messenger.TargetHero) && IsPlayerHeroAvailable())
             {
                 InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Arrived").ToString(), GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero).ToString(), true, true, GameTexts.FindText("str_ok", null).ToString(), new TextObject("{=kMjfN2fB}Cancel Messenger").ToString(), delegate ()
                 {
                     _activeMessenger = messenger;
-                    StartDialogue(messenger.TargetHero);
+                    StartDialogue(messenger.TargetHero, messenger);
                 },
                 () =>
                 {
@@ -111,7 +118,7 @@ namespace DiplomacyFixes.Messengers
             Messengers = new MBReadOnlyList<Messenger>(_messengers);
         }
 
-        public void StartDialogue(Hero targetHero)
+        public void StartDialogue(Hero targetHero, Messenger messenger)
         {
 
             PartyBase heroParty = PartyBase.MainParty;
