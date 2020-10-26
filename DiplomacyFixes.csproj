@@ -48,10 +48,6 @@
     </StartArguments>
     <StartWorkingDirectory>$(MNB2DIR)\bin\Win64_Shipping_Client</StartWorkingDirectory>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Launcher|AnyCPU'">
-    <OutputPath>$(MOD_OUTDIR)\$(MOD_ID)\bin\Win64_Shipping_Client</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <OutputPath>..\..\..\..\..\..\bin\debug\</OutputPath>
   </PropertyGroup>
@@ -417,10 +413,6 @@
     <None Include="DiplomacyFixes.zip" />
     <None Include="packages.config" />
     <ModuleData Include="ModuleData\**/*.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <Libraries Include="$(TargetDir)\**/*.dll" />
-    <Libraries Include="$(TargetDir)\**/*.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
