@@ -24,23 +24,24 @@
                     <!-- Faction 1 Bar -->
                     <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="400" SuggestedHeight="35" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.Color="#00000040" FillWidget="FillWidget" InitialAmount="@Faction1Percentage" IsDirectionUpward="false" MaxAmount="100">
                       <Children>
-                        <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.5" Brush.Color="@Faction1Color">
+						<BrushWidget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.5" Brush.Color="@Faction1Color">
                           <Children>
                             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="-60" MarginTop="5" Brush="Kingdom.Wars.Stat.Value.Text" ClipContents="false" IntText="@Faction1Value" />
                           </Children>
-                        </Widget>
+                        </BrushWidget>
                       </Children>
                     </FillBarHorizontalWidget>
+					
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="35" Sprite="SPKingdom\Diplomacy\bar_seperator" />
 
                     <!-- Faction 2 Bar -->
                     <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="400" SuggestedHeight="35" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.Color="#00000040" FillWidget="FillWidget" InitialAmount="@Faction2Percentage" IsDirectionRightward="true" MaxAmount="100">
                       <Children>
-                        <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.5" Brush.Color="@Faction2Color">
+						  <BrushWidget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.5" Brush.Color="@Faction2Color">
                           <Children>
                             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="60" MarginTop="5" Brush="Kingdom.Wars.Stat.Value.Text" ClipContents="false" IntText="@Faction2Value" />
                           </Children>
-                        </Widget>
+                        </BrushWidget>
                       </Children>
                     </FillBarHorizontalWidget>
 

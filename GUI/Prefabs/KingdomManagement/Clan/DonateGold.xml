@@ -8,7 +8,7 @@
           <Children>
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="700" SuggestedHeight="200" Sprite="StdAssets\Popup\canvas">
               <Children>
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Frame"/>
+				  <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Frame"/>
                 <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginTop="25" MarginBottom="25">
                   <Children>
                     <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="@TitleText" HorizontalAlignment="Center"/>
@@ -27,7 +27,7 @@
                         </Widget>
                         <Widget SuggestedWidth="400" SuggestedHeight="65" VerticalAlignment="Center" HorizontalAlignment="Center"
                                 IsEnabled="false" Sprite="SPOptions\standart_slider_frame" />
-                        <Widget Id="SliderHandle" SuggestedWidth="14" SuggestedHeight="38" VerticalAlignment="Center" HorizontalAlignment="Left"
+						  <BrushWidget Id="SliderHandle" SuggestedWidth="14" SuggestedHeight="38" VerticalAlignment="Center" HorizontalAlignment="Left"
                                  Brush="SPOptions.Slider.Handle" DoNotAcceptEvents="true" />
                       </Children>
                     </SliderWidget>

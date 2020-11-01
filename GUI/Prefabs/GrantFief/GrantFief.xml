@@ -26,13 +26,13 @@
       <Children>
         <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="StdAssets\Popup\canvas">
           <Children>
-            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Popup.Frame" IsEnabled="true">
+			  <BrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Popup.Frame" IsEnabled="true">
               <Children>
                 <!--List and Scrollbar Horizontal Group-->
                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginTop="10" MarginBottom="10" MarginLeft="10" MarginRight="10">
                   <Children>
                     <TextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="CoverChildren" Text="@GrantFiefActionName" HorizontalAlignment="Center" />
-                    <Widget WidthSizePolicy = "Fixed" SuggestedWidth="500" HorizontalAlignment="Center" HeightSizePolicy = "Fixed" SuggestedHeight="2" VerticalAlignment="Bottom" MarginTop="5" MarginBottom="10" Brush="Kingdom.Divider.White" />
+					  <BrushWidget WidthSizePolicy = "Fixed" SuggestedWidth="500" HorizontalAlignment="Center" HeightSizePolicy = "Fixed" SuggestedHeight="2" VerticalAlignment="Bottom" MarginTop="5" MarginBottom="10" Brush="Kingdom.Divider.White" />
                     <Widget HorizontalAlignment="Center" HeightSizePolicy="Fixed" WidthSizePolicy="CoverChildren" SuggestedHeight="450" VerticalAlignment="Top">
 
                       <Children>
@@ -45,7 +45,7 @@
                                   <Children>
                                     <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@TypeText">
                                       <Children>
-                                        <Widget Id="TypeSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
+										  <BrushWidget Id="TypeSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
                                       </Children>
                                     </TextWidget>
                                   </Children>
@@ -55,7 +55,7 @@
                                   <Children>
                                     <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@NameText">
                                       <Children>
-                                        <Widget Id="NameSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
+										  <BrushWidget Id="NameSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
                                       </Children>
                                     </TextWidget>
                                   </Children>
@@ -65,7 +65,7 @@
                                   <Children>
                                     <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@ProsperityText">
                                       <Children>
-                                        <Widget Id="ProsperitySortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="15" Brush="ArmyManagement.Sort.ArrowBrush" />
+										  <BrushWidget Id="ProsperitySortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="15" Brush="ArmyManagement.Sort.ArrowBrush" />
                                       </Children>
                                     </TextWidget>
                                   </Children>
@@ -75,7 +75,7 @@
                                   <Children>
                                     <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@DefendersText">
                                       <Children>
-                                        <Widget Id="MilitiaSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="15" Brush="ArmyManagement.Sort.ArrowBrush" />
+										  <BrushWidget Id="MilitiaSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="15" Brush="ArmyManagement.Sort.ArrowBrush" />
                                       </Children>
                                     </TextWidget>
                                   </Children>
@@ -85,7 +85,7 @@
                                   <Children>
                                     <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@RelationText">
                                       <Children>
-                                        <Widget Id="RelationSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="15" Brush="ArmyManagement.Sort.ArrowBrush" />
+										  <BrushWidget Id="RelationSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="15" Brush="ArmyManagement.Sort.ArrowBrush" />
                                       </Children>
                                     </TextWidget>
                                     <HintWidget DataSource="{..\RelationHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
@@ -126,7 +126,7 @@
                         </ListPanel>
                       </Children>
                     </Widget>
-                    <Widget WidthSizePolicy = "Fixed" SuggestedWidth="500" HorizontalAlignment="Center" HeightSizePolicy = "Fixed" SuggestedHeight="2" VerticalAlignment="Bottom" MarginTop="15" MarginBottom="10" Brush="Kingdom.Divider.White" />
+					  <BrushWidget WidthSizePolicy = "Fixed" SuggestedWidth="500" HorizontalAlignment="Center" HeightSizePolicy = "Fixed" SuggestedHeight="2" VerticalAlignment="Bottom" MarginTop="15" MarginBottom="10" Brush="Kingdom.Divider.White" />
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment="Center">
                       <Children>
                         <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment="Center" MarginRight="5">
@@ -152,7 +152,7 @@
                   </Children>
                 </ListPanel>
               </Children>
-            </Widget>
+            </BrushWidget>
           </Children>
         </Widget>
       </Children>

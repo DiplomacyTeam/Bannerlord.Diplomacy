@@ -26,17 +26,17 @@
           <Children>
 
             <!-- Left Panel -->
-            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" VerticalAlignment="Bottom" MarginLeft="27" MarginTop="6" MarginBottom="9" Brush="Frame1Brush" LayoutImp.LayoutMethod="VerticalBottomToTop">
+			  <BrushListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" VerticalAlignment="Bottom" MarginLeft="27" MarginTop="6" MarginBottom="9" Brush="Frame1Brush" LayoutImp.LayoutMethod="VerticalBottomToTop">
               <Children>
 
                 <!-- Header Horizontal Section -->
                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" RenderLate="true">
                   <Children>
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Header.Policies.Width" SuggestedHeight="!Kingdom.Header.Policies.Height" Brush="Kingdom.Header.Policies" RenderLate="true">
+					  <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Header.Policies.Width" SuggestedHeight="!Kingdom.Header.Policies.Height" Brush="Kingdom.Header.Policies" RenderLate="true">
                       <Children>
                         <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.PoliciesCollapserTitle.Text" IsDisabled="true" Text="@DiplomacyText" />
                       </Children>
-                    </Widget>
+                    </BrushWidget>
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Scroll.Header.Width" SuggestedHeight="!Kingdom.Scroll.Header.Height" HorizontalAlignment="Right" Brush="Scroll.Header" />
                   </Children>
                 </ListPanel>
@@ -57,7 +57,7 @@
                                   <Children>
                                     <ListPanel Id="Description" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="10" IsDisabled="true" LayoutImp.LayoutMethod="HorizontalLeftToRight">
                                       <Children>
-                                        <Widget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Toggle.ExpandIndicator.Width" SuggestedHeight="!Party.Toggle.ExpandIndicator.Height" VerticalAlignment="Center" PositionYOffset="5" MarginRight="5" Brush="Party.Toggle.ExpandIndicator" />
+										  <BrushWidget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Toggle.ExpandIndicator.Width" SuggestedHeight="!Party.Toggle.ExpandIndicator.Height" VerticalAlignment="Center" PositionYOffset="5" MarginRight="5" Brush="Party.Toggle.ExpandIndicator" />
                                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" Brush="Party.Text.Toggle" Text="@PlayerWarsText" />
                                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="5" Brush="Party.Text.Toggle" Text="@NumOfPlayerWarsText" />
                                       </Children>
@@ -81,7 +81,7 @@
                                   <Children>
                                     <ListPanel Id="Description" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="10" IsDisabled="true" LayoutImp.LayoutMethod="HorizontalLeftToRight">
                                       <Children>
-                                        <Widget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Toggle.ExpandIndicator.Width" SuggestedHeight="!Party.Toggle.ExpandIndicator.Height" VerticalAlignment="Center" PositionYOffset="5" MarginRight="5" Brush="Party.Toggle.ExpandIndicator" />
+										  <BrushWidget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Toggle.ExpandIndicator.Width" SuggestedHeight="!Party.Toggle.ExpandIndicator.Height" VerticalAlignment="Center" PositionYOffset="5" MarginRight="5" Brush="Party.Toggle.ExpandIndicator" />
                                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" Brush="Party.Text.Toggle" Text="@PlayerAlliancesText" />
                                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="5" Brush="Party.Text.Toggle" Text="@NumOfPlayerAlliancesText" />
                                       </Children>
@@ -106,7 +106,7 @@
                                   <Children>
                                     <ListPanel Id="Description" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="10" IsDisabled="true" LayoutImp.LayoutMethod="HorizontalLeftToRight">
                                       <Children>
-                                        <Widget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Toggle.ExpandIndicator.Width" SuggestedHeight="!Party.Toggle.ExpandIndicator.Height" VerticalAlignment="Center" PositionYOffset="5" MarginRight="5" Brush="Party.Toggle.ExpandIndicator" />
+										  <BrushWidget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Toggle.ExpandIndicator.Width" SuggestedHeight="!Party.Toggle.ExpandIndicator.Height" VerticalAlignment="Center" PositionYOffset="5" MarginRight="5" Brush="Party.Toggle.ExpandIndicator" />
                                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" Brush="Party.Text.Toggle" Text="@PlayerTrucesText" />
                                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="5" Brush="Party.Text.Toggle" Text="@NumOfPlayerTrucesText" />
                                       </Children>
@@ -151,7 +151,7 @@
                   </Children>
                 </ListPanel>
               </Children>
-            </ListPanel>
+            </BrushListPanel>
 
             <!-- Right Side -->
             <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" LayoutImp.LayoutMethod="VerticalBottomToTop">
@@ -225,7 +225,7 @@
                                   <Children>
 
                                     <!-- Right Divider -->
-                                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="2" VerticalAlignment="Center" Sprite="SPKingdom\Diplomacy\divider_left" Brush.HorizontalFlip="true" />
+									  <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="2" VerticalAlignment="Center" Sprite="SPKingdom\Diplomacy\divider_left" Brush.HorizontalFlip="true" />
                                     <TextWidget DataSource="{CurrentSelectedDiplomacyItem}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="Kingdom.TitleMedium.Text" Brush.FontSize="30" ClipContents="false" Text="@Faction2Name" />
                                   </Children>
                                 </ListPanel>
@@ -446,6 +446,7 @@
           </Children>
         </ListPanel>
       </Children>
-    </Widget>
+    
+</Widget>
   </Window>
 </Prefab>

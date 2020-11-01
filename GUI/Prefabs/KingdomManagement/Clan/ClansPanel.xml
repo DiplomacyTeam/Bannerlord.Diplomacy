@@ -37,7 +37,7 @@
           <Children>
 
             <!--Left Panel-->
-            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" VerticalAlignment="Bottom" MarginTop="6" MarginBottom="9" MarginLeft="27" Brush="Frame1Brush" LayoutImp.LayoutMethod="VerticalBottomToTop" >
+			  <BrushListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" VerticalAlignment="Bottom" MarginTop="6" MarginBottom="9" MarginLeft="27" Brush="Frame1Brush" LayoutImp.LayoutMethod="VerticalBottomToTop" >
               <Children>
 
                 <!--Sort Buttons Horizontal Group-->
@@ -54,7 +54,7 @@
                       <Children>
                         <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@TypeText">
                           <Children>
-                            <Widget Id="TypeSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
+							  <BrushWidget Id="TypeSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
                           </Children>
                         </TextWidget>
                       </Children>
@@ -64,7 +64,7 @@
                       <Children>
                         <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@NameText">
                           <Children>
-                            <Widget Id="NameSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
+							  <BrushWidget Id="NameSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
                           </Children>
                         </TextWidget>
                       </Children>
@@ -74,7 +74,7 @@
                       <Children>
                         <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@InfluenceText">
                           <Children>
-                            <Widget Id="InfluenceSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
+                            <BrushWidget Id="InfluenceSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
                           </Children>
                         </TextWidget>
                       </Children>
@@ -84,7 +84,7 @@
                       <Children>
                         <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@MembersText">
                           <Children>
-                            <Widget Id="MembersSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
+							  <BrushWidget Id="MembersSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
                           </Children>
                         </TextWidget>
                       </Children>
@@ -94,13 +94,13 @@
                       <Children>
                         <TextWidget Id="TextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.SortButtons.Text" ClipContents="false" Text="@FiefsText">
                           <Children>
-                            <Widget Id="FiefsSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
+							  <BrushWidget Id="FiefsSortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="ArmyManagement.Sort.ArrowBrush" />
                           </Children>
                         </TextWidget>
                       </Children>
                     </SortButtonWidget>
 
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Scroll.Header.Width" SuggestedHeight="!Kingdom.Scroll.Header.Height" Brush="Scroll.Header" HorizontalAlignment="Right" />
+					  <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Scroll.Header.Width" SuggestedHeight="!Kingdom.Scroll.Header.Height" Brush="Scroll.Header" HorizontalAlignment="Right" />
 
                   </Children>
                 </ListPanel>
@@ -130,7 +130,7 @@
                 </ListPanel>
 
               </Children>
-            </ListPanel>
+            </BrushListPanel>
 
             <!--Right Side-->
             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
@@ -154,7 +154,7 @@
                       <Children>
 
                         <TextWidget WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" Text="@MembersText" Brush="Kingdom.TitleMedium.Text" MarginLeft="5" VerticalAlignment="Center" />
-                        <Widget WidthSizePolicy = "StretchToParent"  HeightSizePolicy = "Fixed" SuggestedHeight="2" MarginLeft="10" VerticalAlignment="Bottom" MarginBottom="10" Brush="Kingdom.Divider.White" />
+						  <BrushWidget WidthSizePolicy = "StretchToParent"  HeightSizePolicy = "Fixed" SuggestedHeight="2" MarginLeft="10" VerticalAlignment="Bottom" MarginBottom="10" Brush="Kingdom.Divider.White" />
 
                       </Children>
                     </ListPanel>
@@ -199,7 +199,7 @@
 
                         <ScrollbarWidget Id="VerticalScrollbar" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="8" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="15" MarginBottom="15" MarginLeft="25" AlignmentAxis="Vertical" Handle="VerticalScrollbarHandle" IsVisible="false" MaxValue="100" MinValue="0">
                           <Children>
-                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="2" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.4" Brush.Color="#FFFFFFFF" />
+							  <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="2" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.4" Brush.Color="#FFFFFFFF" />
                             <ImageWidget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="8" SuggestedHeight="10" HorizontalAlignment="Center" Brush="Kingdom.Scrollbar.Handle" IsVisible="false" />
                           </Children>
                         </ScrollbarWidget>
@@ -211,7 +211,7 @@
                       <Children>
 
                         <TextWidget WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" Text="@FiefsText" Brush="Kingdom.TitleMedium.Text" MarginLeft="5" VerticalAlignment="Center" />
-                        <Widget WidthSizePolicy = "StretchToParent"  HeightSizePolicy = "Fixed" SuggestedHeight="2" MarginLeft="10" VerticalAlignment="Bottom" MarginBottom="10" Brush="Kingdom.Divider.White"/>
+						  <BrushWidget WidthSizePolicy = "StretchToParent"  HeightSizePolicy = "Fixed" SuggestedHeight="2" MarginLeft="10" VerticalAlignment="Bottom" MarginBottom="10" Brush="Kingdom.Divider.White"/>
 
                       </Children>
                     </ListPanel>
@@ -245,7 +245,7 @@
 
                         <ScrollbarWidget Id="VerticalScrollbar" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="8" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="15" MarginBottom="15" MarginLeft="25" AlignmentAxis="Vertical" Handle="VerticalScrollbarHandle" IsVisible="false" MaxValue="100" MinValue="0">
                           <Children>
-                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="2" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.4" Brush.Color="#FFFFFFFF" />
+							  <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="2" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.4" Brush.Color="#FFFFFFFF" />
                             <ImageWidget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="8" SuggestedHeight="10" HorizontalAlignment="Center" Brush="Kingdom.Scrollbar.Handle" IsVisible="false" />
                           </Children>
                         </ScrollbarWidget>

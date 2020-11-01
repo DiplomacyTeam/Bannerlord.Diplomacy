@@ -10,7 +10,7 @@
   </Constants>
 
   <Window>
-    <Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" Brush="Encyclopedia.Page.SoundBrush">
+	  <BrushWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" Brush="Encyclopedia.Page.SoundBrush">
       <Children>
 
         <Widget HeightSizePolicy ="Fixed" WidthSizePolicy="Fixed" SuggestedHeight="!Encyclopedia.Height" SuggestedWidth="!Encyclopedia.Width" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="210" MarginBottom="117" DoNotAcceptEvents="true">
@@ -180,6 +180,6 @@
           </Children>
         </Widget>
       </Children>
-    </Widget>
+    </BrushWidget>
   </Window>
 </Prefab>
