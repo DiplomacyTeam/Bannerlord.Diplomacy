@@ -7,15 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiplomacyFixes", "Diplomacy
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug Launcher|Any CPU = Debug Launcher|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{431D27C1-E29F-45A2-9C4B-31ECAC17A7F3}.Debug Launcher|Any CPU.ActiveCfg = Debug Launcher|Any CPU
-		{431D27C1-E29F-45A2-9C4B-31ECAC17A7F3}.Debug Launcher|Any CPU.Build.0 = Debug Launcher|Any CPU
-		{431D27C1-E29F-45A2-9C4B-31ECAC17A7F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{431D27C1-E29F-45A2-9C4B-31ECAC17A7F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431D27C1-E29F-45A2-9C4B-31ECAC17A7F3}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{431D27C1-E29F-45A2-9C4B-31ECAC17A7F3}.Debug|Any CPU.Build.0 = Debug|x64
 		{431D27C1-E29F-45A2-9C4B-31ECAC17A7F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{431D27C1-E29F-45A2-9C4B-31ECAC17A7F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
