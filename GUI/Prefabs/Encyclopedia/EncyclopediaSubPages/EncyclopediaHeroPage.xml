@@ -54,7 +54,16 @@
 
                     <ListPanel WidthSizePolicy = "StretchToParent" HeightSizePolicy = "CoverChildren" VerticalAlignment="Bottom" MarginLeft="10" LayoutImp.LayoutMethod="VerticalBottomToTop">
                       <Children>
-
+                        <!--Talk button-->
+						<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Top" HorizontalAlignment="Center" >
+						  <Children>
+							  <ButtonWidget DataSource="{HeroCharacter}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="CallToTalk" IsVisible="@CanTalkTo" IsEnabled="@WillNotTalk">
+								  <Children>
+									  <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@CallToTalkText" />
+								  </Children>
+							  </ButtonWidget>
+						  </Children>
+						</Widget>
                         <!--<TextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="StretchToParent" Text="@TraitsText" HorizontalAlignment="Center"/>-->
 
                         <TextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="StretchToParent" Text="@SkillsText" HorizontalAlignment="Center" ClipContents="false"/>

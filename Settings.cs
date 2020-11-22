@@ -19,21 +19,6 @@ namespace DiplomacyFixes
         private const string HeadingExpansionism = "{=ZqQaUIil}Expansionism";
         private const string HeadingCoalitions = "{=2raR1ZHv}Coalitions";
 
-        private enum GroupOrder : int
-        {
-            HeadingKingdomDiplomacy,
-            HeadingInfluenceCosts,
-            HeadingGoldCosts,
-            HeadingWarExhaustion,
-            HeadingInfluenceBalancing,
-            HeadingInfluenceDecay,
-            HeadingCorruption,
-            HeadingRelations,
-            HeadingMessengers,
-            HeadingExpansionism,
-            HeadingCoalitions
-        }
-
 
         private const string HeadingInfluenceCostsScaling = "{=9PlT57Nl}Influence Costs/Scaling";
         private const string HeadingInfluenceCostsFlat = "{=BazjeCZw}Influence Costs/Flat";
@@ -42,10 +27,12 @@ namespace DiplomacyFixes
 
         public override string FolderName { get; } = "DiplomacyFixes";
 
-        public override string DisplayName { get; } = new TextObject("{=MYz8nKqq}Diplomacy Fixes").ToString();
+        public override string DisplayName { get; } = new TextObject("外交修复1.5.5.1 (cnedwin)").ToString();
+
+        public override string FormatType => "json2";
 
         [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 0, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations.")]
-        [SettingPropertyGroup(HeadingKingdomDiplomacy, GroupOrder = (int)GroupOrder.HeadingKingdomDiplomacy)]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool PlayerDiplomacyControl { get; set; } = true;
 
         [SettingPropertyBool(displayName: "{=tis8Ddzn}Allow Player To Claim Player-Taken Settlements", Order = 0, RequireRestart = true, HintText = "{=TfxLCxcD}Gives the player the option to claim a settlement that they have taken rather than let it go to an election.")]
@@ -53,7 +40,7 @@ namespace DiplomacyFixes
         public bool EnableFiefFirstRight { get; set; } = true;
 
         [SettingPropertyBool(displayName: "{=WbOKuWbQ}Enable Influence Costs", RequireRestart = false, HintText = "{=K2vLGalN}If disabled, this removes all costs for war and peace declaration actions. Default value is true.")]
-        [SettingPropertyGroup(HeadingInfluenceCosts, IsMainToggle = true, GroupOrder = (int)GroupOrder.HeadingInfluenceCosts)]
+        [SettingPropertyGroup(HeadingInfluenceCosts)]
         public bool EnableInfluenceCostsForDiplomacyActions { get; set; } = true;
 
         [SettingPropertyBool(displayName: "{=P1g6Ht1e}Enable Scaling Influence Cost", Order = 0, RequireRestart = false, HintText = "{=xfVFBxfj}If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is true.")]
@@ -65,7 +52,7 @@ namespace DiplomacyFixes
         public float ScalingInfluenceCostMultiplier { get; set; } = 5.0f;
 
         [SettingPropertyFloatingInteger(displayName: "{=HFtZsD6v}Scaling War Reparations Gold Cost Multiplier", 0, 10000, Order = 0, RequireRestart = false, HintText = "{=MIhbrqbr}Multiplier for the scaling of war reparations gold costs. Default value is 100.")]
-        [SettingPropertyGroup(HeadingGoldCosts, GroupOrder = (int)GroupOrder.HeadingGoldCosts)]
+        [SettingPropertyGroup(HeadingGoldCosts)]
         public float ScalingWarReparationsGoldCostMultiplier { get; set; } = 100.0f;
 
         [SettingPropertyInteger(displayName: "{=OnTeAgin}Flat Declare War Influence Cost", 0, 10000, Order = 2, RequireRestart = false, HintText = "{=O5XvybTI}Influence cost for declaring war on another kingdom. Default value is 100.")]
@@ -105,7 +92,7 @@ namespace DiplomacyFixes
         public int MessengerTravelTime { get; set; } = 3;
 
         [SettingPropertyBool("{=lSttctYC}Enable War Exhaustion", RequireRestart = true, HintText = "{=Cxyn9ROT}If disabled, this disables the war exhaustion mechanic. Default value is enabled.")]
-        [SettingPropertyGroup(HeadingWarExhaustion, IsMainToggle = true, GroupOrder = (int)GroupOrder.HeadingWarExhaustion)]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
         public bool EnableWarExhaustion { get; set; } = true;
 
         [SettingPropertyFloatingInteger("{=Bh7vme9y}Max War Exhaustion", 0f, 1000f, RequireRestart = false, HintText = "{=6Ij1WEWz}The amount of war exhaustion that forces a faction to propose peace. Default value is 100.0.")]
@@ -138,7 +125,7 @@ namespace DiplomacyFixes
 
 
         [SettingPropertyFloatingInteger("{=6l9QNMrB}Grant Fief Positive Relation Multiplier", 0f, 3f, RequireRestart = false, HintText = "{=FQaghHo7}Multiplier for the relation gain when granting fiefs. Default value is 1.")]
-        [SettingPropertyGroup(HeadingRelations, GroupOrder = (int)GroupOrder.HeadingRelations)]
+        [SettingPropertyGroup(HeadingRelations)]
         public float GrantFiefPositiveRelationMultiplier { get; set; } = 1.0f;
 
         [SettingPropertyInteger("{=9qKclHq3}Grant Fief Relation Penalty", -50, 0, RequireRestart = false, HintText = "{=fgc8Dvg0}The relation penalty assessed when granting a fief to another clan. Default value is -2.")]
@@ -146,11 +133,11 @@ namespace DiplomacyFixes
         public int GrantFiefRelationPenalty { get; set; } = -2;
 
         [SettingPropertyBool("{=4jlYRUdZ}Enable Influence Balancing", RequireRestart = false, HintText = "{=tOMN9DQD}Enables influence balancing. May need to be disabled for mod compatibility.")]
-        [SettingPropertyGroup(HeadingInfluenceBalancing, IsMainToggle = true, GroupOrder = (int)GroupOrder.HeadingInfluenceBalancing)]
+        [SettingPropertyGroup(HeadingInfluenceBalancing)]
         public bool EnableInfluenceBalancing { get; set; } = true;
 
         [SettingPropertyBool("{=szYr4OTG}Enable Influence Decay", RequireRestart = false, HintText = "{=rKS9z4Sz}Enables influence decay, which gradually decays influence each day. Default value is enabled.")]
-        [SettingPropertyGroup(HeadingInfluenceDecay, IsMainToggle = true)]
+        [SettingPropertyGroup(HeadingInfluenceDecay)]
         public bool EnableInfluenceDecay { get; set; } = true;
 
         [SettingPropertyInteger("{=pVE1yNlm}Influence Decay Threshold", 0, 50000, RequireRestart = false, HintText = "{=MnLk08uW}The amount of influence exempt from influence decay. Default value is 1000.")]
@@ -166,11 +153,11 @@ namespace DiplomacyFixes
         public float InfluenceDecayPercentage { get; set; } = 2f;
 
         [SettingPropertyBool("{=KWAH0S4h}Enable Corruption", RequireRestart = false, HintText = "{=trgnZ0pn}Enables corruption, which gradually decays a clan's influence each day when holding too many fiefs. Default value is enabled.")]
-        [SettingPropertyGroup(HeadingCorruption, IsMainToggle = true)]
+        [SettingPropertyGroup(HeadingCorruption)]
         public bool EnableCorruption { get; set; } = true;
 
         [SettingPropertyInteger("{=Pr4dcRKm}Minimum Expansionism Per Fief", 0, 100, RequireRestart = false, HintText = "{=9qcAWjI7}The minimum amount of expansionism a fief contributes. Default value is 3.")]
-        [SettingPropertyGroup(HeadingExpansionism, GroupOrder = (int)GroupOrder.HeadingExpansionism)]
+        [SettingPropertyGroup(HeadingExpansionism)]
         public int MinimumExpansionismPerFief { get; set; } = 3;
 
         [SettingPropertyInteger("{=MnhMW8iq}Expansionism Per Siege", 0, 100, RequireRestart = false, HintText = "{=lCbie62E}Expanionism added per successful siege. Default value is 20.")]
