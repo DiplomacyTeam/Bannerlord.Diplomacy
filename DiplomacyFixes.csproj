@@ -52,6 +52,9 @@
     <OutputPath>..\..\..\..\..\..\bin\debug\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Launcher|AnyCPU'">
+    <OutputPath>D:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\DiplomacyFixes\bin\Win64_Shipping_Client\</OutputPath>
+  </PropertyGroup>
   <!-- Bannerlord Native Assemblies -->
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">

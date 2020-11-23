@@ -18,17 +18,12 @@ namespace DiplomacyFixes
         private const string HeadingMessengers = "{=nueOs6m9}Messengers";
         private const string HeadingExpansionism = "{=ZqQaUIil}Expansionism";
         private const string HeadingCoalitions = "{=2raR1ZHv}Coalitions";
-
-
         private const string HeadingInfluenceCostsScaling = "{=9PlT57Nl}Influence Costs/Scaling";
         private const string HeadingInfluenceCostsFlat = "{=BazjeCZw}Influence Costs/Flat";
 
-        public override string Id { get; } = "DiplomacyFixesSettings_1";
-
-        public override string FolderName { get; } = "DiplomacyFixes";
-
-        public override string DisplayName { get; } = new TextObject("外交修复1.5.5.1 (cnedwin)").ToString();
-
+        public override string Id => "DiplomacyFixesSettings_1";
+        public override string DisplayName => new TextObject("外交修复1.5.5.1 (cnedwin)").ToString();
+        public override string FolderName => "DiplomacyFixes";
         public override string FormatType => "json2";
 
         [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 0, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations.")]
