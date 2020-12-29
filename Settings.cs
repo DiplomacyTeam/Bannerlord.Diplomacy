@@ -22,7 +22,7 @@ namespace DiplomacyFixes
         private const string HeadingInfluenceCostsFlat = "{=BazjeCZw}Influence Costs/Flat";
 
         public override string Id => "DiplomacyFixesSettings_1";
-        public override string DisplayName => new TextObject("外交修复1.5.5.1 (cnedwin)").ToString();
+        public override string DisplayName => new TextObject("Diplomacy Fixes").ToString();
         public override string FolderName => "DiplomacyFixes";
         public override string FormatType => "json2";
 

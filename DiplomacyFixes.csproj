@@ -2,9 +2,13 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MNB2DIR>D:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</MNB2DIR>
+    <!-- Set as Machine Env Variable, or define in line below -->
+    <!-- <BL_GAME_DIR>Define Path Here</BL_GAME_DIR> -->
+    <GameFolder>$(BL_GAME_DIR)</GameFolder>
+    <!-- <GameFolder>$(BL_GAME_DIR_GOG)</GameFolder> -->
     <MOD_ID>DiplomacyFixes</MOD_ID>
-    <MOD_FOLDER>$(MNB2DIR)\Modules\DiplomacyFixes</MOD_FOLDER>
+    <MOD_FOLDER>$(GameFolder)\Modules\DiplomacyFixes</MOD_FOLDER>
+    <Authors>Jiros</Authors>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <PlatformTarget Condition=" '$(PlatformTarget)' == '' ">x64</PlatformTarget>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -15,8 +19,6 @@
     <AssemblyName>$(MOD_ID)</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -43,10 +45,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartAction>Program</StartAction>
-    <StartProgram>$(MNB2DIR)\bin\Win64_Shipping_Client\Bannerlord.exe</StartProgram>
+    <StartProgram>$(GameFolder)\bin\Win64_Shipping_Client\Bannerlord.exe</StartProgram>
     <StartArguments>
     </StartArguments>
-    <StartWorkingDirectory>$(MNB2DIR)\bin\Win64_Shipping_Client</StartWorkingDirectory>
+    <StartWorkingDirectory>$(GameFolder)\bin\Win64_Shipping_Client</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <OutputPath>..\..\..\..\..\..\bin\debug\</OutputPath>
@@ -113,217 +115,24 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib" />
-    <Reference Include="SandBox">
-      <HintPath>$(MNB2DIR)\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll</HintPath>
+    <Reference Include="$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.*.dll">
+      <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SandBox.GauntletUI">
-      <HintPath>$(MNB2DIR)\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.GauntletUI.dll</HintPath>
+    <Reference Include="$(GameFolder)\Modules\Native\bin\Win64_Shipping_Client\*.dll">
+      <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SandBox.View">
-      <HintPath>$(MNB2DIR)\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.View.dll</HintPath>
+    <Reference Include="$(GameFolder)\Modules\SandBox\bin\Win64_Shipping_Client\*.dll">
+      <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SandBox.ViewModelCollection">
-      <HintPath>$(MNB2DIR)\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.ViewModelCollection.dll</HintPath>
+    <Reference Include="$(GameFolder)\Modules\SandBoxCore\bin\Win64_Shipping_Client\*.dll">
+      <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="StoryMode">
-      <HintPath>$(MNB2DIR)\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="StoryMode.GauntletUI">
-      <HintPath>$(MNB2DIR)\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.GauntletUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="StoryMode.View">
-      <HintPath>$(MNB2DIR)\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.View.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="StoryMode.ViewModelCollection">
-      <HintPath>$(MNB2DIR)\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.ViewModelCollection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.BattlEye.Client">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.BattlEye.Client.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.CampaignSystem">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="TaleWorlds.CampaignSystem.ViewModelCollection">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.ViewModelCollection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Core">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Core.ViewModelCollection">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Core.ViewModelCollection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Diamond">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Diamond.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Diamond.AccessProvider.Epic">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Diamond.AccessProvider.Epic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Diamond.AccessProvider.GOG">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Diamond.AccessProvider.GOG.dll</HintPath>
-    </Reference>
-    <Reference Include="TaleWorlds.Diamond.AccessProvider.Steam">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Diamond.AccessProvider.Steam.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Diamond.AccessProvider.Test">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Diamond.AccessProvider.Test.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.DotNet">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.DotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.DotNet.AutoGenerated">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.DotNet.AutoGenerated.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Engine">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Engine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Engine.AutoGenerated">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Engine.AutoGenerated.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Engine.GauntletUI">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Engine.GauntletUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.GauntletUI">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.GauntletUI.Data">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.Data.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.GauntletUI.ExtraWidgets">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.ExtraWidgets.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.GauntletUI.PrefabSystem">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.PrefabSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.GauntletUI.TooltipExtensions">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.TooltipExtensions.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.InputSystem">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.InputSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Library">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Library.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Localization">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Localization.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.AutoGenerated">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.AutoGenerated.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.CustomBattle">
-      <HintPath>$(MNB2DIR)\Modules\CustomBattle\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.CustomBattle.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.Diamond">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Diamond.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.GauntletUI">
-      <HintPath>$(MNB2DIR)\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.GauntletUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.GauntletUI.Widgets">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.GauntletUI.Widgets.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.Helpers">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Helpers.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.View">
-      <HintPath>$(MNB2DIR)\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.View.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.ViewModelCollection">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.ViewModelCollection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.NavigationSystem">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.NavigationSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Network">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Network.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.ObjectSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.PlatformService">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.PlatformService.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.PlatformService.Epic">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.PlatformService.Epic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.PlatformService.GOG">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.PlatformService.GOG.dll</HintPath>
-    </Reference>
-    <Reference Include="TaleWorlds.PlatformService.Steam">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.PlatformService.Steam.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.PlayerServices">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.PlayerServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.PSAI">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.PSAI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.SaveSystem">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.SaveSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Starter.DotNetCore">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Starter.DotNetCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Starter.Library">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.Starter.Library.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.TwoDimension">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.TwoDimension.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.TwoDimension.Standalone">
-      <HintPath>$(MNB2DIR)\bin\Win64_Shipping_Client\TaleWorlds.TwoDimension.Standalone.dll</HintPath>
+    <Reference Include="$(GameFolder)\Modules\StoryMode\bin\Win64_Shipping_Client\*.dll">
+      <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -393,10 +202,6 @@
     <Compile Include="Patches\KingdomDecisionProposalBehaviorPatch.cs" />
     <Compile Include="StringConstants.cs" />
     <Compile Include="Widgets\KingdomDiplomacyPanelTabControlWidget.cs" />
-    <Content Include="GUI\Prefabs\Encyclopedia\EncyclopediaSubPages\EncyclopediaIntrigue.xml" />
-    <Content Include="GUI\Prefabs\KingdomManagement\Clan\DonateGold.xml" />
-    <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\OverviewTab.xml" />
-    <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\Relationship.xml" />
     <Compile Include="Patches\GameMenusCallbacksPatch.cs" />
     <Compile Include="Patches\KingdomManagementVMPatch.cs" />
     <Compile Include="Patches\UrbanCharactersCampaignBehaviorPatch.cs" />
@@ -436,31 +241,11 @@
     <Compile Include="WarExhaustionManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GUI\Prefabs\Encyclopedia\EncyclopediaSubPages\EncyclopediaFactionPage.xml" />
-    <Content Include="GUI\Prefabs\Encyclopedia\EncyclopediaSubPages\EncyclopediaHeroPage.xml" />
-    <Content Include="GUI\Prefabs\GrantFief\GrantFiefTuple.xml" />
-    <Content Include="GUI\Prefabs\GrantFief\GrantFief.xml" />
-    <Content Include="GUI\Prefabs\KingdomManagement\Clan\ClansPanel.xml" />
-    <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\DiplomacyPanel.xml" />
-    <Content Include="GUI\Prefabs\KingdomManagement\Diplomacy\StatsTab.xml" />
-    <Content Include="ModuleData\Languages\CNs\std_module_strings_xml.xml" />
-    <Content Include="SubModule.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <GUI Include="GUI\Prefabs\Encyclopedia\EncyclopediaSubPages\EncyclopediaFactionPage.xml" />
-    <GUI Include="GUI\Prefabs\Encyclopedia\EncyclopediaSubPages\EncyclopediaHeroPage.xml" />
-    <GUI Include="GUI\Prefabs\GrantFief\GrantFief.xml" />
-    <GUI Include="GUI\Prefabs\GrantFief\GrantFiefTuple.xml" />
-    <GUI Include="GUI\Prefabs\KingdomManagement\Clan\ClansPanel.xml" />
-    <GUI Include="GUI\Prefabs\KingdomManagement\Clan\DonateGold.xml" />
-    <GUI Include="GUI\Prefabs\KingdomManagement\Diplomacy\DiplomacyPanel.xml" />
-    <GUI Include="GUI\Prefabs\KingdomManagement\Diplomacy\OverviewTab.xml" />
-    <GUI Include="GUI\Prefabs\KingdomManagement\Diplomacy\Relationship.xml" />
-    <GUI Include="GUI\Prefabs\KingdomManagement\Diplomacy\StatsTab.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
     <ModuleData Include="ModuleData\Languages\CNs\std_module_strings_xml.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GUI\Prefabs\Encyclopedia\EncyclopediaSubPages\EncyclopediaFamilyTreeNodeItem.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
