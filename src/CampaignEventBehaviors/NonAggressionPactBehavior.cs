@@ -26,7 +26,7 @@ namespace DiplomacyFixes.CampaignEventBehaviors
 
         private void ConsiderFormingNonAggressionPacts(Kingdom kingdom)
         {
-            List<Kingdom> potentialPartners = 
+            List<Kingdom> potentialPartners =
                 Kingdom.All.Where(otherKingdom => otherKingdom != kingdom).Where(otherKingdom => NAPactConditions.Instance.CanExecuteAction(kingdom, otherKingdom)).ToList();
             foreach (Kingdom potentialPartner in potentialPartners)
             {

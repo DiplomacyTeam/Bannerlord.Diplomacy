@@ -25,7 +25,7 @@ namespace DiplomacyFixes
         public static HybridCost DetermineCostForMakingPeace(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
             return new HybridCost(
-                DetermineInfluenceCostForMakingPeace(kingdom, forcePlayerCharacterCosts), 
+                DetermineInfluenceCostForMakingPeace(kingdom, forcePlayerCharacterCosts),
                 DetermineGoldCostForMakingPeace(kingdom, otherKingdom, forcePlayerCharacterCosts));
         }
 
