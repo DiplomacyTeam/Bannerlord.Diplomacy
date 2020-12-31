@@ -3,7 +3,7 @@ using MCM.Abstractions.Attributes.v2;
 using MCM.Abstractions.Settings.Base.Global;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     class Settings : AttributeGlobalSettings<Settings>
     {

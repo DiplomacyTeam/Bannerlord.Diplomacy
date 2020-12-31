@@ -1,5 +1,5 @@
-﻿using DiplomacyFixes.Extensions;
-using DiplomacyFixes.GrantFief;
+﻿using Diplomacy.Extensions;
+using Diplomacy.GrantFief;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -8,7 +8,7 @@ using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     internal class GrantFiefVM : TaleWorlds.Library.ViewModel
     {

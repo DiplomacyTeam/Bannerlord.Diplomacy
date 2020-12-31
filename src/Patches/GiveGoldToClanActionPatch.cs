@@ -3,7 +3,7 @@ using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 
-namespace DiplomacyFixes.Patches
+namespace Diplomacy.Patches
 {
     [HarmonyPatch(typeof(GiveGoldToClanAction))]
     class GiveGoldToClanActionPatch

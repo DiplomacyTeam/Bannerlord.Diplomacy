@@ -1,7 +1,7 @@
-﻿using DiplomacyFixes.DiplomaticAction.GenericConditions;
+﻿using Diplomacy.DiplomaticAction.GenericConditions;
 using System.Collections.Generic;
 
-namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
+namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
     class NonAggressionPactConditions : AbstractConditionEvaluator<NonAggressionPactConditions>
     {

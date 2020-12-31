@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TaleWorlds.Library;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     class GrantFiefSortControllerVM : TaleWorlds.Library.ViewModel
     {

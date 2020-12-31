@@ -1,10 +1,10 @@
-﻿using DiplomacyFixes.DiplomaticAction.WarPeace;
+﻿using Diplomacy.DiplomaticAction.WarPeace;
 using StoryMode.StoryModePhases;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 
-namespace DiplomacyFixes.CampaignEventBehaviors
+namespace Diplomacy.CampaignEventBehaviors
 {
     public class WarExhaustionBehavior : CampaignBehaviorBase
     {

@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.ViewModel;
+﻿using Diplomacy.ViewModel;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
@@ -8,7 +8,7 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.TwoDimension;
 
-namespace DiplomacyFixes.GauntletInterfaces
+namespace Diplomacy.GauntletInterfaces
 {
     class GrantFiefInterface
     {

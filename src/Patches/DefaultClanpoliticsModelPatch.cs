@@ -1,10 +1,10 @@
-﻿using DiplomacyFixes.Extensions;
+﻿using Diplomacy.Extensions;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.Patches
+namespace Diplomacy.Patches
 {
     [HarmonyPatch(typeof(DefaultClanPoliticsModel))]
     class DefaultClanPoliticsModelPatch

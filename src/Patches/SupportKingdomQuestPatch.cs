@@ -3,7 +3,7 @@ using StoryMode.Behaviors.Quests;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
 
-namespace DiplomacyFixes.Patches
+namespace Diplomacy.Patches
 {
     [HarmonyPatch]
     class SupportKingdomQuestPatch

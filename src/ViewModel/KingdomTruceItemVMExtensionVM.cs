@@ -1,8 +1,8 @@
-﻿using DiplomacyFixes.Costs;
-using DiplomacyFixes.DiplomaticAction.Alliance;
-using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
-using DiplomacyFixes.DiplomaticAction.WarPeace;
-using DiplomacyFixes.Messengers;
+﻿using Diplomacy.Costs;
+using Diplomacy.DiplomaticAction.Alliance;
+using Diplomacy.DiplomaticAction.NonAggressionPact;
+using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.Messengers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     public class KingdomTruceItemVMExtensionVM : KingdomTruceItemVM
     {

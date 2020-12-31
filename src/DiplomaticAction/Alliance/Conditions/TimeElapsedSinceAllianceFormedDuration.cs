@@ -2,7 +2,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.DiplomaticAction.Alliance.Conditions
+namespace Diplomacy.DiplomaticAction.Alliance.Conditions
 {
     class TimeElapsedSinceAllianceFormedCondition : IDiplomacyCondition
     {

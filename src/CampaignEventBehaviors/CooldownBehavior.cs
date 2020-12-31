@@ -1,8 +1,8 @@
-﻿using DiplomacyFixes.DiplomaticAction.Alliance;
-using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
+﻿using Diplomacy.DiplomaticAction.Alliance;
+using Diplomacy.DiplomaticAction.NonAggressionPact;
 using TaleWorlds.CampaignSystem;
 
-namespace DiplomacyFixes.CampaignEventBehaviors
+namespace Diplomacy.CampaignEventBehaviors
 {
     class CooldownBehavior : CampaignBehaviorBase
     {

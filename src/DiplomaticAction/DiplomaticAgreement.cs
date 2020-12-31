@@ -2,7 +2,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
-namespace DiplomacyFixes.DiplomaticAction
+namespace Diplomacy.DiplomaticAction
 {
     [SaveableClass(5)]
     abstract class DiplomaticAgreement

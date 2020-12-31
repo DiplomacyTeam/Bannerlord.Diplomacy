@@ -4,7 +4,7 @@ using System.Text;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     class MessageHelper
     {

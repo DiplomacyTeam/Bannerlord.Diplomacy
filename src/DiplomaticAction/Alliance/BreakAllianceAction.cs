@@ -3,7 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.DiplomaticAction.Alliance
+namespace Diplomacy.DiplomaticAction.Alliance
 {
     class BreakAllianceAction : AbstractDiplomaticAction<BreakAllianceAction>
     {

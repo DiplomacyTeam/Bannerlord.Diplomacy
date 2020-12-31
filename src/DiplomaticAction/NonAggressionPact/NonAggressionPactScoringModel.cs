@@ -1,6 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 
-namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
+namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
     internal class NonAggressionPactScoringModel : AbstractScoringModel<NonAggressionPactScoringModel>
     {

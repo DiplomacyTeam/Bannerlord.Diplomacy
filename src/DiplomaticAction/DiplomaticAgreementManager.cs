@@ -3,7 +3,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
-namespace DiplomacyFixes.DiplomaticAction
+namespace Diplomacy.DiplomaticAction
 {
     [SaveableClass(7)]
     class DiplomaticAgreementManager

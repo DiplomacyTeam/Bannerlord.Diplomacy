@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
+﻿using Diplomacy.DiplomaticAction.NonAggressionPact;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     [SaveableClass(3)]
     class CooldownManager

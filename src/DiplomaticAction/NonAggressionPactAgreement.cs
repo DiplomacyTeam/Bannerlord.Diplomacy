@@ -3,7 +3,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 
-namespace DiplomacyFixes.DiplomaticAction
+namespace Diplomacy.DiplomaticAction
 {
     [SaveableClass(6)]
     class NonAggressionPactAgreement : DiplomaticAgreement

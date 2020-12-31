@@ -1,10 +1,10 @@
-﻿using DiplomacyFixes.Extensions;
+﻿using Diplomacy.Extensions;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Barterables;
 
-namespace DiplomacyFixes.CampaignEventBehaviors
+namespace Diplomacy.CampaignEventBehaviors
 {
     class MaintainInfluenceBehavior : CampaignBehaviorBase
     {

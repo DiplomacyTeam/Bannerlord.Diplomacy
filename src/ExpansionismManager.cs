@@ -1,12 +1,12 @@
 ﻿
-using DiplomacyFixes.Extensions;
+using Diplomacy.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     [SaveableClass(8)]
     class ExpansionismManager

@@ -1,7 +1,7 @@
-﻿using DiplomacyFixes.Messengers;
+﻿using Diplomacy.Messengers;
 using TaleWorlds.CampaignSystem;
 
-namespace DiplomacyFixes.CampaignEventBehaviors
+namespace Diplomacy.CampaignEventBehaviors
 {
     class MessengerBehavior : CampaignBehaviorBase
     {

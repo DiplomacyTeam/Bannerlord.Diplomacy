@@ -1,6 +1,6 @@
-﻿using DiplomacyFixes.DiplomaticAction.Usurp;
-using DiplomacyFixes.GauntletInterfaces;
-using DiplomacyFixes.GrantFief;
+﻿using Diplomacy.DiplomaticAction.Usurp;
+using Diplomacy.GauntletInterfaces;
+using Diplomacy.GrantFief;
 using System;
 using System.ComponentModel;
 using System.Reflection;
@@ -11,7 +11,7 @@ using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     class KingdomClanVMExtensionVM : KingdomClanVM, INotifyPropertyChanged, ICloseableVM
     {

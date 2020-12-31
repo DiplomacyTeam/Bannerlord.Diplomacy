@@ -1,6 +1,6 @@
 ﻿using TaleWorlds.GauntletUI;
 
-namespace DiplomacyFixes.Widgets
+namespace Diplomacy.Widgets
 {
     class KingdomDiplomacyPanelTabControlWidget : ListPanel
     {

@@ -1,8 +1,8 @@
-﻿using DiplomacyFixes.DiplomaticAction.Alliance.Conditions;
-using DiplomacyFixes.DiplomaticAction.GenericConditions;
+﻿using Diplomacy.DiplomaticAction.Alliance.Conditions;
+using Diplomacy.DiplomaticAction.GenericConditions;
 using System.Collections.Generic;
 
-namespace DiplomacyFixes.DiplomaticAction.Alliance
+namespace Diplomacy.DiplomaticAction.Alliance
 {
     class FormAllianceConditions : AbstractConditionEvaluator<FormAllianceConditions>
     {

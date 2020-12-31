@@ -1,12 +1,12 @@
 ﻿
-using DiplomacyFixes.DiplomaticAction.GenericConditions;
+using Diplomacy.DiplomaticAction.GenericConditions;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.DiplomaticAction
+namespace Diplomacy.DiplomaticAction
 {
     abstract class AbstractConditionEvaluator<T> where T : AbstractConditionEvaluator<T>, new()
     {

@@ -1,7 +1,7 @@
-﻿using DiplomacyFixes.DiplomaticAction.WarPeace.Conditions;
+﻿using Diplomacy.DiplomaticAction.WarPeace.Conditions;
 using System.Collections.Generic;
 
-namespace DiplomacyFixes.DiplomaticAction.WarPeace
+namespace Diplomacy.DiplomaticAction.WarPeace
 {
     class MakePeaceConditions : AbstractConditionEvaluator<MakePeaceConditions>
     {

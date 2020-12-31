@@ -1,9 +1,9 @@
-﻿using DiplomacyFixes.DiplomaticAction.GenericConditions;
-using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
-using DiplomacyFixes.DiplomaticAction.WarPeace.Conditions;
+﻿using Diplomacy.DiplomaticAction.GenericConditions;
+using Diplomacy.DiplomaticAction.NonAggressionPact;
+using Diplomacy.DiplomaticAction.WarPeace.Conditions;
 using System.Collections.Generic;
 
-namespace DiplomacyFixes.DiplomaticAction.WarPeace
+namespace Diplomacy.DiplomaticAction.WarPeace
 {
     class DeclareWarConditions : AbstractConditionEvaluator<DeclareWarConditions>
     {

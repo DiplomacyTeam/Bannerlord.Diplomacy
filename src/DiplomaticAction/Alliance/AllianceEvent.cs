@@ -1,6 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 
-namespace DiplomacyFixes.DiplomaticAction.Alliance
+namespace Diplomacy.DiplomaticAction.Alliance
 {
     class AllianceEvent
     {

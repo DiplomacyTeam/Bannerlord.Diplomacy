@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.ViewModel;
+﻿using Diplomacy.ViewModel;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;
@@ -7,7 +7,7 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.TwoDimension;
 
-namespace DiplomacyFixes.GauntletInterfaces
+namespace Diplomacy.GauntletInterfaces
 {
     class DonateGoldInterface
     {

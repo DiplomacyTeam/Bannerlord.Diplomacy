@@ -1,9 +1,9 @@
-﻿using DiplomacyFixes.DiplomaticAction.WarPeace;
+﻿using Diplomacy.DiplomaticAction.WarPeace;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 
-namespace DiplomacyFixes.Patches
+namespace Diplomacy.Patches
 {
     [HarmonyPatch(typeof(DeclareWarAction))]
     class DeclareWarActionPatch

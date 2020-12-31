@@ -1,7 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
-namespace DiplomacyFixes.Costs
+namespace Diplomacy.Costs
 {
     class InfluenceCost : DiplomacyCost
     {

@@ -1,6 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     class PlayerHelpers
     {

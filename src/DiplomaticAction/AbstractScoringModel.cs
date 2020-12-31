@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.Extensions;
+﻿using Diplomacy.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.DiplomaticAction
+namespace Diplomacy.DiplomaticAction
 {
     public abstract class AbstractScoringModel<T> where T : AbstractScoringModel<T>, new()
     {

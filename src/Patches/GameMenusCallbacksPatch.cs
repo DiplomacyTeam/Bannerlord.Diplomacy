@@ -2,7 +2,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox;
 
-namespace DiplomacyFixes.Patches
+namespace Diplomacy.Patches
 {
     [HarmonyPatch(typeof(GameMenusCallbacks))]
     class GameMenusCallbacksPatch

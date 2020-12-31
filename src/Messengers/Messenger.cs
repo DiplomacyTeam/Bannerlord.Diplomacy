@@ -2,7 +2,7 @@
 using TaleWorlds.Library;
 using TaleWorlds.SaveSystem;
 
-namespace DiplomacyFixes.Messengers
+namespace Diplomacy.Messengers
 {
     [SaveableClass(1)]
     class Messenger

@@ -1,9 +1,9 @@
-﻿using DiplomacyFixes.GrantFief;
+﻿using Diplomacy.GrantFief;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     class GrantFiefItemVM : TaleWorlds.Library.ViewModel
     {

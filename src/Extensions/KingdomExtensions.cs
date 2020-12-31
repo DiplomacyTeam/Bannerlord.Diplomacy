@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 
-namespace DiplomacyFixes.Extensions
+namespace Diplomacy.Extensions
 {
     public static class KingdomExtensions
     {

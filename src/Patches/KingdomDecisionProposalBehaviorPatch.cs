@@ -1,10 +1,10 @@
-﻿using DiplomacyFixes.DiplomaticAction.WarPeace;
+﻿using Diplomacy.DiplomaticAction.WarPeace;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 
-namespace DiplomacyFixes.Patches
+namespace Diplomacy.Patches
 {
     [HarmonyPatch(typeof(KingdomDecisionProposalBehavior))]
     class KingdomDecisionProposalBehaviorPatch

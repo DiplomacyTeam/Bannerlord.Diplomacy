@@ -1,7 +1,7 @@
-﻿using DiplomacyFixes.DiplomaticAction.Alliance.Conditions;
+﻿using Diplomacy.DiplomaticAction.Alliance.Conditions;
 using System.Collections.Generic;
 
-namespace DiplomacyFixes.DiplomaticAction.Alliance
+namespace Diplomacy.DiplomaticAction.Alliance
 {
     class BreakAllianceConditions : AbstractConditionEvaluator<BreakAllianceConditions>
     {

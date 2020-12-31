@@ -1,13 +1,13 @@
-﻿using DiplomacyFixes.GauntletInterfaces;
-using DiplomacyFixes.GrantFief;
-using DiplomacyFixes.Messengers;
+﻿using Diplomacy.GauntletInterfaces;
+using Diplomacy.GrantFief;
+using Diplomacy.Messengers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     class EncyclopediaHeroPageVMExtensionVM : EncyclopediaHeroPageVM
     {

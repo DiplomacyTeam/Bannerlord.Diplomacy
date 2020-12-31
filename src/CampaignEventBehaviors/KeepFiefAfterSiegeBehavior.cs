@@ -3,7 +3,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.CampaignEventBehaviors
+namespace Diplomacy.CampaignEventBehaviors
 {
     class KeepFiefAfterSiegeBehavior : CampaignBehaviorBase
     {

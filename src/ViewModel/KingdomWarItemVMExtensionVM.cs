@@ -1,6 +1,6 @@
-﻿using DiplomacyFixes.Costs;
-using DiplomacyFixes.DiplomaticAction.WarPeace;
-using DiplomacyFixes.Messengers;
+﻿using Diplomacy.Costs;
+using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.Messengers;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -10,7 +10,7 @@ using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     public class KingdomWarItemVMExtensionVM : KingdomWarItemVM
     {

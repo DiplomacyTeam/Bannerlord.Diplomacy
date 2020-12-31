@@ -1,12 +1,12 @@
-﻿using DiplomacyFixes.DiplomaticAction;
-using DiplomacyFixes.DiplomaticAction.Alliance;
-using DiplomacyFixes.DiplomaticAction.NonAggressionPact;
-using DiplomacyFixes.Extensions;
+﻿using Diplomacy.DiplomaticAction;
+using Diplomacy.DiplomaticAction.Alliance;
+using Diplomacy.DiplomaticAction.NonAggressionPact;
+using Diplomacy.Extensions;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
-namespace DiplomacyFixes.CampaignEventBehaviors
+namespace Diplomacy.CampaignEventBehaviors
 {
     class DiplomaticAgreementBehavior : CampaignBehaviorBase
     {

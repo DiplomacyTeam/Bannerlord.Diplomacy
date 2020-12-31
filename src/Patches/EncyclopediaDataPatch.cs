@@ -1,10 +1,10 @@
-﻿using DiplomacyFixes.ViewModel;
+﻿using Diplomacy.ViewModel;
 using HarmonyLib;
 using SandBox.GauntletUI;
 using System.Reflection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 
-namespace DiplomacyFixes.Patches
+namespace Diplomacy.Patches
 {
     [HarmonyPatch(typeof(EncyclopediaData))]
     class EncyclopediaDataPatch

@@ -1,10 +1,10 @@
-﻿using DiplomacyFixes.Costs;
+﻿using Diplomacy.Costs;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     class DiplomacyCostCalculator
     {

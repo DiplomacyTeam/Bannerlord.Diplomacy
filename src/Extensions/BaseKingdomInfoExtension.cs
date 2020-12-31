@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using TaleWorlds.CampaignSystem;
 
-namespace DiplomacyFixes.Extensions
+namespace Diplomacy.Extensions
 {
     // thanks to TH3UNKN0WN for this code
     public static class BaseKingdomInfoExtension

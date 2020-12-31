@@ -1,4 +1,4 @@
-﻿namespace DiplomacyFixes.ViewModel
+﻿namespace Diplomacy.ViewModel
 {
     internal interface ICloseableVM
     {

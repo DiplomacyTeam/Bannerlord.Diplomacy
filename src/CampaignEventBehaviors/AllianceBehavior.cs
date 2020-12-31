@@ -1,5 +1,5 @@
-﻿using DiplomacyFixes.DiplomaticAction.Alliance;
-using DiplomacyFixes.DiplomaticAction.WarPeace;
+﻿using Diplomacy.DiplomaticAction.Alliance;
+using Diplomacy.DiplomaticAction.WarPeace;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -7,7 +7,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.CampaignEventBehaviors
+namespace Diplomacy.CampaignEventBehaviors
 {
     class AllianceBehavior : CampaignBehaviorBase
     {

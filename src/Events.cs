@@ -1,9 +1,9 @@
-﻿using DiplomacyFixes.DiplomaticAction.Alliance;
-using DiplomacyFixes.DiplomaticAction.WarPeace;
+﻿using Diplomacy.DiplomaticAction.Alliance;
+using Diplomacy.DiplomaticAction.WarPeace;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     class Events
     {

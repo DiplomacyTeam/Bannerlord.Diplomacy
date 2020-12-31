@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.DiplomaticAction.Alliance;
+﻿using Diplomacy.DiplomaticAction.Alliance;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -6,7 +6,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDip
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     class KingdomAllianceItemVM : KingdomTruceItemVMExtensionVM
     {

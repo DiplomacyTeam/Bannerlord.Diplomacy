@@ -6,7 +6,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.SaveSystem;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     [SaveableClass(2)]
     class WarExhaustionManager

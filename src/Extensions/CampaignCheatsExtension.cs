@@ -1,9 +1,9 @@
-﻿using DiplomacyFixes.DiplomaticAction.Alliance;
+﻿using Diplomacy.DiplomaticAction.Alliance;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
-namespace DiplomacyFixes.Extensions
+namespace Diplomacy.Extensions
 {
     class CampaignCheatsExtension
     {

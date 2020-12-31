@@ -8,7 +8,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.SaveSystem;
 
-namespace DiplomacyFixes.Messengers
+namespace Diplomacy.Messengers
 {
     [SaveableClass(4)]
     class MessengerManager : IMissionListener

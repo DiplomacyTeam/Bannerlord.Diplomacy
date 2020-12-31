@@ -1,7 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 
-namespace DiplomacyFixes.Costs
+namespace Diplomacy.Costs
 {
     class GoldCost : DiplomacyCost
     {

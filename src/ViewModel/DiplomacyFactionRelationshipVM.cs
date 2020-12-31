@@ -4,7 +4,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     public class DiplomacyFactionRelationshipVM : TaleWorlds.Library.ViewModel
     {

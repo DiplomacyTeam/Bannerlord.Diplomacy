@@ -6,7 +6,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.DiplomaticAction.Usurp
+namespace Diplomacy.DiplomaticAction.Usurp
 {
     public class UsurpKingdomAction
     {

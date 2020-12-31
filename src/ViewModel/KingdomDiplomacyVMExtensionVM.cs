@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.DiplomaticAction.Alliance;
+﻿using Diplomacy.DiplomaticAction.Alliance;
 using System;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
@@ -8,7 +8,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     class KingdomDiplomacyVMExtensionVM : KingdomDiplomacyVM, ICloseableVM
     {

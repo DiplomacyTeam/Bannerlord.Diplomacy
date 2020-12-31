@@ -1,7 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     interface IDiplomacyCondition
     {

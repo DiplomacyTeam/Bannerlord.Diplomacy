@@ -1,7 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.DiplomaticAction.GenericConditions
+namespace Diplomacy.DiplomaticAction.GenericConditions
 {
     class AtPeaceCondition : IDiplomacyCondition
     {

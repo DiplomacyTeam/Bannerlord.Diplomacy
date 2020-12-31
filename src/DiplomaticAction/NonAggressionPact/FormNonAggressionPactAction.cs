@@ -3,7 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.DiplomaticAction.NonAggressionPact
+namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
     class FormNonAggressionPactAction : AbstractDiplomaticAction<FormNonAggressionPactAction>
     {

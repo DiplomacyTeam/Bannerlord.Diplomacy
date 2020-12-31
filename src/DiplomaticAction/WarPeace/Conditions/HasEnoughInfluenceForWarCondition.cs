@@ -1,7 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.DiplomaticAction.WarPeace.Conditions
+namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 {
     class HasEnoughInfluenceForWarCondition : AbstractCostCondition
     {

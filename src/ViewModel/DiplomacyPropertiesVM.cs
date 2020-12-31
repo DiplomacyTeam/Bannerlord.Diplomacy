@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.DiplomaticAction;
+﻿using Diplomacy.DiplomaticAction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     public class DiplomacyPropertiesVM : TaleWorlds.Library.ViewModel
     {

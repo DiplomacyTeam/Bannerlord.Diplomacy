@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.ViewModel;
+﻿using Diplomacy.ViewModel;
 using HarmonyLib;
 using System;
 using System.Reflection;
@@ -8,7 +8,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomClan;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 
-namespace DiplomacyFixes.Patches
+namespace Diplomacy.Patches
 {
     [HarmonyPatch(typeof(KingdomManagementVM))]
     class KingdomManagementVMPatch

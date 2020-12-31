@@ -1,11 +1,11 @@
-﻿using DiplomacyFixes.Costs;
+﻿using Diplomacy.Costs;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.DiplomaticAction.WarPeace
+namespace Diplomacy.DiplomaticAction.WarPeace
 {
     class KingdomPeaceAction
     {

@@ -1,7 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     [SaveableStruct(1000)]
     struct FactionMapping

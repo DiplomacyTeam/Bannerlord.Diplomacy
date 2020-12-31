@@ -1,11 +1,11 @@
-﻿using DiplomacyFixes.CampaignEventBehaviors;
+﻿using Diplomacy.CampaignEventBehaviors;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
-namespace DiplomacyFixes
+namespace Diplomacy
 {
     class MySubModule : MBSubModuleBase
     {

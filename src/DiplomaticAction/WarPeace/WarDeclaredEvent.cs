@@ -1,6 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 
-namespace DiplomacyFixes.DiplomaticAction.WarPeace
+namespace Diplomacy.DiplomaticAction.WarPeace
 {
     struct WarDeclaredEvent
     {

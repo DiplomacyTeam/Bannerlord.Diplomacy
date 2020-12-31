@@ -1,4 +1,4 @@
-﻿using DiplomacyFixes.DiplomaticAction;
+﻿using Diplomacy.DiplomaticAction;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encyclopedia;
@@ -7,7 +7,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.EncyclopediaIte
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.ViewModel
+namespace Diplomacy.ViewModel
 {
     class EncyclopediaFactionPageVMExtensionVM : EncyclopediaFactionPageVM
     {
