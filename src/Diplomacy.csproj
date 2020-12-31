@@ -45,7 +45,7 @@
     -->
     <PackageReference Include="Bannerlord.MCM" Version="4.1.2" IncludeAssets="compile" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" IncludeAssets="compile" />
   </ItemGroup>
 
 </Project>
