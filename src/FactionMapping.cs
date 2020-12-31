@@ -3,7 +3,7 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy
 {
-    [SaveableStruct(1000)]
+    [SaveableStruct(9)]
     struct FactionMapping
     {
         [SaveableProperty(1)]
@@ -19,22 +19,22 @@ namespace Diplomacy
         {
             if (string.CompareOrdinal(faction1.StringId, faction2.StringId) < 0)
             {
-                this.Faction1 = faction1;
-                this.Faction2 = faction2;
+                Faction1 = faction1;
+                Faction2 = faction2;
             }
             else
             {
-                this.Faction1 = faction2;
-                this.Faction2 = faction1;
+                Faction1 = faction2;
+                Faction2 = faction1;
             }
-            this._hashCode = FactionMapping.CalculateHash(this.Faction1.StringId + this.Faction2.StringId);
+            _hashCode = CalculateHash(Faction1.StringId + Faction2.StringId);
         }
 
         internal FactionMapping(FactionMapping other)
         {
-            this.Faction1 = other.Faction1;
-            this.Faction2 = other.Faction2;
-            this._hashCode = other._hashCode;
+            Faction1 = other.Faction1;
+            Faction2 = other.Faction2;
+            _hashCode = other._hashCode;
         }
 
         public override bool Equals(object obj)
@@ -48,23 +48,14 @@ namespace Diplomacy
                 return false;
             }
             FactionMapping FactionMapping = (FactionMapping)obj;
-            return this.Faction1 == FactionMapping.Faction1 && this.Faction2 == FactionMapping.Faction2;
+            return Faction1 == FactionMapping.Faction1 && Faction2 == FactionMapping.Faction2;
         }
 
-        public bool Equals(FactionMapping p)
-        {
-            return this.Faction1 == p.Faction1 && this.Faction2 == p.Faction2;
-        }
+        public bool Equals(FactionMapping p) => Faction1 == p.Faction1 && Faction2 == p.Faction2;
 
-        public static bool operator ==(FactionMapping per1, FactionMapping per2)
-        {
-            return per1.Equals(per2);
-        }
+        public static bool operator ==(FactionMapping per1, FactionMapping per2) => per1.Equals(per2);
 
-        public static bool operator !=(FactionMapping per1, FactionMapping per2)
-        {
-            return !per1.Equals(per2);
-        }
+        public static bool operator !=(FactionMapping per1, FactionMapping per2) => !per1.Equals(per2);
 
         private static int CalculateHash(string s)
         {
@@ -79,7 +70,7 @@ namespace Diplomacy
 
         public override int GetHashCode()
         {
-            return this._hashCode;
+            return _hashCode;
         }
     }
 }
