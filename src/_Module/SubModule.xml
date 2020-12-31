@@ -2,7 +2,7 @@
 <Module>
   <Name value="$modulename$" />
   <Id value="$modulename$" />
-  <Version value="v$version$" />
+  <Version value="d$version$" />
   <Official value="false" />
   <DefaultModule value="false" />
   <SingleplayerModule value="true" />
@@ -22,7 +22,7 @@
     <SubModule>
       <Name value="$modulename$" />
       <DLLName value="$modulename$.dll" />
-      <SubModuleClassType value="$modulename$.MySubModule" />
+      <SubModuleClassType value="$modulename$.SubModule" />
       <Tags />
     </SubModule>
   </SubModules>

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.0.1</Version>
+    <Version>0.1.0</Version>
     <TargetFramework>net472</TargetFramework>
     <Platforms>x64</Platforms>
     <LangVersion>9.0</LangVersion>
@@ -39,10 +39,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Lib.Harmony" Version="2.0.4" IncludeAssets="compile" />
-    <!--
     <PackageReference Include="Bannerlord.ButterLib" Version="1.0.19" IncludeAssets="compile" />
-    <PackageReference Include="Bannerlord.UIExtenderEx" Version="1.0.6" IncludeAssets="compile" />
-    -->
+    <!-- <PackageReference Include="Bannerlord.UIExtenderEx" Version="1.0.6" IncludeAssets="compile" /> -->
     <PackageReference Include="Bannerlord.MCM" Version="4.1.2" IncludeAssets="compile" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" IncludeAssets="compile" />
