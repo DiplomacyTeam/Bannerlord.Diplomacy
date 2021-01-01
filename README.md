@@ -11,7 +11,7 @@ Plans beyond that initial release -- in which it is basically a reliable Diploma
 
 Once the mod reaches v1.0.0 and I've established a solid base from its origins in Diplomacy Fixes:
 
-As always with my projects, quality contributions are welcome, and I am extremely open to collaboration. If you want to work on an all new feature or something that would affect the vision of the mod, however, then please contact me to discuss beforehand, as I'm a stickler on sticking to vision.
+As always with my projects, quality contributions are welcome, and I am extremely open to collaboration. If you want to work on an all new feature or something that would affect the vision of the mod, however, then please contact me to discuss beforehand, as I'm a stickler for maintaining a coherent vision in game (and software) design.
 
 ---
 
