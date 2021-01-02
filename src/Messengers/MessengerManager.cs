@@ -38,7 +38,7 @@ namespace Diplomacy.Messengers
 
         public void MessengerArrived()
         {
-            foreach (Messenger messenger in Messengers.ToList())
+            foreach (var messenger in Messengers.ToList())
             {
                 if (IsTargetHeroAvailable(messenger.TargetHero))
                 {
@@ -57,14 +57,14 @@ namespace Diplomacy.Messengers
 
         private static void UpdateMessengerPosition(Messenger messenger)
         {
-            IMapPoint targetHeroLocationPoint = messenger.TargetHero.GetMapPoint();
-            if (messenger.CurrentPosition.Equals(default(Vec2)) || targetHeroLocationPoint == null)
+            var targetHeroLocationPoint = messenger.TargetHero.GetMapPoint();
+            if (messenger.CurrentPosition.Equals(default(Vec2)) || targetHeroLocationPoint is null)
             {
                 return;
             }
 
-            Vec2 targetHeroLocation = targetHeroLocationPoint.Position2D;
-            Vec2 distanceToGo = targetHeroLocation - messenger.CurrentPosition;
+            var targetHeroLocation = targetHeroLocationPoint.Position2D;
+            var distanceToGo = targetHeroLocation - messenger.CurrentPosition;
 
             if (distanceToGo.Length <= MessengerHourlySpeed)
             {
@@ -108,9 +108,9 @@ namespace Diplomacy.Messengers
         private static bool IsPlayerHeroAvailable()
         {
             MapState mapState = null;
-            return PartyBase.MainParty != null
-                && PlayerEncounter.Current == null
-                && ((mapState = GameStateManager.Current.ActiveState as MapState) != null && !mapState.AtMenu);
+            return PartyBase.MainParty is not null
+                && PlayerEncounter.Current is null
+                && ((mapState = GameStateManager.Current.ActiveState as MapState) is not null && !mapState.AtMenu);
         }
 
         internal void Sync()
@@ -121,11 +121,11 @@ namespace Diplomacy.Messengers
         public void StartDialogue(Hero targetHero, Messenger messenger)
         {
 
-            PartyBase heroParty = PartyBase.MainParty;
-            PartyBase targetParty = targetHero.PartyBelongedTo?.Party;
+            var heroParty = PartyBase.MainParty;
+            var targetParty = targetHero.PartyBelongedTo?.Party;
 
-            bool isCivilian = false;
-            if (targetParty == null)
+            var isCivilian = false;
+            if (targetParty is null)
             {
                 targetParty = targetHero.CurrentSettlement?.Party ?? targetHero.BornSettlement?.Party;
                 isCivilian = true;
@@ -134,11 +134,11 @@ namespace Diplomacy.Messengers
             PlayerEncounter.Start();
             PlayerEncounter.Current.SetupFields(heroParty, targetParty ?? heroParty);
 
-            string specialScene = "";
-            string sceneLevels = "";
+            var specialScene = "";
+            var sceneLevels = "";
 
             Campaign.Current.CurrentConversationContext = ConversationContext.Default;
-            Mission conversationMission = (Mission)Campaign.Current.CampaignMissionManager.OpenConversationMission(
+            var conversationMission = (Mission)Campaign.Current.CampaignMissionManager.OpenConversationMission(
                 new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true, false, false, isCivilian),
                 new ConversationCharacterData(targetHero.CharacterObject, targetParty, true, false, false, isCivilian),
                 specialScene, sceneLevels);
@@ -147,7 +147,7 @@ namespace Diplomacy.Messengers
 
         private TextObject GetMessengerArrivedText(IFaction faction1, IFaction faction2, Hero targetHero)
         {
-            TextObject textObject = new TextObject("{=YnRmSele}The messenger from {FACTION1_NAME} has arrived at {HERO_NAME} of {FACTION2_NAME}.");
+            var textObject = new TextObject("{=YnRmSele}The messenger from {FACTION1_NAME} has arrived at {HERO_NAME} of {FACTION2_NAME}.");
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             textObject.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
             textObject.SetTextVariable("HERO_NAME", targetHero.Name.ToString());
@@ -156,7 +156,7 @@ namespace Diplomacy.Messengers
 
         private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, Hero targetHero, int travelDays)
         {
-            TextObject textObject = new TextObject("{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_NAME} within {TRAVEL_TIME} days.");
+            var textObject = new TextObject("{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_NAME} within {TRAVEL_TIME} days.");
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             textObject.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
             textObject.SetTextVariable("HERO_NAME", targetHero.Name.ToString());
@@ -172,7 +172,7 @@ namespace Diplomacy.Messengers
 
         public static bool IsTargetHeroAvailable(Hero opposingLeader)
         {
-            bool unavailable = opposingLeader.IsOccupiedByAnEvent()
+            var unavailable = opposingLeader.IsOccupiedByAnEvent()
                 || opposingLeader.IsHumanPlayerCharacter
                 || !(opposingLeader.IsActive || (opposingLeader.IsWanderer && opposingLeader.HeroState == Hero.CharacterStates.NotSpawned));
             return !unavailable;
@@ -180,7 +180,7 @@ namespace Diplomacy.Messengers
 
         public static bool CanSendMessengerWithCost(Hero opposingLeader, DiplomacyCost diplomacyCost)
         {
-            bool canPayCost = diplomacyCost.CanPayCost();
+            var canPayCost = diplomacyCost.CanPayCost();
             return canPayCost && IsTargetHeroAvailable(opposingLeader);
         }
 
@@ -197,7 +197,7 @@ namespace Diplomacy.Messengers
             _messengers.Remove(_activeMessenger);
             _activeMessenger = null;
 
-            if (PlayerEncounter.Current != null)
+            if (PlayerEncounter.Current is not null)
             {
                 PlayerEncounter.Finish();
             }

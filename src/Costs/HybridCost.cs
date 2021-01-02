@@ -12,9 +12,9 @@ namespace Diplomacy.Costs
 
         public HybridCost(InfluenceCost influenceCost, GoldCost goldCost) : base(0f)
         {
-            this.InfluenceCost = influenceCost;
-            this.GoldCost = goldCost;
-            this._diplomacyCosts = new List<DiplomacyCost> { InfluenceCost, GoldCost };
+            InfluenceCost = influenceCost;
+            GoldCost = goldCost;
+            _diplomacyCosts = new List<DiplomacyCost> { InfluenceCost, GoldCost };
         }
 
         public override void ApplyCost()

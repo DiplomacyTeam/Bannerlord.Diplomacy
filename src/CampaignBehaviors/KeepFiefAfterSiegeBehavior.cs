@@ -3,7 +3,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.CampaignEventBehaviors
+namespace Diplomacy.CampaignBehaviors
 {
     class KeepFiefAfterSiegeBehavior : CampaignBehaviorBase
     {
@@ -44,7 +44,7 @@ namespace Diplomacy.CampaignEventBehaviors
 
         private TextObject GetKeepFiefText(Settlement settlement)
         {
-            TextObject textObject = new TextObject("{=Zy0yjTha}As the capturer of {SETTLEMENT_NAME}, you have the right of first refusal. Would you like to claim this fief?");
+            var textObject = new TextObject("{=Zy0yjTha}As the capturer of {SETTLEMENT_NAME}, you have the right of first refusal. Would you like to claim this fief?");
             textObject.SetTextVariable("SETTLEMENT_NAME", settlement.Name);
 
             return textObject;

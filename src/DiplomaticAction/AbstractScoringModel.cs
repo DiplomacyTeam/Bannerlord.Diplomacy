@@ -12,7 +12,7 @@ namespace Diplomacy.DiplomaticAction
     {
         protected AbstractScoringModel(IScores scores)
         {
-            this.Scores = scores;
+            Scores = scores;
         }
 
         public static T Instance { get; } = new T();
@@ -25,7 +25,7 @@ namespace Diplomacy.DiplomaticAction
 
         public virtual ExplainedNumber GetScore(Kingdom kingdom, Kingdom otherKingdom, StatExplainer explanation = null)
         {
-            ExplainedNumber explainedNumber = new ExplainedNumber(Scores.Base, explanation, null);
+            var explainedNumber = new ExplainedNumber(Scores.Base, explanation, null);
 
             // weak faction bonus
             if (!kingdom.IsStrong())
@@ -34,11 +34,11 @@ namespace Diplomacy.DiplomaticAction
             }
 
             // common enemies
-            IEnumerable<Kingdom> commonEnemies = FactionManager.GetEnemyKingdoms(kingdom).Intersect(FactionManager.GetEnemyKingdoms(otherKingdom));
-            foreach (Kingdom commonEnemy in commonEnemies)
+            var commonEnemies = FactionManager.GetEnemyKingdoms(kingdom).Intersect(FactionManager.GetEnemyKingdoms(otherKingdom));
+            foreach (var commonEnemy in commonEnemies)
             {
                 TextObject textObject = null;
-                if (explanation != null)
+                if (explanation is not null)
                 {
                     textObject = new TextObject("{=RqQ4oqvl}War with {ENEMY_KINGDOM}");
                     textObject.SetTextVariable("ENEMY_KINGDOM", commonEnemy.Name);
@@ -46,22 +46,22 @@ namespace Diplomacy.DiplomaticAction
                 explainedNumber.Add(Scores.HasCommonEnemy, textObject);
             }
 
-            IEnumerable<Kingdom> alliedEnemies = Kingdom.All.Except(new[] { kingdom, otherKingdom }).Where(curKingdom => FactionManager.IsAlliedWithFaction(otherKingdom, curKingdom) && FactionManager.IsAtWarAgainstFaction(kingdom, curKingdom));
-            IEnumerable<Kingdom> alliedNeutrals = Kingdom.All.Except(new[] { kingdom, otherKingdom }).Where(curKingdom => FactionManager.IsAlliedWithFaction(otherKingdom, curKingdom) && !FactionManager.IsAtWarAgainstFaction(kingdom, curKingdom));
-            foreach (Kingdom alliedEnemy in alliedEnemies)
+            var alliedEnemies = Kingdom.All.Except(new[] { kingdom, otherKingdom }).Where(curKingdom => FactionManager.IsAlliedWithFaction(otherKingdom, curKingdom) && FactionManager.IsAtWarAgainstFaction(kingdom, curKingdom));
+            var alliedNeutrals = Kingdom.All.Except(new[] { kingdom, otherKingdom }).Where(curKingdom => FactionManager.IsAlliedWithFaction(otherKingdom, curKingdom) && !FactionManager.IsAtWarAgainstFaction(kingdom, curKingdom));
+            foreach (var alliedEnemy in alliedEnemies)
             {
                 TextObject textObject = null;
-                if (explanation != null)
+                if (explanation is not null)
                 {
                     textObject = new TextObject("{=cmOSpfyW}Alliance with {ALLIED_KINGDOM}");
                     textObject.SetTextVariable("ALLIED_KINGDOM", alliedEnemy.Name);
                 }
                 explainedNumber.Add(Scores.ExistingAllianceWithEnemy, textObject);
             }
-            foreach (Kingdom alliedNeutral in alliedNeutrals)
+            foreach (var alliedNeutral in alliedNeutrals)
             {
                 TextObject textObject = null;
-                if (explanation != null)
+                if (explanation is not null)
                 {
                     textObject = new TextObject("{=cmOSpfyW}Alliance with {ALLIED_KINGDOM}");
                     textObject.SetTextVariable("ALLIED_KINGDOM", alliedNeutral.Name);
@@ -70,14 +70,14 @@ namespace Diplomacy.DiplomaticAction
             }
 
             // relation modifier
-            float relationModifier = MBMath.ClampFloat((float)Math.Log((kingdom.Leader.GetRelation(otherKingdom.Leader) + 100f) / 100f, 1.5), -1, 1);
+            var relationModifier = MBMath.ClampFloat((float)Math.Log((kingdom.Leader.GetRelation(otherKingdom.Leader) + 100f) / 100f, 1.5), -1, 1);
             explainedNumber.Add(Scores.Relationship * relationModifier, _relationship);
 
             // expansionism modifier
             if (otherKingdom.GetExpansionismDiplomaticPenalty() < 0)
             {
                 TextObject textObject = null;
-                if (explanation != null)
+                if (explanation is not null)
                 {
                     textObject = new TextObject("{=CxdpR6w4}Expansionism");
                 }

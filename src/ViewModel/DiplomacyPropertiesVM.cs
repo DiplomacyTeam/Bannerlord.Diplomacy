@@ -30,27 +30,27 @@ namespace Diplomacy.ViewModel
 
         public void UpdateDiplomacyProperties()
         {
-            if (Faction1Wars == null)
+            if (Faction1Wars is null)
             {
                 Faction1Wars = new MBBindingList<DiplomacyFactionRelationshipVM>();
             }
-            if (Faction1Allies == null)
+            if (Faction1Allies is null)
             {
                 Faction1Allies = new MBBindingList<DiplomacyFactionRelationshipVM>();
             }
-            if (Faction2Wars == null)
+            if (Faction2Wars is null)
             {
                 Faction2Wars = new MBBindingList<DiplomacyFactionRelationshipVM>();
             }
-            if (Faction2Allies == null)
+            if (Faction2Allies is null)
             {
                 Faction2Allies = new MBBindingList<DiplomacyFactionRelationshipVM>();
             }
-            if (Faction1Pacts == null)
+            if (Faction1Pacts is null)
             {
                 Faction1Pacts = new MBBindingList<DiplomacyFactionRelationshipVM>();
             }
-            if (Faction2Pacts == null)
+            if (Faction2Pacts is null)
             {
                 Faction2Pacts = new MBBindingList<DiplomacyFactionRelationshipVM>();
             }
@@ -65,7 +65,7 @@ namespace Diplomacy.ViewModel
             AddWarRelationships(Faction1.Stances);
             AddWarRelationships(Faction2.Stances);
 
-            foreach (Kingdom kingdom in Kingdom.All)
+            foreach (var kingdom in Kingdom.All)
             {
                 if (FactionManager.IsAlliedWithFaction(kingdom, Faction1) && kingdom != Faction1)
                 {
@@ -84,9 +84,9 @@ namespace Diplomacy.ViewModel
 
         private void AddNonAggressionPactRelationships(Kingdom kingdom, IFaction faction, MBBindingList<DiplomacyFactionRelationshipVM> FactionPacts)
         {
-            if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, faction as Kingdom, out NonAggressionPactAgreement pact))
+            if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, faction as Kingdom, out var pact))
             {
-                TextObject textObject = new TextObject(StringConstants.DaysRemaining);
+                var textObject = new TextObject(StringConstants.DaysRemaining);
                 textObject.SetTextVariable("DAYS_LEFT", (int)Math.Round(pact.EndDate.RemainingDaysFromNow));
                 FactionPacts.Add(new DiplomacyFactionRelationshipVM(kingdom, new HintViewModel(textObject.ToString())));
             }
@@ -95,7 +95,7 @@ namespace Diplomacy.ViewModel
         private void AddWarRelationships(IEnumerable<StanceLink> stances)
         {
 
-            foreach (StanceLink stanceLink in from x in stances
+            foreach (var stanceLink in from x in stances
                                               where x.IsAtWar
                                               select x into w
                                               orderby w.Faction1.Name.ToString() + w.Faction2.Name.ToString()
@@ -104,8 +104,8 @@ namespace Diplomacy.ViewModel
                 if (stanceLink.Faction1 is Kingdom && stanceLink.Faction2 is Kingdom && !stanceLink.Faction1.IsMinorFaction && !stanceLink.Faction2.IsMinorFaction)
                 {
 
-                    bool isFaction1War = stanceLink.Faction1 == Faction1 || stanceLink.Faction2 == Faction1;
-                    bool isFaction2War = stanceLink.Faction1 == Faction2 || stanceLink.Faction2 == Faction2;
+                    var isFaction1War = stanceLink.Faction1 == Faction1 || stanceLink.Faction2 == Faction1;
+                    var isFaction2War = stanceLink.Faction1 == Faction2 || stanceLink.Faction2 == Faction2;
 
                     if (isFaction1War && isFaction2War)
                     {

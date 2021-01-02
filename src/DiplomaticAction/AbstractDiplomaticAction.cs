@@ -37,9 +37,9 @@ namespace Diplomacy.DiplomaticAction
         {
             if (!bypassCosts)
             {
-                this.AssessCosts(proposingKingdom, otherKingdom, forcePlayerCharacterCosts);
+                AssessCosts(proposingKingdom, otherKingdom, forcePlayerCharacterCosts);
             }
-            this.ApplyInternal(proposingKingdom, otherKingdom, customDurationInDays);
+            ApplyInternal(proposingKingdom, otherKingdom, customDurationInDays);
         }
         protected abstract void AssessCosts(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts);
     }

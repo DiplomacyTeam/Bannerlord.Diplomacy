@@ -20,29 +20,29 @@ namespace Diplomacy.ViewModel
     {
         public KingdomTruceItemVMExtensionVM(IFaction faction1, IFaction faction2, Action<KingdomDiplomacyItemVM> onSelection, Action<KingdomTruceItemVM> onAction) : base(faction1, faction2, onSelection, onAction)
         {
-            this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
-            this.AllianceActionName = new TextObject("{=0WPWbx70}Form Alliance").ToString();
-            this.InfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForDeclaringWar(Faction1 as Kingdom, true).Value;
-            this.ActionName = GameTexts.FindText("str_kingdom_declate_war_action", null).ToString();
-            this.NonAggressionPactActionName = new TextObject("{=9pY0NQrk}Form Pact").ToString();
+            SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
+            AllianceActionName = new TextObject("{=0WPWbx70}Form Alliance").ToString();
+            InfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForDeclaringWar(Faction1 as Kingdom, true).Value;
+            ActionName = GameTexts.FindText("str_kingdom_declate_war_action", null).ToString();
+            NonAggressionPactActionName = new TextObject("{=9pY0NQrk}Form Pact").ToString();
 
-            TextObject textObject = new TextObject("{=9zlQNtlX}Form a non-aggression pact lasting {PACT_DURATION_DAYS} days.");
+            var textObject = new TextObject("{=9zlQNtlX}Form a non-aggression pact lasting {PACT_DURATION_DAYS} days.");
             textObject.SetTextVariable("PACT_DURATION_DAYS", Settings.Instance.NonAggressionPactDuration);
-            this.NonAggressionPactHelpText = textObject.ToString();
+            NonAggressionPactHelpText = textObject.ToString();
 
-            this.AllianceText = new TextObject("{=zpNalMeA}Alliances").ToString();
-            this.WarsText = new TextObject("{=y5tXjbLK}Wars").ToString();
-            this.PactsText = new TextObject(StringConstants.NonAggressionPacts).ToString();
+            AllianceText = new TextObject("{=zpNalMeA}Alliances").ToString();
+            WarsText = new TextObject("{=y5tXjbLK}Wars").ToString();
+            PactsText = new TextObject(StringConstants.NonAggressionPacts).ToString();
             UpdateDiplomacyProperties();
         }
 
         protected override void UpdateDiplomacyProperties()
         {
-            if (this.DiplomacyProperties == null)
+            if (DiplomacyProperties is null)
             {
-                this.DiplomacyProperties = new DiplomacyPropertiesVM(Faction1, Faction2);
+                DiplomacyProperties = new DiplomacyPropertiesVM(Faction1, Faction2);
             }
-            this.DiplomacyProperties.UpdateDiplomacyProperties();
+            DiplomacyProperties.UpdateDiplomacyProperties();
 
             base.UpdateDiplomacyProperties();
             UpdateActionAvailability();
@@ -50,10 +50,10 @@ namespace Diplomacy.ViewModel
 
             if (Settings.Instance.EnableWarExhaustion)
             {
-                this.Stats.Insert(1, new KingdomWarComparableStatVM(
-                    (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)this.Faction1, (Kingdom)this.Faction2)),
-                    (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)this.Faction2, (Kingdom)this.Faction1)),
-                    new TextObject("{=XmVTQ0bH}War Exhaustion"), this._faction1Color, this._faction2Color, 100, null));
+                Stats.Insert(1, new KingdomWarComparableStatVM(
+                    (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction1, (Kingdom)Faction2)),
+                    (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction2, (Kingdom)Faction1)),
+                    new TextObject("{=XmVTQ0bH}War Exhaustion"), _faction1Color, _faction2Color, 100, null));
             }
         }
 
@@ -66,52 +66,52 @@ namespace Diplomacy.ViewModel
 
         protected virtual void UpdateActionAvailability()
         {
-            this.IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
-            this.IsOptionAvailable = DeclareWarConditions.Instance.CanApplyExceptions(this, true).IsEmpty();
-            string allianceException = FormAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
-            this.IsAllianceAvailable = allianceException == null;
-            string declareWarException = DeclareWarConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
-            this.ActionHint = declareWarException != null ? new HintViewModel(declareWarException) : new HintViewModel();
-            this.AllianceHint = allianceException != null ? new HintViewModel(allianceException) : new HintViewModel();
-            string nonAggressionPactException = NonAggressionPactConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
-            this.IsNonAggressionPactAvailable = nonAggressionPactException == null;
-            this.NonAggressionPactHint = nonAggressionPactException != null ? new HintViewModel(nonAggressionPactException) : new HintViewModel();
+            IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
+            IsOptionAvailable = DeclareWarConditions.Instance.CanApplyExceptions(this, true).IsEmpty();
+            var allianceException = FormAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
+            IsAllianceAvailable = allianceException is null;
+            var declareWarException = DeclareWarConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
+            ActionHint = declareWarException is not null ? new HintViewModel(declareWarException) : new HintViewModel();
+            AllianceHint = allianceException is not null ? new HintViewModel(allianceException) : new HintViewModel();
+            var nonAggressionPactException = NonAggressionPactConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
+            IsNonAggressionPactAvailable = nonAggressionPactException is null;
+            NonAggressionPactHint = nonAggressionPactException is not null ? new HintViewModel(nonAggressionPactException) : new HintViewModel();
 
-            HybridCost allianceCost = DiplomacyCostCalculator.DetermineCostForFormingAlliance(Faction1 as Kingdom, Faction2 as Kingdom, true);
-            this.AllianceInfluenceCost = (int)allianceCost.InfluenceCost.Value;
-            this.AllianceGoldCost = (int)allianceCost.GoldCost.Value;
-
-
-            HybridCost nonAggressionPactCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(Faction1 as Kingdom, Faction2 as Kingdom, true);
-            this.NonAggressionPactInfluenceCost = (int)nonAggressionPactCost.InfluenceCost.Value;
-            this.NonAggressionPactGoldCost = (int)nonAggressionPactCost.GoldCost.Value;
+            var allianceCost = DiplomacyCostCalculator.DetermineCostForFormingAlliance(Faction1 as Kingdom, Faction2 as Kingdom, true);
+            AllianceInfluenceCost = (int)allianceCost.InfluenceCost.Value;
+            AllianceGoldCost = (int)allianceCost.GoldCost.Value;
 
 
-            this.AllianceScoreHint = this.UpdateDiplomacyTooltip(AllianceScoringModel.Instance.GetScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer()));
-            this.NonAggressionPactScoreHint = this.UpdateDiplomacyTooltip(NonAggressionPactScoringModel.Instance.GetScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer()));
+            var nonAggressionPactCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(Faction1 as Kingdom, Faction2 as Kingdom, true);
+            NonAggressionPactInfluenceCost = (int)nonAggressionPactCost.InfluenceCost.Value;
+            NonAggressionPactGoldCost = (int)nonAggressionPactCost.GoldCost.Value;
+
+
+            AllianceScoreHint = UpdateDiplomacyTooltip(AllianceScoringModel.Instance.GetScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer()));
+            NonAggressionPactScoreHint = UpdateDiplomacyTooltip(NonAggressionPactScoringModel.Instance.GetScore(Faction2 as Kingdom, Faction1 as Kingdom, new StatExplainer()));
         }
 
         private static readonly TextObject _plusStr = new TextObject("{=eTw2aNV5}+", null);
         private static readonly TextObject _changeStr = new TextObject("{=XIBUWDlT}Required Score", null);
         private BasicTooltipViewModel UpdateDiplomacyTooltip(ExplainedNumber explainedNumber)
         {
-            List<TooltipProperty> list = new List<TooltipProperty>();
+            var list = new List<TooltipProperty>();
             {
-                string value = string.Format("{0:0.##}", explainedNumber.ResultNumber);
+                var value = string.Format("{0:0.##}", explainedNumber.ResultNumber);
                 list.Add(new TooltipProperty(new TextObject("{=5r6fsHgm}Current Score").ToString(), value, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
             }
             if (explainedNumber.Explainer.Lines.Count > 0)
             {
-                foreach (StatExplainer.ExplanationLine explanationLine in explainedNumber.Explainer.Lines)
+                foreach (var explanationLine in explainedNumber.Explainer.Lines)
                 {
-                    string value = string.Format("{0}{1:0.##}", (explanationLine.Number > 0.001f) ? _plusStr.ToString() : "", explanationLine.Number);
+                    var value = string.Format("{0}{1:0.##}", (explanationLine.Number > 0.001f) ? _plusStr.ToString() : "", explanationLine.Number);
                     list.Add(new TooltipProperty(explanationLine.Name, value, 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 }
             }
             list.Add(new TooltipProperty("", string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
             {
-                float changeValue = explainedNumber.ResultNumber;
-                string value = string.Format("{0:0.##}", AllianceScoringModel.Instance.ScoreThreshold);
+                var changeValue = explainedNumber.ResultNumber;
+                var value = string.Format("{0:0.##}", AllianceScoringModel.Instance.ScoreThreshold);
                 list.Add(new TooltipProperty(_changeStr.ToString(), value, 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
             }
             return new BasicTooltipViewModel(() => list);
@@ -120,18 +120,18 @@ namespace Diplomacy.ViewModel
         protected void SendMessenger()
         {
             Events.Instance.OnMessengerSent(Faction2Leader.Hero);
-            this.UpdateDiplomacyProperties();
+            UpdateDiplomacyProperties();
         }
 
         protected void FormAlliance()
         {
-            DeclareAllianceAction.Apply(this.Faction1 as Kingdom, this.Faction2 as Kingdom, true);
+            DeclareAllianceAction.Apply(Faction1 as Kingdom, Faction2 as Kingdom, true);
         }
 
         protected void ProposeNonAggressionPact()
         {
-            FormNonAggressionPactAction.Apply(this.Faction1 as Kingdom, this.Faction2 as Kingdom, true);
-            this.UpdateDiplomacyProperties();
+            FormNonAggressionPactAction.Apply(Faction1 as Kingdom, Faction2 as Kingdom, true);
+            UpdateDiplomacyProperties();
         }
 
         [DataSourceProperty]
@@ -139,13 +139,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._isAllianceAvailable;
+                return _isAllianceAvailable;
             }
             set
             {
-                if (value != this._isAllianceAvailable)
+                if (value != _isAllianceAvailable)
                 {
-                    this._isAllianceAvailable = value;
+                    _isAllianceAvailable = value;
                     base.OnPropertyChanged("isAllianceAvailable");
                 }
             }
@@ -156,13 +156,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._allianceInfluenceCost;
+                return _allianceInfluenceCost;
             }
             set
             {
-                if (value != this._allianceInfluenceCost)
+                if (value != _allianceInfluenceCost)
                 {
-                    this._allianceInfluenceCost = value;
+                    _allianceInfluenceCost = value;
                     base.OnPropertyChanged("AllianceInfluenceCost");
                 }
             }
@@ -173,13 +173,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._allianceGoldCost;
+                return _allianceGoldCost;
             }
             set
             {
-                if (value != this._allianceGoldCost)
+                if (value != _allianceGoldCost)
                 {
-                    this._allianceGoldCost = value;
+                    _allianceGoldCost = value;
                     base.OnPropertyChanged("AllianceInfluenceCost");
                 }
             }
@@ -190,13 +190,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._isNonAggressionPactAvailable;
+                return _isNonAggressionPactAvailable;
             }
             set
             {
-                if (value != this._isNonAggressionPactAvailable)
+                if (value != _isNonAggressionPactAvailable)
                 {
-                    this._isNonAggressionPactAvailable = value;
+                    _isNonAggressionPactAvailable = value;
                     base.OnPropertyChanged("IsNonAggressionPactAvailable");
                 }
             }
@@ -207,13 +207,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._nonAggressionPactInfluenceCost;
+                return _nonAggressionPactInfluenceCost;
             }
             set
             {
-                if (value != this._nonAggressionPactInfluenceCost)
+                if (value != _nonAggressionPactInfluenceCost)
                 {
-                    this._nonAggressionPactInfluenceCost = value;
+                    _nonAggressionPactInfluenceCost = value;
                     base.OnPropertyChanged("NonAggressionPactInfluenceCost");
                 }
             }
@@ -224,13 +224,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._nonAggressionPactGoldCost;
+                return _nonAggressionPactGoldCost;
             }
             set
             {
-                if (value != this._nonAggressionPactGoldCost)
+                if (value != _nonAggressionPactGoldCost)
                 {
-                    this._nonAggressionPactGoldCost = value;
+                    _nonAggressionPactGoldCost = value;
                     base.OnPropertyChanged("NonAggressionPactGoldCost");
                 }
             }
@@ -255,13 +255,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._isMessengerAvailable;
+                return _isMessengerAvailable;
             }
             set
             {
-                if (value != this._isMessengerAvailable)
+                if (value != _isMessengerAvailable)
                 {
-                    this._isMessengerAvailable = value;
+                    _isMessengerAvailable = value;
                     base.OnPropertyChanged("IsMessengerAvailable");
                 }
             }
@@ -275,13 +275,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._isOptionAvailable;
+                return _isOptionAvailable;
             }
             set
             {
-                if (value != this._isOptionAvailable)
+                if (value != _isOptionAvailable)
                 {
-                    this._isOptionAvailable = value;
+                    _isOptionAvailable = value;
                     base.OnPropertyChanged("IsOptionAvailable");
                 }
             }
@@ -292,13 +292,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._actionHint;
+                return _actionHint;
             }
             set
             {
-                if (value != this._actionHint)
+                if (value != _actionHint)
                 {
-                    this._actionHint = value;
+                    _actionHint = value;
                     base.OnPropertyChanged("ActionHint");
                 }
             }
@@ -309,13 +309,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._allianceHint;
+                return _allianceHint;
             }
             set
             {
-                if (value != this._allianceHint)
+                if (value != _allianceHint)
                 {
-                    this._allianceHint = value;
+                    _allianceHint = value;
                     base.OnPropertyChanged("AllianceHint");
                 }
             }
@@ -326,13 +326,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._nonAggressionPactHint;
+                return _nonAggressionPactHint;
             }
             set
             {
-                if (value != this._nonAggressionPactHint)
+                if (value != _nonAggressionPactHint)
                 {
-                    this._nonAggressionPactHint = value;
+                    _nonAggressionPactHint = value;
                     base.OnPropertyChanged("NonAggressionPactHint");
                 }
             }
@@ -343,13 +343,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._allianceScoreHint;
+                return _allianceScoreHint;
             }
             set
             {
-                if (value != this._allianceScoreHint)
+                if (value != _allianceScoreHint)
                 {
-                    this._allianceScoreHint = value;
+                    _allianceScoreHint = value;
                     base.OnPropertyChanged("AllianceScoreHint");
                 }
             }
@@ -360,13 +360,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._nonAggressionPactScoreHint;
+                return _nonAggressionPactScoreHint;
             }
             set
             {
-                if (value != this._nonAggressionPactScoreHint)
+                if (value != _nonAggressionPactScoreHint)
                 {
-                    this._nonAggressionPactScoreHint = value;
+                    _nonAggressionPactScoreHint = value;
                     base.OnPropertyChanged("NonAggressionPactScoreHint");
                 }
             }

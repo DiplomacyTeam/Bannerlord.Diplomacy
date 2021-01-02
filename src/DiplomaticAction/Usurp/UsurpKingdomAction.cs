@@ -59,18 +59,18 @@ namespace Diplomacy.DiplomaticAction.Usurp
 
         private static void AdjustRelations(Clan usurpingClan, List<Clan> clans, int baseValue)
         {
-            Hero leader = usurpingClan.Leader;
-            foreach (Clan clan in clans)
+            var leader = usurpingClan.Leader;
+            foreach (var clan in clans)
             {
                 if (usurpingClan == clan)
                 {
                     continue;
                 }
 
-                Hero otherLeader = clan.Leader;
-                int honor = otherLeader.GetHeroTraits().Honor;
-                int calculating = otherLeader.GetHeroTraits().Calculating;
-                int value = honor >= calculating ? baseValue : default;
+                var otherLeader = clan.Leader;
+                var honor = otherLeader.GetHeroTraits().Honor;
+                var calculating = otherLeader.GetHeroTraits().Calculating;
+                var value = honor >= calculating ? baseValue : default;
                 ChangeRelationAction.ApplyRelationChangeBetweenHeroes(leader, otherLeader, -value);
             }
         }
@@ -96,7 +96,7 @@ namespace Diplomacy.DiplomaticAction.Usurp
 
         public static void GetClanSupport(Clan usurpingClan, out int supportingClanTiers, out int opposingClanTiers)
         {
-            Clan rulingClan = usurpingClan.Kingdom.RulingClan;
+            var rulingClan = usurpingClan.Kingdom.RulingClan;
             List<Clan> supportingClans, opposingClans;
             GetClanSupport(usurpingClan, out supportingClans, out opposingClans);
 
@@ -106,16 +106,16 @@ namespace Diplomacy.DiplomaticAction.Usurp
 
         public static float GetUsurpInfluenceCost(Clan usurpingClan)
         {
-            Clan rulingClan = usurpingClan.Kingdom.RulingClan;
+            var rulingClan = usurpingClan.Kingdom.RulingClan;
             return rulingClan.Influence;
         }
 
         private static void GetClanSupport(Clan usurpingClan, out List<Clan> supportingClans, out List<Clan> opposingClans)
         {
-            Kingdom kingdom = usurpingClan.Kingdom;
-            Clan rulingClan = usurpingClan.Kingdom.RulingClan;
+            var kingdom = usurpingClan.Kingdom;
+            var rulingClan = usurpingClan.Kingdom.RulingClan;
 
-            IEnumerable<Clan> validClans = kingdom.Clans.Except(new Clan[] { usurpingClan, rulingClan });
+            var validClans = kingdom.Clans.Except(new Clan[] { usurpingClan, rulingClan });
 
             supportingClans = validClans.Where(clan => usurpingClan.Leader.GetRelation(clan.Leader) > rulingClan.Leader.GetRelation(clan.Leader)).ToList();
             opposingClans = validClans.Except(supportingClans).ToList();

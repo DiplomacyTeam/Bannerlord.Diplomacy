@@ -2,27 +2,30 @@
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.Extensions;
+
+using Microsoft.Extensions.Logging;
+
 using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
-namespace Diplomacy.CampaignEventBehaviors
+namespace Diplomacy.CampaignBehaviors
 {
-    class DiplomaticAgreementBehavior : CampaignBehaviorBase
+    internal sealed class DiplomaticAgreementBehavior : CampaignBehaviorBase
     {
-
         private DiplomaticAgreementManager _diplomaticAgreementManager;
 
         public DiplomaticAgreementBehavior()
         {
-            _diplomaticAgreementManager = new DiplomaticAgreementManager();
+            _diplomaticAgreementManager = new();
         }
 
         public override void RegisterEvents()
         {
-            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, this.UpdateDiplomaticAgreements);
-            CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, this.ConsiderDiplomaticAgreements);
-            Events.AllianceFormed.AddNonSerializedListener(this, this.ExpireNonAggressionPact);
+            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, UpdateDiplomaticAgreements);
+            CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, ConsiderDiplomaticAgreements);
+            Events.AllianceFormed.AddNonSerializedListener(this, ExpireNonAggressionPact);
         }
 
         private void ConsiderDiplomaticAgreements(Clan clan)
@@ -30,7 +33,7 @@ namespace Diplomacy.CampaignEventBehaviors
             // only apply to kingdom leader clans
             if (clan.MapFaction.IsKingdomFaction && clan.MapFaction.Leader == clan.Leader && !clan.Leader.IsHumanPlayerCharacter)
             {
-                this.ConsiderNonAggressionPact(clan.MapFaction as Kingdom);
+                ConsiderNonAggressionPact((Kingdom)clan.MapFaction);
             }
         }
 
@@ -38,13 +41,16 @@ namespace Diplomacy.CampaignEventBehaviors
         {
             if (MBRandom.RandomFloat < 0.05f)
             {
-                Kingdom proposedKingdom = Kingdom.All.Except(new Kingdom[] { proposingKingdom })?
+                var proposedKingdom = Kingdom.All
+                    .Except(new Kingdom[] { proposingKingdom })?
                     .Where(kingdom => NonAggressionPactConditions.Instance.CanApply(proposingKingdom, kingdom))
                     .Where(kingdom => NonAggressionPactScoringModel.Instance.ShouldFormBidirectional(proposingKingdom, kingdom))
                     .OrderByDescending(kingdom => kingdom.GetExpansionism()).FirstOrDefault();
 
-                if (proposedKingdom != null)
+                if (proposedKingdom is not null)
                 {
+                    Log.Get<DiplomaticAgreementBehavior>()
+                        .LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} decided to form a NAP with {proposedKingdom.Name}.");
                     FormNonAggressionPactAction.Apply(proposingKingdom, proposedKingdom);
                 }
             }
@@ -52,27 +58,26 @@ namespace Diplomacy.CampaignEventBehaviors
 
         private void UpdateDiplomaticAgreements()
         {
-            DiplomaticAgreementManager.Instance.Agreements.Values.SelectMany(x => x).ToList().ForEach(x => x.TryExpireNotification());
+            DiplomaticAgreementManager.Instance.Agreements.Values
+            .SelectMany(x => x)
+            .ToList()
+            .ForEach(x => x.TryExpireNotification());
         }
 
         private void ExpireNonAggressionPact(AllianceEvent obj)
         {
-            if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(obj.Kingdom, obj.OtherKingdom, out NonAggressionPactAgreement pactAgreement))
-            {
+            if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(obj.Kingdom, obj.OtherKingdom, out var pactAgreement))
                 pactAgreement.Expire();
-            }
         }
 
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_diplomaticAgreementManager", ref _diplomaticAgreementManager);
+
             if (dataStore.IsLoading)
             {
-                if (_diplomaticAgreementManager == null)
-                {
-                    this._diplomaticAgreementManager = new DiplomaticAgreementManager();
-                }
-                this._diplomaticAgreementManager.Sync();
+                _diplomaticAgreementManager ??= new();
+                _diplomaticAgreementManager.Sync();
             }
         }
     }

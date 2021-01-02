@@ -9,7 +9,7 @@ namespace Diplomacy.Costs
 
         public InfluenceCost(Clan clan, float value) : base(value)
         {
-            this._clan = clan;
+            _clan = clan;
         }
 
         public override void ApplyCost()

@@ -9,10 +9,10 @@ namespace Diplomacy.Messengers
     {
         public Messenger(Hero targetHero, CampaignTime dispatchTime)
         {
-            this.TargetHero = targetHero;
-            this.DispatchTime = dispatchTime;
-            this.CurrentPosition = Hero.MainHero.GetMapPoint().Position2D;
-            this.Arrived = false;
+            TargetHero = targetHero;
+            DispatchTime = dispatchTime;
+            CurrentPosition = Hero.MainHero.GetMapPoint().Position2D;
+            Arrived = false;
         }
 
         [SaveableProperty(1)]

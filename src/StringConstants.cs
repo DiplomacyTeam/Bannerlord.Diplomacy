@@ -1,6 +1,6 @@
 ﻿namespace Diplomacy
 {
-    class StringConstants
+    internal sealed class StringConstants
     {
         public const string AT_WAR = "{=UQZmdLzc}Cannot be at war.";
         public const string NOT_ENOUGH_INFLUENCE = "{=TS1iV2pO}Not enough influence!";

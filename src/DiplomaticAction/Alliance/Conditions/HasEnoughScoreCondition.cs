@@ -8,10 +8,10 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
-            bool scoreTooLow = AllianceScoringModel.Instance.GetScore(otherKingdom, kingdom).ResultNumber < AllianceScoringModel.Instance.ScoreThreshold;
+            var scoreTooLow = AllianceScoringModel.Instance.GetScore(otherKingdom, kingdom).ResultNumber < AllianceScoringModel.Instance.ScoreThreshold;
             if (scoreTooLow)
             {
-                TextObject scoreTooLowText = new TextObject("{=VvTTrRpl}This faction is not interested in forming an alliance with you.");
+                var scoreTooLowText = new TextObject("{=VvTTrRpl}This faction is not interested in forming an alliance with you.");
                 textObject = scoreTooLowText;
             }
             return !scoreTooLow;

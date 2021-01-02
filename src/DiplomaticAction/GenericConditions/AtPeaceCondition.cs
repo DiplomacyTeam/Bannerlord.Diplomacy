@@ -8,7 +8,7 @@ namespace Diplomacy.DiplomaticAction.GenericConditions
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
-            bool atWar = FactionManager.IsAtWarAgainstFaction(kingdom, otherKingdom);
+            var atWar = FactionManager.IsAtWarAgainstFaction(kingdom, otherKingdom);
             if (atWar)
             {
                 textObject = new TextObject(StringConstants.AT_WAR);

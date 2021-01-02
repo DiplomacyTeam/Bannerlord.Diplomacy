@@ -29,18 +29,18 @@ namespace Diplomacy.ViewModel
 
         public KingdomClanVMExtensionVM(Action<TaleWorlds.CampaignSystem.Election.KingdomDecision> forceDecide) : base(forceDecide)
         {
-            this._executeExpel = () => typeof(KingdomClanVM).GetMethod("ExecuteExpelCurrentClan", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(this, new object[] { });
-            this._executeSupport = () => typeof(KingdomClanVM).GetMethod("ExecuteSupport", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(this, new object[] { });
+            _executeExpel = () => typeof(KingdomClanVM).GetMethod("ExecuteExpelCurrentClan", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(this, new object[] { });
+            _executeSupport = () => typeof(KingdomClanVM).GetMethod("ExecuteSupport", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(this, new object[] { });
 
-            Events.FiefGranted.AddNonSerializedListener(this, this.RefreshCanGrantFief);
-            this._grantFiefInterface = new GrantFiefInterface();
-            this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
-            this.GrantFiefExplanationText = new TextObject("{=98hwXUTp}Grant fiefs to clans in your kingdom").ToString();
-            this.DonateGoldActionName = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
-            this.DonateGoldExplanationText = new TextObject("{=7QvXkcxH}Donate gold to clans in your kingdom").ToString();
-            this.UsurpThroneActionName = new TextObject("{=N7goPgiq}Usurp Throne").ToString();
-            base.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
-            base.PropertyChangedWithValue += new PropertyChangedWithValueEventHandler(this.OnPropertyChangedWithValue);
+            Events.FiefGranted.AddNonSerializedListener(this, RefreshCanGrantFief);
+            _grantFiefInterface = new GrantFiefInterface();
+            GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
+            GrantFiefExplanationText = new TextObject("{=98hwXUTp}Grant fiefs to clans in your kingdom").ToString();
+            DonateGoldActionName = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
+            DonateGoldExplanationText = new TextObject("{=7QvXkcxH}Donate gold to clans in your kingdom").ToString();
+            UsurpThroneActionName = new TextObject("{=N7goPgiq}Usurp Throne").ToString();
+            base.PropertyChanged += new PropertyChangedEventHandler(OnPropertyChanged);
+            base.PropertyChangedWithValue += new PropertyChangedWithValueEventHandler(OnPropertyChangedWithValue);
             RefreshCanGrantFief();
             RefreshCanUsurpThrone();
         }
@@ -52,12 +52,12 @@ namespace Diplomacy.ViewModel
 
         private void ExecuteExpelCurrentClan()
         {
-            this._executeExpel();
+            _executeExpel();
         }
 
         private void ExecuteSupport()
         {
-            this._executeSupport();
+            _executeSupport();
         }
 
         // e1.4.2 compatible
@@ -82,16 +82,16 @@ namespace Diplomacy.ViewModel
 
         private void RefreshCanUsurpThrone()
         {
-            this.ShowUsurpThrone = CurrentSelectedClan.Clan == Clan.PlayerClan;
-            this.CanUsurpThrone = UsurpKingdomAction.CanUsurp(Clan.PlayerClan, out string errorMessage);
-            this.UsurpThroneHint = errorMessage != null ? new HintViewModel(errorMessage) : new HintViewModel();
-            UsurpKingdomAction.GetClanSupport(Clan.PlayerClan, out int supportingClanTiers, out int opposingClanTiers);
+            ShowUsurpThrone = CurrentSelectedClan.Clan == Clan.PlayerClan;
+            CanUsurpThrone = UsurpKingdomAction.CanUsurp(Clan.PlayerClan, out var errorMessage);
+            UsurpThroneHint = errorMessage is not null ? new HintViewModel(errorMessage) : new HintViewModel();
+            UsurpKingdomAction.GetClanSupport(Clan.PlayerClan, out var supportingClanTiers, out var opposingClanTiers);
 
-            TextObject textObject = new TextObject("{=WVe7QwhW}Usurp the throne of this kingdom\nClan Support: {SUPPORTING_TIERS} / {OPPOSING_TIERS}");
+            var textObject = new TextObject("{=WVe7QwhW}Usurp the throne of this kingdom\nClan Support: {SUPPORTING_TIERS} / {OPPOSING_TIERS}");
             textObject.SetTextVariable("SUPPORTING_TIERS", supportingClanTiers);
             textObject.SetTextVariable("OPPOSING_TIERS", opposingClanTiers + 1);
-            this.UsurpThroneExplanationText = textObject.ToString();
-            this.UsurpThroneInfluenceCost = (int)UsurpKingdomAction.GetUsurpInfluenceCost(Clan.PlayerClan);
+            UsurpThroneExplanationText = textObject.ToString();
+            UsurpThroneInfluenceCost = (int)UsurpKingdomAction.GetUsurpInfluenceCost(Clan.PlayerClan);
         }
 
         public void UsurpThrone()
@@ -102,12 +102,12 @@ namespace Diplomacy.ViewModel
 
         public void GrantFief()
         {
-            this._grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, this.CurrentSelectedClan.Clan.Leader);
+            _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, CurrentSelectedClan.Clan.Leader);
         }
 
         private void DonateGold()
         {
-            new DonateGoldInterface().ShowInterface(ScreenManager.TopScreen, this.CurrentSelectedClan.Clan);
+            new DonateGoldInterface().ShowInterface(ScreenManager.TopScreen, CurrentSelectedClan.Clan);
         }
 
 
@@ -119,20 +119,20 @@ namespace Diplomacy.ViewModel
 
         private void RefreshCanGrantFief()
         {
-            this.CanGrantFiefToClan = GrantFiefAction.CanGrantFief(this.CurrentSelectedClan.Clan, out string hint);
-            this.GrantFiefHint = this.CanGrantFiefToClan ? new HintViewModel() : new HintViewModel(hint, null);
+            CanGrantFiefToClan = GrantFiefAction.CanGrantFief(CurrentSelectedClan.Clan, out var hint);
+            GrantFiefHint = CanGrantFiefToClan ? new HintViewModel() : new HintViewModel(hint, null);
         }
 
         [DataSourceProperty]
         public bool CanGrantFiefToClan
         {
-            get { return this._canGrantFiefToClan; }
+            get { return _canGrantFiefToClan; }
 
             set
             {
-                if (value != this._canGrantFiefToClan)
+                if (value != _canGrantFiefToClan)
                 {
-                    this._canGrantFiefToClan = value;
+                    _canGrantFiefToClan = value;
                     base.OnPropertyChanged("CanGrantFiefToClan");
                 }
             }
@@ -146,13 +146,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._grantFiefHint;
+                return _grantFiefHint;
             }
             set
             {
-                if (value != this._grantFiefHint)
+                if (value != _grantFiefHint)
                 {
-                    this._grantFiefHint = value;
+                    _grantFiefHint = value;
                     base.OnPropertyChanged("GrantFiefHint");
                 }
             }
@@ -165,13 +165,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public string UsurpThroneExplanationText
         {
-            get { return this._usurpThroneExplanationText; }
+            get { return _usurpThroneExplanationText; }
 
             set
             {
-                if (value != this._usurpThroneExplanationText)
+                if (value != _usurpThroneExplanationText)
                 {
-                    this._usurpThroneExplanationText = value;
+                    _usurpThroneExplanationText = value;
                     base.OnPropertyChanged("UsurpThroneExplanationText");
                 }
             }
@@ -185,13 +185,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool ShowUsurpThrone
         {
-            get { return this._showUsurpThrone; }
+            get { return _showUsurpThrone; }
 
             set
             {
-                if (value != this._showUsurpThrone)
+                if (value != _showUsurpThrone)
                 {
-                    this._showUsurpThrone = value;
+                    _showUsurpThrone = value;
                     base.OnPropertyChanged("ShowUsurpThrone");
                 }
             }
@@ -201,13 +201,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool CanUsurpThrone
         {
-            get { return this._canUsurpThrone; }
+            get { return _canUsurpThrone; }
 
             set
             {
-                if (value != this._canUsurpThrone)
+                if (value != _canUsurpThrone)
                 {
-                    this._canUsurpThrone = value;
+                    _canUsurpThrone = value;
                     base.OnPropertyChanged("CanUsurpThrone");
                 }
             }
@@ -216,13 +216,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public int UsurpThroneInfluenceCost
         {
-            get { return this._usurpThroneInfluenceCost; }
+            get { return _usurpThroneInfluenceCost; }
 
             set
             {
-                if (value != this._usurpThroneInfluenceCost)
+                if (value != _usurpThroneInfluenceCost)
                 {
-                    this._usurpThroneInfluenceCost = value;
+                    _usurpThroneInfluenceCost = value;
                     base.OnPropertyChanged("UsurpThroneInfluenceCost");
                 }
             }
@@ -231,13 +231,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public HintViewModel UsurpThroneHint
         {
-            get { return this._usurpThroneHint; }
+            get { return _usurpThroneHint; }
 
             set
             {
-                if (value != this._usurpThroneHint)
+                if (value != _usurpThroneHint)
                 {
-                    this._usurpThroneHint = value;
+                    _usurpThroneHint = value;
                     base.OnPropertyChanged("UsurpThroneHint");
                 }
             }

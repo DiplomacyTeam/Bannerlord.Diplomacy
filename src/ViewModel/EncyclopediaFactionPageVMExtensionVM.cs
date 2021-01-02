@@ -23,35 +23,35 @@ namespace Diplomacy.ViewModel
 
         public override void RefreshValues()
         {
-            this._faction = (base.Obj as IFaction);
-            this.Allies = new MBBindingList<EncyclopediaFactionVM>();
-            this.AlliesText = new TextObject("{=KqfNSsBE}Allies", null).ToString();
-            this.NonAggressionPacts = new MBBindingList<EncyclopediaFactionVM>();
-            this.NonAggressionPactsText = new TextObject(StringConstants.NonAggressionPacts, null).ToString();
+            _faction = (base.Obj as IFaction);
+            Allies = new MBBindingList<EncyclopediaFactionVM>();
+            AlliesText = new TextObject("{=KqfNSsBE}Allies", null).ToString();
+            NonAggressionPacts = new MBBindingList<EncyclopediaFactionVM>();
+            NonAggressionPactsText = new TextObject(StringConstants.NonAggressionPacts, null).ToString();
             base.RefreshValues();
         }
 
         public override void Refresh()
         {
             base.IsLoadingOver = false;
-            this.Allies.Clear();
+            Allies.Clear();
 
-            EncyclopediaPage clanPages = Campaign.Current.EncyclopediaManager.GetPageOf(typeof(Clan));
-            foreach (IFaction faction in Enumerable.ThenBy<IFaction, string>(Enumerable.OrderBy<IFaction, bool>(Campaign.Current.Factions, (IFaction x) => !x.IsKingdomFaction), (IFaction f) => f.Name.ToString()))
+            var clanPages = Campaign.Current.EncyclopediaManager.GetPageOf(typeof(Clan));
+            foreach (var faction in Enumerable.ThenBy<IFaction, string>(Enumerable.OrderBy<IFaction, bool>(Campaign.Current.Factions, (IFaction x) => !x.IsKingdomFaction), (IFaction f) => f.Name.ToString()))
             {
-                if (clanPages.IsValidEncyclopediaItem(faction) && faction != this._faction && FactionManager.IsAlliedWithFaction(this._faction, faction))
+                if (clanPages.IsValidEncyclopediaItem(faction) && faction != _faction && FactionManager.IsAlliedWithFaction(_faction, faction))
                 {
-                    this.Allies.Add(new EncyclopediaFactionVM(faction));
+                    Allies.Add(new EncyclopediaFactionVM(faction));
                 }
             }
 
-            if (this._faction.IsKingdomFaction)
+            if (_faction.IsKingdomFaction)
             {
-                foreach (IFaction faction in Enumerable.ThenBy<IFaction, string>(Enumerable.OrderBy<IFaction, bool>(Campaign.Current.Factions, (IFaction x) => !x.IsKingdomFaction), (IFaction f) => f.Name.ToString()))
+                foreach (var faction in Enumerable.ThenBy<IFaction, string>(Enumerable.OrderBy<IFaction, bool>(Campaign.Current.Factions, (IFaction x) => !x.IsKingdomFaction), (IFaction f) => f.Name.ToString()))
                 {
-                    if (clanPages.IsValidEncyclopediaItem(faction) && faction != this._faction && faction.IsKingdomFaction && DiplomaticAgreementManager.Instance.HasNonAggressionPact(this._faction as Kingdom, faction as Kingdom, out _))
+                    if (clanPages.IsValidEncyclopediaItem(faction) && faction != _faction && faction.IsKingdomFaction && DiplomaticAgreementManager.Instance.HasNonAggressionPact(_faction as Kingdom, faction as Kingdom, out _))
                     {
-                        this.NonAggressionPacts.Add(new EncyclopediaFactionVM(faction));
+                        NonAggressionPacts.Add(new EncyclopediaFactionVM(faction));
                     }
                 }
             }
@@ -64,13 +64,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._alliesText;
+                return _alliesText;
             }
             set
             {
-                if (value != this._alliesText)
+                if (value != _alliesText)
                 {
-                    this._alliesText = value;
+                    _alliesText = value;
                     base.OnPropertyChanged("AlliesText");
                 }
             }
@@ -81,13 +81,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._nonAggressionPactsText;
+                return _nonAggressionPactsText;
             }
             set
             {
-                if (value != this._nonAggressionPactsText)
+                if (value != _nonAggressionPactsText)
                 {
-                    this._nonAggressionPactsText = value;
+                    _nonAggressionPactsText = value;
                     base.OnPropertyChanged("NonAggressionPactsText");
                 }
             }
@@ -98,13 +98,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._allies;
+                return _allies;
             }
             set
             {
-                if (value != this._allies)
+                if (value != _allies)
                 {
-                    this._allies = value;
+                    _allies = value;
                     base.OnPropertyChanged("Allies");
                 }
             }
@@ -115,13 +115,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._nonAggressionPacts;
+                return _nonAggressionPacts;
             }
             set
             {
-                if (value != this._nonAggressionPacts)
+                if (value != _nonAggressionPacts)
                 {
-                    this._nonAggressionPacts = value;
+                    _nonAggressionPacts = value;
                     base.OnPropertyChanged("NonAggressionPacts");
                 }
             }

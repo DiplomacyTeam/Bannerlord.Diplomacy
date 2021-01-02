@@ -1,5 +1,7 @@
 ﻿using Diplomacy.DiplomaticAction.WarPeace;
+
 using HarmonyLib;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 

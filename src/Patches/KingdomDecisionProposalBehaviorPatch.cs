@@ -13,8 +13,8 @@ namespace Diplomacy.Patches
         [HarmonyPatch("ConsiderWar")]
         public static bool ConsiderWarDecisionPatch(Clan clan, Kingdom kingdom, IFaction otherFaction, bool __result)
         {
-            Kingdom otherKingdom = otherFaction as Kingdom;
-            if (otherKingdom != null && !DeclareWarConditions.Instance.CanApply(kingdom, otherKingdom, bypassCosts: true))
+            if (otherFaction is Kingdom otherKingdom
+                && !DeclareWarConditions.Instance.CanApply(kingdom, otherKingdom, bypassCosts: true))
             {
                 __result = false;
                 return false;
@@ -27,11 +27,12 @@ namespace Diplomacy.Patches
 
         [HarmonyPrefix]
         [HarmonyPatch("ConsiderPeace")]
-        public static bool ConsiderPeacePatch(Clan clan, Clan otherClan, Kingdom kingdom, IFaction otherFaction, out MakePeaceKingdomDecision decision, bool __result)
+        public static bool ConsiderPeacePatch(Clan clan, Clan otherClan, Kingdom kingdom, IFaction otherFaction, out MakePeaceKingdomDecision? decision, bool __result)
         {
             decision = null;
-            Kingdom otherKingdom = otherFaction as Kingdom;
-            if (otherKingdom != null && !MakePeaceConditions.Instance.CanApply(kingdom, otherKingdom, bypassCosts: true))
+
+            if (otherFaction is Kingdom otherKingdom
+                && !MakePeaceConditions.Instance.CanApply(kingdom, otherKingdom, bypassCosts: true))
             {
                 __result = false;
                 return false;

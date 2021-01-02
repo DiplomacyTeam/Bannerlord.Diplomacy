@@ -13,10 +13,10 @@ namespace Diplomacy.GrantFief
         {
             ChangeOwnerOfSettlementAction.ApplyByDefault(grantedClan.Leader, settlement);
 
-            int relationChange = CalculateBaseRelationChange(settlement);
+            var relationChange = CalculateBaseRelationChange(settlement);
             ChangeRelationAction.ApplyPlayerRelation(grantedClan.Leader, relationChange);
 
-            foreach (Clan clan in Clan.PlayerClan.Kingdom.Clans.Where(clan => clan != grantedClan && clan != Clan.PlayerClan))
+            foreach (var clan in Clan.PlayerClan.Kingdom.Clans.Where(clan => clan != grantedClan && clan != Clan.PlayerClan))
             {
                 ChangeRelationAction.ApplyPlayerRelation(clan.Leader, Settings.Instance.GrantFiefRelationPenalty);
             }
@@ -26,14 +26,14 @@ namespace Diplomacy.GrantFief
 
         private static int CalculateBaseRelationChange(Settlement settlement)
         {
-            int baseRelationChange = (int)Math.Round(Math.Max(5, Math.Log(settlement.Prosperity / 1000, 1.1f)));
+            var baseRelationChange = (int)Math.Round(Math.Max(5, Math.Log(settlement.Prosperity / 1000, 1.1f)));
             return (int)(baseRelationChange * Settings.Instance.GrantFiefPositiveRelationMultiplier);
         }
 
         public static int PreviewPositiveRelationChange(Settlement settlement, Hero hero)
         {
-            int relationChange = CalculateBaseRelationChange(settlement);
-            ExplainedNumber explainedNumber = new ExplainedNumber((float)relationChange, new StatExplainer(), null);
+            var relationChange = CalculateBaseRelationChange(settlement);
+            var explainedNumber = new ExplainedNumber((float)relationChange, new StatExplainer(), null);
             Campaign.Current.Models.DiplomacyModel.GetRelationIncreaseFactor(Hero.MainHero, hero, ref explainedNumber);
             relationChange = (int)Math.Floor(explainedNumber.ResultNumber);
             return relationChange;
@@ -55,7 +55,7 @@ namespace Diplomacy.GrantFief
                 reason = new TextObject("{=D61vzEC7}You don't have any fiefs to grant.").ToString();
             }
 
-            return reason == null;
+            return reason is null;
         }
     }
 }

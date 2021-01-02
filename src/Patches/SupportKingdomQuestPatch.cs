@@ -17,7 +17,7 @@ namespace Diplomacy.Patches
         [HarmonyPostfix]
         public static void PostFix(object __instance)
         {
-            QuestBase questBase = ((QuestBase)__instance);
+            var questBase = ((QuestBase)__instance);
             if (!questBase.IsFinalized)
             {
                 typeof(QuestBase).GetMethod("CompleteQuestWithSuccess", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(questBase, new object[] { });

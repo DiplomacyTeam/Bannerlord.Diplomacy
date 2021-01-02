@@ -19,23 +19,23 @@ namespace Diplomacy.ViewModel
 
         public EncyclopediaHeroPageVMExtensionVM(EncyclopediaPageArgs args) : base(args)
         {
-            this._grantFiefInterface = new GrantFiefInterface();
+            _grantFiefInterface = new GrantFiefInterface();
             _hero = (base.Obj as Hero);
-            this._sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger();
-            this.SendMessengerCost = (int)_sendMessengerCost.Value;
-            this.SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
-            this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
+            _sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger();
+            SendMessengerCost = (int)_sendMessengerCost.Value;
+            SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
+            GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             base.RefreshValues();
-            this.Recalculate();
+            Recalculate();
         }
 
         private void Recalculate()
         {
-            if (this._hero.Clan?.Kingdom != null && Clan.PlayerClan?.Kingdom != null && this._hero.Clan.Kingdom == Clan.PlayerClan.Kingdom)
+            if (_hero.Clan?.Kingdom is not null && Clan.PlayerClan?.Kingdom is not null && _hero.Clan.Kingdom == Clan.PlayerClan.Kingdom)
             {
-                this.CanGrantFief = GrantFiefAction.CanGrantFief(this._hero.Clan, out _);
+                CanGrantFief = GrantFiefAction.CanGrantFief(_hero.Clan, out _);
             }
-            this.RefreshValues();
+            RefreshValues();
         }
 
         protected void SendMessenger()
@@ -51,7 +51,7 @@ namespace Diplomacy.ViewModel
 
         private void GrantFief()
         {
-            _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, this._hero, this.Recalculate);
+            _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, _hero, Recalculate);
         }
 
         [DataSourceProperty]
@@ -59,13 +59,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._canGrantFief;
+                return _canGrantFief;
             }
             set
             {
-                if (value != this._canGrantFief)
+                if (value != _canGrantFief)
                 {
-                    this._canGrantFief = value;
+                    _canGrantFief = value;
                     base.OnPropertyChanged("CanGrantFief");
                 }
             }
@@ -83,13 +83,13 @@ namespace Diplomacy.ViewModel
             get
             {
                 UpdateIsMessengerAvailable();
-                return this._isMessengerAvailable;
+                return _isMessengerAvailable;
             }
             set
             {
-                if (value != this._isMessengerAvailable)
+                if (value != _isMessengerAvailable)
                 {
-                    this._isMessengerAvailable = value;
+                    _isMessengerAvailable = value;
                     base.OnPropertyChanged("IsMessengerAvailable");
                 }
             }
@@ -97,7 +97,7 @@ namespace Diplomacy.ViewModel
 
         private void UpdateIsMessengerAvailable()
         {
-            IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(this._hero, _sendMessengerCost);
+            IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(_hero, _sendMessengerCost);
         }
 
         [DataSourceProperty]

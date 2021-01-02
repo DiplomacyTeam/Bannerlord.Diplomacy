@@ -18,25 +18,25 @@ namespace Diplomacy.ViewModel
 
         public GrantFiefVM(Hero hero, Action onComplete)
         {
-            this._onComplete = onComplete;
-            this._targetHero = hero;
-            this.Settlements = new MBBindingList<GrantFiefItemVM>();
-            foreach (Town settlement in Clan.PlayerClan.GetPermanentFiefs())
+            _onComplete = onComplete;
+            _targetHero = hero;
+            Settlements = new MBBindingList<GrantFiefItemVM>();
+            foreach (var settlement in Clan.PlayerClan.GetPermanentFiefs())
             {
-                _settlements.Add(new GrantFiefItemVM(settlement.Owner.Settlement, _targetHero, this.OnSelect));
+                _settlements.Add(new GrantFiefItemVM(settlement.Owner.Settlement, _targetHero, OnSelect));
             }
-            this.SelectedSettlementItem = this.Settlements.FirstOrDefault();
-            this.SelectedSettlementItem.IsSelected = true;
-            this.SortController = new GrantFiefSortControllerVM(ref _settlements);
-            this.GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
-            this.CancelText = GameTexts.FindText("str_cancel", null).ToString();
-            this.NameText = GameTexts.FindText("str_scoreboard_header", "name").ToString();
-            this.TypeText = GameTexts.FindText("str_sort_by_type_label", null).ToString();
-            this.ProsperityText = GameTexts.FindText("str_prosperity_abbr", null).ToString();
-            this.DefendersText = GameTexts.FindText("str_sort_by_defenders_label", null).ToString();
-            this.RelationText = new TextObject("{=bCOCjOQM}Relat.").ToString();
-            this.RelationHint = new HintViewModel(new TextObject("{=RxawrCjg}Relationship Gain with Grantee").ToString());
-            this.RefreshValues();
+            SelectedSettlementItem = Settlements.FirstOrDefault();
+            SelectedSettlementItem.IsSelected = true;
+            SortController = new GrantFiefSortControllerVM(ref _settlements);
+            GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
+            CancelText = GameTexts.FindText("str_cancel", null).ToString();
+            NameText = GameTexts.FindText("str_scoreboard_header", "name").ToString();
+            TypeText = GameTexts.FindText("str_sort_by_type_label", null).ToString();
+            ProsperityText = GameTexts.FindText("str_prosperity_abbr", null).ToString();
+            DefendersText = GameTexts.FindText("str_sort_by_defenders_label", null).ToString();
+            RelationText = new TextObject("{=bCOCjOQM}Relat.").ToString();
+            RelationHint = new HintViewModel(new TextObject("{=RxawrCjg}Relationship Gain with Grantee").ToString());
+            RefreshValues();
         }
 
         public void OnSelect(GrantFiefItemVM grantFiefItem)
@@ -48,10 +48,10 @@ namespace Diplomacy.ViewModel
 
         public void OnGrantFief()
         {
-            GrantFiefAction.Apply(this.SelectedSettlementItem.Settlement, this._targetHero.Clan);
-            TextObject text = new TextObject("{=cXbgaPSm}{SETTLEMENT_NAME} was granted to {CLAN_NAME}.");
-            text.SetTextVariable("SETTLEMENT_NAME", this.SelectedSettlementItem.Settlement.Name);
-            text.SetTextVariable("CLAN_NAME", this._targetHero.Clan.Name);
+            GrantFiefAction.Apply(SelectedSettlementItem.Settlement, _targetHero.Clan);
+            var text = new TextObject("{=cXbgaPSm}{SETTLEMENT_NAME} was granted to {CLAN_NAME}.");
+            text.SetTextVariable("SETTLEMENT_NAME", SelectedSettlementItem.Settlement.Name);
+            text.SetTextVariable("CLAN_NAME", _targetHero.Clan.Name);
 
             InformationManager.ShowInquiry(new InquiryData(new TextObject("{=jznJfkfU}Fief Granted").ToString(), text.ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), null, null, null), false);
             _onComplete.Invoke();
@@ -66,13 +66,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public MBBindingList<GrantFiefItemVM> Settlements
         {
-            get { return this._settlements; }
+            get { return _settlements; }
 
             set
             {
-                if (value != this._settlements)
+                if (value != _settlements)
                 {
-                    this._settlements = value;
+                    _settlements = value;
                     base.OnPropertyChanged("Settlements");
                 }
             }

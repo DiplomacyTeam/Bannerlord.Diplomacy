@@ -22,13 +22,13 @@ namespace Diplomacy.ViewModel
 
         public KingdomDiplomacyVMExtensionVM(Action<KingdomDecision> forceDecision) : base(forceDecision)
         {
-            this._playerKingdom = (Hero.MainHero.MapFaction as Kingdom);
-            this._onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
-            this._executeActionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("ExecuteAction", BindingFlags.Instance | BindingFlags.NonPublic);
-            this.PlayerAlliancesText = new TextObject("{=zpNalMeA}Alliances").ToString();
-            this.StatsText = new TextObject("{=1occw3EF}Stats").ToString();
-            this.OverviewText = new TextObject("{=OvbY5qxL}Overview").ToString();
-            this.DiplomacyText = new TextObject("{=Q2vXbwvC}Diplomacy").ToString();
+            _playerKingdom = (Hero.MainHero.MapFaction as Kingdom);
+            _onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
+            _executeActionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("ExecuteAction", BindingFlags.Instance | BindingFlags.NonPublic);
+            PlayerAlliancesText = new TextObject("{=zpNalMeA}Alliances").ToString();
+            StatsText = new TextObject("{=1occw3EF}Stats").ToString();
+            OverviewText = new TextObject("{=OvbY5qxL}Overview").ToString();
+            DiplomacyText = new TextObject("{=Q2vXbwvC}Diplomacy").ToString();
 
             Events.AllianceFormed.AddNonSerializedListener(this, (x) => RefreshValues());
             Events.AllianceBroken.AddNonSerializedListener(this, (x) => RefreshValues());
@@ -40,8 +40,8 @@ namespace Diplomacy.ViewModel
                 }
             });
             CampaignEvents.MakePeace.AddNonSerializedListener(this, (x, y) => RefreshValues());
-            this.RefreshAlliances();
-            this.ExecuteShowOverview();
+            RefreshAlliances();
+            ExecuteShowOverview();
         }
 
         public void OnClose()
@@ -58,14 +58,14 @@ namespace Diplomacy.ViewModel
 
         private void ExecuteShowStats()
         {
-            this.ShowOverview = false;
-            this.ShowStats = true;
+            ShowOverview = false;
+            ShowStats = true;
         }
 
         private void ExecuteShowOverview()
         {
-            this.ShowOverview = true;
-            this.ShowStats = false;
+            ShowOverview = true;
+            ShowStats = false;
         }
 
         [DataSourceProperty]
@@ -73,13 +73,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._showOverview;
+                return _showOverview;
             }
             set
             {
-                if (value != this._showOverview)
+                if (value != _showOverview)
                 {
-                    this._showOverview = value;
+                    _showOverview = value;
                     base.OnPropertyChanged("ShowOverview");
                 }
             }
@@ -90,13 +90,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._showStats;
+                return _showStats;
             }
             set
             {
-                if (value != this._showStats)
+                if (value != _showStats)
                 {
-                    this._showStats = value;
+                    _showStats = value;
                     base.OnPropertyChanged("ShowStats");
                 }
             }
@@ -104,24 +104,24 @@ namespace Diplomacy.ViewModel
 
         private void RefreshAlliances()
         {
-            if (this.PlayerAlliances == null)
+            if (PlayerAlliances is null)
             {
-                this.PlayerAlliances = new MBBindingList<KingdomTruceItemVM>();
+                PlayerAlliances = new MBBindingList<KingdomTruceItemVM>();
             }
 
-            this.PlayerAlliances.Clear();
+            PlayerAlliances.Clear();
 
-            foreach (Kingdom kingdom in Kingdom.All)
+            foreach (var kingdom in Kingdom.All)
             {
-                if (kingdom != this._playerKingdom && !kingdom.IsEliminated && (FactionManager.IsAlliedWithFaction(kingdom, this._playerKingdom)))
+                if (kingdom != _playerKingdom && !kingdom.IsEliminated && (FactionManager.IsAlliedWithFaction(kingdom, _playerKingdom)))
                 {
-                    this.PlayerAlliances.Add(new KingdomAllianceItemVM(this._playerKingdom, kingdom, this.OnDiplomacyItemSelection, this.BreakAlliance));
+                    PlayerAlliances.Add(new KingdomAllianceItemVM(_playerKingdom, kingdom, OnDiplomacyItemSelection, BreakAlliance));
                 }
             }
 
 
-            GameTexts.SetVariable("STR", this.PlayerAlliances.Count);
-            this.NumOfPlayerAlliancesText = GameTexts.FindText("str_STR_in_parentheses", null).ToString();
+            GameTexts.SetVariable("STR", PlayerAlliances.Count);
+            NumOfPlayerAlliancesText = GameTexts.FindText("str_STR_in_parentheses", null).ToString();
         }
 
         private void BreakAlliance(KingdomDiplomacyItemVM item)
@@ -133,12 +133,12 @@ namespace Diplomacy.ViewModel
 
         private void OnDiplomacyItemSelection(KingdomDiplomacyItemVM item)
         {
-            this._onSelectionMethodInfo.Invoke(this as KingdomDiplomacyVM, new object[] { item });
+            _onSelectionMethodInfo.Invoke(this as KingdomDiplomacyVM, new object[] { item });
         }
 
         private void ExecuteAction()
         {
-            this._executeActionMethodInfo.Invoke(this as KingdomDiplomacyVM, new object[] { });
+            _executeActionMethodInfo.Invoke(this as KingdomDiplomacyVM, new object[] { });
         }
 
         [DataSourceProperty]
@@ -155,13 +155,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._numOfPlayerAlliancesText;
+                return _numOfPlayerAlliancesText;
             }
             set
             {
-                if (value != this._numOfPlayerAlliancesText)
+                if (value != _numOfPlayerAlliancesText)
                 {
-                    this._numOfPlayerAlliancesText = value;
+                    _numOfPlayerAlliancesText = value;
                     base.OnPropertyChanged("NumOfPlayerAlliancesText");
                 }
             }
@@ -172,13 +172,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._playerAlliances;
+                return _playerAlliances;
             }
             set
             {
-                if (value != this._playerAlliances)
+                if (value != _playerAlliances)
                 {
-                    this._playerAlliances = value;
+                    _playerAlliances = value;
                     base.OnPropertyChanged("PlayerAlliances");
                 }
             }

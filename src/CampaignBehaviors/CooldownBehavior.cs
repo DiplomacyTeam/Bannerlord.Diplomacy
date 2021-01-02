@@ -1,8 +1,11 @@
 ﻿using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
+
+using Microsoft.Extensions.Logging;
+
 using TaleWorlds.CampaignSystem;
 
-namespace Diplomacy.CampaignEventBehaviors
+namespace Diplomacy.CampaignBehaviors
 {
     class CooldownBehavior : CampaignBehaviorBase
     {
@@ -10,7 +13,7 @@ namespace Diplomacy.CampaignEventBehaviors
 
         public CooldownBehavior()
         {
-            this._cooldownManager = new CooldownManager();
+            _cooldownManager = new();
         }
 
         public override void RegisterEvents()
@@ -22,35 +25,42 @@ namespace Diplomacy.CampaignEventBehaviors
 
         private void RegisterAllianceFormedCooldown(AllianceEvent allianceFormedEvent)
         {
+            Log.Get<CooldownBehavior>()
+                .LogTrace($"[{CampaignTime.Now}] {allianceFormedEvent.Kingdom} got an alliance formation cooldown with {allianceFormedEvent.OtherKingdom}.");
+
             _cooldownManager.UpdateLastAllianceFormedTime(allianceFormedEvent.Kingdom, allianceFormedEvent.OtherKingdom, CampaignTime.Now);
         }
 
         private void RegisterDeclareWarCooldown(IFaction faction1, IFaction faction2)
         {
-            Kingdom kingdom1, kingdom2;
-            kingdom1 = faction1 as Kingdom;
-            kingdom2 = faction2 as Kingdom;
-
-            if (kingdom1 != null && kingdom2 != null)
+            if (faction1 is Kingdom kingdom1 && faction2 is Kingdom kingdom2)
             {
-                FormNonAggressionPactAction.Apply(kingdom1, kingdom2, bypassCosts: true, customDurationInDays: Settings.Instance.DeclareWarCooldownInDays, queryPlayer: false);
+                Log.Get<CooldownBehavior>()
+                    .LogTrace($"[{CampaignTime.Now}] {kingdom1.Name} got a war declaration cooldown with {kingdom2.Name}.");
+
+                FormNonAggressionPactAction.Apply(kingdom1,
+                                                  kingdom2,
+                                                  bypassCosts: true,
+                                                  customDurationInDays: Settings.Instance!.DeclareWarCooldownInDays,
+                                                  queryPlayer: false);
             }
         }
 
         private void RegisterPeaceProposalCooldown(Kingdom kingdom)
         {
+            Log.Get<CooldownBehavior>()
+                .LogTrace($"[{CampaignTime.Now}] {kingdom.Name} sent a peace proposal.");
+         
             _cooldownManager.UpdateLastPeaceProposalTime(kingdom, CampaignTime.Now);
         }
 
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_cooldownManager", ref _cooldownManager);
+
             if (dataStore.IsLoading)
             {
-                if (_cooldownManager == null)
-                {
-                    _cooldownManager = new CooldownManager();
-                }
+                _cooldownManager ??= new();
                 _cooldownManager.Sync();
             }
         }

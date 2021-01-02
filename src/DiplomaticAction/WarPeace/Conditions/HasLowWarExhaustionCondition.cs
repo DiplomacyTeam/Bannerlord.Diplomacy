@@ -11,8 +11,8 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
-            bool hasDeclareWarCooldown = CooldownManager.HasDeclareWarCooldown(kingdom, otherKingdom, out float elapsedTime);
-            bool hasLowWarExhaustion = true;
+            var hasDeclareWarCooldown = CooldownManager.HasDeclareWarCooldown(kingdom, otherKingdom, out var elapsedTime);
+            var hasLowWarExhaustion = true;
             if (Settings.Instance.EnableWarExhaustion)
             {
                 hasLowWarExhaustion = WarExhaustionManager.Instance.HasLowWarExhaustion(kingdom, otherKingdom);
@@ -20,7 +20,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 
             if (!hasLowWarExhaustion)
             {
-                int lowWarExhaustionThreshold = (int)WarExhaustionManager.GetLowWarExhaustion();
+                var lowWarExhaustionThreshold = (int)WarExhaustionManager.GetLowWarExhaustion();
                 textObject = new TextObject(WAR_EXHAUSTION_TOO_HIGH);
                 textObject.SetTextVariable("LOW_WAR_EXHAUSTION_THRESHOLD", lowWarExhaustionThreshold);
                 textObject.SetTextVariable("CURRENT_WAR_EXHAUSTION", (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion(kingdom, otherKingdom)));

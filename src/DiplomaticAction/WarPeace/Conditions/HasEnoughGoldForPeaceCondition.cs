@@ -9,7 +9,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 
         protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
-            bool hasEnoughGold = DiplomacyCostCalculator.DetermineCostForMakingPeace(kingdom, otherKingdom, forcePlayerCharacterCosts).GoldCost.CanPayCost();
+            var hasEnoughGold = DiplomacyCostCalculator.DetermineCostForMakingPeace(kingdom, otherKingdom, forcePlayerCharacterCosts).GoldCost.CanPayCost();
             if (!hasEnoughGold)
             {
                 textObject = FailedConditionText;

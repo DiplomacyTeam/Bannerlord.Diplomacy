@@ -15,17 +15,17 @@ namespace Diplomacy.DiplomaticAction
 
         public DiplomaticAgreementManager()
         {
-            this._agreements = new Dictionary<FactionMapping, List<DiplomaticAgreement>>();
+            _agreements = new Dictionary<FactionMapping, List<DiplomaticAgreement>>();
             Instance = this;
         }
 
-        public Dictionary<FactionMapping, List<DiplomaticAgreement>> Agreements { get { return _agreements; } }
+        public Dictionary<FactionMapping, List<DiplomaticAgreement>> Agreements => _agreements;
 
         public bool HasNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, out NonAggressionPactAgreement pactAgreement)
         {
-            if (this._agreements.TryGetValue(new FactionMapping(kingdom, otherKingdom), out List<DiplomaticAgreement> agreements))
+            if (_agreements.TryGetValue(new FactionMapping(kingdom, otherKingdom), out var agreements))
             {
-                IEnumerable<DiplomaticAgreement> enumerable = agreements.Where(agreement => agreement.GetAgreementType() == AgreementType.NonAggressionPact && !agreement.IsExpired());
+                var enumerable = agreements.Where(agreement => agreement.GetAgreementType() == AgreementType.NonAggressionPact && !agreement.IsExpired());
                 pactAgreement = enumerable.OfType<NonAggressionPactAgreement>().FirstOrDefault();
                 return enumerable.Any();
             }
@@ -38,14 +38,14 @@ namespace Diplomacy.DiplomaticAction
 
         public void RegisterAgreement(Kingdom kingdom, Kingdom otherKingdom, DiplomaticAgreement diplomaticAgreement)
         {
-            FactionMapping factionMapping = new FactionMapping(kingdom, otherKingdom);
-            if (this._agreements.TryGetValue(factionMapping, out List<DiplomaticAgreement> agreements))
+            var factionMapping = new FactionMapping(kingdom, otherKingdom);
+            if (_agreements.TryGetValue(factionMapping, out var agreements))
             {
                 agreements.Add(diplomaticAgreement);
             }
             else
             {
-                this._agreements[factionMapping] = new List<DiplomaticAgreement>() { diplomaticAgreement };
+                _agreements[factionMapping] = new List<DiplomaticAgreement>() { diplomaticAgreement };
             }
         }
         public void Sync()

@@ -6,8 +6,8 @@ namespace Diplomacy.DiplomaticAction.Alliance
     {
         public AllianceEvent(Kingdom kingdom, Kingdom otherKingdom)
         {
-            this.Kingdom = kingdom;
-            this.OtherKingdom = otherKingdom;
+            Kingdom = kingdom;
+            OtherKingdom = otherKingdom;
         }
 
         public Kingdom Kingdom { get; }

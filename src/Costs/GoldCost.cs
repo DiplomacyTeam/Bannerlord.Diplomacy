@@ -10,22 +10,22 @@ namespace Diplomacy.Costs
 
         public GoldCost(Hero giver, Hero receiver, float value) : base(value)
         {
-            this._giver = giver;
-            this._receiver = receiver;
+            _giver = giver;
+            _receiver = receiver;
         }
 
         public override void ApplyCost()
         {
-            if (_giver != null && _receiver != null)
+            if (_giver is not null && _receiver is not null)
             {
                 GiveGoldAction.ApplyBetweenCharacters(_giver, _receiver, (int)Value);
 
             }
-            else if (_giver != null)
+            else if (_giver is not null)
             {
                 _giver.ChangeHeroGold(-(int)Value);
             }
-            else if (_receiver != null)
+            else if (_receiver is not null)
             {
                 _receiver.ChangeHeroGold((int)Value);
             }
@@ -33,7 +33,7 @@ namespace Diplomacy.Costs
 
         public override bool CanPayCost()
         {
-            if (_giver == null)
+            if (_giver is null)
             {
                 return true;
             }

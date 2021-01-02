@@ -10,7 +10,7 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
-            bool alliancesEnabled = Settings.Instance.EnableAlliances;
+            var alliancesEnabled = Settings.Instance.EnableAlliances;
             if (!alliancesEnabled)
             {
                 textObject = new TextObject(ALLIANCES_DISABLED);

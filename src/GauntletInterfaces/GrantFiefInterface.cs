@@ -19,11 +19,11 @@ namespace Diplomacy.GauntletInterfaces
 
         public void ShowFiefInterface(ScreenBase screenBase, Hero hero, Action refreshAction)
         {
-            this._screenBase = screenBase;
+            _screenBase = screenBase;
 
-            SpriteData spriteData = UIResourceManager.SpriteData;
-            TwoDimensionEngineResourceContext resourceContext = UIResourceManager.ResourceContext;
-            ResourceDepot resourceDepot = UIResourceManager.UIResourceDepot;
+            var spriteData = UIResourceManager.SpriteData;
+            var resourceContext = UIResourceManager.ResourceContext;
+            var resourceDepot = UIResourceManager.UIResourceDepot;
             spriteData.SpriteCategories["ui_encyclopedia"].Load(resourceContext, resourceDepot);
             spriteData.SpriteCategories["ui_kingdom"].Load(resourceContext, resourceDepot);
 
@@ -33,7 +33,7 @@ namespace Diplomacy.GauntletInterfaces
             _layer.IsFocusLayer = true;
             ScreenManager.TrySetFocus(_layer);
             screenBase.AddLayer(_layer);
-            _vm = new GrantFiefVM(hero, () => this.OnFinalize(refreshAction));
+            _vm = new GrantFiefVM(hero, () => OnFinalize(refreshAction));
             _movie = _layer.LoadMovie("GrantFief", _vm);
         }
 

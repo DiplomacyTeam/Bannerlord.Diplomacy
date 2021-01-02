@@ -15,8 +15,8 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
             textObject = null;
             IEnumerable<LogEntry> gameActionLogs = Campaign.Current.LogEntryHistory.GameActionLogs;
 
-            CampaignTime lastPeaceTime = CampaignTime.Never;
-            foreach (LogEntry logEntry in gameActionLogs)
+            var lastPeaceTime = CampaignTime.Never;
+            foreach (var logEntry in gameActionLogs)
             {
                 if (logEntry is MakePeaceLogEntry
                     && ((((MakePeaceLogEntry)logEntry).Faction1 == kingdom.MapFaction && ((MakePeaceLogEntry)logEntry).Faction2 == otherKingdom.MapFaction) || (((MakePeaceLogEntry)logEntry).Faction1 == otherKingdom.MapFaction && ((MakePeaceLogEntry)logEntry).Faction2 == kingdom.MapFaction)))
@@ -26,8 +26,8 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
                 }
             }
 
-            double daysSinceLastWar = CampaignTime.Now.ToDays - lastPeaceTime.ToDays;
-            bool hasEnoughTimeElapsed = lastPeaceTime == CampaignTime.Never || daysSinceLastWar > MinimumTimeFromLastWar;
+            var daysSinceLastWar = CampaignTime.Now.ToDays - lastPeaceTime.ToDays;
+            var hasEnoughTimeElapsed = lastPeaceTime == CampaignTime.Never || daysSinceLastWar > MinimumTimeFromLastWar;
             if (!hasEnoughTimeElapsed)
             {
                 textObject = new TextObject(TOO_SOON);

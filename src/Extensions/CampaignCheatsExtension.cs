@@ -18,13 +18,13 @@ namespace Diplomacy.Extensions
             {
                 return "Format is faction names without space \"campaign.form_alliance [Faction1] [Faction2]\".";
             }
-            string b = strings[0].ToLower();
-            string b2 = strings[1].ToLower();
+            var b = strings[0].ToLower();
+            var b2 = strings[1].ToLower();
             Kingdom faction = null;
             Kingdom faction2 = null;
-            foreach (Kingdom faction3 in Campaign.Current.Kingdoms)
+            foreach (var faction3 in Campaign.Current.Kingdoms)
             {
-                string a = faction3.Name.ToString().ToLower().Replace(" ", "");
+                var a = faction3.Name.ToString().ToLower().Replace(" ", "");
                 if (a == b)
                 {
                     faction = faction3;
@@ -34,7 +34,7 @@ namespace Diplomacy.Extensions
                     faction2 = faction3;
                 }
             }
-            if (faction != null && faction2 != null)
+            if (faction is not null && faction2 is not null)
             {
                 DeclareAllianceAction.Apply(faction as Kingdom, faction2 as Kingdom, bypassCosts: true);
                 return string.Concat(new object[]
@@ -45,7 +45,7 @@ namespace Diplomacy.Extensions
                     faction2.Name
                 });
             }
-            if (faction == null)
+            if (faction is null)
             {
                 return "Faction is not found: " + faction;
             }

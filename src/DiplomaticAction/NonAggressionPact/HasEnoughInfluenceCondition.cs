@@ -10,7 +10,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
         protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
             DiplomacyCost influenceCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts).InfluenceCost;
-            bool hasEnoughInfluence = influenceCost.CanPayCost();
+            var hasEnoughInfluence = influenceCost.CanPayCost();
 
             if (!hasEnoughInfluence)
             {

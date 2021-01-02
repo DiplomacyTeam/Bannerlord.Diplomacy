@@ -1,44 +1,46 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.Alliance
 {
-    class DeclareAllianceAction : AbstractDiplomaticAction<DeclareAllianceAction>
+    internal sealed class DeclareAllianceAction : AbstractDiplomaticAction<DeclareAllianceAction>
     {
-        public override bool PassesConditions(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
+        public override bool PassesConditions(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCosts = false, bool bypassCosts = false)
         {
-            return FormAllianceConditions.Instance.CanApply(kingdom, kingdom, forcePlayerCharacterCosts, bypassCosts);
+            return FormAllianceConditions.Instance.CanApply(kingdom, kingdom, forcePlayerCosts, bypassCosts);
         }
 
         protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
+            Log.Get<DeclareAllianceAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} secured an alliance with {otherKingdom.Name}.");
             FactionManager.DeclareAlliance(proposingKingdom, otherKingdom);
             Events.Instance.OnAllianceFormed(new AllianceEvent(proposingKingdom, otherKingdom));
         }
 
-        protected override void AssessCosts(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts)
+        protected override void AssessCosts(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCosts)
         {
-            DiplomacyCostCalculator.DetermineCostForFormingAlliance(proposingKingdom, otherKingdom, forcePlayerCharacterCosts).ApplyCost();
+            DiplomacyCostCalculator.DetermineCostForFormingAlliance(proposingKingdom, otherKingdom, forcePlayerCosts).ApplyCost();
         }
 
         protected override void ShowPlayerInquiry(Kingdom proposingKingdom, Action acceptAction)
         {
-            TextObject textObject = new TextObject("{=QbOqatd7}{KINGDOM} is proposing an alliance with {PLAYER_KINGDOM}.");
-            textObject.SetTextVariable("KINGDOM", proposingKingdom.Name);
-            textObject.SetTextVariable("PLAYER_KINGDOM", Clan.PlayerClan.Kingdom.Name);
+            var txt = new TextObject("{=QbOqatd7}{KINGDOM} is proposing an alliance with {PLAYER_KINGDOM}.");
+            txt.SetTextVariable("KINGDOM", proposingKingdom.Name);
+            txt.SetTextVariable("PLAYER_KINGDOM", Clan.PlayerClan.Kingdom.Name);
 
             InformationManager.ShowInquiry(new InquiryData(
                 new TextObject("{=3pbwc8sh}Alliance Proposal").ToString(),
-                textObject.ToString(),
+                txt.ToString(),
                 true,
                 true,
                 new TextObject(StringConstants.Accept).ToString(),
                 new TextObject(StringConstants.Decline).ToString(),
                 acceptAction,
-                null,
-                ""), true);
+                null), true);
         }
     }
 }

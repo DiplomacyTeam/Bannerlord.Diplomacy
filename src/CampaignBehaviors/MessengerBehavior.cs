@@ -1,7 +1,7 @@
 ﻿using Diplomacy.Messengers;
 using TaleWorlds.CampaignSystem;
 
-namespace Diplomacy.CampaignEventBehaviors
+namespace Diplomacy.CampaignBehaviors
 {
     class MessengerBehavior : CampaignBehaviorBase
     {
@@ -9,7 +9,7 @@ namespace Diplomacy.CampaignEventBehaviors
 
         public MessengerBehavior()
         {
-            this._messengerManager = new MessengerManager();
+            _messengerManager = new MessengerManager();
         }
 
         public override void RegisterEvents()
@@ -33,11 +33,11 @@ namespace Diplomacy.CampaignEventBehaviors
             dataStore.SyncData("_messengerManager", ref _messengerManager);
             if (dataStore.IsLoading)
             {
-                if (_messengerManager == null)
+                if (_messengerManager is null)
                 {
-                    this._messengerManager = new MessengerManager();
+                    _messengerManager = new MessengerManager();
                 }
-                this._messengerManager.Sync();
+                _messengerManager.Sync();
             }
         }
     }

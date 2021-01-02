@@ -1,13 +1,12 @@
-﻿using Bannerlord.ButterLib.Common.Extensions;
+﻿using Diplomacy.CampaignBehaviors;
 
-using Diplomacy.CampaignEventBehaviors;
+using Bannerlord.ButterLib.Common.Extensions;
 
 using HarmonyLib;
 
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-
+using Microsoft.Extensions.Logging;
 using Serilog.Events;
 
 using TaleWorlds.CampaignSystem;
@@ -20,15 +19,15 @@ namespace Diplomacy
     public sealed class SubModule : MBSubModuleBase
     {
         public static readonly int VersionMajor = 0;
-        public static readonly int VersionMinor = 1;
+        public static readonly int VersionMinor = 2;
         public static readonly int VersionPatch = 0;
-        public static readonly string Version = $"d{VersionMajor}.{VersionMinor}.{VersionPatch}";
+        public static readonly string Version = $"v{VersionMajor}.{VersionMinor}.{VersionPatch}";
 
         public static readonly string Name = typeof(SubModule).Namespace;
         public static readonly string DisplayName = Name;
         public static readonly string HarmonyDomain = "com.zijistark.bannerlord." + Name.ToLower();
 
-        internal static readonly Color SignatureTextColor = Color.FromUint(0x00F16D26); // Orange
+        internal static readonly Color StdTextColor = Color.FromUint(0x00F16D26); // Orange
 
         internal static SubModule Instance { get; set; } = default!;
 
@@ -36,14 +35,14 @@ namespace Diplomacy
 
         private bool _hasLoaded;
 
-        internal SubModule() => Instance = this;
-
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
 
+            Instance = this;
+
             this.AddSerilogLoggerProvider($"{Name}.log", new[] { $"{Name}.*" }, config => config.MinimumLevel.Is(LogEventLevel.Verbose));
-            InitializeLog<SubModule>();
+            Log = Diplomacy.Log.Get<SubModule>();
 
             new Harmony(HarmonyDomain).PatchAll();
         }
@@ -51,7 +50,7 @@ namespace Diplomacy
         protected override void OnSubModuleUnloaded()
         {
             base.OnSubModuleUnloaded();
-            Log.LogInformation($"Unloaded {Name}!");
+            Log.LogInformation($"Unloaded {Name} {Version}!");
         }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
@@ -62,10 +61,10 @@ namespace Diplomacy
             {
                 _hasLoaded = true;
 
-                InitializeLog<SubModule>();
-                Log.LogInformation($"Loaded {Name}!");
+                Log = Diplomacy.Log.Get<SubModule>(); // Upgrade to dedicated log file from closed service registry
+                Log.LogInformation($"Loaded {Name} {Version}!");
 
-                InformationManager.DisplayMessage(new InformationMessage($"Loaded {DisplayName} {Version}", SignatureTextColor));
+                InformationManager.DisplayMessage(new InformationMessage($"Loaded {DisplayName}", StdTextColor));
             }
         }
 
@@ -91,15 +90,17 @@ namespace Diplomacy
                 gameStarter.AddBehavior(new AllianceBehavior());
                 gameStarter.AddBehavior(new MaintainInfluenceBehavior());
                 gameStarter.AddBehavior(new ExpansionismBehavior());
+
+                Log.LogDebug("Campaign session started.");
             }
         }
 
-        public override void OnGameEnd(Game game) => Events.Instance = default!;
-
-        private void InitializeLog<T>()
+        public override void OnGameEnd(Game game)
         {
-            var provider = this.GetServiceProvider() ?? this.GetTempServiceProvider();
-            Log = provider.GetRequiredService<ILogger<T>>() ?? NullLogger<T>.Instance;
+            base.OnGameEnd(game);
+
+            if (game.GameType is Campaign)
+                Log.LogDebug("Campaign session ended.");
         }
     }
 }

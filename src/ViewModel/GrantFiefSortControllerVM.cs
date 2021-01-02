@@ -8,97 +8,97 @@ namespace Diplomacy.ViewModel
 
         public GrantFiefSortControllerVM(ref MBBindingList<GrantFiefItemVM> listToControl)
         {
-            this._listToControl = listToControl;
-            this._typeComparer = new GrantFiefSortControllerVM.ItemTypeComparer();
-            this._prosperityComparer = new GrantFiefSortControllerVM.ItemProsperityComparer();
-            this._defendersComparer = new GrantFiefSortControllerVM.ItemDefendersComparer();
-            this._relationComparer = new GrantFiefSortControllerVM.ItemRelationComparer();
-            this._nameComparer = new GrantFiefSortControllerVM.ItemNameComparer();
+            _listToControl = listToControl;
+            _typeComparer = new GrantFiefSortControllerVM.ItemTypeComparer();
+            _prosperityComparer = new GrantFiefSortControllerVM.ItemProsperityComparer();
+            _defendersComparer = new GrantFiefSortControllerVM.ItemDefendersComparer();
+            _relationComparer = new GrantFiefSortControllerVM.ItemRelationComparer();
+            _nameComparer = new GrantFiefSortControllerVM.ItemNameComparer();
         }
 
         private void ExecuteSortByType()
         {
-            int typeState = this.TypeState;
-            this.SetAllStates(GrantFiefSortControllerVM.SortState.Default);
-            this.TypeState = (typeState + 1) % 3;
-            if (this.TypeState == 0)
+            var typeState = TypeState;
+            SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            TypeState = (typeState + 1) % 3;
+            if (TypeState == 0)
             {
-                this.TypeState++;
+                TypeState++;
             }
-            this._typeComparer.SetSortMode(this.TypeState == 1);
-            this._listToControl.Sort(this._typeComparer);
-            this.IsTypeSelected = true;
+            _typeComparer.SetSortMode(TypeState == 1);
+            _listToControl.Sort(_typeComparer);
+            IsTypeSelected = true;
         }
 
         private void ExecuteSortByName()
         {
-            int nameState = this.NameState;
-            this.SetAllStates(GrantFiefSortControllerVM.SortState.Default);
-            this.NameState = (nameState + 1) % 3;
-            if (this.NameState == 0)
+            var nameState = NameState;
+            SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            NameState = (nameState + 1) % 3;
+            if (NameState == 0)
             {
-                this.NameState++;
+                NameState++;
             }
-            this._nameComparer.SetSortMode(this.NameState == 1);
-            this._listToControl.Sort(this._nameComparer);
-            this.IsNameSelected = true;
+            _nameComparer.SetSortMode(NameState == 1);
+            _listToControl.Sort(_nameComparer);
+            IsNameSelected = true;
         }
 
         private void ExecuteSortByProsperity()
         {
-            int prosperityState = this.ProsperityState;
-            this.SetAllStates(GrantFiefSortControllerVM.SortState.Default);
-            this.ProsperityState = (prosperityState + 1) % 3;
-            if (this.ProsperityState == 0)
+            var prosperityState = ProsperityState;
+            SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            ProsperityState = (prosperityState + 1) % 3;
+            if (ProsperityState == 0)
             {
-                this.ProsperityState++;
+                ProsperityState++;
             }
-            this._prosperityComparer.SetSortMode(this.ProsperityState == 1);
-            this._listToControl.Sort(this._prosperityComparer);
-            this.IsProsperitySelected = true;
+            _prosperityComparer.SetSortMode(ProsperityState == 1);
+            _listToControl.Sort(_prosperityComparer);
+            IsProsperitySelected = true;
         }
 
         private void ExecuteSortByRelation()
         {
-            int relationState = this.RelationState;
-            this.SetAllStates(GrantFiefSortControllerVM.SortState.Default);
-            this.RelationState = (relationState + 1) % 3;
-            if (this.RelationState == 0)
+            var relationState = RelationState;
+            SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            RelationState = (relationState + 1) % 3;
+            if (RelationState == 0)
             {
-                this.RelationState++;
+                RelationState++;
             }
-            this._relationComparer.SetSortMode(this.RelationState == 1);
-            this._listToControl.Sort(this._relationComparer);
-            this.IsRelationSelected = true;
+            _relationComparer.SetSortMode(RelationState == 1);
+            _listToControl.Sort(_relationComparer);
+            IsRelationSelected = true;
         }
 
         private void ExecuteSortByDefenders()
         {
-            int defendersState = this.DefendersState;
-            this.SetAllStates(GrantFiefSortControllerVM.SortState.Default);
-            this.DefendersState = (defendersState + 1) % 3;
-            if (this.DefendersState == 0)
+            var defendersState = DefendersState;
+            SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            DefendersState = (defendersState + 1) % 3;
+            if (DefendersState == 0)
             {
-                int defendersState2 = this.DefendersState;
-                this.DefendersState = defendersState2 + 1;
+                var defendersState2 = DefendersState;
+                DefendersState = defendersState2 + 1;
             }
-            this._defendersComparer.SetSortMode(this.DefendersState == 1);
-            this._listToControl.Sort(this._defendersComparer);
-            this.IsDefendersSelected = true;
+            _defendersComparer.SetSortMode(DefendersState == 1);
+            _listToControl.Sort(_defendersComparer);
+            IsDefendersSelected = true;
         }
 
         private void SetAllStates(GrantFiefSortControllerVM.SortState state)
         {
-            this.TypeState = (int)state;
-            this.NameState = (int)state;
-            this.ProsperityState = (int)state;
-            this.DefendersState = (int)state;
-            this.RelationState = (int)state;
-            this.IsTypeSelected = false;
-            this.IsNameSelected = false;
-            this.IsProsperitySelected = false;
-            this.IsDefendersSelected = false;
-            this.IsRelationSelected = false;
+            TypeState = (int)state;
+            NameState = (int)state;
+            ProsperityState = (int)state;
+            DefendersState = (int)state;
+            RelationState = (int)state;
+            IsTypeSelected = false;
+            IsNameSelected = false;
+            IsProsperitySelected = false;
+            IsDefendersSelected = false;
+            IsRelationSelected = false;
         }
 
         [DataSourceProperty]
@@ -106,13 +106,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._typeState;
+                return _typeState;
             }
             set
             {
-                if (value != this._typeState)
+                if (value != _typeState)
                 {
-                    this._typeState = value;
+                    _typeState = value;
                     base.OnPropertyChanged("TypeState");
                 }
             }
@@ -123,13 +123,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._nameState;
+                return _nameState;
             }
             set
             {
-                if (value != this._nameState)
+                if (value != _nameState)
                 {
-                    this._nameState = value;
+                    _nameState = value;
                     base.OnPropertyChanged("NameState");
                 }
             }
@@ -140,13 +140,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._prosperityState;
+                return _prosperityState;
             }
             set
             {
-                if (value != this._prosperityState)
+                if (value != _prosperityState)
                 {
-                    this._prosperityState = value;
+                    _prosperityState = value;
                     base.OnPropertyChanged("ProsperityState");
                 }
             }
@@ -157,13 +157,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._relationState;
+                return _relationState;
             }
             set
             {
-                if (value != this._relationState)
+                if (value != _relationState)
                 {
-                    this._relationState = value;
+                    _relationState = value;
                     base.OnPropertyChanged("RelationState");
                 }
             }
@@ -174,13 +174,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._defendersState;
+                return _defendersState;
             }
             set
             {
-                if (value != this._defendersState)
+                if (value != _defendersState)
                 {
-                    this._defendersState = value;
+                    _defendersState = value;
                     base.OnPropertyChanged("DefendersState");
                 }
             }
@@ -191,13 +191,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._isTypeSelected;
+                return _isTypeSelected;
             }
             set
             {
-                if (value != this._isTypeSelected)
+                if (value != _isTypeSelected)
                 {
-                    this._isTypeSelected = value;
+                    _isTypeSelected = value;
                     base.OnPropertyChanged("IsTypeSelected");
                 }
             }
@@ -208,13 +208,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._isNameSelected;
+                return _isNameSelected;
             }
             set
             {
-                if (value != this._isNameSelected)
+                if (value != _isNameSelected)
                 {
-                    this._isNameSelected = value;
+                    _isNameSelected = value;
                     base.OnPropertyChanged("IsNameSelected");
                 }
             }
@@ -225,13 +225,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._isDefendersSelected;
+                return _isDefendersSelected;
             }
             set
             {
-                if (value != this._isDefendersSelected)
+                if (value != _isDefendersSelected)
                 {
-                    this._isDefendersSelected = value;
+                    _isDefendersSelected = value;
                     base.OnPropertyChanged("IsDefendersSelected");
                 }
             }
@@ -242,13 +242,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._isProsperitySelected;
+                return _isProsperitySelected;
             }
             set
             {
-                if (value != this._isProsperitySelected)
+                if (value != _isProsperitySelected)
                 {
-                    this._isProsperitySelected = value;
+                    _isProsperitySelected = value;
                     base.OnPropertyChanged("IsProsperitySelected");
                 }
             }
@@ -259,13 +259,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._isRelationSelected;
+                return _isRelationSelected;
             }
             set
             {
-                if (value != this._isRelationSelected)
+                if (value != _isRelationSelected)
                 {
-                    this._isRelationSelected = value;
+                    _isRelationSelected = value;
                     base.OnPropertyChanged("IsRelationSelected");
                 }
             }
@@ -314,7 +314,7 @@ namespace Diplomacy.ViewModel
         {
             public void SetSortMode(bool isAcending)
             {
-                this._isAcending = isAcending;
+                _isAcending = isAcending;
             }
 
             public abstract int Compare(GrantFiefItemVM x, GrantFiefItemVM y);
@@ -326,7 +326,7 @@ namespace Diplomacy.ViewModel
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
-                if (this._isAcending)
+                if (_isAcending)
                 {
                     return y.Settlement.Name.ToString().CompareTo(x.Settlement.Name.ToString()) * -1;
                 }
@@ -338,7 +338,7 @@ namespace Diplomacy.ViewModel
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
-                if (this._isAcending)
+                if (_isAcending)
                 {
                     return y.Settlement.OwnerClan.Name.ToString().CompareTo(x.Settlement.OwnerClan.Name.ToString()) * -1;
                 }
@@ -350,7 +350,7 @@ namespace Diplomacy.ViewModel
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
-                if (this._isAcending)
+                if (_isAcending)
                 {
                     return x.Settlement.IsCastle.CompareTo(y.Settlement.IsCastle);
                 }
@@ -362,7 +362,7 @@ namespace Diplomacy.ViewModel
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
-                if (this._isAcending)
+                if (_isAcending)
                 {
                     return y.Prosperity.CompareTo(x.Prosperity) * -1;
                 }
@@ -374,7 +374,7 @@ namespace Diplomacy.ViewModel
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
-                if (this._isAcending)
+                if (_isAcending)
                 {
                     return y.RelationBonus.CompareTo(x.RelationBonus) * -1;
                 }
@@ -386,9 +386,9 @@ namespace Diplomacy.ViewModel
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
-                float num = (y.Settlement.Town != null) ? y.Settlement.Town.FoodStocks : 0f;
-                float value = (x.Settlement.Town != null) ? x.Settlement.Town.FoodStocks : 0f;
-                if (this._isAcending)
+                var num = (y.Settlement.Town is not null) ? y.Settlement.Town.FoodStocks : 0f;
+                var value = (x.Settlement.Town is not null) ? x.Settlement.Town.FoodStocks : 0f;
+                if (_isAcending)
                 {
                     return num.CompareTo(value) * -1;
                 }
@@ -400,7 +400,7 @@ namespace Diplomacy.ViewModel
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
-                if (this._isAcending)
+                if (_isAcending)
                 {
                     return y.Garrison.CompareTo(x.Garrison) * -1;
                 }
@@ -412,7 +412,7 @@ namespace Diplomacy.ViewModel
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
-                if (this._isAcending)
+                if (_isAcending)
                 {
                     return y.Garrison.CompareTo(x.Garrison) * -1;
                 }

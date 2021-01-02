@@ -25,11 +25,11 @@ namespace Diplomacy.Extensions
 
         public static bool IsAlliedWith(this IFaction faction1, IFaction faction2)
         {
-            if (faction1 == null || faction2 == null || faction1 == faction2)
+            if (faction1 is null || faction2 is null || faction1 == faction2)
             {
                 return false;
             }
-            StanceLink stanceLink = faction1.GetStanceWith(faction2);
+            var stanceLink = faction1.GetStanceWith(faction2);
             return stanceLink.IsAllied;
         }
 
@@ -40,7 +40,7 @@ namespace Diplomacy.Extensions
 
         public static IEnumerable<Kingdom> GetAlliedKingdoms(this Kingdom kingdom)
         {
-            foreach (StanceLink stanceLink in kingdom.Stances)
+            foreach (var stanceLink in kingdom.Stances)
             {
                 if (stanceLink.IsAllied)
                 {
@@ -53,7 +53,7 @@ namespace Diplomacy.Extensions
                     {
                         faction2 = stanceLink.Faction1;
                     }
-                    if (faction2 != null && faction2.IsKingdomFaction)
+                    if (faction2 is not null && faction2.IsKingdomFaction)
                     {
                         yield return faction2 as Kingdom;
                     }
@@ -64,7 +64,7 @@ namespace Diplomacy.Extensions
 
         public static bool IsStrong(this Kingdom kingdom)
         {
-            float medianStrength = GetMedianStrength();
+            var medianStrength = GetMedianStrength();
             return kingdom.TotalStrength > medianStrength;
         }
 
@@ -76,9 +76,9 @@ namespace Diplomacy.Extensions
         private static float GetMedianStrength()
         {
             float medianStrength;
-            float[] kingdomStrengths = Kingdom.All.Select(curKingdom => curKingdom.TotalStrength).OrderBy(a => a).ToArray();
+            var kingdomStrengths = Kingdom.All.Select(curKingdom => curKingdom.TotalStrength).OrderBy(a => a).ToArray();
 
-            int halfIndex = kingdomStrengths.Count() / 2;
+            var halfIndex = kingdomStrengths.Count() / 2;
 
             if ((kingdomStrengths.Length % 2) == 0)
             {

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+
+using System;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -14,9 +17,10 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
 
         protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
-            DiplomaticAgreementManager.Instance.RegisterAgreement(proposingKingdom, otherKingdom, new NonAggressionPactAgreement(CampaignTime.Now, CampaignTime.DaysFromNow(customDurationInDays.HasValue ? customDurationInDays.Value : Settings.Instance.NonAggressionPactDuration), proposingKingdom, otherKingdom));
+            Log.Get<FormNonAggressionPactAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} secured a NAP with {otherKingdom.Name}.");
+            DiplomaticAgreementManager.Instance.RegisterAgreement(proposingKingdom, otherKingdom, new NonAggressionPactAgreement(CampaignTime.Now, CampaignTime.DaysFromNow(customDurationInDays.HasValue ? customDurationInDays.Value : Settings.Instance!.NonAggressionPactDuration), proposingKingdom, otherKingdom));
 
-            TextObject textObject = new TextObject("{=vB3RrMNf}The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}.");
+            var textObject = new TextObject("{=vB3RrMNf}The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}.");
             textObject.SetTextVariable("KINGDOM", proposingKingdom.Name);
             textObject.SetTextVariable("OTHER_KINGDOM", otherKingdom.Name);
             InformationManager.DisplayMessage(new InformationMessage(textObject.ToString()));
@@ -29,7 +33,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
 
         protected override void ShowPlayerInquiry(Kingdom proposingKingdom, Action applyAction)
         {
-            TextObject textObject = new TextObject("{=gyLjlpJB}{KINGDOM} is proposing a non-aggression pact with {PLAYER_KINGDOM}.");
+            var textObject = new TextObject("{=gyLjlpJB}{KINGDOM} is proposing a non-aggression pact with {PLAYER_KINGDOM}.");
             textObject.SetTextVariable("KINGDOM", proposingKingdom.Name);
             textObject.SetTextVariable("PLAYER_KINGDOM", Clan.PlayerClan.Kingdom.Name);
             InformationManager.ShowInquiry(new InquiryData(

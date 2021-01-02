@@ -15,17 +15,17 @@ namespace Diplomacy.ViewModel
         protected override void UpdateDiplomacyProperties()
         {
             base.UpdateDiplomacyProperties();
-            this.ActionName = new TextObject("{=K4GraLTn}Break Alliance").ToString();
-            this.InfluenceCost = 0;
-            this.IsTruce = false;
+            ActionName = new TextObject("{=K4GraLTn}Break Alliance").ToString();
+            InfluenceCost = 0;
+            IsTruce = false;
         }
 
         protected override void UpdateActionAvailability()
         {
             base.UpdateActionAvailability();
-            string breakAllianceException = BreakAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
-            this.ActionHint = breakAllianceException != null ? new HintViewModel(breakAllianceException) : new HintViewModel();
-            this.IsOptionAvailable = breakAllianceException == null;
+            var breakAllianceException = BreakAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
+            ActionHint = breakAllianceException is not null ? new HintViewModel(breakAllianceException) : new HintViewModel();
+            IsOptionAvailable = breakAllianceException is null;
         }
 
         protected override void ExecuteExecutiveAction()

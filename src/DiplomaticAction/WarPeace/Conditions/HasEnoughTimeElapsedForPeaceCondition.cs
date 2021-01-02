@@ -11,7 +11,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
-            bool hasEnoughTimeElapsed = CooldownManager.HasExceededMinimumWarDuration(kingdom, otherKingdom, out float elapsedDaysUntilNow);
+            var hasEnoughTimeElapsed = CooldownManager.HasExceededMinimumWarDuration(kingdom, otherKingdom, out var elapsedDaysUntilNow);
             if (!hasEnoughTimeElapsed)
             {
                 textObject = new TextObject(TOO_SOON);

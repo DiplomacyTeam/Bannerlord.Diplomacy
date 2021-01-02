@@ -13,7 +13,7 @@ namespace Diplomacy
         internal IFaction Faction2 { get; private set; }
 
         [SaveableField(3)]
-        private int _hashCode;
+        private readonly int _hashCode;
 
         internal FactionMapping(IFaction faction1, IFaction faction2)
         {
@@ -39,7 +39,7 @@ namespace Diplomacy
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
+            if (obj is null)
             {
                 return false;
             }
@@ -47,7 +47,7 @@ namespace Diplomacy
             {
                 return false;
             }
-            FactionMapping FactionMapping = (FactionMapping)obj;
+            var FactionMapping = (FactionMapping)obj;
             return Faction1 == FactionMapping.Faction1 && Faction2 == FactionMapping.Faction2;
         }
 
@@ -59,8 +59,11 @@ namespace Diplomacy
 
         private static int CalculateHash(string s)
         {
-            int num = 0;
-            for (int i = 0; i < s.Length; i++)
+            // FIXME: WTF are we doing calculating our own hash codes of what COULD be HashCode.Combine(MBGUID, MBGUID)?
+            // Would address now, but it remains to be seen exactly how this is used: if it needs to be deterministic,
+            // I understand, although I'd still rather do it another way.
+            var num = 0;
+            for (var i = 0; i < s.Length; i++)
             {
                 num *= 17;
                 num += (int)(char.ToUpper(s[i]) - '0');

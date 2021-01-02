@@ -10,7 +10,7 @@ namespace Diplomacy
     {
         public static void SendFailedActionMessage(string action, List<string> exceptions)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append(action);
             sb.Append(exceptions.First());
 
@@ -19,7 +19,7 @@ namespace Diplomacy
 
         public static void SendFailedActionMessage(string action, List<TextObject> exceptions)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append(action);
             sb.Append(exceptions.First().ToString());
 

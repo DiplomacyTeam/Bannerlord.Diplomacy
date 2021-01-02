@@ -1,7 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 
-namespace Diplomacy.CampaignEventBehaviors
+namespace Diplomacy.CampaignBehaviors
 {
     class ExpansionismBehavior : CampaignBehaviorBase
     {
@@ -9,7 +9,7 @@ namespace Diplomacy.CampaignEventBehaviors
 
         public ExpansionismBehavior()
         {
-            this._expansionismManager = new ExpansionismManager();
+            _expansionismManager = new();
         }
         public override void RegisterEvents()
         {
@@ -21,15 +21,22 @@ namespace Diplomacy.CampaignEventBehaviors
         {
             if (clan.MapFaction.IsKingdomFaction && clan.Leader == clan.MapFaction.Leader)
             {
-                this._expansionismManager.ApplyExpansionismDecay(clan.MapFaction);
+                _expansionismManager.ApplyExpansionismDecay(clan.MapFaction);
             }
         }
 
-        private void UpdateExpasionismScore(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
+        private void UpdateExpasionismScore(Settlement settlement,
+                                            bool openToClaim,
+                                            Hero newOwner,
+                                            Hero oldOwner,
+                                            Hero capturerHero,
+                                            ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
         {
-            if (newOwner.MapFaction != oldOwner.MapFaction && newOwner.MapFaction.IsKingdomFaction && detail == ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.BySiege)
+            if (newOwner.MapFaction != oldOwner.MapFaction
+                && newOwner.MapFaction.IsKingdomFaction
+                && detail == ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.BySiege)
             {
-                this._expansionismManager.AddSiegeScore(newOwner.MapFaction);
+                _expansionismManager.AddSiegeScore(newOwner.MapFaction);
             }
         }
 
@@ -38,11 +45,8 @@ namespace Diplomacy.CampaignEventBehaviors
             dataStore.SyncData("_expansionismManager", ref _expansionismManager);
             if (dataStore.IsLoading)
             {
-                if (_expansionismManager == null)
-                {
-                    this._expansionismManager = new ExpansionismManager();
-                }
-                this._expansionismManager.Sync();
+                _expansionismManager ??= new();
+                _expansionismManager.Sync();
             }
         }
     }

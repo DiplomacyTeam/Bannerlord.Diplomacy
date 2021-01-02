@@ -8,11 +8,11 @@ namespace Diplomacy.Extensions
     {
         public static float GetCorruption(this Clan clan)
         {
-            float corruption = 0f;
-            int numFiefsTooMany = clan.GetPermanentFiefs().Count() - clan.Tier;
+            var corruption = 0f;
+            var numFiefsTooMany = clan.GetPermanentFiefs().Count() - clan.Tier;
             if (numFiefsTooMany > 0)
             {
-                int factor = numFiefsTooMany > 5 ? 2 : 1;
+                var factor = numFiefsTooMany > 5 ? 2 : 1;
                 corruption = numFiefsTooMany * factor;
             }
 
@@ -21,7 +21,7 @@ namespace Diplomacy.Extensions
 
         public static bool HasMaximumFiefs(this Clan clan)
         {
-            int numFiefsTooMany = clan.GetPermanentFiefs().Count() - clan.Tier;
+            var numFiefsTooMany = clan.GetPermanentFiefs().Count() - clan.Tier;
             return numFiefsTooMany >= 0;
         }
 

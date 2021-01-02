@@ -1,25 +1,27 @@
-﻿using DiplomacyFixes.Extensions;
+﻿using Diplomacy.Extensions;
+
 using HarmonyLib;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using TaleWorlds.Localization;
 
-namespace DiplomacyFixes.Patches
+namespace Diplomacy.Patches
 {
     [HarmonyPatch(typeof(DefaultClanPoliticsModel))]
     class DefaultClanPoliticsModelPatch
     {
         [HarmonyPostfix]
         [HarmonyPatch("CalculateInfluenceChange")]
-        public static void CalculateInfluenceChangePatch(ref float __result, Clan clan, StatExplainer explanation = null)
+        public static void CalculateInfluenceChangePatch(ref float __result, Clan clan, StatExplainer? explanation = null)
         {
-            if (Settings.Instance.EnableInfluenceBalancing)
+            if (Settings.Instance!.EnableInfluenceBalancing)
             {
-                float influenceChange = __result;
+                var influenceChange = __result;
 
                 if (Settings.Instance.EnableCorruption)
                 {
-                    float corruption = clan.GetCorruption();
+                    var corruption = clan.GetCorruption();
                     if (corruption > 0)
                     {
                         explanation?.AddLine(new TextObject("{=dUCOV7km}Corruption (too many fiefs)").ToString(), -corruption);
@@ -29,7 +31,10 @@ namespace DiplomacyFixes.Patches
 
                 if (Settings.Instance.EnableInfluenceDecay)
                 {
-                    int influenceDecayFactor = clan.Influence > Settings.Instance.InfluenceDecayThreshold ? (int)-((clan.Influence - Settings.Instance.InfluenceDecayThreshold) * (Settings.Instance.InfluenceDecayPercentage / 100)) : 0;
+                    var influenceDecayFactor = clan.Influence > Settings.Instance.InfluenceDecayThreshold
+                        ? -(int)((clan.Influence - Settings.Instance.InfluenceDecayThreshold) * (Settings.Instance.InfluenceDecayPercentage / 100))
+                        : 0;
+
                     if (influenceDecayFactor < 0)
                     {
                         explanation?.AddLine(new TextObject("{=koTNaZUX}Influence Decay (too much influence)").ToString(), influenceDecayFactor);
@@ -38,6 +43,7 @@ namespace DiplomacyFixes.Patches
                 }
 
                 float maximumInfluenceLoss = Settings.Instance.MaximumInfluenceLoss;
+
                 if (influenceChange < -maximumInfluenceLoss)
                 {
                     explanation?.AddLine(new TextObject("{=uZc8Hg01}Maximum Influence Loss").ToString(), -maximumInfluenceLoss, StatExplainer.OperationType.LimitMin);

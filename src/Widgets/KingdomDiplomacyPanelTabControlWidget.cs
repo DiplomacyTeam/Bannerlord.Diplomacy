@@ -16,8 +16,8 @@ namespace Diplomacy.Widgets
         protected override void OnLateUpdate(float dt)
         {
             base.OnLateUpdate(dt);
-            this.OverviewButton.IsSelected = this.OverviewPanel.IsVisible;
-            this.StatsButton.IsSelected = this.StatsPanel.IsVisible;
+            OverviewButton.IsSelected = OverviewPanel.IsVisible;
+            StatsButton.IsSelected = StatsPanel.IsVisible;
         }
 
         [Editor(false)]
@@ -25,13 +25,13 @@ namespace Diplomacy.Widgets
         {
             get
             {
-                return this._overviewButton;
+                return _overviewButton;
             }
             set
             {
-                if (this._overviewButton != value)
+                if (_overviewButton != value)
                 {
-                    this._overviewButton = value;
+                    _overviewButton = value;
                     base.OnPropertyChanged(value, "OverviewButton");
                 }
             }
@@ -42,13 +42,13 @@ namespace Diplomacy.Widgets
         {
             get
             {
-                return this._statsButton;
+                return _statsButton;
             }
             set
             {
-                if (this._statsButton != value)
+                if (_statsButton != value)
                 {
-                    this._statsButton = value;
+                    _statsButton = value;
                     base.OnPropertyChanged(value, "StatsButton");
                 }
             }
@@ -59,13 +59,13 @@ namespace Diplomacy.Widgets
         {
             get
             {
-                return this._overviewPanel;
+                return _overviewPanel;
             }
             set
             {
-                if (this._overviewPanel != value)
+                if (_overviewPanel != value)
                 {
-                    this._overviewPanel = value;
+                    _overviewPanel = value;
                     base.OnPropertyChanged(value, "OverviewPanel");
                 }
             }
@@ -76,13 +76,13 @@ namespace Diplomacy.Widgets
         {
             get
             {
-                return this._statsPanel;
+                return _statsPanel;
             }
             set
             {
-                if (this._statsPanel != value)
+                if (_statsPanel != value)
                 {
-                    this._statsPanel = value;
+                    _statsPanel = value;
                     base.OnPropertyChanged(value, "StatsPanel");
                 }
             }

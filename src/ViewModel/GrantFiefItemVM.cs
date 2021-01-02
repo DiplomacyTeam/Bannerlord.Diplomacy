@@ -13,34 +13,34 @@ namespace Diplomacy.ViewModel
 
         public GrantFiefItemVM(Settlement settlement, Hero targetHero, Action<GrantFiefItemVM> onSelect)
         {
-            this.Settlement = settlement;
-            this.Name = settlement.Name.ToString();
-            SettlementComponent component = settlement.GetComponent<SettlementComponent>();
-            this.SettlementImagePath = ((component == null) ? "placeholder" : (component.BackgroundMeshName + "_t"));
-            Town component2 = settlement.GetComponent<Town>();
-            if (component2 != null)
+            Settlement = settlement;
+            Name = settlement.Name.ToString();
+            var component = settlement.GetComponent<SettlementComponent>();
+            SettlementImagePath = ((component is null) ? "placeholder" : (component.BackgroundMeshName + "_t"));
+            var component2 = settlement.GetComponent<Town>();
+            if (component2 is not null)
             {
-                this.Prosperity = MBMath.Round(component2.Prosperity);
-                this.IconPath = component2.BackgroundMeshName;
+                Prosperity = MBMath.Round(component2.Prosperity);
+                IconPath = component2.BackgroundMeshName;
             }
             else if (settlement.IsCastle)
             {
-                this.Prosperity = MBMath.Round(settlement.Prosperity);
-                this.IconPath = "";
+                Prosperity = MBMath.Round(settlement.Prosperity);
+                IconPath = "";
             }
-            this.Garrison = this.Settlement.Town.GarrisonParty?.Party.NumberOfAllMembers ?? 0;
-            this._onSelect = onSelect;
-            this.RelationBonus = String.Concat(new string[] { GrantFiefAction.PreviewPositiveRelationChange(this.Settlement, targetHero).ToString(), "+" });
+            Garrison = Settlement.Town.GarrisonParty?.Party.NumberOfAllMembers ?? 0;
+            _onSelect = onSelect;
+            RelationBonus = String.Concat(new string[] { GrantFiefAction.PreviewPositiveRelationChange(Settlement, targetHero).ToString(), "+" });
         }
 
         public void ExecuteLink()
         {
-            Campaign.Current.EncyclopediaManager.GoToLink(this.Settlement.EncyclopediaLink);
+            Campaign.Current.EncyclopediaManager.GoToLink(Settlement.EncyclopediaLink);
         }
 
         public void OnSelect()
         {
-            this._onSelect(this);
+            _onSelect(this);
         }
 
         [DataSourceProperty]
@@ -52,9 +52,9 @@ namespace Diplomacy.ViewModel
             }
             set
             {
-                if (value != this._isSelected)
+                if (value != _isSelected)
                 {
-                    this._isSelected = value;
+                    _isSelected = value;
                     base.OnPropertyChanged("IsSelected");
                 }
             }

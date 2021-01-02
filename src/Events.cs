@@ -9,7 +9,7 @@ namespace Diplomacy
 {
     internal sealed class Events
     {
-        public static Events Instance { get; set; } = default!;
+        public static Events Instance { get; set; } = null!;
 
         private readonly MbEvent<Hero> _messengerSent = new MbEvent<Hero>();
         private readonly MbEvent<Kingdom> _peaceProposalSent = new MbEvent<Kingdom>();
@@ -22,6 +22,7 @@ namespace Diplomacy
 
         public Events()
         {
+            Instance = this;
             _listeners = new List<object>
             {
                 _allianceBroken,
@@ -67,9 +68,7 @@ namespace Diplomacy
         internal void RemoveListenersInternal(object obj)
         {
             foreach (dynamic listener in _listeners)
-            {
                 listener.ClearListeners(obj);
-            }
         }
     }
 }

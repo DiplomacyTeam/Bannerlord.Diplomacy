@@ -15,7 +15,7 @@ namespace Diplomacy.Patches
         private static Action<Hero, UrbanCharactersCampaignBehavior> ActivateCharacter = (hero, __instance) =>
         {
             hero.ChangeState(Hero.CharacterStates.Active);
-            List<Hero> companionsList = (List<Hero>)_companionsFieldInfo.GetValue(__instance);
+            var companionsList = (List<Hero>)_companionsFieldInfo.GetValue(__instance);
             companionsList.Remove(hero);
         };
 

@@ -18,15 +18,15 @@ namespace Diplomacy.ViewModel
 
         public DiplomacyFactionRelationshipVM(IFaction faction, HintViewModel hint)
         {
-            this.Faction = faction;
-            this.ImageIdentifier = new ImageIdentifierVM(BannerCode.CreateFrom(faction.Banner), true);
-            this.NameText = this.Faction.Name.ToString();
-            this.Hint = hint;
+            Faction = faction;
+            ImageIdentifier = new ImageIdentifierVM(BannerCode.CreateFrom(faction.Banner), true);
+            NameText = Faction.Name.ToString();
+            Hint = hint;
         }
 
         private void ExecuteLink()
         {
-            Campaign.Current.EncyclopediaManager.GoToLink(this.Faction.EncyclopediaLink);
+            Campaign.Current.EncyclopediaManager.GoToLink(Faction.EncyclopediaLink);
         }
 
         public override bool Equals(object obj)
@@ -45,13 +45,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._nameText;
+                return _nameText;
             }
             set
             {
-                if (value != this._nameText)
+                if (value != _nameText)
                 {
-                    this._nameText = value;
+                    _nameText = value;
                     base.OnPropertyChanged("NameText");
                 }
             }
@@ -62,13 +62,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._imageIdentifier;
+                return _imageIdentifier;
             }
             set
             {
-                if (value != this._imageIdentifier)
+                if (value != _imageIdentifier)
                 {
-                    this._imageIdentifier = value;
+                    _imageIdentifier = value;
                     base.OnPropertyChanged("Banner");
                 }
             }
@@ -79,13 +79,13 @@ namespace Diplomacy.ViewModel
         {
             get
             {
-                return this._hint;
+                return _hint;
             }
             set
             {
-                if (value != this._hint)
+                if (value != _hint)
                 {
-                    this._hint = value;
+                    _hint = value;
                     base.OnPropertyChanged("Hint");
                 }
             }

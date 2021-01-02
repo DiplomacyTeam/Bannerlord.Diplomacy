@@ -6,7 +6,7 @@
 
         public DiplomacyCost(float value)
         {
-            this.Value = value;
+            Value = value;
         }
 
         public abstract void ApplyCost();

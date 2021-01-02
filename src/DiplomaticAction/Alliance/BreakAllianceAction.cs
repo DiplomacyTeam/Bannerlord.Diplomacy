@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -14,6 +16,7 @@ namespace Diplomacy.DiplomaticAction.Alliance
 
         protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
+            Log.Get<BreakAllianceAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} broke their alliance with {otherKingdom.Name}.");
             FactionManager.SetNeutral(proposingKingdom, otherKingdom);
             Events.Instance.OnAllianceBroken(new AllianceEvent(proposingKingdom, otherKingdom));
         }
@@ -24,7 +27,7 @@ namespace Diplomacy.DiplomaticAction.Alliance
 
         protected override void ShowPlayerInquiry(Kingdom proposingKingdom, Action acceptAction)
         {
-            TextObject textObject = new TextObject("{=384jX28Q}{KINGDOM} is breaking the alliance with {PLAYER_KINGDOM}.");
+            var textObject = new TextObject("{=384jX28Q}{KINGDOM} is breaking the alliance with {PLAYER_KINGDOM}.");
             textObject.SetTextVariable("KINGDOM", proposingKingdom.Name);
             textObject.SetTextVariable("PLAYER_KINGDOM", Clan.PlayerClan.Kingdom.Name);
 
