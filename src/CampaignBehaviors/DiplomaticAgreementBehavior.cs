@@ -49,7 +49,7 @@ namespace Diplomacy.CampaignBehaviors
 
                 if (proposedKingdom is not null)
                 {
-                    Log.Get<DiplomaticAgreementBehavior>()
+                    LogFactory.Get<DiplomaticAgreementBehavior>()
                         .LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} decided to form a NAP with {proposedKingdom.Name}.");
                     FormNonAggressionPactAction.Apply(proposingKingdom, proposedKingdom);
                 }

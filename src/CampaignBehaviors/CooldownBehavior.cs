@@ -25,7 +25,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void RegisterAllianceFormedCooldown(AllianceEvent allianceFormedEvent)
         {
-            Log.Get<CooldownBehavior>()
+            LogFactory.Get<CooldownBehavior>()
                 .LogTrace($"[{CampaignTime.Now}] {allianceFormedEvent.Kingdom} got an alliance formation cooldown with {allianceFormedEvent.OtherKingdom}.");
 
             _cooldownManager.UpdateLastAllianceFormedTime(allianceFormedEvent.Kingdom, allianceFormedEvent.OtherKingdom, CampaignTime.Now);
@@ -35,7 +35,7 @@ namespace Diplomacy.CampaignBehaviors
         {
             if (faction1 is Kingdom kingdom1 && faction2 is Kingdom kingdom2)
             {
-                Log.Get<CooldownBehavior>()
+                LogFactory.Get<CooldownBehavior>()
                     .LogTrace($"[{CampaignTime.Now}] {kingdom1.Name} got a war declaration cooldown with {kingdom2.Name}.");
 
                 FormNonAggressionPactAction.Apply(kingdom1,
@@ -48,7 +48,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void RegisterPeaceProposalCooldown(Kingdom kingdom)
         {
-            Log.Get<CooldownBehavior>()
+            LogFactory.Get<CooldownBehavior>()
                 .LogTrace($"[{CampaignTime.Now}] {kingdom.Name} sent a peace proposal.");
          
             _cooldownManager.UpdateLastPeaceProposalTime(kingdom, CampaignTime.Now);

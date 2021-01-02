@@ -16,7 +16,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 
         private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, DiplomacyCost diplomacyCost)
         {
-            Log.Get<KingdomPeaceAction>()
+            LogFactory.Get<KingdomPeaceAction>()
                 .LogTrace($"[{CampaignTime.Now}] {kingdomMakingPeace.Name} secured peace with {otherKingdom.Name} (cost: {diplomacyCost.Value}).");
             diplomacyCost.ApplyCost();
             MakePeaceAction.Apply(kingdomMakingPeace, otherKingdom);

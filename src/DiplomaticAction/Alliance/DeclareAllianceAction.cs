@@ -16,7 +16,7 @@ namespace Diplomacy.DiplomaticAction.Alliance
 
         protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
-            Log.Get<DeclareAllianceAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} secured an alliance with {otherKingdom.Name}.");
+            LogFactory.Get<DeclareAllianceAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} secured an alliance with {otherKingdom.Name}.");
             FactionManager.DeclareAlliance(proposingKingdom, otherKingdom);
             Events.Instance.OnAllianceFormed(new AllianceEvent(proposingKingdom, otherKingdom));
         }

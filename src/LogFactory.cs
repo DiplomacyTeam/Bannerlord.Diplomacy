@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diplomacy
 {
-    internal static class Log
+    internal static class LogFactory
     {
         internal static ILogger Get<T>()
         {

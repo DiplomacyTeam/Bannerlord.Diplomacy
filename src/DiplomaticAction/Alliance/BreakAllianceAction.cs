@@ -16,7 +16,7 @@ namespace Diplomacy.DiplomaticAction.Alliance
 
         protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
-            Log.Get<BreakAllianceAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} broke their alliance with {otherKingdom.Name}.");
+            LogFactory.Get<BreakAllianceAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} broke their alliance with {otherKingdom.Name}.");
             FactionManager.SetNeutral(proposingKingdom, otherKingdom);
             Events.Instance.OnAllianceBroken(new AllianceEvent(proposingKingdom, otherKingdom));
         }

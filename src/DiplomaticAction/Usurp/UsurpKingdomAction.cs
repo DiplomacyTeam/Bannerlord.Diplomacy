@@ -8,11 +8,11 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.Usurp
 {
-    public class UsurpKingdomAction
+    internal static class UsurpKingdomAction
     {
         public static void Apply(Clan usurpingClan)
         {
-            if (Settings.Instance.EnableStorylineProtection && StoryMode.StoryMode.Current.MainStoryLine.MainStoryLineSide == MainStoryLineSide.None)
+            if (Settings.Instance!.EnableStorylineProtection && StoryMode.StoryMode.Current.MainStoryLine.MainStoryLineSide == MainStoryLineSide.None)
             {
                 InformationManager.ShowInquiry(new InquiryData(
                     new TextObject("{=fQxiCdBA}Main Storyline").ToString(),
@@ -24,8 +24,7 @@ namespace Diplomacy.DiplomaticAction.Usurp
                     new TextObject(StringConstants.Accept).ToString(),
                     new TextObject(StringConstants.Decline).ToString(),
                     () => ApplyInternal(usurpingClan),
-                    null,
-                    ""), true);
+                    null), true);
             }
             else
             {
@@ -35,7 +34,7 @@ namespace Diplomacy.DiplomaticAction.Usurp
 
         private static void ApplyInternal(Clan usurpingClan)
         {
-            if (Settings.Instance.EnableStorylineProtection && StoryMode.StoryMode.Current.MainStoryLine.MainStoryLineSide == MainStoryLineSide.None)
+            if (Settings.Instance!.EnableStorylineProtection && StoryMode.StoryMode.Current.MainStoryLine.MainStoryLineSide == MainStoryLineSide.None)
             {
                 if (StoryModeData.IsKingdomImperial(usurpingClan.Kingdom))
                 {
@@ -46,8 +45,8 @@ namespace Diplomacy.DiplomaticAction.Usurp
                     StoryMode.StoryMode.Current.MainStoryLine.SetStoryLineSide(MainStoryLineSide.SupportAntiImperialKingdom);
                 }
             }
-            List<Clan> supportingClans, opposingClans;
-            GetClanSupport(usurpingClan, out supportingClans, out opposingClans);
+
+            GetClanSupport(usurpingClan, out var supportingClans, out List<Clan> opposingClans);
 
             usurpingClan.Influence -= usurpingClan.Kingdom.RulingClan.Influence;
             usurpingClan.Kingdom.RulingClan.Influence = 0;
@@ -75,10 +74,11 @@ namespace Diplomacy.DiplomaticAction.Usurp
             }
         }
 
-        public static bool CanUsurp(Clan usurpingClan, out string errorMessage)
+        public static bool CanUsurp(Clan usurpingClan, out string? errorMessage)
         {
             errorMessage = null;
-            if (Settings.Instance.EnableStorylineProtection && (!(StoryMode.StoryMode.Current?.MainStoryLine?.FirstPhase?.AllPiecesCollected ?? false)))
+
+            if (Settings.Instance!.EnableStorylineProtection && (!(StoryMode.StoryMode.Current?.MainStoryLine?.FirstPhase?.AllPiecesCollected ?? false)))
             {
                 errorMessage = new TextObject("{=Euy6Mwcq}You must progress further in the main quest to unlock this action. You can disable storyline protection in the mod options.").ToString();
                 return false;
@@ -97,8 +97,7 @@ namespace Diplomacy.DiplomaticAction.Usurp
         public static void GetClanSupport(Clan usurpingClan, out int supportingClanTiers, out int opposingClanTiers)
         {
             var rulingClan = usurpingClan.Kingdom.RulingClan;
-            List<Clan> supportingClans, opposingClans;
-            GetClanSupport(usurpingClan, out supportingClans, out opposingClans);
+            GetClanSupport(usurpingClan, out var supportingClans, out List<Clan> opposingClans);
 
             supportingClanTiers = supportingClans.Select(clan => clan.Tier).Sum() + usurpingClan.Tier;
             opposingClanTiers = opposingClans.Select(clan => clan.Tier).Sum() + rulingClan.Tier;

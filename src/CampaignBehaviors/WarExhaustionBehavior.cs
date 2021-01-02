@@ -8,12 +8,15 @@ using TaleWorlds.Core;
 
 namespace Diplomacy.CampaignBehaviors
 {
-    public class WarExhaustionBehavior : CampaignBehaviorBase
+    internal sealed class WarExhaustionBehavior : CampaignBehaviorBase
     {
+        private ILogger Log { get; init; }
+
         private WarExhaustionManager _warExhaustionManager;
 
         public WarExhaustionBehavior()
         {
+            Log = LogFactory.Get<WarExhaustionBehavior>();
             _warExhaustionManager = new();
         }
 
@@ -21,8 +24,8 @@ namespace Diplomacy.CampaignBehaviors
         {
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
             CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, OnSettlementOwnerChanged);
-            CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, RaidCompleted);
-            CampaignEvents.MapEventEnded.AddNonSerializedListener(this, MapEventEnded);
+            CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, OnRaidCompleted);
+            CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnMapEventEnded);
         }
 
         public override void SyncData(IDataStore dataStore)
@@ -36,26 +39,24 @@ namespace Diplomacy.CampaignBehaviors
             }
         }
 
-        private void RaidCompleted(BattleSideEnum battleSide, MapEvent mapEvent)
+        private void OnRaidCompleted(BattleSideEnum battleSide, MapEvent mapEvent)
         {
-            if (battleSide != BattleSideEnum.Attacker)
+            if (battleSide != BattleSideEnum.Attacker
+                || mapEvent.AttackerSide.LeaderParty.MapFaction is not Kingdom attacker
+                || mapEvent.DefenderSide.LeaderParty.MapFaction is not Kingdom defender)
                 return;
 
-            if (mapEvent.AttackerSide.LeaderParty.MapFaction is Kingdom attacker
-                && mapEvent.DefenderSide.LeaderParty.MapFaction is Kingdom defender)
-            {
-                _warExhaustionManager.AddRaidWarExhaustion(defender, attacker);
-            }
+            _warExhaustionManager.AddRaidWarExhaustion(defender, attacker);
         }
 
-        private void MapEventEnded(MapEvent mapEvent)
+        private void OnMapEventEnded(MapEvent mapEvent)
         {
-            if (mapEvent.AttackerSide.LeaderParty.MapFaction is Kingdom attacker
-                && mapEvent.DefenderSide.LeaderParty.MapFaction is Kingdom defender)
-            {
-                _warExhaustionManager.AddCasualtyWarExhaustion(attacker, defender, mapEvent.AttackerSide.Casualties);
-                _warExhaustionManager.AddCasualtyWarExhaustion(defender, attacker, mapEvent.DefenderSide.Casualties);
-            }
+            if (mapEvent.AttackerSide.LeaderParty.MapFaction is not Kingdom attacker
+                || mapEvent.DefenderSide.LeaderParty.MapFaction is not Kingdom defender)
+                return;
+
+            _warExhaustionManager.AddCasualtyWarExhaustion(attacker, defender, mapEvent.AttackerSide.Casualties);
+            _warExhaustionManager.AddCasualtyWarExhaustion(defender, attacker, mapEvent.DefenderSide.Casualties);
         }
 
         private void OnDailyTick()
@@ -81,12 +82,11 @@ namespace Diplomacy.CampaignBehaviors
             if (detail != ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.BySiege)
                 return;
 
-            if (oldOwner.MapFaction is Kingdom prevOwnerKingdom
-                && newOwner.MapFaction is Kingdom newOwnerKingdom
-                && prevOwnerKingdom != newOwnerKingdom)
-            {
-                _warExhaustionManager.AddSiegeWarExhaustion(prevOwnerKingdom, newOwnerKingdom);
-            }
+            if (newOwner.MapFaction == oldOwner.MapFaction)
+                return;
+
+            if (oldOwner.MapFaction is Kingdom oldOwnerKingdom && newOwner.MapFaction is Kingdom newOwnerKingdom)
+                _warExhaustionManager.AddSiegeWarExhaustion(oldOwnerKingdom, newOwnerKingdom);
         }
 
         private void ConsiderPeaceActions(Kingdom kingdom)
@@ -95,9 +95,7 @@ namespace Diplomacy.CampaignBehaviors
             {
                 if (_warExhaustionManager.HasMaxWarExhaustion(kingdom, targetKingdom) && IsValidQuestState(kingdom, targetKingdom))
                 {
-                    Log.Get<WarExhaustionBehavior>()
-                        .LogTrace($"[{CampaignTime.Now}] {kingdom.Name}, due to max war exhaustion, will peace out with {targetKingdom.Name}.");
-
+                    Log.LogTrace($"[{CampaignTime.Now}] {kingdom.Name}, due to max war exhaustion, will peace out with {targetKingdom.Name}.");
                     KingdomPeaceAction.ApplyPeace(kingdom, targetKingdom);
                 }
             }
@@ -107,11 +105,13 @@ namespace Diplomacy.CampaignBehaviors
         {
             var isValidQuestState = true;
             var opposingKingdom = PlayerHelpers.GetOpposingKingdomIfPlayerKingdomProvided(kingdom1, kingdom2);
+
             if (opposingKingdom is not null)
             {
                 var thirdPhase = StoryMode.StoryMode.Current.MainStoryLine.ThirdPhase;
                 isValidQuestState = thirdPhase is null || !thirdPhase.OppositionKingdoms.Contains(opposingKingdom);
             }
+
             return isValidQuestState;
         }
     }

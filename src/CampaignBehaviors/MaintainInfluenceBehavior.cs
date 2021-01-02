@@ -6,12 +6,9 @@ using TaleWorlds.CampaignSystem.Barterables;
 
 namespace Diplomacy.CampaignBehaviors
 {
-    class MaintainInfluenceBehavior : CampaignBehaviorBase
+    internal sealed class MaintainInfluenceBehavior : CampaignBehaviorBase
     {
-        public override void RegisterEvents()
-        {
-            CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, ReduceCorruption);
-        }
+        public override void RegisterEvents() => CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, ReduceCorruption);
 
         public override void SyncData(IDataStore dataStore) { }
 
@@ -20,46 +17,49 @@ namespace Diplomacy.CampaignBehaviors
             if (clan.MapFaction.IsKingdomFaction && !clan.Leader.IsHumanPlayerCharacter && clan.InfluenceChange < 0 && clan.GetCorruption() > 0)
             {
                 var fiefBarterable = GetBestFiefBarter(clan, out var targetClan);
-                if (fiefBarterable is not null)
-                {
-                    var goldValue = GetGoldValueForFief(targetClan, fiefBarterable.TargetSettlement);
-                    var goldBarterable = new GoldBarterable(targetClan.Leader, clan.Leader, null, null, goldValue);
-                    goldBarterable.CurrentAmount = goldValue;
 
-                    fiefBarterable.Apply();
-                    goldBarterable.Apply();
-                }
+                if (fiefBarterable is null || targetClan is null)
+                    return;
+
+                var goldValue = GetGoldValueForFief(targetClan, fiefBarterable.TargetSettlement);
+                var goldBarterable = new GoldBarterable(targetClan.Leader, clan.Leader, null, null, goldValue)
+                {
+                    CurrentAmount = goldValue
+                };
+
+                fiefBarterable.Apply();
+                goldBarterable.Apply();
             }
         }
 
         private FiefBarterable? GetBestFiefBarter(Clan ownerClan, out Clan? otherClan)
         {
+            otherClan = default;
+
             var settlementToTrade = ownerClan.GetPermanentFiefs()
                 .OrderBy(settlement => settlement.Prosperity)
                 .FirstOrDefault()?.Settlement;
 
+            if (settlementToTrade is null)
+                return default;
+
             var targetClan = ((Kingdom)ownerClan.MapFaction).Clans
-                .Where(clan => clan != ownerClan && !clan.HasMaximumFiefs() && !clan.IsUnderMercenaryService && clan != Clan.PlayerClan)?
-                .OrderByDescending(clan => GetGoldValueForFief(clan, settlementToTrade))?
+                .Where(c => c != ownerClan && !c.HasMaximumFiefs() && !c.IsUnderMercenaryService && c != Clan.PlayerClan)?
+                .OrderByDescending(c => GetGoldValueForFief(c, settlementToTrade))
                 .FirstOrDefault();
 
-            if (settlementToTrade is not null && targetClan is not null)
-            {
-                var fiefBarterable = new FiefBarterable(settlementToTrade, ownerClan.Leader, targetClan.Leader);
-                otherClan = targetClan;
-                return fiefBarterable;
-            }
-            else
-            {
-                otherClan = default;
+            if (targetClan is null)
                 return default;
-            }
+
+            var fiefBarterable = new FiefBarterable(settlementToTrade, ownerClan.Leader, targetClan.Leader);
+            otherClan = targetClan;
+            return fiefBarterable;
         }
 
-        private static int GetGoldValueForFief(Clan targetClan, Settlement settlement)
+        private static int GetGoldValueForFief(Clan buyerClan, Settlement settlement)
         {
-            return (int)Math.Min(Campaign.Current.Models.SettlementValueModel.CalculateValueForFaction(settlement, targetClan),
-                                 targetClan.Gold * 0.8);
+            return (int)Math.Min(Campaign.Current.Models.SettlementValueModel.CalculateValueForFaction(settlement, buyerClan),
+                                 buyerClan.Gold * 0.8);
         }
     }
 }

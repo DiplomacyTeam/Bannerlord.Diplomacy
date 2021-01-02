@@ -42,7 +42,7 @@ namespace Diplomacy
             Instance = this;
 
             this.AddSerilogLoggerProvider($"{Name}.log", new[] { $"{Name}.*" }, config => config.MinimumLevel.Is(LogEventLevel.Verbose));
-            Log = Diplomacy.Log.Get<SubModule>();
+            Log = Diplomacy.LogFactory.Get<SubModule>();
 
             new Harmony(HarmonyDomain).PatchAll();
         }
@@ -61,7 +61,7 @@ namespace Diplomacy
             {
                 _hasLoaded = true;
 
-                Log = Diplomacy.Log.Get<SubModule>(); // Upgrade to dedicated log file from closed service registry
+                Log = Diplomacy.LogFactory.Get<SubModule>(); // Upgrade to dedicated log file from closed service registry
                 Log.LogInformation($"Loaded {Name} {Version}!");
 
                 InformationManager.DisplayMessage(new InformationMessage($"Loaded {DisplayName}", StdTextColor));

@@ -17,7 +17,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
 
         protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
-            Log.Get<FormNonAggressionPactAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} secured a NAP with {otherKingdom.Name}.");
+            LogFactory.Get<FormNonAggressionPactAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} secured a NAP with {otherKingdom.Name}.");
             DiplomaticAgreementManager.Instance.RegisterAgreement(proposingKingdom, otherKingdom, new NonAggressionPactAgreement(CampaignTime.Now, CampaignTime.DaysFromNow(customDurationInDays.HasValue ? customDurationInDays.Value : Settings.Instance!.NonAggressionPactDuration), proposingKingdom, otherKingdom));
 
             var textObject = new TextObject("{=vB3RrMNf}The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}.");

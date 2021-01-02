@@ -26,7 +26,7 @@ namespace Diplomacy
             AddClassDefinition(typeof(ExpansionismManager), 8);
         }
 
-        protected override void DefineStructTypes() => AddStructDefinition(typeof(FactionMapping), 9);
+        protected override void DefineStructTypes() => AddStructDefinition(typeof(FactionPair), 9);
 
         protected override void DefineContainerDefinitions()
         {
@@ -34,7 +34,7 @@ namespace Diplomacy
             ConstructContainerDefinition(typeof(Dictionary<IFaction, CampaignTime>));
             ConstructContainerDefinition(typeof(Dictionary<Kingdom, CampaignTime>));
             ConstructContainerDefinition(typeof(List<DiplomaticAgreement>));
-            ConstructContainerDefinition(typeof(Dictionary<FactionMapping, List<DiplomaticAgreement>>));
+            ConstructContainerDefinition(typeof(Dictionary<FactionPair, List<DiplomaticAgreement>>));
         }
     }
 }

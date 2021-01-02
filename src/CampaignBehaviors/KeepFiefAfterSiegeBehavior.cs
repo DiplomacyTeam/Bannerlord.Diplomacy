@@ -5,16 +5,22 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CampaignBehaviors
 {
-    class KeepFiefAfterSiegeBehavior : CampaignBehaviorBase
+    internal sealed class KeepFiefAfterSiegeBehavior : CampaignBehaviorBase
     {
-        public override void RegisterEvents()
-        {
-            Events.PlayerSettlementTaken.AddNonSerializedListener(this, KeepFief);
-        }
+        public override void RegisterEvents() => Events.PlayerSettlementTaken.AddNonSerializedListener(this, OnPlayerSettlementTaken);
 
-        private void KeepFief(Settlement settlement)
+        public override void SyncData(IDataStore dataStore) { }
+
+        private void OnPlayerSettlementTaken(Settlement settlement)
         {
-            if (settlement.Town.IsOwnerUnassigned && (settlement.LastAttackerParty?.LeaderHero?.IsHumanPlayerCharacter ?? false) && !settlement.LastAttackerParty.LeaderHero.Clan.IsUnderMercenaryService)
+            var siegePartyLeader = settlement.LastAttackerParty?.LeaderHero;
+
+            if (siegePartyLeader is null || siegePartyLeader.Clan is null)
+                return;
+
+            if (settlement.Town.IsOwnerUnassigned
+                && siegePartyLeader.IsHumanPlayerCharacter
+                && !siegePartyLeader.Clan.IsUnderMercenaryService)
             {
                 ShowKeepFiefInquiry(settlement);
             }
@@ -30,26 +36,19 @@ namespace Diplomacy.CampaignBehaviors
                     new TextObject(StringConstants.Accept).ToString(),
                     new TextObject(StringConstants.Decline).ToString(),
                     () =>
-                        {
-                            settlement.Town.IsOwnerUnassigned = false;
-                            ChangeOwnerOfSettlementAction.ApplyByDefault(Hero.MainHero, settlement);
-                        },
-                    () =>
-                        {
-                            settlement.Town.IsOwnerUnassigned = true;
-                        },
-                    ""),
+                    {
+                        settlement.Town.IsOwnerUnassigned = false;
+                        ChangeOwnerOfSettlementAction.ApplyByDefault(Hero.MainHero, settlement);
+                    },
+                    () => settlement.Town.IsOwnerUnassigned = true),
                 true);
         }
 
         private TextObject GetKeepFiefText(Settlement settlement)
         {
-            var textObject = new TextObject("{=Zy0yjTha}As the capturer of {SETTLEMENT_NAME}, you have the right of first refusal. Would you like to claim this fief?");
-            textObject.SetTextVariable("SETTLEMENT_NAME", settlement.Name);
-
-            return textObject;
+            var txt = new TextObject("{=Zy0yjTha}As the capturer of {SETTLEMENT_NAME}, you have the right of first refusal. Would you like to claim this fief?");
+            txt.SetTextVariable("SETTLEMENT_NAME", settlement.Name);
+            return txt;
         }
-
-        public override void SyncData(IDataStore dataStore) { }
     }
 }

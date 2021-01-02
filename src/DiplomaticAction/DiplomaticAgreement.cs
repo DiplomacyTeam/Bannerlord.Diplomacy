@@ -17,15 +17,15 @@ namespace Diplomacy.DiplomaticAction
         public CampaignTime EndDate { get; protected set; }
 
         [SaveableProperty(3)]
-        public FactionMapping Factions { get; set; }
+        public FactionPair Factions { get; set; }
 
         [SaveableProperty(4)]
         public bool ExpireNotified { get; protected set; }
 
         public DiplomaticAgreement(CampaignTime startdate, CampaignTime endDate, Kingdom kingdom, Kingdom otherKingdom)
-            : this(startdate, endDate, new FactionMapping(kingdom, otherKingdom)) { }
+            : this(startdate, endDate, new FactionPair(kingdom, otherKingdom)) { }
 
-        public DiplomaticAgreement(CampaignTime startdate, CampaignTime endDate, FactionMapping factionMapping)
+        public DiplomaticAgreement(CampaignTime startdate, CampaignTime endDate, FactionPair factionMapping)
         {
             StartDate = startdate;
             EndDate = endDate;
@@ -44,7 +44,7 @@ namespace Diplomacy.DiplomaticAction
         {
             if (!ExpireNotified && IsExpired())
             {
-                Log.Get<DiplomaticAgreement>()
+                LogFactory.Get<DiplomaticAgreement>()
                     .LogTrace($"[{CampaignTime.Now}] Agreement expired between {Factions.Faction1.Name} and {Factions.Faction2.Name}:"
                             + $" {Enum.GetName(typeof(AgreementType), GetAgreementType())}");
                 NotifyExpired();
