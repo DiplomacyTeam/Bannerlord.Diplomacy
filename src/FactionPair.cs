@@ -54,7 +54,10 @@ namespace Diplomacy
             var num = 0;
 
             for (var i = 0; i < s.Length; ++i)
-                num = 17 * num + char.ToUpper(s[i]) - '0';
+            {
+                num *= 17;
+                num += char.ToUpper(s[i]) - '0';
+            }
 
             return num;
         }
