@@ -55,7 +55,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isSelected)
                 {
                     _isSelected = value;
-                    base.OnPropertyChanged("IsSelected");
+                    OnPropertyChanged("IsSelected");
                 }
             }
         }

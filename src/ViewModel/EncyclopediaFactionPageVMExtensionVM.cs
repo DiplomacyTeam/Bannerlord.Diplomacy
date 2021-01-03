@@ -23,7 +23,7 @@ namespace Diplomacy.ViewModel
 
         public override void RefreshValues()
         {
-            _faction = (base.Obj as IFaction);
+            _faction = (Obj as IFaction);
             Allies = new MBBindingList<EncyclopediaFactionVM>();
             AlliesText = new TextObject("{=KqfNSsBE}Allies", null).ToString();
             NonAggressionPacts = new MBBindingList<EncyclopediaFactionVM>();
@@ -33,7 +33,7 @@ namespace Diplomacy.ViewModel
 
         public override void Refresh()
         {
-            base.IsLoadingOver = false;
+            IsLoadingOver = false;
             Allies.Clear();
 
             var clanPages = Campaign.Current.EncyclopediaManager.GetPageOf(typeof(Clan));
@@ -71,7 +71,7 @@ namespace Diplomacy.ViewModel
                 if (value != _alliesText)
                 {
                     _alliesText = value;
-                    base.OnPropertyChanged("AlliesText");
+                    OnPropertyChanged("AlliesText");
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace Diplomacy.ViewModel
                 if (value != _nonAggressionPactsText)
                 {
                     _nonAggressionPactsText = value;
-                    base.OnPropertyChanged("NonAggressionPactsText");
+                    OnPropertyChanged("NonAggressionPactsText");
                 }
             }
         }
@@ -105,7 +105,7 @@ namespace Diplomacy.ViewModel
                 if (value != _allies)
                 {
                     _allies = value;
-                    base.OnPropertyChanged("Allies");
+                    OnPropertyChanged("Allies");
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace Diplomacy.ViewModel
                 if (value != _nonAggressionPacts)
                 {
                     _nonAggressionPacts = value;
-                    base.OnPropertyChanged("NonAggressionPacts");
+                    OnPropertyChanged("NonAggressionPacts");
                 }
             }
         }

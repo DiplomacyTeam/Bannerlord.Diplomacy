@@ -52,7 +52,7 @@ namespace Diplomacy.ViewModel
                 if (value != _nameText)
                 {
                     _nameText = value;
-                    base.OnPropertyChanged("NameText");
+                    OnPropertyChanged("NameText");
                 }
             }
         }
@@ -69,7 +69,7 @@ namespace Diplomacy.ViewModel
                 if (value != _imageIdentifier)
                 {
                     _imageIdentifier = value;
-                    base.OnPropertyChanged("Banner");
+                    OnPropertyChanged("Banner");
                 }
             }
         }
@@ -86,7 +86,7 @@ namespace Diplomacy.ViewModel
                 if (value != _hint)
                 {
                     _hint = value;
-                    base.OnPropertyChanged("Hint");
+                    OnPropertyChanged("Hint");
                 }
             }
         }

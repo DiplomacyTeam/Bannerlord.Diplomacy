@@ -84,7 +84,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isMessengerAvailable)
                 {
                     _isMessengerAvailable = value;
-                    base.OnPropertyChanged("IsMessengerAvailable");
+                    OnPropertyChanged("IsMessengerAvailable");
                 }
             }
         }
@@ -105,7 +105,7 @@ namespace Diplomacy.ViewModel
                 if (value != _goldCost)
                 {
                     _goldCost = value;
-                    base.OnPropertyChanged("GoldCost");
+                    OnPropertyChanged("GoldCost");
                 }
             }
         }
@@ -126,7 +126,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isOptionAvailable)
                 {
                     _isOptionAvailable = value;
-                    base.OnPropertyChanged("IsOptionAvailable");
+                    OnPropertyChanged("IsOptionAvailable");
                 }
             }
         }
@@ -143,7 +143,7 @@ namespace Diplomacy.ViewModel
                 if (value != _actionHint)
                 {
                     _actionHint = value;
-                    base.OnPropertyChanged("ActionHint");
+                    OnPropertyChanged("ActionHint");
                 }
             }
         }

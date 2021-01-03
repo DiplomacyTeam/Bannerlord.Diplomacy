@@ -146,7 +146,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isAllianceAvailable)
                 {
                     _isAllianceAvailable = value;
-                    base.OnPropertyChanged("isAllianceAvailable");
+                    OnPropertyChanged("isAllianceAvailable");
                 }
             }
         }
@@ -163,7 +163,7 @@ namespace Diplomacy.ViewModel
                 if (value != _allianceInfluenceCost)
                 {
                     _allianceInfluenceCost = value;
-                    base.OnPropertyChanged("AllianceInfluenceCost");
+                    OnPropertyChanged("AllianceInfluenceCost");
                 }
             }
         }
@@ -180,7 +180,7 @@ namespace Diplomacy.ViewModel
                 if (value != _allianceGoldCost)
                 {
                     _allianceGoldCost = value;
-                    base.OnPropertyChanged("AllianceInfluenceCost");
+                    OnPropertyChanged("AllianceInfluenceCost");
                 }
             }
         }
@@ -197,7 +197,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isNonAggressionPactAvailable)
                 {
                     _isNonAggressionPactAvailable = value;
-                    base.OnPropertyChanged("IsNonAggressionPactAvailable");
+                    OnPropertyChanged("IsNonAggressionPactAvailable");
                 }
             }
         }
@@ -214,7 +214,7 @@ namespace Diplomacy.ViewModel
                 if (value != _nonAggressionPactInfluenceCost)
                 {
                     _nonAggressionPactInfluenceCost = value;
-                    base.OnPropertyChanged("NonAggressionPactInfluenceCost");
+                    OnPropertyChanged("NonAggressionPactInfluenceCost");
                 }
             }
         }
@@ -231,7 +231,7 @@ namespace Diplomacy.ViewModel
                 if (value != _nonAggressionPactGoldCost)
                 {
                     _nonAggressionPactGoldCost = value;
-                    base.OnPropertyChanged("NonAggressionPactGoldCost");
+                    OnPropertyChanged("NonAggressionPactGoldCost");
                 }
             }
         }
@@ -262,7 +262,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isMessengerAvailable)
                 {
                     _isMessengerAvailable = value;
-                    base.OnPropertyChanged("IsMessengerAvailable");
+                    OnPropertyChanged("IsMessengerAvailable");
                 }
             }
         }
@@ -282,7 +282,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isOptionAvailable)
                 {
                     _isOptionAvailable = value;
-                    base.OnPropertyChanged("IsOptionAvailable");
+                    OnPropertyChanged("IsOptionAvailable");
                 }
             }
         }
@@ -299,7 +299,7 @@ namespace Diplomacy.ViewModel
                 if (value != _actionHint)
                 {
                     _actionHint = value;
-                    base.OnPropertyChanged("ActionHint");
+                    OnPropertyChanged("ActionHint");
                 }
             }
         }
@@ -316,7 +316,7 @@ namespace Diplomacy.ViewModel
                 if (value != _allianceHint)
                 {
                     _allianceHint = value;
-                    base.OnPropertyChanged("AllianceHint");
+                    OnPropertyChanged("AllianceHint");
                 }
             }
         }
@@ -333,7 +333,7 @@ namespace Diplomacy.ViewModel
                 if (value != _nonAggressionPactHint)
                 {
                     _nonAggressionPactHint = value;
-                    base.OnPropertyChanged("NonAggressionPactHint");
+                    OnPropertyChanged("NonAggressionPactHint");
                 }
             }
         }
@@ -350,7 +350,7 @@ namespace Diplomacy.ViewModel
                 if (value != _allianceScoreHint)
                 {
                     _allianceScoreHint = value;
-                    base.OnPropertyChanged("AllianceScoreHint");
+                    OnPropertyChanged("AllianceScoreHint");
                 }
             }
         }
@@ -367,7 +367,7 @@ namespace Diplomacy.ViewModel
                 if (value != _nonAggressionPactScoreHint)
                 {
                     _nonAggressionPactScoreHint = value;
-                    base.OnPropertyChanged("NonAggressionPactScoreHint");
+                    OnPropertyChanged("NonAggressionPactScoreHint");
                 }
             }
         }

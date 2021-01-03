@@ -92,7 +92,7 @@ namespace Diplomacy.ViewModel
                 if (value != _maxValue)
                 {
                     _maxValue = value;
-                    base.OnPropertyChanged("MaxValue");
+                    OnPropertyChanged("MaxValue");
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace Diplomacy.ViewModel
                 if (value != _goldCost)
                 {
                     _goldCost = value;
-                    base.OnPropertyChanged("GoldCost");
+                    OnPropertyChanged("GoldCost");
                 }
             }
         }
@@ -120,7 +120,7 @@ namespace Diplomacy.ViewModel
                 if (value != _relationGain)
                 {
                     _relationGain = value;
-                    base.OnPropertyChanged("RelationGain");
+                    OnPropertyChanged("RelationGain");
                 }
             }
         }
@@ -137,7 +137,7 @@ namespace Diplomacy.ViewModel
                 if (value != _intValue)
                 {
                     _intValue = value;
-                    base.OnPropertyChanged("IntValue");
+                    OnPropertyChanged("IntValue");
                 }
             }
         }

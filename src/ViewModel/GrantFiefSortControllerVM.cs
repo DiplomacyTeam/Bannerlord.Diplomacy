@@ -19,7 +19,7 @@ namespace Diplomacy.ViewModel
         private void ExecuteSortByType()
         {
             var typeState = TypeState;
-            SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            SetAllStates(SortState.Default);
             TypeState = (typeState + 1) % 3;
             if (TypeState == 0)
             {
@@ -33,7 +33,7 @@ namespace Diplomacy.ViewModel
         private void ExecuteSortByName()
         {
             var nameState = NameState;
-            SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            SetAllStates(SortState.Default);
             NameState = (nameState + 1) % 3;
             if (NameState == 0)
             {
@@ -47,7 +47,7 @@ namespace Diplomacy.ViewModel
         private void ExecuteSortByProsperity()
         {
             var prosperityState = ProsperityState;
-            SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            SetAllStates(SortState.Default);
             ProsperityState = (prosperityState + 1) % 3;
             if (ProsperityState == 0)
             {
@@ -61,7 +61,7 @@ namespace Diplomacy.ViewModel
         private void ExecuteSortByRelation()
         {
             var relationState = RelationState;
-            SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            SetAllStates(SortState.Default);
             RelationState = (relationState + 1) % 3;
             if (RelationState == 0)
             {
@@ -75,7 +75,7 @@ namespace Diplomacy.ViewModel
         private void ExecuteSortByDefenders()
         {
             var defendersState = DefendersState;
-            SetAllStates(GrantFiefSortControllerVM.SortState.Default);
+            SetAllStates(SortState.Default);
             DefendersState = (defendersState + 1) % 3;
             if (DefendersState == 0)
             {
@@ -113,7 +113,7 @@ namespace Diplomacy.ViewModel
                 if (value != _typeState)
                 {
                     _typeState = value;
-                    base.OnPropertyChanged("TypeState");
+                    OnPropertyChanged("TypeState");
                 }
             }
         }
@@ -130,7 +130,7 @@ namespace Diplomacy.ViewModel
                 if (value != _nameState)
                 {
                     _nameState = value;
-                    base.OnPropertyChanged("NameState");
+                    OnPropertyChanged("NameState");
                 }
             }
         }
@@ -147,7 +147,7 @@ namespace Diplomacy.ViewModel
                 if (value != _prosperityState)
                 {
                     _prosperityState = value;
-                    base.OnPropertyChanged("ProsperityState");
+                    OnPropertyChanged("ProsperityState");
                 }
             }
         }
@@ -164,7 +164,7 @@ namespace Diplomacy.ViewModel
                 if (value != _relationState)
                 {
                     _relationState = value;
-                    base.OnPropertyChanged("RelationState");
+                    OnPropertyChanged("RelationState");
                 }
             }
         }
@@ -181,7 +181,7 @@ namespace Diplomacy.ViewModel
                 if (value != _defendersState)
                 {
                     _defendersState = value;
-                    base.OnPropertyChanged("DefendersState");
+                    OnPropertyChanged("DefendersState");
                 }
             }
         }
@@ -198,7 +198,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isTypeSelected)
                 {
                     _isTypeSelected = value;
-                    base.OnPropertyChanged("IsTypeSelected");
+                    OnPropertyChanged("IsTypeSelected");
                 }
             }
         }
@@ -215,7 +215,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isNameSelected)
                 {
                     _isNameSelected = value;
-                    base.OnPropertyChanged("IsNameSelected");
+                    OnPropertyChanged("IsNameSelected");
                 }
             }
         }
@@ -232,7 +232,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isDefendersSelected)
                 {
                     _isDefendersSelected = value;
-                    base.OnPropertyChanged("IsDefendersSelected");
+                    OnPropertyChanged("IsDefendersSelected");
                 }
             }
         }
@@ -249,7 +249,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isProsperitySelected)
                 {
                     _isProsperitySelected = value;
-                    base.OnPropertyChanged("IsProsperitySelected");
+                    OnPropertyChanged("IsProsperitySelected");
                 }
             }
         }
@@ -266,7 +266,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isRelationSelected)
                 {
                     _isRelationSelected = value;
-                    base.OnPropertyChanged("IsRelationSelected");
+                    OnPropertyChanged("IsRelationSelected");
                 }
             }
         }

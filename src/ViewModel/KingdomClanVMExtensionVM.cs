@@ -39,8 +39,8 @@ namespace Diplomacy.ViewModel
             DonateGoldActionName = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
             DonateGoldExplanationText = new TextObject("{=7QvXkcxH}Donate gold to clans in your kingdom").ToString();
             UsurpThroneActionName = new TextObject("{=N7goPgiq}Usurp Throne").ToString();
-            base.PropertyChanged += new PropertyChangedEventHandler(OnPropertyChanged);
-            base.PropertyChangedWithValue += new PropertyChangedWithValueEventHandler(OnPropertyChangedWithValue);
+            PropertyChanged += new PropertyChangedEventHandler(OnPropertyChanged);
+            PropertyChangedWithValue += new PropertyChangedWithValueEventHandler(OnPropertyChangedWithValue);
             RefreshCanGrantFief();
             RefreshCanUsurpThrone();
         }
@@ -113,7 +113,7 @@ namespace Diplomacy.ViewModel
 
         private void RefreshCanGrantFief(Town town)
         {
-            base.RefreshClan();
+            RefreshClan();
             RefreshCanGrantFief();
         }
 
@@ -133,7 +133,7 @@ namespace Diplomacy.ViewModel
                 if (value != _canGrantFiefToClan)
                 {
                     _canGrantFiefToClan = value;
-                    base.OnPropertyChanged("CanGrantFiefToClan");
+                    OnPropertyChanged("CanGrantFiefToClan");
                 }
             }
         }
@@ -153,7 +153,7 @@ namespace Diplomacy.ViewModel
                 if (value != _grantFiefHint)
                 {
                     _grantFiefHint = value;
-                    base.OnPropertyChanged("GrantFiefHint");
+                    OnPropertyChanged("GrantFiefHint");
                 }
             }
         }
@@ -172,7 +172,7 @@ namespace Diplomacy.ViewModel
                 if (value != _usurpThroneExplanationText)
                 {
                     _usurpThroneExplanationText = value;
-                    base.OnPropertyChanged("UsurpThroneExplanationText");
+                    OnPropertyChanged("UsurpThroneExplanationText");
                 }
             }
 
@@ -192,7 +192,7 @@ namespace Diplomacy.ViewModel
                 if (value != _showUsurpThrone)
                 {
                     _showUsurpThrone = value;
-                    base.OnPropertyChanged("ShowUsurpThrone");
+                    OnPropertyChanged("ShowUsurpThrone");
                 }
             }
 
@@ -208,7 +208,7 @@ namespace Diplomacy.ViewModel
                 if (value != _canUsurpThrone)
                 {
                     _canUsurpThrone = value;
-                    base.OnPropertyChanged("CanUsurpThrone");
+                    OnPropertyChanged("CanUsurpThrone");
                 }
             }
         }
@@ -223,7 +223,7 @@ namespace Diplomacy.ViewModel
                 if (value != _usurpThroneInfluenceCost)
                 {
                     _usurpThroneInfluenceCost = value;
-                    base.OnPropertyChanged("UsurpThroneInfluenceCost");
+                    OnPropertyChanged("UsurpThroneInfluenceCost");
                 }
             }
         }
@@ -238,7 +238,7 @@ namespace Diplomacy.ViewModel
                 if (value != _usurpThroneHint)
                 {
                     _usurpThroneHint = value;
-                    base.OnPropertyChanged("UsurpThroneHint");
+                    OnPropertyChanged("UsurpThroneHint");
                 }
             }
         }

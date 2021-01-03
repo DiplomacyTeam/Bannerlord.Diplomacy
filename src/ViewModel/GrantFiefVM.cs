@@ -73,7 +73,7 @@ namespace Diplomacy.ViewModel
                 if (value != _settlements)
                 {
                     _settlements = value;
-                    base.OnPropertyChanged("Settlements");
+                    OnPropertyChanged("Settlements");
                 }
             }
         }

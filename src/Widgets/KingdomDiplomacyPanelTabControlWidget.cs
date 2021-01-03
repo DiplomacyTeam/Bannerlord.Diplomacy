@@ -32,7 +32,7 @@ namespace Diplomacy.Widgets
                 if (_overviewButton != value)
                 {
                     _overviewButton = value;
-                    base.OnPropertyChanged(value, "OverviewButton");
+                    OnPropertyChanged(value, "OverviewButton");
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace Diplomacy.Widgets
                 if (_statsButton != value)
                 {
                     _statsButton = value;
-                    base.OnPropertyChanged(value, "StatsButton");
+                    OnPropertyChanged(value, "StatsButton");
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace Diplomacy.Widgets
                 if (_overviewPanel != value)
                 {
                     _overviewPanel = value;
-                    base.OnPropertyChanged(value, "OverviewPanel");
+                    OnPropertyChanged(value, "OverviewPanel");
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace Diplomacy.Widgets
                 if (_statsPanel != value)
                 {
                     _statsPanel = value;
-                    base.OnPropertyChanged(value, "StatsPanel");
+                    OnPropertyChanged(value, "StatsPanel");
                 }
             }
         }

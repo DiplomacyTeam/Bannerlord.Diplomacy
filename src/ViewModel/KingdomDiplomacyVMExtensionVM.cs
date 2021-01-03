@@ -80,7 +80,7 @@ namespace Diplomacy.ViewModel
                 if (value != _showOverview)
                 {
                     _showOverview = value;
-                    base.OnPropertyChanged("ShowOverview");
+                    OnPropertyChanged("ShowOverview");
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace Diplomacy.ViewModel
                 if (value != _showStats)
                 {
                     _showStats = value;
-                    base.OnPropertyChanged("ShowStats");
+                    OnPropertyChanged("ShowStats");
                 }
             }
         }
@@ -162,7 +162,7 @@ namespace Diplomacy.ViewModel
                 if (value != _numOfPlayerAlliancesText)
                 {
                     _numOfPlayerAlliancesText = value;
-                    base.OnPropertyChanged("NumOfPlayerAlliancesText");
+                    OnPropertyChanged("NumOfPlayerAlliancesText");
                 }
             }
         }
@@ -179,7 +179,7 @@ namespace Diplomacy.ViewModel
                 if (value != _playerAlliances)
                 {
                     _playerAlliances = value;
-                    base.OnPropertyChanged("PlayerAlliances");
+                    OnPropertyChanged("PlayerAlliances");
                 }
             }
         }
