@@ -4,9 +4,8 @@ using Bannerlord.ButterLib.Common.Extensions;
 
 using HarmonyLib;
 
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Logging;
+
 using Serilog.Events;
 
 using TaleWorlds.CampaignSystem;
@@ -19,8 +18,8 @@ namespace Diplomacy
     public sealed class SubModule : MBSubModuleBase
     {
         public static readonly int VersionMajor = 0;
-        public static readonly int VersionMinor = 2;
-        public static readonly int VersionPatch = 0;
+        public static readonly int VersionMinor = 1;
+        public static readonly int VersionPatch = 1;
         public static readonly string Version = $"v{VersionMajor}.{VersionMinor}.{VersionPatch}";
 
         public static readonly string Name = typeof(SubModule).Namespace;
@@ -42,7 +41,7 @@ namespace Diplomacy
             Instance = this;
 
             this.AddSerilogLoggerProvider($"{Name}.log", new[] { $"{Name}.*" }, config => config.MinimumLevel.Is(LogEventLevel.Verbose));
-            Log = Diplomacy.LogFactory.Get<SubModule>();
+            Log = LogFactory.Get<SubModule>();
 
             new Harmony(HarmonyDomain).PatchAll();
         }
@@ -61,7 +60,7 @@ namespace Diplomacy
             {
                 _hasLoaded = true;
 
-                Log = Diplomacy.LogFactory.Get<SubModule>(); // Upgrade to dedicated log file from closed service registry
+                Log = LogFactory.Get<SubModule>(); // Upgrade to dedicated log file from closed service registry
                 Log.LogInformation($"Loaded {Name} {Version}!");
 
                 InformationManager.DisplayMessage(new InformationMessage($"Loaded {DisplayName}", StdTextColor));
