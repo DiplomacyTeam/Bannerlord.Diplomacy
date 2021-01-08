@@ -7,11 +7,10 @@
     <Constant Name="Encyclopedia.Width" Value="!Encyclopedia.Canvas.Width" Additive="-41"/>
     <Constant Name="Encyclopedia.Height" Value="!Encyclopedia.Canvas.Height" Additive="-198"/>
 
-    <Constant Name="Encyclopedia.CharacterTree.Line.Height" BrushName="Encyclopedia.CharacterTree.Line" BrushLayer="Default" BrushValueType="Height"/>
   </Constants>
 
   <Window>
-	  <BrushWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" Brush="Encyclopedia.Page.SoundBrush">
+    <BrushWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" Brush="Encyclopedia.Page.SoundBrush">
       <Children>
         <Widget HeightSizePolicy ="Fixed" WidthSizePolicy="Fixed" SuggestedHeight="!Encyclopedia.Height" SuggestedWidth="!Encyclopedia.Width" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="210" MarginBottom="100" DoNotAcceptEvents="true" >
           <Children>
@@ -84,13 +83,14 @@
                     </ListPanel>
 
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="2" HorizontalAlignment="Right" Sprite="Encyclopedia\divider_vertical" />
-                  <!--Bookmark Button-->
-                  </Children>
+
+                    <!--Bookmark Button-->
                     <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="5" MarginTop="5" Brush="Encyclopedia.Bookmark.Button" Command.Click="ExecuteSwitchBookmarkedState" IsSelected="@IsBookmarked">
                       <Children>
                         <HintWidget DataSource="{BookmarkHint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
                       </Children>
                     </ButtonWidget>
+
                   </Children>
                 </Widget>
 
@@ -163,7 +163,7 @@
 
                                                 <!--Value Label-->
                                                 <AutoHideRichTextWidget HeightSizePolicy ="CoverChildren" WidthSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="Encyclopedia.Stat.ValueText" Text="@Value" PositionYOffset="2" />
-
+                                              
                                               </Children>
                                             </ListPanel>
 
@@ -241,7 +241,7 @@
                                     <RichTextWidget WidthSizePolicy = "StretchToParent" HeightSizePolicy = "CoverChildren" Text="@LastSeenText" MarginLeft="15" Brush="Encyclopedia.SubPage.History.Text" Command.LinkClick="ExecuteLink"/>
 
                                     <!--Divider-->
-									                  <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" Brush.HorizontalFlip="true" Sprite="Encyclopedia\list_filters_divider" />
+                                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" HorizontalFlip="true" Sprite="Encyclopedia\list_filters_divider" />
 
                                     <!--History List-->
                                     <ListPanel DataSource="{History}" HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" LayoutImp.LayoutMethod = "VerticalBottomToTop">

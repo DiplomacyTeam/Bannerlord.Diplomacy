@@ -30,9 +30,19 @@ namespace Diplomacy.Messengers
 
         public void SendMessenger(Hero targetHero)
         {
-            InformationManager.ShowInquiry(new InquiryData(new TextObject("{=zv12jjyW}Messenger Sent").ToString(), GetMessengerSentText(Hero.MainHero.MapFaction, targetHero.MapFaction, targetHero, Settings.Instance.MessengerTravelTime).ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), "", delegate ()
-            {
-            }, null, ""), false);
+            InformationManager.ShowInquiry(
+                new InquiryData(new TextObject("{=zv12jjyW}Messenger Sent").ToString(),
+                                GetMessengerSentText(Hero.MainHero.MapFaction,
+                                                     targetHero.MapFaction,
+                                                     targetHero,
+                                                     Settings.Instance!.MessengerTravelTime).ToString(),
+                                true,
+                                false,
+                                GameTexts.FindText("str_ok", null).ToString(),
+                                string.Empty,
+                                delegate () { },
+                                null), false);
+
             _messengers.Add(new Messenger(targetHero, CampaignTime.Now));
         }
 
@@ -45,7 +55,7 @@ namespace Diplomacy.Messengers
                     UpdateMessengerPosition(messenger);
                 }
 
-                if (messenger.DispatchTime.ElapsedDaysUntilNow >= Settings.Instance.MessengerTravelTime || messenger.Arrived)
+                if (messenger.DispatchTime.ElapsedDaysUntilNow >= Settings.Instance!.MessengerTravelTime || messenger.Arrived)
                 {
                     if (MessengerArrived(messenger))
                     {
