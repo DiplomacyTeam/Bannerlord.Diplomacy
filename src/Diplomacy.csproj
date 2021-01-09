@@ -1,15 +1,69 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.1.1</Version>
+    <Version>0.2.0</Version>
+    <ModuleName>$(MSBuildProjectName)</ModuleName>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <Platforms>x64</Platforms>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
-    <ModuleName>$(MSBuildProjectName)</ModuleName>
-    <GameFolder>$(BANNERLORD_BETA_DIR)</GameFolder>
+    <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
   </PropertyGroup>
 
+  <!-- Versions of Major Dependencies -->
+  <PropertyGroup>
+    <BuildResourcesVersion>1.0.0.32</BuildResourcesVersion>
+    <ButterLibVersion>1.0.19</ButterLibVersion>
+    <HarmonyVersion>2.0.4</HarmonyVersion>
+    <MCMVersion>4.1.2</MCMVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsStable>false</IsStable>
+    <IsStable Condition="$(Configuration.Contains('Stable'))">true</IsStable>
+    <IsBeta>false</IsBeta>
+    <IsBeta Condition="$(Configuration.Contains('Beta'))">true</IsBeta>
+  </PropertyGroup>
+
+  <!-- Game Versions for Stable and Beta -->
+  <PropertyGroup>
+    <GameVersion Condition="$(IsStable)">1.5.5</GameVersion>
+    <GameVersion Condition="$(IsBeta)">1.5.6</GameVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!--
+    Bannerlord's Root Folder. Leave empty if you want to try autoresolution. Recommended setup is to set, as an
+    environment variable, BANNERLORD_GAME_DIR in the common case that you have only one game folder. If you have
+    separate game folders for the stable and beta versions of the game, likewise set BANNERLORD_STABLE_DIR and
+    BANNERLORD_BETA_DIR.
+    -->
+    <GameFolder Condition="$(IsStable)">$(BANNERLORD_STABLE_DIR)</GameFolder>
+    <GameFolder Condition="$(IsBeta)">$(BANNERLORD_BETA_DIR)</GameFolder>
+    <GameFolder Condition="$(GameFolder) == ''">$(BANNERLORD_GAME_DIR)</GameFolder>
+  </PropertyGroup>
+
+  <!-- Automatic Game Folder Resolution -->
+  <PropertyGroup>
+    <!--Windows-->
+    <!--Get from Registry (not working with dotnet right now)-->
+    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Windows_NT'">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261550@InstallLocation)</GameFolder>
+    <!--Set a default value if registry value is missing-->
+    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Windows_NT'">C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
+    <!--Unix-->
+    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Unix'">~/.steam/root/steamapps/common/Mount &amp; Blade II Bannerlord</GameFolder>
+  </PropertyGroup>
+
+  <!-- STABLE, BETA, and e.g., GAMEVER_E156 Constants Defined in Code -->
+  <PropertyGroup>
+    <GameVersionConstant>GAMEVER_E$([System.String]::Copy('$(GameVersion)').Replace('.',''))</GameVersionConstant>
+    <DefineConstants>$(DefineConstants);$(GameVersionConstant)</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Directly-Referenced Game Assemblies -->
   <ItemGroup>
     <Reference Include="$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.*.dll">
       <HintPath>%(Identity)</HintPath>
@@ -33,8 +87,9 @@
     </Reference>
   </ItemGroup>
 
+  <!-- NuGet Packages -->
   <ItemGroup>
-    <PackageReference Include="Bannerlord.BuildResources" Version="1.0.0.32">
+    <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -42,10 +97,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Lib.Harmony" Version="2.0.4" IncludeAssets="compile" />
-    <PackageReference Include="Bannerlord.ButterLib" Version="1.0.19" IncludeAssets="compile" />
+    <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" IncludeAssets="compile" />
+    <PackageReference Include="Bannerlord.ButterLib" Version="$(ButterLibVersion)" IncludeAssets="compile" />
+    <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" IncludeAssets="compile" />
     <!-- <PackageReference Include="Bannerlord.UIExtenderEx" Version="1.0.6" IncludeAssets="compile" /> -->
-    <PackageReference Include="Bannerlord.MCM" Version="4.1.2" IncludeAssets="compile" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" IncludeAssets="compile" />
     <PackageReference Include="Nullable" Version="1.3.0">
