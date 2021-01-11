@@ -19,6 +19,9 @@
     <DependedModule Id="CustomBattle" />
   </DependedModules>
   <DependedModuleMetadatas>
+    <!-- FIXME: We need to be able regex-substitute property names for, at least, our GameVersion into these tags, as
+                it's yet another thing blocking a clean, unified stable/beta branch on top of requiring extra work to
+                update. -->
     <DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" version="v2.0.4" />
     <DependedModuleMetadata id="Bannerlord.ButterLib" order="LoadBeforeThis" version="v1.0.19" />
     <!-- <DependedModuleMetadata id="Bannerlord.UIExtenderEx" order="LoadBeforeThis" version="v1.0.5" /> -->
