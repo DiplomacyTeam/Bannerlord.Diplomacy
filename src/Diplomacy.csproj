@@ -13,27 +13,21 @@
     <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
   </PropertyGroup>
 
-  <!-- Versions of Major Dependencies -->
+  <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
   <PropertyGroup>
-    <BuildResourcesVersion>1.0.0.32</BuildResourcesVersion>
+    <BuildResourcesVersion>1.0.0.33</BuildResourcesVersion>
     <ButterLibVersion>1.0.19</ButterLibVersion>
     <HarmonyVersion>2.0.4</HarmonyVersion>
     <MCMVersion>4.1.2</MCMVersion>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <IsStable>false</IsStable>
-    <IsStable Condition="$(Configuration.Contains('Stable'))">true</IsStable>
-    <IsBeta>false</IsBeta>
-    <IsBeta Condition="$(Configuration.Contains('Beta'))">true</IsBeta>
-  </PropertyGroup>
-
   <!-- Game Versions for Stable and Beta -->
   <PropertyGroup>
-    <GameVersion Condition="$(IsStable)">1.5.5</GameVersion>
-    <GameVersion Condition="$(IsBeta)">1.5.6</GameVersion>
+    <GameVersion Condition="$(IsStable)">1.5.6</GameVersion>
+    <GameVersion Condition="$(IsBeta)">1.5.7</GameVersion>
   </PropertyGroup>
 
+  <!-- Game Folder(s) -->
   <PropertyGroup>
     <!--
     Bannerlord's Root Folder. Leave empty if you want to try autoresolution. Recommended setup is to set, as an
@@ -62,23 +56,31 @@
     <GameVersionConstant>GAMEVER_E$([System.String]::Copy('$(GameVersion)').Replace('.',''))</GameVersionConstant>
     <DefineConstants>$(DefineConstants);$(GameVersionConstant)</DefineConstants>
   </PropertyGroup>
-
+  
+  <!-- Extra Substitution Variables to Use in SubModule.xml -->
+  <ItemGroup>
+    <SubModuleOverrides Include="MCMVersion">
+      <Regex>\$mcmversion\$</Regex>
+      <Replacement>$(MCMVersion)</Replacement>
+    </SubModuleOverrides>
+  </ItemGroup>
+  
   <!-- NuGet Packages -->
   <ItemGroup>
     <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Bannerlord.ButterLib" Version="$(ButterLibVersion)" IncludeAssets="compile" />
+    <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" IncludeAssets="compile" />
+    <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" IncludeAssets="compile" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" IncludeAssets="compile" />
+    <!-- Enable NET5 Features on NET472 -->
     <PackageReference Include="IsExternalInit" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" IncludeAssets="compile" />
-    <PackageReference Include="Bannerlord.ButterLib" Version="$(ButterLibVersion)" IncludeAssets="compile" />
-    <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" IncludeAssets="compile" />
-    <!-- <PackageReference Include="Bannerlord.UIExtenderEx" Version="1.0.6" IncludeAssets="compile" /> -->
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" IncludeAssets="compile" />
     <PackageReference Include="Nullable" Version="1.3.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -87,7 +89,8 @@
 
   <!-- Directly-Referenced Game Assemblies -->
   <ItemGroup>
-    <Reference Include="$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.*.dll">
+    <Reference Include="$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.*.dll"
+               Exclude="$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.Native.dll">
       <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
@@ -104,6 +107,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="$(GameFolder)\Modules\StoryMode\bin\Win64_Shipping_Client\*.dll">
+      <HintPath>%(Identity)</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="$(GameFolder)\Modules\CustomBattle\bin\Win64_Shipping_Client\*.dll">
       <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
