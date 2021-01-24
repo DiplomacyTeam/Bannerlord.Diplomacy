@@ -16,15 +16,15 @@
   <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
   <PropertyGroup>
     <BuildResourcesVersion>1.0.0.33</BuildResourcesVersion>
-    <ButterLibVersion>1.0.19</ButterLibVersion>
+    <ButterLibVersion>1.0.20</ButterLibVersion>
     <HarmonyVersion>2.0.4</HarmonyVersion>
     <MCMVersion>4.1.2</MCMVersion>
   </PropertyGroup>
 
   <!-- Game Versions for Stable and Beta -->
   <PropertyGroup>
-    <GameVersion Condition="$(IsStable)">1.5.6</GameVersion>
-    <GameVersion Condition="$(IsBeta)">1.5.7</GameVersion>
+    <GameVersion Condition="$(IsStable) == 'true'">1.5.6</GameVersion>
+    <GameVersion Condition="$(IsBeta) == 'true'">1.5.7</GameVersion>
   </PropertyGroup>
 
   <!-- Game Folder(s) -->
@@ -35,8 +35,8 @@
     separate game folders for the stable and beta versions of the game, likewise set BANNERLORD_STABLE_DIR and
     BANNERLORD_BETA_DIR.
     -->
-    <GameFolder Condition="$(IsStable)">$(BANNERLORD_STABLE_DIR)</GameFolder>
-    <GameFolder Condition="$(IsBeta)">$(BANNERLORD_BETA_DIR)</GameFolder>
+    <GameFolder Condition="$(IsStable) == 'true'">$(BANNERLORD_STABLE_DIR)</GameFolder>
+    <GameFolder Condition="$(IsBeta) == 'true'">$(BANNERLORD_BETA_DIR)</GameFolder>
     <GameFolder Condition="$(GameFolder) == ''">$(BANNERLORD_GAME_DIR)</GameFolder>
   </PropertyGroup>
 
@@ -107,10 +107,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="$(GameFolder)\Modules\StoryMode\bin\Win64_Shipping_Client\*.dll">
-      <HintPath>%(Identity)</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="$(GameFolder)\Modules\CustomBattle\bin\Win64_Shipping_Client\*.dll">
       <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
