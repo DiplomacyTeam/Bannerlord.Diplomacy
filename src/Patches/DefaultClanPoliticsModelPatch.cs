@@ -44,11 +44,7 @@ namespace Diplomacy.Patches
             }
 
             /// Minimum Influence Gain (Maximum Influence Loss)
-
-            int lossLimit = Settings.Instance.MaximumInfluenceLoss;
-
-            if (__result.ResultNumber < -lossLimit)
-                __result.LimitMin(-lossLimit);
+            __result.LimitMin(-Settings.Instance.MaximumInfluenceLoss);
         }
     }
 }
