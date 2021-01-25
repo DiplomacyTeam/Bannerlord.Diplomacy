@@ -1,6 +1,7 @@
 ﻿using Diplomacy.Extensions;
 
 using System;
+using System.Drawing.Text;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
@@ -9,102 +10,108 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction
 {
-    public abstract class AbstractScoringModel<T> where T : AbstractScoringModel<T>, new()
+    internal abstract class AbstractScoringModel<T> where T : AbstractScoringModel<T>, new()
     {
-        protected AbstractScoringModel(IScores scores)
-        {
-            Scores = scores;
-        }
-
         public static T Instance { get; } = new T();
 
         public virtual float ScoreThreshold { get; } = 100.0f;
-        protected IScores Scores { get; set; }
 
-        private static readonly TextObject _weakFaction = new TextObject("{=q5qphBwi}Weak Faction");
-        private static readonly TextObject _relationship = new TextObject("{=sygtLRqA}Relationship");
+        protected IScores Scores { get; init; }
 
-        public virtual ExplainedNumber GetScore(Kingdom kingdom, Kingdom otherKingdom, StatExplainer explanation = null)
+        protected AbstractScoringModel(IScores scores) => Scores = scores;
+
+        public virtual ExplainedNumber GetScore(Kingdom ourKingdom, Kingdom otherKingdom, bool includeDesc = false)
         {
-            var explainedNumber = new ExplainedNumber(Scores.Base, explanation, null);
+            var explainedNum = new ExplainedNumber(Scores.Base, includeDesc);
 
-            // weak faction bonus
-            if (!kingdom.IsStrong())
-            {
-                explainedNumber.Add(Scores.BelowMedianStrength, _weakFaction);
-            }
+            TextObject? CreateTextWithKingdom(string text, Kingdom kingdom) => includeDesc
+                ? new TextObject(text).SetTextVariable("KINGDOM", kingdom.Name)
+                : null;
 
-            // common enemies
-            var commonEnemies = FactionManager.GetEnemyKingdoms(kingdom).Intersect(FactionManager.GetEnemyKingdoms(otherKingdom));
+            /// Weak Kingdom (Us)
+
+            if (!ourKingdom.IsStrong())
+                explainedNum.Add(Scores.BelowMedianStrength, _txtWeakKingdom);
+
+            /// Common Enemies
+            
+            var commonEnemies = FactionManager.GetEnemyKingdoms(ourKingdom).Intersect(FactionManager.GetEnemyKingdoms(otherKingdom));
+
             foreach (var commonEnemy in commonEnemies)
-            {
-                TextObject textObject = null;
-                if (explanation is not null)
-                {
-                    textObject = new TextObject("{=RqQ4oqvl}War with {ENEMY_KINGDOM}");
-                    textObject.SetTextVariable("ENEMY_KINGDOM", commonEnemy.Name);
-                }
-                explainedNumber.Add(Scores.HasCommonEnemy, textObject);
-            }
+                explainedNum.Add(Scores.HasCommonEnemy, CreateTextWithKingdom(_strCommonEnemy, commonEnemy));
 
-            var alliedEnemies = Kingdom.All.Except(new[] { kingdom, otherKingdom }).Where(curKingdom => FactionManager.IsAlliedWithFaction(otherKingdom, curKingdom) && FactionManager.IsAtWarAgainstFaction(kingdom, curKingdom));
-            var alliedNeutrals = Kingdom.All.Except(new[] { kingdom, otherKingdom }).Where(curKingdom => FactionManager.IsAlliedWithFaction(otherKingdom, curKingdom) && !FactionManager.IsAtWarAgainstFaction(kingdom, curKingdom));
+            /// Their Alliances with Enemies
+
+            var alliedEnemies = Kingdom.All
+                .Where(k => k != ourKingdom
+                         && k != otherKingdom
+                         && FactionManager.IsAlliedWithFaction(otherKingdom, k)
+                         && FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
+
             foreach (var alliedEnemy in alliedEnemies)
-            {
-                TextObject textObject = null;
-                if (explanation is not null)
-                {
-                    textObject = new TextObject("{=cmOSpfyW}Alliance with {ALLIED_KINGDOM}");
-                    textObject.SetTextVariable("ALLIED_KINGDOM", alliedEnemy.Name);
-                }
-                explainedNumber.Add(Scores.ExistingAllianceWithEnemy, textObject);
-            }
+                explainedNum.Add(Scores.ExistingAllianceWithEnemy, CreateTextWithKingdom(_strAlliedToEnemy, alliedEnemy));
+
+            /// Their Alliances with Neutrals
+
+            var alliedNeutrals = Kingdom.All
+                .Where(k => k != ourKingdom
+                         && k != otherKingdom
+                         && FactionManager.IsAlliedWithFaction(otherKingdom, k)
+                         && !FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
+
+            // FIXME: alliedNeutrals also includes common allies as it's coded... Should they be scored differently? Probable answer: YES!
+
             foreach (var alliedNeutral in alliedNeutrals)
-            {
-                TextObject textObject = null;
-                if (explanation is not null)
-                {
-                    textObject = new TextObject("{=cmOSpfyW}Alliance with {ALLIED_KINGDOM}");
-                    textObject.SetTextVariable("ALLIED_KINGDOM", alliedNeutral.Name);
-                }
-                explainedNumber.Add(Scores.ExistingAllianceWithNeutral, textObject);
-            }
+                explainedNum.Add(Scores.ExistingAllianceWithNeutral, CreateTextWithKingdom(_strAlliedToNeutral, alliedNeutral));
 
-            // relation modifier
-            var relationModifier = MBMath.ClampFloat((float)Math.Log((kingdom.Leader.GetRelation(otherKingdom.Leader) + 100f) / 100f, 1.5), -1, 1);
-            explainedNumber.Add(Scores.Relationship * relationModifier, _relationship);
+            /// Relationship
 
-            // expansionism modifier
-            if (otherKingdom.GetExpansionismDiplomaticPenalty() < 0)
-            {
-                TextObject textObject = null;
-                if (explanation is not null)
-                {
-                    textObject = new TextObject("{=CxdpR6w4}Expansionism");
-                }
-                explainedNumber.Add(otherKingdom.GetExpansionismDiplomaticPenalty(), textObject);
-            }
-            return explainedNumber;
+            var relationMult = MBMath.ClampFloat((float)Math.Log((ourKingdom.Leader.GetRelation(otherKingdom.Leader) + 100f) / 100f, 1.5),
+                                                 -1f,
+                                                 +1f);
+
+            explainedNum.Add(Scores.Relationship * relationMult, _txtRelationship);
+
+            /// Expansionism (Them)
+            
+            var expansionismPenalty = otherKingdom.GetExpansionismDiplomaticPenalty();
+
+            if (expansionismPenalty < 0)
+                explainedNum.Add(expansionismPenalty, _txtExpansionism);
+
+            return explainedNum;
         }
 
-        public virtual bool ShouldFormBidirectional(Kingdom kingdom, Kingdom otherKingdom)
+        public virtual bool ShouldFormBidirectional(Kingdom ourKingdom, Kingdom otherKingdom)
+            => ShouldForm(ourKingdom, otherKingdom) && ShouldForm(otherKingdom, ourKingdom);
+
+        public virtual bool ShouldForm(Kingdom ourKingdom, Kingdom otherKingdom)
+            => GetScore(ourKingdom, otherKingdom).ResultNumber >= ScoreThreshold;
+
+        public interface IScores
         {
-            return ShouldForm(kingdom, otherKingdom) && ShouldForm(otherKingdom, kingdom);
+            public int Base { get; }
+
+            public int BelowMedianStrength { get; }
+
+            public int HasCommonEnemy { get; }
+
+            public int ExistingAllianceWithEnemy { get; }
+
+            public int ExistingAllianceWithNeutral { get; }
+
+            public int Relationship { get; }
         }
 
-        public virtual bool ShouldForm(Kingdom kingdom, Kingdom otherKingdom)
-        {
-            return GetScore(kingdom, otherKingdom).ResultNumber >= ScoreThreshold;
-        }
-    }
+        private static readonly TextObject _txtWeakKingdom = new("{=q5qphBwi}Weak Kingdom");
+        private static readonly TextObject _txtRelationship = new("{=sygtLRqA}Relationship");
+        private static readonly TextObject _txtExpansionism = new("{=CxdpR6w4}Expansionism");
 
-    public interface IScores
-    {
-        int Base { get; }
-        int BelowMedianStrength { get; }
-        int HasCommonEnemy { get; }
-        int ExistingAllianceWithEnemy { get; }
-        int ExistingAllianceWithNeutral { get; }
-        int Relationship { get; }
+        private const string _strWarWithKingdom = "{=RqQ4oqvl}War with {KINGDOM}";
+        private const string _strAllianceWithKingdom = "{=cmOSpfyW}Alliance with {KINGDOM}";
+
+        private const string _strCommonEnemy = _strWarWithKingdom;
+        private const string _strAlliedToEnemy = _strAllianceWithKingdom;
+        private const string _strAlliedToNeutral = _strAllianceWithKingdom;
     }
 }

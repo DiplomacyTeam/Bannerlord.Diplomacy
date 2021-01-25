@@ -18,7 +18,8 @@ namespace Diplomacy.ViewModel
 {
     public class KingdomTruceItemVMExtensionVM : KingdomTruceItemVM
     {
-        public KingdomTruceItemVMExtensionVM(IFaction faction1, IFaction faction2, Action<KingdomDiplomacyItemVM> onSelection, Action<KingdomTruceItemVM> onAction) : base(faction1, faction2, onSelection, onAction)
+        public KingdomTruceItemVMExtensionVM(IFaction faction1, IFaction faction2, Action<KingdomDiplomacyItemVM> onSelection, Action<KingdomTruceItemVM> onAction)
+            : base(faction1, faction2, onSelection, onAction)
         {
             SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
             AllianceActionName = new TextObject("{=0WPWbx70}Form Alliance").ToString();

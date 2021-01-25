@@ -2,16 +2,11 @@
 
 namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
-    internal class NonAggressionPactScoringModel : AbstractScoringModel<NonAggressionPactScoringModel>
+    internal sealed class NonAggressionPactScoringModel : AbstractScoringModel<NonAggressionPactScoringModel>
     {
-        public NonAggressionPactScoringModel() : base(new NonAggressionScores()) { }
+        public NonAggressionPactScoringModel() : base(new NonAggressionPactScores()) { }
 
-        public override ExplainedNumber GetScore(Kingdom kingdom, Kingdom otherKingdom, StatExplainer explanation = null)
-        {
-            return base.GetScore(kingdom, otherKingdom, explanation);
-        }
-
-        public class NonAggressionScores : IScores
+        public class NonAggressionPactScores : IScores
         {
             public int Base => 50;
             public int BelowMedianStrength => 50;

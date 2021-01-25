@@ -7,7 +7,7 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.GrantFief
 {
-    class GrantFiefAction
+    internal sealed class GrantFiefAction
     {
         public static void Apply(Settlement settlement, Clan grantedClan)
         {
@@ -16,46 +16,47 @@ namespace Diplomacy.GrantFief
             var relationChange = CalculateBaseRelationChange(settlement);
             ChangeRelationAction.ApplyPlayerRelation(grantedClan.Leader, relationChange);
 
-            foreach (var clan in Clan.PlayerClan.Kingdom.Clans.Where(clan => clan != grantedClan && clan != Clan.PlayerClan))
-            {
-                ChangeRelationAction.ApplyPlayerRelation(clan.Leader, Settings.Instance.GrantFiefRelationPenalty);
-            }
+            foreach (var clan in Clan.PlayerClan.Kingdom.Clans.Where(c => c != grantedClan && c != Clan.PlayerClan))
+                ChangeRelationAction.ApplyPlayerRelation(clan.Leader, Settings.Instance!.GrantFiefRelationPenalty);
 
             Events.Instance.OnFiefGranted(settlement.Town);
         }
 
         private static int CalculateBaseRelationChange(Settlement settlement)
         {
+            // TODO: Consider basing the relationship change with the granted clan upon the fief's value
+            // normalized to the average fief value in the kingdom.
             var baseRelationChange = (int)Math.Round(Math.Max(5, Math.Log(settlement.Prosperity / 1000, 1.1f)));
-            return (int)(baseRelationChange * Settings.Instance.GrantFiefPositiveRelationMultiplier);
+            return (int)(baseRelationChange * Settings.Instance!.GrantFiefPositiveRelationMultiplier);
         }
 
         public static int PreviewPositiveRelationChange(Settlement settlement, Hero hero)
         {
-            var relationChange = CalculateBaseRelationChange(settlement);
-            var explainedNumber = new ExplainedNumber((float)relationChange, new StatExplainer(), null);
-            Campaign.Current.Models.DiplomacyModel.GetRelationIncreaseFactor(Hero.MainHero, hero, ref explainedNumber);
-            relationChange = (int)Math.Floor(explainedNumber.ResultNumber);
-            return relationChange;
+            // This thing had a non-null StatExplainer passed into an ExplainedNumber previously, but the
+            // ExplainedNumber (and the StatExplainer) never ended up leaving this method, so in fixing e1.5.7
+            // API compatibility, I simply removed them. But it's strange that this method is prefixed with
+            // Preview as if you were going to see a breakdown.
+            int relationChange = CalculateBaseRelationChange(settlement);
+            float adjustedChange = Campaign.Current.Models.DiplomacyModel.GetRelationIncreaseFactor(Hero.MainHero, hero, relationChange);
+            return (int)Math.Floor(adjustedChange);
         }
 
-        public static bool CanGrantFief(Clan targetClan, out string reason)
+        public static bool CanGrantFief(Clan targetClan, out string? reason)
         {
             reason = null;
+
             if (targetClan == Clan.PlayerClan)
-            {
-                reason = new TextObject("{=FqeN0fmR}You cannot grant fiefs to your own clan.").ToString();
-            }
+                reason = _strNoGrantsToMyClan;
             else if (targetClan.MapFaction.Leader != Hero.MainHero)
-            {
-                reason = new TextObject("{=zdSYUnZQ}You are not the leader of your kingdom.").ToString();
-            }
+                reason = _strNotKingdomLeader;
             else if (Clan.PlayerClan.GetPermanentFiefs().Count() < 1)
-            {
-                reason = new TextObject("{=D61vzEC7}You don't have any fiefs to grant.").ToString();
-            }
+                reason = _strNoFiefsToGrant;
 
             return reason is null;
         }
+
+        private static readonly string _strNoGrantsToMyClan = new TextObject("{=FqeN0fmR}You cannot grant fiefs to your own clan.").ToString();
+        private static readonly string _strNotKingdomLeader = new TextObject("{=zdSYUnZQ}You are not the leader of your kingdom.").ToString();
+        private static readonly string _strNoFiefsToGrant = new TextObject("{=D61vzEC7}You don't have any fiefs to grant.").ToString();
     }
 }

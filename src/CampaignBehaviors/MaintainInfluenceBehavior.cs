@@ -14,22 +14,24 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ReduceCorruption(Clan clan)
         {
-            if (clan.MapFaction.IsKingdomFaction && !clan.Leader.IsHumanPlayerCharacter && clan.InfluenceChange < 0 && clan.GetCorruption() > 0)
-            {
-                var fiefBarterable = GetBestFiefBarter(clan, out var targetClan);
+            if (!clan.MapFaction.IsKingdomFaction || clan.GetCorruption() <= 0 || clan.Leader.IsHumanPlayerCharacter)
+                return;
 
-                if (fiefBarterable is null || targetClan is null)
-                    return;
+            var influenceChange = Campaign.Current.Models.ClanPoliticsModel.CalculateInfluenceChange(clan).ResultNumber;
 
-                var goldValue = GetGoldValueForFief(targetClan, fiefBarterable.TargetSettlement);
-                var goldBarterable = new GoldBarterable(targetClan.Leader, clan.Leader, null, null, goldValue)
-                {
-                    CurrentAmount = goldValue
-                };
+            if (influenceChange > 0)
+                return;
 
-                fiefBarterable.Apply();
-                goldBarterable.Apply();
-            }
+            var fiefBarterable = GetBestFiefBarter(clan, out var targetClan);
+
+            if (fiefBarterable is null || targetClan is null)
+                return;
+
+            var goldValue = GetGoldValueForFief(targetClan, fiefBarterable.TargetSettlement);
+            var goldBarterable = new GoldBarterable(targetClan.Leader, clan.Leader, null, null, goldValue) { CurrentAmount = goldValue };
+
+            fiefBarterable.Apply();
+            goldBarterable.Apply();
         }
 
         private FiefBarterable? GetBestFiefBarter(Clan ownerClan, out Clan? otherClan)

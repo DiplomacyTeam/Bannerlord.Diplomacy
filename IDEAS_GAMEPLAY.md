@@ -2,6 +2,7 @@
 
 This is the very beginning of what I'm sure could become a very large list of ideas and/or projects upon the gameplay development front for _Diplomacy_.
 
+
 ## Civil Wars
 
 ... a very, very ambitious mechanic if implemented.
@@ -30,6 +31,7 @@ Another shared rebel interest & outcome might be an independence league. Many mo
 
 - Rebel factions themselves, implemented as dynamic kingdoms, will require maintenance and tweaking in various places to not make them appear, e.g., in the UI as a kingdom.
 
+
 ## Diplomatic Agreements Should Be Between Rulers-- Not Kingdoms
 
 Bannerlord is supposed to be [somewhat] set in the Early Medieval Era. Nation-states were not even a concept at that time. All diplomatic agreements were between rulers ("rulers" in the general sense which also includes vassals)-- not "factions." Ergo, Diplomacy should completely rework this part of diplomatic agreements to hinge upon relationships between rulers and not relationships between factions.
@@ -38,11 +40,13 @@ If a ruler dies or is usurped, so do their alliances and truces and basically ev
 
 This is mainly a realism feature to simply make Diplomacy's model make more sense, but it does also add a great deal more focus upon characters in politics.
 
+
 ## Mercenary Alliances
 
 It would be neat if factions could essentially be hired to assist other factions in war. It's not an alliance so much as a contract that costs money, but it'd use an AI reasoning model that includes the factors that go into alliances. Difference being that the "mercenary" faction must consider the likelihood of actually having to fight and whether it's worth the gold (which probably would be paid daily like tribute rather than all at once) as well as the duration of the agreement, which could be broken.
 
 Another variant of the historical concept that this is idea is trying to represent in the game is simply to offer gold to another kingdom in exchange for them going to war against another kingdom.
+
 
 ## Permanent Tributaries / Vassal Kingdoms / Client States
 
@@ -50,7 +54,16 @@ An interesting diplomatic arrangement would be for one faction to become the nom
 
 Naturally, such tributaries wouldn't desire to be subjugated in this way forever, so they would seek independence if it made sense to do so. They might even find supporters of their independence among other tributaries, foreign powers, or vassals within your own kingdom.
 
+
 ## Make Marriage Matter
 
-If marriage could be made to be a significant factor in politics, then that would be a huge step for strategy, realism, and intrigue. More on this later.
+If marriage could be made to be a significant factor in politics, then that would be a huge step for strategy, realism, and intrigue. More on this later, as it's a surprisingly complicated and hare-brained topic for Bannerlord.
 
+
+## Peaceful / Scheming Way to Support Other Kingdoms in Wars
+
+... short of or aside from actually being at war with them against their enemy (e.g., this includes supporting allies in the same wars with you). One should be able to donate gold or even precious war supplies such as food or horses to other kingdoms in general and have them intelligently distributed rather than only being received by the kingdom's ruler.
+
+This can sort of currently be done by tracking down their armies and starting a barter in which you don't demand anything (or maybe you do), but this is highly inconvenient, will not be effectively distributed to the parties that need it, and cannot be factored into the diplomatic relationship between the supporter and the receiving kingdom.
+
+Arguably, this would be valid even toward kingdoms not at war (but perhaps destitute) that you wish to support.
