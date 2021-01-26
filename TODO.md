@@ -19,6 +19,11 @@
 
 ## Normal Priority
 
+- Create `ExplainedScore` class to wrap AI scoring summaries, which only stores a list of `(string, float)` tuples and a `ResultNumber` running total (with some methods, of course, incl. conversion to an actual `ExplainedNumber`)
+
+  + Currently for pre-e1.5.7, we rely upon the overqualified, very accessible `StatExplainer` so that we can later look at the list of scores and build tooltips out of them.
+
+    * That's now buried deep in private accessibility, so I judge that since we don't even want most of `ExplainedNumber` and its private, nested `StatExplainer` (and its private, nested `ExplainedLine`), it'd be more elegant to simply create only what we do want than build a totally unnecessary, reflection-heavy adapter for `ExplainedNumber`. The adapter would boil down to exposing the same basic data, and these score summaries are currently never compelled by any API to be an actual `ExplainedNumber`.
 
 - Convert all Harmony patches from annotated/attribute form to declarative form (actually using `Harmony.Patch` for each patch, except with very convenient instrumentation)
 
@@ -56,6 +61,11 @@
 
 
 ## Lower Priority
+
+
+- Convert usage of `ChangeRelationAction.ApplyPlayerRelation` to `ChangeRelationAction.ApplyRelationChangeBetweenHeroes` or a more advanced action which properly affects relatives where necessary.
+
+  + Even though these are only found for currently player-only interactions, we should never assume that anything is player-only, and we should prepare for an eventual overhaul of the relations system.
 
 - Add logging throughout the codebase for user diagnostics and our own debugging.
 
