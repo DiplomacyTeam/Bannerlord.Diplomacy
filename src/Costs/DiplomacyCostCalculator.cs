@@ -14,7 +14,7 @@ namespace Diplomacy
         public static DiplomacyCost DetermineCostForDeclaringWar(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
         {
             var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
-            if (!Settings.Instance.EnableInfluenceCostsForDiplomacyActions)
+            if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
                 return new InfluenceCost(clanPayingInfluence, 0f);
             if (!Settings.Instance.ScalingInfluenceCosts)
                 return new InfluenceCost(clanPayingInfluence, Settings.Instance.DeclareWarInfluenceCost);
@@ -33,7 +33,7 @@ namespace Diplomacy
         {
             var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
             InfluenceCost influenceCost;
-            if (!Settings.Instance.EnableInfluenceCostsForDiplomacyActions)
+            if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
             {
                 influenceCost = new InfluenceCost(clanPayingInfluence, 0f);
             }
