@@ -12,6 +12,9 @@ namespace Diplomacy.DiplomaticAction.Alliance
 {
     internal sealed class DeclareAllianceAction : AbstractDiplomaticAction<DeclareAllianceAction>
     {
+        private static readonly TextObject _TInquiry = new("{=QbOqatd7}{KINGDOM} is proposing an alliance with {PLAYER_KINGDOM}.");
+        private static readonly TextObject _TAllianceProposal = new("{=3pbwc8sh}Alliance Proposal");
+
         public override bool PassesConditions(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCosts = false, bool bypassCosts = false)
             => FormAllianceConditions.Instance.CanApply(kingdom, kingdom, forcePlayerCosts, bypassCosts);
 
@@ -27,13 +30,12 @@ namespace Diplomacy.DiplomaticAction.Alliance
 
         protected override void ShowPlayerInquiry(Kingdom proposingKingdom, Action acceptAction)
         {
-            var txt = new TextObject("{=QbOqatd7}{KINGDOM} is proposing an alliance with {PLAYER_KINGDOM}.");
-            txt.SetTextVariable("KINGDOM", proposingKingdom.Name);
-            txt.SetTextVariable("PLAYER_KINGDOM", Clan.PlayerClan.Kingdom.Name);
+            _TInquiry.SetTextVariable("KINGDOM", proposingKingdom.Name);
+            _TInquiry.SetTextVariable("PLAYER_KINGDOM", Clan.PlayerClan.Kingdom.Name);
 
             InformationManager.ShowInquiry(new InquiryData(
-                new TextObject("{=3pbwc8sh}Alliance Proposal").ToString(),
-                txt.ToString(),
+                _TAllianceProposal.ToString(),
+                _TInquiry.ToString(),
                 true,
                 true,
                 new TextObject(StringConstants.Accept).ToString(),

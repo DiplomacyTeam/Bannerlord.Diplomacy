@@ -31,14 +31,14 @@ namespace Diplomacy.DiplomaticAction
             /// Weak Kingdom (Us)
 
             if (!ourKingdom.IsStrong())
-                explainedNum.Add(Scores.BelowMedianStrength, _txtWeakKingdom);
+                explainedNum.Add(Scores.BelowMedianStrength, _TWeakKingdom);
 
             /// Common Enemies
             
             var commonEnemies = FactionManager.GetEnemyKingdoms(ourKingdom).Intersect(FactionManager.GetEnemyKingdoms(otherKingdom));
 
             foreach (var commonEnemy in commonEnemies)
-                explainedNum.Add(Scores.HasCommonEnemy, CreateTextWithKingdom(_strCommonEnemy, commonEnemy));
+                explainedNum.Add(Scores.HasCommonEnemy, CreateTextWithKingdom(SCommonEnemy, commonEnemy));
 
             /// Their Alliances with Enemies
 
@@ -49,7 +49,7 @@ namespace Diplomacy.DiplomaticAction
                          && FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
 
             foreach (var alliedEnemy in alliedEnemies)
-                explainedNum.Add(Scores.ExistingAllianceWithEnemy, CreateTextWithKingdom(_strAlliedToEnemy, alliedEnemy));
+                explainedNum.Add(Scores.ExistingAllianceWithEnemy, CreateTextWithKingdom(SAlliedToEnemy, alliedEnemy));
 
             /// Their Alliances with Neutrals
 
@@ -62,7 +62,7 @@ namespace Diplomacy.DiplomaticAction
             // FIXME: alliedNeutrals also includes common allies as it's coded... Should they be scored differently? Probable answer: YES!
 
             foreach (var alliedNeutral in alliedNeutrals)
-                explainedNum.Add(Scores.ExistingAllianceWithNeutral, CreateTextWithKingdom(_strAlliedToNeutral, alliedNeutral));
+                explainedNum.Add(Scores.ExistingAllianceWithNeutral, CreateTextWithKingdom(SAlliedToNeutral, alliedNeutral));
 
             /// Relationship
 
@@ -70,14 +70,14 @@ namespace Diplomacy.DiplomaticAction
                                                  -1f,
                                                  +1f);
 
-            explainedNum.Add(Scores.Relationship * relationMult, _txtRelationship);
+            explainedNum.Add(Scores.Relationship * relationMult, _TRelationship);
 
             /// Expansionism (Them)
             
             var expansionismPenalty = otherKingdom.GetExpansionismDiplomaticPenalty();
 
             if (expansionismPenalty < 0)
-                explainedNum.Add(expansionismPenalty, _txtExpansionism);
+                explainedNum.Add(expansionismPenalty, _TExpansionism);
 
             return explainedNum;
         }
@@ -103,15 +103,15 @@ namespace Diplomacy.DiplomaticAction
             public int Relationship { get; }
         }
 
-        private static readonly TextObject _txtWeakKingdom = new("{=q5qphBwi}Weak Kingdom");
-        private static readonly TextObject _txtRelationship = new("{=sygtLRqA}Relationship");
-        private static readonly TextObject _txtExpansionism = new("{=CxdpR6w4}Expansionism");
+        private static readonly TextObject _TWeakKingdom = new("{=q5qphBwi}Weak Kingdom");
+        private static readonly TextObject _TRelationship = new("{=sygtLRqA}Relationship");
+        private static readonly TextObject _TExpansionism = new("{=CxdpR6w4}Expansionism");
 
-        private const string _strWarWithKingdom = "{=RqQ4oqvl}War with {KINGDOM}";
-        private const string _strAllianceWithKingdom = "{=cmOSpfyW}Alliance with {KINGDOM}";
+        private const string SWarWithKingdom = "{=RqQ4oqvl}War with {KINGDOM}";
+        private const string SAllianceWithKingdom = "{=cmOSpfyW}Alliance with {KINGDOM}";
 
-        private const string _strCommonEnemy = _strWarWithKingdom;
-        private const string _strAlliedToEnemy = _strAllianceWithKingdom;
-        private const string _strAlliedToNeutral = _strAllianceWithKingdom;
+        private const string SCommonEnemy = SWarWithKingdom;
+        private const string SAlliedToEnemy = SAllianceWithKingdom;
+        private const string SAlliedToNeutral = SAllianceWithKingdom;
     }
 }

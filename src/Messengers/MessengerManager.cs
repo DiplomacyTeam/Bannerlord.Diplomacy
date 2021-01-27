@@ -28,17 +28,20 @@ namespace Diplomacy.Messengers
             Messengers = new MBReadOnlyList<Messenger>(_messengers);
         }
 
+        private static readonly string _SMessengerSent = new TextObject("{=zv12jjyW}Messenger Sent").ToString();
+        private static readonly string _SOK = GameTexts.FindText("str_ok", null).ToString();
+
         public void SendMessenger(Hero targetHero)
         {
             InformationManager.ShowInquiry(
-                new InquiryData(new TextObject("{=zv12jjyW}Messenger Sent").ToString(),
+                new InquiryData(_SMessengerSent,
                                 GetMessengerSentText(Hero.MainHero.MapFaction,
                                                      targetHero.MapFaction,
                                                      targetHero,
                                                      Settings.Instance!.MessengerTravelTime).ToString(),
                                 true,
                                 false,
-                                GameTexts.FindText("str_ok", null).ToString(),
+                                _SOK,
                                 string.Empty,
                                 delegate () { },
                                 null), false);
@@ -51,47 +54,45 @@ namespace Diplomacy.Messengers
             foreach (var messenger in Messengers.ToList())
             {
                 if (IsTargetHeroAvailable(messenger.TargetHero))
-                {
                     UpdateMessengerPosition(messenger);
-                }
 
                 if (messenger.DispatchTime.ElapsedDaysUntilNow >= Settings.Instance!.MessengerTravelTime || messenger.Arrived)
-                {
                     if (MessengerArrived(messenger))
-                    {
                         break;
-                    }
-                }
             }
         }
 
         private static void UpdateMessengerPosition(Messenger messenger)
         {
             var targetHeroLocationPoint = messenger.TargetHero.GetMapPoint();
+
             if (messenger.CurrentPosition.Equals(default(Vec2)) || targetHeroLocationPoint is null)
-            {
                 return;
-            }
 
             var targetHeroLocation = targetHeroLocationPoint.Position2D;
             var distanceToGo = targetHeroLocation - messenger.CurrentPosition;
 
             if (distanceToGo.Length <= MessengerHourlySpeed)
-            {
                 messenger.Arrived = true;
-            }
             else
-            {
                 messenger.CurrentPosition += distanceToGo.Normalized() * MessengerHourlySpeed;
-            }
         }
 
         private bool MessengerArrived(Messenger messenger)
         {
             if (messenger.TargetHero.PartyBelongedTo == Hero.MainHero.PartyBelongedTo)
             {
+                // FIXME: Definitely would like to remove the silliness here.
                 // Jiros: Added to catch crash when Hero and Target are in the same party. [v1.5.3-release]
-                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Eaten").ToString(), new TextObject("Oh no. The messenger was ambushed and eaten by a Grue while trying to reach " + messenger.TargetHero.Name).ToString(), true, false, GameTexts.FindText("str_ok", null).ToString(), null, delegate () { _messengers.Remove(messenger); }, null, ""));
+                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Eaten").ToString(),
+                                                               new TextObject("Oh no. The messenger was ambushed and eaten by a Grue while trying to reach " + messenger.TargetHero.Name).ToString(),
+                                                               true,
+                                                               false,
+                                                               _SOK,
+                                                               null,
+                                                               delegate () { _messengers.Remove(messenger); },
+                                                               null,
+                                                               ""));
                 return false;
             }
             if (IsTargetHeroAvailable(messenger.TargetHero) && IsPlayerHeroAvailable())
@@ -108,33 +109,28 @@ namespace Diplomacy.Messengers
                 return true;
             }
             else if (messenger.TargetHero.IsDead)
-            {
                 _messengers.Remove(messenger);
-            }
 
             return false;
         }
 
         private static bool IsPlayerHeroAvailable()
         {
-            MapState mapState = null;
             return PartyBase.MainParty is not null
                 && PlayerEncounter.Current is null
-                && ((mapState = GameStateManager.Current.ActiveState as MapState) is not null && !mapState.AtMenu);
+                && GameStateManager.Current.ActiveState is MapState mapState
+                && !mapState.AtMenu;
         }
 
-        internal void Sync()
-        {
-            Messengers = new MBReadOnlyList<Messenger>(_messengers);
-        }
+        internal void Sync() => Messengers = new MBReadOnlyList<Messenger>(_messengers);
 
         public void StartDialogue(Hero targetHero, Messenger messenger)
         {
-
             var heroParty = PartyBase.MainParty;
             var targetParty = targetHero.PartyBelongedTo?.Party;
 
             var isCivilian = false;
+
             if (targetParty is null)
             {
                 targetParty = targetHero.CurrentSettlement?.Party ?? targetHero.BornSettlement?.Party;
