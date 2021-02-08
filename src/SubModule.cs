@@ -1,4 +1,5 @@
 ﻿using Diplomacy.CampaignBehaviors;
+using Diplomacy.PatchTools;
 
 using Bannerlord.ButterLib.Common.Extensions;
 
@@ -37,13 +38,13 @@ namespace Diplomacy
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
-
             Instance = this;
 
             this.AddSerilogLoggerProvider($"{Name}.log", new[] { $"{Name}.*" }, config => config.MinimumLevel.Is(LogEventLevel.Verbose));
             Log = LogFactory.Get<SubModule>();
 
-            new Harmony(HarmonyDomain).PatchAll();
+            PatchManager.PatchAll(HarmonyDomain);
+            new Harmony(HarmonyDomain).PatchAll(); // Will only keep this around while I convert all the remaining annotated patches.
         }
 
         protected override void OnSubModuleUnloaded()
