@@ -135,7 +135,7 @@ namespace Diplomacy.ViewModel
 
         private void BreakAlliance(KingdomDiplomacyItemVM item)
         {
-            BreakAllianceAction.Apply(item.Faction1 as Kingdom, item.Faction2 as Kingdom);
+            BreakAllianceAction.Apply((Kingdom)item.Faction1, (Kingdom)item.Faction2);
             RefreshDiplomacyList();
             RefreshAlliances();
         }

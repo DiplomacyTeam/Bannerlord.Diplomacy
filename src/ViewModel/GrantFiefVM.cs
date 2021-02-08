@@ -35,7 +35,7 @@ namespace Diplomacy.ViewModel
             ProsperityText = GameTexts.FindText("str_prosperity_abbr", null).ToString();
             DefendersText = GameTexts.FindText("str_sort_by_defenders_label", null).ToString();
             RelationText = new TextObject("{=bCOCjOQM}Relat.").ToString();
-            RelationHint = new HintViewModel(new TextObject("{=RxawrCjg}Relationship Gain with Grantee").ToString());
+            RelationHint = Compat.HintViewModel.Create(new TextObject("{=RxawrCjg}Relationship Gain with Grantee"));
             RefreshValues();
         }
 

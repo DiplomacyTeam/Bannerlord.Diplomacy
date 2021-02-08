@@ -23,14 +23,11 @@ namespace Diplomacy.ViewModel
         protected override void UpdateActionAvailability()
         {
             base.UpdateActionAvailability();
-            var breakAllianceException = BreakAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
-            ActionHint = breakAllianceException is not null ? new HintViewModel(breakAllianceException) : new HintViewModel();
+            var breakAllianceException = BreakAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault();
+            ActionHint = breakAllianceException is not null ? Compat.HintViewModel.Create(breakAllianceException) : new HintViewModel();
             IsOptionAvailable = breakAllianceException is null;
         }
 
-        protected override void ExecuteExecutiveAction()
-        {
-            BreakAllianceAction.Apply(Faction1 as Kingdom, Faction2 as Kingdom);
-        }
+        protected override void ExecuteExecutiveAction() => BreakAllianceAction.Apply((Kingdom)Faction1, (Kingdom)Faction2);
     }
 }

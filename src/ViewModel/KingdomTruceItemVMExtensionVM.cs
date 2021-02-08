@@ -79,16 +79,16 @@ namespace Diplomacy.ViewModel
 
             IsOptionAvailable = DeclareWarConditions.Instance.CanApplyExceptions(this, true).IsEmpty();
 
-            var allianceException = FormAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
-            var declareWarException = DeclareWarConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
-            var napException = NonAggressionPactConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault()?.ToString();
+            var allianceException = FormAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault();
+            var declareWarException = DeclareWarConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault();
+            var napException = NonAggressionPactConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault();
 
             IsAllianceAvailable = allianceException is null;
             IsNonAggressionPactAvailable = napException is null;
 
-            ActionHint = declareWarException is not null ? new HintViewModel(declareWarException) : new HintViewModel();
-            AllianceHint = allianceException is not null ? new HintViewModel(allianceException) : new HintViewModel();
-            NonAggressionPactHint = napException is not null ? new HintViewModel(napException) : new HintViewModel();
+            ActionHint = declareWarException is not null ? Compat.HintViewModel.Create(declareWarException) : new HintViewModel();
+            AllianceHint = allianceException is not null ? Compat.HintViewModel.Create(allianceException) : new HintViewModel();
+            NonAggressionPactHint = napException is not null ? Compat.HintViewModel.Create(napException) : new HintViewModel();
 
             var allianceCost = DiplomacyCostCalculator.DetermineCostForFormingAlliance((Kingdom)Faction1,
                                                                                        (Kingdom)Faction2,

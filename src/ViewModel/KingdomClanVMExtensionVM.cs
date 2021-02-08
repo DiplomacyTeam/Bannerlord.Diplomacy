@@ -84,7 +84,7 @@ namespace Diplomacy.ViewModel
         {
             ShowUsurpThrone = CurrentSelectedClan.Clan == Clan.PlayerClan;
             CanUsurpThrone = UsurpKingdomAction.CanUsurp(Clan.PlayerClan, out var errorMessage);
-            UsurpThroneHint = errorMessage is not null ? new HintViewModel(errorMessage) : new HintViewModel();
+            UsurpThroneHint = errorMessage is not null ? Compat.HintViewModel.Create(new TextObject(errorMessage)) : new HintViewModel();
             UsurpKingdomAction.GetClanSupport(Clan.PlayerClan, out var supportingClanTiers, out var opposingClanTiers);
 
             var textObject = new TextObject("{=WVe7QwhW}Usurp the throne of this kingdom\nClan Support: {SUPPORTING_TIERS} / {OPPOSING_TIERS}");
@@ -120,7 +120,7 @@ namespace Diplomacy.ViewModel
         private void RefreshCanGrantFief()
         {
             CanGrantFiefToClan = GrantFiefAction.CanGrantFief(CurrentSelectedClan.Clan, out var hint);
-            GrantFiefHint = CanGrantFiefToClan ? new HintViewModel() : new HintViewModel(hint, null);
+            GrantFiefHint = CanGrantFiefToClan ? new HintViewModel() : Compat.HintViewModel.Create(new TextObject(hint));
         }
 
         [DataSourceProperty]
