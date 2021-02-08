@@ -1,17 +1,26 @@
-﻿using HarmonyLib;
+﻿using Diplomacy.PatchTools;
+
+using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox;
 
 namespace Diplomacy.Patches
 {
-    [HarmonyPatch(typeof(GameMenusCallbacks))]
-    class GameMenusCallbacksPatch
+    internal sealed class GameMenusCallbacksPatch : PatchClass<GameMenusCallbacksPatch, GameMenusCallbacks>
     {
-        [HarmonyPostfix]
-        [HarmonyPatch("menu_settlement_taken_on_init")]
-        public static void menu_settlement_taken_on_initPatch()
+        protected override IEnumerable<Patch> Prepare()
         {
-            Events.Instance.OnPlayerSettlementTaken(Settlement.CurrentSettlement);
+#if STABLE
+            return new[]
+            {
+                new Postfix(nameof(menu_settlement_taken_on_init_Postfix), nameof(GameMenusCallbacks.menu_settlement_taken_on_init))
+            };
+#else
+            // FIXME: Functionality is disabled until I can figure out how to replace this properly on e1.5.8
+#endif
         }
+
+        private static void menu_settlement_taken_on_init_Postfix() => Events.Instance.OnPlayerSettlementTaken(Settlement.CurrentSettlement);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Diplomacy.Extensions;
+using Diplomacy.PatchTools;
 
-using HarmonyLib;
+using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
@@ -8,16 +9,16 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.Patches
 {
-    [HarmonyPatch(typeof(DefaultClanPoliticsModel))]
-    class DefaultClanPoliticsModelPatch
+    internal sealed class DefaultClanPoliticsModelPatch : PatchClass<DefaultClanPoliticsModelPatch, DefaultClanPoliticsModel>
     {
-        private static readonly TextObject _txtCorruption = new("{=dUCOV7km}Corruption: Too Many Fiefs");
-        private static readonly TextObject _txtInfluenceDecay = new("{=koTNaZUX}Decay of High Influence");
+        protected override IEnumerable<Patch> Prepare() => new Patch[]
+        {
+            new Postfix(nameof(CalculateInfluenceChangePostfix),
+                        nameof(DefaultClanPoliticsModel.CalculateInfluenceChange),
+                        Priority.Last),
+        };
 
-        [HarmonyPostfix]
-        [HarmonyPriority(Priority.Last)]
-        [HarmonyPatch("CalculateInfluenceChange")]
-        public static void CalculateInfluenceChangePatch(Clan clan, ref ExplainedNumber __result)
+        private static void CalculateInfluenceChangePostfix(Clan clan, ref ExplainedNumber __result)
         {
             if (!Settings.Instance!.EnableInfluenceBalancing)
                 return;
@@ -29,7 +30,7 @@ namespace Diplomacy.Patches
                 float corruption = clan.GetCorruption();
 
                 if (corruption >= 0.01f)
-                    __result.Add(-corruption, _txtCorruption);
+                    __result.Add(-corruption, _TCorruption);
             }
 
             /// Influence Decay
@@ -40,11 +41,14 @@ namespace Diplomacy.Patches
                 int decay = (int)(decayFactor * (clan.Influence - Settings.Instance.InfluenceDecayThreshold));
 
                 if (decay > 0)
-                    __result.Add(-decay, _txtInfluenceDecay);
+                    __result.Add(-decay, _TInfluenceDecay);
             }
 
             /// Minimum Influence Gain (Maximum Influence Loss)
             __result.LimitMin(-Settings.Instance.MaximumInfluenceLoss);
         }
+
+        private static readonly TextObject _TCorruption = new("{=dUCOV7km}Corruption: Too Many Fiefs");
+        private static readonly TextObject _TInfluenceDecay = new("{=koTNaZUX}Decay of High Influence");
     }
 }

@@ -1,28 +1,30 @@
 ﻿using Diplomacy.ViewModel;
+using Diplomacy.PatchTools;
+
 using HarmonyLib;
+
+using System.Collections.Generic;
+
 using SandBox.GauntletUI;
-using System.Reflection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 
 namespace Diplomacy.Patches
 {
-    [HarmonyPatch(typeof(EncyclopediaData))]
-    class EncyclopediaDataPatch
+    internal sealed class EncyclopediaDataPatch : PatchClass<EncyclopediaDataPatch, EncyclopediaData>
     {
-        [HarmonyPostfix]
-        [HarmonyPatch("GetEncyclopediaPageInstance")]
-        public static void GetEncyclopediaPageInstancePatch(ref EncyclopediaPageVM __result)
+        protected override IEnumerable<Patch> Prepare() => new Patch[]
         {
+            new Postfix(nameof(GetEncyclopediaPageInstancePostfix), "GetEncyclopediaPageInstance"),
+        };
+
+        public static void GetEncyclopediaPageInstancePostfix(ref EncyclopediaPageVM __result)
+        {
+            var args = (EncyclopediaPageArgs)AccessTools.Field(typeof(EncyclopediaPageVM), "_args").GetValue(__result);
+
             if (__result is EncyclopediaHeroPageVM)
-            {
-                var args = (EncyclopediaPageArgs)typeof(EncyclopediaPageVM).GetField("_args", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(__result);
                 __result = new EncyclopediaHeroPageVMExtensionVM(args);
-            }
             else if (__result is EncyclopediaFactionPageVM)
-            {
-                var args = (EncyclopediaPageArgs)typeof(EncyclopediaPageVM).GetField("_args", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(__result);
                 __result = new EncyclopediaFactionPageVMExtensionVM(args);
-            }
         }
     }
 }
