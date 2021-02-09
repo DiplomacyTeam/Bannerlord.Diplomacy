@@ -1,17 +1,23 @@
 ﻿using Diplomacy.DiplomaticAction.WarPeace;
-using HarmonyLib;
+using Diplomacy.PatchTools;
+
+using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 
 namespace Diplomacy.Patches
 {
-    [HarmonyPatch(typeof(KingdomDecisionProposalBehavior))]
-    class KingdomDecisionProposalBehaviorPatch
+    internal sealed class KingdomDecisionProposalBehaviorPatch : PatchClass<KingdomDecisionProposalBehaviorPatch, KingdomDecisionProposalBehavior>
     {
-        [HarmonyPrefix]
-        [HarmonyPatch("ConsiderWar")]
-        public static bool ConsiderWarDecisionPatch(Clan clan, Kingdom kingdom, IFaction otherFaction, bool __result)
+        protected override IEnumerable<Patch> Prepare() => new Patch[]
+        {
+            new Prefix(nameof(ConsiderWarPrefix), "ConsiderWar"),
+            new Prefix(nameof(ConsiderPeacePrefix), "ConsiderPeace"),
+        };
+
+        private static bool ConsiderWarPrefix(Clan clan, Kingdom kingdom, IFaction otherFaction, ref bool __result)
         {
             if (otherFaction is Kingdom otherKingdom
                 && !DeclareWarConditions.Instance.CanApply(kingdom, otherKingdom, bypassCosts: true))
@@ -19,15 +25,11 @@ namespace Diplomacy.Patches
                 __result = false;
                 return false;
             }
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
 
-        [HarmonyPrefix]
-        [HarmonyPatch("ConsiderPeace")]
-        public static bool ConsiderPeacePatch(Clan clan, Clan otherClan, Kingdom kingdom, IFaction otherFaction, out MakePeaceKingdomDecision? decision, bool __result)
+        private static bool ConsiderPeacePrefix(Clan clan, Clan otherClan, Kingdom kingdom, IFaction otherFaction, out MakePeaceKingdomDecision? decision, ref bool __result)
         {
             decision = null;
 
@@ -37,10 +39,8 @@ namespace Diplomacy.Patches
                 __result = false;
                 return false;
             }
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
     }
 }
