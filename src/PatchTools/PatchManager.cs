@@ -66,6 +66,8 @@ namespace Diplomacy.PatchTools
             new GiveGoldToClanActionPatch(),
             new KingdomDecisionProposalBehaviorPatch(),
             new KingdomDiplomacyVMPatch(),
+            new KingdomManagementVMPatch(),
+            // ... Only 2 classes left to convert to declarative patching.
         };
     }
 }
