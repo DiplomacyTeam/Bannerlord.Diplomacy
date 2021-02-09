@@ -1,33 +1,42 @@
-﻿using Diplomacy.ViewModel;
-using HarmonyLib;
+﻿using Diplomacy.PatchTools;
+using Diplomacy.ViewModel;
+
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Library;
 
 namespace Diplomacy.Patches
 {
-    [HarmonyPatch(typeof(KingdomDiplomacyVM))]
-    class KingdomDiplomacyVMPatch
+    internal sealed class KingdomDiplomacyVMPatch : PatchClass<KingdomDiplomacyVMPatch, KingdomDiplomacyVM>
     {
-        [HarmonyPostfix]
-        [HarmonyPatch("RefreshDiplomacyList")]
-        public static void RefreshDiplomacyListPatch(KingdomDiplomacyVM __instance)
+        protected override IEnumerable<Patch> Prepare() => new Patch[]
+        {
+            new Postfix(nameof(RefreshDiplomacyListPostfix), nameof(KingdomDiplomacyVM.RefreshDiplomacyList)),
+        };
+
+        private static readonly Reflect.Method<KingdomDiplomacyVM> _OnDiplomacyItemSelectionRM = new("OnDiplomacyItemSelection");
+        private static readonly Reflect.Method<KingdomDiplomacyVM> _OnDeclareWarRM = new("OnDeclareWar");
+        private static readonly Reflect.Method<KingdomDiplomacyVM> _OnDeclarePeaceRM = new("OnDeclarePeace");
+
+        private delegate void SetDefaultSelectedItemDel(KingdomDiplomacyVM instance);
+
+        private static readonly SetDefaultSelectedItemDel _SetDefaultSelectedItem = new Reflect.Method<KingdomDiplomacyVM>("SetDefaultSelectedItem")
+            .GetOpenDelegate<SetDefaultSelectedItemDel>();
+
+        private static void RefreshDiplomacyListPostfix(KingdomDiplomacyVM __instance)
         {
             var playerWars = new MBBindingList<KingdomWarItemVM>();
             var playerTruces = new MBBindingList<KingdomTruceItemVM>();
-
-            var onDiplomacyItemSelection = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.NonPublic | BindingFlags.Instance);
-            var onDeclareWarMethod = typeof(KingdomDiplomacyVM).GetMethod("OnDeclareWar", BindingFlags.NonPublic | BindingFlags.Instance);
-            var onProposePeaceMethod = typeof(KingdomDiplomacyVM).GetMethod("OnDeclarePeace", BindingFlags.NonPublic | BindingFlags.Instance);
-
-            var onDeclareWarAction = (Action<KingdomTruceItemVM>)Delegate.CreateDelegate(typeof(Action<KingdomTruceItemVM>), __instance, onDeclareWarMethod);
-            var onProposePeaceAction = (Action<KingdomWarItemVM>)Delegate.CreateDelegate(typeof(Action<KingdomWarItemVM>), __instance, onProposePeaceMethod);
-            var onItemSelectedAction = (Action<KingdomDiplomacyItemVM>)Delegate.CreateDelegate(typeof(Action<KingdomDiplomacyItemVM>), __instance, onDiplomacyItemSelection);
-
             var playerKingdom = Clan.PlayerClan.Kingdom;
+
+            var onDiplomacyItemSelection = _OnDiplomacyItemSelectionRM.GetDelegate<Action<KingdomDiplomacyItemVM>>(__instance);
+            var onDeclareWar = _OnDeclareWarRM.GetDelegate<Action<KingdomTruceItemVM>>(__instance);
+            var onDeclarePeace = _OnDeclarePeaceRM.GetDelegate<Action<KingdomWarItemVM>>(__instance);
 
             foreach (var stanceLink in from x in playerKingdom.Stances
                                               where x.IsAtWar
@@ -37,22 +46,23 @@ namespace Diplomacy.Patches
             {
                 if (stanceLink.Faction1 is Kingdom && stanceLink.Faction2 is Kingdom && !stanceLink.Faction1.IsMinorFaction && !stanceLink.Faction2.IsMinorFaction)
                 {
-                    playerWars.Add(new KingdomWarItemVMExtensionVM(stanceLink, onItemSelectedAction, onProposePeaceAction));
+                    // FIXME: LO-PRIO: Verify the implicit downcast for onDiplomacyItemSelection from an Action<KingdomDiplomacyItemVM> to the
+                    // parameter target type Action<KingdomWarItemVM>. KingdomWarItemVM inherits from KingdomDiplomacyItemVM, not the opposite.
+                    playerWars.Add(new KingdomWarItemVMExtensionVM(stanceLink, onDiplomacyItemSelection, onDeclarePeace));
                 }
             }
-            foreach (var kingdom in Kingdom.All)
+
+            foreach (var kingdom in Kingdom.All.Where(k => k != playerKingdom
+                                                        && !k.IsEliminated
+                                                        && FactionManager.IsNeutralWithFaction(k, playerKingdom)))
             {
-                if (kingdom != playerKingdom && !kingdom.IsEliminated && FactionManager.IsNeutralWithFaction(kingdom, playerKingdom))
-                {
-                    playerTruces.Add(new KingdomTruceItemVMExtensionVM(playerKingdom, kingdom, onItemSelectedAction, onDeclareWarAction));
-                }
+                playerTruces.Add(new KingdomTruceItemVMExtensionVM(playerKingdom, kingdom, onDiplomacyItemSelection, onDeclareWar));
             }
 
             __instance.PlayerTruces = playerTruces;
             __instance.PlayerWars = playerWars;
 
-            var setDefaultSelectedItem = typeof(KingdomDiplomacyVM).GetMethod("SetDefaultSelectedItem", BindingFlags.NonPublic | BindingFlags.Instance);
-            setDefaultSelectedItem.Invoke(__instance, new object[] { });
+            _SetDefaultSelectedItem(__instance);
         }
     }
 }

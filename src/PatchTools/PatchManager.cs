@@ -65,6 +65,7 @@ namespace Diplomacy.PatchTools
             new GameMenusCallbacksPatch(),
             new GiveGoldToClanActionPatch(),
             new KingdomDecisionProposalBehaviorPatch(),
+            new KingdomDiplomacyVMPatch(),
         };
     }
 }
