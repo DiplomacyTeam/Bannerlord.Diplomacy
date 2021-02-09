@@ -65,7 +65,7 @@ namespace Diplomacy
 
         public static void RemoveListeners(object o) => Instance.RemoveListenersInternal(o);
 
-        internal void RemoveListenersInternal(object obj)
+        private void RemoveListenersInternal(object obj)
         {
             foreach (dynamic listener in _listeners)
                 listener.ClearListeners(obj);
