@@ -1,27 +1,35 @@
-﻿using HarmonyLib;
-using StoryMode.Behaviors.Quests;
+﻿using Diplomacy.PatchTools;
+
+using System;
+using System.Collections.Generic;
 using System.Reflection;
+
+using StoryMode.Behaviors.Quests;
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Patches
 {
-    [HarmonyPatch]
-    class SupportKingdomQuestPatch
+    internal sealed class SupportKingdomQuestPatch : PatchClass<SupportKingdomQuestPatch>
     {
-        [HarmonyTargetMethod]
-        static MethodBase TargetMethod()
+        protected override IEnumerable<Patch> Prepare() => new Patch[]
         {
-            return typeof(SupportKingdomQuestBehavior).GetNestedType("SupportKingdomQuest", BindingFlags.NonPublic | BindingFlags.Instance).GetMethod("MainStoryLineChosen", BindingFlags.NonPublic | BindingFlags.Instance);
-        }
+            new Postfix(nameof(MainStoryLineChosenPostfix), _TargetType, "MainStoryLineChosen"),
+        };
 
-        [HarmonyPostfix]
-        public static void PostFix(object __instance)
+        private static readonly Type _TargetType = typeof(SupportKingdomQuestBehavior)
+            .GetNestedType("SupportKingdomQuest", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        private delegate void CompleteQuestWithSuccessDel(QuestBase instance);
+
+        private static readonly CompleteQuestWithSuccessDel _CompleteQuestWithSuccess = new Reflect.Method<QuestBase>("CompleteQuestWithSuccess")
+            .GetOpenDelegate<CompleteQuestWithSuccessDel>();
+
+        private static void MainStoryLineChosenPostfix(object __instance)
         {
-            var questBase = ((QuestBase)__instance);
-            if (!questBase.IsFinalized)
-            {
-                typeof(QuestBase).GetMethod("CompleteQuestWithSuccess", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(questBase, new object[] { });
-            }
+            var quest = (QuestBase)__instance;
+
+            if (!quest.IsFinalized)
+                _CompleteQuestWithSuccess(quest);
         }
     }
 }

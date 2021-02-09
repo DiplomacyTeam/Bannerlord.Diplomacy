@@ -67,7 +67,8 @@ namespace Diplomacy.PatchTools
             new KingdomDecisionProposalBehaviorPatch(),
             new KingdomDiplomacyVMPatch(),
             new KingdomManagementVMPatch(),
-            // ... Only 2 classes left to convert to declarative patching.
+            new SupportKingdomQuestPatch(),
+            // ... Only 1 class left to convert to declarative patching.
         };
     }
 }
