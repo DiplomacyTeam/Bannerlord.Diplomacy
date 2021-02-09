@@ -4,17 +4,19 @@
 ## Higher Priority
 
 
-#### Compatibility with BL e1.5.7
+#### Compatibility with BL e1.5.8
 
-- ~~GUI compatibility~~
+- ~~GUI~~
 
-- ~~Compile-time compatibility~~
+- ~~Compiles~~
 
-  + ~~End usage of `StatExplainer`~~
+  + ~~Wrapper for `HintViewModel` constructor~~
 
 - Harmony patch compatibility
 
-  + Full review of all patched methods for semantic correctness
+  + Figure out the best way to restore the patch for when a settlement is captured by the player
+
+  + Full review of all patched methods' differences for semantic correctness
 
 - Go over FIXME tags related to compatch and verify the associated behavior is WAD
 
@@ -22,15 +24,6 @@
 ## Normal Priority
 
 
-- Convert all Harmony patches from annotated/attribute form to declarative form (actually using `Harmony.Patch` for each patch, except with very convenient instrumentation)
-
-  + Why? To make it safe to build Diplomacy with full compiler and JIT optimizations enabled as well as potentially detect patching conflicts on the fly, providing at the very least better diagnostics
-
-  + Create a `HarmonyPatchManager` class that finds all `HarmonyPatch`-derived and `IHarmonyPatchSet`-implementing classes and applies all patches
-
-    * `HarmonyPatch` classes are the base patch unit and represent only one patch upon a single method
-
-    * `IHarmonyPatchSet` classes implement a property getter `HarmonyPatches` which returns `IEnumerable<HarmonyPatch>`
 
 
 - Create a special `CampaignLog` logger which outputs a plaintext log of campaign events/actions/outcomes as well as some light statistics.
@@ -73,3 +66,17 @@
 - Convert complete overrides of vanilla GUI Prefabs to UIExtenderEx patches for better compatibility and more robustness to vanilla changes.
 
 - Wrap MCM settings in a larger config class
+
+
+## Done
+
+
+- Convert all Harmony patches from annotated/attribute form to declarative form (actually using `Harmony.Patch` for each patch, except with very convenient instrumentation)
+
+  + Why? To make it safe to build Diplomacy with full compiler and JIT optimizations enabled as well as potentially detect patching conflicts on the fly, providing at the very least better diagnostics
+
+
+## Major Fixes
+
+
+- War/peace kingdom decisions will now correctly no longer be considered if Diplomacy's war/peace conditions do not permit the proposal
