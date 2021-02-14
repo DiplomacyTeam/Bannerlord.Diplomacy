@@ -1,6 +1,6 @@
 <p align="center">
-	<img src="https://tokei.rs/b1/github/zijistark/Diplomacy?category=code" alt="Lines of Code"/>
-	<a href="https://www.codefactor.io/repository/github/zijistark/diplomacy"><img src="https://www.codefactor.io/repository/github/zijistark/diplomacy/badge" alt="CodeFactor"/></a>
+	<img src="https://tokei.rs/b1/github/DiplomacyTeam/Diplomacy?category=code" alt="Lines of Code"/>
+	<a href="https://www.codefactor.io/repository/github/diplomacyteam/diplomacy"><img src="https://www.codefactor.io/repository/github/diplomacyteam/diplomacy/badge" alt="CodeFactor"/></a>
 </p>
 
 # Diplomacy
