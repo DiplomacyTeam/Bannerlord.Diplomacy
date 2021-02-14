@@ -1,20 +1,22 @@
 ﻿using Diplomacy.DiplomaticAction.Alliance;
+
 using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
 namespace Diplomacy.Extensions
 {
-    class CampaignCheatsExtension
+    internal sealed class CampaignCheatsExtension
     {
-        [CommandLineFunctionality.CommandLineArgumentFunction("form_alliance", "campaign")]
-        public static string FormAlliance(List<string> strings)
+        [CommandLineFunctionality.CommandLineArgumentFunction("form_alliance", "diplomacy")]
+        private static string FormAlliance(List<string> strings)
         {
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
 
             if (!CampaignCheats.CheckParameters(strings, 2) || CampaignCheats.CheckHelp(strings))
-                return "Format uses kingdom IDs without spaces: \"campaign.form_alliance [Kingdom1] [Kingdom2]\".";
+                return "Format uses 2 kingdom ID parameters without spaces: diplomacy.form_alliance [Kingdom1] [Kingdom2]";
 
             var b1 = strings[0].ToLower();
             var b2 = strings[1].ToLower();
@@ -35,6 +37,9 @@ namespace Diplomacy.Extensions
                     kingdom2 = k;
             }
 
+            if (kingdom1 is null && kingdom2 is null)
+                return "Could not find either required kingdom!";
+
             if (kingdom1 is null)
                 return "1st kingdom ID not found: " + b1;
 
@@ -42,7 +47,7 @@ namespace Diplomacy.Extensions
                 return "2nd kingdom ID not found: " + b2;
 
             DeclareAllianceAction.Apply(kingdom1, kingdom2, bypassCosts: true);
-            return $"Alliance formed between {kingdom1.Name} and  {kingdom2.Name}";
+            return $"Alliance formed between {kingdom1.Name} and  {kingdom2.Name}!";
         }
     }
 }

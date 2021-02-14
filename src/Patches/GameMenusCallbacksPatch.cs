@@ -18,6 +18,9 @@ namespace Diplomacy.Patches
             };
 #else
             // FIXME: Functionality is disabled until I can figure out how to replace this properly on e1.5.8
+            // (menu_settlement_taken_on_init was removed)
+
+            yield break;
 #endif
         }
 

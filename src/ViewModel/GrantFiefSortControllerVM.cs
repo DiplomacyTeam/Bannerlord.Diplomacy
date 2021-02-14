@@ -104,16 +104,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public int TypeState
         {
-            get
-            {
-                return _typeState;
-            }
+            get => _typeState;
             set
             {
                 if (value != _typeState)
                 {
                     _typeState = value;
-                    OnPropertyChanged("TypeState");
+                    OnPropertyChanged(nameof(TypeState));
                 }
             }
         }
@@ -121,16 +118,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public int NameState
         {
-            get
-            {
-                return _nameState;
-            }
+            get => _nameState;
             set
             {
                 if (value != _nameState)
                 {
                     _nameState = value;
-                    OnPropertyChanged("NameState");
+                    OnPropertyChanged(nameof(NameState));
                 }
             }
         }
@@ -138,16 +132,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public int ProsperityState
         {
-            get
-            {
-                return _prosperityState;
-            }
+            get => _prosperityState;
             set
             {
                 if (value != _prosperityState)
                 {
                     _prosperityState = value;
-                    OnPropertyChanged("ProsperityState");
+                    OnPropertyChanged(nameof(ProsperityState));
                 }
             }
         }
@@ -155,16 +146,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public int RelationState
         {
-            get
-            {
-                return _relationState;
-            }
+            get => _relationState;
             set
             {
                 if (value != _relationState)
                 {
                     _relationState = value;
-                    OnPropertyChanged("RelationState");
+                    OnPropertyChanged(nameof(RelationState));
                 }
             }
         }
@@ -172,16 +160,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public int DefendersState
         {
-            get
-            {
-                return _defendersState;
-            }
+            get => _defendersState;
             set
             {
                 if (value != _defendersState)
                 {
                     _defendersState = value;
-                    OnPropertyChanged("DefendersState");
+                    OnPropertyChanged(nameof(DefendersState));
                 }
             }
         }
@@ -189,16 +174,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool IsTypeSelected
         {
-            get
-            {
-                return _isTypeSelected;
-            }
+            get => _isTypeSelected;
             set
             {
                 if (value != _isTypeSelected)
                 {
                     _isTypeSelected = value;
-                    OnPropertyChanged("IsTypeSelected");
+                    OnPropertyChanged(nameof(IsTypeSelected));
                 }
             }
         }
@@ -206,16 +188,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool IsNameSelected
         {
-            get
-            {
-                return _isNameSelected;
-            }
+            get => _isNameSelected;
             set
             {
                 if (value != _isNameSelected)
                 {
                     _isNameSelected = value;
-                    OnPropertyChanged("IsNameSelected");
+                    OnPropertyChanged(nameof(IsNameSelected));
                 }
             }
         }
@@ -223,16 +202,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool IsDefendersSelected
         {
-            get
-            {
-                return _isDefendersSelected;
-            }
+            get => _isDefendersSelected;
             set
             {
                 if (value != _isDefendersSelected)
                 {
                     _isDefendersSelected = value;
-                    OnPropertyChanged("IsDefendersSelected");
+                    OnPropertyChanged(nameof(IsDefendersSelected));
                 }
             }
         }
@@ -240,16 +216,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool IsProsperitySelected
         {
-            get
-            {
-                return _isProsperitySelected;
-            }
+            get => _isProsperitySelected;
             set
             {
                 if (value != _isProsperitySelected)
                 {
                     _isProsperitySelected = value;
-                    OnPropertyChanged("IsProsperitySelected");
+                    OnPropertyChanged(nameof(IsProsperitySelected));
                 }
             }
         }
@@ -257,16 +230,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool IsRelationSelected
         {
-            get
-            {
-                return _isRelationSelected;
-            }
+            get => _isRelationSelected;
             set
             {
                 if (value != _isRelationSelected)
                 {
                     _isRelationSelected = value;
-                    OnPropertyChanged("IsRelationSelected");
+                    OnPropertyChanged(nameof(IsRelationSelected));
                 }
             }
         }

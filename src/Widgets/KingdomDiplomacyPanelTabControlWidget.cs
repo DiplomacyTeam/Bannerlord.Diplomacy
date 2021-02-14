@@ -23,16 +23,13 @@ namespace Diplomacy.Widgets
         [Editor(false)]
         public ButtonWidget OverviewButton
         {
-            get
-            {
-                return _overviewButton;
-            }
+            get => _overviewButton;
             set
             {
                 if (_overviewButton != value)
                 {
                     _overviewButton = value;
-                    OnPropertyChanged(value, "OverviewButton");
+                    OnPropertyChanged(value, nameof(OverviewButton));
                 }
             }
         }
@@ -40,16 +37,13 @@ namespace Diplomacy.Widgets
         [Editor(false)]
         public ButtonWidget StatsButton
         {
-            get
-            {
-                return _statsButton;
-            }
+            get => _statsButton;
             set
             {
                 if (_statsButton != value)
                 {
                     _statsButton = value;
-                    OnPropertyChanged(value, "StatsButton");
+                    OnPropertyChanged(value, nameof(StatsButton));
                 }
             }
         }
@@ -57,16 +51,13 @@ namespace Diplomacy.Widgets
         [Editor(false)]
         public Widget OverviewPanel
         {
-            get
-            {
-                return _overviewPanel;
-            }
+            get => _overviewPanel;
             set
             {
                 if (_overviewPanel != value)
                 {
                     _overviewPanel = value;
-                    OnPropertyChanged(value, "OverviewPanel");
+                    OnPropertyChanged(value, nameof(OverviewPanel));
                 }
             }
         }
@@ -74,16 +65,13 @@ namespace Diplomacy.Widgets
         [Editor(false)]
         public Widget StatsPanel
         {
-            get
-            {
-                return _statsPanel;
-            }
+            get => _statsPanel;
             set
             {
                 if (_statsPanel != value)
                 {
                     _statsPanel = value;
-                    OnPropertyChanged(value, "StatsPanel");
+                    OnPropertyChanged(value, nameof(StatsPanel));
                 }
             }
         }

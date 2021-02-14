@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
@@ -6,53 +7,36 @@ using TaleWorlds.Library;
 
 namespace Diplomacy.ViewModel
 {
-    public class DiplomacyFactionRelationshipVM : TaleWorlds.Library.ViewModel
+    public sealed class DiplomacyFactionRelationshipVM : TaleWorlds.Library.ViewModel
     {
-        private ImageIdentifierVM _imageIdentifier;
-        private string _nameText;
-        private HintViewModel _hint;
+        public IFaction Faction { get; init;  }
 
-        public IFaction Faction { get; }
-
-        public DiplomacyFactionRelationshipVM(IFaction faction) : this(faction, new HintViewModel()) { }
-
-        public DiplomacyFactionRelationshipVM(IFaction faction, HintViewModel hint)
+        public DiplomacyFactionRelationshipVM(IFaction faction, HintViewModel? hint = null)
         {
             Faction = faction;
-            ImageIdentifier = new ImageIdentifierVM(BannerCode.CreateFrom(faction.Banner), true);
-            NameText = Faction.Name.ToString();
-            Hint = hint;
+            _imageIdentifier = new ImageIdentifierVM(BannerCode.CreateFrom(faction.Banner), true);
+            _nameText = Faction.Name.ToString();
+            _hint = hint ?? new HintViewModel();
         }
 
-        private void ExecuteLink()
-        {
-            Campaign.Current.EncyclopediaManager.GoToLink(Faction.EncyclopediaLink);
-        }
+        private void ExecuteLink() => Campaign.Current.EncyclopediaManager.GoToLink(Faction.EncyclopediaLink);
 
-        public override bool Equals(object obj)
-        {
-            return obj is DiplomacyFactionRelationshipVM vM &&
-                   EqualityComparer<IFaction>.Default.Equals(Faction, vM.Faction);
-        }
+        public override bool Equals(object obj) => obj is DiplomacyFactionRelationshipVM vm && Equals(vm);
 
-        public override int GetHashCode()
-        {
-            return -301155118 + EqualityComparer<IFaction>.Default.GetHashCode(Faction);
-        }
+        public bool Equals(DiplomacyFactionRelationshipVM vm) => EqualityComparer<IFaction>.Default.Equals(Faction, vm.Faction);
+
+        public override int GetHashCode() => -301155118 + EqualityComparer<IFaction>.Default.GetHashCode(Faction);
 
         [DataSourceProperty]
         public string NameText
         {
-            get
-            {
-                return _nameText;
-            }
+            get => _nameText;
             set
             {
                 if (value != _nameText)
                 {
                     _nameText = value;
-                    OnPropertyChanged("NameText");
+                    OnPropertyChanged(nameof(NameText));
                 }
             }
         }
@@ -60,16 +44,14 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public ImageIdentifierVM ImageIdentifier
         {
-            get
-            {
-                return _imageIdentifier;
-            }
+            get => _imageIdentifier;
             set
             {
                 if (value != _imageIdentifier)
                 {
                     _imageIdentifier = value;
-                    OnPropertyChanged("Banner");
+                    // FIXME: Property named below was "Banner" -- interpreted as bug, but check functionality switching between ImageIdentifiers
+                    OnPropertyChanged(nameof(ImageIdentifier));
                 }
             }
         }
@@ -77,18 +59,19 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public HintViewModel Hint
         {
-            get
-            {
-                return _hint;
-            }
+            get => _hint;
             set
             {
                 if (value != _hint)
                 {
                     _hint = value;
-                    OnPropertyChanged("Hint");
+                    OnPropertyChanged(nameof(Hint));
                 }
             }
         }
+
+        private ImageIdentifierVM _imageIdentifier;
+        private string _nameText;
+        private HintViewModel _hint;
     }
 }
