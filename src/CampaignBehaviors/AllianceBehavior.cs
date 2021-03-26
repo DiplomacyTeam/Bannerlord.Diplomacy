@@ -82,7 +82,7 @@ namespace Diplomacy.CampaignBehaviors
                 return;
             }
 
-            if (clan.Leader == clan.Kingdom?.Leader && clan.Leader != Hero.MainHero)
+            if (clan.Leader == clan.Kingdom?.Leader && clan.Leader != Hero.MainHero && clan.MapFaction.IsKingdomFaction)
             {
                 var kingdom = clan.Kingdom;
                 ConsiderBreakingAlliances(kingdom);

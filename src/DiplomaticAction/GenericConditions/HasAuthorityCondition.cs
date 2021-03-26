@@ -14,7 +14,7 @@ namespace Diplomacy.DiplomaticAction.GenericConditions
             textObject = null;
 
             var authority = Clan.PlayerClan.Kingdom != kingdom
-                || kingdom.Leader.IsHumanPlayerCharacter
+                || (kingdom?.Leader.IsHumanPlayerCharacter ?? false)
                 || !forcePlayerCosts
                 || Settings.Instance!.PlayerDiplomacyControl;
 
