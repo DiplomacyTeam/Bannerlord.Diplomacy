@@ -28,8 +28,8 @@ namespace Diplomacy.Messengers
             Messengers = new MBReadOnlyList<Messenger>(_messengers);
         }
 
-        private static readonly string _SMessengerSent = new TextObject("{=zv12jjyW}Messenger Sent").ToString();
-        private static readonly string _SOK = GameTexts.FindText("str_ok", null).ToString();
+        private static string _SOK { get { return GameTexts.FindText("str_ok", null).ToString(); } } 
+        private static string _SMessengerSent { get; } = new TextObject("{=zv12jjyW}Messenger Sent").ToString();
 
         public void SendMessenger(Hero targetHero)
         {
