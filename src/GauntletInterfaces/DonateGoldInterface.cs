@@ -12,7 +12,7 @@ namespace Diplomacy.GauntletInterfaces
     class DonateGoldInterface
     {
         private GauntletLayer _layer;
-        private GauntletMovie _movie;
+        private IGauntletMovie _movie;
         private DonateGoldVM _vm;
         private ScreenBase _screenBase;
 
