@@ -70,7 +70,7 @@ namespace Diplomacy.ViewModel
         public string ActionName { get; protected set; }
 
         [DataSourceProperty]
-        public int SendMessengerInfluenceCost { get; } = (int)DiplomacyCostCalculator.DetermineCostForSendingMessenger().Value;
+        public int SendMessengerGoldCost { get; } = (int)DiplomacyCostCalculator.DetermineCostForSendingMessenger().Value;
 
         [DataSourceProperty]
         public bool IsMessengerAvailable
