@@ -12,7 +12,9 @@ namespace Diplomacy.DiplomaticAction.Usurp
     {
         public static void Apply(Clan usurpingClan)
         {
-            if (Settings.Instance!.EnableStorylineProtection && StoryMode.StoryMode.Current.MainStoryLine.MainStoryLineSide == MainStoryLineSide.None)
+            // can be null if we're in sandbox rather than story mode
+            
+            if (IsStoryMode && IsNoSideChosenInStory)
             {
                 InformationManager.ShowInquiry(new InquiryData(
                     new TextObject("{=fQxiCdBA}Main Storyline").ToString(),
@@ -32,9 +34,10 @@ namespace Diplomacy.DiplomaticAction.Usurp
             }
         }
 
+
         private static void ApplyInternal(Clan usurpingClan)
         {
-            if (Settings.Instance!.EnableStorylineProtection && StoryMode.StoryMode.Current.MainStoryLine.MainStoryLineSide == MainStoryLineSide.None)
+            if (IsStoryMode && IsNoSideChosenInStory)
             {
                 if (StoryModeData.IsKingdomImperial(usurpingClan.Kingdom))
                 {
@@ -55,6 +58,17 @@ namespace Diplomacy.DiplomaticAction.Usurp
             AdjustRelations(usurpingClan, supportingClans, 10);
             AdjustRelations(usurpingClan, opposingClans, 20);
         }
+
+        private static bool IsNoSideChosenInStory
+        {
+            get
+            {
+                var mainStoryLineSide = StoryMode.StoryMode.Current?.MainStoryLine?.MainStoryLineSide;
+                return Settings.Instance!.EnableStorylineProtection && mainStoryLineSide.HasValue && mainStoryLineSide.Value == MainStoryLineSide.None;
+            }
+        }
+
+        private static bool IsStoryMode { get { return StoryMode.StoryMode.Current != null; } }
 
         private static void AdjustRelations(Clan usurpingClan, List<Clan> clans, int baseValue)
         {
@@ -78,7 +92,7 @@ namespace Diplomacy.DiplomaticAction.Usurp
         {
             errorMessage = null;
 
-            if (Settings.Instance!.EnableStorylineProtection && (!(StoryMode.StoryMode.Current?.MainStoryLine?.FirstPhase?.AllPiecesCollected ?? false)))
+            if (IsStoryMode && Settings.Instance!.EnableStorylineProtection && (!(StoryMode.StoryMode.Current?.MainStoryLine?.FirstPhase?.AllPiecesCollected ?? false)))
             {
                 errorMessage = new TextObject("{=Euy6Mwcq}You must progress further in the main quest to unlock this action. You can disable storyline protection in the mod options.").ToString();
                 return false;

@@ -103,12 +103,18 @@ namespace Diplomacy.CampaignBehaviors
 
         private bool IsValidQuestState(Kingdom kingdom1, Kingdom kingdom2)
         {
+            // not in story mode
+            if (StoryMode.StoryMode.Current == null)
+            {
+                return true;
+            } 
+
             var isValidQuestState = true;
             var opposingKingdom = PlayerHelpers.GetOpposingKingdomIfPlayerKingdomProvided(kingdom1, kingdom2);
 
             if (opposingKingdom is not null)
             {
-                var thirdPhase = StoryMode.StoryMode.Current.MainStoryLine.ThirdPhase;
+                var thirdPhase = StoryMode.StoryMode.Current?.MainStoryLine?.ThirdPhase;
                 isValidQuestState = thirdPhase is null || !thirdPhase.OppositionKingdoms.Contains(opposingKingdom);
             }
 

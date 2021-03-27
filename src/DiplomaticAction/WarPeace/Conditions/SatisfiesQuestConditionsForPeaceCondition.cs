@@ -10,7 +10,14 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
-            var thirdPhase = StoryMode.StoryMode.Current.MainStoryLine.ThirdPhase;
+
+            // not in story mode
+            if (StoryMode.StoryMode.Current == null)
+            {
+                return true;
+            }
+
+            var thirdPhase = StoryMode.StoryMode.Current?.MainStoryLine?.ThirdPhase;
             var isValidQuestState = thirdPhase is null || !thirdPhase.OppositionKingdoms.Contains(otherKingdom);
             if (!isValidQuestState)
             {
