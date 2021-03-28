@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using Diplomacy.Character;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -39,6 +40,9 @@ namespace Diplomacy.CampaignBehaviors
                     {
                         settlement.Town.IsOwnerUnassigned = false;
                         ChangeOwnerOfSettlementAction.ApplyByDefault(Hero.MainHero, settlement);
+
+                        // lose generosity when keeping fief
+                        PlayerCharacterTraitEventExperience.FiefClaimed.Apply();
                     },
                     () => settlement.Town.IsOwnerUnassigned = true),
                 true);

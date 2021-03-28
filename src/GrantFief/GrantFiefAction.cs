@@ -1,4 +1,5 @@
-﻿using Diplomacy.Extensions;
+﻿using Diplomacy.Character;
+using Diplomacy.Extensions;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -18,6 +19,9 @@ namespace Diplomacy.GrantFief
 
             foreach (var clan in Clan.PlayerClan.Kingdom.Clans.Where(c => c != grantedClan && c != Clan.PlayerClan))
                 ChangeRelationAction.ApplyPlayerRelation(clan.Leader, Settings.Instance!.GrantFiefRelationPenalty);
+
+            // gain generosity when granting fief
+            PlayerCharacterTraitEventExperience.FiefGranted.Apply();
 
             Events.Instance.OnFiefGranted(settlement.Town);
         }
