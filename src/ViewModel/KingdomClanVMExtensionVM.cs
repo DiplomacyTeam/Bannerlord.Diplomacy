@@ -185,7 +185,7 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool ShowUsurpThrone
         {
-            get { return _showUsurpThrone; }
+            get { return Settings.Instance!.EnableUsurpThroneFeature && _showUsurpThrone; }
 
             set
             {

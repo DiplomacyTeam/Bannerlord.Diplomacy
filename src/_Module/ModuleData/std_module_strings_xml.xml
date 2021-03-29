@@ -250,6 +250,9 @@
 
     <string id="lsyl0VSX" text ="Storyline Protection"/>
     <string id="EVrErrTR" text="When enabled, prevents the player from breaking the main storyline. Disable when using mods like &quot;Just Let Me Play&quot;. Default value is true." />
-
+    
+    <string id="f6n2UAEC" text="Unfinished Features" />
+    <string id="HSoZfvXH" text="Enable Usurp Throne Feature" />
+    <string id="ZIAo4er4" text="When enabled, this allows the player to usurp the throne of a kingdom. This feature is unbalanced and is pending a rework and thus not recommended. Default value is false." />
   </strings>
 </base>
