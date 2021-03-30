@@ -178,10 +178,8 @@ namespace Diplomacy.Messengers
 
         public static bool IsTargetHeroAvailable(Hero opposingLeader)
         {
-            var unavailable = opposingLeader.IsOccupiedByAnEvent()
-                || opposingLeader.IsHumanPlayerCharacter
-                || !(opposingLeader.IsActive || (opposingLeader.IsWanderer && opposingLeader.HeroState == Hero.CharacterStates.NotSpawned));
-            return !unavailable;
+            var available = opposingLeader.IsActive || (opposingLeader.IsWanderer && opposingLeader.HeroState == Hero.CharacterStates.NotSpawned);
+            return available && !opposingLeader.IsHumanPlayerCharacter;
         }
 
         public static bool CanSendMessengerWithCost(Hero opposingLeader, DiplomacyCost diplomacyCost)
