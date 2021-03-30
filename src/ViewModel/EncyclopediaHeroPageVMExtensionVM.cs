@@ -25,23 +25,31 @@ namespace Diplomacy.ViewModel
             SendMessengerCost = (int)_sendMessengerCost.Value;
             SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
             GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
-            base.RefreshValues();
-            Recalculate();
+            RefreshValues();
         }
 
-        private void Recalculate()
+        public override void RefreshValues()
         {
+            base.RefreshValues();
+            
+            // this is called before the constructor the first time
+            if (_hero is null)
+            {
+                return;
+            }
+
             if (_hero.Clan?.Kingdom is not null && Clan.PlayerClan?.Kingdom is not null && _hero.Clan.Kingdom == Clan.PlayerClan.Kingdom)
             {
                 CanGrantFief = GrantFiefAction.CanGrantFief(_hero.Clan, out _);
             }
-            RefreshValues();
+
+            UpdateIsMessengerAvailable();
         }
 
         protected void SendMessenger()
         {
             Events.Instance.OnMessengerSent(_hero);
-            UpdateIsMessengerAvailable();
+            RefreshValues();
         }
 
         private void ExecuteLink(string link)
@@ -51,16 +59,13 @@ namespace Diplomacy.ViewModel
 
         private void GrantFief()
         {
-            _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, _hero, Recalculate);
+            _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, _hero, RefreshValues);
         }
 
         [DataSourceProperty]
         public bool CanGrantFief
         {
-            get
-            {
-                return _canGrantFief;
-            }
+            get => _canGrantFief;
             set
             {
                 if (value != _canGrantFief)
@@ -80,11 +85,7 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool IsMessengerAvailable
         {
-            get
-            {
-                UpdateIsMessengerAvailable();
-                return _isMessengerAvailable;
-            }
+            get => _isMessengerAvailable;
             set
             {
                 if (value != _isMessengerAvailable)
