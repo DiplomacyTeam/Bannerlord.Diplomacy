@@ -20,13 +20,13 @@
     <BuildResourcesVersion>1.0.0.33</BuildResourcesVersion>
     <ButterLibVersion>1.0.21</ButterLibVersion>
     <HarmonyVersion>2.0.4</HarmonyVersion>
-    <MCMVersion>4.2.0</MCMVersion>
+    <MCMVersion>4.2.1</MCMVersion>
   </PropertyGroup>
 
   <!-- Game Versions for Stable and Beta -->
   <PropertyGroup>
-    <GameVersion Condition="$(IsStable) == 'true'">1.5.7</GameVersion>
-    <GameVersion Condition="$(IsBeta) == 'true'">1.5.8</GameVersion>
+    <GameVersion Condition="$(IsStable) == 'true'">1.5.8</GameVersion>
+    <GameVersion Condition="$(IsBeta) == 'true'">1.5.9</GameVersion>
   </PropertyGroup>
 
   <!-- Game Folder(s) -->
