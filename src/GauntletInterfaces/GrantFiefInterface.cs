@@ -13,7 +13,12 @@ namespace Diplomacy.GauntletInterfaces
     class GrantFiefInterface
     {
         private GauntletLayer _layer;
+#if STABLE
+        private GauntletMovie _movie;
+#else
         private IGauntletMovie _movie;
+#endif
+
         private GrantFiefVM _vm;
         private ScreenBase _screenBase;
 

@@ -8,11 +8,7 @@ namespace Diplomacy
         {
             public static TaleWorlds.Core.ViewModelCollection.HintViewModel Create(TextObject text)
             {
-#if STABLE
-                return new(text.ToString());
-#else
                 return new(text);
-#endif
             }
         }
     }
