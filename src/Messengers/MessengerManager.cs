@@ -20,7 +20,7 @@ namespace Diplomacy.Messengers
 
         public MBReadOnlyList<Messenger> Messengers { get; private set; }
 
-        private Messenger _activeMessenger;
+        private Messenger? _activeMessenger;
 
         internal MessengerManager()
         {

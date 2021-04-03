@@ -20,7 +20,7 @@ namespace Diplomacy.ViewModel
         public EncyclopediaHeroPageVMExtensionVM(EncyclopediaPageArgs args) : base(args)
         {
             _grantFiefInterface = new GrantFiefInterface();
-            _hero = (Obj as Hero);
+            _hero = (Obj as Hero)!;
             _sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger();
             SendMessengerCost = (int)_sendMessengerCost.Value;
             SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
