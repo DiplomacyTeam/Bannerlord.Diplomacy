@@ -22,9 +22,9 @@ namespace Diplomacy
         private const string HeadingInfluenceCostsFlat = "{=BazjeCZw}Influence Costs/Flat";
         private const string HeadingUnfinishedFeatures = "{=f6n2UAEC}Unfinished Features";
 
-        public override string Id => "DiplomacyFixesSettings_1";
-        public override string DisplayName => new TextObject("Diplomacy Fixes").ToString();
-        public override string FolderName => "DiplomacyFixes";
+        public override string Id => "DiplomacySettings_1";
+        public override string DisplayName => new TextObject("{=MYz8nKqq}Diplomacy").ToString();
+        public override string FolderName => "Diplomacy";
         public override string FormatType => "json2";
 
         [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 0, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations.")]
