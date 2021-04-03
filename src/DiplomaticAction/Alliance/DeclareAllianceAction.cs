@@ -1,5 +1,7 @@
 ﻿using Bannerlord.ButterLib.Common.Helpers;
 
+using Diplomacy.Extensions;
+
 using Microsoft.Extensions.Logging;
 
 using System;
@@ -21,7 +23,7 @@ namespace Diplomacy.DiplomaticAction.Alliance
         protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
             LogFactory.Get<DeclareAllianceAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} secured an alliance with {otherKingdom.Name}.");
-            DeclareAlliance(proposingKingdom, otherKingdom);
+            FactionManager.DeclareAlliance(proposingKingdom, otherKingdom);
             Events.Instance.OnAllianceFormed(new AllianceEvent(proposingKingdom, otherKingdom));
         }
 
@@ -43,24 +45,5 @@ namespace Diplomacy.DiplomaticAction.Alliance
                 acceptAction,
                 null), true);
         }
-
-        private static void DeclareAlliance(IFaction faction1, IFaction faction2)
-        {
-            if (faction1 == faction2 || faction1.IsBanditFaction || faction2.IsBanditFaction)
-                return;
-
-            SetStance(faction1, faction2, StanceType.Alliance);
-        }
-
-        enum StanceType
-        {
-            Neutral,
-            War,
-            Alliance,
-        }
-
-        private delegate StanceLink SetStanceDel(IFaction faction1, IFaction faction2, StanceType stanceType);
-        private static readonly SetStanceDel SetStance = AccessTools2.GetDelegate<SetStanceDel>(typeof(FactionManager), "SetStance")
-            ?? throw new MissingMethodException(typeof(FactionManager).FullName, "SetStance");
     }
 }
