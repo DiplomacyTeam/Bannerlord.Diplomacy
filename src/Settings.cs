@@ -27,9 +27,9 @@ namespace Diplomacy
         public override string FolderName => "Diplomacy";
         public override string FormatType => "json2";
 
-        [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 0, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations.")]
+        [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 0, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations. Default value is false.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public bool PlayerDiplomacyControl { get; set; } = true;
+        public bool PlayerDiplomacyControl { get; set; } = false;
 
         [SettingPropertyBool(displayName: "{=tis8Ddzn}Allow Player To Claim Player-Taken Settlements", Order = 0, RequireRestart = true, HintText = "{=TfxLCxcD}Gives the player the option to claim a settlement that they have taken rather than let it go to an election.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
