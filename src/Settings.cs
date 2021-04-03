@@ -63,9 +63,9 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int MinimumWarDurationInDays { get; set; } = 10;
 
-        [SettingPropertyInteger("{=4MzQHMVj}Declare War Cooldown in Days", 0, 500, Order = 2, RequireRestart = false, HintText = "{=q2duqN8d}The minimum duration (in days) to declare war after making peace. Default value is 10.")]
+        [SettingPropertyInteger("{=4MzQHMVj}Declare War Cooldown in Days", 0, 500, Order = 2, RequireRestart = false, HintText = "{=q2duqN8d}The minimum duration (in days) to declare war after making peace. Default value is 100.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public int DeclareWarCooldownInDays { get; set; } = 10;
+        public int DeclareWarCooldownInDays { get; set; } = 100;
 
         [SettingPropertyBool("{=2XC8QHkl}Enable Alliances", RequireRestart = false, HintText = "{=5YJBZx28}If disabled, this disables the ability to form alliances for both player and AI factions. Default value is enabled.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]

@@ -145,7 +145,7 @@
     <string id="ZRlNvsev" text="Minimum War Duration in Days" />
     <string id="vuFT5ns8" text="The minimum duration (in days) that a war can last before proposing peace. Default value is 10." />
     <string id="4MzQHMVj" text="Declare War Cooldown in Days" />
-    <string id="q2duqN8d" text="The minimum duration (in days) to declare war after making peace. Default value is 10." />
+    <string id="q2duqN8d" text="The minimum duration (in days) to declare war after making peace. Default value is 100." />
     <string id="6m1SspFW" text="Enable Player Kingdom Diplomacy Control" />
     <string id="N5EouSSj" text="Gives the player total control over their kingdom's war and peace declarations." />
     <string id="tis8Ddzn" text="Allow Player To Claim Player-Taken Settlements" />
