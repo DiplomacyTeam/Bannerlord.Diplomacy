@@ -5,16 +5,19 @@ using TaleWorlds.Engine.Screens;
 using TaleWorlds.GauntletUI.Data;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
-using TaleWorlds.TwoDimension;
 
 namespace Diplomacy.GauntletInterfaces
 {
     class DonateGoldInterface
     {
-        private GauntletLayer _layer;
+#if STABLE
         private GauntletMovie _movie;
-        private DonateGoldVM _vm;
-        private ScreenBase _screenBase;
+#else
+        private IGauntletMovie? _movie;
+#endif
+        private GauntletLayer? _layer;
+        private DonateGoldVM? _vm;
+        private ScreenBase? _screenBase;
 
         public void ShowInterface(ScreenBase screenBase, Clan clan)
         {
@@ -38,8 +41,8 @@ namespace Diplomacy.GauntletInterfaces
 
         public void OnFinalize()
         {
-            _screenBase.RemoveLayer(_layer);
-            _layer.ReleaseMovie(_movie);
+            _screenBase?.RemoveLayer(_layer);
+            _layer?.ReleaseMovie(_movie);
             _layer = null;
             _movie = null;
             // vm.ExecuteSelect(null);
