@@ -30,12 +30,14 @@ namespace Diplomacy.ViewModel
             AllianceText = _TAlliances.ToString();
             WarsText = _TWars.ToString();
             PactsText = _TNonAggressionPacts.ToString();
-            DiplomacyProperties = new DiplomacyPropertiesVM(Faction1, Faction2);
             UpdateDiplomacyProperties();
         }
 
         protected override void UpdateDiplomacyProperties()
         {
+            if (DiplomacyProperties is null)
+                DiplomacyProperties = new DiplomacyPropertiesVM(Faction1, Faction2);
+
             DiplomacyProperties.UpdateDiplomacyProperties();
             
             base.UpdateDiplomacyProperties();
@@ -66,7 +68,7 @@ namespace Diplomacy.ViewModel
         }
 
         [DataSourceProperty]
-        public DiplomacyPropertiesVM DiplomacyProperties { get; init; }
+        public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
 
         [DataSourceProperty]
         public string ActionName { get; init; }
