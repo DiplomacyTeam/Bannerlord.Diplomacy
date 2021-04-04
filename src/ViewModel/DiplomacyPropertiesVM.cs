@@ -1,25 +1,22 @@
 ﻿using Diplomacy.DiplomaticAction;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.ViewModel
 {
-    public class DiplomacyPropertiesVM : TaleWorlds.Library.ViewModel
+    public sealed class DiplomacyPropertiesVM : TaleWorlds.Library.ViewModel
     {
+        private static readonly TextObject _TDaysRemaining = new(StringConstants.DaysRemaining);
 
-        private IFaction Faction1 { get; }
-        private IFaction Faction2 { get; }
+        private IFaction Faction1 { get; init; }
 
-        public DiplomacyPropertiesVM(IFaction faction1, IFaction faction2)
-        {
-            Faction1 = faction1;
-            Faction2 = faction2;
-        }
+        private IFaction Faction2 { get; init; }
 
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction1Wars;
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction1Allies;
@@ -28,37 +25,29 @@ namespace Diplomacy.ViewModel
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction1Pacts;
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction2Pacts;
 
+        public DiplomacyPropertiesVM(IFaction faction1, IFaction faction2)
+        {
+            Faction1 = faction1;
+            Faction2 = faction2;
+
+            _faction1Wars = new();
+            _faction1Allies = new();
+
+            _faction2Wars = new();
+            _faction2Allies = new();
+
+            _faction1Pacts = new();
+            _faction2Pacts = new();
+        }
+
         public void UpdateDiplomacyProperties()
         {
-            if (Faction1Wars is null)
-            {
-                Faction1Wars = new MBBindingList<DiplomacyFactionRelationshipVM>();
-            }
-            if (Faction1Allies is null)
-            {
-                Faction1Allies = new MBBindingList<DiplomacyFactionRelationshipVM>();
-            }
-            if (Faction2Wars is null)
-            {
-                Faction2Wars = new MBBindingList<DiplomacyFactionRelationshipVM>();
-            }
-            if (Faction2Allies is null)
-            {
-                Faction2Allies = new MBBindingList<DiplomacyFactionRelationshipVM>();
-            }
-            if (Faction1Pacts is null)
-            {
-                Faction1Pacts = new MBBindingList<DiplomacyFactionRelationshipVM>();
-            }
-            if (Faction2Pacts is null)
-            {
-                Faction2Pacts = new MBBindingList<DiplomacyFactionRelationshipVM>();
-            }
-
             Faction1Wars.Clear();
             Faction1Allies.Clear();
+
             Faction2Wars.Clear();
             Faction2Allies.Clear();
+
             Faction1Pacts.Clear();
             Faction2Pacts.Clear();
 
@@ -68,14 +57,10 @@ namespace Diplomacy.ViewModel
             foreach (var kingdom in Kingdom.All)
             {
                 if (FactionManager.IsAlliedWithFaction(kingdom, Faction1) && kingdom != Faction1)
-                {
                     Faction1Allies.Add(new DiplomacyFactionRelationshipVM(kingdom));
-                }
 
                 if (FactionManager.IsAlliedWithFaction(kingdom, Faction2) && kingdom != Faction2)
-                {
                     Faction2Allies.Add(new DiplomacyFactionRelationshipVM(kingdom));
-                }
 
                 AddNonAggressionPactRelationships(kingdom, Faction1, Faction1Pacts);
                 AddNonAggressionPactRelationships(kingdom, Faction2, Faction2Pacts);
@@ -86,44 +71,34 @@ namespace Diplomacy.ViewModel
         {
             if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, (Kingdom)faction, out var pact))
             {
-                var textObject = new TextObject(StringConstants.DaysRemaining);
-                textObject.SetTextVariable("DAYS_LEFT", (int)Math.Round(pact.EndDate.RemainingDaysFromNow));
-                FactionPacts.Add(new DiplomacyFactionRelationshipVM(kingdom, Compat.HintViewModel.Create(textObject)));
+                _TDaysRemaining.SetTextVariable("DAYS_LEFT", (int)Math.Round(pact.EndDate.RemainingDaysFromNow));
+                FactionPacts.Add(new DiplomacyFactionRelationshipVM(kingdom, Compat.HintViewModel.Create(_TDaysRemaining)));
             }
         }
 
         private void AddWarRelationships(IEnumerable<StanceLink> stances)
         {
-
-            foreach (var stanceLink in from x in stances
-                                              where x.IsAtWar
-                                              select x into w
-                                              orderby w.Faction1.Name.ToString() + w.Faction2.Name.ToString()
-                                              select w)
+            foreach (var stance in from x in stances
+                                          where x.IsAtWar
+                                          select x into w
+                                          orderby w.Faction1.Name.ToString() + w.Faction2.Name.ToString()
+                                          select w)
             {
-                if (stanceLink.Faction1 is Kingdom && stanceLink.Faction2 is Kingdom && !stanceLink.Faction1.IsMinorFaction && !stanceLink.Faction2.IsMinorFaction)
+                var (f1, f2) = (stance.Faction1, stance.Faction2);
+
+                if (f1 is not Kingdom || f2 is not Kingdom || f1.IsMinorFaction || f2.IsMinorFaction || f1.IsBanditFaction || f2.IsBanditFaction)
                 {
+                    var isFaction1War = f1 == Faction1 || f2 == Faction1;
+                    var isFaction2War = f1 == Faction2 || f2 == Faction2;
 
-                    var isFaction1War = stanceLink.Faction1 == Faction1 || stanceLink.Faction2 == Faction1;
-                    var isFaction2War = stanceLink.Faction1 == Faction2 || stanceLink.Faction2 == Faction2;
-
-                    if (isFaction1War && isFaction2War)
-                    {
-                        // make sure we only add the shared war once
-                        if (Faction1Wars.Any(war => war.Faction == Faction2))
-                        {
-                            continue;
-                        }
-                    }
+                    if (isFaction1War && isFaction2War && Faction1Wars.Any(war => war.Faction == Faction2))
+                        continue; // Make sure we only add the shared war once
 
                     if (isFaction1War)
-                    {
-                        Faction1Wars.Add(new DiplomacyFactionRelationshipVM(stanceLink.Faction1 == Faction1 ? stanceLink.Faction2 : stanceLink.Faction1));
-                    }
+                        Faction1Wars.Add(new DiplomacyFactionRelationshipVM(f1 == Faction1 ? f2 : f1));
+
                     if (isFaction2War)
-                    {
-                        Faction2Wars.Add(new DiplomacyFactionRelationshipVM(stanceLink.Faction1 == Faction2 ? stanceLink.Faction2 : stanceLink.Faction1));
-                    }
+                        Faction2Wars.Add(new DiplomacyFactionRelationshipVM(f1 == Faction2 ? f2 : f1));
                 }
             }
         }
@@ -131,16 +106,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Wars
         {
-            get
-            {
-                return _faction1Wars;
-            }
+            get => _faction1Wars;
             set
             {
                 if (value != _faction1Wars)
                 {
                     _faction1Wars = value;
-                    OnPropertyChanged("Faction1Wars");
+                    OnPropertyChanged(nameof(Faction1Wars));
                 }
             }
         }
@@ -148,16 +120,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Allies
         {
-            get
-            {
-                return _faction1Allies;
-            }
+            get => _faction1Allies;
             set
             {
                 if (value != _faction1Allies)
                 {
                     _faction1Allies = value;
-                    OnPropertyChanged("Faction1Allies");
+                    OnPropertyChanged(nameof(Faction1Allies));
                 }
             }
         }
@@ -165,32 +134,26 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Wars
         {
-            get
-            {
-                return _faction2Wars;
-            }
+            get => _faction2Wars;
             set
             {
                 if (value != _faction2Wars)
                 {
                     _faction2Wars = value;
-                    OnPropertyChanged("Faction2Wars");
+                    OnPropertyChanged(nameof(Faction2Wars));
                 }
             }
         }
         [DataSourceProperty]
         public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Allies
         {
-            get
-            {
-                return _faction2Allies;
-            }
+            get => _faction2Allies;
             set
             {
                 if (value != _faction2Allies)
                 {
                     _faction2Allies = value;
-                    OnPropertyChanged("Faction2Allies");
+                    OnPropertyChanged(nameof(Faction2Allies));
                 }
             }
         }
@@ -198,16 +161,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Pacts
         {
-            get
-            {
-                return _faction1Pacts;
-            }
+            get => _faction1Pacts;
             set
             {
                 if (value != _faction1Pacts)
                 {
                     _faction1Pacts = value;
-                    OnPropertyChanged("Faction1Pacts");
+                    OnPropertyChanged(nameof(Faction1Pacts));
                 }
             }
         }
@@ -215,16 +175,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Pacts
         {
-            get
-            {
-                return _faction2Pacts;
-            }
+            get => _faction2Pacts;
             set
             {
                 if (value != _faction2Pacts)
                 {
                     _faction2Pacts = value;
-                    OnPropertyChanged("Faction2Pacts");
+                    OnPropertyChanged(nameof(Faction2Pacts));
                 }
             }
         }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <Name value="$modulename$" />
+  <Name value="$displayname$" />
   <Id value="$modulename$" />
   <Version value="v$version$" />
   <Official value="false" />
@@ -30,7 +30,7 @@
     <SubModule>
       <Name value="$modulename$" />
       <DLLName value="$modulename$.dll" />
-      <SubModuleClassType value="$modulename$.SubModule" />
+      <SubModuleClassType value="$displayname$.SubModule" />
       <Tags />
     </SubModule>
   </SubModules>

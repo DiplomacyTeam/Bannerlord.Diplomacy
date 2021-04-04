@@ -5,7 +5,7 @@ using TaleWorlds.Library;
 
 namespace Diplomacy.ViewModel
 {
-    class GrantFiefItemVM : TaleWorlds.Library.ViewModel
+    internal class GrantFiefItemVM : TaleWorlds.Library.ViewModel
     {
         public Settlement Settlement { get; private set; }
         private bool _isSelected;
@@ -30,7 +30,7 @@ namespace Diplomacy.ViewModel
             }
             Garrison = Settlement.Town.GarrisonParty?.Party.NumberOfAllMembers ?? 0;
             _onSelect = onSelect;
-            RelationBonus = String.Concat(new string[] { GrantFiefAction.PreviewPositiveRelationChange(Settlement, targetHero).ToString(), "+" });
+            RelationBonus = string.Concat(new string[] { GrantFiefAction.PreviewPositiveRelationChange(Settlement, targetHero).ToString(), "+" });
         }
 
         public void ExecuteLink()
@@ -46,16 +46,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool IsSelected
         {
-            get
-            {
-                return _isSelected;
-            }
+            get => _isSelected;
             set
             {
                 if (value != _isSelected)
                 {
                     _isSelected = value;
-                    OnPropertyChanged("IsSelected");
+                    OnPropertyChanged(nameof(IsSelected));
                 }
             }
         }

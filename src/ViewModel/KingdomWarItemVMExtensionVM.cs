@@ -12,45 +12,44 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.ViewModel
 {
-    public class KingdomWarItemVMExtensionVM : KingdomWarItemVM
+    internal sealed class KingdomWarItemVMExtensionVM : KingdomWarItemVM
     {
+        private static readonly TextObject _TSendMessenger = new("{=cXfcwzPp}Send Messenger");
+        private static readonly TextObject _TAlliances = new("{=zpNalMeA}Alliances");
+        private static readonly TextObject _TWars = new("{=y5tXjbLK}Wars");
+        private static readonly TextObject _TNonAggressionPacts = new("{=noWHMN1W}Non-Aggression Pacts");
+        private static readonly TextObject _TWarExhaustion = new("{=XmVTQ0bH}War Exhaustion");
 
         public KingdomWarItemVMExtensionVM(StanceLink stanceLink, Action<KingdomWarItemVM> onSelect, Action<KingdomWarItemVM> onAction) : base(stanceLink, onSelect, onAction)
         {
-            SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
-            var costForMakingPeace = DiplomacyCostCalculator.DetermineCostForMakingPeace(Faction1 as Kingdom, Faction2 as Kingdom, true);
+            SendMessengerActionName = _TSendMessenger.ToString();
+            var costForMakingPeace = DiplomacyCostCalculator.DetermineCostForMakingPeace((Kingdom)Faction1, (Kingdom)Faction2, true);
             InfluenceCost = (int)costForMakingPeace.InfluenceCost.Value;
             GoldCost = (int)costForMakingPeace.GoldCost.Value;
             ActionName = GameTexts.FindText("str_kingdom_propose_peace_action", null).ToString();
-            AllianceText = new TextObject("{=zpNalMeA}Alliances").ToString();
-            WarsText = new TextObject("{=y5tXjbLK}Wars").ToString();
-            PactsText = new TextObject("{=noWHMN1W}Non-Aggression Pacts").ToString();
+            AllianceText = _TAlliances.ToString();
+            WarsText = _TWars.ToString();
+            PactsText = _TNonAggressionPacts.ToString();
+            DiplomacyProperties = new DiplomacyPropertiesVM(Faction1, Faction2);
             UpdateDiplomacyProperties();
         }
 
         protected override void UpdateDiplomacyProperties()
         {
-            if (DiplomacyProperties is null)
-            {
-                DiplomacyProperties = new DiplomacyPropertiesVM(Faction1, Faction2);
-            }
             DiplomacyProperties.UpdateDiplomacyProperties();
-
+            
             base.UpdateDiplomacyProperties();
             UpdateActionAvailability();
 
-            if (Settings.Instance.EnableWarExhaustion)
+            if (Settings.Instance!.EnableWarExhaustion)
             {
                 Stats.Insert(1, new KingdomWarComparableStatVM(
                     (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction1, (Kingdom)Faction2)),
                     (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction2, (Kingdom)Faction1)),
-                    new TextObject("{=XmVTQ0bH}War Exhaustion"), _faction1Color, _faction2Color, 100, null));
+                    _TWarExhaustion, _faction1Color, _faction2Color, 100, null));
             }
         }
-        private void ExecuteExecutiveAction()
-        {
-            KingdomPeaceAction.ApplyPeace(Faction1 as Kingdom, Faction2 as Kingdom, forcePlayerCharacterCosts: true);
-        }
+        private void ExecuteExecutiveAction() => KingdomPeaceAction.ApplyPeace((Kingdom)Faction1, (Kingdom)Faction2, forcePlayerCharacterCosts: true);
 
         private void UpdateActionAvailability()
         {
@@ -60,35 +59,46 @@ namespace Diplomacy.ViewModel
             ActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
         }
 
-        protected void SendMessenger()
+        private void SendMessenger()
         {
             Events.Instance.OnMessengerSent(Faction2Leader.Hero);
             UpdateDiplomacyProperties();
         }
 
         [DataSourceProperty]
-        public string ActionName { get; protected set; }
+        public DiplomacyPropertiesVM DiplomacyProperties { get; init; }
+
+        [DataSourceProperty]
+        public string ActionName { get; init; }
 
         [DataSourceProperty]
         public int SendMessengerGoldCost { get; } = (int)DiplomacyCostCalculator.DetermineCostForSendingMessenger().Value;
 
         [DataSourceProperty]
+        public string SendMessengerActionName { get; }
+
+        [DataSourceProperty]
+        public string AllianceText { get; }
+
+        [DataSourceProperty]
+        public string WarsText { get; }
+
+        [DataSourceProperty]
+        public string PactsText { get; }
+
+        [DataSourceProperty]
         public bool IsMessengerAvailable
         {
-            get
-            {
-                return _isMessengerAvailable;
-            }
+            get => _isMessengerAvailable;
             set
             {
                 if (value != _isMessengerAvailable)
                 {
                     _isMessengerAvailable = value;
-                    OnPropertyChanged("IsMessengerAvailable");
+                    OnPropertyChanged(nameof(IsMessengerAvailable));
                 }
             }
         }
-
 
         [DataSourceProperty]
         public int InfluenceCost { get; }
@@ -96,20 +106,16 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public int GoldCost
         {
-            get
-            {
-                return _goldCost;
-            }
+            get => _goldCost;
             set
             {
                 if (value != _goldCost)
                 {
                     _goldCost = value;
-                    OnPropertyChanged("GoldCost");
+                    OnPropertyChanged(nameof(GoldCost));
                 }
             }
         }
-
 
         [DataSourceProperty]
         public bool IsGoldCostVisible { get; } = true;
@@ -117,50 +123,32 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool IsOptionAvailable
         {
-            get
-            {
-                return _isOptionAvailable;
-            }
+            get => _isOptionAvailable;
             set
             {
                 if (value != _isOptionAvailable)
                 {
                     _isOptionAvailable = value;
-                    OnPropertyChanged("IsOptionAvailable");
+                    OnPropertyChanged(nameof(IsOptionAvailable));
                 }
             }
         }
 
         [DataSourceProperty]
-        public HintViewModel ActionHint
+        public HintViewModel? ActionHint
         {
-            get
-            {
-                return _actionHint;
-            }
+            get => _actionHint;
             set
             {
                 if (value != _actionHint)
                 {
                     _actionHint = value;
-                    OnPropertyChanged("ActionHint");
+                    OnPropertyChanged(nameof(ActionHint));
                 }
             }
         }
-        private HintViewModel _actionHint;
 
-        [DataSourceProperty]
-        public string SendMessengerActionName { get; }
-
-        [DataSourceProperty]
-        public string AllianceText { get; }
-        [DataSourceProperty]
-        public string WarsText { get; }
-        [DataSourceProperty]
-        public string PactsText { get; }
-        [DataSourceProperty]
-        public DiplomacyPropertiesVM DiplomacyProperties { get; private set; }
-
+        private HintViewModel? _actionHint;
         private bool _isOptionAvailable;
         private int _goldCost;
         private bool _isMessengerAvailable;

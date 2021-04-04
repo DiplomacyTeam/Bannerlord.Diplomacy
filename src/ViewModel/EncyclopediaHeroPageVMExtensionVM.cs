@@ -71,7 +71,7 @@ namespace Diplomacy.ViewModel
                 if (value != _canGrantFief)
                 {
                     _canGrantFief = value;
-                    OnPropertyChanged("CanGrantFief");
+                    OnPropertyChanged(nameof(CanGrantFief));
                 }
             }
         }
@@ -91,7 +91,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isMessengerAvailable)
                 {
                     _isMessengerAvailable = value;
-                    OnPropertyChanged("IsMessengerAvailable");
+                    OnPropertyChanged(nameof(IsMessengerAvailable));
                 }
             }
         }

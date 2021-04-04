@@ -6,21 +6,19 @@ using TaleWorlds.Engine.Screens;
 using TaleWorlds.GauntletUI.Data;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
-using TaleWorlds.TwoDimension;
 
 namespace Diplomacy.GauntletInterfaces
 {
     class GrantFiefInterface
     {
-        private GauntletLayer _layer;
 #if STABLE
         private GauntletMovie _movie;
 #else
-        private IGauntletMovie _movie;
+        private IGauntletMovie? _movie;
 #endif
-
-        private GrantFiefVM _vm;
-        private ScreenBase _screenBase;
+        private GauntletLayer? _layer;
+        private GrantFiefVM? _vm;
+        private ScreenBase? _screenBase;
 
         public void ShowFiefInterface(ScreenBase screenBase, Hero hero, Action refreshAction)
         {
@@ -49,8 +47,8 @@ namespace Diplomacy.GauntletInterfaces
 
         public void OnFinalize(Action action)
         {
-            _screenBase.RemoveLayer(_layer);
-            _layer.ReleaseMovie(_movie);
+            _screenBase?.RemoveLayer(_layer);
+            _layer?.ReleaseMovie(_movie);
             _layer = null;
             _movie = null;
             // vm.ExecuteSelect(null);
