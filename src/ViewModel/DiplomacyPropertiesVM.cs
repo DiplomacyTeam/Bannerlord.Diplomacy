@@ -86,7 +86,7 @@ namespace Diplomacy.ViewModel
             {
                 var (f1, f2) = (stance.Faction1, stance.Faction2);
 
-                if (f1 is not Kingdom || f2 is not Kingdom || f1.IsMinorFaction || f2.IsMinorFaction || f1.IsBanditFaction || f2.IsBanditFaction)
+                if (f1 is Kingdom && f2 is Kingdom && !f1.IsMinorFaction && !f2.IsMinorFaction && !f1.IsBanditFaction && !f2.IsBanditFaction)
                 {
                     var isFaction1War = f1 == Faction1 || f2 == Faction1;
                     var isFaction2War = f1 == Faction2 || f2 == Faction2;
