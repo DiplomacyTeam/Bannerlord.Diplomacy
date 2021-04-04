@@ -71,8 +71,9 @@ namespace Diplomacy.ViewModel
         {
             if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(kingdom, (Kingdom)faction, out var pact))
             {
-                _TDaysRemaining.SetTextVariable("DAYS_LEFT", (int)Math.Round(pact.EndDate.RemainingDaysFromNow));
-                FactionPacts.Add(new DiplomacyFactionRelationshipVM(kingdom, Compat.HintViewModel.Create(_TDaysRemaining)));
+                var textObject = _TDaysRemaining.CopyTextObject();
+                textObject.SetTextVariable("DAYS_LEFT", (int)Math.Round(pact.EndDate.RemainingDaysFromNow));
+                FactionPacts.Add(new DiplomacyFactionRelationshipVM(kingdom, Compat.HintViewModel.Create(textObject)));
             }
         }
 
