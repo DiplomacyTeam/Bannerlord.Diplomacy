@@ -1,9 +1,9 @@
 ﻿using Diplomacy.DiplomaticAction.Usurp;
 using Diplomacy.GauntletInterfaces;
 using Diplomacy.GrantFief;
+using HarmonyLib;
 using System;
 using System.ComponentModel;
-using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomClan;
 using TaleWorlds.Core.ViewModelCollection;
@@ -15,8 +15,9 @@ namespace Diplomacy.ViewModel
 {
     class KingdomClanVMExtensionVM : KingdomClanVM, INotifyPropertyChanged, ICloseableVM
     {
-        private readonly Action _executeExpel;
-        private readonly Action _executeSupport;
+
+        private static readonly Action<KingdomClanVMExtensionVM> ExecuteExpelCurrentClanParent = AccessTools.MethodDelegate<Action<KingdomClanVMExtensionVM>>(AccessTools.Method(typeof(KingdomClanVM), "ExecuteExpelCurrentClan"));
+        private static readonly Action<KingdomClanVMExtensionVM> ExecuteSupportParent = AccessTools.MethodDelegate<Action<KingdomClanVMExtensionVM>>(AccessTools.Method(typeof(KingdomClanVM), "ExecuteSupport"));
 
         private bool _canGrantFiefToClan;
         private GrantFiefInterface _grantFiefInterface;
@@ -31,10 +32,6 @@ namespace Diplomacy.ViewModel
 
         public KingdomClanVMExtensionVM(Action<TaleWorlds.CampaignSystem.Election.KingdomDecision> forceDecide) : base(forceDecide)
         {
-            // FIXME: convert to cached delegates
-            _executeExpel = () => typeof(KingdomClanVM).GetMethod("ExecuteExpelCurrentClan", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(this, null);
-            _executeSupport = () => typeof(KingdomClanVM).GetMethod("ExecuteSupport", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(this, null);
-
             Events.FiefGranted.AddNonSerializedListener(this, RefreshCanGrantFief);
 
             _grantFiefInterface = new GrantFiefInterface();
@@ -55,9 +52,9 @@ namespace Diplomacy.ViewModel
 
         public void OnClose() => Events.RemoveListeners(this);
 
-        private void ExecuteExpelCurrentClan() => _executeExpel();
+        private void ExecuteExpelCurrentClan() => ExecuteExpelCurrentClanParent(this);
 
-        private void ExecuteSupport() => _executeSupport();
+        private void ExecuteSupport() => ExecuteSupportParent(this);
 
         private void OnPropertyChangedWithValue(object sender, PropertyChangedWithValueEventArgs e)
         {
@@ -98,7 +95,7 @@ namespace Diplomacy.ViewModel
 
         public void UsurpThrone()
         {
-            UsurpKingdomAction.Apply(Clan.PlayerClan); // FIXME: DIIIIIIIIIIE! :)
+            UsurpKingdomAction.Apply(Clan.PlayerClan);
             RefreshClan();
         }
 

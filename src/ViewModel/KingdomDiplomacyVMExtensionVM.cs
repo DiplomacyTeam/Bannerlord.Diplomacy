@@ -1,5 +1,5 @@
 ﻿using Diplomacy.DiplomaticAction.Alliance;
-
+using HarmonyLib;
 using System;
 using System.Reflection;
 
@@ -19,10 +19,13 @@ namespace Diplomacy.ViewModel
         private static readonly TextObject _TOverview = new("{=OvbY5qxL}Overview");
         private static readonly TextObject _TDiplomacy = new("{=Q2vXbwvC}Diplomacy");
 
+
+        private delegate void OnDiplomacyItemSelectionDel(KingdomDiplomacyVM diplomacyVM, KingdomDiplomacyItemVM item);
+        private static readonly OnDiplomacyItemSelectionDel OnDiplomacyItemSelectionParent = AccessTools.MethodDelegate<OnDiplomacyItemSelectionDel>(AccessTools.Method(typeof(KingdomDiplomacyVM), "OnDiplomacyItemSelection"));
+        private static readonly Action<KingdomDiplomacyVM> ExecuteActionParent = AccessTools.MethodDelegate<Action<KingdomDiplomacyVM>>(AccessTools.Method(typeof(KingdomDiplomacyVM), "ExecuteAction"));
+
         private MBBindingList<KingdomTruceItemVM> _playerAlliances;
         private readonly Kingdom _playerKingdom;
-        private MethodInfo _onSelectionMethodInfo;
-        private MethodInfo _executeActionMethodInfo;
         private string _numOfPlayerAlliancesText;
         private bool _showStats;
         private bool _showOverview;
@@ -31,16 +34,12 @@ namespace Diplomacy.ViewModel
         {
             _playerKingdom = Hero.MainHero.Clan.Kingdom;
 
-            // FIXME: Convert to delegates!
-            _onSelectionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("OnDiplomacyItemSelection", BindingFlags.Instance | BindingFlags.NonPublic);
-            _executeActionMethodInfo = typeof(KingdomDiplomacyVM).GetMethod("ExecuteAction", BindingFlags.Instance | BindingFlags.NonPublic);
-
             PlayerAlliancesText = _TAlliances.ToString();
             StatsText = _TStats.ToString();
             OverviewText = _TOverview.ToString();
             DiplomacyText = _TDiplomacy.ToString();
 
-            // FIXME: What about refreshing upon NAPs being formed? Seems to have been forgotten.
+            // No refresh needed on NAP because it doesn't move the item from one diplomacy group (At War / Alliances / At Peace) to another
             Events.AllianceFormed.AddNonSerializedListener(this, (e) => RefreshValues());
             Events.AllianceBroken.AddNonSerializedListener(this, (e) => RefreshValues());
             CampaignEvents.MakePeace.AddNonSerializedListener(this, (f1, f2) => RefreshValues());
@@ -68,7 +67,7 @@ namespace Diplomacy.ViewModel
 
         private void ExecuteAction()
         {
-            _executeActionMethodInfo.Invoke(this as KingdomDiplomacyVM, new object[] { });
+            ExecuteActionParent(this);
         }
 
         public void OnClose()
@@ -142,7 +141,7 @@ namespace Diplomacy.ViewModel
 
         private void OnDiplomacyItemSelection(KingdomDiplomacyItemVM item)
         {
-            _onSelectionMethodInfo.Invoke(this as KingdomDiplomacyVM, new object[] { item });
+            OnDiplomacyItemSelectionParent(this, item);
         }
 
         [DataSourceProperty]
