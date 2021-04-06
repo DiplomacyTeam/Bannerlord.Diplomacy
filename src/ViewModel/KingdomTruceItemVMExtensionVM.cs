@@ -193,7 +193,6 @@ namespace Diplomacy.ViewModel
                 if (value != _allianceGoldCost)
                 {
                     _allianceGoldCost = value;
-                    // FIXME: This was incorrectly 'Influence' instead of 'Gold'. Nevertheless, check it.
                     OnPropertyChanged(nameof(AllianceGoldCost));
                 }
             }

@@ -88,7 +88,7 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public GrantFiefSortControllerVM SortController { get; }
 
-        // FIXME: Suspiciously lacking a [DataSourceProperty] attribute
+        // Doesn't need a [DataSourceProperty] attribute because the selected item is already in the Settlements list. This is just to keep the reference of the selected item.
         public GrantFiefItemVM SelectedSettlementItem { get; private set; }
 
         [DataSourceProperty]
