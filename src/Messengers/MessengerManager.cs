@@ -10,7 +10,6 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy.Messengers
 {
-    [SaveableClass(4)]
     class MessengerManager : IMissionListener
     {
         private const float MessengerHourlySpeed = 20f;
@@ -203,7 +202,7 @@ namespace Diplomacy.Messengers
 
         public void OnEndMission()
         {
-            _messengers.Remove(_activeMessenger);
+            _messengers.Remove(_activeMessenger!);
             _activeMessenger = null;
 
             if (PlayerEncounter.Current is not null)

@@ -6,9 +6,9 @@ namespace Diplomacy.Costs
     class GoldCost : DiplomacyCost
     {
         private readonly Hero _giver;
-        private readonly Hero _receiver;
+        private readonly Hero? _receiver;
 
-        public GoldCost(Hero giver, Hero receiver, float value) : base(value)
+        public GoldCost(Hero giver, Hero? receiver, float value) : base(value)
         {
             _giver = giver;
             _receiver = receiver;

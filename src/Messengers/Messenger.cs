@@ -4,7 +4,6 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy.Messengers
 {
-    [SaveableClass(1)]
     class Messenger
     {
         public Messenger(Hero targetHero, CampaignTime dispatchTime)

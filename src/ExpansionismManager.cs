@@ -8,17 +8,16 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy
 {
-    [SaveableClass(8)]
     class ExpansionismManager
     {
         [SaveableField(1)]
         private Dictionary<IFaction, float> _expansionism;
 
-        public static ExpansionismManager Instance { get; private set; }
-        public float SiegeExpansionism => Settings.Instance.ExpanisonismPerSiege;
-        public float ExpansionismDecayPerDay => Settings.Instance.ExpansionismDecayPerDay;
-        public float MinimumExpansionismPerFief => Settings.Instance.MinimumExpansionismPerFief;
-        public float CriticalExpansionism => Settings.Instance.CriticalExpansionism;
+        public static ExpansionismManager? Instance { get; private set; }
+        public float SiegeExpansionism => Settings.Instance!.ExpanisonismPerSiege;
+        public float ExpansionismDecayPerDay => Settings.Instance!.ExpansionismDecayPerDay;
+        public float MinimumExpansionismPerFief => Settings.Instance!.MinimumExpansionismPerFief;
+        public float CriticalExpansionism => Settings.Instance!.CriticalExpansionism;
 
 
         public float GetMinimumExpansionism(Kingdom kingdom)
@@ -45,14 +44,14 @@ namespace Diplomacy
 
         private static float GetMinimumExpansionism(IFaction faction)
         {
-            return faction.IsKingdomFaction ? (faction as Kingdom).GetMinimumExpansionism() : default;
+            return faction.IsKingdomFaction ? (faction as Kingdom)!.GetMinimumExpansionism() : default;
         }
 
         public void ApplyExpansionismDecay(IFaction faction)
         {
             if (_expansionism.TryGetValue(faction, out var value))
             {
-                var minimumExpansionism = faction.IsKingdomFaction ? (faction as Kingdom).GetMinimumExpansionism() : default;
+                var minimumExpansionism = faction.IsKingdomFaction ? (faction as Kingdom)!.GetMinimumExpansionism() : default;
                 _expansionism[faction] = Math.Max(value - ExpansionismDecayPerDay, GetMinimumExpansionism(faction));
             }
             else

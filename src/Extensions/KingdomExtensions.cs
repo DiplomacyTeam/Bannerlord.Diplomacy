@@ -10,7 +10,7 @@ namespace Diplomacy.Extensions
     {
         public static float GetExpansionism(this Kingdom kingdom)
         {
-            return ExpansionismManager.Instance.GetExpansionism(kingdom);
+            return ExpansionismManager.Instance!.GetExpansionism(kingdom);
         }
 
         public static float GetExpansionismDiplomaticPenalty(this Kingdom kingdom)
@@ -20,7 +20,7 @@ namespace Diplomacy.Extensions
 
         public static float GetMinimumExpansionism(this Kingdom kingdom)
         {
-            return ExpansionismManager.Instance.GetMinimumExpansionism(kingdom);
+            return ExpansionismManager.Instance!.GetMinimumExpansionism(kingdom);
         }
 
         public static bool IsAlliedWith(this IFaction faction1, IFaction faction2)
@@ -44,18 +44,18 @@ namespace Diplomacy.Extensions
             {
                 if (stanceLink.IsAllied)
                 {
-                    IFaction faction2 = null;
+                    IFaction? alliedFaction = null;
                     if (stanceLink.Faction1 == kingdom)
                     {
-                        faction2 = stanceLink.Faction2;
+                        alliedFaction = stanceLink.Faction2;
                     }
                     else if (stanceLink.Faction2 == kingdom)
                     {
-                        faction2 = stanceLink.Faction1;
+                        alliedFaction = stanceLink.Faction1;
                     }
-                    if (faction2 is not null && faction2.IsKingdomFaction)
+                    if (alliedFaction is not null && alliedFaction.IsKingdomFaction)
                     {
-                        yield return faction2 as Kingdom;
+                        yield return (alliedFaction as Kingdom)!;
                     }
                 }
             }

@@ -8,7 +8,6 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy
 {
-    [SaveableClass(2)]
     class WarExhaustionManager
     {
 

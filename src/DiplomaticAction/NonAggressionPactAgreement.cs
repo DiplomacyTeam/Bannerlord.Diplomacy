@@ -5,7 +5,6 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy.DiplomaticAction
 {
-    [SaveableClass(6)]
     class NonAggressionPactAgreement : DiplomaticAgreement
     {
         public NonAggressionPactAgreement(CampaignTime startdate, CampaignTime endDate, Kingdom kingdom, Kingdom otherKingdom)

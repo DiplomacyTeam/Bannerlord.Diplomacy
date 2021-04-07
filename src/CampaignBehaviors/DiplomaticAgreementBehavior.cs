@@ -58,7 +58,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void UpdateDiplomaticAgreements()
         {
-            DiplomaticAgreementManager.Instance.Agreements.Values
+            DiplomaticAgreementManager.Instance!.Agreements.Values
             .SelectMany(x => x)
             .ToList()
             .ForEach(x => x.TryExpireNotification());
@@ -66,8 +66,8 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ExpireNonAggressionPact(AllianceEvent obj)
         {
-            if (DiplomaticAgreementManager.Instance.HasNonAggressionPact(obj.Kingdom, obj.OtherKingdom, out var pactAgreement))
-                pactAgreement.Expire();
+            if (DiplomaticAgreementManager.HasNonAggressionPact(obj.Kingdom, obj.OtherKingdom, out var pactAgreement))
+                pactAgreement!.Expire();
         }
 
         public override void SyncData(IDataStore dataStore)

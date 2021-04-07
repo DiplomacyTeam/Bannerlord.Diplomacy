@@ -4,10 +4,10 @@ namespace Diplomacy.Widgets
 {
     class KingdomDiplomacyPanelTabControlWidget : ListPanel
     {
-        private Widget _statsPanel;
-        private Widget _overviewPanel;
-        private ButtonWidget _overviewButton;
-        private ButtonWidget _statsButton;
+        private Widget? _statsPanel;
+        private Widget? _overviewPanel;
+        private ButtonWidget? _overviewButton;
+        private ButtonWidget? _statsButton;
 
         public KingdomDiplomacyPanelTabControlWidget(UIContext context) : base(context)
         {
@@ -23,7 +23,7 @@ namespace Diplomacy.Widgets
         [Editor(false)]
         public ButtonWidget OverviewButton
         {
-            get => _overviewButton;
+            get => _overviewButton!;
             set
             {
                 if (_overviewButton != value)
@@ -37,7 +37,7 @@ namespace Diplomacy.Widgets
         [Editor(false)]
         public ButtonWidget StatsButton
         {
-            get => _statsButton;
+            get => _statsButton!;
             set
             {
                 if (_statsButton != value)
@@ -51,7 +51,7 @@ namespace Diplomacy.Widgets
         [Editor(false)]
         public Widget OverviewPanel
         {
-            get => _overviewPanel;
+            get => _overviewPanel!;
             set
             {
                 if (_overviewPanel != value)
@@ -65,7 +65,7 @@ namespace Diplomacy.Widgets
         [Editor(false)]
         public Widget StatsPanel
         {
-            get => _statsPanel;
+            get => _statsPanel!;
             set
             {
                 if (_statsPanel != value)

@@ -25,7 +25,7 @@ namespace Diplomacy.Patches
 
             /// Corruption
 
-            if (Settings.Instance.EnableCorruption)
+            if (Settings.Instance!.EnableCorruption)
             {
                 float corruption = clan.GetCorruption();
 
@@ -35,17 +35,17 @@ namespace Diplomacy.Patches
 
             /// Influence Decay
 
-            if (Settings.Instance.EnableInfluenceDecay && clan.Influence > Settings.Instance.InfluenceDecayThreshold)
+            if (Settings.Instance!.EnableInfluenceDecay && clan.Influence > Settings.Instance!.InfluenceDecayThreshold)
             {
-                float decayFactor = Settings.Instance.InfluenceDecayPercentage / 100f;
-                int decay = (int)(decayFactor * (clan.Influence - Settings.Instance.InfluenceDecayThreshold));
+                float decayFactor = Settings.Instance!.InfluenceDecayPercentage / 100f;
+                int decay = (int)(decayFactor * (clan.Influence - Settings.Instance!.InfluenceDecayThreshold));
 
                 if (decay > 0)
                     __result.Add(-decay, _TInfluenceDecay);
             }
 
             /// Minimum Influence Gain (Maximum Influence Loss)
-            __result.LimitMin(-Settings.Instance.MaximumInfluenceLoss);
+            __result.LimitMin(-Settings.Instance!.MaximumInfluenceLoss);
         }
 
         private static readonly TextObject _TCorruption = new("{=dUCOV7km}Corruption: Too Many Fiefs");

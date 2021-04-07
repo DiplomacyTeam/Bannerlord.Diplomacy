@@ -7,7 +7,7 @@ namespace Diplomacy.DiplomaticAction
     {
         protected abstract TextObject FailedConditionText { get; }
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
+        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
             if (bypassCosts)
@@ -20,6 +20,6 @@ namespace Diplomacy.DiplomaticAction
             }
         }
 
-        protected abstract bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject textObject, bool forcePlayerCharacterCosts = false);
+        protected abstract bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject? textObject, bool forcePlayerCharacterCosts = false);
     }
 }

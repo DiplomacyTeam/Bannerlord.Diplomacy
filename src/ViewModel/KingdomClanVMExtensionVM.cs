@@ -123,7 +123,7 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public HintViewModel GrantFiefHint
         {
-            get => _grantFiefHint;
+            get => _grantFiefHint!;
             set
             {
                 if (value != _grantFiefHint)
@@ -208,7 +208,7 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public HintViewModel UsurpThroneHint
         {
-            get => _usurpThroneHint;
+            get => _usurpThroneHint!;
             set
             {
                 if (value != _usurpThroneHint)

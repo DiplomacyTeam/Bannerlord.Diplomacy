@@ -8,12 +8,13 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy
 {
-    [SaveableClass(3)]
     class CooldownManager
     {
-        internal static Dictionary<string, CampaignTime> LastWarTime { get; private set; }
-        internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime { get; private set; }
-        internal static Dictionary<string, CampaignTime> LastAllianceFormedTime { get; private set; }
+        public static CooldownManager? Instance { get; private set; }
+
+        internal static Dictionary<string, CampaignTime> LastWarTime { get => Instance!._lastWarTime; }
+        internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime { get => Instance!._lastPeaceProposalTime; }
+        internal static Dictionary<string, CampaignTime> LastAllianceFormedTime { get => Instance!._lastAllianceFormedTime; }
 
         [SaveableField(1)]
         private Dictionary<string, CampaignTime> _lastWarTime;
@@ -31,9 +32,7 @@ namespace Diplomacy
             _lastWarTime = new Dictionary<string, CampaignTime>();
             _lastPeaceProposalTime = new Dictionary<Kingdom, CampaignTime>();
             _lastAllianceFormedTime = new Dictionary<string, CampaignTime>();
-            LastWarTime = _lastWarTime;
-            LastPeaceProposalTime = _lastPeaceProposalTime;
-            LastAllianceFormedTime = _lastAllianceFormedTime;
+            Instance = this;
         }
 
         public void UpdateLastPeaceProposalTime(Kingdom kingdom, CampaignTime campaignTime)
@@ -52,7 +51,7 @@ namespace Diplomacy
             var hasBreakAllianceCooldown = false;
             if (LastAllianceFormedTime.TryGetValue(CreateKey(kingdom1, kingdom2), out var value))
             {
-                hasBreakAllianceCooldown = (elapsedDaysUntilNow = value.ElapsedDaysUntilNow) < Settings.Instance.MinimumAllianceDuration;
+                hasBreakAllianceCooldown = (elapsedDaysUntilNow = value.ElapsedDaysUntilNow) < Settings.Instance!.MinimumAllianceDuration;
             }
             else
             {
@@ -69,7 +68,7 @@ namespace Diplomacy
             return string.Join("+", keyArguments);
         }
 
-        private static bool DecodeKeyToKingdoms(string key, out Tuple<Kingdom, Kingdom> kingdoms)
+        private static bool DecodeKeyToKingdoms(string key, out Tuple<Kingdom, Kingdom>? kingdoms)
         {
             Kingdom faction1, faction2;
 
@@ -89,25 +88,25 @@ namespace Diplomacy
             }
         }
 
-        public static CampaignTime? GetLastWarTimeBetweenFactions(IFaction faction1, IFaction faction2)
+        public static CampaignTime GetLastWarTimeBetweenFactions(IFaction faction1, IFaction faction2)
         {
             if (LastWarTime.TryGetValue(CreateKey(faction1, faction2), out var value))
             {
                 return value;
-            }
+            } 
             else
             {
-                return default;
+                return CampaignTime.Zero;
             }
         }
 
         public static bool HasDeclareWarCooldown(IFaction faction1, IFaction faction2, out float elapsedTime)
         {
             var campaignTime = GetLastWarTimeBetweenFactions(faction1, faction2);
-            if (campaignTime.HasValue)
+            if (campaignTime != CampaignTime.Zero)
             {
-                elapsedTime = campaignTime.Value.ElapsedDaysUntilNow;
-                return campaignTime.Value.ElapsedDaysUntilNow < Settings.Instance.DeclareWarCooldownInDays;
+                elapsedTime = campaignTime.ElapsedDaysUntilNow;
+                return campaignTime.ElapsedDaysUntilNow < Settings.Instance!.DeclareWarCooldownInDays;
             }
             else
             {
@@ -118,7 +117,7 @@ namespace Diplomacy
 
         public static bool HasPeaceProposalCooldownWithPlayerKingdom(Kingdom kingdom)
         {
-            return GetLastPeaceProposalTime(kingdom).HasValue && GetLastPeaceProposalTime(kingdom).Value.ElapsedDaysUntilNow < MinimumDaysBetweenPeaceProposals;
+            return GetLastPeaceProposalTime(kingdom) != CampaignTime.Zero && GetLastPeaceProposalTime(kingdom).ElapsedDaysUntilNow < MinimumDaysBetweenPeaceProposals;
         }
 
         public static bool HasPeaceProposalCooldown(Kingdom kingdomProposingPeace, Kingdom otherKingdom)
@@ -134,55 +133,32 @@ namespace Diplomacy
             if (stanceLink?.IsAtWar ?? false)
             {
                 elapsedTime = stanceLink.WarStartDate.ElapsedDaysUntilNow;
-                var minimumWarDurationInDays = Settings.Instance.MinimumWarDurationInDays;
+                var minimumWarDurationInDays = Settings.Instance!.MinimumWarDurationInDays;
                 return elapsedTime >= minimumWarDurationInDays;
             }
             return true;
         }
 
-        public static CampaignTime? GetLastWarTimeWithPlayerFaction(IFaction faction)
+        public static CampaignTime GetLastWarTimeWithPlayerFaction(IFaction faction)
         {
             return GetLastWarTimeBetweenFactions(faction, Hero.MainHero.MapFaction);
         }
 
-        public static CampaignTime? GetLastPeaceProposalTime(Kingdom kingdom)
+        public static CampaignTime GetLastPeaceProposalTime(Kingdom kingdom)
         {
             if (LastPeaceProposalTime.TryGetValue(kingdom, out var value))
             {
                 return value;
             }
-            return default;
+            else
+            {
+                return CampaignTime.Zero;
+            }
         }
 
         internal void Sync()
         {
-            if (_lastWarTime is null)
-            {
-                _lastWarTime = new Dictionary<string, CampaignTime>();
-            }
-            if (_lastPeaceProposalTime is null)
-            {
-                _lastPeaceProposalTime = new Dictionary<Kingdom, CampaignTime>();
-
-            }
-            if (_lastAllianceFormedTime is null)
-            {
-                _lastAllianceFormedTime = new Dictionary<string, CampaignTime>();
-            }
-
-            LastWarTime = _lastWarTime;
-            LastPeaceProposalTime = _lastPeaceProposalTime;
-            LastAllianceFormedTime = _lastAllianceFormedTime;
-
-            foreach (var key in _lastWarTime.Keys)
-            {
-                var duration = Settings.Instance.DeclareWarCooldownInDays - _lastWarTime[key].ElapsedDaysUntilNow;
-                if (duration > 0 & DecodeKeyToKingdoms(key, out var kingdoms))
-                {
-                    FormNonAggressionPactAction.Apply(kingdoms.Item1, kingdoms.Item2, bypassCosts: true, customDurationInDays: duration, queryPlayer: false);
-                }
-            }
-            _lastWarTime.Clear();
+            Instance = this;
         }
     }
 }

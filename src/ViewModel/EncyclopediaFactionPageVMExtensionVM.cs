@@ -49,7 +49,7 @@ namespace Diplomacy.ViewModel
 
             if (_faction.IsKingdomFaction)
                 foreach (var f in Kingdom.All.Cast<IFaction>().Where(f => f != _faction).OrderBy(f => f.Name.ToString()))
-                    if (clanPages.IsValidEncyclopediaItem(f) && DiplomaticAgreementManager.Instance.HasNonAggressionPact((Kingdom)_faction, (Kingdom)f, out _))
+                    if (clanPages.IsValidEncyclopediaItem(f) && DiplomaticAgreementManager.HasNonAggressionPact((Kingdom)_faction, (Kingdom)f, out _))
                         _nonAggressionPacts.Add(new EncyclopediaFactionVM(f));
 
             base.Refresh();

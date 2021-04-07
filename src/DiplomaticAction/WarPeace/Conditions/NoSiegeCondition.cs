@@ -8,7 +8,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 
         private const string ACTIVE_PLAYER_SIEGE = "{=XlL50Ha9}Can't make peace with a kingdom during an active player siege.";
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
+        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
             var playerKingdom = Clan.PlayerClan.Kingdom;

@@ -7,7 +7,6 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy.DiplomaticAction
 {
-    [SaveableClass(5)]
     abstract class DiplomaticAgreement
     {
         [SaveableProperty(1)]

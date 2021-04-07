@@ -58,7 +58,7 @@ namespace Diplomacy.ViewModel
         }
 
         [DataSourceProperty]
-        public string IconPath { get; }
+        public string? IconPath { get; }
 
         [DataSourceProperty]
         public int Garrison { get; }
