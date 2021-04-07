@@ -95,7 +95,7 @@ namespace Diplomacy.Messengers
                                                                ""));
                 return false;
             }
-            if (IsTargetHeroAvailable(messenger.TargetHero) && IsPlayerHeroAvailable())
+            if (IsTargetHeroAvailableNow(messenger.TargetHero) && IsPlayerHeroAvailable())
             {
                 InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Arrived").ToString(), GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero).ToString(), true, true, GameTexts.FindText("str_ok", null).ToString(), new TextObject("{=kMjfN2fB}Cancel Messenger").ToString(), delegate ()
                 {
@@ -180,6 +180,11 @@ namespace Diplomacy.Messengers
         {
             var available = opposingLeader.IsActive || (opposingLeader.IsWanderer && opposingLeader.HeroState == Hero.CharacterStates.NotSpawned);
             return available && !opposingLeader.IsHumanPlayerCharacter;
+        }
+
+        public static bool IsTargetHeroAvailableNow(Hero opposingLeader)
+        {
+            return IsTargetHeroAvailable(opposingLeader) && opposingLeader.PartyBelongedTo?.MapEvent == null;
         }
 
         public static bool CanSendMessengerWithCost(Hero opposingLeader, DiplomacyCost diplomacyCost)
