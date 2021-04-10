@@ -1,4 +1,5 @@
-﻿using Diplomacy.PatchTools;
+﻿using Diplomacy.Extensions;
+using Diplomacy.PatchTools;
 
 using System.Collections.Generic;
 
@@ -19,6 +20,26 @@ namespace Diplomacy.Patches
         };
 
         private static bool ConsiderWarPrefix(Clan clan, IFaction otherMapFaction)
-            => !CooldownManager.HasDeclareWarCooldown(clan, otherMapFaction, out _);
+        {
+            // if the opponent is a rebel kingdom
+            if ((otherMapFaction as Kingdom)?.IsRebelKingdom() ?? false)
+            {
+                return false;
+            }
+
+            // if this clan is in a rebel kingdom
+            if (clan.Kingdom?.IsRebelKingdom() ?? false)
+            {
+                return false;
+            }
+
+            // enforce cooldowns
+            if (CooldownManager.HasDeclareWarCooldown(clan, otherMapFaction, out _))
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

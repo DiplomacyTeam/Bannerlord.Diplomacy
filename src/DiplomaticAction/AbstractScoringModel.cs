@@ -15,9 +15,9 @@ namespace Diplomacy.DiplomaticAction
 
         public virtual float ScoreThreshold { get; } = 100.0f;
 
-        protected IScores Scores { get; init; }
+        protected IDiplomacyScores Scores { get; init; }
 
-        protected AbstractScoringModel(IScores scores) => Scores = scores;
+        protected AbstractScoringModel(IDiplomacyScores scores) => Scores = scores;
 
         public virtual ExplainedNumber GetScore(Kingdom ourKingdom, Kingdom otherKingdom, bool includeDesc = false)
         {
@@ -112,7 +112,7 @@ namespace Diplomacy.DiplomaticAction
         public virtual bool ShouldForm(Kingdom ourKingdom, Kingdom otherKingdom)
             => GetScore(ourKingdom, otherKingdom).ResultNumber >= ScoreThreshold;
 
-        public interface IScores
+        public interface IDiplomacyScores
         {
             public int Base { get; }
 

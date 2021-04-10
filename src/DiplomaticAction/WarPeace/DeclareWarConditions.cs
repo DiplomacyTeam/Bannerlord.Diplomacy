@@ -14,7 +14,8 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             new HasLowWarExhaustionCondition(),
             new NoNonAggressionPactCondition(),
             new NotInAllianceCondition(),
-            new AtPeaceCondition()
+            new AtPeaceCondition(),
+            new NotRebelKingdomCondition()
         };
 
         public DeclareWarConditions() : base(_warConditions) { }

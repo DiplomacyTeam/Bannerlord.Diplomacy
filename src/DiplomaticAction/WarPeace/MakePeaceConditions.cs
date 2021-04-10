@@ -1,4 +1,5 @@
-﻿using Diplomacy.DiplomaticAction.WarPeace.Conditions;
+﻿using Diplomacy.DiplomaticAction.GenericConditions;
+using Diplomacy.DiplomaticAction.WarPeace.Conditions;
 using System.Collections.Generic;
 
 namespace Diplomacy.DiplomaticAction.WarPeace
@@ -11,7 +12,8 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             new HasEnoughGoldForPeaceCondition(),
             new HasEnoughInfluenceForPeaceCondition(),
             new HasEnoughTimeElapsedForPeaceCondition(),
-            new NoPlayerSiegeCondition()
+            new NoPlayerSiegeCondition(),
+            new NotRebelKingdomCondition()
         };
 
         public MakePeaceConditions() : base(_peaceConditions) { }

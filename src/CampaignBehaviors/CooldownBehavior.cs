@@ -1,8 +1,9 @@
-﻿using Diplomacy.DiplomaticAction.Alliance;
+﻿using Diplomacy.CivilWar;
+using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
-
+using Diplomacy.Extensions;
 using Microsoft.Extensions.Logging;
-
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.CampaignBehaviors
@@ -37,6 +38,10 @@ namespace Diplomacy.CampaignBehaviors
             {
                 LogFactory.Get<CooldownBehavior>()
                     .LogTrace($"[{CampaignTime.Now}] {kingdom1.Name} got a war declaration cooldown with {kingdom2.Name}.");
+
+                // if loser is rebel kingdom or winner is rebel kingdom and is now dissolved
+                if (kingdom1.IsRebelKingdom() || (kingdom2.IsRebelKingdom() && RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom2)))
+                    return;
 
                 FormNonAggressionPactAction.Apply(kingdom1,
                                                   kingdom2,

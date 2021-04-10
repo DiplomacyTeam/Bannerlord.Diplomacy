@@ -7,6 +7,10 @@ using System.Collections.Generic;
 
 using SandBox.GauntletUI;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
+using System;
+using TaleWorlds.Engine.GauntletUI;
+using TaleWorlds.Engine.Screens;
+using System.Linq;
 
 namespace Diplomacy.Patches
 {
@@ -14,7 +18,7 @@ namespace Diplomacy.Patches
     {
         protected override IEnumerable<Patch> Prepare() => new Patch[]
         {
-            new Postfix(nameof(GetEncyclopediaPageInstancePostfix), "GetEncyclopediaPageInstance"),
+            new Postfix(nameof(GetEncyclopediaPageInstancePostfix), "GetEncyclopediaPageInstance")
         };
 
         public static void GetEncyclopediaPageInstancePostfix(ref EncyclopediaPageVM __result)

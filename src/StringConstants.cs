@@ -12,5 +12,8 @@
         public const string NonAggressionPacts = "{=noWHMN1W}Non-Aggression Pacts";
 
         public const string DaysRemaining = "{=5znwaUVC}Days Remaining: {DAYS_LEFT}";
+
+        public const string Factions = "{=dlANhHUd}Factions";
+        public const string NotEnoughFiefs = "{=GkhKppOk}Not Enough Fiefs";
     }
 }

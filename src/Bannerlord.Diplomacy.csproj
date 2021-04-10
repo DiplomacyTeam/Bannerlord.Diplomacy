@@ -21,6 +21,7 @@
     <ButterLibVersion>1.0.21</ButterLibVersion>
     <HarmonyVersion>2.0.4</HarmonyVersion>
     <MCMVersion>4.2.1</MCMVersion>
+	<UIExtenderExVersion>2.1.5</UIExtenderExVersion>
   </PropertyGroup>
 
   <!-- Game Versions for Stable and Beta -->
@@ -80,6 +81,7 @@
     <PackageReference Include="Bannerlord.ButterLib" Version="$(ButterLibVersion)" IncludeAssets="compile" />
     <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" IncludeAssets="compile" />
     <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" IncludeAssets="compile" />
+	<PackageReference Include="Bannerlord.UIExtenderEx" Version="$(UIExtenderExVersion)" IncludeAssets="compile" />
     <!-- Microsoft.CSharp is used for its source-only 'dynamic' implementation. -->
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <!-- An old version of JSON.NET is distributed with the game, so no point in including the assembly,

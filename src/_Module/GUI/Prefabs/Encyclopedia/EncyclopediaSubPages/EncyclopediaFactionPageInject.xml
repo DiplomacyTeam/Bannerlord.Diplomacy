@@ -1,0 +1,37 @@
+﻿<Prefab>
+  <Constants>
+  </Constants>
+
+  <Window>
+    <ListPanel HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod = "VerticalBottomToTop" DoNotAcceptEvents="true">
+      <Children>
+
+        <!--Allies Divider-->
+        <EncyclopediaDivider MarginTop="35" MarginBottom="10" Parameter.Title="@AlliesText" Parameter.ItemList="..\AlliesGrid"/>
+
+        <!--Allies Grid-->
+        <GridWidget Id="AlliesGrid" DataSource="{Allies}" WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" SuggestedWidth="350" SuggestedHeight="350" DefaultCellWidth="100" DefaultCellHeight="100" HorizontalAlignment="Left" MarginLeft="25" ColumnCount="7" >
+          <ItemTemplate>
+
+            <!--Member-->
+            <EncyclopediaClanSubPageElement/>
+
+          </ItemTemplate>
+        </GridWidget>
+
+        <!--Non-Aggression Pacts Divider-->
+        <EncyclopediaDivider MarginTop="35" MarginBottom="10" Parameter.Title="@NonAggressionPactsText" Parameter.ItemList="..\NonAggressionPactsGrid"/>
+
+        <!--Non-Aggression Pacts Grid-->
+        <GridWidget Id="NonAggressionPactsGrid" DataSource="{NonAggressionPacts}" WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" SuggestedWidth="350" SuggestedHeight="350" DefaultCellWidth="100" DefaultCellHeight="100" HorizontalAlignment="Left" MarginLeft="25" ColumnCount="7" >
+          <ItemTemplate>
+
+            <!--Member-->
+            <EncyclopediaClanSubPageElement/>
+
+          </ItemTemplate>
+        </GridWidget>
+      </Children>
+    </ListPanel>
+  </Window>
+</Prefab>

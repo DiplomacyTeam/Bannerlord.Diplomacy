@@ -1,0 +1,28 @@
+﻿<Prefab>
+  <Parameters>
+    <Parameter Name="Title" DefaultValue="title" />
+    <Parameter Name="ItemList" DefaultValue=".." />
+  </Parameters>
+  <Constants>
+  </Constants>
+  <Window>
+    <!--Divider Widget-->
+    <EncyclopediaDividerWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" CollapseIndicator="PlacementListPanel\CollapseIndicator" ItemListWidget="*ItemList" UpdateChildrenStates="true" DoNotPassEventsToChildren="true">
+      <Children>
+
+        <ListPanel Id="PlacementListPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" UpdateChildrenStates="true">
+          <Children>
+
+            <!--Collapse Indicator Widget-->
+            <BrushWidget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="18" SuggestedHeight="18" PositionYOffset="-3" MarginLeft="5" MarginRight="5" VerticalAlignment="Center" Brush="Party.Toggle.ExpandIndicator" OverrideDefaultStateSwitchingEnabled="true"/>
+
+            <!--Header Text-->
+            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Encyclopedia.SubPage.Info.Text" Text="*Title"/>
+
+          </Children>
+        </ListPanel>
+
+      </Children>
+    </EncyclopediaDividerWidget>
+  </Window>
+</Prefab>

@@ -1,4 +1,4 @@
-﻿
+﻿using Diplomacy.CivilWar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,6 +89,11 @@ namespace Diplomacy.Extensions
                 medianStrength = kingdomStrengths.ElementAt(halfIndex);
             }
             return medianStrength;
+        }
+
+        public static bool IsRebelKingdom(this Kingdom kingdom)
+        {
+            return RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Select(rf => rf.RebelKingdom).Where(rk => rk == kingdom).Any() || RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom);
         }
     }
 }

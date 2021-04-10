@@ -1,9 +1,10 @@
 ﻿using Diplomacy.DiplomaticAction;
+using Diplomacy.GauntletInterfaces;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Encyclopedia;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.EncyclopediaItems;
+using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
@@ -13,6 +14,7 @@ namespace Diplomacy.ViewModel
     {
         private static readonly TextObject _TAllies = new("{=KqfNSsBE}Allies");
         private static readonly TextObject _TNonAggressionPacts = new(StringConstants.NonAggressionPacts);
+        private static readonly TextObject _TFactions = new(StringConstants.Factions);
 
         private IFaction _faction;
         private string _alliesText;
@@ -25,6 +27,7 @@ namespace Diplomacy.ViewModel
             _faction = (IFaction)Obj;
             _alliesText = _TAllies.ToString();
             _nonAggressionPactsText = _TNonAggressionPacts.ToString();
+            FactionsText = _TFactions.ToString();
         }
 
         public override void RefreshValues()
@@ -54,6 +57,14 @@ namespace Diplomacy.ViewModel
 
             base.Refresh();
         }
+
+        public void OpenFactions()
+        {
+            new RebelFactionsInterface().ShowInterface(ScreenManager.TopScreen, (_faction as Kingdom)!);
+        }
+
+        [DataSourceProperty]
+        public string FactionsText { get; set; }
 
         [DataSourceProperty]
         public string AlliesText

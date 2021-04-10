@@ -1,6 +1,7 @@
 ﻿using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.Extensions;
 using Diplomacy.PatchTools;
-
+using System;
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
@@ -15,7 +16,17 @@ namespace Diplomacy.Patches
         {
             new Prefix(nameof(ConsiderWarPrefix), "ConsiderWar"),
             new Prefix(nameof(ConsiderPeacePrefix), "ConsiderPeace"),
+            new Prefix(nameof(HandleRebelKingdom), "DailyTickClan")
         };
+
+        private static bool HandleRebelKingdom(Clan clan)
+        {
+            // rebel kingdoms don't make decisions
+            if (clan.Kingdom?.IsRebelKingdom() ?? false)
+                return false;
+
+            return true;
+        }
 
         private static bool ConsiderWarPrefix(Clan clan, Kingdom kingdom, IFaction otherFaction, ref bool __result)
         {

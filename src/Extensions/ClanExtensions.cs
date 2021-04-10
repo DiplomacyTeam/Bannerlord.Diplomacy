@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Diplomacy.CivilWar;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 
@@ -27,5 +28,31 @@ namespace Diplomacy.Extensions
         }
 
         public static IEnumerable<Town> GetPermanentFiefs(this Clan clan) => clan.Fiefs.Where(fief => !fief.IsOwnerUnassigned);
+
+        public static IEnumerable<RebelFaction> GetRebelFactions(this Clan clan)
+        {
+            if (clan.Kingdom is null)
+            {
+                yield break;
+            }
+
+            foreach(RebelFaction faction in RebelFactionManager.GetRebelFaction(clan.Kingdom))
+            {
+                if (faction.Clans.Contains(clan))
+                    yield return faction;
+            }
+        }
+
+        public static RebelFaction? GetSponsoredRebelFaction(this Clan clan)
+        {
+            if (clan.Kingdom != null)
+            {
+                return RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => x.SponsorClan == clan).FirstOrDefault();
+            }
+            else
+            {
+                return default;
+            }
+        }
     }
 }

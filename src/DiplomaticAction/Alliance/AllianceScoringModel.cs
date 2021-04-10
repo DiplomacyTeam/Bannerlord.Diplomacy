@@ -4,7 +4,7 @@
     {
         public AllianceScoringModel() : base(new AllianceScores()) { }
 
-        public class AllianceScores : IScores
+        public class AllianceScores : IDiplomacyScores
         {
             public int Base => 0;
 

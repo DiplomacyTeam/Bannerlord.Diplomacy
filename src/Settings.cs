@@ -22,6 +22,8 @@ namespace Diplomacy
         private const string HeadingInfluenceCostsFlat = "{=BazjeCZw}Influence Costs/Flat";
         private const string HeadingUnfinishedFeatures = "{=f6n2UAEC}Unfinished Features";
 
+        private const string HeadingCivilWar = "{=eDZeFUTH}Civil Wars";
+
         public override string Id => "DiplomacySettings_1";
         public override string DisplayName => new TextObject("{=MYz8nKqq}Diplomacy").ToString();
         public override string FolderName => "Diplomacy";
@@ -198,18 +200,49 @@ namespace Diplomacy
         public bool EnableCoalitions { get; set; } = false;
         public float CoalitionChancePercentage { get; set; } = 5.0f;
         public int CriticalExpansionism { get; set; } = 100;
-        
-        /*
-        [SettingPropertyBool("{=ZIf1tRII}Enable Coalitions", RequireRestart = false, HintText = "{=8v8q0OGu}Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled.")]
-        [SettingPropertyGroup(HeadingCoalitions, IsMainToggle = true, GroupOrder = (int)GroupOrder.HeadingCoalitions)]
-        public bool EnableCoalitions { get; set; } = true;
 
-        [SettingPropertyInteger("{=1kSd88X5}Expansionism Threshold", 0, 10000, RequireRestart = false, HintText = "{=EUnASoee}The amount of expansionism a faction requires before a coalition is formed against it. Default value is 100.")]
-        [SettingPropertyGroup(HeadingCoalitions)]
-        public int CriticalExpansionism { get; set; } = 100;
-        [SettingPropertyFloatingInteger("{=zwbL9BHe}Coalition Chance Percentage per Day", 0f, 100f, "0.00", RequireRestart = false, HintText = "{=9ugCWA3v}The percentage change of a coalition forming against a faction over the expansionism threshold. Default value is 5.")]
-        [SettingPropertyGroup(HeadingCoalitions)]
-        public float CoalitionChancePercentage { get; set; } = 5.0f;
-        */
+        // Civil Wars
+
+        // FIXME fix localization on new settings
+        [SettingPropertyFloatingInteger("{=UdadyqpN}Daily Chance To Start Rebel Faction", 0, 1, "#0%", Order = 0, RequireRestart = false, HintText = "{=yznXCi1d}The daily chance for a clan to start a rebel faction. Default value is 100%.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public float DailyChanceToStartRebelFaction { get; set; } = 0.05f;
+
+        [SettingPropertyFloatingInteger("{=r312b3Of}Daily Chance To Join Rebel Faction", 0, 1, "#0%", Order = 1, RequireRestart = false, HintText = "{=06oPGRj0}The daily chance for a clan to join a rebel faction that they would support. Default value is 100%.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public float DailyChanceToJoinRebelFaction { get; set; } = 0.1f;
+
+        [SettingPropertyFloatingInteger("{=lIbUuQB1}Daily Chance To Start Civil War", 0, 1, "#0%", Order = 2, RequireRestart = false, HintText = "{=zr10ZS3L}The daily chance for a faction with enough support to start a civil war. Default value is 50%.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public float DailyChanceToStartCivilWar { get; set; } = 0.1f;
+
+        [SettingPropertyInteger("{=VB97zQeJ}Minimum Time Between Civil Wars In Days", 0, 1000, Order = 3, RequireRestart = false, HintText = "{=5cUqaLk4}The minimum amount of time required between a civil war and when new rebel factions can arise in a kingdom. Default value is 240.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int MinimumTimeSinceLastCivilWarInDays { get; set; } = 240;
+
+        [SettingPropertyInteger("{=VNILqmoY}Maximum Faction Duration in Days", 0, 1000, Order = 4, RequireRestart = false, HintText = "{=rNJIvaSm}The maximum amount of time that a faction can last without engaging in a civil war. Default value is 120.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int MaximumFactionDurationInDays { get; set; } = 120;
+
+        [SettingPropertyInteger("{=6kNmdLxZ}Faction Creation Influence Cost", 0, 1000, Order = 5, RequireRestart = false, HintText = "{=EwbXg3va}The influence cost of starting a faction. Default value is 100.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionCreationInfluenceCost { get; set; } = 100;
+
+        [SettingPropertyFloatingInteger("{=}Faction Tendency", 0, 2.0f, "#0%", Order = 5, RequireRestart = false, HintText = "{=}The tendency of clans to create or join factions. Default value is 100%.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public float FactionTendency { get; internal set; } = 1.0f;
+
+        /*
+[SettingPropertyBool("{=ZIf1tRII}Enable Coalitions", RequireRestart = false, HintText = "{=8v8q0OGu}Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled.")]
+[SettingPropertyGroup(HeadingCoalitions, IsMainToggle = true, GroupOrder = (int)GroupOrder.HeadingCoalitions)]
+public bool EnableCoalitions { get; set; } = true;
+
+[SettingPropertyInteger("{=1kSd88X5}Expansionism Threshold", 0, 10000, RequireRestart = false, HintText = "{=EUnASoee}The amount of expansionism a faction requires before a coalition is formed against it. Default value is 100.")]
+[SettingPropertyGroup(HeadingCoalitions)]
+public int CriticalExpansionism { get; set; } = 100;
+[SettingPropertyFloatingInteger("{=zwbL9BHe}Coalition Chance Percentage per Day", 0f, 100f, "0.00", RequireRestart = false, HintText = "{=9ugCWA3v}The percentage change of a coalition forming against a faction over the expansionism threshold. Default value is 5.")]
+[SettingPropertyGroup(HeadingCoalitions)]
+public float CoalitionChancePercentage { get; set; } = 5.0f;
+*/
     }
 }

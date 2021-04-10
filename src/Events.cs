@@ -18,6 +18,7 @@ namespace Diplomacy
         private readonly MbEvent<AllianceEvent> _allianceBroken = new MbEvent<AllianceEvent>();
         private readonly MbEvent<Settlement> _playerSettlementTaken = new MbEvent<Settlement>();
         private readonly MbEvent<WarDeclaredEvent> _warDeclared = new MbEvent<WarDeclaredEvent>();
+        private readonly MbEvent<Kingdom> _kingdomBannerChanged = new MbEvent<Kingdom>();
         private readonly List<object> _listeners;
 
         public Events()
@@ -31,7 +32,8 @@ namespace Diplomacy
                 _messengerSent,
                 _peaceProposalSent,
                 _playerSettlementTaken,
-                _warDeclared
+                _warDeclared,
+                _kingdomBannerChanged
             };
         }
 
@@ -49,6 +51,8 @@ namespace Diplomacy
 
         public static IMbEvent<WarDeclaredEvent> WarDeclared => Instance._warDeclared;
 
+        public static IMbEvent<Kingdom> KingdomBannerChanged => Instance._kingdomBannerChanged;
+
         internal void OnMessengerSent(Hero hero) => Instance._messengerSent.Invoke(hero);
 
         internal void OnPeaceProposalSent(Kingdom kingdom) => Instance._peaceProposalSent.Invoke(kingdom);
@@ -62,6 +66,8 @@ namespace Diplomacy
         internal void OnPlayerSettlementTaken(Settlement currentSettlement) => Instance._playerSettlementTaken.Invoke(currentSettlement);
 
         internal void OnWarDeclared(WarDeclaredEvent warDeclaredEvent) => Instance._warDeclared.Invoke(warDeclaredEvent);
+
+        internal void OnKingdomBannerChanged(Kingdom kingdom) => Instance._kingdomBannerChanged.Invoke(kingdom);
 
         public static void RemoveListeners(object o) => Instance.RemoveListenersInternal(o);
 

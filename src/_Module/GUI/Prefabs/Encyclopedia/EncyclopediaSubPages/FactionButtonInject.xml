@@ -1,0 +1,11 @@
+﻿<Prefab>
+  <Constants>
+  </Constants>
+  <Window>
+    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" MarginTop="10" MarginBottom="10" MarginLeft="5" MarginRight="5" Brush="ButtonBrush2" HorizontalAlignment="Center" UpdateChildrenStates="true" Command.Click="OpenFactions" IsEnabled="true">
+      <Children>
+        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@FactionsText" />
+      </Children>
+    </ButtonWidget>
+  </Window>
+</Prefab>

@@ -13,6 +13,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using Bannerlord.UIExtenderEx;
 
 namespace Diplomacy
 {
@@ -39,6 +40,10 @@ namespace Diplomacy
         {
             base.OnSubModuleLoad();
             Instance = this;
+
+            var _extender = new UIExtender(Name);
+            _extender.Register(typeof(SubModule).Assembly);
+            _extender.Enable();
 
             this.AddSerilogLoggerProvider($"{Name}.log", new[] { $"{Name}.*" }, config => config.MinimumLevel.Is(LogEventLevel.Verbose));
             Log = LogFactory.Get<SubModule>();
@@ -90,6 +95,7 @@ namespace Diplomacy
                 gameStarter.AddBehavior(new AllianceBehavior());
                 gameStarter.AddBehavior(new MaintainInfluenceBehavior());
                 gameStarter.AddBehavior(new ExpansionismBehavior());
+                gameStarter.AddBehavior(new CivilWarBehavior());
 
                 Log.LogDebug("Campaign session started.");
             }

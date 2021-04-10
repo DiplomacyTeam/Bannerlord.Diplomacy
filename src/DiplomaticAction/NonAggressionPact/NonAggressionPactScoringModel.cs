@@ -6,7 +6,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
     {
         public NonAggressionPactScoringModel() : base(new NonAggressionPactScores()) { }
 
-        public class NonAggressionPactScores : IScores
+        public class NonAggressionPactScores : IDiplomacyScores
         {
             public int Base => 50;
             public int BelowMedianStrength => 50;
