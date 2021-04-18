@@ -101,6 +101,7 @@
 
     <string id="cmOSpfyW" text="Alliance with {ALLIED_KINGDOM}"/>
     <string id="RqQ4oqvl"  text="War with {ENEMY_KINGDOM}"/>
+    <string id="t6YhBLj7" text="Non-Aggression Pact with {KINGDOM}" />
 
     <string id="M4SGjzQP" text="This faction is not interested in forming a non-aggression pact with you."/>
 
@@ -154,6 +155,11 @@
     <string id="RrsWhIWi" text="The minimum duration (in days) that an alliance can last. Default value is 10." />
     <string id="V35hUfcc" text="Non-Aggression Pact Duration in Days"/>
     <string id="KXLGZEPh" text="The duration (in days) that a non-aggression pact will last. Default value is 100."/>
+    <string id="G8BhBnRG" text="Non-Aggression Pact Tendency" />
+    <string id="907ER5u9" text="Multiplier for the tendency of factions to form non-aggression pacts. Default value is 100." />
+    <string id="5a829TiT" text="Alliance Tendency" />
+    <string id="7nSjs8UL" text="Multiplier for the tendency of factions to form alliances. Default value is 100." />
+    <string id="lhysZl9j" text="Action Tendency" />
 
 
     <string id="WbOKuWbQ" text="Enable Influence Costs" />

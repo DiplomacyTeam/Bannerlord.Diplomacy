@@ -79,6 +79,14 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int NonAggressionPactDuration { get; set; } = 100;
 
+        [SettingPropertyFloatingInteger("{=G8BhBnRG}Non-Aggression Pact Tendency", 0, 2, "#0%", Order = 4, RequireRestart = false, HintText = "{=907ER5u9}Multiplier for the tendency of factions to form non-aggression pacts. Default value is 100.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public float NonAggressionPactTendency { get; set; } = 1.0f;
+
+        [SettingPropertyFloatingInteger("{=5a829TiT}Alliance Tendency", 0, 2, "#0%", Order = 4, RequireRestart = false, HintText = "{=7nSjs8UL}Multiplier for the tendency of factions to form alliances. Default value is 100.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public float AllianceTendency { get; set; } = 1.0f;
+
         [SettingPropertyInteger("{=nMwWHj4h}Send Messenger Gold Cost", 0, 10000, RequireRestart = false, HintText = "{=ehMf7xvE}Gold cost for sending a messenger to another character. Default value is 100.")]
         [SettingPropertyGroup(HeadingMessengers)]
         public int SendMessengerGoldCost { get; set; } = 100;
@@ -174,6 +182,7 @@ namespace Diplomacy
         public bool EnableCoalitions { get; set; } = false;
         public float CoalitionChancePercentage { get; set; } = 5.0f;
         public int CriticalExpansionism { get; set; } = 100;
+        
         /*
         [SettingPropertyBool("{=ZIf1tRII}Enable Coalitions", RequireRestart = false, HintText = "{=8v8q0OGu}Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled.")]
         [SettingPropertyGroup(HeadingCoalitions, IsMainToggle = true, GroupOrder = (int)GroupOrder.HeadingCoalitions)]
