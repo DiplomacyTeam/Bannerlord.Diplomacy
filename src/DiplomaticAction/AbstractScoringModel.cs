@@ -60,6 +60,9 @@ namespace Diplomacy.DiplomaticAction
 
             // FIXME: alliedNeutrals also includes common allies as it's coded... Should they be scored differently? Probable answer: YES!
 
+            foreach (var alliedNeutral in alliedNeutrals)
+                explainedNum.Add(Scores.ExistingAllianceWithNeutral, CreateTextWithKingdom(SAlliedToNeutral, alliedNeutral));
+
             var pactEnemies = Kingdom.All
                 .Where(k => k != ourKingdom
              && k != otherKingdom
@@ -137,7 +140,7 @@ namespace Diplomacy.DiplomaticAction
 
         private const string SWarWithKingdom = "{=RqQ4oqvl}War with {KINGDOM}";
         private const string SAllianceWithKingdom = "{=cmOSpfyW}Alliance with {KINGDOM}";
-        private const string SPactWithKingdom = "{=}Non-Aggression Pact with {KINGDOM}";
+        private const string SPactWithKingdom = "{=t6YhBLj7}Non-Aggression Pact with {KINGDOM}";
 
         private const string SCommonEnemy = SWarWithKingdom;
         private const string SAlliedToEnemy = SAllianceWithKingdom;
