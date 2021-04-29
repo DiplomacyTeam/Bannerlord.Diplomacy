@@ -2,24 +2,16 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;
-using TaleWorlds.GauntletUI.Data;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 
 namespace Diplomacy.GauntletInterfaces
 {
-    internal class RebelFactionsInterface
+    internal class RebelFactionsInterface : GenericInterface
     {
-        public RebelFactionsInterface()
-        { }
-#if STABLE
-        private GauntletMovie _movie;
-#else
-        private IGauntletMovie? _movie;
-#endif
-        private GauntletLayer? _layer;
-        private RebelFactionsVM? _vm;
-        private ScreenBase? _screenBase;
+        private const string _movieName = "RebelFactions";
+
+        protected override string MovieName => _movieName;
 
         public void ShowInterface(ScreenBase screenBase, Kingdom kingdom)
         {
@@ -38,19 +30,7 @@ namespace Diplomacy.GauntletInterfaces
             ScreenManager.TrySetFocus(_layer);
             screenBase.AddLayer(_layer);
             _vm = new RebelFactionsVM(kingdom, () => OnFinalize());
-            _movie = _layer.LoadMovie("RebelFactions", _vm);
-        }
-
-        public void OnFinalize()
-        {
-            _screenBase?.RemoveLayer(_layer);
-            _layer?.ReleaseMovie(_movie);
-            _layer = null;
-            _movie = null;
-            // vm.ExecuteSelect(null);
-            // vm.AssignParent(true);
-            _vm = null;
-            _screenBase = null;
+            _movie = LoadMovie();
         }
     }
 }

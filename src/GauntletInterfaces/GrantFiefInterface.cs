@@ -3,26 +3,22 @@ using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;
-using TaleWorlds.GauntletUI.Data;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 
 namespace Diplomacy.GauntletInterfaces
 {
-    class GrantFiefInterface
+    class GrantFiefInterface : GenericInterface
     {
-#if STABLE
-        private GauntletMovie _movie;
-#else
-        private IGauntletMovie? _movie;
-#endif
-        private GauntletLayer? _layer;
-        private GrantFiefVM? _vm;
-        private ScreenBase? _screenBase;
+        private const string _movieName = "GrantFief";
+        Action? _refreshAction;
+
+        protected override string MovieName => _movieName;
 
         public void ShowFiefInterface(ScreenBase screenBase, Hero hero, Action refreshAction)
         {
             _screenBase = screenBase;
+            _refreshAction = refreshAction;
 
             var spriteData = UIResourceManager.SpriteData;
             var resourceContext = UIResourceManager.ResourceContext;
@@ -36,8 +32,8 @@ namespace Diplomacy.GauntletInterfaces
             _layer.IsFocusLayer = true;
             ScreenManager.TrySetFocus(_layer);
             screenBase.AddLayer(_layer);
-            _vm = new GrantFiefVM(hero, () => OnFinalize(refreshAction));
-            _movie = _layer.LoadMovie("GrantFief", _vm);
+            _vm = new GrantFiefVM(hero, () => OnFinalize());
+            _movie = LoadMovie();
         }
 
         public void ShowFiefInterface(ScreenBase screenBase, Hero hero)
@@ -45,17 +41,11 @@ namespace Diplomacy.GauntletInterfaces
             ShowFiefInterface(screenBase, hero, () => { });
         }
 
-        public void OnFinalize(Action action)
+        protected override void OnFinalize()
         {
-            _screenBase?.RemoveLayer(_layer);
-            _layer?.ReleaseMovie(_movie);
-            _layer = null;
-            _movie = null;
-            // vm.ExecuteSelect(null);
-            // vm.AssignParent(true);
-            _vm = null;
-            _screenBase = null;
-            action();
+            base.OnFinalize();
+            _refreshAction!();
         }
+
     }
 }

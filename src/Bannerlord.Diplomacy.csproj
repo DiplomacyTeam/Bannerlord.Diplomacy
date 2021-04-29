@@ -21,7 +21,8 @@
     <ButterLibVersion>1.0.21</ButterLibVersion>
     <HarmonyVersion>2.0.4</HarmonyVersion>
     <MCMVersion>4.2.1</MCMVersion>
-	<UIExtenderExVersion>2.1.5</UIExtenderExVersion>
+    <HarmonyExtensionsVersion>2.0.0.10</HarmonyExtensionsVersion>
+	  <UIExtenderExVersion>2.1.5</UIExtenderExVersion>
   </PropertyGroup>
 
   <!-- Game Versions for Stable and Beta -->
@@ -93,6 +94,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Nullable" Version="1.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Harmony.Extensions" Version="$(HarmonyExtensionsVersion)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

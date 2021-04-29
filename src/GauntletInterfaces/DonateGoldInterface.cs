@@ -2,22 +2,16 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;
-using TaleWorlds.GauntletUI.Data;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 
 namespace Diplomacy.GauntletInterfaces
 {
-    class DonateGoldInterface
+    class DonateGoldInterface : GenericInterface
     {
-#if STABLE
-        private GauntletMovie _movie;
-#else
-        private IGauntletMovie? _movie;
-#endif
-        private GauntletLayer? _layer;
-        private DonateGoldVM? _vm;
-        private ScreenBase? _screenBase;
+        private const string _movieName = "DonateGold";
+
+        protected override string MovieName => _movieName;
 
         public void ShowInterface(ScreenBase screenBase, Clan clan)
         {
@@ -36,20 +30,7 @@ namespace Diplomacy.GauntletInterfaces
             ScreenManager.TrySetFocus(_layer);
             screenBase.AddLayer(_layer);
             _vm = new DonateGoldVM(clan, OnFinalize);
-            _movie = _layer.LoadMovie("DonateGold", _vm);
+            _movie = LoadMovie();
         }
-
-        public void OnFinalize()
-        {
-            _screenBase?.RemoveLayer(_layer);
-            _layer?.ReleaseMovie(_movie);
-            _layer = null;
-            _movie = null;
-            // vm.ExecuteSelect(null);
-            // vm.AssignParent(true);
-            _vm = null;
-            _screenBase = null;
-        }
-
     }
 }
