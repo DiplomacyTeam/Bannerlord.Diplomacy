@@ -133,6 +133,8 @@
     <string id="4lG3JG2e" text="Relation Gain: {RELATION_GAIN}+"/>
 
     <string id="Q2vXbwvC" text="Diplomacy"/>
+    <string id="BXluvRnJ" text="Bitter Defeat"/>
+    <string id="vLfbqXjq" text="Your armies and people are exhausted from the conflict with {ENEMY_KINGDOM} and have given up the fight. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence."/>
 
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||

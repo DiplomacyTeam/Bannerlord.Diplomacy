@@ -1,10 +1,11 @@
 ﻿using Diplomacy.DiplomaticAction.WarPeace;
 
 using Microsoft.Extensions.Logging;
-
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 
 namespace Diplomacy.CampaignBehaviors
 {
@@ -65,9 +66,6 @@ namespace Diplomacy.CampaignBehaviors
 
             foreach (var kingdom in Kingdom.All)
             {
-                if (kingdom.Leader.IsHumanPlayerCharacter)
-                    continue;
-
                 ConsiderPeaceActions(kingdom);
             }
         }
@@ -95,8 +93,29 @@ namespace Diplomacy.CampaignBehaviors
             {
                 if (_warExhaustionManager.HasMaxWarExhaustion(kingdom, targetKingdom) && IsValidQuestState(kingdom, targetKingdom))
                 {
-                    Log.LogTrace($"[{CampaignTime.Now}] {kingdom.Name}, due to max war exhaustion, will peace out with {targetKingdom.Name}.");
-                    KingdomPeaceAction.ApplyPeace(kingdom, targetKingdom);
+                    if (kingdom.Leader.IsHumanPlayerCharacter)
+                    {
+                        var diplomacyCost = DiplomacyCostCalculator.DetermineCostForMakingPeace(kingdom, targetKingdom, true);
+                        var strArgs = new Dictionary<string,object>() { 
+                            { "DENARS", diplomacyCost.GoldCost.Value },
+                            { "INFLUENCE", diplomacyCost.InfluenceCost.Value },
+                            { "ENEMY_KINGDOM", targetKingdom.Name } 
+                        };
+                        InformationManager.ShowInquiry(new InquiryData(
+                            new TextObject("{=BXluvRnJ}Bitter Defeat").ToString(),
+                            new TextObject("{=vLfbqXjq}Your armies and people are exhausted from the conflict with {ENEMY_KINGDOM} and have given up the fight. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence.", strArgs).ToString(),
+                            true,
+                            false,
+                            GameTexts.FindText("str_ok").ToString(),
+                            null,
+                            () => KingdomPeaceAction.ApplyPeace(kingdom, targetKingdom),
+                            null), true);
+                    }
+                    else
+                    {
+                        Log.LogTrace($"[{CampaignTime.Now}] {kingdom.Name}, due to max war exhaustion, will peace out with {targetKingdom.Name}.");
+                        KingdomPeaceAction.ApplyPeace(kingdom, targetKingdom);
+                    }
                 }
             }
         }
