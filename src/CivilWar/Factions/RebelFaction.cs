@@ -14,8 +14,8 @@ namespace Diplomacy.CivilWar
         [SaveableProperty(1)]
         public Clan SponsorClan { get; private set; }
 
-        [SaveableProperty(2)]
-        private List<Clan> ParticipatingClans { get; set; }
+        [SaveableField(2)]
+        private List<Clan> _participatingClans;
 
         [SaveableProperty(3)]
         public Kingdom ParentKingdom { get; private set; }
@@ -34,16 +34,16 @@ namespace Diplomacy.CivilWar
 
         public RebelFaction(Clan sponsorClan)
         {
-            ParticipatingClans = new();
+            _participatingClans = new();
             SponsorClan = sponsorClan;
-            ParticipatingClans.Add(SponsorClan);
+            _participatingClans.Add(SponsorClan);
             ParentKingdom = sponsorClan.Kingdom;
             DateStarted = CampaignTime.Now;
             GenerateName();
         }
         public abstract RebelDemandType RebelDemandType { get; }
 
-        public float FactionStrength { get { return ParticipatingClans.Select(c => c.TotalStrength).Sum(); } }
+        public float FactionStrength { get { return _participatingClans.Select(c => c.TotalStrength).Sum(); } }
         public float LoyalistStrength { get { return ParentKingdom.TotalStrength - this.FactionStrength; } }
 
         public float RequiredStrengthRatio { 
@@ -63,15 +63,15 @@ namespace Diplomacy.CivilWar
 
         public void AddClan(Clan clan)
         {
-            if (!ParticipatingClans.Contains(clan))
-                ParticipatingClans.Add(clan);
+            if (!_participatingClans.Contains(clan))
+                _participatingClans.Add(clan);
         }
 
         public void RemoveClan(Clan clan)
         {
-            if (ParticipatingClans.Contains(clan))
+            if (_participatingClans.Contains(clan))
             {
-                if (ParticipatingClans.Count == 1)
+                if (_participatingClans.Count == 1)
                 {
                     RebelFactionManager.DestroyRebelFaction(this);
                     return;
@@ -79,14 +79,14 @@ namespace Diplomacy.CivilWar
 
                 if (clan == SponsorClan)
                 {
-                    SponsorClan = ParticipatingClans.Where(x => x != clan).GetRandomElementInefficiently();
+                    SponsorClan = _participatingClans.Where(x => x != clan).GetRandomElementInefficiently();
                     GenerateName();
                 }
-                ParticipatingClans.Remove(clan);
+                _participatingClans.Remove(clan);
             }
         }
 
-        public MBReadOnlyList<Clan> Clans { get => new MBReadOnlyList<Clan>(ParticipatingClans); }
+        public MBReadOnlyList<Clan> Clans { get => new MBReadOnlyList<Clan>(_participatingClans); }
 
         private void GenerateName()
         { 
