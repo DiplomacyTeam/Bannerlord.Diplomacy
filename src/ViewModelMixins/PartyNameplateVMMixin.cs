@@ -1,4 +1,5 @@
 ﻿using Bannerlord.UIExtenderEx.ViewModels;
+using Diplomacy.Event;
 using SandBox.ViewModelCollection.Nameplate;
 using TaleWorlds.CampaignSystem;
 

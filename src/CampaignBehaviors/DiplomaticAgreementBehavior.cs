@@ -1,6 +1,7 @@
 ﻿using Diplomacy.DiplomaticAction;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
+using Diplomacy.Event;
 using Diplomacy.Extensions;
 
 using Microsoft.Extensions.Logging;

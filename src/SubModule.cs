@@ -14,6 +14,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using Bannerlord.UIExtenderEx;
+using Diplomacy.Event;
 
 namespace Diplomacy
 {
@@ -96,6 +97,7 @@ namespace Diplomacy
                 gameStarter.AddBehavior(new MaintainInfluenceBehavior());
                 gameStarter.AddBehavior(new ExpansionismBehavior());
                 gameStarter.AddBehavior(new CivilWarBehavior());
+                gameStarter.AddBehavior(new UIBehavior());
 
                 Log.LogDebug("Campaign session started.");
             }

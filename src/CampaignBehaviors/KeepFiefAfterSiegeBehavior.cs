@@ -1,4 +1,5 @@
 ﻿using Diplomacy.Character;
+using Diplomacy.Event;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;

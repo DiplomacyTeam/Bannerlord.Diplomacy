@@ -1,6 +1,6 @@
 ﻿using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.WarPeace;
-
+using Diplomacy.Event;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diplomacy.Event;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -114,6 +115,8 @@ namespace Diplomacy
                     InformationManager.DisplayMessage(new InformationMessage(information, Color.FromUint(4282569842U)));
                 }
             }
+
+            Events.Instance.OnWarExhaustionAdded(new WarExhaustionEvent(kingdom1, kingdom2, warExhaustionType, warExhaustionToAdd));
         }
 
         private float GetDailyWarExhaustionDelta() => Settings.Instance!.WarExhaustionPerDay;
@@ -227,7 +230,7 @@ namespace Diplomacy
             }
         }
 
-        private enum WarExhaustionType
+        internal enum WarExhaustionType
         {
             Casualty,
             Raid,

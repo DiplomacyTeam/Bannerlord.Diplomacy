@@ -1,4 +1,5 @@
 ﻿using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.Event;
 using Diplomacy.PatchTools;
 
 using System;

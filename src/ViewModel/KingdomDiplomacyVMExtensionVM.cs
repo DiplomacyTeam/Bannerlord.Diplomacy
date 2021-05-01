@@ -1,4 +1,5 @@
 ﻿using Diplomacy.DiplomaticAction.Alliance;
+using Diplomacy.Event;
 using HarmonyLib;
 using System;
 using System.Reflection;

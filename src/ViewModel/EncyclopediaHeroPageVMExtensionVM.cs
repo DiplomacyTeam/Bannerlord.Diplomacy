@@ -1,4 +1,5 @@
-﻿using Diplomacy.GauntletInterfaces;
+﻿using Diplomacy.Event;
+using Diplomacy.GauntletInterfaces;
 using Diplomacy.GrantFief;
 using Diplomacy.Messengers;
 using TaleWorlds.CampaignSystem;

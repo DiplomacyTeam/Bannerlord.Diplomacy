@@ -10,7 +10,7 @@ namespace Diplomacy.CivilWar
         public static RebelFactionManager? Instance { get; private set; }
 
         [SaveableProperty(1)]
-        private Dictionary<Kingdom, List<RebelFaction>> RebelFactions { get; set; }
+        public Dictionary<Kingdom, List<RebelFaction>> RebelFactions { get; private set; }
         [SaveableProperty(2)]
         public List<Kingdom> DeadRebelKingdoms { get; private set; }
         [SaveableProperty(3)]

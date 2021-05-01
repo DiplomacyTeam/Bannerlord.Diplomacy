@@ -1,4 +1,5 @@
-﻿using Diplomacy.PatchTools;
+﻿using Diplomacy.Event;
+using Diplomacy.PatchTools;
 using HarmonyLib;
 using System.Collections.Generic;
 

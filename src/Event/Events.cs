@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
 
-namespace Diplomacy
+namespace Diplomacy.Event
 {
     internal sealed class Events
     {
@@ -20,6 +20,7 @@ namespace Diplomacy
         private readonly MbEvent<WarDeclaredEvent> _warDeclared = new MbEvent<WarDeclaredEvent>();
         private readonly MbEvent<Kingdom> _kingdomBannerChanged = new MbEvent<Kingdom>();
         private readonly List<object> _listeners;
+        private readonly MbEvent<WarExhaustionEvent> _warExhaustionAdded = new MbEvent<WarExhaustionEvent>();
 
         public Events()
         {
@@ -33,7 +34,8 @@ namespace Diplomacy
                 _peaceProposalSent,
                 _playerSettlementTaken,
                 _warDeclared,
-                _kingdomBannerChanged
+                _kingdomBannerChanged,
+                _warExhaustionAdded
             };
         }
 
@@ -53,6 +55,8 @@ namespace Diplomacy
 
         public static IMbEvent<Kingdom> KingdomBannerChanged => Instance._kingdomBannerChanged;
 
+        public static IMbEvent<WarExhaustionEvent> WarExhaustionAdded => Instance._warExhaustionAdded;
+
         internal void OnMessengerSent(Hero hero) => Instance._messengerSent.Invoke(hero);
 
         internal void OnPeaceProposalSent(Kingdom kingdom) => Instance._peaceProposalSent.Invoke(kingdom);
@@ -68,6 +72,8 @@ namespace Diplomacy
         internal void OnWarDeclared(WarDeclaredEvent warDeclaredEvent) => Instance._warDeclared.Invoke(warDeclaredEvent);
 
         internal void OnKingdomBannerChanged(Kingdom kingdom) => Instance._kingdomBannerChanged.Invoke(kingdom);
+
+        internal void OnWarExhaustionAdded(WarExhaustionEvent warExhaustionEvent) => Instance._warExhaustionAdded.Invoke(warExhaustionEvent);
 
         public static void RemoveListeners(object o) => Instance.RemoveListenersInternal(o);
 

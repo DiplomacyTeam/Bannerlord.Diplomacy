@@ -1,4 +1,5 @@
-﻿using Diplomacy.Messengers;
+﻿using Diplomacy.Event;
+using Diplomacy.Messengers;
 
 using TaleWorlds.CampaignSystem;
 

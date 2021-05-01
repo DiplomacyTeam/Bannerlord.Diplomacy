@@ -1,5 +1,6 @@
 ﻿using Diplomacy.Costs;
 using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.Event;
 using Diplomacy.Messengers;
 using System;
 using System.Linq;
@@ -46,8 +47,8 @@ namespace Diplomacy.ViewModel
             if (Settings.Instance!.EnableWarExhaustion)
             {
                 Stats.Insert(1, new KingdomWarComparableStatVM(
-                    (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction1, (Kingdom)Faction2)),
-                    (int)Math.Ceiling(WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction2, (Kingdom)Faction1)),
+                    (int)WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction1, (Kingdom)Faction2),
+                    (int)WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction2, (Kingdom)Faction1),
                     _TWarExhaustion, _faction1Color, _faction2Color, 100, null));
             }
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Diplomacy.Event;
+using Microsoft.Extensions.Logging;
 
 using System;
 using TaleWorlds.CampaignSystem;

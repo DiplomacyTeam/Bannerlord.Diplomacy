@@ -1,0 +1,9 @@
+﻿<Brushes>
+  <Brush Name="Map.WarExhaustionIndicator.Text" Font="Galahad" TextHorizontalAlignment="Center">
+    <Styles>
+      <Style Name="Default" FontColor="#FFFFFFFF" TextGlowColor="#000000FF" TextOutlineColor="#000000FF" TextOutlineAmount="0.15" TextGlowRadius="0" TextBlur="1" FontSize="25" />
+      <Style Name="Critical" FontColor="#FF0000FF" TextOutlineColor="#000000FF" TextOutlineAmount="0.15" TextGlowRadius="0" TextBlur="1" FontSize="25" />
+    </Styles>
+  </Brush>
+
+</Brushes>
