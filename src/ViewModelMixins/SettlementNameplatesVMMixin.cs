@@ -7,7 +7,7 @@ using TaleWorlds.CampaignSystem;
 namespace Diplomacy.ViewModelMixins
 {
     [ViewModelMixin]
-    internal class SettlementNameplatesVMMixin : BaseViewModelMixin<SettlementNameplatesVM>
+    public class SettlementNameplatesVMMixin : BaseViewModelMixin<SettlementNameplatesVM>
     {
         public SettlementNameplatesVMMixin(SettlementNameplatesVM vm) : base(vm)
         {

@@ -13,7 +13,7 @@ namespace Diplomacy.CivilWar.Factions
 
         public override void EnforceDemand()
         {
-            var kingdomName = KingdomNameGenerator.GenerateKingdomName(this);
+            var kingdomName = FactionNameGenerator.GenerateKingdomName(this);
             Kingdom newKingdom = this.RebelKingdom!;
             newKingdom.ChangeKingdomName(kingdomName, kingdomName);
             ChangeKingdomBannerAction.Apply(newKingdom, false);

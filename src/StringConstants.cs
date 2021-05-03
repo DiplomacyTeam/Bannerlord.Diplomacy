@@ -15,5 +15,9 @@
 
         public const string Factions = "{=dlANhHUd}Factions";
         public const string NotEnoughFiefs = "{=GkhKppOk}Not Enough Fiefs";
+
+        public const string Faction_Confederation = "{=kaU24WXu}Confederation of {CLAN_NAME}";
+        public const string Faction_League = "{=LUzfk4tb}{CLAN_NAME} League";
+        public const string Faction_Conspiracy = "{=MXAsjFdI}{CLAN_NAME} Conspiracy";
     }
 }

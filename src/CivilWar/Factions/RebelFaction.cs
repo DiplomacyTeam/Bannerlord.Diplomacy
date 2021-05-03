@@ -39,7 +39,7 @@ namespace Diplomacy.CivilWar
             _participatingClans.Add(SponsorClan);
             ParentKingdom = sponsorClan.Kingdom;
             DateStarted = CampaignTime.Now;
-            GenerateName();
+            Name = FactionNameGenerator.GenerateFactionName(this.SponsorClan);
         }
         public abstract RebelDemandType RebelDemandType { get; }
 
@@ -80,25 +80,13 @@ namespace Diplomacy.CivilWar
                 if (clan == SponsorClan)
                 {
                     SponsorClan = _participatingClans.Where(x => x != clan).GetRandomElementInefficiently();
-                    GenerateName();
+                    Name = FactionNameGenerator.GenerateFactionName(this.SponsorClan);
                 }
                 _participatingClans.Remove(clan);
             }
         }
 
         public MBReadOnlyList<Clan> Clans { get => new MBReadOnlyList<Clan>(_participatingClans); }
-
-        private void GenerateName()
-        { 
-            List<TextObject> names = new()
-            {
-                new TextObject("{=MXAsjFdI}{CLAN_NAME} Conspiracy"),
-                new TextObject("{=kaU24WXu}Confederation of {CLAN_NAME}"),
-                new TextObject("{=LUzfk4tb}{CLAN_NAME} League")
-            };
-
-            Name = names.GetRandomElementInefficiently().SetTextVariable("CLAN_NAME", SponsorClan.Name);
-        }
 
         public abstract void EnforceDemand();
 

@@ -54,7 +54,6 @@ namespace Diplomacy.CivilWar
                 { "DEMAND", rebelFaction.DemandDescription }
             };
 
-            // FIXME add string localization
             InformationManager.ShowInquiry(
                     new InquiryData(
                         new TextObject("{=nAvLFv5Q}Civil War Breaks Out").ToString(),

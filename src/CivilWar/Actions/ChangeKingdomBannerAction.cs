@@ -84,7 +84,7 @@ namespace Diplomacy.CivilWar
                 // choose random unused color from the palette
                 List<uint> currentBackgroundColors = Kingdom.All.Where(x => !x.IsEliminated).Select(x => (uint)_primaryColorProp.GetValue(x)).ToList();
                 backgroundColor = BannerManager.ColorPalette.Where(x => !currentBackgroundColors.Contains(x.Value.Color)).GetRandomElementInefficiently().Value.Color;
-                sigilColor = BannerManager.ColorPalette.Where(x => x.Value.PlayerCanChooseForSigil).GetRandomElementInefficiently().Value.Color;
+                sigilColor = BannerManager.ColorPalette.Where(x => x.Value.PlayerCanChooseForSigil && x.Value.Color != backgroundColor).GetRandomElementInefficiently().Value.Color;
             }
 
             Apply(kingdom, backgroundColor, sigilColor);

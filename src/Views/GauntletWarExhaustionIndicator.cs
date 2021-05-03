@@ -22,8 +22,8 @@ namespace Diplomacy.Views
             base.CreateLayout();
             _dataSource = new WarExhaustionMapIndicatorVM();
             Layer = new GauntletLayer(100, "GauntletLayer");
-            _layerAsGauntletLayer = Layer as GauntletLayer;
-            _movie = _layerAsGauntletLayer.LoadMovie("WarExhaustionMapIndicator", _dataSource);
+            _layerAsGauntletLayer = (Layer as GauntletLayer)!;
+            _movie = _layerAsGauntletLayer!.LoadMovie("WarExhaustionMapIndicator", _dataSource);
             Layer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.MouseButtons | InputUsageMask.Keyboardkeys);
             MapScreen.AddLayer(Layer);
         }
