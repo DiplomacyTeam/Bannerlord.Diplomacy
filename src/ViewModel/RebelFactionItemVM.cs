@@ -79,7 +79,7 @@ namespace Diplomacy.ViewModel
             this.FactionName = RebelFaction.Name.ToString();
 
             var bopSize = 300;
-            var offset = Convert.ToInt32((this.RebelFaction.RequiredStrengthRatio - 0.5f) * bopSize / 2);
+            var offset = Convert.ToInt32((this.RebelFaction.RequiredStrengthRatio - 0.5f) * bopSize);
             this.BreakingPointOffset = offset;
         }
 
