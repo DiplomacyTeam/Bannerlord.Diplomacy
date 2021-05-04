@@ -18,14 +18,14 @@
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginRight="-1">
                       <Children>
                         <MaskedTextureWidget DataSource="{Faction1Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Banner.Width.Scaled" SuggestedHeight="!Banner.Height.Scaled" Brush="Flat.Tuple.Banner.Small" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.5" />
-                        <CriticalThresholdTextWidget IsCritical="@IsCritical" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="Map.WarExhaustionIndicator.Text" IsEnabled="false" IntText="@PlayerWarExhaustion" />
+                        <CriticalThresholdTextWidget IsCritical="@IsCriticalFaction1" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="Map.WarExhaustionIndicator.Text" IsEnabled="false" IntText="@PlayerWarExhaustion" />
                       </Children>
                     </ListPanel>
 
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
                       <Children>
                         <MaskedTextureWidget DataSource="{Faction2Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Banner.Width.Scaled" SuggestedHeight="!Banner.Height.Scaled" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Flat.Tuple.Banner.Small" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.5" />
-                        <CriticalThresholdTextWidget IsCritical="@IsCritical" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="Map.WarExhaustionIndicator.Text" IsEnabled="false" IntText="@OpponentWarExhaustion" />
+                        <CriticalThresholdTextWidget IsCritical="@IsCriticalFaction2" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="Map.WarExhaustionIndicator.Text" IsEnabled="false" IntText="@OpponentWarExhaustion" />
                       </Children>
                     </ListPanel>
 
