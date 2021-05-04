@@ -6,7 +6,7 @@
 
         public class AllianceScores : IDiplomacyScores
         {
-            public int Base => 0;
+            public int Base => 20;
 
             public int BelowMedianStrength => 50;
 
