@@ -2,6 +2,7 @@
 
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
@@ -89,7 +90,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ConsiderPeaceActions(Kingdom kingdom)
         {
-            foreach (var targetKingdom in FactionManager.GetEnemyKingdoms(kingdom))
+            foreach (var targetKingdom in FactionManager.GetEnemyKingdoms(kingdom).ToList())
             {
                 if (_warExhaustionManager.HasMaxWarExhaustion(kingdom, targetKingdom) && IsValidQuestState(kingdom, targetKingdom))
                 {
