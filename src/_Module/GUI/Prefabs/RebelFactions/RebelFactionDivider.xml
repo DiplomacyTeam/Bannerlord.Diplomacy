@@ -7,10 +7,10 @@
   </Constants>
   <Window>
     <!--Divider Widget-->
-    <EncyclopediaDividerWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" CollapseIndicator="PlacementListPanel\CollapseIndicator" ItemListWidget="*ItemList" UpdateChildrenStates="true" DoNotPassEventsToChildren="true">
+    <EncyclopediaDividerWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" CollapseIndicator="PlacementListPanel\CollapseIndicator" ItemListWidget="*ItemList" UpdateChildrenStates="true" DoNotPassEventsToChildren="true">
       <Children>
 
-        <ListPanel Id="PlacementListPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" UpdateChildrenStates="true">
+        <ListPanel Id="PlacementListPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" UpdateChildrenStates="true">
           <Children>
 
             <!--Collapse Indicator Widget-->

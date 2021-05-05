@@ -29,106 +29,113 @@
                 <RebelFactionsItem />
                 Begin Item
                 -->
-    <ListPanel Id="InnerPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+    <BrushWidget WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" MarginTop="5" MarginBottom="5" MarginLeft="5" MarginRight="5">
       <Children>
-        <BrushWidget WidthSizePolicy="Fixed" SuggestedWidth="500" HorizontalAlignment="Center" HeightSizePolicy="Fixed" SuggestedHeight="2" MarginTop="5" MarginBottom="10" Brush="Kingdom.Divider.White"/>
-        <TextWidget Brush="Kingdom.PolicyDescription.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" IsEnabled="true" Text="@FactionName" MarginLeft="5" MarginTop="5" MarginBottom="5"/>
-        <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginBottom="10">
+
+        <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Brush="Frame1.Border" MarginLeft="10" MarginRight="10" MarginTop="5" MarginBottom="5">
           <Children>
-            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginRight="20" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
+            <ListPanel Id="InnerPanel" WidthSizePolicy="StretchToParent" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
               <Children>
-                <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsEnabled="true" Text="@LeaderText"/>
-                <RebelFactionParticipant Parameter.ShowName="true" DataSource="{SponsorClan}" HorizontalAlignment="Center"/>
-              </Children>
-            </ListPanel>
-            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
-              <Children>
-                <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" IsEnabled="true" Text="@Status" MarginLeft="5" MarginRight="5" MarginTop="5" MarginBottom="5"/>
-                <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" IsEnabled="true" Text="@Demand" MarginLeft="5" MarginRight="5" MarginTop="5" MarginBottom="5"/>
-                <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" IsEnabled="true" Text="@StartDate" MarginLeft="5" MarginTop="5" MarginBottom="5"/>
-              </Children>
-            </ListPanel>
-          </Children>
-        </ListPanel>
+                <TextWidget Brush="Kingdom.PolicyDescription.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" IsEnabled="true" Text="@FactionName" MarginLeft="5" MarginTop="5" MarginBottom="5"/>
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginBottom="10">
+                  <Children>
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginRight="20" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                      <Children>
+                        <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsEnabled="true" Text="@LeaderText"/>
+                        <RebelFactionParticipant Parameter.ShowName="true" DataSource="{SponsorClan}" HorizontalAlignment="Center"/>
+                      </Children>
+                    </ListPanel>
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                      <Children>
+                        <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" IsEnabled="true" Text="@Status" MarginLeft="5" MarginRight="5" MarginTop="5" MarginBottom="5"/>
+                        <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" IsEnabled="true" Text="@Demand" MarginLeft="5" MarginRight="5" MarginTop="5" MarginBottom="5"/>
+                        <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" IsEnabled="true" Text="@StartDate" MarginLeft="5" MarginTop="5" MarginBottom="5"/>
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </ListPanel>
 
-        <!--Settlements Divider-->
-        <RebelFactionDivider Parameter.Title="@ParticipantsText" Parameter.ItemList="..\Clans" MarginBottom="5"/>
+                <!--Settlements Divider-->
+                <RebelFactionDivider Parameter.Title="@ParticipantsText" Parameter.ItemList="..\Clans" MarginBottom="5"/>
 
-        <GridWidget Id="Clans" DataSource="{ParticipatingClans}" ColumnCount="5" DefaultCellWidth="95" DefaultCellHeight="75" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
-          <ItemTemplate>
-            <RebelFactionParticipant/>
-          </ItemTemplate>
-        </GridWidget>
+                <GridWidget Id="Clans" DataSource="{ParticipatingClans}" ColumnCount="4" DefaultCellWidth="95" DefaultCellHeight="75" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
+                  <ItemTemplate>
+                    <RebelFactionParticipant/>
+                  </ItemTemplate>
+                </GridWidget>
 
-        <!--
+                <!--
 							Balance of Power
 							-->
 
-        <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginBottom="20" LayoutImp.LayoutMethod="VerticalBottomToTop" IsVisible="@ShouldShowBalanceOfPower">
-          <Children>
-            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" >
-              <Children>
-                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center" MarginTop="5" Brush="Kingdom.Wars.Stat.Value.Text" ClipContents="false" IntText="@FactionStrength">
+                <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" MarginBottom="20" LayoutImp.LayoutMethod="VerticalBottomToTop" IsVisible="@ShouldShowBalanceOfPower">
                   <Children>
-                    <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsEnabled="true" Text="@FactionText" PositionYOffset="30"/>
-                  </Children>
-                </TextWidget>
-                <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center">
-                  <Children>
-                    <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsEnabled="true" Text="@BOPLabel" VerticalAlignment="Bottom" PositionYOffset="25"/>
-                    <!-- Faction 1 Bar -->
-                    <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="10" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" AlphaFactor="0.05" Brush.Color="#00000040" FillWidget="FillWidget" InitialAmount="@FactionStrength" IsDirectionRightward="true" MaxAmount="@TotalStrength">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" >
                       <Children>
-                        <BrushWidget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.6" Brush.Color="#4F7B95FF"/>
+                        <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center" MarginTop="5" Brush="Kingdom.Wars.Stat.Value.Text" ClipContents="false" IntText="@FactionStrength">
+                          <Children>
+                            <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsEnabled="true" Text="@FactionText" PositionYOffset="30"/>
+                          </Children>
+                        </TextWidget>
+                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center">
+                          <Children>
+                            <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsEnabled="true" Text="@BOPLabel" VerticalAlignment="Bottom" PositionYOffset="25"/>
+                            <!-- Faction 1 Bar -->
+                            <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="10" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" AlphaFactor="0.05" Brush.Color="#00000040" FillWidget="FillWidget" InitialAmount="@FactionStrength" IsDirectionRightward="true" MaxAmount="@TotalStrength">
+                              <Children>
+                                <BrushWidget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.6" Brush.Color="#4F7B95FF"/>
 
-                      </Children>
-                    </FillBarHorizontalWidget>
-                    <!-- Faction 2 Bar -->
-                    <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="10" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" AlphaFactor="0.05" Brush.Color="#00000040" FillWidget="FillWidget" InitialAmount="@LoyalistStrength" IsDirectionRightward="false" MaxAmount="@TotalStrength">
-                      <Children>
-                        <BrushWidget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.6" Brush.Color="#CF0029FF"/>
+                              </Children>
+                            </FillBarHorizontalWidget>
+                            <!-- Faction 2 Bar -->
+                            <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="10" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" AlphaFactor="0.05" Brush.Color="#00000040" FillWidget="FillWidget" InitialAmount="@LoyalistStrength" IsDirectionRightward="false" MaxAmount="@TotalStrength">
+                              <Children>
+                                <BrushWidget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.6" Brush.Color="#CF0029FF"/>
 
+                              </Children>
+                            </FillBarHorizontalWidget>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="35" HorizontalAlignment="Center" Sprite="SPKingdom\Diplomacy\bar_seperator"/>
+                            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="25" VerticalAlignment="Center" Sprite="SPKingdom\Diplomacy\diplomacy_war_icon" IsEnabled="false" HorizontalAlignment="Center" PositionXOffset="@BreakingPointOffset"/>
+                          </Children>
+                        </Widget>
+                        <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="70" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="5" Brush="Kingdom.Wars.Stat.Value.Text" ClipContents="false" IntText="@LoyalistStrength">
+                          <Children>
+                            <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsEnabled="true" Text="@KingdomText" PositionYOffset="30"/>
+                          </Children>
+                        </TextWidget>
                       </Children>
-                    </FillBarHorizontalWidget>
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="35" HorizontalAlignment="Center" Sprite="SPKingdom\Diplomacy\bar_seperator"/>
-                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="25" VerticalAlignment="Center" Sprite="SPKingdom\Diplomacy\diplomacy_war_icon" IsEnabled="false" HorizontalAlignment="Center" PositionXOffset="@BreakingPointOffset"/>
+                    </ListPanel>
                   </Children>
-                </Widget>
-                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="70" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="5" Brush="Kingdom.Wars.Stat.Value.Text" ClipContents="false" IntText="@LoyalistStrength">
+                </ListPanel>
+
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsVisible="@ShouldShowBalanceOfPower">
                   <Children>
-                    <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsEnabled="true" Text="@KingdomText" PositionYOffset="30"/>
+                    <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" >
+                      <Children>
+                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" Brush="Popup.Done.Button" Command.Click="OnJoin" IsHidden="@ShouldShowLeave" IsEnabled="@ShouldAllowJoin" UpdateChildrenStates="true" >
+                          <Children>
+                            <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@JoinLabel"/>
+                          </Children>
+                        </ButtonWidget>
+                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" Brush="Popup.Cancel.Button" Command.Click="OnLeave" IsVisible="@ShouldShowLeave" UpdateChildrenStates="true" >
+                          <Children>
+                            <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@LeaveLabel"/>
+                          </Children>
+                        </ButtonWidget>
+                      </Children>
+                    </Widget>
+                    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" HorizontalAlignment="Center" Brush="Popup.Done.Button" Command.Click="OnStartRebellion" IsEnabled="@ShouldAllowStartRebellion" IsVisible="@ShouldShowStartRebellion" UpdateChildrenStates="true" >
+                      <Children>
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@StartRebellionLabel"/>
+                      </Children>
+                    </ButtonWidget>
                   </Children>
-                </TextWidget>
+                </ListPanel>
               </Children>
             </ListPanel>
           </Children>
-        </ListPanel>
-
-        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsVisible="@ShouldShowBalanceOfPower">
-          <Children>
-            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" >
-              <Children>
-                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" Brush="Popup.Done.Button" Command.Click="OnJoin" IsHidden="@ShouldShowLeave" IsEnabled="@ShouldAllowJoin" UpdateChildrenStates="true" >
-                  <Children>
-                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@JoinLabel"/>
-                  </Children>
-                </ButtonWidget>
-                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" Brush="Popup.Cancel.Button" Command.Click="OnLeave" IsVisible="@ShouldShowLeave" UpdateChildrenStates="true" >
-                  <Children>
-                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@LeaveLabel"/>
-                  </Children>
-                </ButtonWidget>
-              </Children>
-            </Widget>
-            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" HorizontalAlignment="Center" Brush="Popup.Done.Button" Command.Click="OnStartRebellion" IsEnabled="@ShouldAllowStartRebellion" IsVisible="@ShouldShowStartRebellion" UpdateChildrenStates="true" >
-              <Children>
-                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@StartRebellionLabel"/>
-              </Children>
-            </ButtonWidget>
-          </Children>
-        </ListPanel>
-        <BrushWidget WidthSizePolicy="Fixed" SuggestedWidth="500" HorizontalAlignment="Center" HeightSizePolicy="Fixed" SuggestedHeight="2" VerticalAlignment="Bottom" MarginTop="5" MarginBottom="10" Brush="Kingdom.Divider.White"/>
+        </BrushWidget>
       </Children>
-    </ListPanel>
+    </BrushWidget>
   </Window>
 </Prefab>
