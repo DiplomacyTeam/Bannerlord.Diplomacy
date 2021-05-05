@@ -9,7 +9,7 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
 
         protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject? textObject, bool forcePlayerCharacterCosts = false)
         {
-            var hasEnoughInfluence = DiplomacyCostCalculator.DetermineCostForFormingAlliance(kingdom, otherKingdom, true).InfluenceCost.CanPayCost();
+            var hasEnoughInfluence = DiplomacyCostCalculator.DetermineCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts).InfluenceCost.CanPayCost();
             if (!hasEnoughInfluence)
             {
                 textObject = FailedConditionText;
