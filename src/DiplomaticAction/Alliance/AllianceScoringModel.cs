@@ -18,7 +18,7 @@
 
             public int Relationship => 50;
 
-            public float Tendency => Settings.Instance!.AllianceTendency;
+            public int Tendency => Settings.Instance!.AllianceTendency;
 
             public int NonAggressionPactWithEnemy => -1000;
             public int NonAggressionPactWithNeutral => -10;

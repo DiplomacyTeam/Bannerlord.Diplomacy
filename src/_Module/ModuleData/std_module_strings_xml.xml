@@ -158,9 +158,9 @@
     <string id="V35hUfcc" text="Non-Aggression Pact Duration in Days"/>
     <string id="KXLGZEPh" text="The duration (in days) that a non-aggression pact will last. Default value is 100."/>
     <string id="G8BhBnRG" text="Non-Aggression Pact Tendency" />
-    <string id="907ER5u9" text="Multiplier for the tendency of factions to form non-aggression pacts. Default value is 100." />
+    <string id="907ER5u9" text="Score modifier affecting the tendency of kingdoms to form non-aggression pacts. Increasing the modifier makes non-aggression pacts more desirable to AI kingdoms. Default value is 0." />
     <string id="5a829TiT" text="Alliance Tendency" />
-    <string id="7nSjs8UL" text="Multiplier for the tendency of factions to form alliances. Default value is 100." />
+    <string id="7nSjs8UL" text="Score modifier affecting the tendency of kingdoms to form alliances. Increasing the modifier makes alliances more desirable to AI kingdoms. Default value is 0." />
     <string id="lhysZl9j" text="Action Tendency" />
 
 
@@ -212,7 +212,7 @@
     <string id="MIhbrqbr" text="Multiplier for the scaling of war reparations gold costs. Default value is 100." />
 
     <string id="2XC8QHkl" text="Enable Alliances" />
-    <string id="5YJBZx28" text="If disabled, this disables the ability to form alliances for both player and AI factions. Default value is enabled." />
+    <string id="5YJBZx28" text="If disabled, this disables the ability to form alliances for both player and AI kingdoms. Default value is enabled." />
 
 
     <string id="OfEMJWiR" text="Relation" />

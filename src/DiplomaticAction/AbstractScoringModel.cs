@@ -98,10 +98,7 @@ namespace Diplomacy.DiplomaticAction
                 explainedNum.Add(expansionismPenalty, _TExpansionism);
 
             /// Tendency
-            if (explainedNum.BaseNumber >= 0)
-            {
-                explainedNum.AddFactor(Scores.Tendency - 1.0f, _TTendency);
-            }
+                explainedNum.Add(Scores.Tendency, _TTendency);
 
             return explainedNum;
         }
@@ -130,7 +127,7 @@ namespace Diplomacy.DiplomaticAction
 
             public int Relationship { get; }
 
-            public float Tendency { get; }
+            public int Tendency { get; }
         }
 
         private static readonly TextObject _TWeakKingdom = new("{=q5qphBwi}Weak Kingdom");

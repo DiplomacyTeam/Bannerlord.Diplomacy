@@ -40,7 +40,7 @@ namespace Diplomacy.CivilWar
                 score.Add(scoreTuple.Item2, scoreTuple.Item1);
             }
 
-            score.AddFactor(Settings.Instance!.FactionTendency - 1.0f, _TFactionTendency);
+            score.Add(Settings.Instance!.FactionTendency, _TFactionTendency);
 
             return score;
         }

@@ -44,7 +44,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int DeclareWarCooldownInDays { get; set; } = 100;
 
-        [SettingPropertyBool("{=2XC8QHkl}Enable Alliances", Order = 3, RequireRestart = false, HintText = "{=5YJBZx28}If disabled, this disables the ability to form alliances for both player and AI factions. Default value is enabled.")]
+        [SettingPropertyBool("{=2XC8QHkl}Enable Alliances", Order = 3, RequireRestart = false, HintText = "{=5YJBZx28}If disabled, this disables the ability to form alliances for both player and AI kingdoms. Default value is enabled.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableAlliances { get; set; } = true;
 
@@ -56,13 +56,13 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int NonAggressionPactDuration { get; set; } = 100;
 
-        [SettingPropertyFloatingInteger("{=G8BhBnRG}Non-Aggression Pact Tendency", 0, 2, "#0%", Order = 6, RequireRestart = false, HintText = "{=907ER5u9}Multiplier for the tendency of factions to form non-aggression pacts. Default value is 100.")]
+        [SettingPropertyInteger("{=G8BhBnRG}Non-Aggression Pact Tendency", -100, 100, Order = 6, RequireRestart = false, HintText = "{=907ER5u9}Score modifier affecting the tendency of kingdoms to form non-aggression pacts. Increasing the modifier makes non-aggression pacts more desirable to AI kingdoms. Default value is 0.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public float NonAggressionPactTendency { get; set; } = 1.0f;
+        public int NonAggressionPactTendency { get; set; } = 0;
 
-        [SettingPropertyFloatingInteger("{=5a829TiT}Alliance Tendency", 0, 2, "#0%", Order = 7, RequireRestart = false, HintText = "{=7nSjs8UL}Multiplier for the tendency of factions to form alliances. Default value is 100.")]
+        [SettingPropertyInteger("{=5a829TiT}Alliance Tendency", -100, 100, Order = 7, RequireRestart = false, HintText = "{=7nSjs8UL}Score modifier affecting the tendency of kingdoms to form alliances. Increasing the modifier makes alliances more desirable to AI kingdoms. Default value is 0.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public float AllianceTendency { get; set; } = 1.0f;
+        public int AllianceTendency { get; set; } = 0;
 
         [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 999, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations. Default value is false.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
@@ -228,9 +228,9 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingCivilWar)]
         public int FactionCreationInfluenceCost { get; set; } = 100;
 
-        [SettingPropertyFloatingInteger("{=}Faction Tendency", 0, 2.0f, "#0%", Order = 5, RequireRestart = false, HintText = "{=}The tendency of clans to create or join factions. Default value is 100%.")]
+        [SettingPropertyInteger("{=7wK0mmw1}Faction Tendency", -100, 100, Order = 5, RequireRestart = false, HintText = "{=aqvIdG7w}Score modifier affecting the tendency of clans to create or join factions. Increasing the modifier increases faction participation. Default value is 0.")]
         [SettingPropertyGroup(HeadingCivilWar)]
-        public float FactionTendency { get; internal set; } = 1.0f;
+        public int FactionTendency { get; internal set; } = 0;
 
         /*
 [SettingPropertyBool("{=ZIf1tRII}Enable Coalitions", RequireRestart = false, HintText = "{=8v8q0OGu}Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled.")]
