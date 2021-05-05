@@ -47,6 +47,7 @@ namespace Diplomacy
             ConstructContainerDefinition(typeof(Dictionary<FactionPair, List<DiplomaticAgreement>>));
             ConstructContainerDefinition(typeof(List<RebelFaction>));
             ConstructContainerDefinition(typeof(Dictionary<Kingdom, List<RebelFaction>>));
+            ConstructContainerDefinition(typeof(Dictionary<Town, Clan>));
         }
     }
 }

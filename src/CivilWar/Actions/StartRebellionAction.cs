@@ -22,7 +22,6 @@ namespace Diplomacy.CivilWar
 
             var rebelKingdomName = new TextObject(_SRebelKingdomName, new Dictionary<string, object>() { { "REBELS", rebelFaction.Name}, { "KINGDOM", rebelFaction.ParentKingdom.Name } });
 
-            rebelFaction.AtWar = true;
             Campaign.Current.KingdomManager.CreateKingdom(
                 rebelKingdomName,
                 rebelKingdomName,
@@ -34,7 +33,8 @@ namespace Diplomacy.CivilWar
             {
                 if (kingdom.RulingClan == rebelFaction.SponsorClan)
                 {
-                    rebelFaction.RebelKingdom = kingdom;
+                    rebelFaction.StartRebellion(kingdom);
+                    break;
                 }
             }
 

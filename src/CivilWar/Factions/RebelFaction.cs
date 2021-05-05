@@ -21,7 +21,7 @@ namespace Diplomacy.CivilWar
         public Kingdom ParentKingdom { get; private set; }
 
         [SaveableProperty(4)]
-        public Kingdom? RebelKingdom { get; set; }
+        public Kingdom? RebelKingdom { get; private set; }
 
         [SaveableProperty(5)]
         public bool AtWar { get; set; } = false;
@@ -32,6 +32,10 @@ namespace Diplomacy.CivilWar
         [SaveableProperty(7)]
         public TextObject Name { get; private set; }
 
+        [SaveableProperty(8)]
+        public Dictionary<Town, Clan> OriginalFiefOwners { get; private set; }
+
+
         public RebelFaction(Clan sponsorClan)
         {
             _participatingClans = new();
@@ -40,6 +44,7 @@ namespace Diplomacy.CivilWar
             ParentKingdom = sponsorClan.Kingdom;
             DateStarted = CampaignTime.Now;
             Name = FactionNameGenerator.GenerateFactionName(this.SponsorClan);
+            OriginalFiefOwners = new();
         }
         public abstract RebelDemandType RebelDemandType { get; }
 
@@ -60,6 +65,16 @@ namespace Diplomacy.CivilWar
         public float StrengthRatio => FactionStrength / ParentKingdom.TotalStrength;
 
         public bool HasCriticalSupport => StrengthRatio >= RequiredStrengthRatio;
+
+        public void StartRebellion(Kingdom rebelKingdom)
+        {
+            this.AtWar = true;
+            this.RebelKingdom = rebelKingdom;
+            foreach (Town fief in ParentKingdom.Fiefs.Union(rebelKingdom.Fiefs))
+            {
+                OriginalFiefOwners[fief] = fief.OwnerClan;
+            }
+        }
 
         public void AddClan(Clan clan)
         {

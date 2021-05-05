@@ -70,7 +70,7 @@ namespace Diplomacy.CampaignBehaviors
 
                     if (loser == rebelKingdom)
                     {
-                        ConsolidateKingdomsAction.Apply(rebelKingdom, parentKingdom);
+                        ConsolidateKingdomsAction.Apply(rebelFaction);
                         RebelFactionManager.DestroyRebelFaction(rebelFaction!);
 
                         InformationManager.ShowInquiry(

@@ -14,7 +14,7 @@ namespace Diplomacy.CivilWar.Factions
 
         public override void EnforceDemand()
         {
-            ConsolidateKingdomsAction.Apply(this.RebelKingdom!, this.ParentKingdom);
+            ConsolidateKingdomsAction.Apply(this);
             this.ParentKingdom.AddDecision(new KingSelectionKingdomDecision(this.SponsorClan, this.ParentKingdom.Leader.Clan), true);
             RebelFactionManager.DestroyRebelFaction(this);
 
