@@ -27,8 +27,8 @@
 
   <!-- Game Versions for Stable and Beta -->
   <PropertyGroup>
-    <GameVersion Condition="$(IsStable) == 'true'">1.5.8</GameVersion>
-    <GameVersion Condition="$(IsBeta) == 'true'">1.5.9</GameVersion>
+    <GameVersion Condition="$(IsStable) == 'true'">1.5.9</GameVersion>
+    <GameVersion Condition="$(IsBeta) == 'true'">1.5.10</GameVersion>
   </PropertyGroup>
 
   <!-- Game Folder(s) -->
