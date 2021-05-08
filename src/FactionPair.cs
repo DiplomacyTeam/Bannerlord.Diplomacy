@@ -6,7 +6,6 @@ namespace Diplomacy
     /// <summary>
     /// This is essentially an accessible copy of the game's own internal FactionPair class.
     /// </summary>
-    [SaveableStruct(9)]
     internal struct FactionPair
     {
         [SaveableProperty(1)]

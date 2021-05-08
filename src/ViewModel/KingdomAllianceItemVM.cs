@@ -17,7 +17,9 @@ namespace Diplomacy.ViewModel
             base.UpdateDiplomacyProperties();
             ActionName = new TextObject("{=K4GraLTn}Break Alliance").ToString();
             InfluenceCost = 0;
+#if e159
             IsTruce = false;
+#endif
         }
 
         protected override void UpdateActionAvailability()
