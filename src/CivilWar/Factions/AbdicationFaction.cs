@@ -6,13 +6,21 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar.Factions
 {
-    public class AbdicationFaction : RebelFaction
+    internal class AbdicationFaction : RebelFaction
     {
         public AbdicationFaction(Clan sponsorClan) : base(sponsorClan) { }
 
         public override RebelDemandType RebelDemandType => RebelDemandType.Abdication;
 
-        public override void EnforceDemand()
+        public override float LeaderInfluenceOnSuccess => 500f;
+
+        public override float MemberInfluenceOnSuccess => 100f;
+
+        public override float LeaderInfluenceOnFailure => -500f;
+
+        public override float MemberInfluenceOnFailure => -100f;
+
+        protected override void ApplyDemand()
         {
             ConsolidateKingdomsAction.Apply(this);
             this.ParentKingdom.AddDecision(new KingSelectionKingdomDecision(this.SponsorClan, this.ParentKingdom.Leader.Clan), true);

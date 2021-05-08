@@ -103,7 +103,57 @@ namespace Diplomacy.CivilWar
 
         public MBReadOnlyList<Clan> Clans { get => new MBReadOnlyList<Clan>(_participatingClans); }
 
-        public abstract void EnforceDemand();
+        protected abstract void ApplyDemand();
+
+        public virtual void EnforceFailure()
+        {
+            ApplyInfluenceChanges(false);
+
+            ConsolidateKingdomsAction.Apply(this);
+            RebelFactionManager.DestroyRebelFaction(this);
+
+
+            InformationManager.ShowInquiry(
+                new InquiryData(
+                    new TextObject("{=0WVHMfN8}A Rebellion Crumbles").ToString(),
+                    new TextObject("{=BVNGIAMM}{PARENT_KINGDOM} has crushed the rebellion ravaging their kingdom.").SetTextVariable("PARENT_KINGDOM", ParentKingdom.Name).ToString(),
+                    true,
+                    false,
+                    GameTexts.FindText("str_ok", null).ToString(),
+                    null,
+                    null,
+                    null), true);
+        }
+
+        private void ApplyInfluenceChanges(bool success)
+        {
+            foreach (Clan clan in ParentKingdom.Clans)
+            {
+                if (clan == ParentKingdom.RulingClan)
+                    clan.Influence = MBMath.ClampFloat(clan.Influence + (success ? LeaderInfluenceOnFailure : LeaderInfluenceOnSuccess), 0f, float.MaxValue);
+                else
+                    clan.Influence = MBMath.ClampFloat(clan.Influence + (success ? MemberInfluenceOnFailure : MemberInfluenceOnSuccess), 0f, float.MaxValue);
+            }
+
+            foreach (Clan clan in Clans)
+            {
+                if (clan == SponsorClan)
+                    clan.Influence = MBMath.ClampFloat(clan.Influence + (success ? LeaderInfluenceOnSuccess : LeaderInfluenceOnFailure), 0f, float.MaxValue);
+                else
+                    clan.Influence = MBMath.ClampFloat(clan.Influence + (success ? MemberInfluenceOnSuccess : MemberInfluenceOnFailure), 0f, float.MaxValue);
+            }
+        }
+
+        public abstract float LeaderInfluenceOnSuccess { get; }
+        public abstract float MemberInfluenceOnSuccess { get; }
+        public abstract float LeaderInfluenceOnFailure { get; }
+        public abstract float MemberInfluenceOnFailure { get; }
+
+        public void EnforceSuccess()
+        {
+            ApplyInfluenceChanges(true);
+            ApplyDemand();
+        } 
 
         public TextObject DemandDescription
         {

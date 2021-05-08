@@ -42,7 +42,10 @@ namespace Diplomacy.CivilWar
 
             foreach (Clan clan in rebelFaction.Clans)
             {
+                // make sure to retain influence
+                float influence = clan.Influence;
                 ChangeKingdomAction.ApplyByJoinToKingdom(clan, rebelFaction.RebelKingdom, false);
+                clan.Influence = influence;
             }
 
             DeclareWarAction.Apply(rebelFaction.RebelKingdom, rebelFaction.ParentKingdom);

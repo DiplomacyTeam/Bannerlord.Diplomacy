@@ -5,13 +5,21 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar.Factions
 {
-    public class SecessionFaction : RebelFaction
+    internal class SecessionFaction : RebelFaction
     {
         public SecessionFaction(Clan sponsorClan) : base(sponsorClan) { }
 
         public override RebelDemandType RebelDemandType => RebelDemandType.Secession;
 
-        public override void EnforceDemand()
+        public override float LeaderInfluenceOnSuccess => 500f;
+
+        public override float MemberInfluenceOnSuccess => 100f;
+
+        public override float LeaderInfluenceOnFailure => -500f;
+
+        public override float MemberInfluenceOnFailure => -100f;
+
+        protected override void ApplyDemand()
         {
             var kingdomName = FactionNameGenerator.GenerateKingdomName(this);
             Kingdom newKingdom = this.RebelKingdom!;

@@ -12,7 +12,7 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CampaignBehaviors
 {
-    class CivilWarBehavior : CampaignBehaviorBase
+    internal sealed class CivilWarBehavior : CampaignBehaviorBase
     {
         private RebelFactionManager _rebelFactionManager;
 
@@ -69,25 +69,9 @@ namespace Diplomacy.CampaignBehaviors
                     var rebelFaction = RebelFactionManager.GetRebelFaction(parentKingdom).Where(x => x.RebelKingdom == rebelKingdom).First();
 
                     if (loser == rebelKingdom)
-                    {
-                        ConsolidateKingdomsAction.Apply(rebelFaction);
-                        RebelFactionManager.DestroyRebelFaction(rebelFaction!);
-
-                        InformationManager.ShowInquiry(
-                            new InquiryData(
-                                new TextObject("{=0WVHMfN8}A Rebellion Crumbles").ToString(),
-                                new TextObject("{=BVNGIAMM}{PARENT_KINGDOM} has crushed the rebellion ravaging their kingdom.").SetTextVariable("PARENT_KINGDOM", parentKingdom.Name).ToString(),
-                                true,
-                                false,
-                                GameTexts.FindText("str_ok", null).ToString(),
-                                null,
-                                null,
-                                null), true);
-                    }
+                        rebelFaction.EnforceFailure();
                     else
-                    {
-                        rebelFaction.EnforceDemand();
-                    }
+                        rebelFaction.EnforceSuccess();
                 }
             }
         }
