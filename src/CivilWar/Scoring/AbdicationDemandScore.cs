@@ -7,7 +7,7 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar
 {
-    public class AbdicationDemandScore : AbstractFactionDemandScoringModel
+    internal sealed class AbdicationDemandScore : AbstractFactionDemandScoringModel
     {
         public float FiefDeficit => 10;
 

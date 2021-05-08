@@ -9,7 +9,7 @@ using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 namespace Diplomacy.Patches
 {
     [HarmonyPatch(typeof(UrbanCharactersCampaignBehavior))]
-    class UrbanCharactersCampaignBehaviorPatch
+    internal sealed class UrbanCharactersCampaignBehaviorPatch
     {
         private static FieldInfo _companionsFieldInfo = typeof(UrbanCharactersCampaignBehavior).GetField("_companions", BindingFlags.Instance | BindingFlags.NonPublic);
         private static Action<Hero, UrbanCharactersCampaignBehavior> ActivateCharacter = (hero, __instance) =>

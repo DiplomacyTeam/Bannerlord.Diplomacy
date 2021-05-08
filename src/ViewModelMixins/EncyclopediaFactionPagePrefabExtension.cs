@@ -5,7 +5,7 @@ using System.Xml;
 namespace Diplomacy.ViewModelMixins
 {
     [PrefabExtension("EncyclopediaFactionPage", "descendant::GridWidget[@Id='EnemiesGrid']")]
-    public class EncyclopediaFactionPagePrefabExtension : PrefabExtensionInsertPatch
+    internal sealed class EncyclopediaFactionPagePrefabExtension : PrefabExtensionInsertPatch
     {
         public override InsertType Type => InsertType.Append;
 
@@ -22,7 +22,7 @@ namespace Diplomacy.ViewModelMixins
     }
 
     [PrefabExtension("EncyclopediaFactionPage", "descendant::MaskedTextureWidget[@Brush='Encyclopedia.Faction.Banner']")]
-    public class FactionsButtonExtension : PrefabExtensionInsertPatch
+    internal sealed class FactionsButtonExtension : PrefabExtensionInsertPatch
     {
         public override InsertType Type => InsertType.Append;
 

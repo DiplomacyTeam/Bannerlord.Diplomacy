@@ -5,7 +5,7 @@ using TaleWorlds.Core;
 
 namespace Diplomacy.CampaignBehaviors
 {
-    class UIBehavior : CampaignBehaviorBase
+    internal sealed class UIBehavior : CampaignBehaviorBase
     {
         public override void RegisterEvents()
         {

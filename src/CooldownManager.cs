@@ -8,7 +8,7 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy
 {
-    class CooldownManager
+    internal sealed class CooldownManager
     {
         public static CooldownManager? Instance { get; private set; }
 

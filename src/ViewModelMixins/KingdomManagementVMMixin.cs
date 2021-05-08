@@ -9,7 +9,7 @@ using TaleWorlds.Localization;
 namespace Diplomacy.ViewModelMixins
 {
     [ViewModelMixin]
-    public class KingdomManagementVMMixin : BaseViewModelMixin<KingdomManagementVM>
+    internal sealed class KingdomManagementVMMixin : BaseViewModelMixin<KingdomManagementVM>
     {
         [DataSourceProperty]
         public string FactionsLabel { get; set; }

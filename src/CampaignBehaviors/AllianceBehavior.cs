@@ -10,7 +10,7 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CampaignBehaviors
 {
-    class AllianceBehavior : CampaignBehaviorBase
+    internal sealed class AllianceBehavior : CampaignBehaviorBase
     {
         public override void RegisterEvents()
         {

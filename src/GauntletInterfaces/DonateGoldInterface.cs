@@ -7,7 +7,7 @@ using TaleWorlds.Library;
 
 namespace Diplomacy.GauntletInterfaces
 {
-    class DonateGoldInterface : GenericInterface
+    internal sealed class DonateGoldInterface : GenericInterface
     {
         private const string _movieName = "DonateGold";
 

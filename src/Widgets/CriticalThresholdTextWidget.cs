@@ -2,7 +2,7 @@
 
 namespace Diplomacy.Widgets
 {
-    class CriticalThresholdTextWidget : TextWidget
+    public class CriticalThresholdTextWidget : TextWidget
     {
         public CriticalThresholdTextWidget(UIContext context) : base(context) { }
 

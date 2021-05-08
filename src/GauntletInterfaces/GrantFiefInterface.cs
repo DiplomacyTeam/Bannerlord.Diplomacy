@@ -8,7 +8,7 @@ using TaleWorlds.Library;
 
 namespace Diplomacy.GauntletInterfaces
 {
-    class GrantFiefInterface : GenericInterface
+    internal sealed class GrantFiefInterface : GenericInterface
     {
         private const string _movieName = "GrantFief";
         Action? _refreshAction;

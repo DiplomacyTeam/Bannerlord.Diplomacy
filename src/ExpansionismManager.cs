@@ -8,7 +8,7 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy
 {
-    class ExpansionismManager
+    internal sealed class ExpansionismManager
     {
         [SaveableField(1)]
         private Dictionary<IFaction, float> _expansionism;

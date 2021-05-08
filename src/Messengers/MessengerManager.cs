@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -10,7 +9,7 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy.Messengers
 {
-    class MessengerManager : IMissionListener
+    internal sealed class MessengerManager : IMissionListener
     {
         private const float MessengerHourlySpeed = 20f;
 
@@ -27,7 +26,7 @@ namespace Diplomacy.Messengers
             Messengers = new MBReadOnlyList<Messenger>(_messengers);
         }
 
-        private static string _SOK { get { return GameTexts.FindText("str_ok", null).ToString(); } } 
+        private static string _SOK { get { return GameTexts.FindText("str_ok", null).ToString(); } }
         private static string _SMessengerSent { get; } = new TextObject("{=zv12jjyW}Messenger Sent").ToString();
 
         public void SendMessenger(Hero targetHero)

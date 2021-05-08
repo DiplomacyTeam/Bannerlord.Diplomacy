@@ -5,7 +5,7 @@ using System.Xml;
 namespace Diplomacy.ViewModelMixins
 {
     [PrefabExtension("EncyclopediaHeroPage", "descendant::RichTextWidget[@Text='@InformationText']")]
-    public class EncyclopediaHeroPagePrefabExtension : PrefabExtensionInsertPatch
+    internal sealed class EncyclopediaHeroPagePrefabExtension : PrefabExtensionInsertPatch
     {
         public override InsertType Type => InsertType.Append;
 

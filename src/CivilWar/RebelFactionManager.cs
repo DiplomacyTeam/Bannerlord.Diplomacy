@@ -5,7 +5,7 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy.CivilWar
 {
-    class RebelFactionManager
+    internal sealed class RebelFactionManager
     {
         public static RebelFactionManager? Instance { get; private set; }
 

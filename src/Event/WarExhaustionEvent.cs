@@ -2,7 +2,7 @@
 
 namespace Diplomacy.Event
 {
-    struct WarExhaustionEvent
+    internal struct WarExhaustionEvent
     {
         public WarExhaustionEvent(Kingdom kingdom, Kingdom otherKingdom, WarExhaustionManager.WarExhaustionType warExhaustionType, float warExhaustionToAdd)
         {

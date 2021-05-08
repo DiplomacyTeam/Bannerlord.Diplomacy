@@ -7,7 +7,7 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar
 {
-    public abstract class AbstractFactionDemandScoringModel
+    internal abstract class AbstractFactionDemandScoringModel
     {
         public IFactionDemandScores Scores { get; init; }
         public AbstractFactionDemandScoringModel(IFactionDemandScores scores) => Scores = scores;

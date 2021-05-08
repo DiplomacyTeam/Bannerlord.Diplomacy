@@ -6,7 +6,7 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar
 {
-    public class FactionNameGenerator
+    internal class FactionNameGenerator
     {
         private static Dictionary<string, List<TitleSelection>> CultureToKingdomTitles { get; } = new Dictionary<string, List<TitleSelection>>()
         {

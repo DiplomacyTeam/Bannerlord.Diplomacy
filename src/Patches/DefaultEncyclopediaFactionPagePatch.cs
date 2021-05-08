@@ -8,7 +8,7 @@ using TaleWorlds.CampaignSystem.Encyclopedia.Pages;
 
 namespace Diplomacy.Patches
 {
-    class DefaultEncyclopediaFactionPagePatch : PatchClass<DefaultEncyclopediaFactionPagePatch, DefaultEncyclopediaFactionPage>
+    internal sealed class DefaultEncyclopediaFactionPagePatch : PatchClass<DefaultEncyclopediaFactionPagePatch, DefaultEncyclopediaFactionPage>
     {
         protected override IEnumerable<Patch> Prepare() => new Patch[]
         {

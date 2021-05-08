@@ -4,7 +4,7 @@ using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.CivilWar
 {
-    public class RebelFactionScoringModel
+    internal sealed class RebelFactionScoringModel
     {
         public const float RequiredScore = 100f;
 

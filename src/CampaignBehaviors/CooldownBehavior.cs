@@ -9,7 +9,7 @@ using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.CampaignBehaviors
 {
-    class CooldownBehavior : CampaignBehaviorBase
+    internal sealed class CooldownBehavior : CampaignBehaviorBase
     {
         private CooldownManager _cooldownManager;
 

@@ -9,7 +9,7 @@ using TaleWorlds.SaveSystem;
 
 namespace Diplomacy
 {
-    class WarExhaustionManager
+    internal sealed class WarExhaustionManager
     {
 
         // legacy war exhaustion dictionary using stringId

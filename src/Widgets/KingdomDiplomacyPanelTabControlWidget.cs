@@ -2,7 +2,7 @@
 
 namespace Diplomacy.Widgets
 {
-    class KingdomDiplomacyPanelTabControlWidget : ListPanel
+    public class KingdomDiplomacyPanelTabControlWidget : ListPanel
     {
         private Widget? _statsPanel;
         private Widget? _overviewPanel;

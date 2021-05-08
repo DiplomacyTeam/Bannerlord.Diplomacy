@@ -7,7 +7,7 @@ using TaleWorlds.Library;
 
 namespace Diplomacy.GauntletInterfaces
 {
-    internal class RebelFactionsInterface : GenericInterface
+    internal sealed class RebelFactionsInterface : GenericInterface
     {
         private const string _movieName = "RebelFactions";
 

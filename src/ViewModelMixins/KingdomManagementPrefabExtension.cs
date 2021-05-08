@@ -6,7 +6,7 @@ using System.Xml;
 namespace Diplomacy.ViewModelMixins
 {
     [PrefabExtension("KingdomManagement", "descendant::ButtonWidget[@Id='FiefsTabButton']")]
-    public class KingdomManagementPrefabExtension : PrefabExtensionInsertPatch
+    internal sealed class KingdomManagementPrefabExtension : PrefabExtensionInsertPatch
     {
         public override InsertType Type => InsertType.Append;
 
@@ -29,7 +29,7 @@ namespace Diplomacy.ViewModelMixins
     }
 
     [PrefabExtension("KingdomManagement", "descendant::Constant[@Name='Header.Tab.Center.Width.Scaled']")]
-    public class KingdomManagementScalingPatch : PrefabExtensionSetAttributePatch
+    internal sealed class KingdomManagementScalingPatch : PrefabExtensionSetAttributePatch
     {
         public override List<Attribute> Attributes => new()
         {
