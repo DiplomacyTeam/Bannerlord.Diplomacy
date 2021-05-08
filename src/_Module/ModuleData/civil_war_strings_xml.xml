@@ -5,9 +5,9 @@
   </tags>
   <strings>
     <string id="0WVHMfN8" text="A Rebellion Crumbles" />
-    <string id="BVNGIAMM" text="{PARENT_KINGDOM} has crushed the rebellion ravaging their kingdom." />
+    <string id="BVNGIAMM" text="{PARENT_KINGDOM} has crushed the rebellion ravaging their kingdom. {PLAYER_PARTICIPATION}" />
     <string id="x5ThZR5A" text="A New Kingdom Emerges" />
-    <string id="nRxyMIEE" text="{PARENT_KINGDOM} has lost their civil war and failed to keep their kingdom united. The {KINGDOM} has emerged." />
+    <string id="nRxyMIEE" text="{PARENT_KINGDOM} has lost their civil war and failed to keep their kingdom united. The {KINGDOM} has emerged. {PLAYER_PARTICIPATION}" />
     <string id="1OQGJkqb" text="A Rebel Faction Emerges" />
     <string id="pqjZ6wck" text="A rebel faction has emerged in {KINGDOM}. They are led by clan {CLAN_NAME}. {DEMAND}" />
     <string id="ZAfNviVS" text="Secession" />
@@ -24,6 +24,18 @@
     <string id="2PpZkBOB" text="A civil war has broken out in {KINGDOM}. The {REBEL_KINGDOM} are led by clan {CLAN_NAME}. {DEMAND}" />
     <string id="o0HIAHqg" text="Rebel kingdoms can't be the target of diplomatic actions." />
     
+    <string id="BPcKHP0D" text="As leader of the rebellion, you gained {INFLUENCE} influence." />
+    <string id="UoMvwnTb" text="As leader of the rebellion, you lost {INFLUENCE} influence." />
+    <string id="QiX6m5cp" text="As a member of the rebellion, you gained {INFLUENCE} influence." />
+    <string id="yrz8GMUb" text="As a member of the rebellion, you lost {INFLUENCE} influence." />
+
+    <string id="SNLviWvc" text="As leader of the loyalists, you lost {INFLUENCE} influence." />
+    <string id="2I1X5fAC" text="As leader of the loyalists, you gained {INFLUENCE} influence." />
+    <string id="4FfA8RL4" text="As a member of the loyalists, you lost {INFLUENCE} influence." />
+    <string id="uUu7DEDU" text="As a member of the loyalists, you gained {INFLUENCE} influence." />
+    
+    <string id="f66sNaiz" text="You cannot be part of a rebellion" />
+
     <string id="DZ6dpEn3" text="Join Faction" />
     <string id="uTCw0WiH" text="Leave Faction" />
     <string id="1OUDq7Ul" text="Balance Of Power" />
@@ -37,7 +49,7 @@
     <string id="2PglxF8k" text="Choose Faction Demand" />
     <string id="gypPPxUJ" text="Factions" />
     <string id="aWWzFITw" text="A Monarch Abdicates" />
-    <string id="2Pv3DsVm" text="{PARENT_KINGDOM} has lost its civil war to the {REBELS}. {LEADER} will abdicate the throne." />
+    <string id="2Pv3DsVm" text="{PARENT_KINGDOM} has lost its civil war to the {REBELS}. {LEADER} will abdicate the throne. {PLAYER_PARTICIPATION}" />
     <string id="GkhKppOk" text="Not Enough Fiefs" />
     <string id="Jc1mCVuY" text="Trait: Calculating" />
     <string id="cjbVV7E3" text="Clan Tier Too Low" />

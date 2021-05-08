@@ -1,4 +1,5 @@
-﻿using Diplomacy.PatchTools;
+﻿using Diplomacy.Extensions;
+using Diplomacy.PatchTools;
 using Diplomacy.ViewModel;
 
 using System;
@@ -8,6 +9,7 @@ using System.Reflection;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 
 namespace Diplomacy.Patches
@@ -44,7 +46,7 @@ namespace Diplomacy.Patches
                                               orderby w.Faction1.Name.ToString() + w.Faction2.Name.ToString()
                                               select w)
             {
-                if (stanceLink.Faction1 is Kingdom && stanceLink.Faction2 is Kingdom && !stanceLink.Faction1.IsMinorFaction && !stanceLink.Faction2.IsMinorFaction)
+                if (stanceLink.Faction1.IsKingdomFaction && stanceLink.Faction2.IsKingdomFaction && !(stanceLink.Faction1 as Kingdom)!.IsRebelKingdom() && !(stanceLink.Faction2 as Kingdom)!.IsRebelKingdom())
                 {
                     // FIXME: LO-PRIO: Verify the implicit downcast for onDiplomacyItemSelection from an Action<KingdomDiplomacyItemVM> to the
                     // parameter target type Action<KingdomWarItemVM>. KingdomWarItemVM inherits from KingdomDiplomacyItemVM, not the opposite.
@@ -54,13 +56,19 @@ namespace Diplomacy.Patches
 
             foreach (var kingdom in Kingdom.All.Where(k => k != playerKingdom
                                                         && !k.IsEliminated
-                                                        && FactionManager.IsNeutralWithFaction(k, playerKingdom)))
+                                                        && FactionManager.IsNeutralWithFaction(k, playerKingdom)
+                                                        && !k.IsRebelKingdom()))
             {
                 playerTruces.Add(new KingdomTruceItemVMExtensionVM(playerKingdom, kingdom, onDiplomacyItemSelection, onDeclareWar));
             }
 
             __instance.PlayerTruces = playerTruces;
             __instance.PlayerWars = playerWars;
+
+            GameTexts.SetVariable("STR", __instance.PlayerWars.Count);
+            __instance.NumOfPlayerWarsText = GameTexts.FindText("str_STR_in_parentheses", null).ToString();
+            GameTexts.SetVariable("STR", __instance.PlayerTruces.Count);
+            __instance.NumOfPlayerTrucesText = GameTexts.FindText("str_STR_in_parentheses", null).ToString();
 
             _SetDefaultSelectedItem(__instance);
         }

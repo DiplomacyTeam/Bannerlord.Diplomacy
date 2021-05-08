@@ -22,16 +22,18 @@ namespace Diplomacy.CivilWar.Factions
 
         protected override void ApplyDemand()
         {
+            var strVars = new Dictionary<string, object> { { "PARENT_KINGDOM", this.ParentKingdom.Name }, { "REBELS", this.Name }, { "LEADER", this.ParentKingdom.Leader.Name } };
+            strVars.Add("PLAYER_PARTICIPATION", GetPlayerParticipationText(true));
+
             ConsolidateKingdomsAction.Apply(this);
             this.ParentKingdom.AddDecision(new KingSelectionKingdomDecision(this.SponsorClan, this.ParentKingdom.Leader.Clan), true);
             RebelFactionManager.DestroyRebelFaction(this);
 
-            var strVars = new Dictionary<string, object> { { "PARENT_KINGDOM", this.ParentKingdom.Name }, { "REBELS", this.Name }, { "LEADER", this.ParentKingdom.Leader.Name } };
 
             InformationManager.ShowInquiry(
                 new InquiryData(
                     new TextObject("{=aWWzFITw}A Monarch Abdicates").ToString(),
-                    new TextObject("{=2Pv3DsVm}{PARENT_KINGDOM} has lost its civil war to the {REBELS}. {LEADER} will abdicate the throne.", strVars).ToString(),
+                    new TextObject("{=2Pv3DsVm}{PARENT_KINGDOM} has lost its civil war to the {REBELS}. {LEADER} will abdicate the throne. {PLAYER_PARTICIPATION}", strVars).ToString(),
                     true,
                     false,
                     GameTexts.FindText("str_ok", null).ToString(),

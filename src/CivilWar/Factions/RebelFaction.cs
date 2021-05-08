@@ -51,7 +51,8 @@ namespace Diplomacy.CivilWar
         public float FactionStrength { get { return _participatingClans.Select(c => c.TotalStrength).Sum(); } }
         public float LoyalistStrength { get { return ParentKingdom.TotalStrength - this.FactionStrength; } }
 
-        public float RequiredStrengthRatio { 
+        public float RequiredStrengthRatio
+        {
             get
             {
                 var valor = SponsorClan.Leader.GetTraitLevel(DefaultTraits.Valor) + Math.Abs(DefaultTraits.Valor.MinValue);
@@ -59,7 +60,7 @@ namespace Diplomacy.CivilWar
                 var minRequiredStrengthRatio = 0.5f;
                 var ratio = maxRequiredStrengthRatio - (((maxRequiredStrengthRatio - minRequiredStrengthRatio) / 4) * valor);
                 return ratio;
-            } 
+            }
         }
 
         public float StrengthRatio => FactionStrength / ParentKingdom.TotalStrength;
@@ -116,7 +117,10 @@ namespace Diplomacy.CivilWar
             InformationManager.ShowInquiry(
                 new InquiryData(
                     new TextObject("{=0WVHMfN8}A Rebellion Crumbles").ToString(),
-                    new TextObject("{=BVNGIAMM}{PARENT_KINGDOM} has crushed the rebellion ravaging their kingdom.").SetTextVariable("PARENT_KINGDOM", ParentKingdom.Name).ToString(),
+                    new TextObject("{=BVNGIAMM}{PARENT_KINGDOM} has crushed the rebellion ravaging their kingdom. {PLAYER_PARTICIPATION}")
+                        .SetTextVariable("PARENT_KINGDOM", ParentKingdom.Name)
+                        .SetTextVariable("PLAYER_PARTICIPATION", GetPlayerParticipationText(false))
+                        .ToString(),
                     true,
                     false,
                     GameTexts.FindText("str_ok", null).ToString(),
@@ -153,12 +157,46 @@ namespace Diplomacy.CivilWar
         {
             ApplyInfluenceChanges(true);
             ApplyDemand();
-        } 
+        }
+
+        protected TextObject GetPlayerParticipationText(bool success)
+        {
+            TextObject text;
+            if (SponsorClan == Clan.PlayerClan)
+            {
+                text = success
+                    ? new TextObject("{=BPcKHP0D}As leader of the rebellion, you gained {INFLUENCE} influence.").SetTextVariable("INFLUENCE", Math.Abs(LeaderInfluenceOnSuccess))
+                    : new TextObject("{=UoMvwnTb}As leader of the rebellion, you lost {INFLUENCE} influence.").SetTextVariable("INFLUENCE", Math.Abs(LeaderInfluenceOnFailure));
+            }
+            else if (Clans.Contains(Clan.PlayerClan))
+            {
+                text = success
+                    ? new TextObject("{=QiX6m5cp}As a member of the rebellion, you gained {INFLUENCE} influence.").SetTextVariable("INFLUENCE", Math.Abs(MemberInfluenceOnSuccess))
+                    : new TextObject("{=yrz8GMUb}As a member of the rebellion, you lost {INFLUENCE} influence.").SetTextVariable("INFLUENCE", Math.Abs(MemberInfluenceOnFailure));
+            }
+            else if(ParentKingdom.RulingClan == Clan.PlayerClan)
+            {
+                text = success
+                    ? new TextObject("{=SNLviWvc}As leader of the loyalists, you lost {INFLUENCE} influence.").SetTextVariable("INFLUENCE", Math.Abs(LeaderInfluenceOnFailure))
+                    : new TextObject("{=2I1X5fAC}As leader of the loyalists, you gained {INFLUENCE} influence.").SetTextVariable("INFLUENCE", Math.Abs(LeaderInfluenceOnSuccess));
+            }        
+            else if (ParentKingdom.Clans.Contains(Clan.PlayerClan))
+            {
+                text = success
+                    ? new TextObject("{=4FfA8RL4}As a member of the loyalists, you lost {INFLUENCE} influence.").SetTextVariable("INFLUENCE", Math.Abs(MemberInfluenceOnFailure))
+                    : new TextObject("{=uUu7DEDU}As a member of the loyalists, you gained {INFLUENCE} influence.").SetTextVariable("INFLUENCE", Math.Abs(MemberInfluenceOnSuccess));
+            }
+            else
+            {
+                text = TextObject.Empty;
+            }
+            return text;
+        }
 
         public TextObject DemandDescription
         {
             get
-            { 
+            {
                 TextObject desc;
                 switch (this.RebelDemandType)
                 {
