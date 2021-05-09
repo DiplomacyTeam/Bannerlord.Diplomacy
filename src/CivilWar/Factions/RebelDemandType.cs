@@ -5,7 +5,6 @@ namespace Diplomacy.CivilWar
 {
     public enum RebelDemandType
     {
-        None,
         Secession,
         Abdication
     }
@@ -24,7 +23,7 @@ namespace Diplomacy.CivilWar
                     name = new TextObject("{=wUspUo1y}Abdication").ToString();
                     break;
                 default:
-                    name = new TextObject("").ToString();
+                    name = TextObject.Empty.ToString();
                     break;
             }
             return name;
@@ -36,7 +35,7 @@ namespace Diplomacy.CivilWar
             switch (rebelDemandType)
             {
                 case RebelDemandType.Secession:
-                    hint = new TextObject("{=LF19GulH}Withdraw from the kingdom. Members of this faction will form a new kingdom.").ToString();
+                    hint = new TextObject("{=LF19GulH}Withdraw from the kingdom. Members of this faction will form a new kingdom. Only Tier 4 or higher clans may start a secession faction.").ToString();
                     break;
                 case RebelDemandType.Abdication:
                     hint = new TextObject("{=GK1seKeJ}Force the leader of the kingdom to step down. An election will decide the new leader of the kingdom.").ToString();

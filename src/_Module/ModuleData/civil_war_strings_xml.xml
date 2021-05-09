@@ -12,7 +12,7 @@
     <string id="pqjZ6wck" text="A rebel faction has emerged in {KINGDOM}. They are led by clan {CLAN_NAME}. {DEMAND}" />
     <string id="ZAfNviVS" text="Secession" />
     <string id="wUspUo1y" text="Abdication" />
-    <string id="LF19GulH" text="Withdraw from the kingdom. Members of this faction will form a new kingdom." />
+    <string id="LF19GulH" text="Withdraw from the kingdom. Members of this faction will form a new kingdom. Only Tier 4 or higher clans may start a secession faction." />
     <string id="GK1seKeJ" text="Force the leader of the kingdom to step down. An election will decide the new leader of the kingdom." />
     <string id="brEXAKDb" text="The rebels demand that their lands be allowed to secede from the kingdom." />
     <string id="8A6JPMWp" text="The rebels demand that {LEADER} abdicates their throne." />

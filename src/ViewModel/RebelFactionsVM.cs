@@ -57,13 +57,15 @@ namespace Diplomacy.ViewModel
 
         public void OnCreateFaction()
         {
-            _createFactionCost.ApplyCost();
             List<InquiryElement> inquiryElements = new();
             foreach (int value in Enum.GetValues(typeof(RebelDemandType)))
             {
                 var demandType = (RebelDemandType)value;
-                inquiryElements.Add(new InquiryElement(demandType, demandType.GetName(), null, true, demandType.GetHint()));
+                bool canCreateFaction = demandType != RebelDemandType.Secession || Clan.PlayerClan.Tier >= 4;
+                inquiryElements.Add(new InquiryElement(demandType, demandType.GetName(), null, canCreateFaction, demandType.GetHint()));
             }
+
+            inquiryElements.Add(new InquiryElement(null, GameTexts.FindText("str_cancel").ToString(), null, true, null));
 
             InformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(
                 CreateFactionLabel,
@@ -80,11 +82,19 @@ namespace Diplomacy.ViewModel
 
         private void HandleCreateFaction(List<InquiryElement> inquiryElements)
         {
-            var rebelDemandType = (RebelDemandType)inquiryElements.First().Identifier;
+            object identifier = inquiryElements.First().Identifier;
+
+            // canceled 
+            if (identifier == null)
+            {
+                return;
+            }
+
+            var rebelDemandType = (RebelDemandType)identifier;
 
             RebelFaction rebelFaction;
 
-            switch(rebelDemandType)
+            switch (rebelDemandType)
             {
                 case RebelDemandType.Secession:
                     rebelFaction = new SecessionFaction(Clan.PlayerClan);
@@ -95,6 +105,7 @@ namespace Diplomacy.ViewModel
                 default:
                     throw new MBException("Should have a type of demand when creating a faction");
             }
+            _createFactionCost.ApplyCost();
             RebelFactionManager.RegisterRebelFaction(Clan.PlayerClan.Kingdom, rebelFaction);
             this.RefreshValues();
         }
