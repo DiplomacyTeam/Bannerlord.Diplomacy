@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -108,7 +109,7 @@ namespace Diplomacy.CivilWar
 
         public virtual void EnforceFailure()
         {
-            ApplyInfluenceChanges(false);
+            ApplyInfluenceAndReputationChanges(false);
 
             ConsolidateKingdomsAction.Apply(this);
             RebelFactionManager.DestroyRebelFaction(this);
@@ -127,6 +128,60 @@ namespace Diplomacy.CivilWar
                     null,
                     null,
                     null), true);
+        }
+
+        private void ApplyInfluenceAndReputationChanges(bool success)
+        {
+            ApplyInfluenceChanges(true);
+            ApplyReputationChanges(true);
+        }
+
+        private void ApplyReputationChanges(bool success)
+        {
+            var loyalistCombinations = from clan in ParentKingdom.Clans
+                               from otherClan in ParentKingdom.Clans
+                               where clan.Id < otherClan.Id
+                               select Tuple.Create(clan, otherClan);
+
+            var rebelCombinations = from clan in Clans
+                                    from otherClan in Clans
+                                    where clan.Id < otherClan.Id
+                                    select Tuple.Create(clan, otherClan);
+
+            var opposingCombinations = from clan in ParentKingdom.Clans
+                                       from otherClan in Clans
+                                       select Tuple.Create(clan, otherClan);
+
+            foreach (Tuple<Clan, Clan> tuple in loyalistCombinations)
+            {
+                ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader, tuple.Item1 == SponsorClan || tuple.Item2 == SponsorClan ? 10 : 5, true);
+            }
+
+            foreach (Tuple<Clan, Clan> tuple in rebelCombinations)
+            {
+                ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader, tuple.Item1 == SponsorClan || tuple.Item2 == SponsorClan ? 10 : 5, true);
+            }
+
+            foreach (Tuple<Clan, Clan> tuple in opposingCombinations)
+            {
+                var hasSponsorClan = tuple.Item1 == SponsorClan || tuple.Item2 == SponsorClan;
+                var hasRulerClan = tuple.Item1 == ParentKingdom.RulingClan || tuple.Item2 == ParentKingdom.RulingClan;
+                int value;
+                if (hasSponsorClan && hasRulerClan)
+                {
+                    value = -20;
+                }
+                else if (hasSponsorClan || hasSponsorClan)
+                {
+                    value = -10;
+                }
+                else
+                {
+                    value = -5;
+                }
+
+                ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader, value, true);
+            }
         }
 
         private void ApplyInfluenceChanges(bool success)
@@ -155,7 +210,7 @@ namespace Diplomacy.CivilWar
 
         public void EnforceSuccess()
         {
-            ApplyInfluenceChanges(true);
+            ApplyInfluenceAndReputationChanges(true);
             ApplyDemand();
         }
 
