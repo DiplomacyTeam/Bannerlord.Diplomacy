@@ -38,8 +38,8 @@ namespace Diplomacy.ViewModel
 
         private void HandleStanceChange(IFaction arg1, IFaction arg2)
         {
-            Kingdom? kingdom1 = (Kingdom)arg1;
-            Kingdom? kingdom2 = (Kingdom)arg2;
+            Kingdom? kingdom1 = arg1 as Kingdom;
+            Kingdom? kingdom2 = arg2 as Kingdom;
 
             Kingdom playerKingdom = Clan.PlayerClan.Kingdom;
             bool isEitherPlayerFaction = playerKingdom != null && (playerKingdom == kingdom1 || playerKingdom == kingdom2);
