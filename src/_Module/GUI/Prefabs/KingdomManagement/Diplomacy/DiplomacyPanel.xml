@@ -11,12 +11,6 @@
 
     <Constant Name="Party.Toggle.ExpandIndicator.Width" BrushLayer="Default" BrushName="Party.Toggle.ExpandIndicator" BrushValueType="Width" />
     <Constant Name="Party.Toggle.ExpandIndicator.Height" BrushLayer="Default" BrushName="Party.Toggle.ExpandIndicator" BrushValueType="Height" />
-	
-	<Constant Name="Stat.Width" Value="175" />
-    <Constant Name="Stat.Height" Value="65" />
-
-    <Constant Name="Stat.Name.Height" Value="100" />
-    <Constant Name="Stat.Bar.HorizontalMargin" Value="10" />
 
     <Constant Name="Banner.Width" BrushLayer="Default" BrushName="Nameplate.FlatBanner.Big" BrushValueType="Width" />
     <Constant Name="Banner.Height" BrushLayer="Default" BrushName="Nameplate.FlatBanner.Big" BrushValueType="Height" />
@@ -97,7 +91,7 @@
                                 <Widget Id="PlayerAlliancesParentWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
                                   <Children>
 
-                                    <!-- Player Wars List -->
+                                    <!-- Player Alliances List -->
                                     <ListPanel Id="PlayerAlliancesList" DataSource="{PlayerAlliances}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
                                       <ItemTemplate>
                                         <TruceTuple IsSelected="@IsSelected" />
@@ -208,22 +202,6 @@
                                     </Widget>
                                   </ItemTemplate>
                                 </GridWidget>
-								
-                                <!-- Other Relations -->
-                                <ListPanel DataSource="{CurrentSelectedDiplomacyItem\Faction1OtherWars}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="17" StackLayout.LayoutMethod="HorizontalLeftToRight">
-                                  <ItemTemplate>
-                                    <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
-                                      <Children>
-                                        <Widget DataSource="{Hint}" DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
-                                          <Children>
-                                            <MaskedTextureWidget DataSource="{..\Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="29" SuggestedHeight="37" HorizontalAlignment="Right" VerticalAlignment="Top" MarginRight="20" MarginTop="20" Brush="Kingdom.OtherWars.Faction.Small.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.2" />
-                                            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="25" VerticalAlignment="Center" PositionXOffset="19" PositionYOffset="17" Sprite="SPKingdom\Diplomacy\diplomacy_war_icon" IsEnabled="false" />
-                                          </Children>
-                                        </Widget>
-                                      </Children>
-                                    </Widget>
-                                  </ItemTemplate>
-                                </ListPanel>
                               </Children>
                             </ListPanel>
                           </Children>
@@ -267,22 +245,6 @@
                                     </Widget>
                                   </ItemTemplate>
                                 </GridWidget>
-
-                                <!-- Other Relations -->
-                                <ListPanel DataSource="{CurrentSelectedDiplomacyItem\Faction2OtherWars}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" StackLayout.LayoutMethod="HorizontalLeftToRight">
-                                  <ItemTemplate>
-                                    <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
-                                      <Children>
-                                        <Widget DataSource="{Hint}" DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
-                                          <Children>
-                                            <MaskedTextureWidget DataSource="{..\Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="29" SuggestedHeight="37" HorizontalAlignment="Right" VerticalAlignment="Top" MarginRight="20" MarginTop="20" Brush="Kingdom.OtherWars.Faction.Small.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.2" />
-                                            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="25" VerticalAlignment="Center" PositionXOffset="19" PositionYOffset="17" Sprite="MapOverlay\Encounter\WarIcon" IsEnabled="false" />
-                                          </Children>
-                                        </Widget>
-                                      </Children>
-                                    </Widget>
-                                  </ItemTemplate>
-                                </ListPanel>
                               </Children>
                             </ListPanel>
 

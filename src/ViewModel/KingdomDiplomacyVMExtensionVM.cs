@@ -30,6 +30,8 @@ namespace Diplomacy.ViewModel
         private string _numOfPlayerAlliancesText;
         private bool _showStats;
         private bool _showOverview;
+        private bool _isDisplayingStatComparison;
+        private bool _isDisplayingWarLogs;
 
         public KingdomDiplomacyVMExtensionVM(Action<KingdomDecision> forceDecision) : base(forceDecision)
         {
@@ -51,6 +53,7 @@ namespace Diplomacy.ViewModel
             });
 
             RefreshAlliances();
+            ExecuteShowStatComparison();
             ExecuteShowOverview();
         }
 
@@ -64,6 +67,18 @@ namespace Diplomacy.ViewModel
         {
             ShowOverview = true;
             ShowStats = false;
+        }
+
+        private void ExecuteShowStatComparison()
+        {
+            IsDisplayingStatComparisons = true;
+            IsDisplayingWarLogs = false;
+        }
+
+        private void ExecuteShowWarLogs()
+        {
+            IsDisplayingStatComparisons = false;
+            IsDisplayingWarLogs = true;
         }
 
         private void ExecuteAction()
@@ -111,6 +126,34 @@ namespace Diplomacy.ViewModel
             }
         }
 
+        [DataSourceProperty]
+        public bool IsDisplayingStatComparisons
+        {
+            get => _isDisplayingStatComparison;
+            set
+            {
+                if (value != _isDisplayingStatComparison)
+                {
+                    _isDisplayingStatComparison = value;
+                    OnPropertyChanged(nameof(IsDisplayingStatComparisons));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsDisplayingWarLogs
+        {
+            get => _isDisplayingWarLogs;
+            set
+            {
+                if (value != _isDisplayingWarLogs)
+                {
+                    _isDisplayingWarLogs = value;
+                    OnPropertyChanged(nameof(IsDisplayingWarLogs));
+                }
+            }
+        }
+
         private void RefreshAlliances()
         {
             if (PlayerAlliances is null)
@@ -143,6 +186,7 @@ namespace Diplomacy.ViewModel
         private void OnDiplomacyItemSelection(KingdomDiplomacyItemVM item)
         {
             OnDiplomacyItemSelectionParent(this, item);
+            ExecuteShowStatComparison();
         }
 
         [DataSourceProperty]
