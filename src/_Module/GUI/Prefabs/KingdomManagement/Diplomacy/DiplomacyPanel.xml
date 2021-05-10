@@ -348,7 +348,7 @@
                       </Children>
                     </KingdomDiplomacyPanelTabControlWidget>
 
-                    <Widget Id="ScrollContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="25" MarginBottom="85" MarginTop="10" IsHidden="@IsDisplayingWarLogs">
+                    <Widget Id="ScrollContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="25" MarginBottom="175" MarginTop="10" IsHidden="@IsDisplayingWarLogs">
                       <Children>
                         <ScrollbarWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="Fixed" Id="RightSideScrollbar" SuggestedWidth="20" MinValue = "0" MaxValue = "100" AlignmentAxis="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Handle = "RightSideScrollbarHandle">
                           <Children>
@@ -374,40 +374,70 @@
                     </Widget>
                   </Children>
                 </ListPanel>
-
-
-
+				
                 <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush.FontSize="40" IsHidden="@IsAcceptableItemSelected" Text="@NoItemSelectedText" />
 
-                <!-- Form Non-Aggression Pact Button -->
-                <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" MarginBottom="5" IsVisible="@IsTruce">
+				<ListPanel IsHidden="@IsWar" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="105" StackLayout.LayoutMethod="HorizontalLeftToRight">
                   <Children>
-                    <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
-                      <Children>
-                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ProposeNonAggressionPact" IsEnabled="@IsNonAggressionPactAvailable">
-                          <Children>
-                            <TextWidget HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="360" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="true" Text="@NonAggressionPactHelpText" DoNotAcceptEvents="true" ClipContents="false" PositionYOffset="-30"/>
-                            <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@NonAggressionPactActionName" />
-                            <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
-                              <Children>
-                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@NonAggressionPactInfluenceCost"/>
-                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" MarginLeft="5" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" />
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@NonAggressionPactGoldCost"/>
-                              </Children>
-                            </ListPanel>
-                          </Children>
-                        </ButtonWidget>
-                        <HintWidget DataSource="{NonAggressionPactHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+					<!-- Form Non-Aggression Pact Button -->
+					<ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30">
+					  <Children>
+						<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
+						  <Children>
+							<ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ProposeNonAggressionPact" IsEnabled="@IsNonAggressionPactAvailable">
+							  <Children>
+								<TextWidget HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="360" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="true" Text="@NonAggressionPactHelpText" DoNotAcceptEvents="true" ClipContents="false" PositionYOffset="-30"/>
+								<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@NonAggressionPactActionName" />
+								<ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
+								  <Children>
+									<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
+									<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@NonAggressionPactInfluenceCost"/>
+									<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" MarginLeft="5" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" />
+									<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@NonAggressionPactGoldCost"/>
+								  </Children>
+								</ListPanel>
+							  </Children>
+							</ButtonWidget>
+							<HintWidget DataSource="{NonAggressionPactHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
 
-                      </Children>
-                    </Widget>
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Right" Sprite="MapBar\monocular_icon" VerticalAlignment="Center">
+						  </Children>
+						</Widget>
+						<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Right" Sprite="MapBar\monocular_icon" VerticalAlignment="Center">
+						  <Children>
+							<HintWidget Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" DataSource="{NonAggressionPactScoreHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  />
+						  </Children>
+						</Widget>
+					  </Children>
+					</ListPanel>
+					<!-- Form Alliance Button -->
+                    <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30">
                       <Children>
-                        <HintWidget Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" DataSource="{NonAggressionPactScoreHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  />
+                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
+                          <Children>
+                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="FormAlliance" IsEnabled="@IsAllianceAvailable">
+                              <Children>
+                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@AllianceActionName" />
+                                <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
+                                  <Children>
+                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
+                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@AllianceInfluenceCost"/>
+                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" MarginLeft="5" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" />
+                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@AllianceGoldCost"/>
+                                  </Children>
+                                </ListPanel>
+                              </Children>
+                            </ButtonWidget>
+                            <HintWidget DataSource="{AllianceHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                          </Children>
+                        </Widget>
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" Sprite="MapBar\monocular_icon" VerticalAlignment="Center">
+                          <Children>
+                            <HintWidget Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" DataSource="{AllianceScoreHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  />
+                          </Children>
+                        </Widget>
                       </Children>
-                    </Widget>
-                  </Children>
+                    </ListPanel>
+				  </Children>
                 </ListPanel>
 
                 <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="10">
@@ -457,35 +487,7 @@
                         </ListPanel>
                       </Children>
                     </ListPanel>
-
-                    <!-- Form Alliance Button -->
-                    <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30" IsVisible="@IsTruce">
-                      <Children>
-                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
-                          <Children>
-                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="FormAlliance" IsEnabled="@IsAllianceAvailable">
-                              <Children>
-                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@AllianceActionName" />
-                                <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
-                                  <Children>
-                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
-                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@AllianceInfluenceCost"/>
-                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" MarginLeft="5" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" />
-                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@AllianceGoldCost"/>
-                                  </Children>
-                                </ListPanel>
-                              </Children>
-                            </ButtonWidget>
-                            <HintWidget DataSource="{AllianceHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
-                          </Children>
-                        </Widget>
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" Sprite="MapBar\monocular_icon" VerticalAlignment="Center">
-                          <Children>
-                            <HintWidget Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" DataSource="{AllianceScoreHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  />
-                          </Children>
-                        </Widget>
-                      </Children>
-                    </ListPanel>
+					
                     <!-- Declare War / Make Peace / Break Alliance Button -->
                     <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30">
                       <Children>
