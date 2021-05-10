@@ -26,18 +26,18 @@
           <Children>
 
             <!-- Left Panel -->
-			  <BrushListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" VerticalAlignment="Bottom" MarginLeft="27" MarginTop="6" MarginBottom="9" Brush="Frame1Brush" LayoutImp.LayoutMethod="VerticalBottomToTop">
+			<BrushListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" VerticalAlignment="Bottom" MarginLeft="27" MarginTop="6" MarginBottom="9" Brush="Frame1Brush" StackLayout.LayoutMethod="VerticalBottomToTop">
               <Children>
 
                 <!-- Header Horizontal Section -->
                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" RenderLate="true">
                   <Children>
-					  <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Header.Policies.Width" SuggestedHeight="!Kingdom.Header.Policies.Height" Brush="Kingdom.Header.Policies" RenderLate="true">
+					<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Header.Policies.Width" SuggestedHeight="!Kingdom.Header.Policies.Height" Sprite="SPKingdom\header_policies" ExtendTop="21" ExtendRight="13" ExtendBottom="20" RenderLate="true">
                       <Children>
-                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.PoliciesCollapserTitle.Text" IsDisabled="true" Text="@DiplomacyText" />
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.PoliciesCollapserTitle.Text" IsDisabled="true" Text="@WarsText" />
                       </Children>
-                    </BrushWidget>
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Scroll.Header.Width" SuggestedHeight="!Kingdom.Scroll.Header.Height" HorizontalAlignment="Right" Brush="Scroll.Header" />
+                    </Widget>
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Kingdom.Scroll.Header.Width" SuggestedHeight="!Kingdom.Scroll.Header.Height" HorizontalAlignment="Right" Sprite="StdAssets\scroll_header" ExtendRight="3" ExtendTop="6" ExtendLeft="3" ExtendBottom="4" />
                   </Children>
                 </ListPanel>
 
@@ -50,12 +50,12 @@
                       <Children>
                         <Widget Id="WarsListClipRect" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" ClipContents="true">
                           <Children>
-                            <ListPanel Id="WarsList" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                            <ListPanel Id="WarsList" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
 
                                 <PartyHeaderToggleWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!DiplomacyToggle.Width" SuggestedHeight="!DiplomacyToggle.Height" HorizontalAlignment="Left" VerticalAlignment="Top" Brush="Kingdom.Policy.Toggle.Tuple" CollapseIndicator="Description\CollapseIndicator" ListPanel="..\PlayerWarsParentWidget\PlayerWarsList" RenderLate="true" WidgetToClose="..\PlayerWarsParentWidget">
                                   <Children>
-                                    <ListPanel Id="Description" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="10" IsDisabled="true" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                                    <ListPanel Id="Description" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="10" IsDisabled="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                       <Children>
 										  <BrushWidget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Toggle.ExpandIndicator.Width" SuggestedHeight="!Party.Toggle.ExpandIndicator.Height" VerticalAlignment="Center" PositionYOffset="5" MarginRight="5" Brush="Party.Toggle.ExpandIndicator" />
                                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" Brush="Party.Text.Toggle" Text="@PlayerWarsText" />
@@ -68,7 +68,7 @@
                                   <Children>
 
                                     <!-- Player Wars List -->
-                                    <ListPanel Id="PlayerWarsList" DataSource="{PlayerWars}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                                    <ListPanel Id="PlayerWarsList" DataSource="{PlayerWars}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
                                       <ItemTemplate>
                                         <WarTuple IsSelected="@IsSelected" />
                                       </ItemTemplate>
@@ -79,7 +79,7 @@
                                 <!-- ALLIANCE -->
                                 <PartyHeaderToggleWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!DiplomacyToggle.Width" SuggestedHeight="!DiplomacyToggle.Height" HorizontalAlignment="Left" VerticalAlignment="Top" Brush="Kingdom.Policy.Toggle.Tuple" CollapseIndicator="Description\CollapseIndicator" ListPanel="..\PlayerAlliancesParentWidget\PlayerAlliancesList" RenderLate="true" WidgetToClose="..\PlayerAlliancesParentWidget">
                                   <Children>
-                                    <ListPanel Id="Description" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="10" IsDisabled="true" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                                    <ListPanel Id="Description" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="10" IsDisabled="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                       <Children>
 										  <BrushWidget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Toggle.ExpandIndicator.Width" SuggestedHeight="!Party.Toggle.ExpandIndicator.Height" VerticalAlignment="Center" PositionYOffset="5" MarginRight="5" Brush="Party.Toggle.ExpandIndicator" />
                                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" Brush="Party.Text.Toggle" Text="@PlayerAlliancesText" />
@@ -91,8 +91,8 @@
                                 <Widget Id="PlayerAlliancesParentWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
                                   <Children>
 
-                                    <!-- Player Wars List -->
-                                    <ListPanel Id="PlayerAlliancesList" DataSource="{PlayerAlliances}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                                    <!-- Player Alliances List -->
+                                    <ListPanel Id="PlayerAlliancesList" DataSource="{PlayerAlliances}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
                                       <ItemTemplate>
                                         <TruceTuple IsSelected="@IsSelected" />
                                       </ItemTemplate>
@@ -104,7 +104,7 @@
 
                                 <PartyHeaderToggleWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!DiplomacyToggle.Width" SuggestedHeight="!DiplomacyToggle.Height" HorizontalAlignment="Left" VerticalAlignment="Top" Brush="Kingdom.Policy.Toggle.Tuple" CollapseIndicator="Description\CollapseIndicator" ListPanel="..\OtherWarsParentWidget\OtherWarsList" RenderLate="true" WidgetToClose="..\OtherWarsParentWidget">
                                   <Children>
-                                    <ListPanel Id="Description" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="10" IsDisabled="true" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                                    <ListPanel Id="Description" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="10" IsDisabled="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                       <Children>
 										  <BrushWidget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Toggle.ExpandIndicator.Width" SuggestedHeight="!Party.Toggle.ExpandIndicator.Height" VerticalAlignment="Center" PositionYOffset="5" MarginRight="5" Brush="Party.Toggle.ExpandIndicator" />
                                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" Brush="Party.Text.Toggle" Text="@PlayerTrucesText" />
@@ -117,7 +117,7 @@
                                   <Children>
 
                                     <!-- Other Wars List -->
-                                    <ListPanel Id="OtherWarsList" DataSource="{PlayerTruces}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                                    <ListPanel Id="OtherWarsList" DataSource="{PlayerTruces}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
                                       <ItemTemplate>
                                         <TruceTuple IsSelected="@IsSelected" />
                                       </ItemTemplate>
@@ -154,11 +154,13 @@
             </BrushListPanel>
 
             <!-- Right Side -->
-            <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" LayoutImp.LayoutMethod="VerticalBottomToTop">
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
               <Children>
+			  
+				<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="540" SuggestedHeight="923" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionYOffset="80" Sprite="background_illustration_diplomacy" AlphaFactor="0.7"/>
 
                 <!-- <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="540" SuggestedHeight="923" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionYOffset="80" Sprite="background_illustration_fiefs" Brush.AlphaFactor="0.7" Brush.Color="#FF00FFFF" /> -->
-                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" MarginLeft="15" IsVisible="@IsAcceptableItemSelected" LayoutImp.LayoutMethod="VerticalBottomToTop" >
+                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" MarginLeft="15" IsVisible="@IsAcceptableItemSelected" StackLayout.LayoutMethod="VerticalBottomToTop" >
                   <Children>
 
                     <!-- Title Container ListPanel -->
@@ -176,9 +178,9 @@
                                 <ImageIdentifierWidget DataSource="{ImageIdentifier}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" SuggestedHeight="100" MarginLeft="17" MarginRight="18" MarginTop="17" MarginBottom="18" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" />
                               </Children>
                             </ButtonWidget>
-                            <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                            <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
-                                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="30" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="30" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                   <Children>
                                     <TextWidget DataSource="{CurrentSelectedDiplomacyItem}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="5" Brush="Kingdom.TitleMedium.Text" Brush.FontSize="30" ClipContents="false" Text="@Faction1Name" />
                                     <!-- Left Divider -->
@@ -186,31 +188,30 @@
                                   </Children>
                                 </ListPanel>
 
-                                <!-- Other Relations -->
-                                <ListPanel DataSource="{CurrentSelectedDiplomacyItem\Faction1OtherWars}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="17" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+								<!-- Owned Clans -->
+                                <GridWidget DataSource="{CurrentSelectedDiplomacyItem\Faction1OwnedClans}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" PositionXOffset="6" DefaultCellWidth="35" DefaultCellHeight="42" HorizontalAlignment="Left" ColumnCount="10" LayoutImp.HorizontalLayoutMethod="LeftToRight">
                                   <ItemTemplate>
                                     <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
                                       <Children>
                                         <Widget DataSource="{Hint}" DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
                                           <Children>
-                                            <MaskedTextureWidget DataSource="{..\Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="29" SuggestedHeight="37" HorizontalAlignment="Right" VerticalAlignment="Top" MarginRight="20" MarginTop="20" Brush="Kingdom.OtherWars.Faction.Small.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.2" />
-                                            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="25" VerticalAlignment="Center" PositionXOffset="19" PositionYOffset="17" Sprite="SPKingdom\Diplomacy\diplomacy_war_icon" IsEnabled="false" />
+                                            <MaskedTextureWidget DataSource="{..\Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="29" SuggestedHeight="37" HorizontalAlignment="Right" VerticalAlignment="Top" Brush="Kingdom.OtherWars.Faction.Small.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.15" />
                                           </Children>
                                         </Widget>
                                       </Children>
                                     </Widget>
                                   </ItemTemplate>
-                                </ListPanel>
+                                </GridWidget>
                               </Children>
                             </ListPanel>
                           </Children>
                         </ListPanel>
 
                         <!--War Icon-->
-                        <Widget DataSource="{CurrentSelectedDiplomacyItem}" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="63" VerticalAlignment="Center" MarginRight="15" MarginLeft="15" MarginBottom="45" Sprite="SPKingdom\Diplomacy\diplomacy_war_icon" IsEnabled="false" IsVisible="@IsWar"/>
+                        <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="63" VerticalAlignment="Top" MarginRight="15" MarginLeft="15" MarginTop="10" Sprite="SPKingdom\Diplomacy\diplomacy_war_icon" IsEnabled="false" IsVisible="@IsWar"/>
 
                         <!--Truce Icon-->
-                        <Widget DataSource="{CurrentSelectedDiplomacyItem}" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="65" VerticalAlignment="Center" MarginRight="25" MarginLeft="25" MarginBottom="45" IsEnabled="false" IsVisible="@IsTruce">
+                        <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="65" VerticalAlignment="Top" MarginRight="25" MarginLeft="25" MarginTop="10" IsEnabled="false" IsHidden="@IsWar">
                           <Children>
                             <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="63" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="SPKingdom\Diplomacy\diplomacy_peace_icon" IsEnabled="false"/>
                           </Children>
@@ -219,32 +220,31 @@
                         <!-- Right Side -->
                         <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" >
                           <Children>
-                            <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                            <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
-                                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="30" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="30" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                   <Children>
 
                                     <!-- Right Divider -->
-									  <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="2" VerticalAlignment="Center" Sprite="SPKingdom\Diplomacy\divider_left" Brush.HorizontalFlip="true" />
+									<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="2" VerticalAlignment="Center" Sprite="SPKingdom\Diplomacy\divider_left" HorizontalFlip="true" />
                                     <TextWidget DataSource="{CurrentSelectedDiplomacyItem}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="Kingdom.TitleMedium.Text" Brush.FontSize="30" ClipContents="false" Text="@Faction2Name" />
                                   </Children>
                                 </ListPanel>
-
-                                <!-- Other Relations -->
-                                <ListPanel DataSource="{CurrentSelectedDiplomacyItem\Faction2OtherWars}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+								
+								<!-- Owned Clans -->
+                                <GridWidget DataSource="{CurrentSelectedDiplomacyItem\Faction2OwnedClans}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" PositionXOffset="6" DefaultCellWidth="35" DefaultCellHeight="42" HorizontalAlignment="Right" ColumnCount="10" LayoutImp.HorizontalLayoutMethod="RightToLeft">
                                   <ItemTemplate>
                                     <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
                                       <Children>
                                         <Widget DataSource="{Hint}" DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
                                           <Children>
-                                            <MaskedTextureWidget DataSource="{..\Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="29" SuggestedHeight="37" HorizontalAlignment="Right" VerticalAlignment="Top" MarginRight="20" MarginTop="20" Brush="Kingdom.OtherWars.Faction.Small.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.2" />
-                                            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="25" VerticalAlignment="Center" PositionXOffset="19" PositionYOffset="17" Sprite="MapOverlay\Encounter\WarIcon" IsEnabled="false" />
+                                            <MaskedTextureWidget DataSource="{..\Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="29" SuggestedHeight="37" HorizontalAlignment="Right" VerticalAlignment="Top" Brush="Kingdom.OtherWars.Faction.Small.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.15" />
                                           </Children>
                                         </Widget>
                                       </Children>
                                     </Widget>
                                   </ItemTemplate>
-                                </ListPanel>
+                                </GridWidget>
                               </Children>
                             </ListPanel>
 
@@ -259,8 +259,40 @@
                         </ListPanel>
                       </Children>
                     </ListPanel>
+					
+					<!-- War Log -->
+                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="260" MarginRight="260" MarginBottom="120" MarginTop="20" IsVisible="@IsDisplayingWarLogs">
+                      <Children>
 
-                    <KingdomDiplomacyPanelTabControlWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" OverviewButton="OverviewButton" OverviewPanel="..\ScrollContainer\ScrollPanel\StatsListRect\InnerPanel\OverviewTab" StatsButton="StatsButton" StatsPanel="..\ScrollContainer\ScrollPanel\StatsListRect\InnerPanel\StatsTab">
+                        <ScrollablePanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginRight="20" AutoHideScrollBars="true" ClipRect="ClipRect" InnerPanel="ClipRect\WarLogs" VerticalScrollbar="..\VerticalScrollbar" >
+                          <Children>
+
+                            <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" >
+                              <Children>
+
+                                <ListPanel Id="WarLogs" DataSource="{CurrentSelectedDiplomacyItem\WarLog}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+                                  <ItemTemplate>
+                                    <DiplomacyWarLogElement/>
+                                  </ItemTemplate>
+                                </ListPanel>
+
+                              </Children>
+                            </Widget>
+
+                          </Children>
+                        </ScrollablePanel>
+
+                        <ScrollbarWidget Id="VerticalScrollbar" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="8" HorizontalAlignment="Right" VerticalAlignment="Center" AlignmentAxis="Vertical" Handle="VerticalScrollbarHandle" MaxValue="100" MinValue="0">
+                          <Children>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="4" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" AlphaFactor="0.2" Color="#472203FF" />
+                            <ImageWidget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="6" SuggestedHeight="10" HorizontalAlignment="Center" Brush="Kingdom.Wars.Scrollbar.Handle" />
+                          </Children>
+                        </ScrollbarWidget>
+
+                      </Children>
+                    </Widget>
+
+                    <KingdomDiplomacyPanelTabControlWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" OverviewButton="OverviewButton" OverviewPanel="..\ScrollContainer\ScrollPanel\StatsListRect\InnerPanel\OverviewTab" StatsButton="StatsButton" StatsPanel="..\ScrollContainer\ScrollPanel\StatsListRect\InnerPanel\StatsTab" IsHidden="@IsDisplayingWarLogs">
                       <Children>
                         <!--Overview Tab-->
                         <ButtonWidget Id="OverviewButton" MarginLeft="5" MarginRight="5" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" Command.Click="ExecuteShowOverview" UpdateChildrenStates="true">
@@ -278,7 +310,7 @@
                       </Children>
                     </KingdomDiplomacyPanelTabControlWidget>
 
-                    <Widget Id="ScrollContainer" HeightSizePolicy="Fixed" SuggestedHeight="550" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true">
+                    <Widget Id="ScrollContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="25" MarginBottom="175" MarginTop="10" IsHidden="@IsDisplayingWarLogs">
                       <Children>
                         <ScrollbarWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="Fixed" Id="RightSideScrollbar" SuggestedWidth="20" MinValue = "0" MaxValue = "100" AlignmentAxis="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Handle = "RightSideScrollbarHandle">
                           <Children>
@@ -288,9 +320,9 @@
 
                         <ScrollablePanel Id="ScrollPanel" VerticalAlignment="Center" HorizontalAlignment="Center"  WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" AutoHideScrollBars="false" ClipRect="StatsListRect" InnerPanel="StatsListRect\InnerPanel" VerticalScrollbar="..\RightSideScrollbar">
                           <Children>
-                            <Widget Id="StatsListRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                            <Widget Id="StatsListRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
-                                <ListPanel Id="InnerPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
+                                <ListPanel Id="InnerPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" >
                                   <Children>
                                     <OverviewTab Id="OverviewTab" />
                                     <StatsTab Id="StatsTab" />
@@ -304,92 +336,43 @@
                     </Widget>
                   </Children>
                 </ListPanel>
-
-
-
+				
                 <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush.FontSize="40" IsHidden="@IsAcceptableItemSelected" Text="@NoItemSelectedText" />
 
-                <!-- Form Non-Aggression Pact Button -->
-                <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" MarginBottom="5" IsVisible="@IsTruce">
+				<ListPanel IsHidden="@IsWar" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="105" StackLayout.LayoutMethod="HorizontalLeftToRight">
                   <Children>
-                    <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
-                      <Children>
-                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ProposeNonAggressionPact" IsEnabled="@IsNonAggressionPactAvailable">
-                          <Children>
-                            <TextWidget HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="360" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="true" Text="@NonAggressionPactHelpText" DoNotAcceptEvents="true" ClipContents="false" PositionYOffset="-30"/>
-                            <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@NonAggressionPactActionName" />
-                            <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
-                              <Children>
-                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@NonAggressionPactInfluenceCost"/>
-                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" MarginLeft="5" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" />
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@NonAggressionPactGoldCost"/>
-                              </Children>
-                            </ListPanel>
-                          </Children>
-                        </ButtonWidget>
-                        <HintWidget DataSource="{NonAggressionPactHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+					<!-- Form Non-Aggression Pact Button -->
+					<ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30">
+					  <Children>
+						<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
+						  <Children>
+							<ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ProposeNonAggressionPact" IsEnabled="@IsNonAggressionPactAvailable">
+							  <Children>
+								<TextWidget HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="360" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="true" Text="@NonAggressionPactHelpText" DoNotAcceptEvents="true" ClipContents="false" PositionYOffset="-30"/>
+								<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@NonAggressionPactActionName" />
+								<ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
+								  <Children>
+									<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
+									<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@NonAggressionPactInfluenceCost"/>
+									<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" MarginLeft="5" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" />
+									<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@NonAggressionPactGoldCost"/>
+								  </Children>
+								</ListPanel>
+							  </Children>
+							</ButtonWidget>
+							<HintWidget DataSource="{NonAggressionPactHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
 
-                      </Children>
-                    </Widget>
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Right" Sprite="MapBar\monocular_icon" VerticalAlignment="Center">
-                      <Children>
-                        <HintWidget Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" DataSource="{NonAggressionPactScoreHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  />
-                      </Children>
-                    </Widget>
-                  </Children>
-                </ListPanel>
-
-                <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="10">
-                  <Children>
-                    <!-- Send Messenger Button -->
+						  </Children>
+						</Widget>
+						<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Right" Sprite="MapBar\monocular_icon" VerticalAlignment="Center">
+						  <Children>
+							<HintWidget Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" DataSource="{NonAggressionPactScoreHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  />
+						  </Children>
+						</Widget>
+					  </Children>
+					</ListPanel>
+					<!-- Form Alliance Button -->
                     <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30">
-                      <Children>
-                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
-                          <Children>
-                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="SendMessenger" IsEnabled="@IsMessengerAvailable">
-                              <Children>
-                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@SendMessengerActionName" />
-                                <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
-                                  <Children>
-                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" />
-                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@SendMessengerGoldCost"/>
-                                  </Children>
-                                </ListPanel>
-                              </Children>
-                            </ButtonWidget>
-                          </Children>
-                        </Widget>
-                      </Children>
-                    </ListPanel>
-
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="30" IsVisible="@IsAcceptableItemSelected">
-                      <Children>
-
-                        <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="360" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" IsEnabled="true" Text="@ProposeActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
-
-                        <!-- Make Peace Or Declare War Button -->
-                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginRight="0" MarginBottom="2" IsVisible="@IsAcceptableItemSelected">
-                          <Children>
-                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ExecuteAction" IsEnabled="@IsActionEnabled"  >
-                              <Children>
-                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@ActionName" />
-                              </Children>
-                            </ButtonWidget>
-                          </Children>
-                        </Widget>
-
-                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                          <Children>
-                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
-                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="0" Brush="Kingdom.GeneralButtons.Text" IntText="@ActionInfluenceCost" IsEnabled="@IsActionEnabled"/>
-                          </Children>
-                        </ListPanel>
-                      </Children>
-                    </ListPanel>
-
-                    <!-- Form Alliance Button -->
-                    <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30" IsVisible="@IsTruce">
                       <Children>
                         <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
                           <Children>
@@ -416,6 +399,57 @@
                         </Widget>
                       </Children>
                     </ListPanel>
+				  </Children>
+                </ListPanel>
+
+                <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="10">
+                  <Children>
+                    <!-- Send Messenger Button -->
+                    <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30">
+                      <Children>
+                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
+                          <Children>
+                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="SendMessenger" IsEnabled="@IsMessengerAvailable">
+                              <Children>
+                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@SendMessengerActionName" />
+                                <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" PositionYOffset="30">
+                                  <Children>
+                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" />
+                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-5" Brush="Kingdom.GeneralButtons.Text" IntText="@SendMessengerGoldCost"/>
+                                  </Children>
+                                </ListPanel>
+                              </Children>
+                            </ButtonWidget>
+                          </Children>
+                        </Widget>
+                      </Children>
+                    </ListPanel>
+
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="30" IsVisible="@IsAcceptableItemSelected">
+                      <Children>
+
+                        <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="360" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" IsEnabled="true" Text="@ProposeActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
+
+                        <!-- Make Peace Or Declare War Button -->
+                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginRight="0" MarginBottom="2" IsVisible="@IsAcceptableItemSelected">
+                          <Children>
+                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ExecuteAction" IsEnabled="@IsActionEnabled"  >
+                              <Children>
+                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@ActionName" />
+                              </Children>
+                            </ButtonWidget>
+                          </Children>
+                        </Widget>
+
+                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                          <Children>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
+                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="0" Brush="Kingdom.GeneralButtons.Text" IntText="@ActionInfluenceCost" IsEnabled="@IsActionEnabled"/>
+                          </Children>
+                        </ListPanel>
+                      </Children>
+                    </ListPanel>
+					
                     <!-- Declare War / Make Peace / Break Alliance Button -->
                     <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="30" MarginRight="30">
                       <Children>
@@ -441,8 +475,55 @@
                     </ListPanel>
                   </Children>
                 </ListPanel>
+				
+				<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="50" StackLayout.LayoutMethod="VerticalBottomToTop" IsVisible="@IsWar">
+                  <Children>
+                    <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" Brush="Kingdom.Wars.CompareStats.Button" ButtonType="Radio" Command.Click="ExecuteShowStatComparisons" IsSelected="@IsDisplayingStatComparisons">
+                      <Children>
+                        <HintWidget DataSource="{ShowStatBarsHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
+                      </Children>
+                    </ButtonWidget>
+                    <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" MarginTop="25" Brush="Kingdom.Wars.WarLog.Button" ButtonType="Radio" Command.Click="ExecuteShowWarLogs" IsSelected="@IsDisplayingWarLogs">
+                      <Children>
+                        <HintWidget DataSource="{ShowWarLogsHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
+                      </Children>
+                    </ButtonWidget>
+                  </Children>
+                </ListPanel>
+				
+				<!--War Strategy Dropdown-->
+                <Widget DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="75" MarginTop="125" IsVisible="@IsBehaviorSelectionEnabled">
+                  <Children>
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                      <Children>
+                        <TextWidget DataSource="{..}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.TitleMedium.Text" Brush.FontSize="24" ClipContents="false" Text="@BehaviorSelectionTitle" />
+                        <DropdownWidget DataSource="{..\BehaviorSelection}" Id="DropdownParent" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginTop="2" ListPanel="SelectionList" Button="DropdownButton" CurrentSelectedIndex="@SelectedIndex" RichTextWidget="DropdownButton\SelectedTextWidget">
+                          <Children>
+                            <ButtonWidget Id="DropdownButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="150" SuggestedHeight="35" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Kingdom.Wars.BehaviorSelection">
+                              <Children>
+                                <RichTextWidget Id="SelectedTextWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="1" Brush="SPOptions.Dropdown.Center.Text"/>
+                              </Children>
+                            </ButtonWidget>
+
+                            <ListPanel Id="SelectionList" DataSource="{ItemList}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="120" VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#100404FF" IsVisible="false" StackLayout.LayoutMethod="VerticalBottomToTop" UpdateChildrenStates="true">
+                              <ItemTemplate>
+                                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" ButtonType="Radio" UpdateChildrenStates="true">
+                                  <Children>
+                                    <ImageWidget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="8" MarginRight="8" Brush="Standard.DropdownItem" />
+                                    <RichTextWidget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="SPOptions.Dropdown.Item.Text" Text="@StringItem" />
+                                    <HintWidget DataSource="{Hint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="30" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                                  </Children>
+                                </ButtonWidget>
+                              </ItemTemplate>
+                            </ListPanel>
+                          </Children>
+                        </DropdownWidget>
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </Widget>
               </Children>
-            </ListPanel>
+            </Widget>
           </Children>
         </ListPanel>
       </Children>
