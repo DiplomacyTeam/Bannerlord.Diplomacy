@@ -33,7 +33,7 @@ namespace Diplomacy.CampaignBehaviors
         private void DailyTick()
         {
             IEnumerable<RebelFaction> expiredFactions = RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Where(x => x.DateStarted.ElapsedDaysUntilNow > Settings.Instance!.MaximumFactionDurationInDays);
-            foreach (RebelFaction rebelFaction in expiredFactions)
+            foreach (RebelFaction rebelFaction in expiredFactions.ToList())
             {
                 if (rebelFaction.AtWar)
                     continue;
