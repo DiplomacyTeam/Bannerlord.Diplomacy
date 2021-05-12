@@ -73,13 +73,11 @@ namespace Diplomacy.CivilWar
             foreach (Tuple<TextObject, float> relationship in relationships)
                 yield return relationship;
 
-            // valor penalty
-            int[] valorPenalty = { -30, -20, -10, -10, -10 };
-            float[] strengthThreshold = { 0.4f, 0.3f, 0.2f, 0.1f, 0.0f };
+            // valor modifier
+            int[] valorModifier = { -20, -10, 0, 10, 20 };
             var normalizedValor = clan.Leader.GetTraitLevel(DefaultTraits.Valor) + DefaultTraits.Valor.MaxValue;
-            var valorScore = rebelFaction.StrengthRatio < strengthThreshold[normalizedValor] ? valorPenalty[normalizedValor] : 0f;
+            var valorScore = valorModifier[normalizedValor];
             yield return new Tuple<TextObject, float>(_TValorPenalty, valorScore);
-
 
             // kingdom size
             var towns = new List<Town>(Town.AllFiefs);
