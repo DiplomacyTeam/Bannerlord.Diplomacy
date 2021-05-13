@@ -26,7 +26,7 @@ namespace Diplomacy.Patches
 
         private static void DisableKingdomScreen(ref NavigationPermissionItem __result)
         {
-            if (Clan.PlayerClan.Kingdom != null && Clan.PlayerClan.Kingdom.IsRebelKingdom())
+            if (__result.IsAuthorized && Clan.PlayerClan.Kingdom != null && Clan.PlayerClan.Kingdom.IsRebelKingdom())
             {
                 __result = new NavigationPermissionItem(false, new TextObject("{=f66sNaiz}You cannot be part of a rebellion"));
             }
