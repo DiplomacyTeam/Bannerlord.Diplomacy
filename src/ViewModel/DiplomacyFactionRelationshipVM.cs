@@ -15,29 +15,8 @@ namespace Diplomacy.ViewModel
         {
             Faction = faction;
             _imageIdentifier = new ImageIdentifierVM(BannerCode.CreateFrom(faction.Banner), true);
-            _nameText = wrapFactionName(Faction.Name.ToString());
+            _nameText = Utillities.wrapFactionName(Faction.Name.ToString());
             _hint = hint ?? new HintViewModel();
-        }
-
-        private string wrapFactionName(string factionName)
-        {
-            string wrappedFactionName;
-            
-            var prefixes = factionName.Split(' ');
-            string factionNamePrefix = prefixes.Length > 1 ? prefixes[0] : "";
-
-            var postfixes = factionName.Split('(', ')');
-            string factionNamePostfix = postfixes.Length > 1 ? '(' + postfixes[1] + ')' : "";
-
-            bool prefixExists = factionNamePrefix != "";
-            bool postfixExists = factionNamePostfix != "";
-            string factionNameBody = prefixExists ? factionName.Replace(factionNamePrefix + ' ', "") : factionName;
-            factionNameBody = postfixExists ? factionNameBody.Replace(' ' + factionNamePostfix, "") : factionNameBody;
-            
-            wrappedFactionName = factionNamePrefix + (prefixExists ? "\n" : "")
-                            + factionNameBody + (postfixExists ? "\n" : "")
-                            + factionNamePostfix;
-            return wrappedFactionName;
         }
 
         private void ExecuteLink() => Campaign.Current.EncyclopediaManager.GoToLink(Faction.EncyclopediaLink);
