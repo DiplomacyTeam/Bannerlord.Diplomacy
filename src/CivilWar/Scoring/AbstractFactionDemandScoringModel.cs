@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
@@ -13,10 +14,8 @@ namespace Diplomacy.CivilWar
         public AbstractFactionDemandScoringModel(IFactionDemandScores scores) => Scores = scores;
 
         private static readonly TextObject _TFactionTendency = new TextObject("{=Vp9EcnuC}Faction Tendency");
-        private static readonly TextObject _TRelationsFactionTarget = new TextObject("{=dr1OCcmL}Relations: Target");
-        private static readonly TextObject _TRelationsFactionLeader = new TextObject("{=mouJZAAy}Relations: Leader");
+        private static readonly TextObject _TRelationsFactionLeader = new TextObject("{=mouJZAAy}Relations with Leader");
         private static readonly TextObject _TKingdomSize = new TextObject("{=FtX4LPXF}Kingdom Size");
-        private static readonly TextObject _TValorPenalty = new TextObject("{=F8E3GKgp}Trait: Valor");
 
         public ExplainedNumber GetScore(Clan clan, RebelFaction rebelFaction)
         {
@@ -75,9 +74,12 @@ namespace Diplomacy.CivilWar
 
             // valor modifier
             int[] valorModifier = { -20, -10, 0, 10, 20 };
-            var normalizedValor = clan.Leader.GetTraitLevel(DefaultTraits.Valor) + DefaultTraits.Valor.MaxValue;
-            var valorScore = valorModifier[normalizedValor];
-            yield return new Tuple<TextObject, float>(_TValorPenalty, valorScore);
+            TraitObject trait = DefaultTraits.Valor;
+            int traitLevel = clan.Leader.GetTraitLevel(trait);
+            TextObject valorText = GetTraitText(trait, traitLevel);
+            var normalizedTraitLevel = traitLevel + Math.Abs(trait.MinValue);
+            var valorScore = valorModifier[normalizedTraitLevel];
+            yield return new Tuple<TextObject, float>(valorText, valorScore);
 
             // kingdom size
             var towns = new List<Town>(Town.AllFiefs);
@@ -93,6 +95,11 @@ namespace Diplomacy.CivilWar
             yield return new Tuple<TextObject, float>(_TKingdomSize, kingdomSizeScore);
         }
 
+        private static TextObject GetTraitText(TraitObject trait, int traitLevel)
+        {
+            return GameTexts.FindText("str_trait_name_" + trait.StringId.ToLower(), (traitLevel + Math.Abs(trait.MinValue)).ToString());
+        }
+
         public interface IFactionDemandScores
         {
             public float KingdomSizeScoreMax { get; }
@@ -105,7 +112,7 @@ namespace Diplomacy.CivilWar
         protected virtual IEnumerable<Tuple<TextObject, float>> GetRelationshipScores(Clan clan, RebelFaction rebelFaction)
         {
             List<Tuple<TextObject, float>> scores = new();
-            var mercyMultiplier = 1 - (clan.Leader.GetTraitLevel(DefaultTraits.Mercy) * 0.25f);
+            
             var relationshipWithFactionLeader = clan != rebelFaction.SponsorClan ? clan.GetRelationWithClan(rebelFaction.SponsorClan) : 0f;
 
             var relationshipWithFactionLeaderAdj = relationshipWithFactionLeader;
@@ -116,11 +123,9 @@ namespace Diplomacy.CivilWar
 
 
             yield return new Tuple<TextObject, float>(_TRelationsFactionLeader, relationshipWithFactionLeaderAdj);
-
-            var relationshipWithRuler = clan.GetRelationWithClan(clan.Kingdom.RulingClan);
-            var relationshipWithRulerAdj = relationshipWithRuler <= 0 ? relationshipWithRuler * mercyMultiplier : relationshipWithRuler;
-
-            yield return new Tuple<TextObject, float>(_TRelationsFactionTarget, -relationshipWithRulerAdj);
+            yield return GetRelationshipScoreWithTarget(clan, rebelFaction);
         }
+
+        protected abstract Tuple<TextObject, float> GetRelationshipScoreWithTarget(Clan clan, RebelFaction rebelFaction);
     }
 }

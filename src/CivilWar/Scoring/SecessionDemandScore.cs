@@ -7,14 +7,10 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar
 {
-    class SecessionDemandScore : AbstractFactionDemandScoringModel
+    class SecessionDemandScore : ChangeRulerFactionScoreBase
     {
-        public float FiefDeficit => 10;
-
-        private static readonly TextObject _TFiefDeficit = new TextObject(StringConstants.NotEnoughFiefs);
         private static readonly TextObject _TCalculating = new TextObject("{=Jc1mCVuY}Trait: Calculating");
         private static readonly TextObject _TClanTier = new TextObject("{=cjbVV7E3}Clan Tier Too Low");
-        private static readonly TextObject _TFriendlyClansInFaction = new TextObject("{=qAcR4Yee}Friendly Clans In Faction");
         private static readonly TextObject _TRightToRule = new TextObject("{=IYO5TNTg}Right to Rule");
         private static readonly TextObject _TLeaderRightToRule = new TextObject("{=YLUocN5e}Leader has Right to Rule");
 
@@ -27,14 +23,12 @@ namespace Diplomacy.CivilWar
 
         protected override IEnumerable<Tuple<TextObject, float>> GetMemberScore(Clan clan, RebelFaction rebelFaction)
         {
-            var generosityMultiplier = Math.Abs(clan.Leader.GetTraitLevel(DefaultTraits.Generosity) - DefaultTraits.Generosity.MaxValue);
-            var scorePerFiefDeficit = generosityMultiplier * FiefDeficit;
-            // happy with fiefs
-            float fiefDeficit = (clan.Tier - 1 - clan.Fiefs.Count);
-            if (fiefDeficit > 0)
-            {
-                yield return new Tuple<TextObject, float> (_TFiefDeficit, fiefDeficit * scorePerFiefDeficit);
-            }
+            List<Tuple<TextObject, float>> memberScores = new();
+            memberScores.Add(CalculateFiefDeficitScore(clan));
+            memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Honor));
+            memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Valor));
+
+            return memberScores;
         }
 
         protected override IEnumerable<Tuple<TextObject, float>> GetLeaderOnlyScore(Clan clan, RebelFaction rebelFaction)
@@ -62,7 +56,17 @@ namespace Diplomacy.CivilWar
             }
 
             IEnumerable<Clan> friendlyClans = rebelFaction.Clans.Where(x => x != clan && x != rebelFaction.SponsorClan && clan.Leader.IsFriend(x.Leader));
+
             yield return new Tuple<TextObject, float>(_TFriendlyClansInFaction, friendlyClans.Count() * 5f);
+
+            var honorTrait = CalculateTraitScore(clan, rebelFaction, rebelFaction.SponsorClan.Leader, DefaultTraits.Honor);
+            var valorTrait = CalculateTraitScore(clan, rebelFaction, rebelFaction.SponsorClan.Leader, DefaultTraits.Valor);
+
+            var traits = honorTrait.Concat(valorTrait);
+            foreach (var tuple in traits)
+            {
+                yield return tuple;
+            }
         }
 
         public class SecessionScores : IFactionDemandScores
