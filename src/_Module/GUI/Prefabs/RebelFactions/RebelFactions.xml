@@ -60,10 +60,12 @@
                         </Widget>
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginTop="20">
                           <Children>
-                            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment="Center" MarginBottom="20" VerticalAlignment="Bottom">
+                            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center">
                               <Children>
-                                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" HorizontalAlignment="Center" Brush="Popup.Cancel.Button" Command.Click="OnCreateFaction" UpdateChildrenStates="true" IsEnabled="@ShouldShowCreateFaction">
+
+                                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" HorizontalAlignment="Center" Brush="Popup.Cancel.Button" Command.Click="OnCreateFaction" IsEnabled="@ShouldShowCreateFaction">
                                   <Children>
+
                                     <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@CreateFactionLabel"/>
                                     <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center" PositionXOffset="145">
                                       <Children>
@@ -71,8 +73,11 @@
                                         <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="Kingdom.GeneralButtons.Text" IntText="@CreateFactionInfluenceCost"/>
                                       </Children>
                                     </ListPanel>
+                                    <!--Element Hint-->
+
                                   </Children>
                                 </ButtonWidget>
+                                <HintWidget DataSource="{CreateFactionHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
                               </Children>
                             </Widget>
                           </Children>

@@ -16,7 +16,7 @@ namespace Diplomacy.CivilWar
         {
             var kingdom = rebelFaction.ParentKingdom;
             var clan = rebelFaction.SponsorClan;
-            RebelFactionManager.RegisterRebelFaction(kingdom, rebelFaction);
+            RebelFactionManager.RegisterRebelFaction(rebelFaction);
             new InfluenceCost(clan, InfluenceCost).ApplyCost();
             if (kingdom == Hero.MainHero.MapFaction)
             {
@@ -43,7 +43,7 @@ namespace Diplomacy.CivilWar
             Clan clan = rebelFaction.SponsorClan;
             var kingdom = clan.Kingdom;
             if (kingdom.IsRebelKingdom() // rebel kingdoms can't have factions
-                || !RebelFactionManager.CanStartRebelFaction(kingdom) // check if it's viable to start a faction
+                || !RebelFactionManager.CanStartRebelFaction(rebelFaction.SponsorClan, out _) // check if it's viable to start a faction
                 || RebelFactionManager.GetRebelFaction(kingdom).Where(x => x.SponsorClan == clan).Any()) // faction sponsors can't start another faction 
             {
                 return false;

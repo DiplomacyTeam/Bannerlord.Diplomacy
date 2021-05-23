@@ -62,8 +62,11 @@
     <string id="YLUocN5e" text="Leader has Right to Rule" />
     <string id="qAcR4Yee" text="Friendly Clans In Faction" />
 
-	<string id="EYB5Uggd" text="Leader is {TRAIT}" />
-	<string id="E00ywbqb" text="Ruler is {TRAIT}" />
+	  <string id="ovgs58sT" text="Can't start a faction during an active rebellion." />
+	  <string id="VbpiW2bd" text="Can't start a faction so soon after a civil war." />
+
+	  <string id="EYB5Uggd" text="Leader is {TRAIT}" />
+	  <string id="E00ywbqb" text="Ruler is {TRAIT}" />
 
     <!-- Settings -->
     <string id="eDZeFUTH" text="Civil Wars" />

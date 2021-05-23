@@ -7,6 +7,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.EncyclopediaItems;
 using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
@@ -21,6 +22,7 @@ namespace Diplomacy.ViewModel
         private Kingdom _kingdom;
 
         private DiplomacyCost _createFactionCost;
+        private HintViewModel _createFactionHint;
 
         [DataSourceProperty]
         public string FactionsLabel { get; set; }
@@ -50,7 +52,25 @@ namespace Diplomacy.ViewModel
             foreach (RebelFaction rebelFaction in RebelFactionManager.GetRebelFaction(_kingdom))
                 RebelFactionItems.Add(new RebelFactionItemVM(rebelFaction, _onComplete, this.RefreshValues));
             var mainHeroIsClanSponsor = RebelFactionItems.Where(factionItem => factionItem.RebelFaction.SponsorClan == Clan.PlayerClan).Any();
-            ShouldShowCreateFaction = Clan.PlayerClan.Kingdom == _kingdom && Clan.PlayerClan != _kingdom.RulingClan && !mainHeroIsClanSponsor && _createFactionCost.CanPayCost();
+
+            ShouldShowCreateFaction = Clan.PlayerClan.Kingdom == _kingdom
+                && Clan.PlayerClan != _kingdom.RulingClan
+                && !mainHeroIsClanSponsor
+                && RebelFactionManager.CanStartRebelFaction(Clan.PlayerClan, out _);
+
+            CreateFactionHint = GenerateCreateFactionHint();
+        }
+
+        private HintViewModel GenerateCreateFactionHint()
+        {
+            if (!RebelFactionManager.CanStartRebelFaction(Clan.PlayerClan, out TextObject? textObject) && textObject != null)
+            {
+                return new HintViewModel(textObject);
+            }
+            else
+            {
+                return new HintViewModel();
+            }
         }
 
         public void OnComplete() => _onComplete();
@@ -106,7 +126,7 @@ namespace Diplomacy.ViewModel
                     throw new MBException("Should have a type of demand when creating a faction");
             }
             _createFactionCost.ApplyCost();
-            RebelFactionManager.RegisterRebelFaction(Clan.PlayerClan.Kingdom, rebelFaction);
+            RebelFactionManager.RegisterRebelFaction(rebelFaction);
             this.RefreshValues();
         }
 
@@ -148,6 +168,20 @@ namespace Diplomacy.ViewModel
                 {
                     _shouldShowCreateFaction = value;
                     OnPropertyChanged(nameof(ShouldShowCreateFaction));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public HintViewModel CreateFactionHint
+        {
+            get => _createFactionHint;
+            set
+            {
+                if (value != _createFactionHint)
+                {
+                    _createFactionHint = value;
+                    OnPropertyChanged(nameof(CreateFactionHint));
                 }
             }
         }

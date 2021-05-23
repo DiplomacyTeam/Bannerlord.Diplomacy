@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Diplomacy.Costs;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 
 namespace Diplomacy.CivilWar
@@ -29,15 +31,26 @@ namespace Diplomacy.CivilWar
             Instance = this;
         }
 
-        public static void RegisterRebelFaction(Kingdom kingdom, RebelFaction rebelFaction)
+        public static void RegisterRebelFaction(RebelFaction rebelFaction)
         {
-            if (!CanStartRebelFaction(kingdom))
+            Kingdom kingdom = rebelFaction.ParentKingdom;
+            Clan clan = rebelFaction.SponsorClan;
+            if (!CanStartRebelFaction(clan, out _))
             {
                 return;
             }
 
             if (Instance!.RebelFactions.TryGetValue(kingdom, out List<RebelFaction> rebelFactions))
             {
+                // if we're starting a secession faction, remove this clan from other secession factions
+                if (rebelFaction.RebelDemandType == RebelDemandType.Secession)
+                {
+                    var otherSecessionFactions = rebelFactions.Where(x => x.RebelDemandType == RebelDemandType.Secession && x.Clans.Contains(rebelFaction.SponsorClan));
+                    foreach (RebelFaction faction in otherSecessionFactions)
+                    {
+                        faction.RemoveClan(rebelFaction.SponsorClan);
+                    }
+                }
                 Instance!.RebelFactions[kingdom].Add(rebelFaction);
             }
             else
@@ -45,6 +58,7 @@ namespace Diplomacy.CivilWar
                 List<RebelFaction> newRebelFactions = new() { rebelFaction };
                 Instance!.RebelFactions[kingdom] = newRebelFactions;
             }
+
         }
 
         public static void DestroyRebelFaction(RebelFaction rebelFaction, bool rebelKingdomSurvived = false)
@@ -65,22 +79,43 @@ namespace Diplomacy.CivilWar
             Instance!.RebelFactions[rebelFaction.ParentKingdom].Remove(rebelFaction);
         }
 
-        public static bool CanStartRebelFaction(Kingdom kingdom)
+        public static bool CanStartRebelFaction(Clan clan, out TextObject? reason)
         {
-            if (Instance!.RebelFactions.TryGetValue(kingdom, out List<RebelFaction> rebelFactions))
+            if (Instance!.RebelFactions.TryGetValue(clan.Kingdom, out List<RebelFaction> rebelFactions))
             {
-                if (rebelFactions.Count >= 3 || rebelFactions.Where(x => x.AtWar).Any())
+                if (rebelFactions.Where(x => x.AtWar).Any())
+                {
+                    reason = new TextObject("{=ovgs58sT}Can't start a faction during an active rebellion.");
                     return false;
+                }
+
+                // players can exceed the max
+                if (rebelFactions.Count >= 3 && clan != Clan.PlayerClan)
+                {
+                    reason = TextObject.Empty;
+                    return false;
+                }
+
             }
 
-            if (Instance!.LastCivilWar.TryGetValue(kingdom, out CampaignTime lastTime))
+            if (Instance!.LastCivilWar.TryGetValue(clan.Kingdom, out CampaignTime lastTime))
             {
                 float daysSinceLastCivilWar = lastTime.ElapsedDaysUntilNow;
 
                 if (daysSinceLastCivilWar < Settings.Instance!.MinimumTimeSinceLastCivilWarInDays)
+                {
+                    reason = new TextObject("{=VbpiW2bd}Can't start a faction so soon after a civil war.");
                     return false;
+                }
             }
 
+            if (!new InfluenceCost(clan, Settings.Instance!.FactionCreationInfluenceCost).CanPayCost())
+            {
+                reason = new TextObject(StringConstants.NOT_ENOUGH_INFLUENCE);
+                return false;
+            }
+
+            reason = null;
             return true;
         }
 
