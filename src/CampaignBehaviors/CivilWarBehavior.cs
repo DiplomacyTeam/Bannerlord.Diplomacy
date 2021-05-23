@@ -81,8 +81,11 @@ namespace Diplomacy.CampaignBehaviors
             var rebelFactions = RebelFactionManager.GetRebelFaction(oldKingdom);
             foreach (RebelFaction rf in rebelFactions)
             {
-                if (rf!.RebelKingdom == newKingdom || (rf.RebelKingdom is null && rf.SponsorClan == clan && newKingdom.Clans.Count == 1))
-                    return;
+                if (newKingdom != null)
+                {
+                    if (rf!.RebelKingdom == newKingdom || (rf.RebelKingdom is null && rf.SponsorClan == clan && newKingdom.Clans.Count == 1))
+                        return;
+                }
                 rf.RemoveClan(clan);
             }
         }
