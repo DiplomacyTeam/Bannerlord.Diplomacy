@@ -97,6 +97,10 @@ namespace Diplomacy.ViewModel
 
         public void OnStartRebellion()
         {
+            if (Game.Current.GameStateManager.ActiveState is KingdomState)
+            {
+                Game.Current.GameStateManager.PopState(0);
+            }
             StartRebellionAction.Apply(RebelFaction);
             _refreshParent();
         }
