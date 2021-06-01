@@ -25,7 +25,7 @@
           </Children>
         </ButtonWidget>
         <!--Element Name-->
-        <TextWidget MarginTop="5" HorizontalAlignment="Center" WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" Text="@NameText" Brush="Encyclopedia.SubPage.Element.Name.Text"/>
+        <TextWidget MarginTop="5" HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="!Encyclopedia.SubPage.Element.Width" HeightSizePolicy = "CoverChildren" Text="@NameText" Brush="Encyclopedia.SubPage.Element.Name.Text"/>
       </Children>
     </ListPanel>
   </Window>
