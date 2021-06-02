@@ -28,6 +28,11 @@ namespace Diplomacy.CivilWar
             memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Honor));
             memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Valor));
 
+            if (rebelFaction.ParentKingdom.Leader.Clan.Tier < 6)
+            {
+                memberScores.Add(new Tuple<TextObject, float>(_TRulerNeedsRightToRule, 25f));
+            }
+
             return memberScores;
         }
 

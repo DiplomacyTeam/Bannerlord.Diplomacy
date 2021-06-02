@@ -17,6 +17,7 @@ namespace Diplomacy.CivilWar
         private static readonly TextObject _TRelationsFactionTarget = new TextObject("{=dr1OCcmL}Relations with Ruler");
         protected static readonly TextObject _TLeaderTrait = new TextObject("{=EYB5Uggd}Leader is {TRAIT}");
         protected static readonly TextObject _TRulerTrait = new TextObject("{=E00ywbqb}Ruler is {TRAIT}");
+        protected static readonly TextObject _TRulerNeedsRightToRule = new TextObject("{=1AZK0UVJ}Ruler doesn't have Right to Rule");
 
 
         protected ChangeRulerFactionScoreBase(IFactionDemandScores scores) : base(scores) { }
