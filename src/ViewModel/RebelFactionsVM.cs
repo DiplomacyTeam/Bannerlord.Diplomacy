@@ -63,7 +63,7 @@ namespace Diplomacy.ViewModel
 
         private HintViewModel GenerateCreateFactionHint()
         {
-            if (!RebelFactionManager.CanStartRebelFaction(Clan.PlayerClan, out TextObject? textObject) && textObject != null)
+            if (Clan.PlayerClan.Kingdom == _kingdom && !RebelFactionManager.CanStartRebelFaction(Clan.PlayerClan, out TextObject? textObject) && textObject != null)
             {
                 return new HintViewModel(textObject);
             }
