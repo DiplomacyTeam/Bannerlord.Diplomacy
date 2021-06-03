@@ -23,6 +23,7 @@
     <MCMVersion>4.3.10</MCMVersion>
     <HarmonyExtensionsVersion>2.0.0.10</HarmonyExtensionsVersion>
 	  <UIExtenderExVersion>2.1.5</UIExtenderExVersion>
+    <BUTRSharedVersion>1.6.1.39</BUTRSharedVersion>
   </PropertyGroup>
 
   <!-- Game Versions for Stable and Beta -->
@@ -76,6 +77,10 @@
   <!-- NuGet Packages -->
   <ItemGroup>
     <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Bannerlord.BUTR.Shared" Version="$(BUTRSharedVersion)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

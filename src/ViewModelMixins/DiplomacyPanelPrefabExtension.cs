@@ -1,4 +1,5 @@
-﻿using Bannerlord.UIExtenderEx.Attributes;
+﻿using Bannerlord.BUTR.Shared.Helpers;
+using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.Prefabs2;
 using System.Xml;
 
@@ -19,11 +20,14 @@ namespace Diplomacy.ViewModelMixins
         public DiplomacyPanelPrefabExtension()
         {
             document = new XmlDocument();
-#if e159
-            document.LoadXml(@"<DiplomacyPanel_159 />");
-#elif e1510
-            document.LoadXml(@"<DiplomacyPanel_1510 />");
-#endif
+
+            if (ApplicationVersionHelper.GameVersion() is { } gameVersion)
+            {
+                if (gameVersion.Major <= 1 && gameVersion.Minor <= 5 && gameVersion.Revision <= 9)
+                    document.LoadXml(@"<DiplomacyPanel_159 />");
+                else
+                    document.LoadXml(@"<DiplomacyPanel_1510 />");
+            }
         }
 
         [PrefabExtensionXmlDocument]

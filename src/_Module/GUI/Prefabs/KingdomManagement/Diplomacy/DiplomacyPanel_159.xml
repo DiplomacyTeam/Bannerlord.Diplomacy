@@ -207,10 +207,10 @@
                         </ListPanel>
 
                         <!--War Icon-->
-                        <Widget DataSource="{CurrentSelectedDiplomacyItem}" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="63" VerticalAlignment="Center" MarginRight="15" MarginLeft="15" MarginBottom="45" Sprite="SPKingdom\Diplomacy\diplomacy_war_icon" IsEnabled="false" IsVisible="@IsWar"/>
+                        <Widget DataSource="{CurrentSelectedDiplomacyItem}" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="63" VerticalAlignment="Center" MarginRight="15" MarginLeft="15" MarginBottom="45" Sprite="SPKingdom\Diplomacy\diplomacy_war_icon" IsEnabled="false" IsVisible="@IsWarItem"/>
 
                         <!--Truce Icon-->
-                        <Widget DataSource="{CurrentSelectedDiplomacyItem}" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="65" VerticalAlignment="Center" MarginRight="25" MarginLeft="25" MarginBottom="45" IsEnabled="false" IsVisible="@IsTruce">
+                        <Widget DataSource="{CurrentSelectedDiplomacyItem}" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="65" VerticalAlignment="Center" MarginRight="25" MarginLeft="25" MarginBottom="45" IsEnabled="false" IsHidden="@IsWarItem">
                           <Children>
                             <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="63" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="SPKingdom\Diplomacy\diplomacy_peace_icon" IsEnabled="false"/>
                           </Children>
