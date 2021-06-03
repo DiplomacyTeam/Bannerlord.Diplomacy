@@ -81,8 +81,9 @@
     </PackageReference>
     <PackageReference Include="Bannerlord.ButterLib" Version="$(ButterLibVersion)" IncludeAssets="compile" />
     <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" IncludeAssets="compile" />
+    <PackageReference Include="ColorMinePortable" Version="2.0.1" />
     <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" IncludeAssets="compile" />
-	<PackageReference Include="Bannerlord.UIExtenderEx" Version="$(UIExtenderExVersion)" IncludeAssets="compile" />
+	  <PackageReference Include="Bannerlord.UIExtenderEx" Version="$(UIExtenderExVersion)" IncludeAssets="compile" />
     <!-- Microsoft.CSharp is used for its source-only 'dynamic' implementation. -->
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <!-- An old version of JSON.NET is distributed with the game, so no point in including the assembly,

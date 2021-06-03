@@ -1,4 +1,7 @@
-﻿using Diplomacy.Event;
+﻿using ColorMine.ColorSpaces;
+using ColorMine.ColorSpaces.Comparisons;
+using Diplomacy.Event;
+using Diplomacy.Extensions;
 using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,18 +79,48 @@ namespace Diplomacy.CivilWar
 
             if (isRebelKingdom)
             {
-                backgroundColor = BannerManager.GetColor(99);
-                sigilColor = BannerManager.ColorPalette.Where(x => x.Value.PlayerCanChooseForSigil).GetRandomElementInefficiently().Value.Color;
+                backgroundColor = RebelBackgroundColor;
+                sigilColor = GetUniqueSigilColor(backgroundColor);
             }
             else
             {
                 // choose random unused color from the palette
                 List<uint> currentBackgroundColors = Kingdom.All.Where(x => !x.IsEliminated).Select(x => (uint)_primaryColorProp.GetValue(x)).ToList();
                 backgroundColor = BannerManager.ColorPalette.Where(x => !currentBackgroundColors.Contains(x.Value.Color)).GetRandomElementInefficiently().Value.Color;
-                sigilColor = BannerManager.ColorPalette.Where(x => x.Value.PlayerCanChooseForSigil && x.Value.Color != backgroundColor).GetRandomElementInefficiently().Value.Color;
+                sigilColor = GetUniqueSigilColor(backgroundColor);
             }
 
             Apply(kingdom, backgroundColor, sigilColor);
+        }
+
+        private static uint GetUniqueSigilColor(uint backgroundColor)
+        {
+
+            Rgb background = GetRgb(backgroundColor);
+
+            uint selectedColor = BannerManager.ColorPalette.Where(x => background.Compare(GetRgb(x.Value.Color), new Cie1976Comparison()) > 40).GetRandomElementInefficiently().Value.Color;
+            if (backgroundColor == RebelBackgroundColor)
+            {
+                List<uint> currentSigilColors = Kingdom.All.Where(x => !x.IsEliminated && x.IsRebelKingdom()).Select(x => (uint)_secondaryColorProp.GetValue(x)).ToList();
+                var colors = BannerManager.ColorPalette.Select(x => x.Value.Color)
+                    .Where(x => background.Compare(GetRgb(x), new Cie1976Comparison()) > 40)
+                    .Where(x => !currentSigilColors.Contains(x));
+
+                if (colors.Any())
+                    selectedColor = colors.GetRandomElementInefficiently();
+            }
+
+            return selectedColor;
+        }
+
+        private static uint RebelBackgroundColor => BannerManager.GetColor(99);
+
+        private static Rgb GetRgb(uint color)
+        {
+            string hex = color.ToHexadecimalString();
+            hex = hex.Substring(2);
+            var rgb = new Hex(hex).To<Rgb>();
+            return rgb;
         }
     }
 }
