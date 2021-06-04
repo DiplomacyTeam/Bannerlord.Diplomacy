@@ -92,14 +92,14 @@ namespace Diplomacy.Extensions
             return "done!";
         }
 
-        [CommandLineFunctionality.CommandLineArgumentFunction("toggle_debug_mode", "ui")]
+        [CommandLineFunctionality.CommandLineArgumentFunction("toggle_debug_mode", "diplomacy")]
         public static string ToggleUIDebugMode(List<string> strings)
         {
             UIConfig.DebugModeEnabled = !UIConfig.DebugModeEnabled;
             return "UI Debug Mode " + (UIConfig.DebugModeEnabled ? "Enabled" : "Disabled");
         }
 
-        [CommandLineFunctionality.CommandLineArgumentFunction("reload", "ui")]
+        [CommandLineFunctionality.CommandLineArgumentFunction("reload_ui", "diplomacy")]
         public static string ReloadUI(List<string> strings)
         {
             UIResourceManager.Update();
