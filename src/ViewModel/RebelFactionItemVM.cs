@@ -63,11 +63,7 @@ namespace Diplomacy.ViewModel
                     ParticipatingClans.Add(vm);
             }
 
-            this.ShouldAllowJoin = RebelFaction.ParentKingdom == Clan.PlayerClan.Kingdom
-                && !Hero.MainHero.IsFactionLeader
-                && !RebelFaction.Clans.Contains(Clan.PlayerClan)
-                && RebelFaction.SponsorClan != Clan.PlayerClan
-                && !RebelFaction.AtWar;
+            this.ShouldAllowJoin = JoinFactionAction.CanApply(Clan.PlayerClan, RebelFaction, out _);
 
             this.ShouldShowLeave = RebelFaction.Clans.Contains(Hero.MainHero.Clan);
             this.FactionStrength = (int)Math.Round(RebelFaction.FactionStrength);

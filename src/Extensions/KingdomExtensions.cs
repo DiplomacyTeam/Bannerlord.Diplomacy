@@ -95,5 +95,15 @@ namespace Diplomacy.Extensions
         {
             return RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Select(rf => rf.RebelKingdom).Where(rk => rk == kingdom).Any() || RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom);
         }
+
+        public static bool HasRebellion(this Kingdom kingdom)
+        {
+            return GetRebelFactions(kingdom).Where(x => x.AtWar).Any();
+        }
+
+        public static IEnumerable<RebelFaction> GetRebelFactions(this Kingdom kingdom)
+        {
+            return RebelFactionManager.GetRebelFaction(kingdom);
+        }
     }
 }

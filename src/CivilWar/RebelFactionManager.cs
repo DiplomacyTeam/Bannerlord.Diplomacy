@@ -35,7 +35,7 @@ namespace Diplomacy.CivilWar
         {
             Kingdom kingdom = rebelFaction.ParentKingdom;
             Clan clan = rebelFaction.SponsorClan;
-            if (!CanStartRebelFaction(clan, out _))
+            if (!CreateFactionAction.CanApply(clan, out _))
             {
                 return;
             }
@@ -77,46 +77,6 @@ namespace Diplomacy.CivilWar
                 }
             }
             Instance!.RebelFactions[rebelFaction.ParentKingdom].Remove(rebelFaction);
-        }
-
-        public static bool CanStartRebelFaction(Clan clan, out TextObject? reason)
-        {
-            if (Instance!.RebelFactions.TryGetValue(clan.Kingdom, out List<RebelFaction> rebelFactions))
-            {
-                if (rebelFactions.Where(x => x.AtWar).Any())
-                {
-                    reason = new TextObject("{=ovgs58sT}Can't start a faction during an active rebellion.");
-                    return false;
-                }
-
-                // players can exceed the max
-                if (rebelFactions.Count >= 3 && clan != Clan.PlayerClan)
-                {
-                    reason = TextObject.Empty;
-                    return false;
-                }
-
-            }
-
-            if (Instance!.LastCivilWar.TryGetValue(clan.Kingdom, out CampaignTime lastTime))
-            {
-                float daysSinceLastCivilWar = lastTime.ElapsedDaysUntilNow;
-
-                if (daysSinceLastCivilWar < Settings.Instance!.MinimumTimeSinceLastCivilWarInDays)
-                {
-                    reason = new TextObject("{=VbpiW2bd}Can't start a faction so soon after a civil war.");
-                    return false;
-                }
-            }
-
-            if (!new InfluenceCost(clan, Settings.Instance!.FactionCreationInfluenceCost).CanPayCost())
-            {
-                reason = new TextObject(StringConstants.NOT_ENOUGH_INFLUENCE);
-                return false;
-            }
-
-            reason = null;
-            return true;
         }
 
         public static bool HasRebelFaction(Kingdom kingdom)

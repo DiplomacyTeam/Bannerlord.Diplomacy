@@ -65,6 +65,7 @@
 
 	  <string id="ovgs58sT" text="Can't start a faction during an active rebellion." />
 	  <string id="VbpiW2bd" text="Can't start a faction so soon after a civil war." />
+    <string id="JDk8ustS" text="Can't start faction as a mercenary." />
 
 	  <string id="EYB5Uggd" text="Leader is {TRAIT}" />
 	  <string id="E00ywbqb" text="Ruler is {TRAIT}" />

@@ -41,16 +41,85 @@ namespace Diplomacy.CivilWar
         public static bool ShouldApply(RebelFaction rebelFaction)
         {
             Clan clan = rebelFaction.SponsorClan;
-            var kingdom = clan.Kingdom;
-            if (kingdom.IsRebelKingdom() // rebel kingdoms can't have factions
-                || !RebelFactionManager.CanStartRebelFaction(rebelFaction.SponsorClan, out _) // check if it's viable to start a faction
-                || RebelFactionManager.GetRebelFaction(kingdom).Where(x => x.SponsorClan == clan).Any()) // faction sponsors can't start another faction 
+            if (!CanApply(clan, out _))
             {
                 return false;
             }
 
             var score = RebelFactionScoringModel.GetDemandScore(clan, rebelFaction);
             return score.ResultNumber >= RebelFactionScoringModel.RequiredScore && new InfluenceCost(clan, InfluenceCost).CanPayCost();
+        }
+
+        public static bool CanApply(Clan clan, out TextObject? reason)
+        {
+            IEnumerable<TextObject> exceptions;
+            if ((exceptions = CanApply(clan)).Any())
+            {
+                reason = exceptions.First();
+            }
+            else
+            {
+                reason = default;
+            }
+
+            return !exceptions.Any();
+        }
+
+        public static IEnumerable<TextObject> CanApply(Clan clan)
+        {
+            if (clan.Kingdom.IsRebelKingdom())
+            {
+                yield return TextObject.Empty;
+            }
+            
+            // ruling clan can't create factions
+            if (clan == clan.Kingdom.RulingClan)
+            {
+                yield return TextObject.Empty;
+            }
+
+            if (clan.IsUnderMercenaryService)
+            {
+                yield return new TextObject("{=JDk8ustS}Can't start faction as a mercenary.");
+            }
+
+            // rebel kingdoms can't have factions
+
+            if (RebelFactionManager.AllRebelFactions.TryGetValue(clan.Kingdom, out List<RebelFaction> rebelFactions))
+            {
+                // no active rebellions
+                if (rebelFactions.Where(x => x.AtWar).Any())
+                {
+                    yield return new TextObject("{=ovgs58sT}Can't start a faction during an active rebellion.");
+                }
+
+                // faction sponsors can't start another faction 
+                if (rebelFactions.Where(x => x.SponsorClan == clan).Any())
+                {
+                    yield return TextObject.Empty;
+                }
+
+                // players can exceed the max
+                if (rebelFactions.Count >= 3 && clan != Clan.PlayerClan)
+                {
+                    yield return TextObject.Empty;
+                }
+            }
+
+            if (RebelFactionManager.Instance!.LastCivilWar.TryGetValue(clan.Kingdom, out CampaignTime lastTime))
+            {
+                float daysSinceLastCivilWar = lastTime.ElapsedDaysUntilNow;
+
+                if (daysSinceLastCivilWar < Settings.Instance!.MinimumTimeSinceLastCivilWarInDays)
+                {
+                    yield return new TextObject("{=VbpiW2bd}Can't start a faction so soon after a civil war.");
+                }
+            }
+
+            if (!new InfluenceCost(clan, Settings.Instance!.FactionCreationInfluenceCost).CanPayCost())
+            {
+                yield return new TextObject(StringConstants.NOT_ENOUGH_INFLUENCE);
+            }
         }
     }
 }

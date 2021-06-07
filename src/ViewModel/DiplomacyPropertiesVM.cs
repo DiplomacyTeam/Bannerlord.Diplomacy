@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
@@ -56,15 +57,32 @@ namespace Diplomacy.ViewModel
 
             foreach (var kingdom in Kingdom.All)
             {
+
                 if (FactionManager.IsAlliedWithFaction(kingdom, Faction1) && kingdom != Faction1)
-                    Faction1Allies.Add(new DiplomacyFactionRelationshipVM(kingdom));
+                    Faction1Allies.Add(new DiplomacyFactionRelationshipVM(kingdom, CreateAllianceHint(kingdom, (Faction1 as Kingdom)!)));
 
                 if (FactionManager.IsAlliedWithFaction(kingdom, Faction2) && kingdom != Faction2)
-                    Faction2Allies.Add(new DiplomacyFactionRelationshipVM(kingdom));
+                    Faction2Allies.Add(new DiplomacyFactionRelationshipVM(kingdom, CreateAllianceHint(kingdom, (Faction2 as Kingdom)!)));
 
                 AddNonAggressionPactRelationships(kingdom, Faction1, Faction1Pacts);
                 AddNonAggressionPactRelationships(kingdom, Faction2, Faction2Pacts);
             }
+        }
+        private HintViewModel CreateAllianceHint(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            TextObject textObject;
+            if (CooldownManager.HasBreakAllianceCooldown(kingdom1, kingdom2, out float elapsedDaysUntilNow))
+            {
+                textObject = _TDaysRemaining.CopyTextObject();
+                var remaining = Settings.Instance!.MinimumAllianceDuration - elapsedDaysUntilNow;
+                textObject.SetTextVariable("DAYS_LEFT", (int)Math.Round(remaining));
+            }
+            else
+            {
+                textObject = TextObject.Empty;
+            }
+
+            return new HintViewModel(textObject);
         }
 
         private void AddNonAggressionPactRelationships(Kingdom kingdom, IFaction faction, MBBindingList<DiplomacyFactionRelationshipVM> FactionPacts)

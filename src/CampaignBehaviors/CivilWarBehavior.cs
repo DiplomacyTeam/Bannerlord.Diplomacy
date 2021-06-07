@@ -173,7 +173,7 @@ namespace Diplomacy.CampaignBehaviors
         private void ConsiderCreatingRebelFaction(Kingdom kingdom, Clan clan)
         {
             // don't add new rebel faction if one exists
-            if (kingdom.IsRebelKingdom() || !RebelFactionManager.CanStartRebelFaction(clan, out _))
+            if (kingdom.IsRebelKingdom() || !CreateFactionAction.CanApply(clan, out _))
                 return;
 
             var rebelFactionScore = RebelFactionScoringModel.GetDemandScore(clan).OrderByDescending(x => x.Value.ResultNumber).First();
