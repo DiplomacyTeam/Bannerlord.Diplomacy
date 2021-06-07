@@ -14,11 +14,12 @@ namespace Diplomacy.ViewModel
             this.RefreshValues();
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, HandleStanceChange);
             CampaignEvents.MakePeace.AddNonSerializedListener(this, HandleStanceChange);
-            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, HandleClanChangedKingdom);
+            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, y, z, a, b) => HandleClanChangedKingdom(x));
+            CampaignEvents.MercenaryClanChangedKingdom.AddNonSerializedListener(this, (x, y, z) => HandleClanChangedKingdom(x));
             Events.WarExhaustionAdded.AddNonSerializedListener(this, HandleWarExhaustionChange);
         }
 
-        private void HandleClanChangedKingdom(Clan clan, Kingdom oldKingdom, Kingdom newKingdom, bool byRebellion, bool showNotification)
+        private void HandleClanChangedKingdom(Clan clan)
         {
             if (Clan.PlayerClan == clan)
             {
