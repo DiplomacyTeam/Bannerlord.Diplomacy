@@ -53,7 +53,7 @@ namespace Diplomacy.ViewModel
                 RebelFactionItems.Add(new RebelFactionItemVM(rebelFaction, _onComplete, this.RefreshValues));
             var mainHeroIsClanSponsor = RebelFactionItems.Where(factionItem => factionItem.RebelFaction.SponsorClan == Clan.PlayerClan).Any();
 
-            var canCreateFaction = CreateFactionAction.CanApply(Clan.PlayerClan, out TextObject? reason);
+            var canCreateFaction = CreateFactionAction.CanApply(Clan.PlayerClan, default, out TextObject? reason);
 
             ShouldShowCreateFaction = Clan.PlayerClan.Kingdom == _kingdom && canCreateFaction;
             CreateFactionHint = GenerateCreateFactionHint(canCreateFaction, reason);
@@ -79,11 +79,8 @@ namespace Diplomacy.ViewModel
             foreach (int value in Enum.GetValues(typeof(RebelDemandType)))
             {
                 var demandType = (RebelDemandType)value;
-                bool canCreateFaction = demandType != RebelDemandType.Secession || Clan.PlayerClan.Tier >= 4;
-                inquiryElements.Add(new InquiryElement(demandType, demandType.GetName(), null, canCreateFaction, demandType.GetHint()));
+                inquiryElements.Add(new InquiryElement(demandType, demandType.GetName(), null, CreateFactionAction.CanApply(Clan.PlayerClan, demandType, out _), demandType.GetHint()));
             }
-
-            inquiryElements.Add(new InquiryElement(null, GameTexts.FindText("str_cancel").ToString(), null, true, null));
 
             InformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(
                 CreateFactionLabel,
@@ -123,8 +120,8 @@ namespace Diplomacy.ViewModel
                 default:
                     throw new MBException("Should have a type of demand when creating a faction");
             }
-            _createFactionCost.ApplyCost();
-            RebelFactionManager.RegisterRebelFaction(rebelFaction);
+
+            CreateFactionAction.Apply(rebelFaction);
             this.RefreshValues();
         }
 

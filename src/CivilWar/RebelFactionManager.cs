@@ -35,10 +35,6 @@ namespace Diplomacy.CivilWar
         {
             Kingdom kingdom = rebelFaction.ParentKingdom;
             Clan clan = rebelFaction.SponsorClan;
-            if (!CreateFactionAction.CanApply(clan, out _))
-            {
-                return;
-            }
 
             if (Instance!.RebelFactions.TryGetValue(kingdom, out List<RebelFaction> rebelFactions))
             {
@@ -58,7 +54,6 @@ namespace Diplomacy.CivilWar
                 List<RebelFaction> newRebelFactions = new() { rebelFaction };
                 Instance!.RebelFactions[kingdom] = newRebelFactions;
             }
-
         }
 
         public static void DestroyRebelFaction(RebelFaction rebelFaction, bool rebelKingdomSurvived = false)

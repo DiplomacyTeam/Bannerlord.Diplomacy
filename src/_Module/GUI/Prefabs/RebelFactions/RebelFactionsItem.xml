@@ -112,7 +112,7 @@
                   <Children>
                     <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" >
                       <Children>
-                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" Brush="Popup.Done.Button" Command.Click="OnJoin" IsHidden="@ShouldShowLeave" IsEnabled="@ShouldAllowJoin" UpdateChildrenStates="true" >
+                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" Brush="Popup.Cancel.Button" Command.Click="OnJoin" IsHidden="@ShouldShowLeave" IsEnabled="@ShouldAllowJoin" UpdateChildrenStates="true" >
                           <Children>
                             <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@JoinLabel"/>
                           </Children>

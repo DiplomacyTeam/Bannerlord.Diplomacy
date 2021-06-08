@@ -36,6 +36,15 @@ namespace Diplomacy.CivilWar
             return !exceptions.Any();
         }
 
+        /// <summary>
+        /// Determines the set of reasons that the given faction cannot be joined by the clan. As the reasons are not currently used
+        /// in the UI, currently supplying empty TextObjects for the reasons.
+        /// </summary>
+        /// <param name="clan"></param>
+        /// <param name="rebelFaction"></param>
+        /// <returns>
+        /// Set of reasons for which the faction cannot be joined
+        /// </returns>
         public static IEnumerable<TextObject> CanApply(Clan clan, RebelFaction rebelFaction)
         {
 
@@ -60,7 +69,7 @@ namespace Diplomacy.CivilWar
             // mercenaries can't join factions
             if (clan.IsUnderMercenaryService)
             {
-                yield return new TextObject("{=JDk8ustS}Can't start faction as a mercenary.");
+                yield return TextObject.Empty;
             }
 
             // can't join a faction during an active rebellion

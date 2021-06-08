@@ -41,7 +41,7 @@ namespace Diplomacy.CivilWar
         public static bool ShouldApply(RebelFaction rebelFaction)
         {
             Clan clan = rebelFaction.SponsorClan;
-            if (!CanApply(clan, out _))
+            if (!CanApply(clan, default, out _))
             {
                 return false;
             }
@@ -50,10 +50,10 @@ namespace Diplomacy.CivilWar
             return score.ResultNumber >= RebelFactionScoringModel.RequiredScore && new InfluenceCost(clan, InfluenceCost).CanPayCost();
         }
 
-        public static bool CanApply(Clan clan, out TextObject? reason)
+        public static bool CanApply(Clan clan, RebelDemandType? demandType, out TextObject? reason)
         {
             IEnumerable<TextObject> exceptions;
-            if ((exceptions = CanApply(clan)).Any())
+            if ((exceptions = CanApply(clan, demandType)).Any())
             {
                 reason = exceptions.First();
             }
@@ -65,7 +65,7 @@ namespace Diplomacy.CivilWar
             return !exceptions.Any();
         }
 
-        public static IEnumerable<TextObject> CanApply(Clan clan)
+        public static IEnumerable<TextObject> CanApply(Clan clan, RebelDemandType? demandType)
         {
             if (clan.Kingdom.IsRebelKingdom())
             {
@@ -81,6 +81,12 @@ namespace Diplomacy.CivilWar
             if (clan.IsUnderMercenaryService)
             {
                 yield return new TextObject("{=JDk8ustS}Can't start faction as a mercenary.");
+            }
+
+            // must be clan tier 4+ to start a secession faction
+            if (demandType == RebelDemandType.Secession && clan.Tier < 4)
+            {
+                yield return TextObject.Empty;
             }
 
             // rebel kingdoms can't have factions
@@ -101,6 +107,12 @@ namespace Diplomacy.CivilWar
 
                 // players can exceed the max
                 if (rebelFactions.Count >= 3 && clan != Clan.PlayerClan)
+                {
+                    yield return TextObject.Empty;
+                }
+
+                // only one abdication faction allowed
+                if (demandType == RebelDemandType.Abdication && rebelFactions.Any(x => x.RebelDemandType == RebelDemandType.Abdication))
                 {
                     yield return TextObject.Empty;
                 }
