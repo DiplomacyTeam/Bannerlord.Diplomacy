@@ -15,7 +15,9 @@ namespace Diplomacy.ViewModel
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, HandleStanceChange);
             CampaignEvents.MakePeace.AddNonSerializedListener(this, HandleStanceChange);
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, y, z, a, b) => HandleClanChangedKingdom(x));
+#if e159
             CampaignEvents.MercenaryClanChangedKingdom.AddNonSerializedListener(this, (x, y, z) => HandleClanChangedKingdom(x));
+#endif
             Events.WarExhaustionAdded.AddNonSerializedListener(this, HandleWarExhaustionChange);
         }
 

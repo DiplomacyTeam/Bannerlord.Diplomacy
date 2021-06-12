@@ -8,7 +8,6 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.Core;
-using TaleWorlds.Localization;
 
 namespace Diplomacy.CampaignBehaviors
 {
@@ -19,7 +18,10 @@ namespace Diplomacy.CampaignBehaviors
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, DailyTickClan);
-            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, RemoveClanFromRebelFaction);
+            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, y, z, a, b) => RemoveClanFromRebelFaction(x, y, z));
+#if e159
+            CampaignEvents.MercenaryClanChangedKingdom.AddNonSerializedListener(this, (x, y, z) => RemoveClanFromRebelFaction(x, y, z));
+#endif
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ResolveCivilWar);
             CampaignEvents.KingdomDecisionConcluded.AddNonSerializedListener(this, NewKing);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
@@ -75,8 +77,7 @@ namespace Diplomacy.CampaignBehaviors
                 }
             }
         }
-
-        private void RemoveClanFromRebelFaction(Clan clan, Kingdom oldKingdom, Kingdom newKingdom, bool byRebellion, bool showNotification)
+        private void RemoveClanFromRebelFaction(Clan clan, Kingdom oldKingdom, Kingdom newKingdom)
         {
             var rebelFactions = RebelFactionManager.GetRebelFaction(oldKingdom);
             foreach (RebelFaction rf in rebelFactions)

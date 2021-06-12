@@ -89,7 +89,11 @@ namespace Diplomacy.ViewModel
         public void OnClose()
         {
             Events.RemoveListeners(this);
+#if e159
             CampaignEvents.RemoveListeners(this);
+#else
+            CampaignEventDispatcher.Instance.RemoveListeners(this);
+#endif
         }
 
         public override void RefreshValues()

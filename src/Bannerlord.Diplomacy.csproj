@@ -18,7 +18,7 @@
   <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
   <PropertyGroup>
     <BuildResourcesVersion>1.0.0.33</BuildResourcesVersion>
-    <ButterLibVersion>1.0.22</ButterLibVersion>
+    <ButterLibVersion>1.0.24</ButterLibVersion>
     <HarmonyVersion>2.0.4</HarmonyVersion>
     <MCMVersion>4.3.10</MCMVersion>
     <HarmonyExtensionsVersion>2.0.0.10</HarmonyExtensionsVersion>
@@ -29,7 +29,7 @@
   <!-- Game Versions for Stable and Beta -->
   <PropertyGroup>
     <GameVersion Condition="$(IsStable) == 'true'">1.5.9</GameVersion>
-    <GameVersion Condition="$(IsBeta) == 'true'">1.5.10</GameVersion>
+    <GameVersion Condition="$(IsBeta) == 'true'">1.6.0</GameVersion>
   </PropertyGroup>
 
   <!-- Game Folder(s) -->
