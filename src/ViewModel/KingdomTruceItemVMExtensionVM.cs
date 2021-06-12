@@ -19,12 +19,12 @@ namespace Diplomacy.ViewModel
 {
     internal class KingdomTruceItemVMExtensionVM : KingdomTruceItemVM
     {
-        private static readonly string _SSendMessenger = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
-        private static readonly string _SFormAlliance = new TextObject("{=0WPWbx70}Form Alliance").ToString();
-        private static readonly string _SFormPact = new TextObject("{=9pY0NQrk}Form Pact").ToString();
-        private static readonly string _SWars = new TextObject("{=y5tXjbLK}Wars").ToString();
-        private static readonly string _SAlliances = new TextObject("{=zpNalMeA}Alliances").ToString();
-        private static readonly string _SPacts = new TextObject(StringConstants.NonAggressionPacts).ToString();
+        private static readonly TextObject _TSendMessenger = new TextObject("{=cXfcwzPp}Send Messenger");
+        private static readonly TextObject _TFormAlliance = new TextObject("{=0WPWbx70}Form Alliance");
+        private static readonly TextObject _TFormPact = new TextObject("{=9pY0NQrk}Form Pact");
+        private static readonly TextObject _TWars = new TextObject("{=y5tXjbLK}Wars");
+        private static readonly TextObject _TAlliances = new TextObject("{=zpNalMeA}Alliances");
+        private static readonly TextObject _TPacts = new TextObject(StringConstants.NonAggressionPacts);
 
         private static readonly TextObject _TNapHelpText = new("{=9zlQNtlX}Form a non-aggression pact lasting {DAYS} days.");
 
@@ -34,15 +34,15 @@ namespace Diplomacy.ViewModel
                                              Action<KingdomTruceItemVM> onAction)
             : base(faction1, faction2, onSelection, onAction)
         {
-            SendMessengerActionName = _SSendMessenger;
-            AllianceActionName = _SFormAlliance;
+            SendMessengerActionName = _TSendMessenger.ToString(); ;
+            AllianceActionName = _TFormAlliance.ToString(); ;
+            NonAggressionPactActionName = _TFormPact.ToString(); ;
+            AllianceText = _TAlliances.ToString(); ;
+            WarsText = _TWars.ToString(); ;
+            PactsText = _TPacts.ToString(); ;
             InfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForDeclaringWar((Kingdom)Faction1, true).Value;
             ActionName = GameTexts.FindText("str_kingdom_declate_war_action", null).ToString();
-            NonAggressionPactActionName = _SFormPact;
             NonAggressionPactHelpText = _TNapHelpText.SetTextVariable("DAYS", Settings.Instance!.NonAggressionPactDuration).ToString();
-            AllianceText = _SAlliances;
-            WarsText = _SWars;
-            PactsText = _SPacts;
 
             UpdateDiplomacyProperties();
         }
@@ -109,17 +109,17 @@ namespace Diplomacy.ViewModel
             NonAggressionPactScoreHint = UpdateDiplomacyTooltip(napScore);
         }
 
-        private static readonly string _SPlus = new TextObject("{=eTw2aNV5}+").ToString();
-        private static readonly string _SRequiredScore = new TextObject("{=XIBUWDlT}Required Score").ToString();
-        private static readonly string _SCurrentScore = new TextObject("{=5r6fsHgm}Current Score").ToString();
+        private static readonly TextObject _TPlus = new TextObject("{=eTw2aNV5}+");
+        private static readonly TextObject _TRequiredScore = new TextObject("{=XIBUWDlT}Required Score");
+        private static readonly TextObject _TCurrentScore = new TextObject("{=5r6fsHgm}Current Score");
 
         private BasicTooltipViewModel UpdateDiplomacyTooltip(ExplainedNumber explainedNumber)
         {
-            static string PlusPrefixed(float value) => $"{(value >= 0.005f ? _SPlus : string.Empty)}{value:0.##}";
+            static string PlusPrefixed(float value) => $"{(value >= 0.005f ? _TPlus.ToString() : string.Empty)}{value:0.##}";
 
             var list = new List<TooltipProperty>
             {
-                new(_SCurrentScore, $"{explainedNumber.ResultNumber:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.Title)
+                new(_TCurrentScore.ToString(), $"{explainedNumber.ResultNumber:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.Title)
             };
 
             // FIXME: Must test whether this e1.5.7 adaptation displays the base score!
@@ -127,7 +127,7 @@ namespace Diplomacy.ViewModel
                 list.Add(new(name, PlusPrefixed(number), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
             list.Add(new(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
-            list.Add(new(_SRequiredScore, $"{AllianceScoringModel.Instance.ScoreThreshold:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
+            list.Add(new(_TRequiredScore.ToString(), $"{AllianceScoringModel.Instance.ScoreThreshold:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
 
             return new BasicTooltipViewModel(() => list);
         }
@@ -242,7 +242,18 @@ namespace Diplomacy.ViewModel
         }
 
         [DataSourceProperty]
-        public string ActionName { get; protected set; }
+        public string ActionName
+        {
+            get => _actionName;
+            set
+            {
+                if (value != _actionName)
+                {
+                    _actionName = value;
+                    OnPropertyChanged(nameof(ActionName));
+                }
+            }
+        }
 
         [DataSourceProperty]
         public string NonAggressionPactActionName { get; }
@@ -394,5 +405,6 @@ namespace Diplomacy.ViewModel
         private BasicTooltipViewModel? _allianceScoreHint;
         private int _allianceGoldCost;
         private BasicTooltipViewModel? _nonAggressionPactScoreHint;
+        private string _actionName;
     }
 }

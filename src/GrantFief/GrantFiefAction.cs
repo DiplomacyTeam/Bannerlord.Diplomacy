@@ -51,17 +51,17 @@ namespace Diplomacy.GrantFief
             reason = null;
 
             if (targetClan == Clan.PlayerClan)
-                reason = _strNoGrantsToMyClan;
+                reason = _TNoGrantsToMyClan.ToString();
             else if (targetClan.MapFaction.Leader != Hero.MainHero)
-                reason = _strNotKingdomLeader;
+                reason = _TNotKingdomLeader.ToString();
             else if (Clan.PlayerClan.GetPermanentFiefs().Count() < 1)
-                reason = _strNoFiefsToGrant;
+                reason = _TNoFiefsToGrant.ToString();
 
             return reason is null;
         }
 
-        private static readonly string _strNoGrantsToMyClan = new TextObject("{=FqeN0fmR}You cannot grant fiefs to your own clan.").ToString();
-        private static readonly string _strNotKingdomLeader = new TextObject("{=zdSYUnZQ}You are not the leader of your kingdom.").ToString();
-        private static readonly string _strNoFiefsToGrant = new TextObject("{=D61vzEC7}You don't have any fiefs to grant.").ToString();
+        private static readonly TextObject _TNoGrantsToMyClan = new TextObject("{=FqeN0fmR}You cannot grant fiefs to your own clan.");
+        private static readonly TextObject _TNotKingdomLeader = new TextObject("{=zdSYUnZQ}You are not the leader of your kingdom.");
+        private static readonly TextObject _TNoFiefsToGrant = new TextObject("{=D61vzEC7}You don't have any fiefs to grant.");
     }
 }

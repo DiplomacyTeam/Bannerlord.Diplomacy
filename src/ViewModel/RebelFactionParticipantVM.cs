@@ -14,10 +14,10 @@ namespace Diplomacy.ViewModel
     {
         Action _onComplete;
 
-        private static readonly string _SPlus = new TextObject("{=eTw2aNV5}+").ToString();
-        private static readonly string _SRequiredScore = new TextObject("{=XIBUWDlT}Required Score").ToString();
-        private static readonly string _SCurrentScore = new TextObject("{=5r6fsHgm}Current Score").ToString();
-        private static readonly string _SClanText = GameTexts.FindText("str_clan").ToString();
+        private static readonly TextObject _TPlus = new TextObject("{=eTw2aNV5}+");
+        private static readonly TextObject _TRequiredScore = new TextObject("{=XIBUWDlT}Required Score");
+        private static readonly TextObject _TCurrentScore = new TextObject("{=5r6fsHgm}Current Score");
+        private static readonly TextObject _TClanText = GameTexts.FindText("str_clan");
 
         public RebelFactionParticipantVM(Clan clan, RebelFaction rebelFaction, Action _onComplete) : base(clan)
         {
@@ -25,18 +25,18 @@ namespace Diplomacy.ViewModel
             this._onComplete = _onComplete;
 
 
-            static string PlusPrefixed(float value) => $"{(value >= 0.005f ? _SPlus : string.Empty)}{value:0.##}";
+            static string PlusPrefixed(float value) => $"{(value >= 0.005f ? _TPlus.ToString() : string.Empty)}{value:0.##}";
             List<TooltipProperty> list = new();
 
-            list.Add(new(_SClanText, clan.Name.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+            list.Add(new(_TClanText.ToString(), clan.Name.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title));
             list.Add(new(new TextObject("{=TvSHYACm}Strength").ToString(), Convert.ToString((int)Math.Round(clan.TotalStrength)), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
-            list.Add(new(_SCurrentScore, $"{explainedNumber.ResultNumber:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+            list.Add(new(_TCurrentScore.ToString(), $"{explainedNumber.ResultNumber:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.Title));
             foreach (var (name, number) in explainedNumber.GetLines())
                 list.Add(new(name, PlusPrefixed(number), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
             list.Add(new(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
-            list.Add(new(_SRequiredScore, $"{RebelFactionScoringModel.RequiredScore:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
+            list.Add(new(_TRequiredScore.ToString(), $"{RebelFactionScoringModel.RequiredScore:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
             Hint = new BasicTooltipViewModel(() => list);
         }
 

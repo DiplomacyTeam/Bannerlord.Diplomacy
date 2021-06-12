@@ -18,14 +18,17 @@ namespace Diplomacy.ViewModel
         private readonly DiplomacyCost _sendMessengerCost;
         private GrantFiefInterface _grantFiefInterface;
 
+        private static readonly TextObject _TSendMessengerText = new TextObject("{=cXfcwzPp}Send Messenger");
+        private static readonly TextObject _TGrantFiefText = new TextObject("{=LpoyhORp}Grant Fief");
+
         public EncyclopediaHeroPageVMExtensionVM(EncyclopediaPageArgs args) : base(args)
         {
             _grantFiefInterface = new GrantFiefInterface();
             _hero = (Obj as Hero)!;
             _sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger();
             SendMessengerCost = (int)_sendMessengerCost.Value;
-            SendMessengerActionName = new TextObject("{=cXfcwzPp}Send Messenger").ToString();
-            GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
+            SendMessengerActionName = _TSendMessengerText.ToString();
+            GrantFiefActionName = _TGrantFiefText.ToString();
             RefreshValues();
         }
 
@@ -103,9 +106,9 @@ namespace Diplomacy.ViewModel
         }
 
         [DataSourceProperty]
-        public string SendMessengerActionName { get; private set; }
+        public string SendMessengerActionName { get; }
 
         [DataSourceProperty]
-        public string GrantFiefActionName { get; private set; }
+        public string GrantFiefActionName { get; }
     }
 }

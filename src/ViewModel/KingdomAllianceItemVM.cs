@@ -10,12 +10,14 @@ namespace Diplomacy.ViewModel
 {
     class KingdomAllianceItemVM : KingdomTruceItemVMExtensionVM
     {
+        private static readonly TextObject _TBreakAlliance = new TextObject("{=K4GraLTn}Break Alliance");
+
         public KingdomAllianceItemVM(IFaction faction1, IFaction faction2, Action<KingdomDiplomacyItemVM> onSelection, Action<KingdomTruceItemVM> onAction) : base(faction1, faction2, onSelection, onAction) { }
 
         protected override void UpdateDiplomacyProperties()
         {
+            ActionName = _TBreakAlliance.ToString();
             base.UpdateDiplomacyProperties();
-            ActionName = new TextObject("{=K4GraLTn}Break Alliance").ToString();
             InfluenceCost = 0;
         }
 
