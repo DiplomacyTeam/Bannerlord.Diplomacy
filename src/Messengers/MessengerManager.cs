@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using SandBox;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -19,6 +21,7 @@ namespace Diplomacy.Messengers
         public MBReadOnlyList<Messenger> Messengers { get; private set; }
 
         private Messenger? _activeMessenger;
+        private Mission? _currentMission;
 
         internal MessengerManager()
         {
@@ -125,28 +128,47 @@ namespace Diplomacy.Messengers
         public void StartDialogue(Hero targetHero, Messenger messenger)
         {
             var heroParty = PartyBase.MainParty;
-            var targetParty = targetHero.PartyBelongedTo?.Party;
 
-            var isCivilian = false;
+            if (targetHero.IsWanderer && targetHero.HeroState == Hero.CharacterStates.NotSpawned)
+            {
+                targetHero.ChangeState(Hero.CharacterStates.Active);
+                EnterSettlementAction.ApplyForCharacterOnly(targetHero, targetHero.BornSettlement);
+            }
 
-            if (targetParty is null)
+            PartyBase? targetParty;
+            if (targetHero.CurrentSettlement != null)
             {
                 targetParty = targetHero.CurrentSettlement?.Party ?? targetHero.BornSettlement?.Party;
-                isCivilian = true;
             }
+            else
+            {
+                targetParty = targetHero.PartyBelongedTo?.Party ?? targetHero.BornSettlement?.Party;
+            }
+
+            Settlement? settlement = targetHero.CurrentSettlement;
 
             PlayerEncounter.Start();
             PlayerEncounter.Current.SetupFields(heroParty, targetParty ?? heroParty);
 
-            var specialScene = "";
-            var sceneLevels = "";
-
             Campaign.Current.CurrentConversationContext = ConversationContext.Default;
-            var conversationMission = (Mission)Campaign.Current.CampaignMissionManager.OpenConversationMission(
-                new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true, false, false, isCivilian),
-                new ConversationCharacterData(targetHero.CharacterObject, targetParty, true, false, false, isCivilian),
+            if (settlement!= null && (LocationComplex.Current != null || Campaign.Current.CurrentMenuContext != null))
+            {
+                PlayerEncounter.EnterSettlement();
+                Location locationOfCharacter = LocationComplex.Current.GetLocationOfCharacter(targetHero);
+                CampaignEventDispatcher.Instance.OnPlayerStartTalkFromMenu(targetHero);
+                _currentMission = (Mission) PlayerEncounter.LocationEncounter.CreateAndOpenMissionController(locationOfCharacter, null, targetHero.CharacterObject, null);
+            }
+            else
+            {
+                var specialScene = "";
+                var sceneLevels = "";
+
+                _currentMission = (Mission)Campaign.Current.CampaignMissionManager.OpenConversationMission(
+                new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true, false, false, false),
+                new ConversationCharacterData(targetHero.CharacterObject, targetParty, true, false, false, false),
                 specialScene, sceneLevels);
-            conversationMission.AddListener(this);
+            }
+            _currentMission.AddListener(this);
         }
 
         private TextObject GetMessengerArrivedText(IFaction faction1, IFaction faction2, Hero targetHero)
@@ -191,35 +213,35 @@ namespace Diplomacy.Messengers
             return canPayCost && IsTargetHeroAvailable(opposingLeader);
         }
 
-        public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
-        {
-        }
-
-        public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType)
-        {
-        }
+        public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType) { }
+        public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType) { }
 
         public void OnEndMission()
         {
             _messengers.Remove(_activeMessenger!);
             _activeMessenger = null;
-
-            if (PlayerEncounter.Current is not null)
-            {
-                PlayerEncounter.Finish();
-            }
+            _currentMission = null;
+            CampaignEvents.TickEvent.AddNonSerializedListener(this, CleanUpSettlementEncounter);
         }
 
         public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
         {
+            if (oldMissionMode == MissionMode.Conversation)
+            {
+                _currentMission!.EndMission();
+            }
         }
+        public void OnConversationCharacterChanged() { }
+        public void OnResetMission() { }
 
-        public void OnConversationCharacterChanged()
+        private void CleanUpSettlementEncounter(float obj)
         {
-        }
-
-        public void OnResetMission()
-        {
+            PlayerEncounter.Finish();
+#if e159
+            CampaignEvents.RemoveListeners(this);
+#else
+            CampaignEventDispatcher.Instance.RemoveListeners(this);
+#endif
         }
     }
 }
