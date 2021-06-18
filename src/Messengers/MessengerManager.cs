@@ -151,12 +151,12 @@ namespace Diplomacy.Messengers
             PlayerEncounter.Current.SetupFields(heroParty, targetParty ?? heroParty);
 
             Campaign.Current.CurrentConversationContext = ConversationContext.Default;
-            if (settlement!= null && (LocationComplex.Current != null || Campaign.Current.CurrentMenuContext != null))
+            if (settlement != null)
             {
                 PlayerEncounter.EnterSettlement();
                 Location locationOfCharacter = LocationComplex.Current.GetLocationOfCharacter(targetHero);
                 CampaignEventDispatcher.Instance.OnPlayerStartTalkFromMenu(targetHero);
-                _currentMission = (Mission) PlayerEncounter.LocationEncounter.CreateAndOpenMissionController(locationOfCharacter, null, targetHero.CharacterObject, null);
+                _currentMission = (Mission)PlayerEncounter.LocationEncounter.CreateAndOpenMissionController(locationOfCharacter, null, targetHero.CharacterObject, null);
             }
             else
             {
