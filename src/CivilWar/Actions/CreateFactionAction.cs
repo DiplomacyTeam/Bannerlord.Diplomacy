@@ -67,13 +67,18 @@ namespace Diplomacy.CivilWar
 
         public static IEnumerable<TextObject> CanApply(Clan clan, RebelDemandType? demandType)
         {
-            if (clan.Kingdom.IsRebelKingdom())
+            if (clan.Kingdom == null)
+            {
+                yield return TextObject.Empty;
+            }
+
+            if (clan.Kingdom!.IsRebelKingdom())
             {
                 yield return TextObject.Empty;
             }
             
             // ruling clan can't create factions
-            if (clan == clan.Kingdom.RulingClan)
+            if (clan == clan.Kingdom!.RulingClan)
             {
                 yield return TextObject.Empty;
             }

@@ -53,9 +53,10 @@ namespace Diplomacy.ViewModel
                 RebelFactionItems.Add(new RebelFactionItemVM(rebelFaction, _onComplete, this.RefreshValues));
             var mainHeroIsClanSponsor = RebelFactionItems.Where(factionItem => factionItem.RebelFaction.SponsorClan == Clan.PlayerClan).Any();
 
-            var canCreateFaction = CreateFactionAction.CanApply(Clan.PlayerClan, default, out TextObject? reason);
+            TextObject? reason = null;
+            var canCreateFaction = Clan.PlayerClan.Kingdom == _kingdom && CreateFactionAction.CanApply(Clan.PlayerClan, default, out reason);
 
-            ShouldShowCreateFaction = Clan.PlayerClan.Kingdom == _kingdom && canCreateFaction;
+            ShouldShowCreateFaction = canCreateFaction;
             CreateFactionHint = GenerateCreateFactionHint(canCreateFaction, reason);
         }
 
