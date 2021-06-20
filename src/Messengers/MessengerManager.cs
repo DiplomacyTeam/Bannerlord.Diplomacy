@@ -23,6 +23,8 @@ namespace Diplomacy.Messengers
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
 
+        private static readonly List<MissionMode> AllowedMissionModes = new() { MissionMode.Conversation, MissionMode.Barter };
+
         internal MessengerManager()
         {
             _messengers = new List<Messenger>();
@@ -226,8 +228,8 @@ namespace Diplomacy.Messengers
 
         public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
         {
-            if (oldMissionMode == MissionMode.Conversation)
-            {
+            if (!AllowedMissionModes.Contains(_currentMission!.Mode) && AllowedMissionModes.Contains(oldMissionMode))
+            { 
                 _currentMission!.EndMission();
             }
         }
