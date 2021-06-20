@@ -11,8 +11,8 @@ namespace Diplomacy.Patches
     [HarmonyPatch(typeof(UrbanCharactersCampaignBehavior))]
     internal sealed class UrbanCharactersCampaignBehaviorPatch
     {
-        private static FieldInfo _companionsFieldInfo = typeof(UrbanCharactersCampaignBehavior).GetField("_companions", BindingFlags.Instance | BindingFlags.NonPublic);
-        private static Action<Hero, UrbanCharactersCampaignBehavior> ActivateCharacter = (hero, __instance) =>
+        private static readonly FieldInfo _companionsFieldInfo = typeof(UrbanCharactersCampaignBehavior).GetField("_companions", BindingFlags.Instance | BindingFlags.NonPublic);
+        private static readonly Action<Hero, UrbanCharactersCampaignBehavior> ActivateCharacter = (hero, __instance) =>
         {
             hero.ChangeState(Hero.CharacterStates.Active);
             var companionsList = (List<Hero>)_companionsFieldInfo.GetValue(__instance);

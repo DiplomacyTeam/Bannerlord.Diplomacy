@@ -6,7 +6,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 {
     class MakePeaceConditions : AbstractConditionEvaluator<MakePeaceConditions>
     {
-        private static List<IDiplomacyCondition> _peaceConditions = new List<IDiplomacyCondition>
+        private static readonly List<IDiplomacyCondition> _peaceConditions = new List<IDiplomacyCondition>
         {
             new SatisfiesQuestConditionsForPeaceCondition(),
             new HasEnoughGoldForPeaceCondition(),

@@ -38,7 +38,7 @@ namespace Diplomacy.CivilWar
             } },
         };
 
-        private static List<TitleSelection> CommonKingdomTitles = new()
+        private static readonly List<TitleSelection> CommonKingdomTitles = new()
         {
             new(StringConstants.Faction_League),
             new("{=kToqhmHh}Principality of {CLAN_NAME}"),
@@ -47,7 +47,7 @@ namespace Diplomacy.CivilWar
             new("{=lSQeaVfw}Empire of {CLAN_NAME}", 0.5f),
         };
 
-        private static List<string> FactionNames = new()
+        private static readonly List<string> FactionNames = new()
         {
             StringConstants.Faction_Conspiracy,
             StringConstants.Faction_Confederation,

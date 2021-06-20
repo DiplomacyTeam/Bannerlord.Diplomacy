@@ -13,9 +13,9 @@ namespace Diplomacy.CivilWar
 {
     public class ChangeKingdomBannerAction
     {
-        private static PropertyInfo _primaryColorProp = AccessTools.Property(typeof(Kingdom), "PrimaryBannerColor");
-        private static PropertyInfo _secondaryColorProp = AccessTools.Property(typeof(Kingdom), "SecondaryBannerColor");
-        private static MethodInfo _updateBannerColorsAccordingToKingdom = AccessTools.Method(typeof(Clan), "UpdateBannerColorsAccordingToKingdom");
+        private static readonly PropertyInfo _primaryColorProp = AccessTools.Property(typeof(Kingdom), "PrimaryBannerColor");
+        private static readonly PropertyInfo _secondaryColorProp = AccessTools.Property(typeof(Kingdom), "SecondaryBannerColor");
+        private static readonly MethodInfo _updateBannerColorsAccordingToKingdom = AccessTools.Method(typeof(Clan), "UpdateBannerColorsAccordingToKingdom");
 
         public static void Apply(Kingdom kingdom, uint backgroundColor, uint sigilColor)
         {

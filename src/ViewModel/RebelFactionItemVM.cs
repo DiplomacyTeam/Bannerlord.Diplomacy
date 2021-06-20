@@ -21,11 +21,11 @@ namespace Diplomacy.ViewModel
         private bool _shouldShowStartRebellion;
         private string _factionName;
 
-        private static TextObject _SJoinLabel = new TextObject("{=DZ6dpEn3}Join Faction");
-        private static TextObject _SLeaveLabel = new TextObject("{=uTCw0WiH}Leave Faction");
-        private static TextObject _SBOPLabel = new TextObject("{=1OUDq7Ul}Balance Of Power");
-        private static TextObject _SStartRebellionLabel = new TextObject("{=5q7TvMGL}Start Rebellion");
-        private static TextObject _SParticipantsText = new TextObject("{=VFwDRHc7}Participants");
+        private static readonly TextObject _SJoinLabel = new TextObject("{=DZ6dpEn3}Join Faction");
+        private static readonly TextObject _SLeaveLabel = new TextObject("{=uTCw0WiH}Leave Faction");
+        private static readonly TextObject _SBOPLabel = new TextObject("{=1OUDq7Ul}Balance Of Power");
+        private static readonly TextObject _SStartRebellionLabel = new TextObject("{=5q7TvMGL}Start Rebellion");
+        private static readonly TextObject _SParticipantsText = new TextObject("{=VFwDRHc7}Participants");
 
         public RebelFaction RebelFaction { get; }
 
