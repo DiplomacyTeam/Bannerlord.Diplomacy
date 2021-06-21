@@ -6,4 +6,27 @@
     </Styles>
   </Brush>
 
+  <Brush Name="Diplomacy.Faction.AddButton">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="StdAssets\plus_button" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" />
+      </Style>
+      <Style Name="Hovered">
+        <BrushLayer Name="Default" ColorFactor="1.3" />
+      </Style>
+      <Style Name="Selected">
+        <BrushLayer Name="Default" ColorFactor="2" />
+      </Style>
+      <Style Name="Disabled">
+        <BrushLayer Name="Default" ColorFactor="0.4" />
+      </Style>
+      <Style Name="Pressed">
+        <BrushLayer Name="Default" ColorFactor="0.8" />
+      </Style>
+    </Styles>
+  </Brush>
+
 </Brushes>

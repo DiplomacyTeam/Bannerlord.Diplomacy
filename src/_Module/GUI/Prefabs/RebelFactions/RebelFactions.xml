@@ -31,9 +31,20 @@
 
             <BrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop" Brush="Frame1Canvas">
               <Children>
-                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="550" SuggestedHeight="850" Brush="Frame1.Border" IsEnabled="true">
+                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="550" SuggestedHeight="750" Brush="Frame1.Border" IsEnabled="true">
                   <Children>
                     <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Info.Text" Text="@KingdomName"/>
+                    <Widget HorizontalAlignment="Right" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" PositionXOffset="-50" PositionYOffset="5">
+                      <Children>
+                        <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" Brush="Diplomacy.Faction.AddButton" IsEnabled="@ShouldShowCreateFaction" Command.Click="OnCreateFaction">
+                          <Children>
+                            <HintWidget DataSource="{CreateFactionHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                          </Children>
+                        </ButtonWidget>
+                        <HintWidget IsEnabled="false" DataSource="{CreateFactionHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                      </Children>
+                    </Widget>
+
 
                     <Widget WidthSizePolicy = "StretchToParent" PositionYOffset="48" HeightSizePolicy = "Fixed" SuggestedHeight="2" HorizontalAlignment="Center" VerticalAlignment="Top" Sprite="GradientDivider_9" AlphaFactor="0.4" MarginLeft="10" MarginRight="10"/>
                     <Widget Id="ScrollContainer" PositionYOffset="50" HeightSizePolicy="Fixed" SuggestedHeight="700" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" VerticalAlignment="Top">
@@ -58,30 +69,6 @@
                         </ScrollablePanel>
                       </Children>
                     </Widget>
-                    <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="100" VerticalAlignment="Bottom">
-                      <Children>
-                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center">
-                          <Children>
-
-                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" HorizontalAlignment="Center" Brush="Popup.Cancel.Button" Command.Click="OnCreateFaction" IsEnabled="@ShouldShowCreateFaction">
-                              <Children>
-
-                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@CreateFactionLabel"/>
-                                <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center" PositionXOffset="145">
-                                  <Children>
-                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
-                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="Kingdom.GeneralButtons.Text" IntText="@CreateFactionInfluenceCost"/>
-                                  </Children>
-                                </ListPanel>
-                                <!--Element Hint-->
-
-                              </Children>
-                            </ButtonWidget>
-                            <HintWidget DataSource="{CreateFactionHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
-                          </Children>
-                        </Widget>
-                      </Children>
-                    </BrushWidget>
                   </Children>
                 </BrushWidget>
               </Children>
@@ -89,7 +76,7 @@
           </Children>
         </Widget>
         <!--Close Popup Button-->
-        <ButtonWidget Id="ClosePopupWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Popup.CloseButton.Width" SuggestedHeight="!Popup.CloseButton.Height" HorizontalAlignment="Center" VerticalAlignment="Center" PositionXOffset="275" PositionYOffset="-425" Brush="Popup.CloseButton" Command.Click="OnComplete" />
+        <ButtonWidget Id="ClosePopupWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Popup.CloseButton.Width" SuggestedHeight="!Popup.CloseButton.Height" HorizontalAlignment="Center" VerticalAlignment="Center" PositionXOffset="275" PositionYOffset="-375" Brush="Popup.CloseButton" Command.Click="OnComplete" />
       </Children>
     </Widget>
   </Window>

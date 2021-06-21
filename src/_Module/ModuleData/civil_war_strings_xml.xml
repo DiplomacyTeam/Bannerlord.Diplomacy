@@ -65,7 +65,15 @@
 
 	  <string id="ovgs58sT" text="Can't start a faction during an active rebellion." />
 	  <string id="VbpiW2bd" text="Can't start a faction so soon after a civil war." />
-    <string id="JDk8ustS" text="Can't start faction as a mercenary." />
+    <string id="JDk8ustS" text="Mercenaries cannot create factions." />
+    <string id="quo5erz6" text="Rulers cannot create factions." />
+    <string id="luvsD6Zn" text="Cannot create a faction in a rebel kingdom." />
+    <string id="iXMeCmj0" text="Must be Clan Tier 4 or higher."/>
+    <string id="Xu3rnEEa" text="Must be part of {KINGDOM_NAME} to create a {KINGDOM_NAME} faction." />
+    <string id="DxJH7ciY" text="A kingdom can only have one abdication faction." />
+    <string id="zTZWwJfN" text="You cannot lead two factions." />
+    
+    <!-- <string id="" text="" /> -->
 
 	  <string id="EYB5Uggd" text="Leader is {TRAIT}" />
 	  <string id="E00ywbqb" text="Ruler is {TRAIT}" />

@@ -74,24 +74,24 @@ namespace Diplomacy.CivilWar
 
             if (clan.Kingdom!.IsRebelKingdom())
             {
-                yield return TextObject.Empty;
+                yield return new TextObject("{=luvsD6Zn}Cannot create a faction in a rebel kingdom.");
             }
             
             // ruling clan can't create factions
             if (clan == clan.Kingdom!.RulingClan)
             {
-                yield return TextObject.Empty;
+                yield return new TextObject("{=quo5erz6}Rulers cannot create factions.");
             }
 
             if (clan.IsUnderMercenaryService)
             {
-                yield return new TextObject("{=JDk8ustS}Can't start faction as a mercenary.");
+                yield return new TextObject("{=JDk8ustS}Mercenaries cannot create factions.");
             }
 
             // must be clan tier 4+ to start a secession faction
             if (demandType == RebelDemandType.Secession && clan.Tier < 4)
             {
-                yield return TextObject.Empty;
+                yield return new TextObject("{=iXMeCmj0}Must be Clan Tier 4 or higher.");
             }
 
             // rebel kingdoms can't have factions
@@ -107,7 +107,7 @@ namespace Diplomacy.CivilWar
                 // faction sponsors can't start another faction 
                 if (rebelFactions.Where(x => x.SponsorClan == clan).Any())
                 {
-                    yield return TextObject.Empty;
+                    yield return new TextObject("{=zTZWwJfN}You cannot lead two factions.");
                 }
 
                 // players can exceed the max
@@ -119,7 +119,7 @@ namespace Diplomacy.CivilWar
                 // only one abdication faction allowed
                 if (demandType == RebelDemandType.Abdication && rebelFactions.Any(x => x.RebelDemandType == RebelDemandType.Abdication))
                 {
-                    yield return TextObject.Empty;
+                    yield return new TextObject("{=DxJH7ciY}A kingdom can only have one abdication faction.");
                 }
             }
 

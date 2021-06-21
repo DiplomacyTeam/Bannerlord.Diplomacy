@@ -31,7 +31,7 @@
                 -->
     <BrushWidget WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" >
       <Children>
-
+					<ButtonWidget Brush="AddFactionButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" PositionXOffset="-30" HorizontalAlignment="Right" VerticalAlignment="Top" PositionYOffset="5" />
         <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="10" MarginRight="10" MarginTop="10" >
           <Children>
             <ListPanel Id="InnerPanel" WidthSizePolicy="StretchToParent" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >

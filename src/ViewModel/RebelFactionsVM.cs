@@ -1,6 +1,7 @@
 ﻿using Diplomacy.CivilWar;
 using Diplomacy.CivilWar.Factions;
 using Diplomacy.Costs;
+using Diplomacy.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace Diplomacy.ViewModel
         private DiplomacyCost _createFactionCost;
         private HintViewModel _createFactionHint;
 
+        private static readonly TextObject _TCreateFactionLabel = new TextObject("{=hBSo0Ziq}Create Faction");
+
         [DataSourceProperty]
         public string FactionsLabel { get; set; }
 
@@ -41,7 +44,7 @@ namespace Diplomacy.ViewModel
             _onComplete = onComplete;
             RebelFactionItems = new();
             FactionsLabel = new TextObject(StringConstants.Factions).ToString();
-            CreateFactionLabel = new TextObject("{=hBSo0Ziq}Create Faction").ToString();
+            CreateFactionLabel = _TCreateFactionLabel.ToString();
             _kingdom = kingdom;
             KingdomName = _kingdom.Name.ToString();
             _createFactionCost = new InfluenceCost(Clan.PlayerClan, Settings.Instance!.FactionCreationInfluenceCost);
@@ -58,22 +61,42 @@ namespace Diplomacy.ViewModel
             var mainHeroIsClanSponsor = RebelFactionItems.Where(factionItem => factionItem.RebelFaction.SponsorClan == Clan.PlayerClan).Any();
 
             TextObject? reason = null;
-            var canCreateFaction = Clan.PlayerClan.Kingdom == _kingdom && CreateFactionAction.CanApply(Clan.PlayerClan, default, out reason);
-
-            ShouldShowCreateFaction = canCreateFaction;
-            CreateFactionHint = GenerateCreateFactionHint(canCreateFaction, reason);
+            ShouldShowCreateFaction = EligibleForCreateFactionMenu(out reason);
+            CreateFactionHint = GenerateCreateFactionHint(reason);
         }
 
-        private HintViewModel GenerateCreateFactionHint(bool canCreate, TextObject? reason)
+        private bool EligibleForCreateFactionMenu(out TextObject? reason)
         {
-            if (Clan.PlayerClan.Kingdom == _kingdom && reason != null)
+            reason = null;
+
+            if (Clan.PlayerClan.Kingdom == null || Clan.PlayerClan.Kingdom != _kingdom)
             {
-                return new HintViewModel(reason);
+                reason = new TextObject("{=Xu3rnEEa}Must be part of {KINGDOM_NAME} to create a {KINGDOM_NAME} faction.").SetTextVariable("KINGDOM_NAME", _kingdom.Name);
             }
-            else
+            else if (_kingdom.IsRebelKingdom())
             {
-                return new HintViewModel();
+                reason = new TextObject("{=luvsD6Zn}Cannot create a faction in a rebel kingdom.");
             }
+            else if (Clan.PlayerClan.IsUnderMercenaryService)
+            {
+                reason = new TextObject("{=JDk8ustS}Mercenaries cannot create factions.");
+            }
+            else if (Clan.PlayerClan == Clan.PlayerClan.Kingdom.RulingClan)
+            {
+                reason = new TextObject("{=quo5erz6}Rulers cannot create factions.");
+            }
+
+            return reason == null;
+        }
+
+        private HintViewModel GenerateCreateFactionHint(TextObject? reason)
+        {
+            var message = _TCreateFactionLabel;
+            if (reason != null)
+            {
+                message = new TextObject("{LABEL}{newline}{REASON}").SetTextVariable("LABEL", _TCreateFactionLabel).SetTextVariable("REASON", reason);
+            }
+            return new HintViewModel(message);
         }
 
         public void OnComplete() => _onComplete();
@@ -84,12 +107,20 @@ namespace Diplomacy.ViewModel
             foreach (int value in Enum.GetValues(typeof(RebelDemandType)))
             {
                 var demandType = (RebelDemandType)value;
-                inquiryElements.Add(new InquiryElement(demandType, demandType.GetName(), null, CreateFactionAction.CanApply(Clan.PlayerClan, demandType, out _), demandType.GetHint()));
+                var canCreate = CreateFactionAction.CanApply(Clan.PlayerClan, demandType, out TextObject? reason);
+                string hint = demandType.GetHint();
+                if (reason != null)
+                {
+                    hint = string.Concat(new TextObject("{EXCEPTION}{newline} {newline}").SetTextVariable("EXCEPTION", reason).ToString(), hint);
+                }
+                inquiryElements.Add(new InquiryElement(demandType, demandType.GetName(), null, canCreate, hint));
             }
+
+            GameTexts.SetVariable("INFLUENCE_ICON", "{=!}<img src=\"Icons\\Influence@2x\" extend=\"7\">");
 
             InformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(
                 CreateFactionLabel,
-                new TextObject("{=2PglxF8k}Choose Faction Demand").ToString(),
+                new TextObject("{=2PglxF8k}Choose a faction demand to create a faction.{newline}Cost: {INFLUENCE_COST}{INFLUENCE_ICON}").SetTextVariable("INFLUENCE_COST", CreateFactionInfluenceCost).ToString(),
                 inquiryElements,
                 true,
                 1,
