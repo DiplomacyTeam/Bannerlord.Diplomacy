@@ -33,6 +33,9 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public int CreateFactionInfluenceCost { get; set; }
 
+        [DataSourceProperty]
+        public string KingdomName { get; set; }
+
         public RebelFactionsVM(Kingdom kingdom, Action onComplete)
         {
             _onComplete = onComplete;
@@ -40,6 +43,7 @@ namespace Diplomacy.ViewModel
             FactionsLabel = new TextObject(StringConstants.Factions).ToString();
             CreateFactionLabel = new TextObject("{=hBSo0Ziq}Create Faction").ToString();
             _kingdom = kingdom;
+            KingdomName = _kingdom.Name.ToString();
             _createFactionCost = new InfluenceCost(Clan.PlayerClan, Settings.Instance!.FactionCreationInfluenceCost);
             CreateFactionInfluenceCost = Settings.Instance!.FactionCreationInfluenceCost;
             this.RefreshValues();

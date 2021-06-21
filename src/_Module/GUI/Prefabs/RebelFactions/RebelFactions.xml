@@ -29,61 +29,59 @@
             </Widget>
 
 
-            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="550" SuggestedHeight="750" HorizontalAlignment="Center" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop" Brush="Frame1Canvas">
+            <BrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop" Brush="Frame1Canvas">
               <Children>
-                <BrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Frame1.Border" IsEnabled="true">
+                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="550" SuggestedHeight="850" Brush="Frame1.Border" IsEnabled="true">
                   <Children>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Info.Text" Text="@KingdomName"/>
 
-                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                    <Widget WidthSizePolicy = "StretchToParent" PositionYOffset="48" HeightSizePolicy = "Fixed" SuggestedHeight="2" HorizontalAlignment="Center" VerticalAlignment="Top" Sprite="GradientDivider_9" AlphaFactor="0.4" MarginLeft="10" MarginRight="10"/>
+                    <Widget Id="ScrollContainer" PositionYOffset="50" HeightSizePolicy="Fixed" SuggestedHeight="700" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" VerticalAlignment="Top">
                       <Children>
-                        <Widget Id="ScrollContainer" HeightSizePolicy="Fixed" SuggestedHeight="625" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" >
+                        <ScrollbarWidget HeightSizePolicy="StretchToParent" WidthSizePolicy="Fixed" Id="RightSideScrollbar" SuggestedWidth="20" MinValue="0" MaxValue="100" AlignmentAxis="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Handle="RightSideScrollbarHandle">
                           <Children>
-                            <ScrollbarWidget HeightSizePolicy="StretchToParent" WidthSizePolicy="Fixed" Id="RightSideScrollbar" SuggestedWidth="20" MinValue="0" MaxValue="100" AlignmentAxis="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Handle="RightSideScrollbarHandle">
-                              <Children>
-                                <Widget Id="RightSideScrollbarHandle" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center"/>
-                              </Children>
-                            </ScrollbarWidget>
-                            <ScrollablePanel Id="ScrollPanel" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" AutoHideScrollBars="false" ClipRect="ClipRect" InnerPanel="ClipRect\RebelFactionItems" VerticalScrollbar="..\RightSideScrollbar">
-                              <Children>
-                                <Widget Id="ClipRect" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" ClipContents="true">
-                                  <Children>
-                                    <ListPanel Id="RebelFactionItems" DataSource="{RebelFactionItems}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
-                                      <ItemTemplate>
-                                        <RebelFactionsItem />
-                                      </ItemTemplate>
-                                    </ListPanel>
-                                  </Children>
-                                </Widget>
-                              </Children>
-                            </ScrollablePanel>
+                            <Widget Id="RightSideScrollbarHandle" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center"/>
                           </Children>
-                        </Widget>
-                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginTop="20">
+                        </ScrollbarWidget>
+                        <ScrollablePanel Id="ScrollPanel" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" AutoHideScrollBars="false" ClipRect="ClipRect" InnerPanel="ClipRect\RebelFactionItems" VerticalScrollbar="..\RightSideScrollbar">
                           <Children>
-                            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Widget Id="ClipRect" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" ClipContents="true">
                               <Children>
-
-                                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" HorizontalAlignment="Center" Brush="Popup.Cancel.Button" Command.Click="OnCreateFaction" IsEnabled="@ShouldShowCreateFaction">
-                                  <Children>
-
-                                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@CreateFactionLabel"/>
-                                    <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center" PositionXOffset="145">
-                                      <Children>
-                                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
-                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="Kingdom.GeneralButtons.Text" IntText="@CreateFactionInfluenceCost"/>
-                                      </Children>
-                                    </ListPanel>
-                                    <!--Element Hint-->
-
-                                  </Children>
-                                </ButtonWidget>
-                                <HintWidget DataSource="{CreateFactionHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                                <ListPanel Id="RebelFactionItems" DataSource="{RebelFactionItems}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
+                                  <ItemTemplate>
+                                    <RebelFactionsItem />
+                                  </ItemTemplate>
+                                </ListPanel>
                               </Children>
                             </Widget>
                           </Children>
+                        </ScrollablePanel>
+                      </Children>
+                    </Widget>
+                    <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="100" VerticalAlignment="Bottom">
+                      <Children>
+                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center">
+                          <Children>
+
+                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" VerticalAlignment="Center" HorizontalAlignment="Center" Brush="Popup.Cancel.Button" Command.Click="OnCreateFaction" IsEnabled="@ShouldShowCreateFaction">
+                              <Children>
+
+                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" IsEnabled="true" Text="@CreateFactionLabel"/>
+                                <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center" PositionXOffset="145">
+                                  <Children>
+                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
+                                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="Kingdom.GeneralButtons.Text" IntText="@CreateFactionInfluenceCost"/>
+                                  </Children>
+                                </ListPanel>
+                                <!--Element Hint-->
+
+                              </Children>
+                            </ButtonWidget>
+                            <HintWidget DataSource="{CreateFactionHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                          </Children>
                         </Widget>
                       </Children>
-                    </ListPanel>
+                    </BrushWidget>
                   </Children>
                 </BrushWidget>
               </Children>
@@ -91,7 +89,7 @@
           </Children>
         </Widget>
         <!--Close Popup Button-->
-        <ButtonWidget Id="ClosePopupWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Popup.CloseButton.Width" SuggestedHeight="!Popup.CloseButton.Height" HorizontalAlignment="Center" VerticalAlignment="Center" PositionXOffset="275" PositionYOffset="-375" Brush="Popup.CloseButton" Command.Click="OnComplete" />
+        <ButtonWidget Id="ClosePopupWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Popup.CloseButton.Width" SuggestedHeight="!Popup.CloseButton.Height" HorizontalAlignment="Center" VerticalAlignment="Center" PositionXOffset="275" PositionYOffset="-425" Brush="Popup.CloseButton" Command.Click="OnComplete" />
       </Children>
     </Widget>
   </Window>

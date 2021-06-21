@@ -29,14 +29,14 @@
                 <RebelFactionsItem />
                 Begin Item
                 -->
-    <BrushWidget WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" MarginTop="5" MarginBottom="5" MarginLeft="5" MarginRight="5">
+    <BrushWidget WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" >
       <Children>
 
-        <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Brush="Frame1.Border" MarginLeft="10" MarginRight="10" MarginTop="5" MarginBottom="5">
+        <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="10" MarginRight="10" MarginTop="10" >
           <Children>
             <ListPanel Id="InnerPanel" WidthSizePolicy="StretchToParent" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
               <Children>
-                <TextWidget Brush="Kingdom.PolicyDescription.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" IsEnabled="true" Text="@FactionName" MarginLeft="5" MarginTop="5" MarginBottom="5"/>
+                <TextWidget Brush="Kingdom.PolicyDescription.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="true" Text="@FactionName" />
                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginBottom="10">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginRight="20" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
@@ -131,6 +131,7 @@
                     </ButtonWidget>
                   </Children>
                 </ListPanel>
+                <Widget WidthSizePolicy = "StretchToParent" HeightSizePolicy = "Fixed" SuggestedHeight="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Sprite="GradientDivider_9" AlphaFactor="0.4" MarginLeft="10" MarginRight="10"/>
               </Children>
             </ListPanel>
           </Children>
