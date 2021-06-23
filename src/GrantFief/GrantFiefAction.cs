@@ -56,6 +56,8 @@ namespace Diplomacy.GrantFief
                 reason = _TNotKingdomLeader.ToString();
             else if (Clan.PlayerClan.GetPermanentFiefs().Count() < 1)
                 reason = _TNoFiefsToGrant.ToString();
+            else if (targetClan.IsMinorFaction || targetClan.IsUnderMercenaryService)
+                reason = _TNoGrantsToMercenaries.ToString();
 
             return reason is null;
         }
@@ -63,5 +65,6 @@ namespace Diplomacy.GrantFief
         private static readonly TextObject _TNoGrantsToMyClan = new TextObject("{=FqeN0fmR}You cannot grant fiefs to your own clan.");
         private static readonly TextObject _TNotKingdomLeader = new TextObject("{=zdSYUnZQ}You are not the leader of your kingdom.");
         private static readonly TextObject _TNoFiefsToGrant = new TextObject("{=D61vzEC7}You don't have any fiefs to grant.");
+        private static readonly TextObject _TNoGrantsToMercenaries = new TextObject("{=Q7jRqnez}You cannot grant fiefs to mercenary clans.");
     }
 }
