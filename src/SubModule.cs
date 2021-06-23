@@ -15,6 +15,8 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using Bannerlord.UIExtenderEx;
 using Diplomacy.Event;
+using TaleWorlds.ModuleManager;
+using System.IO;
 
 namespace Diplomacy
 {
@@ -98,9 +100,16 @@ namespace Diplomacy
                 gameStarter.AddBehavior(new ExpansionismBehavior());
                 gameStarter.AddBehavior(new CivilWarBehavior());
                 gameStarter.AddBehavior(new UIBehavior());
-
+                LoadGameTexts(gameStarter);
                 Log.LogDebug("Campaign session started.");
+
             }
+        }
+
+        private static void LoadGameTexts(CampaignGameStarter gameStarter)
+        {
+            var path = ModuleHelper.GetXmlPath("Bannerlord.Diplomacy", "gt_help");
+            gameStarter.LoadGameTexts(path);
         }
 
         public override void OnGameEnd(Game game)

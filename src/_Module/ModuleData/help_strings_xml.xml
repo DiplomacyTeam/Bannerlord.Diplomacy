@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="English" />
+  </tags>
+  <strings>
+    <string id="bAkTqxmf" text="A faction is a group of clans in a kingdom with a common goal. If a faction gains enough support, they will begin a civil war. If the rebels wins the war, their demand will be upheld. If the loyalists win, the rebel clans will return to the kingdom. Victorious clans will gain influence and relations with their fellow victors. Defeated clans will lose influence. Clans may start a faction by spending influence." />
+  </strings>
+</base>

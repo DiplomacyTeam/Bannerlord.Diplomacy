@@ -39,6 +39,9 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public string KingdomName { get; set; }
 
+        [DataSourceProperty]
+        public HintViewModel HelpHint { get; set; }
+
         public RebelFactionsVM(Kingdom kingdom, Action onComplete)
         {
             _onComplete = onComplete;
@@ -49,6 +52,7 @@ namespace Diplomacy.ViewModel
             KingdomName = _kingdom.Name.ToString();
             _createFactionCost = new InfluenceCost(Clan.PlayerClan, Settings.Instance!.FactionCreationInfluenceCost);
             CreateFactionInfluenceCost = Settings.Instance!.FactionCreationInfluenceCost;
+            HelpHint = new HintViewModel(GameTexts.FindText("str_faction_help"));
             this.RefreshValues();
         }
 
@@ -103,6 +107,7 @@ namespace Diplomacy.ViewModel
 
         public void OnCreateFaction()
         {
+            InformationManager.HideInformations();
             List<InquiryElement> inquiryElements = new();
             foreach (int value in Enum.GetValues(typeof(RebelDemandType)))
             {
