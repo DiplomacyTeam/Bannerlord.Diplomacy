@@ -28,6 +28,19 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, OnSettlementOwnerChanged);
             CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, OnRaidCompleted);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnMapEventEnded);
+
+            CampaignEvents.WarDeclared.AddNonSerializedListener(this, RegisterWarExhaustionMultiplier);
+        }
+
+        private void RegisterWarExhaustionMultiplier(IFaction faction1, IFaction faction2)
+        {
+            Kingdom? kingdom1 = faction1 as Kingdom;
+            Kingdom? kingdom2 = faction2 as Kingdom;
+
+            if (kingdom1 != null && kingdom2 != null)
+            {
+                _warExhaustionManager.RegisterWarExhaustionMultiplier(kingdom1, kingdom2);
+            }
         }
 
         public override void SyncData(IDataStore dataStore)

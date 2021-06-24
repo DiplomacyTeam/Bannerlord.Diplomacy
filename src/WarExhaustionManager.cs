@@ -12,35 +12,28 @@ namespace Diplomacy
     internal sealed class WarExhaustionManager
     {
 
-        // legacy war exhaustion dictionary using stringId
-        [SaveableField(0)]
-        private Dictionary<string, float>? _warExhaustion;
-
         // new war exhaustion dictionary using Id
         [SaveableField(1)]
         private Dictionary<string, float> _warExhaustionById;
+
+        [SaveableField(2)]
+        private Dictionary<string, float> _warExhaustionMultiplier;
 
         private HashSet<Tuple<Kingdom, Kingdom>> _knownKingdomCombinations;
         private HashSet<Kingdom> _knownKingdoms;
 
         public static WarExhaustionManager Instance { get; private set; } = default!;
 
-        internal static float MaxWarExhaustion => Settings.Instance!.MaxWarExhaustion;
+        internal static float MaxWarExhaustion => 100f;
 
         internal static float MinWarExhaustion => 0f;
-
-
-        private float Fuzziness => MBRandom.RandomFloatRanged(BaseFuzzinessMin, BaseFuzzinessMax);
-
-        private float BaseFuzzinessMin => 0.5f;
-
-        private float BaseFuzzinessMax => 1.5f;
 
         public static float DefaultMaxWarExhaustion { get; } = 100f;
 
         internal WarExhaustionManager()
         {
             _warExhaustionById = new Dictionary<string, float>();
+            _warExhaustionMultiplier = new Dictionary<string, float>();
             _knownKingdomCombinations = new HashSet<Tuple<Kingdom, Kingdom>>();
             _knownKingdoms = new HashSet<Kingdom>();
             Instance = this;
@@ -52,6 +45,20 @@ namespace Diplomacy
             return key is not null && _warExhaustionById.TryGetValue(key, out var warExhaustion)
                 ? warExhaustion
                 : 0f;
+        }
+
+        internal void RegisterWarExhaustionMultiplier(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            float average = (kingdom1.TotalStrength + kingdom2.TotalStrength) / 2;
+            var multiplier = 1000f / average;
+
+            var key = CreateKey(kingdom1, kingdom2);
+            var key2 = CreateKey(kingdom2, kingdom1);
+            if (key is not null && key2 is not null)
+            {
+                _warExhaustionMultiplier![key!] = multiplier;
+                _warExhaustionMultiplier![key2!] = multiplier;
+            }
         }
 
         private static bool KingdomsAreValid(Kingdom kingdom1, Kingdom kingdom2)
@@ -90,30 +97,41 @@ namespace Diplomacy
             AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd, WarExhaustionType.Raid);
         }
 
-        private void AddWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, float warExhaustionToAdd, WarExhaustionType warExhaustionType, bool addFuzziness = true)
+        private void AddWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, float warExhaustionToAdd, WarExhaustionType warExhaustionType)
         {
             var key = CreateKey(kingdom1, kingdom2);
-            if (key is not null)
+            if (key is null)
+                return;
+            float finalWarExhaustionDelta;
+            if (warExhaustionType == WarExhaustionType.Daily)
             {
-                var finalWarExhaustionDelta = warExhaustionToAdd;
-                if (addFuzziness)
+                finalWarExhaustionDelta = warExhaustionToAdd;
+            }
+            else
+            {
+                float warExhaustionFactor;
+                if (!_warExhaustionMultiplier!.TryGetValue(key, out warExhaustionFactor))
                 {
-                    finalWarExhaustionDelta *= Fuzziness;
-                }
-                if (_warExhaustionById.TryGetValue(key, out var currentValue))
-                {
-                    _warExhaustionById[key] = MBMath.ClampFloat(currentValue += finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
-                }
-                else
-                {
-                    _warExhaustionById[key] = MBMath.ClampFloat(finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
+                    RegisterWarExhaustionMultiplier(kingdom1, kingdom2);
+                    warExhaustionFactor = _warExhaustionMultiplier[key];
                 }
 
-                if (Settings.Instance!.EnableWarExhaustionDebugMessages && kingdom1 == Hero.MainHero.MapFaction)
-                {
-                    var information = string.Format("Added {0} {1} war exhaustion to {2}'s war with {3}", finalWarExhaustionDelta, Enum.GetName(typeof(WarExhaustionType), warExhaustionType), kingdom1.Name, kingdom2.Name);
-                    InformationManager.DisplayMessage(new InformationMessage(information, Color.FromUint(4282569842U)));
-                }
+                finalWarExhaustionDelta = warExhaustionToAdd * warExhaustionFactor;
+            }
+
+            if (_warExhaustionById.TryGetValue(key, out var currentValue))
+            {
+                _warExhaustionById[key] = MBMath.ClampFloat(currentValue += finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
+            }
+            else
+            {
+                _warExhaustionById[key] = MBMath.ClampFloat(finalWarExhaustionDelta, MinWarExhaustion, MaxWarExhaustion);
+            }
+
+            if (Settings.Instance!.EnableWarExhaustionDebugMessages && kingdom1 == Hero.MainHero.MapFaction)
+            {
+                var information = string.Format("Added {0} {1} war exhaustion to {2}'s war with {3}", finalWarExhaustionDelta, Enum.GetName(typeof(WarExhaustionType), warExhaustionType), kingdom1.Name, kingdom2.Name);
+                InformationManager.DisplayMessage(new InformationMessage(information, Color.FromUint(4282569842U)));
             }
 
             Events.Instance.OnWarExhaustionAdded(new WarExhaustionEvent(kingdom1, kingdom2, warExhaustionType, warExhaustionToAdd));
@@ -191,43 +209,7 @@ namespace Diplomacy
         {
             Instance = this;
             _warExhaustionById ??= new();
-            MigrateLegacyWarExhaustionDictionary();
-        }
-
-
-        /// <summary>
-        /// Migrates old-style war exhaustion dictionaries that are keyed by stringId to new ones keyed by MBGUID internal id.
-        /// </summary>
-        private void MigrateLegacyWarExhaustionDictionary()
-        {
-            if (_warExhaustion is not null)
-            {
-                foreach (var oldKey in _warExhaustion.Keys)
-                {
-                    var kingdomNames = oldKey.Split(new char[] { '+' });
-
-                    if (kingdomNames.Length != 2)
-                    {
-                        continue;
-                    }
-
-                    var kingdom1 = Kingdom.All.FirstOrDefault(kingdom => kingdomNames[0] == kingdom.StringId);
-                    var kingdom2 = Kingdom.All.FirstOrDefault(kingdom => kingdomNames[1] == kingdom.StringId);
-
-                    if (kingdom1 is null || kingdom2 is null)
-                    {
-                        continue;
-                    }
-
-                    var newKey = CreateKey(kingdom1, kingdom2);
-
-                    if (newKey is not null)
-                    {
-                        _warExhaustionById[newKey] = _warExhaustion[oldKey];
-                    }
-                }
-                _warExhaustion = null;
-            }
+            _warExhaustionMultiplier ??= new();
         }
 
         internal enum WarExhaustionType

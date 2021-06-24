@@ -84,13 +84,9 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public bool EnableWarExhaustion { get; set; } = true;
 
-        [SettingPropertyFloatingInteger("{=Bh7vme9y}Max War Exhaustion", 0f, 1000f, RequireRestart = false, HintText = "{=6Ij1WEWz}The amount of war exhaustion that forces a faction to propose peace. Default value is 100.0.")]
-        [SettingPropertyGroup(HeadingWarExhaustion)]
-        public float MaxWarExhaustion { get; set; } = WarExhaustionManager.DefaultMaxWarExhaustion;
-
         [SettingPropertyFloatingInteger("{=8TFQWL55}War Exhaustion Per Day", 0f, 5f, RequireRestart = false, HintText = "{=lgza5wDq}The amount of war exhaustion added per day a war is ongoing. Default value is 1.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
-        public float WarExhaustionPerDay { get; set; } = 1.0f;
+        public float WarExhaustionPerDay { get; set; } = 0.5f;
 
         [SettingPropertyFloatingInteger("{=s6dNpM6M}War Exhaustion Per Casualty", 0f, 0.1f, "0.000", RequireRestart = false, HintText = "{=NcJtGeM7}The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.01.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
