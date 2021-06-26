@@ -108,8 +108,9 @@ namespace Diplomacy
 
         private static void LoadGameTexts(CampaignGameStarter gameStarter)
         {
-            var path = ModuleHelper.GetXmlPath("Bannerlord.Diplomacy", "gt_help");
-            gameStarter.LoadGameTexts(path);
+            var module = "Bannerlord.Diplomacy";
+            gameStarter.LoadGameTexts(ModuleHelper.GetXmlPath(module, "gt_help"));
+            gameStarter.LoadGameTexts(ModuleHelper.GetXmlPath(module, "gt_common"));
         }
 
         public override void OnGameEnd(Game game)

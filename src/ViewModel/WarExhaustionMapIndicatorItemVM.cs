@@ -1,5 +1,7 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using Diplomacy.GauntletInterfaces;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 
 namespace Diplomacy.ViewModel
@@ -34,6 +36,11 @@ namespace Diplomacy.ViewModel
             OpponentWarExhaustion = (int)WarExhaustionManager.Instance.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
             IsCriticalFaction1 = (PlayerWarExhaustion / WarExhaustionManager.MaxWarExhaustion) >= 0.75f;
             IsCriticalFaction2 = (OpponentWarExhaustion / WarExhaustionManager.MaxWarExhaustion) >= 0.75f;
+        }
+
+        private void OpenDetailedWarView()
+        {
+            new DetailWarViewInterface().ShowInterface(ScreenManager.TopScreen, _opposingKingdom);
         }
 
         [DataSourceProperty]

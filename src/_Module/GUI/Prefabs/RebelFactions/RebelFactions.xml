@@ -34,8 +34,13 @@
                   <Children>
                     <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Info.Text" Text="@KingdomName"/>
 
-                    <BasicDiplomacyButton Parameter.IsEnabled="@ShouldShowCreateFaction" Parameter.Command.Click="OnCreateFaction" Parameter.FontSize="40" Parameter.Symbol="+" HorizontalAlignment="Right" PositionXOffset="-90" PositionYOffset="11" Parameter.HintDataSource="{CreateFactionHint}" Parameter.YOffset="4" />
-                    <StaticDiplomacyButton Parameter.FontSize="24" HorizontalAlignment="Right" PositionXOffset="-50" PositionYOffset="11" Parameter.HintDataSource="{HelpHint}" Parameter.YOffset="3" />
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginRight="50" MarginTop="10" HorizontalAlignment="Right">
+                      <Children>
+                        <BasicDiplomacyButton Parameter.IsEnabled="@ShouldShowCreateFaction" Parameter.Command.Click="OnCreateFaction" Parameter.FontSize="40" Parameter.Symbol="+" MarginRight="5" Parameter.HintDataSource="{CreateFactionHint}" Parameter.YOffset="4" />
+                        <StaticDiplomacyButton Parameter.FontSize="24"  MarginLeft="5"   Parameter.HintDataSource="{HelpHint}" Parameter.YOffset="3" />
+                      </Children>
+                    </ListPanel>
+
 
                     <Widget WidthSizePolicy = "StretchToParent" PositionYOffset="48" HeightSizePolicy = "Fixed" SuggestedHeight="2" HorizontalAlignment="Center" VerticalAlignment="Top" Sprite="GradientDivider_9" AlphaFactor="0.4" MarginLeft="10" MarginRight="10"/>
                     <Widget Id="ScrollContainer" PositionYOffset="50" HeightSizePolicy="Fixed" SuggestedHeight="700" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" VerticalAlignment="Top">

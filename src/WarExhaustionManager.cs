@@ -47,6 +47,14 @@ namespace Diplomacy
                 : 0f;
         }
 
+        public float GetWarExhaustionRate(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            var key = CreateKey(kingdom1, kingdom2);
+            return key is not null && _warExhaustionMultiplier.TryGetValue(key, out var rate)
+                ? rate
+                : 1f;
+        }
+
         internal void RegisterWarExhaustionMultiplier(Kingdom kingdom1, Kingdom kingdom2)
         {
             float average = (kingdom1.TotalStrength + kingdom2.TotalStrength) / 2;
@@ -204,6 +212,71 @@ namespace Diplomacy
         public bool HasLowWarExhaustion(Kingdom kingdom1, Kingdom kingdom2) => GetWarExhaustion(kingdom1, kingdom2) <= GetLowWarExhaustion();
 
         public static double GetLowWarExhaustion() => 0.5 * MaxWarExhaustion;
+
+        internal List<WarExhaustionBreakdown> GetWarExhaustionBreakdown(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            var result = new List<WarExhaustionBreakdown>();
+            var stance = kingdom1.GetStanceWith(kingdom2);
+
+            var key = CreateKey(kingdom1, kingdom2);
+            float multiplier;
+            if (!_warExhaustionMultiplier.TryGetValue(key!, out multiplier))
+            {
+                RegisterWarExhaustionMultiplier(kingdom1, kingdom2);
+                multiplier = _warExhaustionMultiplier[key!];
+            }
+
+            int valueFaction1 = stance.GetCasualties(kingdom1);
+            int valueFaction2 = stance.GetCasualties(kingdom2);
+            result.Add(new WarExhaustionBreakdown()
+            {
+                Type = WarExhaustionType.Casualty,
+                ValueFaction1 = valueFaction1,
+                ValueFaction2 = valueFaction2,
+                WarExhaustionValueFaction1 = valueFaction1 * Settings.Instance!.WarExhaustionPerCasualty * multiplier,
+                WarExhaustionValueFaction2 = valueFaction2 * Settings.Instance!.WarExhaustionPerCasualty * multiplier
+            });
+            valueFaction1 = stance.GetSuccessfulRaids(kingdom2);
+            valueFaction2 = stance.GetSuccessfulRaids(kingdom1);
+            result.Add(new WarExhaustionBreakdown()
+            {
+                Type = WarExhaustionType.Raid,
+                ValueFaction1 = valueFaction1,
+                ValueFaction2 = valueFaction2,
+                WarExhaustionValueFaction1 = valueFaction1 * Settings.Instance!.WarExhaustionPerRaid * multiplier,
+                WarExhaustionValueFaction2 = valueFaction2 * Settings.Instance!.WarExhaustionPerRaid * multiplier
+            });
+            valueFaction1 = stance.GetSuccessfulSieges(kingdom2);
+            valueFaction2 = stance.GetSuccessfulSieges(kingdom1);
+            result.Add(new WarExhaustionBreakdown()
+            {
+                Type = WarExhaustionType.Siege,
+                ValueFaction1 = valueFaction1,
+                ValueFaction2 = valueFaction2,
+                WarExhaustionValueFaction1 = valueFaction1 * Settings.Instance!.WarExhaustionPerSiege * multiplier,
+                WarExhaustionValueFaction2 = valueFaction2 * Settings.Instance!.WarExhaustionPerSiege * multiplier
+            });
+            valueFaction1 = (int)stance.WarStartDate.ElapsedDaysUntilNow;
+            result.Add(new WarExhaustionBreakdown()
+            {
+                Type = WarExhaustionType.Daily,
+                ValueFaction1 = valueFaction1,
+                ValueFaction2 = valueFaction2,
+                WarExhaustionValueFaction1 = valueFaction1 * Settings.Instance!.WarExhaustionPerDay,
+                WarExhaustionValueFaction2 = valueFaction1* Settings.Instance!.WarExhaustionPerDay
+            });
+
+            return result;
+        }
+
+        public struct WarExhaustionBreakdown
+        {
+            public WarExhaustionType Type { init; get; }
+            public int ValueFaction1 { init; get; }
+            public int ValueFaction2 { init; get; }
+            public float WarExhaustionValueFaction1 { init; get; }
+            public float WarExhaustionValueFaction2 { init; get; }
+        }
 
         public void Sync()
         {

@@ -5,7 +5,7 @@
 
     <Constant Name="Medium.Width" Value="210" />
     <Constant Name="Medium.Height" Value="45" />
-    
+
     <Constant Name="RetreatIconSize" Value="30"/>
     <Constant Name="RetreatIconMargin" MultiplyResult="0.5" Value="!RetreatIconSize" />
   </Constants>
@@ -14,13 +14,13 @@
       <Children>
         <ListPanel DataSource="{KingdomsAtWar}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight">
           <ItemTemplate>
-            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="25" MarginRight="25">
+            <ButtonWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="25" MarginRight="25" Command.Click="OpenDetailedWarView" DoNotPassEventsToChildren="true" UpdateChildrenStates="true">
               <Children>
-                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight" UpdateChildrenStates="true">
                   <Children>
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginRight="-1">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginRight="-1" UpdateChildrenStates="true">
                       <Children>
-                        <MaskedTextureWidget DataSource="{Faction1Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" Brush="Nameplate.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.1" />
+                        <MaskedTextureWidget DataSource="{Faction1Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" Brush="Diplomacy.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="2.1" />
                         <Widget WidthSizePolicy="Fixed" SuggestedWidth="5" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right">
                           <Children>
                             <CriticalThresholdTextWidget IsCritical="@IsCriticalFaction1" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" Brush="Map.WarExhaustionIndicator.Text" IsEnabled="false" IntText="@PlayerWarExhaustion" MarginRight="!RetreatIconMargin"/>
@@ -29,9 +29,9 @@
                       </Children>
                     </ListPanel>
 
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" UpdateChildrenStates="true">
                       <Children>
-                        <MaskedTextureWidget DataSource="{Faction2Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" Brush="Nameplate.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.1" />
+                        <MaskedTextureWidget DataSource="{Faction2Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" Brush="Diplomacy.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="2.1" />
                         <Widget WidthSizePolicy="Fixed" SuggestedWidth="5" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left">
                           <Children>
                             <CriticalThresholdTextWidget IsCritical="@IsCriticalFaction2" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Brush="Map.WarExhaustionIndicator.Text" IsEnabled="false" IntText="@OpponentWarExhaustion" MarginLeft="!RetreatIconMargin"/>
@@ -47,7 +47,7 @@
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!RetreatIconSize" SuggestedHeight="!RetreatIconSize" HorizontalAlignment="Center" VerticalAlignment="Bottom" Sprite="GameMenu\retreat_icon" />
 
               </Children>
-            </Widget>
+            </ButtonWidget>
           </ItemTemplate>
         </ListPanel>
       </Children>

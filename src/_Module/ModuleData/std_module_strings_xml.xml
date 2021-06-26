@@ -137,6 +137,16 @@
     <string id="BXluvRnJ" text="Bitter Defeat"/>
     <string id="vLfbqXjq" text="Your armies and people are exhausted from the conflict with {ENEMY_KINGDOM} and have given up the fight. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence."/>
 
+    <string id="mCue7aFc" text="War Report" />
+    <string id="zYVH0xYa" text="Casualties" />
+    <string id="elRjo1ab" text="Villages Raided" />
+    <string id="DrNBDhx3" text="Fiefs Lost" />
+    <string id="XIPMI3gR" text="War Duration" />
+    <string id="IlFEeNkY" text="War Exhaustion Report" />
+
+    <string id="hAoIC2Iq" text="Date Started: {START_DATE}" />
+    <string id="qHrihV27" text="War Duration: {WAR_DURATION} days" />
+
     <!-- -
     ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
     -->
@@ -259,7 +269,7 @@
 
     <string id="lsyl0VSX" text ="Storyline Protection"/>
     <string id="EVrErrTR" text="When enabled, prevents the player from breaking the main storyline. Disable when using mods like &quot;Just Let Me Play&quot;. Default value is true." />
-    
+
     <string id="f6n2UAEC" text="Unfinished Features" />
     <string id="HSoZfvXH" text="Enable Usurp Throne Feature" />
     <string id="ZIAo4er4" text="When enabled, this allows the player to usurp the throne of a kingdom. This feature is unbalanced and is pending a rework and thus not recommended. Default value is false." />
