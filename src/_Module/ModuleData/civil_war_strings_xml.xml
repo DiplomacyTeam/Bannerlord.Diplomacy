@@ -78,6 +78,9 @@
 	  <string id="EYB5Uggd" text="Leader is {TRAIT}" />
 	  <string id="E00ywbqb" text="Ruler is {TRAIT}" />
 
+    <string id="GeevRiNR" text="{LABEL}{newline} {newline}{REASON}" />
+    <string id="ALSuNVzE" text="{EXCEPTION}{newline} {newline}{DEMAND_HINT}" />
+
     <!-- Settings -->
     <string id="eDZeFUTH" text="Civil Wars" />
     <string id="VB97zQeJ" text="Minimum Time Between Civil Wars In Days" />

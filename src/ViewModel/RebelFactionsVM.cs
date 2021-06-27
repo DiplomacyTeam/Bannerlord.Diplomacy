@@ -98,7 +98,7 @@ namespace Diplomacy.ViewModel
             var message = _TCreateFactionLabel;
             if (reason != null)
             {
-                message = new TextObject("{LABEL}{newline}{REASON}").SetTextVariable("LABEL", _TCreateFactionLabel).SetTextVariable("REASON", reason);
+                message = new TextObject("{=GeevRiNR}{LABEL}{newline} {newline}{REASON}").SetTextVariable("LABEL", _TCreateFactionLabel).SetTextVariable("REASON", reason);
             }
             return new HintViewModel(message);
         }
@@ -116,7 +116,10 @@ namespace Diplomacy.ViewModel
                 string hint = demandType.GetHint();
                 if (reason != null)
                 {
-                    hint = string.Concat(new TextObject("{EXCEPTION}{newline} {newline}").SetTextVariable("EXCEPTION", reason).ToString(), hint);
+                    hint = new TextObject("{=ALSuNVzE}{EXCEPTION}{newline} {newline}{DEMAND_HINT}")
+                        .SetTextVariable("EXCEPTION", reason)
+                        .SetTextVariable("DEMAND_HINT", hint)
+                        .ToString();
                 }
                 inquiryElements.Add(new InquiryElement(demandType, demandType.GetName(), null, canCreate, hint));
             }
