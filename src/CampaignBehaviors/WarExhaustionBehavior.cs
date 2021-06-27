@@ -32,6 +32,19 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnMapEventEnded);
 
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, RegisterWarExhaustionMultiplier);
+            CampaignEvents.MakePeace.AddNonSerializedListener(this, ClearWarExhaustion);
+        }
+
+        private void ClearWarExhaustion(IFaction faction1, IFaction faction2)
+        {
+            Kingdom? kingdom1 = faction1 as Kingdom;
+            Kingdom? kingdom2 = faction2 as Kingdom;
+
+            if (kingdom1 != null && kingdom2 != null)
+            {
+                _warExhaustionManager.ClearWarExhaustion(kingdom1, kingdom2);
+                _warExhaustionManager.ClearWarExhaustion(kingdom2, kingdom1);
+            }
         }
 
         private void RegisterWarExhaustionMultiplier(IFaction faction1, IFaction faction2)

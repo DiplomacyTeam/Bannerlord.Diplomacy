@@ -55,7 +55,16 @@ namespace Diplomacy
                 : 1f;
         }
 
-        internal void RegisterWarExhaustionMultiplier(Kingdom kingdom1, Kingdom kingdom2)
+        public void ClearWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            var key = CreateKey(kingdom1, kingdom2);
+            if (key is not null)
+            {
+                _warExhaustionById[key] = 0;
+            }
+        }
+
+            internal void RegisterWarExhaustionMultiplier(Kingdom kingdom1, Kingdom kingdom2)
         {
             float average = (kingdom1.TotalStrength + kingdom2.TotalStrength) / 2;
             var multiplier = 1000f / average;
@@ -152,16 +161,6 @@ namespace Diplomacy
 
         private float GetDailyWarExhaustionDelta() => Settings.Instance!.WarExhaustionPerDay;
 
-        private void RemoveDailyWarExhaustion(Tuple<Kingdom, Kingdom> kingdoms)
-        {
-            var key = CreateKey(kingdoms);
-            if (key is not null && _warExhaustionById.TryGetValue(key, out var currentValue))
-            {
-                var warExhaustionToRemove = Settings.Instance!.WarExhaustionDecayPerDay;
-                _warExhaustionById[key] = MBMath.ClampFloat(currentValue -= warExhaustionToRemove, MinWarExhaustion, MaxWarExhaustion);
-            }
-        }
-
         public void UpdateDailyWarExhaustionForAllKingdoms()
         {
             UpdateKnownKingdoms();
@@ -205,10 +204,6 @@ namespace Diplomacy
             if (stanceLink?.IsAtWar ?? false && (float)Math.Round(stanceLink.WarStartDate.ElapsedDaysUntilNow) >= 1.0f)
             {
                 AddDailyWarExhaustion(kingdoms);
-            }
-            else
-            {
-                RemoveDailyWarExhaustion(kingdoms);
             }
         }
 
