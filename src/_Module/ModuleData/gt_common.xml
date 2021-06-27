@@ -5,6 +5,6 @@
     <string id="" text="" />
     -->
     <string id="str_stat" text="{=ffjTMejn}Stats" />
-	<string id="str_war_exhaustion" text="{=V542tneW}War Exhaustion" />
+    <string id="str_war_exhaustion" text="{=V542tneW}War Exhaustion" />
   </strings>
 </base>

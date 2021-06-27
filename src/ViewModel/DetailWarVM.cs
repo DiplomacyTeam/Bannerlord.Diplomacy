@@ -5,7 +5,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade.GauntletUI.Widgets.Party;
 using static Diplomacy.WarExhaustionManager;
 
 namespace Diplomacy.ViewModel

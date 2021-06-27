@@ -136,6 +136,7 @@
     <string id="Q2vXbwvC" text="Diplomacy"/>
     <string id="BXluvRnJ" text="Bitter Defeat"/>
     <string id="vLfbqXjq" text="Your armies and people are exhausted from the conflict with {ENEMY_KINGDOM} and have given up the fight. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence."/>
+    <string id="ghZCj7hb" text="With your final stronghold falling to your enemies, you can no longer continue the fight with {ENEMY_KINGDOM}. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence." />
 
     <string id="mCue7aFc" text="War Report" />
     <string id="zYVH0xYa" text="Casualties" />

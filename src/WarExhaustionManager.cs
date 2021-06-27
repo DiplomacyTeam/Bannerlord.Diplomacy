@@ -99,6 +99,11 @@ namespace Diplomacy
             AddWarExhaustion(kingdom1, kingdom2, warExhaustionToAdd, WarExhaustionType.Siege);
         }
 
+        public void AddOccupiedWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            AddWarExhaustion(kingdom1, kingdom2, float.MaxValue, WarExhaustionType.Occupied);
+        }
+
         public void AddRaidWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
             var warExhaustionToAdd = Settings.Instance!.WarExhaustionPerRaid;
@@ -290,7 +295,8 @@ namespace Diplomacy
             Casualty,
             Raid,
             Siege,
-            Daily
+            Daily,
+            Occupied
         }
     }
 }

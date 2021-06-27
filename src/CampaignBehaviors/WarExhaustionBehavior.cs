@@ -16,6 +16,8 @@ namespace Diplomacy.CampaignBehaviors
 
         private WarExhaustionManager _warExhaustionManager;
 
+        private static readonly TextObject _TDefeatTitle = new TextObject("{=BXluvRnJ}Bitter Defeat");
+
         public WarExhaustionBehavior()
         {
             Log = LogFactory.Get<WarExhaustionBehavior>();
@@ -98,10 +100,29 @@ namespace Diplomacy.CampaignBehaviors
                 return;
 
             if (oldOwner.MapFaction is Kingdom oldOwnerKingdom && newOwner.MapFaction is Kingdom newOwnerKingdom)
-                _warExhaustionManager.AddSiegeWarExhaustion(oldOwnerKingdom, newOwnerKingdom);
+            {
+                if (oldOwnerKingdom.Fiefs.Any())
+                {
+                    _warExhaustionManager.AddSiegeWarExhaustion(oldOwnerKingdom, newOwnerKingdom);
+                }
+                else
+                {
+                    var warKingdoms = oldOwnerKingdom.Stances
+                        .Where(x => x.IsAtWar && x.Faction1.IsKingdomFaction && x.Faction2.IsKingdomFaction)
+                        .Select(x => x.Faction1 == oldOwnerKingdom ? x.Faction2 : x.Faction1)
+                        .ToList();
+
+                    foreach (Kingdom warKingdom in warKingdoms)
+                    {
+                        _warExhaustionManager.AddOccupiedWarExhaustion(oldOwnerKingdom, warKingdom as Kingdom);
+                    }
+
+                    ConsiderPeaceActions(oldOwnerKingdom, false);
+                }
+            }
         }
 
-        private void ConsiderPeaceActions(Kingdom kingdom)
+        private void ConsiderPeaceActions(Kingdom kingdom, bool hasFiefsRemaining = true)
         {
             foreach (var targetKingdom in FactionManager.GetEnemyKingdoms(kingdom).ToList())
             {
@@ -115,15 +136,31 @@ namespace Diplomacy.CampaignBehaviors
                             { "INFLUENCE", diplomacyCost.InfluenceCost.Value },
                             { "ENEMY_KINGDOM", targetKingdom.Name } 
                         };
-                        InformationManager.ShowInquiry(new InquiryData(
-                            new TextObject("{=BXluvRnJ}Bitter Defeat").ToString(),
-                            new TextObject("{=vLfbqXjq}Your armies and people are exhausted from the conflict with {ENEMY_KINGDOM} and have given up the fight. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence.", strArgs).ToString(),
+
+                        if (hasFiefsRemaining)
+                        {
+                            InformationManager.ShowInquiry(new InquiryData(
+                                _TDefeatTitle.ToString(),
+                                new TextObject("{=vLfbqXjq}Your armies and people are exhausted from the conflict with {ENEMY_KINGDOM} and have given up the fight. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence.", strArgs).ToString(),
+                                true,
+                                false,
+                                GameTexts.FindText("str_ok").ToString(),
+                                null,
+                                () => KingdomPeaceAction.ApplyPeace(kingdom, targetKingdom),
+                                null), true);
+                        }
+                        else
+                        {
+                            InformationManager.ShowInquiry(new InquiryData(
+                            _TDefeatTitle.ToString(),
+                            new TextObject("{=ghZCj7hb}With your final stronghold falling to your enemies, you can no longer continue the fight with {ENEMY_KINGDOM}. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence.", strArgs).ToString(),
                             true,
                             false,
                             GameTexts.FindText("str_ok").ToString(),
                             null,
                             () => KingdomPeaceAction.ApplyPeace(kingdom, targetKingdom),
                             null), true);
+                        }
                     }
                     else
                     {
