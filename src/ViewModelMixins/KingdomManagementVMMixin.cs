@@ -19,6 +19,13 @@ namespace Diplomacy.ViewModelMixins
             FactionsLabel = new TextObject("{=gypPPxUJ}Factions").ToString();
         }
 
+#if !(e159 || e1510)
+        public override void OnFinalize()
+        {
+            ViewModel!.Diplomacy.OnFinalize();
+        }
+#endif
+
         [DataSourceMethod]
         public void ExecuteShowFactions()
         {

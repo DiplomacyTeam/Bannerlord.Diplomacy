@@ -66,7 +66,6 @@ namespace Diplomacy.PatchTools
             new GiveGoldToClanActionPatch(),
             new KingdomDecisionProposalBehaviorPatch(),
             new KingdomDiplomacyVMPatch(),
-            new KingdomManagementVMPatch(),
             new SupportKingdomQuestPatch(),
             new FactionManagerPatch(),
             new DefaultEncyclopediaFactionPagePatch(),

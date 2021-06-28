@@ -1,7 +1,4 @@
-﻿using Diplomacy.Costs;
-using Diplomacy.DiplomaticAction.WarPeace;
-using Diplomacy.Event;
-using Diplomacy.Messengers;
+﻿using Diplomacy.DiplomaticAction.WarPeace;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -15,7 +12,6 @@ namespace Diplomacy.ViewModel
 {
     internal sealed class KingdomWarItemVMExtensionVM : KingdomWarItemVM
     {
-        private static readonly TextObject _TSendMessenger = new("{=cXfcwzPp}Send Messenger");
         private static readonly TextObject _TAlliances = new("{=zpNalMeA}Alliances");
         private static readonly TextObject _TWars = new("{=y5tXjbLK}Wars");
         private static readonly TextObject _TNonAggressionPacts = new("{=noWHMN1W}Non-Aggression Pacts");
@@ -23,7 +19,6 @@ namespace Diplomacy.ViewModel
 
         public KingdomWarItemVMExtensionVM(StanceLink stanceLink, Action<KingdomWarItemVM> onSelect, Action<KingdomWarItemVM> onAction) : base(stanceLink, onSelect, onAction)
         {
-            SendMessengerActionName = _TSendMessenger.ToString();
             var costForMakingPeace = DiplomacyCostCalculator.DetermineCostForMakingPeace((Kingdom)Faction1, (Kingdom)Faction2, true);
             InfluenceCost = (int)costForMakingPeace.InfluenceCost.Value;
             GoldCost = (int)costForMakingPeace.GoldCost.Value;
@@ -40,7 +35,7 @@ namespace Diplomacy.ViewModel
                 DiplomacyProperties = new DiplomacyPropertiesVM(Faction1, Faction2);
 
             DiplomacyProperties.UpdateDiplomacyProperties();
-            
+
             base.UpdateDiplomacyProperties();
             UpdateActionAvailability();
 
@@ -56,16 +51,9 @@ namespace Diplomacy.ViewModel
 
         private void UpdateActionAvailability()
         {
-            IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(Faction2Leader.Hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
             IsOptionAvailable = MakePeaceConditions.Instance.CanApplyExceptions(this, true).IsEmpty();
             var makePeaceException = MakePeaceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault();
             ActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
-        }
-
-        private void SendMessenger()
-        {
-            Events.Instance.OnMessengerSent(Faction2Leader.Hero);
-            UpdateDiplomacyProperties();
         }
 
         [DataSourceProperty]
@@ -75,12 +63,6 @@ namespace Diplomacy.ViewModel
         public string ActionName { get; init; }
 
         [DataSourceProperty]
-        public int SendMessengerGoldCost { get; } = (int)DiplomacyCostCalculator.DetermineCostForSendingMessenger().Value;
-
-        [DataSourceProperty]
-        public string SendMessengerActionName { get; }
-
-        [DataSourceProperty]
         public string AllianceText { get; }
 
         [DataSourceProperty]
@@ -88,20 +70,6 @@ namespace Diplomacy.ViewModel
 
         [DataSourceProperty]
         public string PactsText { get; }
-
-        [DataSourceProperty]
-        public bool IsMessengerAvailable
-        {
-            get => _isMessengerAvailable;
-            set
-            {
-                if (value != _isMessengerAvailable)
-                {
-                    _isMessengerAvailable = value;
-                    OnPropertyChanged(nameof(IsMessengerAvailable));
-                }
-            }
-        }
 
         [DataSourceProperty]
         public int InfluenceCost { get; }
@@ -154,6 +122,5 @@ namespace Diplomacy.ViewModel
         private HintViewModel? _actionHint;
         private bool _isOptionAvailable;
         private int _goldCost;
-        private bool _isMessengerAvailable;
     }
 }

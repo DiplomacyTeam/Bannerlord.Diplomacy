@@ -1,9 +1,6 @@
-﻿using Diplomacy.Costs;
-using Diplomacy.DiplomaticAction.Alliance;
+﻿using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.DiplomaticAction.WarPeace;
-using Diplomacy.Event;
-using Diplomacy.Messengers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +16,6 @@ namespace Diplomacy.ViewModel
 {
     internal class KingdomTruceItemVMExtensionVM : KingdomTruceItemVM
     {
-        private static readonly TextObject _TSendMessenger = new TextObject("{=cXfcwzPp}Send Messenger");
         private static readonly TextObject _TFormAlliance = new TextObject("{=0WPWbx70}Form Alliance");
         private static readonly TextObject _TFormPact = new TextObject("{=9pY0NQrk}Form Pact");
         private static readonly TextObject _TWars = new TextObject("{=y5tXjbLK}Wars");
@@ -34,12 +30,11 @@ namespace Diplomacy.ViewModel
                                              Action<KingdomTruceItemVM> onAction)
             : base(faction1, faction2, onSelection, onAction)
         {
-            SendMessengerActionName = _TSendMessenger.ToString(); ;
-            AllianceActionName = _TFormAlliance.ToString(); ;
-            NonAggressionPactActionName = _TFormPact.ToString(); ;
-            AllianceText = _TAlliances.ToString(); ;
-            WarsText = _TWars.ToString(); ;
-            PactsText = _TPacts.ToString(); ;
+            AllianceActionName = _TFormAlliance.ToString();
+            NonAggressionPactActionName = _TFormPact.ToString();
+            AllianceText = _TAlliances.ToString();
+            WarsText = _TWars.ToString();
+            PactsText = _TPacts.ToString();
             InfluenceCost = (int)DiplomacyCostCalculator.DetermineCostForDeclaringWar((Kingdom)Faction1, true).Value;
             ActionName = GameTexts.FindText("str_kingdom_declate_war_action", null).ToString();
             NonAggressionPactHelpText = _TNapHelpText.SetTextVariable("DAYS", Settings.Instance!.NonAggressionPactDuration).ToString();
@@ -63,8 +58,8 @@ namespace Diplomacy.ViewModel
                 float warExhaustion1 = WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction1, (Kingdom)Faction2);
                 float warExhaustion2 = WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction2, (Kingdom)Faction1);
 
-                Stats.Insert(1, new KingdomWarComparableStatVM((int) warExhaustion1,
-                                                               (int) warExhaustion2,
+                Stats.Insert(1, new KingdomWarComparableStatVM((int)warExhaustion1,
+                                                               (int)warExhaustion2,
                                                                _TWarExhaustion,
                                                                _faction1Color,
                                                                _faction2Color,
@@ -75,9 +70,6 @@ namespace Diplomacy.ViewModel
 
         protected virtual void UpdateActionAvailability()
         {
-            IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(Faction2Leader.Hero,
-                                                                             DiplomacyCostCalculator.DetermineCostForSendingMessenger());
-
             IsOptionAvailable = DeclareWarConditions.Instance.CanApplyExceptions(this, true).IsEmpty();
 
             var allianceException = FormAllianceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault();
@@ -122,7 +114,6 @@ namespace Diplomacy.ViewModel
                 new(_TCurrentScore.ToString(), $"{explainedNumber.ResultNumber:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.Title)
             };
 
-            // FIXME: Must test whether this e1.5.7 adaptation displays the base score!
             foreach (var (name, number) in explainedNumber.GetLines())
                 list.Add(new(name, PlusPrefixed(number), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
@@ -138,15 +129,10 @@ namespace Diplomacy.ViewModel
             DeclareWarAction.Apply(Faction1, Faction2);
         }
 
-        protected void SendMessenger()
-        {
-            Events.Instance.OnMessengerSent(Faction2Leader.Hero);
-            UpdateDiplomacyProperties();
-        }
-
         protected void FormAlliance()
         {
             DeclareAllianceAction.Apply((Kingdom)Faction1, (Kingdom)Faction2, true);
+            UpdateDiplomacyProperties();
             // FIXME: Why do we not UpdateDiplomacyProperties() here?
         }
 
@@ -268,23 +254,6 @@ namespace Diplomacy.ViewModel
         public string PactsText { get; }
 
         [DataSourceProperty]
-        public int SendMessengerGoldCost { get; } = (int)DiplomacyCostCalculator.DetermineCostForSendingMessenger().Value;
-
-        [DataSourceProperty]
-        public bool IsMessengerAvailable
-        {
-            get => _isMessengerAvailable;
-            set
-            {
-                if (value != _isMessengerAvailable)
-                {
-                    _isMessengerAvailable = value;
-                    OnPropertyChanged(nameof(IsMessengerAvailable));
-                }
-            }
-        }
-
-        [DataSourceProperty]
         public int InfluenceCost { get; protected set; }
 
         [DataSourceProperty]
@@ -372,9 +341,6 @@ namespace Diplomacy.ViewModel
         }
 
         [DataSourceProperty]
-        public string SendMessengerActionName { get; private set; }
-
-        [DataSourceProperty]
         public string AllianceActionName { get; }
 
         [DataSourceProperty]
@@ -393,7 +359,6 @@ namespace Diplomacy.ViewModel
         public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
 
         private bool _isOptionAvailable;
-        private bool _isMessengerAvailable;
         private bool _isAllianceAvailable;
         private bool _isNonAggressionPactAvailable;
         private int _allianceInfluenceCost;
