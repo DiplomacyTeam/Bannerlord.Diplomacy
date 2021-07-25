@@ -1,6 +1,8 @@
-﻿using Diplomacy.DiplomaticAction.WarPeace;
-using System;
-using System.Linq;
+﻿using System.Linq;
+using Bannerlord.UIExtenderEx.Attributes;
+using Bannerlord.UIExtenderEx.ViewModels;
+using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.ViewModel;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Core;
@@ -8,51 +10,63 @@ using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.ViewModel
+namespace Diplomacy.ViewModelMixins
 {
-    internal sealed class KingdomWarItemVMExtensionVM : KingdomWarItemVM
+    [ViewModelMixin("UpdateDiplomacyProperties")]
+    internal sealed class KingdomWarItemVMMixin : BaseViewModelMixin<KingdomWarItemVM>
     {
-        private static readonly TextObject _TAlliances = new("{=zpNalMeA}Alliances");
-        private static readonly TextObject _TWars = new("{=y5tXjbLK}Wars");
-        private static readonly TextObject _TNonAggressionPacts = new("{=noWHMN1W}Non-Aggression Pacts");
-        private static readonly TextObject _TWarExhaustion = new("{=XmVTQ0bH}War Exhaustion");
-
-        public KingdomWarItemVMExtensionVM(StanceLink stanceLink, Action<KingdomWarItemVM> onSelect, Action<KingdomWarItemVM> onAction) : base(stanceLink, onSelect, onAction)
+        public KingdomWarItemVMMixin(KingdomWarItemVM vm) : base(vm)
         {
-            var costForMakingPeace = DiplomacyCostCalculator.DetermineCostForMakingPeace((Kingdom)Faction1, (Kingdom)Faction2, true);
+            _faction1 = (Kingdom)ViewModel!.Faction1;
+            _faction2 = (Kingdom)ViewModel!.Faction2;
+            var costForMakingPeace = DiplomacyCostCalculator.DetermineCostForMakingPeace(_faction1, _faction2, true);
             InfluenceCost = (int)costForMakingPeace.InfluenceCost.Value;
             GoldCost = (int)costForMakingPeace.GoldCost.Value;
             ActionName = GameTexts.FindText("str_kingdom_propose_peace_action", null).ToString();
             AllianceText = _TAlliances.ToString();
             WarsText = _TWars.ToString();
             PactsText = _TNonAggressionPacts.ToString();
-            UpdateDiplomacyProperties();
+            IsWarItem = true;
+            OnRefresh();
         }
 
-        protected override void UpdateDiplomacyProperties()
+        [DataSourceProperty]
+        public bool IsWarItem { get; }
+
+        private static readonly TextObject _TAlliances = new("{=zpNalMeA}Alliances");
+        private static readonly TextObject _TWars = new("{=y5tXjbLK}Wars");
+        private static readonly TextObject _TNonAggressionPacts = new("{=noWHMN1W}Non-Aggression Pacts");
+        private static readonly TextObject _TWarExhaustion = new("{=XmVTQ0bH}War Exhaustion");
+
+        public override void OnRefresh()
         {
             if (DiplomacyProperties is null)
-                DiplomacyProperties = new DiplomacyPropertiesVM(Faction1, Faction2);
+                DiplomacyProperties = new DiplomacyPropertiesVM(ViewModel!.Faction1, ViewModel!.Faction2);
 
             DiplomacyProperties.UpdateDiplomacyProperties();
 
-            base.UpdateDiplomacyProperties();
             UpdateActionAvailability();
 
             if (Settings.Instance!.EnableWarExhaustion)
             {
-                Stats.Insert(1, new KingdomWarComparableStatVM(
-                    (int)WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction1, (Kingdom)Faction2),
-                    (int)WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)Faction2, (Kingdom)Faction1),
-                    _TWarExhaustion, _faction1Color, _faction2Color, 100, null));
+                ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM(
+                    (int)WarExhaustionManager.Instance.GetWarExhaustion(_faction1, _faction2),
+                    (int)WarExhaustionManager.Instance.GetWarExhaustion(_faction2, _faction1),
+                    _TWarExhaustion, 
+                    Color.FromUint(this.ViewModel!.Faction1.Color).ToString(),
+                    Color.FromUint(this.ViewModel!.Faction2.Color).ToString(), 
+                    100, 
+                    null));
             }
         }
-        private void ExecuteExecutiveAction() => KingdomPeaceAction.ApplyPeace((Kingdom)Faction1, (Kingdom)Faction2, forcePlayerCharacterCosts: true);
+
+        [DataSourceMethod]
+        public void ExecuteExecutiveAction() => KingdomPeaceAction.ApplyPeace(_faction1, _faction2, forcePlayerCharacterCosts: true);
 
         private void UpdateActionAvailability()
         {
-            IsOptionAvailable = MakePeaceConditions.Instance.CanApplyExceptions(this, true).IsEmpty();
-            var makePeaceException = MakePeaceConditions.Instance.CanApplyExceptions(this, true).FirstOrDefault();
+            IsOptionAvailable = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!, true).IsEmpty();
+            var makePeaceException = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!, true).FirstOrDefault();
             ActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
         }
 
@@ -83,7 +97,7 @@ namespace Diplomacy.ViewModel
                 if (value != _goldCost)
                 {
                     _goldCost = value;
-                    OnPropertyChanged(nameof(GoldCost));
+                    ViewModel!.OnPropertyChanged(nameof(GoldCost));
                 }
             }
         }
@@ -100,7 +114,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isOptionAvailable)
                 {
                     _isOptionAvailable = value;
-                    OnPropertyChanged(nameof(IsOptionAvailable));
+                    ViewModel!.OnPropertyChanged(nameof(IsOptionAvailable));
                 }
             }
         }
@@ -114,7 +128,7 @@ namespace Diplomacy.ViewModel
                 if (value != _actionHint)
                 {
                     _actionHint = value;
-                    OnPropertyChanged(nameof(ActionHint));
+                    ViewModel!.OnPropertyChanged(nameof(ActionHint));
                 }
             }
         }
@@ -122,5 +136,7 @@ namespace Diplomacy.ViewModel
         private HintViewModel? _actionHint;
         private bool _isOptionAvailable;
         private int _goldCost;
+        private readonly Kingdom _faction1;
+        private readonly Kingdom _faction2;
     }
 }

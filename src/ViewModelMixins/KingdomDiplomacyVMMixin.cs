@@ -1,10 +1,12 @@
-﻿using Bannerlord.UIExtenderEx.Attributes;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.Event;
-using Diplomacy.ViewModel;
 using HarmonyLib;
 using System.Reflection;
+using Diplomacy.Extensions;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Core;
@@ -24,6 +26,8 @@ namespace Diplomacy.ViewModelMixins
 
         private static readonly MethodInfo _OnDiplomacyItemSelection =
             AccessTools.DeclaredMethod(typeof(KingdomDiplomacyVM), "OnDiplomacyItemSelection");
+        private static readonly MethodInfo _SetDefaultSelectedItem =
+            AccessTools.DeclaredMethod(typeof(KingdomDiplomacyVM), "SetDefaultSelectedItem");
 
 
         private MBBindingList<KingdomTruceItemVM> _playerAlliances;
@@ -52,7 +56,7 @@ namespace Diplomacy.ViewModelMixins
                     ViewModel!.RefreshValues();
             });
 
-            RefreshAlliances();
+            OnRefresh();
             _eventHandler = new PropertyChangedWithValueEventHandler(OnPropertyChangedWithValue);
 
             ViewModel!.PropertyChangedWithValue += _eventHandler;
@@ -78,21 +82,21 @@ namespace Diplomacy.ViewModelMixins
             CampaignEventDispatcher.Instance.RemoveListeners(this);
 #endif
         }
-
-        private void ExecuteShowStats()
+        [DataSourceMethod]
+        public void ExecuteShowStats()
         {
             ShowOverview = false;
             ShowStats = true;
         }
-
-        private void ExecuteShowOverview()
+        [DataSourceMethod]
+        public void ExecuteShowOverview()
         {
             ShowOverview = true;
             ShowStats = false;
         }
 
 #if !(e159 || e1510)
-        private void ExecuteShowStatComparison()
+        public void ExecuteShowStatComparison()
         {
             ViewModel!.IsDisplayingStatComparisons = true;
             ViewModel!.IsDisplayingWarLogs = false;
@@ -109,7 +113,45 @@ namespace Diplomacy.ViewModelMixins
 
         public override void OnRefresh()
         {
-            RefreshAlliances();
+            ExecuteShowOverview();
+            RemoveRebelKingdoms(ViewModel!.PlayerTruces);
+            RemoveRebelKingdoms(ViewModel!.PlayerWars);
+
+            var alliances = ViewModel!.PlayerTruces.Where(item => item.Faction1.IsAlliedWith(item.Faction2)).ToList();
+            foreach (KingdomTruceItemVM alliance in alliances)
+            {
+                ViewModel!.PlayerTruces.Remove(alliance);
+            }
+
+            foreach (var truce in ViewModel!.PlayerTruces.ToList())
+            {
+                var otherKingdom = truce.Faction2 as Kingdom;
+                if (otherKingdom!.IsRebelKingdom())
+                {
+                    ViewModel!.PlayerTruces.Remove(truce);
+                }
+            }
+
+            RefreshAlliances(alliances);
+
+            GameTexts.SetVariable("STR", ViewModel!.PlayerTruces.Count);
+            ViewModel!.NumOfPlayerTrucesText = GameTexts.FindText("str_STR_in_parentheses", null).ToString();
+            GameTexts.SetVariable("STR", ViewModel!.PlayerWars.Count);
+            ViewModel!.NumOfPlayerWarsText = GameTexts.FindText("str_STR_in_parentheses", null).ToString();
+
+            _SetDefaultSelectedItem.Invoke(ViewModel!, new object[] { });
+        }
+
+        private void RemoveRebelKingdoms<T>(MBBindingList<T> items) where T : KingdomDiplomacyItemVM
+        {
+            foreach (var item in items.ToList())
+            {
+                var otherKingdom = item.Faction2 as Kingdom;
+                if (otherKingdom!.IsRebelKingdom())
+                {
+                    items.Remove(item);
+                }
+            }
         }
 
         [DataSourceProperty]
@@ -140,7 +182,7 @@ namespace Diplomacy.ViewModelMixins
             }
         }
 
-        private void RefreshAlliances()
+        private void RefreshAlliances(List<KingdomTruceItemVM> alliances)
         {
             if (PlayerAlliances is null)
             {
@@ -149,14 +191,10 @@ namespace Diplomacy.ViewModelMixins
 
             PlayerAlliances.Clear();
 
-            foreach (var kingdom in Kingdom.All)
+            foreach (var alliance in alliances)
             {
-                if (kingdom != _playerKingdom && !kingdom.IsEliminated && (FactionManager.IsAlliedWithFaction(kingdom, _playerKingdom)))
-                {
-                    PlayerAlliances.Add(new KingdomAllianceItemVM(_playerKingdom, kingdom, OnDiplomacyItemSelection, BreakAlliance));
-                }
+                PlayerAlliances.Add(alliance);
             }
-
 
             GameTexts.SetVariable("STR", PlayerAlliances.Count);
             NumOfPlayerAlliancesText = GameTexts.FindText("str_STR_in_parentheses", null).ToString();
@@ -166,7 +204,7 @@ namespace Diplomacy.ViewModelMixins
         {
             BreakAllianceAction.Apply((Kingdom)item.Faction1, (Kingdom)item.Faction2);
             ViewModel!.RefreshDiplomacyList();
-            RefreshAlliances();
+            OnRefresh();
         }
 
         [DataSourceProperty]

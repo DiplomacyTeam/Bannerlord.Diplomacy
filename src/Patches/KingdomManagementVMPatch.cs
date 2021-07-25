@@ -1,10 +1,5 @@
-﻿using System;
+﻿using Diplomacy.PatchTools;
 using System.Collections.Generic;
-using System.Linq;
-using Diplomacy.CivilWar.Factions;
-using Diplomacy.Extensions;
-using Diplomacy.PatchTools;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 
 namespace Diplomacy.Patches
