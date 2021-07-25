@@ -3,6 +3,8 @@ using Bannerlord.UIExtenderEx.ViewModels;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.Event;
 using Diplomacy.ViewModel;
+using HarmonyLib;
+using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Core;
@@ -20,12 +22,16 @@ namespace Diplomacy.ViewModelMixins
         private static readonly TextObject _TOverview = new("{=OvbY5qxL}Overview");
         private static readonly TextObject _TDiplomacy = new("{=Q2vXbwvC}Diplomacy");
 
+        private static readonly MethodInfo _OnDiplomacyItemSelection =
+            AccessTools.DeclaredMethod(typeof(KingdomDiplomacyVM), "OnDiplomacyItemSelection");
+
 
         private MBBindingList<KingdomTruceItemVM> _playerAlliances;
         private readonly Kingdom _playerKingdom;
         private string _numOfPlayerAlliancesText;
         private bool _showStats;
         private bool _showOverview;
+        private PropertyChangedWithValueEventHandler _eventHandler;
 
         public KingdomDiplomacyVMMixin(KingdomDiplomacyVM vm) : base(vm)
         {
@@ -47,21 +53,25 @@ namespace Diplomacy.ViewModelMixins
             });
 
             RefreshAlliances();
+            _eventHandler = new PropertyChangedWithValueEventHandler(OnPropertyChangedWithValue);
 
-            ViewModel!.PropertyChangedWithValue += new PropertyChangedWithValueEventHandler(OnPropertyChangedWithValue);
+            ViewModel!.PropertyChangedWithValue += _eventHandler;
         }
 
         private void OnPropertyChangedWithValue(object sender, PropertyChangedWithValueEventArgs e)
         {
             if (e.PropertyName == nameof(ViewModel.CurrentSelectedDiplomacyItem))
             {
+#if !(e159 || e1510)
                 OnDiplomacyItemSelection(ViewModel!.CurrentSelectedDiplomacyItem);
+#endif
             }
         }
 
         public override void OnFinalize()
         {
             Events.RemoveListeners(this);
+            ViewModel!.PropertyChangedWithValue -= _eventHandler;
 #if e159
             CampaignEvents.RemoveListeners(this);
 #else
@@ -87,12 +97,15 @@ namespace Diplomacy.ViewModelMixins
             ViewModel!.IsDisplayingStatComparisons = true;
             ViewModel!.IsDisplayingWarLogs = false;
         }
+#endif
 
         private void OnDiplomacyItemSelection(KingdomDiplomacyItemVM item)
         {
+            _OnDiplomacyItemSelection.Invoke(ViewModel, new object[] { item });
+#if !(e159 || e1510)
             ExecuteShowStatComparison();
-        }
 #endif
+        }
 
         public override void OnRefresh()
         {

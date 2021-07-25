@@ -19,6 +19,7 @@ namespace Diplomacy.ViewModelMixins
         private bool _canGrantFiefToClan;
         private GrantFiefInterface _grantFiefInterface;
         private HintViewModel? _grantFiefHint;
+        private PropertyChangedWithValueEventHandler _eventHandler;
 
         public KingdomClanVMMixin(KingdomClanVM vm) : base(vm)
         {
@@ -31,15 +32,19 @@ namespace Diplomacy.ViewModelMixins
             DonateGoldActionName = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
             DonateGoldExplanationText = new TextObject("{=7QvXkcxH}Donate gold to clans in your kingdom").ToString();
 
-            ViewModel!.PropertyChangedWithValue += new PropertyChangedWithValueEventHandler(OnPropertyChangedWithValue);
+            _eventHandler = new PropertyChangedWithValueEventHandler(OnPropertyChangedWithValue);
+
+            ViewModel!.PropertyChangedWithValue += _eventHandler;
 
             RefreshCanGrantFief();
         }
+
 
         public override void OnFinalize()
         {
             base.OnFinalize();
             Events.RemoveListeners(this);
+            ViewModel!.PropertyChangedWithValue -= _eventHandler;
         }
 
         private void OnPropertyChangedWithValue(object sender, PropertyChangedWithValueEventArgs e)

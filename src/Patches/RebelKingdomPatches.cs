@@ -2,6 +2,8 @@
 using Diplomacy.PatchTools;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Diplomacy.CivilWar.Factions;
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Patches
@@ -17,6 +19,7 @@ namespace Diplomacy.Patches
             new Postfix(nameof(EnforceWarConditions), conversationBehaviorType, "conversation_player_wants_to_make_peace_on_condition"),
             new Postfix(nameof(EnforceWarConditions), conversationBehaviorType, "conversation_lord_request_mission_ask_on_condition"),
             new Postfix(nameof(EnforceWarConditions), conversationBehaviorType, "conversation_player_want_to_join_faction_as_mercenary_or_vassal_on_condition"),
+            new Prefix(nameof(HandleThroneAbdication), typeof(KingdomManager), "AbdicateTheThrone"),
                     };
         }
 
@@ -28,6 +31,19 @@ namespace Diplomacy.Patches
             if ((encounteredKingdom?.IsRebelKingdom() ?? false) || (playerKingdom?.IsRebelKingdom() ?? false))
             {
                 __result = false;
+            }
+        }
+
+        private static void HandleThroneAbdication(Kingdom kingdom)
+        {
+            if (kingdom.Clans.Count <= 1 && kingdom.HasRebellion())
+            {
+                kingdom.GetRebelFactions().First().EnforceSuccess();
+            }
+
+            if (kingdom.Clans.Count > 1 && kingdom.HasRebellion() && kingdom.GetRebelFactions().First() is AbdicationFaction)
+            {
+                kingdom.GetRebelFactions().First().EnforceSuccess();
             }
         }
     }
