@@ -23,6 +23,11 @@ namespace Diplomacy.CivilWar
 
         public static void Apply(RebelFaction rebelFaction)
         {
+            if (!rebelFaction.AtWar)
+            {
+                return;
+            }
+
             Apply(rebelFaction.RebelKingdom!, rebelFaction.ParentKingdom);
 
             // return fiefs to owners

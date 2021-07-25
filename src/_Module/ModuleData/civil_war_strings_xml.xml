@@ -23,6 +23,7 @@
     <string id="nAvLFv5Q" text="Civil War Breaks Out" />
     <string id="2PpZkBOB" text="A civil war has broken out in {KINGDOM}. The {REBEL_KINGDOM} are led by clan {CLAN_NAME}. {DEMAND}" />
     <string id="o0HIAHqg" text="Rebel kingdoms can't be the target of diplomatic actions." />
+    <string id="GKSaZESx" text="With the election of a new monarch and their objective complete, the {REBELS} of {PARENT_KINGDOM} disbands." />
     
     <string id="BPcKHP0D" text="As leader of the rebellion, you gained {INFLUENCE} influence." />
     <string id="UoMvwnTb" text="As leader of the rebellion, you lost {INFLUENCE} influence." />

@@ -5,6 +5,7 @@ using Diplomacy.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Diplomacy.CivilWar.Factions;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.Core;
@@ -45,15 +46,21 @@ namespace Diplomacy.CampaignBehaviors
 
         private void NewKing(KingdomDecision decision, DecisionOutcome chosenOutcome, bool arg3)
         {
-            if (decision is KingSelectionKingdomDecision)
+            if (decision is not KingSelectionKingdomDecision)
             {
-                var kingdom = decision.Kingdom;
-                var newKing = kingdom.Leader;
+                return;
+            }
 
-                foreach (RebelFaction rebelFaction in RebelFactionManager.GetRebelFaction(kingdom))
+            var kingdom = decision.Kingdom;
+            var newKing = kingdom.Leader;
+
+            foreach (RebelFaction rebelFaction in RebelFactionManager.GetRebelFaction(kingdom))
+            {
+                if (rebelFaction is AbdicationFaction abdicationFaction)
                 {
-                    rebelFaction.RemoveClan(newKing.Clan);
+                    abdicationFaction.DestroyFactionBecauseDemandSatisfied();
                 }
+                rebelFaction.RemoveClan(newKing.Clan);
             }
         }
 
