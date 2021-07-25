@@ -1,6 +1,7 @@
 ﻿using Diplomacy.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using Diplomacy.CivilWar.Scoring;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
@@ -79,7 +80,7 @@ namespace Diplomacy.CivilWar
             }
 
             // faction sponsors can't join another faction 
-            if (clan.Kingdom.GetRebelFactions().Where(x => x.SponsorClan == clan).Any())
+            if (clan.Kingdom.GetRebelFactions().Any(x => x.SponsorClan == clan))
             {
                 yield return TextObject.Empty;
             }
@@ -91,7 +92,7 @@ namespace Diplomacy.CivilWar
             }
 
             // can't join a faction when member of a secession faction
-            if (clan.Kingdom.GetRebelFactions().Where(x => x.Clans.Contains(clan) && x.RebelDemandType == RebelDemandType.Secession).Any())
+            if (clan.Kingdom.GetRebelFactions().Any(x => x.Clans.Contains(clan) && x.RebelDemandType == RebelDemandType.Secession))
             {
                 yield return TextObject.Empty;
             }

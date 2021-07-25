@@ -5,7 +5,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.CivilWar
+namespace Diplomacy.CivilWar.Scoring
 {
 
     internal abstract class ChangeRulerFactionScoreBase : AbstractFactionDemandScoringModel

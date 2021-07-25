@@ -1,6 +1,7 @@
 ﻿using Diplomacy.CivilWar;
 using System;
 using System.Collections.Generic;
+using Diplomacy.CivilWar.Scoring;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.EncyclopediaItems;
 using TaleWorlds.Core;

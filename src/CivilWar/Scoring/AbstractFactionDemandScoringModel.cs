@@ -6,7 +6,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.CivilWar
+namespace Diplomacy.CivilWar.Scoring
 {
     internal abstract class AbstractFactionDemandScoringModel
     {
@@ -82,14 +82,10 @@ namespace Diplomacy.CivilWar
             yield return new Tuple<TextObject, float>(valorText, valorScore);
 
             // kingdom size
-            var towns = new List<Town>(Town.AllFiefs);
-            float totalFiefsCount = towns.Count;
-            float kingdomFiefsCount = kingdom.Fiefs.Count;
+            var kingdomCastles = kingdom.Fiefs.Count(x => x.IsCastle);
+            var kingdomTowns = kingdom.Fiefs.Count(x => x.IsTown);
 
-            var kingdomCastles = kingdom.Fiefs.Where(x => x.IsCastle).Count();
-            var kingdomTowns = kingdom.Fiefs.Where(x => x.IsTown).Count();
-
-            var kingdomSize = kingdomCastles + (kingdomTowns * 2);
+            var kingdomSize = kingdomCastles * Scores.KingdomSizeCastleScore + kingdomTowns * Scores.KingdomSizeTownScore;
             var kingdomSizeScore = MBMath.ClampFloat(kingdomSize, 0, Scores.KingdomSizeScoreMax);
 
             yield return new Tuple<TextObject, float>(_TKingdomSize, kingdomSizeScore);
@@ -111,8 +107,6 @@ namespace Diplomacy.CivilWar
 
         protected virtual IEnumerable<Tuple<TextObject, float>> GetRelationshipScores(Clan clan, RebelFaction rebelFaction)
         {
-            List<Tuple<TextObject, float>> scores = new();
-            
             var relationshipWithFactionLeader = clan != rebelFaction.SponsorClan ? clan.GetRelationWithClan(rebelFaction.SponsorClan) : 0f;
 
             var relationshipWithFactionLeaderAdj = relationshipWithFactionLeader;

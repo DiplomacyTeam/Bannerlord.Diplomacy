@@ -1,8 +1,7 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 
-namespace Diplomacy.CivilWar
+namespace Diplomacy.CivilWar.Scoring
 {
     internal sealed class RebelFactionScoringModel
     {
