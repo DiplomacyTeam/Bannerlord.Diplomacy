@@ -16,7 +16,7 @@ namespace Diplomacy.ViewModelMixins
 
         public override void OnRefresh()
         {
-            if (Clan.PlayerClan?.Kingdom.IsRebelKingdom() ?? false)
+            if (Clan.PlayerClan.Kingdom?.IsRebelKingdom() ?? false)
             {
                 ViewModel!.IsKingdomEnabled = false;
                 ViewModel!.KingdomHint.SetHintCallback(() => _TRebelKingdomText.ToString());
