@@ -93,7 +93,7 @@ namespace Diplomacy.CampaignBehaviors
         {
             _warExhaustionManager.UpdateDailyWarExhaustionForAllKingdoms();
 
-            foreach (var kingdom in Kingdom.All)
+            foreach (var kingdom in Kingdom.All.ToList())
             {
                 ConsiderPeaceActions(kingdom);
             }
