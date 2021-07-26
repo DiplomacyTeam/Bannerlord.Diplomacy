@@ -1,26 +1,23 @@
-﻿using Diplomacy.DiplomaticAction.Alliance;
+﻿using System.Collections.Generic;
+using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.WarPeace;
-
-using System.Collections.Generic;
-
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Event
 {
     internal sealed class Events
     {
-        public static Events Instance { get; set; } = null!;
-
-        private readonly MbEvent<Hero> _messengerSent = new MbEvent<Hero>();
-        private readonly MbEvent<Kingdom> _peaceProposalSent = new MbEvent<Kingdom>();
-        private readonly MbEvent<Town> _fiefGranted = new MbEvent<Town>();
-        private readonly MbEvent<AllianceEvent> _allianceFormed = new MbEvent<AllianceEvent>();
-        private readonly MbEvent<AllianceEvent> _allianceBroken = new MbEvent<AllianceEvent>();
-        private readonly MbEvent<Settlement> _playerSettlementTaken = new MbEvent<Settlement>();
-        private readonly MbEvent<WarDeclaredEvent> _warDeclared = new MbEvent<WarDeclaredEvent>();
-        private readonly MbEvent<Kingdom> _kingdomBannerChanged = new MbEvent<Kingdom>();
+        private readonly MbEvent<AllianceEvent> _allianceBroken = new();
+        private readonly MbEvent<AllianceEvent> _allianceFormed = new();
+        private readonly MbEvent<Town> _fiefGranted = new();
+        private readonly MbEvent<Kingdom> _kingdomBannerChanged = new();
         private readonly List<object> _listeners;
-        private readonly MbEvent<WarExhaustionEvent> _warExhaustionAdded = new MbEvent<WarExhaustionEvent>();
+
+        private readonly MbEvent<Hero> _messengerSent = new();
+        private readonly MbEvent<Kingdom> _peaceProposalSent = new();
+        private readonly MbEvent<Settlement> _playerSettlementTaken = new();
+        private readonly MbEvent<WarDeclaredEvent> _warDeclared = new();
+        private readonly MbEvent<WarExhaustionEvent> _warExhaustionAdded = new();
 
         public Events()
         {
@@ -38,6 +35,8 @@ namespace Diplomacy.Event
                 _warExhaustionAdded
             };
         }
+
+        public static Events Instance { get; set; } = null!;
 
         public static IMbEvent<AllianceEvent> AllianceFormed => Instance._allianceFormed;
 
@@ -57,25 +56,55 @@ namespace Diplomacy.Event
 
         public static IMbEvent<WarExhaustionEvent> WarExhaustionAdded => Instance._warExhaustionAdded;
 
-        internal void OnMessengerSent(Hero hero) => Instance._messengerSent.Invoke(hero);
+        internal void OnMessengerSent(Hero hero)
+        {
+            Instance._messengerSent.Invoke(hero);
+        }
 
-        internal void OnPeaceProposalSent(Kingdom kingdom) => Instance._peaceProposalSent.Invoke(kingdom);
+        internal void OnPeaceProposalSent(Kingdom kingdom)
+        {
+            Instance._peaceProposalSent.Invoke(kingdom);
+        }
 
-        internal void OnFiefGranted(Town fief) => Instance._fiefGranted.Invoke(fief);
+        internal void OnFiefGranted(Town fief)
+        {
+            Instance._fiefGranted.Invoke(fief);
+        }
 
-        internal void OnAllianceFormed(AllianceEvent allianceEvent) => Instance._allianceFormed.Invoke(allianceEvent);
+        internal void OnAllianceFormed(AllianceEvent allianceEvent)
+        {
+            Instance._allianceFormed.Invoke(allianceEvent);
+        }
 
-        internal void OnAllianceBroken(AllianceEvent allianceEvent) => Instance._allianceBroken.Invoke(allianceEvent);
+        internal void OnAllianceBroken(AllianceEvent allianceEvent)
+        {
+            Instance._allianceBroken.Invoke(allianceEvent);
+        }
 
-        internal void OnPlayerSettlementTaken(Settlement currentSettlement) => Instance._playerSettlementTaken.Invoke(currentSettlement);
+        internal void OnPlayerSettlementTaken(Settlement currentSettlement)
+        {
+            Instance._playerSettlementTaken.Invoke(currentSettlement);
+        }
 
-        internal void OnWarDeclared(WarDeclaredEvent warDeclaredEvent) => Instance._warDeclared.Invoke(warDeclaredEvent);
+        internal void OnWarDeclared(WarDeclaredEvent warDeclaredEvent)
+        {
+            Instance._warDeclared.Invoke(warDeclaredEvent);
+        }
 
-        internal void OnKingdomBannerChanged(Kingdom kingdom) => Instance._kingdomBannerChanged.Invoke(kingdom);
+        internal void OnKingdomBannerChanged(Kingdom kingdom)
+        {
+            Instance._kingdomBannerChanged.Invoke(kingdom);
+        }
 
-        internal void OnWarExhaustionAdded(WarExhaustionEvent warExhaustionEvent) => Instance._warExhaustionAdded.Invoke(warExhaustionEvent);
+        internal void OnWarExhaustionAdded(WarExhaustionEvent warExhaustionEvent)
+        {
+            Instance._warExhaustionAdded.Invoke(warExhaustionEvent);
+        }
 
-        public static void RemoveListeners(object o) => Instance.RemoveListenersInternal(o);
+        public static void RemoveListeners(object o)
+        {
+            Instance.RemoveListenersInternal(o);
+        }
 
         private void RemoveListenersInternal(object obj)
         {

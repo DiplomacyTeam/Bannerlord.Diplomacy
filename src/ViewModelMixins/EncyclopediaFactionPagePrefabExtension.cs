@@ -9,16 +9,16 @@ namespace Diplomacy.ViewModelMixins
     {
         public override InsertType Type => InsertType.Append;
 
-        private XmlDocument document;
+        private readonly XmlDocument _document;
 
         public EncyclopediaFactionPagePrefabExtension()
         {
-            document = new XmlDocument();
-            document.LoadXml(@"<EncyclopediaFactionPageInject />");
+            _document = new XmlDocument();
+            _document.LoadXml(@"<EncyclopediaFactionPageInject />");
         }
 
         [PrefabExtensionXmlDocument]
-        public XmlDocument GetPrefabExtension() => document;
+        public XmlDocument GetPrefabExtension() => _document;
     }
 
     [PrefabExtension("EncyclopediaFactionPage", "descendant::MaskedTextureWidget[@Brush='Encyclopedia.Faction.Banner']")]
@@ -26,15 +26,15 @@ namespace Diplomacy.ViewModelMixins
     {
         public override InsertType Type => InsertType.Append;
 
-        private XmlDocument document;
+        private readonly XmlDocument _document;
 
         public FactionsButtonExtension()
         {
-            document = new XmlDocument();
-            document.LoadXml(@"<FactionButtonInject />");
+            _document = new XmlDocument();
+            _document.LoadXml(@"<FactionButtonInject />");
         }
 
         [PrefabExtensionXmlDocument]
-        public XmlDocument GetPrefabExtension() => document;
+        public XmlDocument GetPrefabExtension() => _document;
     }
 }

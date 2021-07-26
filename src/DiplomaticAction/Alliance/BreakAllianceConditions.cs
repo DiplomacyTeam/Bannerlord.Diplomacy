@@ -5,7 +5,7 @@ namespace Diplomacy.DiplomaticAction.Alliance
 {
     class BreakAllianceConditions : AbstractConditionEvaluator<BreakAllianceConditions>
     {
-        private static readonly List<IDiplomacyCondition> _breakAllianceConditions = new List<IDiplomacyCondition>
+        private static readonly List<IDiplomacyCondition> _breakAllianceConditions = new()
         {
             new TimeElapsedSinceAllianceFormedCondition()
         };

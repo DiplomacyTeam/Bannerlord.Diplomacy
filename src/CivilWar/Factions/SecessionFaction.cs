@@ -25,10 +25,14 @@ namespace Diplomacy.CivilWar.Factions
             Kingdom newKingdom = this.RebelKingdom!;
             newKingdom.ChangeKingdomName(kingdomName, kingdomName);
 
-            var strVars = new Dictionary<string, object> { { "PARENT_KINGDOM", this.ParentKingdom.Name }, { "KINGDOM", newKingdom.Name } };
-            strVars.Add("PLAYER_PARTICIPATION", GetPlayerParticipationText(true));
+            var strVars = new Dictionary<string, object>
+            {
+                {"PARENT_KINGDOM", this.ParentKingdom.Name},
+                {"KINGDOM", newKingdom.Name},
+                {"PLAYER_PARTICIPATION", GetPlayerParticipationText(true)}
+            };
 
-            ChangeKingdomBannerAction.Apply(newKingdom, false);
+            ChangeKingdomBannerAction.Apply(newKingdom);
             RebelFactionManager.DestroyRebelFaction(this, true);
 
             InformationManager.ShowInquiry(
@@ -37,7 +41,7 @@ namespace Diplomacy.CivilWar.Factions
                     new TextObject("{=nRxyMIEE}{PARENT_KINGDOM} has lost their civil war and failed to keep their kingdom united. The {KINGDOM} has emerged. {PLAYER_PARTICIPATION}", strVars).ToString(),
                     true,
                     false,
-                    GameTexts.FindText("str_ok", null).ToString(),
+                    GameTexts.FindText("str_ok").ToString(),
                     null,
                     null,
                     null), true);

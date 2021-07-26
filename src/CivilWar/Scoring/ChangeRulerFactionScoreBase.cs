@@ -12,12 +12,12 @@ namespace Diplomacy.CivilWar.Scoring
     {
         public float FiefDeficit => 10;
 
-        protected static readonly TextObject _TFiefDeficit = new TextObject(StringConstants.NotEnoughFiefs);
-        protected static readonly TextObject _TFriendlyClansInFaction = new TextObject("{=qAcR4Yee}Friendly Clans In Faction");
-        private static readonly TextObject _TRelationsFactionTarget = new TextObject("{=dr1OCcmL}Relations with Ruler");
-        protected static readonly TextObject _TLeaderTrait = new TextObject("{=EYB5Uggd}Leader is {TRAIT}");
-        protected static readonly TextObject _TRulerTrait = new TextObject("{=E00ywbqb}Ruler is {TRAIT}");
-        protected static readonly TextObject _TRulerNeedsRightToRule = new TextObject("{=1AZK0UVJ}Ruler doesn't have Right to Rule");
+        protected static readonly TextObject _TFiefDeficit = new(StringConstants.NotEnoughFiefs);
+        protected static readonly TextObject _TFriendlyClansInFaction = new("{=qAcR4Yee}Friendly Clans In Faction");
+        private static readonly TextObject _TRelationsFactionTarget = new("{=dr1OCcmL}Relations with Ruler");
+        protected static readonly TextObject _TLeaderTrait = new("{=EYB5Uggd}Leader is {TRAIT}");
+        protected static readonly TextObject _TRulerTrait = new("{=E00ywbqb}Ruler is {TRAIT}");
+        protected static readonly TextObject _TRulerNeedsRightToRule = new("{=1AZK0UVJ}Ruler doesn't have Right to Rule");
 
 
         protected ChangeRulerFactionScoreBase(IFactionDemandScores scores) : base(scores) { }

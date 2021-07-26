@@ -37,11 +37,10 @@ namespace Diplomacy.DiplomaticAction.Alliance
                 textObject.ToString(),
                 true,
                 false,
-                GameTexts.FindText("str_ok", null).ToString(),
+                GameTexts.FindText("str_ok").ToString(),
                 null,
                 acceptAction,
-                null,
-                ""), true);
+                null), true);
         }
     }
 }

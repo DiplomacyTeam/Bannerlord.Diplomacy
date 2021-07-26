@@ -13,9 +13,9 @@ namespace Diplomacy.DiplomaticAction
     {
         private List<IDiplomacyCondition> Conditions { get; }
 
-        public static T Instance { get; } = new T();
+        public static T Instance { get; } = new();
 
-        public AbstractConditionEvaluator(List<IDiplomacyCondition> conditions)
+        protected AbstractConditionEvaluator(List<IDiplomacyCondition> conditions)
         {
             Conditions = new List<IDiplomacyCondition> { new HasAuthorityCondition() };
             Conditions.AddRange(conditions);

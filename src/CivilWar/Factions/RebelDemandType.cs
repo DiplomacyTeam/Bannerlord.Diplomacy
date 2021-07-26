@@ -41,7 +41,7 @@ namespace Diplomacy.CivilWar
                     hint = new TextObject("{=GK1seKeJ}Force the leader of the kingdom to step down. An election will decide the new leader of the kingdom.").ToString();
                     break;
                 default:
-                    hint = new TextObject("").ToString();
+                    hint = new TextObject().ToString();
                     break;
             }
             return hint;

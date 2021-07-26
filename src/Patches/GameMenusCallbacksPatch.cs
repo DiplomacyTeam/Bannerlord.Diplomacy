@@ -1,10 +1,8 @@
 ﻿using Diplomacy.Event;
 using Diplomacy.PatchTools;
-using HarmonyLib;
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 
 namespace Diplomacy.Patches

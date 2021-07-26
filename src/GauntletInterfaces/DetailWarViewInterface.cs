@@ -26,7 +26,7 @@ namespace Diplomacy.GauntletInterfaces
             spriteData.SpriteCategories["ui_kingdom"].Load(resourceContext, resourceDepot);
 
             _layer = new GauntletLayer(209);
-            _layer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
+            _layer.InputRestrictions.SetInputRestrictions();
             _layer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory"));
             _layer.IsFocusLayer = true;
             ScreenManager.TrySetFocus(_layer);

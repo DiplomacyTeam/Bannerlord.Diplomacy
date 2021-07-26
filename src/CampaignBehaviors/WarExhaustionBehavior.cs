@@ -12,11 +12,11 @@ namespace Diplomacy.CampaignBehaviors
 {
     internal sealed class WarExhaustionBehavior : CampaignBehaviorBase
     {
-        private ILogger Log { get; init; }
+        private ILogger Log { get; }
 
         private WarExhaustionManager _warExhaustionManager;
 
-        private static readonly TextObject _TDefeatTitle = new TextObject("{=BXluvRnJ}Bitter Defeat");
+        private static readonly TextObject _TDefeatTitle = new("{=BXluvRnJ}Bitter Defeat");
 
         public WarExhaustionBehavior()
         {
@@ -37,10 +37,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ClearWarExhaustion(IFaction faction1, IFaction faction2)
         {
-            Kingdom? kingdom1 = faction1 as Kingdom;
-            Kingdom? kingdom2 = faction2 as Kingdom;
-
-            if (kingdom1 != null && kingdom2 != null)
+            if (faction1 is Kingdom kingdom1 && faction2 is Kingdom kingdom2)
             {
                 _warExhaustionManager.ClearWarExhaustion(kingdom1, kingdom2);
                 _warExhaustionManager.ClearWarExhaustion(kingdom2, kingdom1);
@@ -49,10 +46,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void RegisterWarExhaustionMultiplier(IFaction faction1, IFaction faction2)
         {
-            Kingdom? kingdom1 = faction1 as Kingdom;
-            Kingdom? kingdom2 = faction2 as Kingdom;
-
-            if (kingdom1 != null && kingdom2 != null)
+            if (faction1 is Kingdom kingdom1 && faction2 is Kingdom kingdom2)
             {
                 _warExhaustionManager.RegisterWarExhaustionMultiplier(kingdom1, kingdom2);
             }
@@ -125,9 +119,10 @@ namespace Diplomacy.CampaignBehaviors
                         .Select(x => x.Faction1 == oldOwnerKingdom ? x.Faction2 : x.Faction1)
                         .ToList();
 
-                    foreach (Kingdom warKingdom in warKingdoms)
+                    foreach (var faction in warKingdoms)
                     {
-                        _warExhaustionManager.AddOccupiedWarExhaustion(oldOwnerKingdom, warKingdom as Kingdom);
+                        var warKingdom = (Kingdom) faction;
+                        _warExhaustionManager.AddOccupiedWarExhaustion(oldOwnerKingdom, warKingdom);
                     }
 
                     ConsiderPeaceActions(oldOwnerKingdom, false);

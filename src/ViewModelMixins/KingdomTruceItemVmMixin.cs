@@ -44,42 +44,40 @@ namespace Diplomacy.ViewModelMixins
             NonAggressionPactHelpText = _TNapHelpText.SetTextVariable("DAYS", Settings.Instance!.NonAggressionPactDuration).ToString();
             _isAlliance = ViewModel!.Faction1.GetStanceWith(ViewModel!.Faction2).IsAllied;
             ActionName = _isAlliance ? _TBreakAlliance.ToString() : GameTexts.FindText("str_kingdom_declate_war_action", null).ToString();
-            InfluenceCost = _isAlliance ? 0 : (int)DiplomacyCostCalculator.DetermineCostForDeclaringWar((Kingdom)ViewModel!.Faction1, true).Value;
+            InfluenceCost = _isAlliance ? 0 : (int) DiplomacyCostCalculator.DetermineCostForDeclaringWar((Kingdom) ViewModel!.Faction1, true).Value;
             OnRefresh();
         }
 
-        private static readonly TextObject _TFormAlliance = new TextObject("{=0WPWbx70}Form Alliance");
-        private static readonly TextObject _TFormPact = new TextObject("{=9pY0NQrk}Form Pact");
-        private static readonly TextObject _TWars = new TextObject("{=y5tXjbLK}Wars");
-        private static readonly TextObject _TAlliances = new TextObject("{=zpNalMeA}Alliances");
-        private static readonly TextObject _TPacts = new TextObject(StringConstants.NonAggressionPacts);
+        private static readonly TextObject _TFormAlliance = new("{=0WPWbx70}Form Alliance");
+        private static readonly TextObject _TFormPact = new("{=9pY0NQrk}Form Pact");
+        private static readonly TextObject _TWars = new("{=y5tXjbLK}Wars");
+        private static readonly TextObject _TAlliances = new("{=zpNalMeA}Alliances");
+        private static readonly TextObject _TPacts = new(StringConstants.NonAggressionPacts);
 
         private static readonly TextObject _TNapHelpText = new("{=9zlQNtlX}Form a non-aggression pact lasting {DAYS} days.");
-
         private static readonly TextObject _TWarExhaustion = new("{=XmV_TQ0bH}War Exhaustion");
 
-        private static readonly TextObject _TBreakAlliance = new TextObject("{=K4GraLTn}Break Alliance");
+        private static readonly TextObject _TBreakAlliance = new("{=K4GraLTn}Break Alliance");
 
         public override void OnRefresh()
         {
-            if (DiplomacyProperties is null)
-                DiplomacyProperties = new DiplomacyPropertiesVM(ViewModel!.Faction1, ViewModel!.Faction2);
+            DiplomacyProperties ??= new DiplomacyPropertiesVM(ViewModel!.Faction1, ViewModel!.Faction2);
 
             DiplomacyProperties.UpdateDiplomacyProperties();
             UpdateActionAvailability();
 
             if (Settings.Instance!.EnableWarExhaustion)
             {
-                float warExhaustion1 = WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)ViewModel!.Faction1, (Kingdom)ViewModel!.Faction2);
-                float warExhaustion2 = WarExhaustionManager.Instance.GetWarExhaustion((Kingdom)ViewModel!.Faction2, (Kingdom)ViewModel!.Faction1);
+                var warExhaustion1 = WarExhaustionManager.Instance.GetWarExhaustion((Kingdom) ViewModel!.Faction1, (Kingdom) ViewModel!.Faction2);
+                var warExhaustion2 = WarExhaustionManager.Instance.GetWarExhaustion((Kingdom) ViewModel!.Faction2, (Kingdom) ViewModel!.Faction1);
 
-                ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM((int)warExhaustion1,
-                                                               (int)warExhaustion2,
-                                                               _TWarExhaustion,
-                                                               Color.FromUint(this.ViewModel!.Faction1.Color).ToString(),
-                                                               Color.FromUint(this.ViewModel!.Faction2.Color).ToString(),
-                                                               100,
-                                                               null));
+                ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM((int) warExhaustion1,
+                    (int) warExhaustion2,
+                    _TWarExhaustion,
+                    Color.FromUint(ViewModel!.Faction1.Color).ToString(),
+                    Color.FromUint(ViewModel!.Faction2.Color).ToString(),
+                    100,
+                    null));
             }
         }
 
@@ -92,6 +90,7 @@ namespace Diplomacy.ViewModelMixins
                 IsOptionAvailable = breakAllianceException is null;
                 return;
             }
+
             IsOptionAvailable = DeclareWarConditions.Instance.CanApplyExceptions(ViewModel!, true).IsEmpty();
 
             var allianceException = FormAllianceConditions.Instance.CanApplyExceptions(ViewModel!, true).FirstOrDefault();
@@ -105,32 +104,35 @@ namespace Diplomacy.ViewModelMixins
             AllianceHint = allianceException is not null ? Compat.HintViewModel.Create(allianceException) : new HintViewModel();
             NonAggressionPactHint = napException is not null ? Compat.HintViewModel.Create(napException) : new HintViewModel();
 
-            var allianceCost = DiplomacyCostCalculator.DetermineCostForFormingAlliance((Kingdom)ViewModel!.Faction1,
-                                                                                       (Kingdom)ViewModel!.Faction2,
-                                                                                       true);
-            AllianceInfluenceCost = (int)allianceCost.InfluenceCost.Value;
-            AllianceGoldCost = (int)allianceCost.GoldCost.Value;
+            var allianceCost = DiplomacyCostCalculator.DetermineCostForFormingAlliance((Kingdom) ViewModel!.Faction1,
+                (Kingdom) ViewModel!.Faction2,
+                true);
+            AllianceInfluenceCost = (int) allianceCost.InfluenceCost.Value;
+            AllianceGoldCost = (int) allianceCost.GoldCost.Value;
 
-            var nonAggressionPactCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact((Kingdom)ViewModel!.Faction1,
-                                                                                                         (Kingdom)ViewModel!.Faction2,
-                                                                                                         true);
-            NonAggressionPactInfluenceCost = (int)nonAggressionPactCost.InfluenceCost.Value;
-            NonAggressionPactGoldCost = (int)nonAggressionPactCost.GoldCost.Value;
+            var nonAggressionPactCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact((Kingdom) ViewModel!.Faction1,
+                (Kingdom) ViewModel!.Faction2,
+                true);
+            NonAggressionPactInfluenceCost = (int) nonAggressionPactCost.InfluenceCost.Value;
+            NonAggressionPactGoldCost = (int) nonAggressionPactCost.GoldCost.Value;
 
-            var allianceScore = AllianceScoringModel.Instance.GetScore((Kingdom)ViewModel!.Faction2, (Kingdom)ViewModel!.Faction1, true);
-            var napScore = NonAggressionPactScoringModel.Instance.GetScore((Kingdom)ViewModel!.Faction2, (Kingdom)ViewModel!.Faction1, true);
+            var allianceScore = AllianceScoringModel.Instance.GetScore((Kingdom) ViewModel!.Faction2, (Kingdom) ViewModel!.Faction1, true);
+            var napScore = NonAggressionPactScoringModel.Instance.GetScore((Kingdom) ViewModel!.Faction2, (Kingdom) ViewModel!.Faction1, true);
             AllianceScoreHint = UpdateDiplomacyTooltip(allianceScore);
             NonAggressionPactScoreHint = UpdateDiplomacyTooltip(napScore);
         }
 
-        private static readonly TextObject _TPlus = new TextObject("{=eTw2aNV5}+");
-        private static readonly TextObject _TRequiredScore = new TextObject("{=XIBUWDlT}Required Score");
-        private static readonly TextObject _TCurrentScore = new TextObject("{=5r6fsHgm}Current Score");
+        private static readonly TextObject _TPlus = new("{=eTw2aNV5}+");
+        private static readonly TextObject _TRequiredScore = new("{=XIBUWDlT}Required Score");
+        private static readonly TextObject _TCurrentScore = new("{=5r6fsHgm}Current Score");
         private readonly bool _isAlliance;
 
         private BasicTooltipViewModel UpdateDiplomacyTooltip(ExplainedNumber explainedNumber)
         {
-            static string PlusPrefixed(float value) => $"{(value >= 0.005f ? _TPlus.ToString() : string.Empty)}{value:0.##}";
+            static string PlusPrefixed(float value)
+            {
+                return $"{(value >= 0.005f ? _TPlus.ToString() : string.Empty)}{value:0.##}";
+            }
 
             var list = new List<TooltipProperty>
             {
@@ -138,10 +140,11 @@ namespace Diplomacy.ViewModelMixins
             };
 
             foreach (var (name, number) in explainedNumber.GetLines())
-                list.Add(new(name, PlusPrefixed(number), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                list.Add(new TooltipProperty(name, PlusPrefixed(number), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
-            list.Add(new(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
-            list.Add(new(_TRequiredScore.ToString(), $"{AllianceScoringModel.Instance.ScoreThreshold:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
+            list.Add(new TooltipProperty(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
+            list.Add(new TooltipProperty(_TRequiredScore.ToString(), $"{AllianceScoringModel.Instance.ScoreThreshold:0.##}", 0, false,
+                TooltipProperty.TooltipPropertyFlags.RundownResult));
 
             return new BasicTooltipViewModel(() => list);
         }
@@ -151,27 +154,28 @@ namespace Diplomacy.ViewModelMixins
         {
             if (_isAlliance)
             {
-                BreakAllianceAction.Apply((Kingdom)ViewModel!.Faction1, (Kingdom)ViewModel!.Faction2);
+                BreakAllianceAction.Apply((Kingdom) ViewModel!.Faction1, (Kingdom) ViewModel!.Faction2);
             }
             else
             {
-                DiplomacyCostCalculator.DetermineCostForDeclaringWar((Kingdom)ViewModel!.Faction1, true).ApplyCost();
+                DiplomacyCostCalculator.DetermineCostForDeclaringWar((Kingdom) ViewModel!.Faction1, true).ApplyCost();
                 DeclareWarAction.Apply(ViewModel!.Faction1, ViewModel!.Faction2);
             }
+
             OnRefresh();
         }
 
         [DataSourceMethod]
         public void FormAlliance()
         {
-            DeclareAllianceAction.Apply((Kingdom)ViewModel!.Faction1, (Kingdom)ViewModel!.Faction2, true);
+            DeclareAllianceAction.Apply((Kingdom) ViewModel!.Faction1, (Kingdom) ViewModel!.Faction2, true);
             OnRefresh();
         }
 
         [DataSourceMethod]
         public void ProposeNonAggressionPact()
         {
-            FormNonAggressionPactAction.Apply((Kingdom)ViewModel!.Faction1, (Kingdom)ViewModel!.Faction2, true);
+            FormNonAggressionPactAction.Apply((Kingdom) ViewModel!.Faction1, (Kingdom) ViewModel!.Faction2, true);
             OnRefresh();
         }
 
@@ -274,20 +278,15 @@ namespace Diplomacy.ViewModelMixins
             }
         }
 
-        [DataSourceProperty]
-        public string NonAggressionPactActionName { get; }
+        [DataSourceProperty] public string NonAggressionPactActionName { get; }
 
-        [DataSourceProperty]
-        public string AllianceText { get; }
+        [DataSourceProperty] public string AllianceText { get; }
 
-        [DataSourceProperty]
-        public string WarsText { get; }
+        [DataSourceProperty] public string WarsText { get; }
 
-        [DataSourceProperty]
-        public string PactsText { get; }
+        [DataSourceProperty] public string PactsText { get; }
 
-        [DataSourceProperty]
-        public int InfluenceCost { get; }
+        [DataSourceProperty] public int InfluenceCost { get; }
 
         [DataSourceProperty]
         public bool IsOptionAvailable
@@ -373,25 +372,18 @@ namespace Diplomacy.ViewModelMixins
             }
         }
 
-        [DataSourceProperty]
-        public string AllianceActionName { get; }
+        [DataSourceProperty] public string AllianceActionName { get; }
 
-        [DataSourceProperty]
-        public bool IsGoldCostVisible { get; } = false;
+        [DataSourceProperty] public bool IsGoldCostVisible { get; } = false;
 
-        [DataSourceProperty]
-        public ImageIdentifierVM? Faction1Image { get; private set; }
+        [DataSourceProperty] public ImageIdentifierVM? Faction1Image { get; private set; }
 
-        [DataSourceProperty]
-        public ImageIdentifierVM? Faction2Image { get; private set; }
+        [DataSourceProperty] public ImageIdentifierVM? Faction2Image { get; private set; }
 
-        [DataSourceProperty]
-        public string NonAggressionPactHelpText { get; }
+        [DataSourceProperty] public string NonAggressionPactHelpText { get; }
 
-        [DataSourceProperty]
-        public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
+        [DataSourceProperty] public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
 
-        [DataSourceProperty]
-        public bool IsWarItem { get; }
+        [DataSourceProperty] public bool IsWarItem { get; }
     }
 }

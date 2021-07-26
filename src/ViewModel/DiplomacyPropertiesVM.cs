@@ -15,9 +15,9 @@ namespace Diplomacy.ViewModel
     {
         private static readonly TextObject _TDaysRemaining = new(StringConstants.DaysRemaining);
 
-        private IFaction Faction1 { get; init; }
+        private IFaction Faction1 { get; }
 
-        private IFaction Faction2 { get; init; }
+        private IFaction Faction2 { get; }
 
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction1Wars;
         private MBBindingList<DiplomacyFactionRelationshipVM> _faction1Allies;

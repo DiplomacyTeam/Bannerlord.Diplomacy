@@ -7,10 +7,6 @@ using System.Collections.Generic;
 
 using SandBox.GauntletUI;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
-using System;
-using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.Engine.Screens;
-using System.Linq;
 
 namespace Diplomacy.Patches
 {

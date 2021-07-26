@@ -21,10 +21,10 @@ namespace Diplomacy.DiplomaticAction
         [SaveableProperty(4)]
         public bool ExpireNotified { get; protected set; }
 
-        public DiplomaticAgreement(CampaignTime startdate, CampaignTime endDate, Kingdom kingdom, Kingdom otherKingdom)
+        protected DiplomaticAgreement(CampaignTime startdate, CampaignTime endDate, Kingdom kingdom, Kingdom otherKingdom)
             : this(startdate, endDate, new FactionPair(kingdom, otherKingdom)) { }
 
-        public DiplomaticAgreement(CampaignTime startdate, CampaignTime endDate, FactionPair factionMapping)
+        protected DiplomaticAgreement(CampaignTime startdate, CampaignTime endDate, FactionPair factionMapping)
         {
             StartDate = startdate;
             EndDate = endDate;

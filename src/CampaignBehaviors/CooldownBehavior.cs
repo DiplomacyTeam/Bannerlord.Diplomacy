@@ -4,7 +4,6 @@ using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.Event;
 using Diplomacy.Extensions;
 using Microsoft.Extensions.Logging;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.CampaignBehaviors

@@ -1,7 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
-using TaleWorlds.SaveSystem;
 
 namespace Diplomacy.DiplomaticAction
 {
@@ -27,7 +26,7 @@ namespace Diplomacy.DiplomaticAction
                         txtRendered,
                         true,
                         false,
-                        GameTexts.FindText("str_ok", null).ToString(),
+                        GameTexts.FindText("str_ok").ToString(),
                         null,
                         null,
                         null), true);

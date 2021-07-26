@@ -8,7 +8,7 @@ namespace Diplomacy.CivilWar.Factions
 {
     internal class AbdicationFaction : RebelFaction
     {
-        private static readonly TextObject _TAbdicateTitle = new TextObject("{=aWWzFITw}A Monarch Abdicates");
+        private static readonly TextObject _TAbdicateTitle = new("{=aWWzFITw}A Monarch Abdicates");
         public AbdicationFaction(Clan sponsorClan) : base(sponsorClan) { }
 
         public override RebelDemandType RebelDemandType => RebelDemandType.Abdication;
@@ -23,8 +23,13 @@ namespace Diplomacy.CivilWar.Factions
 
         protected override void ApplyDemand()
         {
-            var strVars = new Dictionary<string, object> { { "PARENT_KINGDOM", this.ParentKingdom.Name }, { "REBELS", this.Name }, { "LEADER", this.ParentKingdom.Leader.Name } };
-            strVars.Add("PLAYER_PARTICIPATION", GetPlayerParticipationText(true));
+            var strVars = new Dictionary<string, object>
+            {
+                {"PARENT_KINGDOM", this.ParentKingdom.Name},
+                {"REBELS", this.Name},
+                {"LEADER", this.ParentKingdom.Leader.Name},
+                {"PLAYER_PARTICIPATION", GetPlayerParticipationText(true)}
+            };
 
             ConsolidateKingdomsAction.Apply(this);
             RebelFactionManager.DestroyRebelFaction(this);
@@ -36,7 +41,7 @@ namespace Diplomacy.CivilWar.Factions
                     new TextObject("{=2Pv3DsVm}{PARENT_KINGDOM} has lost its civil war to the {REBELS}. {LEADER} will abdicate the throne. {PLAYER_PARTICIPATION}", strVars).ToString(),
                     true,
                     false,
-                    GameTexts.FindText("str_ok", null).ToString(),
+                    GameTexts.FindText("str_ok").ToString(),
                     null,
                     null,
                     null), true);
@@ -53,7 +58,7 @@ namespace Diplomacy.CivilWar.Factions
                     new TextObject("{=GKSaZESx}With the election of a new monarch and their objective complete, the {REBELS} of {PARENT_KINGDOM} disbands.", strVars).ToString(),
                     true,
                     false,
-                    GameTexts.FindText("str_ok", null).ToString(),
+                    GameTexts.FindText("str_ok").ToString(),
                     null,
                     null,
                     null), true);

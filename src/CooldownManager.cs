@@ -1,5 +1,4 @@
-﻿using Diplomacy.DiplomaticAction.NonAggressionPact;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -12,9 +11,9 @@ namespace Diplomacy
     {
         public static CooldownManager? Instance { get; private set; }
 
-        internal static Dictionary<string, CampaignTime> LastWarTime { get => Instance!._lastWarTime; }
-        internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime { get => Instance!._lastPeaceProposalTime; }
-        internal static Dictionary<string, CampaignTime> LastAllianceFormedTime { get => Instance!._lastAllianceFormedTime; }
+        internal static Dictionary<string, CampaignTime> LastWarTime => Instance!._lastWarTime;
+        internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime => Instance!._lastPeaceProposalTime;
+        internal static Dictionary<string, CampaignTime> LastAllianceFormedTime => Instance!._lastAllianceFormedTime;
 
         [SaveableField(1)]
         private Dictionary<string, CampaignTime> _lastWarTime;
@@ -70,11 +69,9 @@ namespace Diplomacy
 
         private static bool DecodeKeyToKingdoms(string key, out Tuple<Kingdom, Kingdom>? kingdoms)
         {
-            Kingdom faction1, faction2;
-
             var factionStringIds = key.Split('+');
-            faction1 = MBObjectManager.Instance.GetObject<Kingdom>(factionStringIds[0]);
-            faction2 = MBObjectManager.Instance.GetObject<Kingdom>(factionStringIds[1]);
+            Kingdom faction1 = MBObjectManager.Instance.GetObject<Kingdom>(factionStringIds[0]);
+            Kingdom faction2 = MBObjectManager.Instance.GetObject<Kingdom>(factionStringIds[1]);
 
             if (faction1 is not null && faction2 is not null)
             {

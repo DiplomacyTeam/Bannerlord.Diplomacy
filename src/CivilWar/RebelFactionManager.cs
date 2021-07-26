@@ -1,8 +1,6 @@
-﻿using Diplomacy.Costs;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 
 namespace Diplomacy.CivilWar
@@ -96,6 +94,6 @@ namespace Diplomacy.CivilWar
             }
         }
 
-        public static IReadOnlyDictionary<Kingdom, List<RebelFaction>> AllRebelFactions { get => Instance!.RebelFactions; }
+        public static IReadOnlyDictionary<Kingdom, List<RebelFaction>> AllRebelFactions => Instance!.RebelFactions;
     }
 }

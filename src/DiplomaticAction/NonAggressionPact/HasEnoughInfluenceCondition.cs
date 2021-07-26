@@ -5,7 +5,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
     internal class HasEnoughInfluenceCondition : AbstractCostCondition
     {
-        protected override TextObject FailedConditionText => new TextObject(StringConstants.NOT_ENOUGH_INFLUENCE);
+        protected override TextObject FailedConditionText => new(StringConstants.NOT_ENOUGH_INFLUENCE);
 
         protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject? textObject, bool forcePlayerCharacterCosts = false)
         {

@@ -20,7 +20,7 @@ namespace Diplomacy
 
             public MethodInfo MethodInfo { get; init; }
 
-            public Type Type => MethodInfo is MethodInfo mi && mi.DeclaringType is Type dt ? dt : RequestedType;
+            public Type Type => MethodInfo is {DeclaringType: { } dt} ? dt : RequestedType;
 
             protected virtual string MethodType => "method";
 

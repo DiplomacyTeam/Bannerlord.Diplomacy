@@ -8,7 +8,8 @@ namespace Diplomacy.Character
     
     internal class PlayerCharacterTraitHelper
     {
-        private static Action<TraitObject, int, ActionNotes, Hero> AddPlayerTraitXPAndLogEntry = AccessTools.MethodDelegate<Action<TraitObject, int, ActionNotes, Hero>>(AccessTools.Method(typeof(TraitLevelingHelper), "AddPlayerTraitXPAndLogEntry"));
+        private static readonly Action<TraitObject, int, ActionNotes, Hero> AddPlayerTraitXPAndLogEntry =
+            AccessTools.MethodDelegate<Action<TraitObject, int, ActionNotes, Hero>>(AccessTools.Method(typeof(TraitLevelingHelper), "AddPlayerTraitXPAndLogEntry"));
 
         public static void UpdateTrait(TraitObject trait, int xpValue, ActionNotes context = ActionNotes.DefaultNote, Hero? referenceHero = null)
         {

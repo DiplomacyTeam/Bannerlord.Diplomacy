@@ -40,8 +40,7 @@ namespace Diplomacy.ViewModelMixins
 
         public override void OnRefresh()
         {
-            if (DiplomacyProperties is null)
-                DiplomacyProperties = new DiplomacyPropertiesVM(ViewModel!.Faction1, ViewModel!.Faction2);
+            DiplomacyProperties ??= new DiplomacyPropertiesVM(ViewModel!.Faction1, ViewModel!.Faction2);
 
             DiplomacyProperties.UpdateDiplomacyProperties();
 

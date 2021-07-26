@@ -65,8 +65,7 @@ namespace Diplomacy.ViewModel
         public override void RefreshValues()
         {
             base.RefreshValues();
-            if (KingdomsAtWar == null)
-                KingdomsAtWar = new MBBindingList<WarExhaustionMapIndicatorItemVM>();
+            KingdomsAtWar ??= new MBBindingList<WarExhaustionMapIndicatorItemVM>();
             KingdomsAtWar.Clear();
 
             foreach (Kingdom enemyKingdom in FactionManager.GetEnemyKingdoms(Clan.PlayerClan.Kingdom))

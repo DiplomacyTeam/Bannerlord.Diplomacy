@@ -16,10 +16,10 @@ namespace Diplomacy.ViewModel
         private bool _canGrantFief;
         private readonly Hero _hero;
         private readonly DiplomacyCost _sendMessengerCost;
-        private GrantFiefInterface _grantFiefInterface;
+        private readonly GrantFiefInterface _grantFiefInterface;
 
-        private static readonly TextObject _TSendMessengerText = new TextObject("{=cXfcwzPp}Send Messenger");
-        private static readonly TextObject _TGrantFiefText = new TextObject("{=LpoyhORp}Grant Fief");
+        private static readonly TextObject _TSendMessengerText = new("{=cXfcwzPp}Send Messenger");
+        private static readonly TextObject _TGrantFiefText = new("{=LpoyhORp}Grant Fief");
 
         public EncyclopediaHeroPageVMExtensionVM(EncyclopediaPageArgs args) : base(args)
         {
@@ -37,6 +37,7 @@ namespace Diplomacy.ViewModel
             base.RefreshValues();
             
             // this is called before the constructor the first time
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (_hero is null)
             {
                 return;
@@ -82,9 +83,6 @@ namespace Diplomacy.ViewModel
 
         [DataSourceProperty]
         public int SendMessengerCost { get; }
-
-        [DataSourceProperty]
-        public bool SendMessengerCostTypeIsGold { get; }
 
         [DataSourceProperty]
         public bool IsMessengerAvailable

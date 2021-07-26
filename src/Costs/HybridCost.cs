@@ -5,7 +5,7 @@ namespace Diplomacy.Costs
 {
     class HybridCost : DiplomacyCost
     {
-        List<DiplomacyCost> _diplomacyCosts;
+        readonly List<DiplomacyCost> _diplomacyCosts;
 
         public InfluenceCost InfluenceCost { get; }
         public GoldCost GoldCost { get; }

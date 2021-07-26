@@ -38,8 +38,8 @@ namespace Diplomacy.DiplomaticAction.WarPeace
                 peaceText.SetTextVariable("KINGDOM", kingdomMakingPeace.Name.ToString());
                 peaceText.SetTextVariable("PLAYER_KINGDOM", otherKingdom.Name.ToString());
             }
-            var inquiryText = new List<string>();
-            inquiryText.Add(peaceText.ToString());
+
+            var inquiryText = new List<string> { peaceText.ToString() };
 
             if (payment > 0)
             {
@@ -59,7 +59,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             }, () =>
             {
                 Events.Instance.OnPeaceProposalSent(kingdom);
-            }, ""), true);
+            }), true);
         }
 
         public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)

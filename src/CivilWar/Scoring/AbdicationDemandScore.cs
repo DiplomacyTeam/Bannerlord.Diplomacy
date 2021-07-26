@@ -13,13 +13,12 @@ namespace Diplomacy.CivilWar.Scoring
 
         protected override List<RebelFaction> GetPossibleFactions(Clan clan)
         {
-            return new List<RebelFaction>() { new AbdicationFaction(clan) };
+            return new() { new AbdicationFaction(clan) };
         }
 
         protected override IEnumerable<Tuple<TextObject, float>> GetMemberScore(Clan clan, RebelFaction rebelFaction)
         {
-            List<Tuple<TextObject, float>> memberScores = new();
-            memberScores.Add(CalculateFiefDeficitScore(clan));
+            List<Tuple<TextObject, float>> memberScores = new() {CalculateFiefDeficitScore(clan)};
             memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Honor));
             memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Valor));
 

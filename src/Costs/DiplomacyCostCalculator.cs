@@ -24,7 +24,7 @@ namespace Diplomacy
 
         public static HybridCost DetermineCostForMakingPeace(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
-            return new HybridCost(
+            return new(
                 DetermineInfluenceCostForMakingPeace(kingdom, forcePlayerCharacterCosts),
                 DetermineGoldCostForMakingPeace(kingdom, otherKingdom, forcePlayerCharacterCosts));
         }
@@ -56,7 +56,7 @@ namespace Diplomacy
 
         public static HybridCost DetermineCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
-            return new HybridCost(
+            return new(
                 DetermineInfluenceCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts),
                 DetermineGoldCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts));
         }
@@ -111,7 +111,7 @@ namespace Diplomacy
                 {
                     var kingdomMakingPeaceWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(kingdomMakingPeace, otherKingdom);
                     var otherKingdomWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(otherKingdom, kingdomMakingPeace);
-                    var relativeWarExhaustion = (kingdomMakingPeaceWarExhaustion + 1f) / (otherKingdomWarExhaustion + 1f) - 1f; ;
+                    var relativeWarExhaustion = (kingdomMakingPeaceWarExhaustion + 1f) / (otherKingdomWarExhaustion + 1f) - 1f;
                     warExhaustionMultiplier = MBMath.ClampFloat(relativeWarExhaustion, 0, ((1 / 20) * kingdomMakingPeaceWarExhaustion) - 1f);
                 }
                 goldCost = Math.Min((int)(GetKingdomScalingFactor(kingdomMakingPeace) * warExhaustionMultiplier), kingdomMakingPeace.Leader.Gold / 2);
@@ -142,7 +142,7 @@ namespace Diplomacy
 
         public static HybridCost DetermineCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
-            return new HybridCost(
+            return new(
                 DetermineInfluenceCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts),
                 DetermineGoldCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts));
         }

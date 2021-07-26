@@ -50,7 +50,7 @@ namespace Diplomacy.CivilWar
         public abstract RebelDemandType RebelDemandType { get; }
 
         public float FactionStrength { get { return _participatingClans.Select(c => c.TotalStrength).Sum(); } }
-        public float LoyalistStrength { get { return ParentKingdom.TotalStrength - this.FactionStrength; } }
+        public float LoyalistStrength => ParentKingdom.TotalStrength - this.FactionStrength;
 
         public float RequiredStrengthRatio
         {
@@ -103,7 +103,7 @@ namespace Diplomacy.CivilWar
             }
         }
 
-        public MBReadOnlyList<Clan> Clans { get => new MBReadOnlyList<Clan>(_participatingClans); }
+        public MBReadOnlyList<Clan> Clans => new(_participatingClans);
 
         protected abstract void ApplyDemand();
 
@@ -124,7 +124,7 @@ namespace Diplomacy.CivilWar
                         .ToString(),
                     true,
                     false,
-                    GameTexts.FindText("str_ok", null).ToString(),
+                    GameTexts.FindText("str_ok").ToString(),
                     null,
                     null,
                     null), true);
@@ -154,12 +154,12 @@ namespace Diplomacy.CivilWar
 
             foreach (Tuple<Clan, Clan> tuple in loyalistCombinations)
             {
-                ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader, tuple.Item1 == SponsorClan || tuple.Item2 == SponsorClan ? 10 : 5, true);
+                ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader, tuple.Item1 == SponsorClan || tuple.Item2 == SponsorClan ? 10 : 5);
             }
 
             foreach (Tuple<Clan, Clan> tuple in rebelCombinations)
             {
-                ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader, tuple.Item1 == SponsorClan || tuple.Item2 == SponsorClan ? 10 : 5, true);
+                ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader, tuple.Item1 == SponsorClan || tuple.Item2 == SponsorClan ? 10 : 5);
             }
 
             foreach (Tuple<Clan, Clan> tuple in opposingCombinations)
@@ -180,27 +180,21 @@ namespace Diplomacy.CivilWar
                     value = -5;
                 }
 
-                ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader, value, true);
+                ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader, value);
             }
         }
 
         private void ApplyInfluenceChanges(bool success)
         {
             foreach (Clan clan in ParentKingdom.Clans)
-            {
-                if (clan == ParentKingdom.RulingClan)
-                    clan.Influence = MBMath.ClampFloat(clan.Influence + (success ? LeaderInfluenceOnFailure : LeaderInfluenceOnSuccess), 0f, float.MaxValue);
-                else
-                    clan.Influence = MBMath.ClampFloat(clan.Influence + (success ? MemberInfluenceOnFailure : MemberInfluenceOnSuccess), 0f, float.MaxValue);
-            }
+                clan.Influence = clan == ParentKingdom.RulingClan
+                    ? MBMath.ClampFloat(clan.Influence + (success ? LeaderInfluenceOnFailure : LeaderInfluenceOnSuccess), 0f, float.MaxValue)
+                    : MBMath.ClampFloat(clan.Influence + (success ? MemberInfluenceOnFailure : MemberInfluenceOnSuccess), 0f, float.MaxValue);
 
             foreach (Clan clan in Clans)
-            {
-                if (clan == SponsorClan)
-                    clan.Influence = MBMath.ClampFloat(clan.Influence + (success ? LeaderInfluenceOnSuccess : LeaderInfluenceOnFailure), 0f, float.MaxValue);
-                else
-                    clan.Influence = MBMath.ClampFloat(clan.Influence + (success ? MemberInfluenceOnSuccess : MemberInfluenceOnFailure), 0f, float.MaxValue);
-            }
+                clan.Influence = clan == SponsorClan
+                    ? MBMath.ClampFloat(clan.Influence + (success ? LeaderInfluenceOnSuccess : LeaderInfluenceOnFailure), 0f, float.MaxValue)
+                    : MBMath.ClampFloat(clan.Influence + (success ? MemberInfluenceOnSuccess : MemberInfluenceOnFailure), 0f, float.MaxValue);
         }
 
         public abstract float LeaderInfluenceOnSuccess { get; }
@@ -262,29 +256,18 @@ namespace Diplomacy.CivilWar
                         desc = new TextObject("{=8A6JPMWp}The rebels demand that {LEADER} abdicates their throne.").SetTextVariable("LEADER", this.ParentKingdom.Leader.Name);
                         break;
                     default:
-                        desc = new TextObject("");
+                        desc = new TextObject();
                         break;
                 }
                 return desc;
             }
         }
 
-        public TextObject StatusText
-        {
-            get
-            {
-                return AtWar
-                    ? new TextObject("{=ChzQncc0}Rebellion")
-                    : new TextObject("{=WUAv0u4U}Gathering Support");
-            }
-        }
+        public TextObject StatusText =>
+            AtWar
+                ? new TextObject("{=ChzQncc0}Rebellion")
+                : new TextObject("{=WUAv0u4U}Gathering Support");
 
-        public TextObject DemandText
-        {
-            get
-            {
-                return new TextObject("{=fw0k1KFl}Demand: {DEMAND_NAME}", new() { { "DEMAND_NAME", RebelDemandType.GetName() } });
-            }
-        }
+        public TextObject DemandText => new("{=fw0k1KFl}Demand: {DEMAND_NAME}", new() { { "DEMAND_NAME", RebelDemandType.GetName() } });
     }
 }

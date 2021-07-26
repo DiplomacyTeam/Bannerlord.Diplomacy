@@ -52,10 +52,10 @@ namespace Diplomacy
         {
             var num = 0;
 
-            for (var i = 0; i < s.Length; ++i)
+            foreach (var t in s)
             {
                 num *= 17;
-                num += char.ToUpper(s[i]) - '0';
+                num += char.ToUpper(t) - '0';
             }
 
             return num;

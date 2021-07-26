@@ -9,15 +9,15 @@ namespace Diplomacy.ViewModelMixins
     {
         public override InsertType Type => InsertType.Append;
 
-        private XmlDocument document;
+        private readonly XmlDocument _document;
 
         public EncyclopediaHeroPagePrefabExtension()
         {
-            document = new XmlDocument();
-            document.LoadXml(@"<EncyclopediaHeroPageInject />");
+            _document = new XmlDocument();
+            _document.LoadXml(@"<EncyclopediaHeroPageInject />");
         }
 
         [PrefabExtensionXmlDocument]
-        public XmlDocument GetPrefabExtension() => document;
+        public XmlDocument GetPrefabExtension() => _document;
     }
 }

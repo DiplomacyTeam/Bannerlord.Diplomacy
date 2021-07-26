@@ -17,7 +17,7 @@ namespace Diplomacy.DiplomaticAction
             Instance.PassesConditions(kingdom, otherKingdom, forcePlayerCharacterCosts, bypassCosts);
         }
 
-        protected static T Instance { get; } = new T();
+        protected static T Instance { get; } = new();
 
         public abstract bool PassesConditions(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts, bool bypassCosts);
         protected void TryApply(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts, bool bypassCosts, float? customDurationInDays, bool queryPlayer)

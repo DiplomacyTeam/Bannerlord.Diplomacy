@@ -46,7 +46,7 @@ namespace Diplomacy.CampaignBehaviors
                 return default;
 
             var targetClan = ((Kingdom)ownerClan.MapFaction).Clans
-                .Where(c => c != ownerClan && !c.HasMaximumFiefs() && !c.IsUnderMercenaryService && c != Clan.PlayerClan)?
+                .Where(c => c != ownerClan && !c.HasMaximumFiefs() && !c.IsUnderMercenaryService && c != Clan.PlayerClan)
                 .OrderByDescending(c => GetGoldValueForFief(c, settlementToTrade))
                 .FirstOrDefault();
 

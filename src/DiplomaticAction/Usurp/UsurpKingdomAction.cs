@@ -39,14 +39,9 @@ namespace Diplomacy.DiplomaticAction.Usurp
         {
             if (IsStoryMode && IsNoSideChosenInStory)
             {
-                if (StoryModeData.IsKingdomImperial(usurpingClan.Kingdom))
-                {
-                    StoryMode.StoryMode.Current.MainStoryLine.SetStoryLineSide(MainStoryLineSide.SupportImperialKingdom);
-                }
-                else
-                {
-                    StoryMode.StoryMode.Current.MainStoryLine.SetStoryLineSide(MainStoryLineSide.SupportAntiImperialKingdom);
-                }
+                StoryMode.StoryMode.Current.MainStoryLine.SetStoryLineSide(StoryModeData.IsKingdomImperial(usurpingClan.Kingdom)
+                    ? MainStoryLineSide.SupportImperialKingdom
+                    : MainStoryLineSide.SupportAntiImperialKingdom);
             }
 
             GetClanSupport(usurpingClan, out var supportingClans, out List<Clan> opposingClans);
@@ -64,11 +59,11 @@ namespace Diplomacy.DiplomaticAction.Usurp
             get
             {
                 var mainStoryLineSide = StoryMode.StoryMode.Current?.MainStoryLine?.MainStoryLineSide;
-                return Settings.Instance!.EnableStorylineProtection && mainStoryLineSide.HasValue && mainStoryLineSide.Value == MainStoryLineSide.None;
+                return Settings.Instance!.EnableStorylineProtection && mainStoryLineSide is MainStoryLineSide.None;
             }
         }
 
-        private static bool IsStoryMode { get { return StoryMode.StoryMode.Current != null; } }
+        private static bool IsStoryMode => StoryMode.StoryMode.Current != null;
 
         private static void AdjustRelations(Clan usurpingClan, List<Clan> clans, int baseValue)
         {
@@ -128,7 +123,7 @@ namespace Diplomacy.DiplomaticAction.Usurp
             var kingdom = usurpingClan.Kingdom;
             var rulingClan = usurpingClan.Kingdom.RulingClan;
 
-            var validClans = kingdom.Clans.Except(new Clan[] { usurpingClan, rulingClan });
+            var validClans = kingdom.Clans.Except(new[] { usurpingClan, rulingClan });
 
             supportingClans = validClans.Where(clan => usurpingClan.Leader.GetRelation(clan.Leader) > rulingClan.Leader.GetRelation(clan.Leader)).ToList();
             opposingClans = validClans.Except(supportingClans).ToList();

@@ -25,14 +25,7 @@ namespace Diplomacy.CivilWar
         public static bool CanApply(Clan clan, RebelFaction rebelFaction, out TextObject? reason)
         {
             IEnumerable<TextObject> exceptions;
-            if ((exceptions = CanApply(clan, rebelFaction)).Any())
-            {
-                reason = exceptions.First();
-            }
-            else
-            {
-                reason = default;
-            }
+            reason = (exceptions = CanApply(clan, rebelFaction)).Any() ? exceptions.First() : default;
 
             return !exceptions.Any();
         }

@@ -21,7 +21,7 @@ namespace Diplomacy
         {
             var sb = new StringBuilder();
             sb.Append(action);
-            sb.Append(exceptions.First().ToString());
+            sb.Append(exceptions.First());
 
             InformationManager.DisplayMessage(new InformationMessage(sb.ToString()));
         }

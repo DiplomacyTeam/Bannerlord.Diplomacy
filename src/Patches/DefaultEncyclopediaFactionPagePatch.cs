@@ -1,6 +1,5 @@
 ﻿using Diplomacy.Extensions;
 using Diplomacy.PatchTools;
-using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encyclopedia;

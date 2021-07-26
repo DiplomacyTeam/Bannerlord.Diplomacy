@@ -32,7 +32,7 @@ namespace Diplomacy.CivilWar
                             new TextObject("{=pqjZ6wck}A rebel faction has emerged in {KINGDOM}. They are led by clan {CLAN_NAME}. {DEMAND}", strVars).ToString(),
                             true,
                             false,
-                            GameTexts.FindText("str_ok", null).ToString(),
+                            GameTexts.FindText("str_ok").ToString(),
                             null,
                             null,
                             null), true);
@@ -54,14 +54,7 @@ namespace Diplomacy.CivilWar
         public static bool CanApply(Clan clan, RebelDemandType? demandType, out TextObject? reason)
         {
             IEnumerable<TextObject> exceptions;
-            if ((exceptions = CanApply(clan, demandType)).Any())
-            {
-                reason = exceptions.First();
-            }
-            else
-            {
-                reason = default;
-            }
+            reason = (exceptions = CanApply(clan, demandType)).Any() ? exceptions.First() : default;
 
             return !exceptions.Any();
         }
@@ -100,13 +93,13 @@ namespace Diplomacy.CivilWar
             if (RebelFactionManager.AllRebelFactions.TryGetValue(clan.Kingdom, out List<RebelFaction> rebelFactions))
             {
                 // no active rebellions
-                if (rebelFactions.Where(x => x.AtWar).Any())
+                if (rebelFactions.Any(x => x.AtWar))
                 {
                     yield return new TextObject("{=ovgs58sT}Can't start a faction during an active rebellion.");
                 }
 
                 // faction sponsors can't start another faction 
-                if (rebelFactions.Where(x => x.SponsorClan == clan).Any())
+                if (rebelFactions.Any(x => x.SponsorClan == clan))
                 {
                     yield return new TextObject("{=zTZWwJfN}You cannot lead two factions.");
                 }

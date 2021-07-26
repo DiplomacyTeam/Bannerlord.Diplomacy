@@ -1,5 +1,4 @@
-﻿using SandBox;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -15,15 +14,14 @@ namespace Diplomacy.Messengers
     {
         private const float MessengerHourlySpeed = 20f;
 
-        [SaveableField(1)]
-        private List<Messenger> _messengers;
+        [SaveableField(1)] private List<Messenger> _messengers;
 
         public MBReadOnlyList<Messenger> Messengers { get; private set; }
 
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
 
-        private static readonly List<MissionMode> AllowedMissionModes = new() { MissionMode.Conversation, MissionMode.Barter };
+        private static readonly List<MissionMode> AllowedMissionModes = new() {MissionMode.Conversation, MissionMode.Barter};
 
         internal MessengerManager()
         {
@@ -31,23 +29,23 @@ namespace Diplomacy.Messengers
             Messengers = new MBReadOnlyList<Messenger>(_messengers);
         }
 
-        private static string _SOK { get { return GameTexts.FindText("str_ok", null).ToString(); } }
-        private static string _SMessengerSent { get; } = new TextObject("{=zv12jjyW}Messenger Sent").ToString();
+        private static readonly TextObject _TAcknowledge = GameTexts.FindText("str_ok");
+        private static readonly TextObject _TMessengerSent = new("{=zv12jjyW}Messenger Sent");
 
         public void SendMessenger(Hero targetHero)
         {
             InformationManager.ShowInquiry(
-                new InquiryData(_SMessengerSent,
-                                GetMessengerSentText(Hero.MainHero.MapFaction,
-                                                     targetHero.MapFaction,
-                                                     targetHero,
-                                                     Settings.Instance!.MessengerTravelTime).ToString(),
-                                true,
-                                false,
-                                _SOK,
-                                string.Empty,
-                                delegate () { },
-                                null), false);
+                new InquiryData(_TMessengerSent.ToString(),
+                    GetMessengerSentText(Hero.MainHero.MapFaction,
+                        targetHero.MapFaction,
+                        targetHero,
+                        Settings.Instance!.MessengerTravelTime).ToString(),
+                    true,
+                    false,
+                    _TAcknowledge.ToString(),
+                    string.Empty,
+                    delegate { },
+                    null));
 
             _messengers.Add(new Messenger(targetHero, CampaignTime.Now));
         }
@@ -88,31 +86,33 @@ namespace Diplomacy.Messengers
                 // FIXME: Definitely would like to remove the silliness here.
                 // Jiros: Added to catch crash when Hero and Target are in the same party. [v1.5.3-release]
                 InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Eaten").ToString(),
-                                                               new TextObject("Oh no. The messenger was ambushed and eaten by a Grue while trying to reach " + messenger.TargetHero.Name).ToString(),
-                                                               true,
-                                                               false,
-                                                               _SOK,
-                                                               null,
-                                                               delegate () { _messengers.Remove(messenger); },
-                                                               null,
-                                                               ""));
+                    new TextObject("Oh no. The messenger was ambushed and eaten by a Grue while trying to reach " + messenger.TargetHero.Name)
+                        .ToString(),
+                    true,
+                    false,
+                    _TAcknowledge.ToString(),
+                    null,
+                    delegate { _messengers.Remove(messenger); },
+                    null));
                 return false;
             }
+
             if (IsTargetHeroAvailableNow(messenger.TargetHero) && IsPlayerHeroAvailable())
             {
-                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Arrived").ToString(), GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero).ToString(), true, true, GameTexts.FindText("str_ok", null).ToString(), new TextObject("{=kMjfN2fB}Cancel Messenger").ToString(), delegate ()
-                {
-                    _activeMessenger = messenger;
-                    StartDialogue(messenger.TargetHero, messenger);
-                },
-                () =>
-                {
-                    _messengers.Remove(messenger);
-                }, ""), true);
+                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Arrived").ToString(),
+                    GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero).ToString(), true, true,
+                    GameTexts.FindText("str_ok").ToString(), new TextObject("{=kMjfN2fB}Cancel Messenger").ToString(), delegate
+                    {
+                        _activeMessenger = messenger;
+                        StartDialogue(messenger.TargetHero, messenger);
+                    },
+                    () => { _messengers.Remove(messenger); }), true);
                 return true;
             }
             else if (messenger.TargetHero.IsDead)
+            {
                 _messengers.Remove(messenger);
+            }
 
             return false;
         }
@@ -120,12 +120,14 @@ namespace Diplomacy.Messengers
         private static bool IsPlayerHeroAvailable()
         {
             return PartyBase.MainParty is not null
-                && PlayerEncounter.Current is null
-                && GameStateManager.Current.ActiveState is MapState mapState
-                && !mapState.AtMenu;
+                   && PlayerEncounter.Current is null
+                   && GameStateManager.Current.ActiveState is MapState {AtMenu: false};
         }
 
-        internal void Sync() => Messengers = new MBReadOnlyList<Messenger>(_messengers);
+        internal void Sync()
+        {
+            Messengers = new MBReadOnlyList<Messenger>(_messengers);
+        }
 
         public void StartDialogue(Hero targetHero, Messenger messenger)
         {
@@ -139,15 +141,11 @@ namespace Diplomacy.Messengers
 
             PartyBase? targetParty;
             if (targetHero.CurrentSettlement != null)
-            {
                 targetParty = targetHero.CurrentSettlement?.Party ?? targetHero.BornSettlement?.Party;
-            }
             else
-            {
                 targetParty = targetHero.PartyBelongedTo?.Party ?? targetHero.BornSettlement?.Party;
-            }
 
-            Settlement? settlement = targetHero.CurrentSettlement;
+            var settlement = targetHero.CurrentSettlement;
 
             PlayerEncounter.Start();
             PlayerEncounter.Current.SetupFields(heroParty, targetParty ?? heroParty);
@@ -158,18 +156,20 @@ namespace Diplomacy.Messengers
                 PlayerEncounter.EnterSettlement();
                 Location locationOfCharacter = LocationComplex.Current.GetLocationOfCharacter(targetHero);
                 CampaignEventDispatcher.Instance.OnPlayerStartTalkFromMenu(targetHero);
-                _currentMission = (Mission)PlayerEncounter.LocationEncounter.CreateAndOpenMissionController(locationOfCharacter, null, targetHero.CharacterObject, null);
+                _currentMission =
+                    (Mission) PlayerEncounter.LocationEncounter.CreateAndOpenMissionController(locationOfCharacter, null, targetHero.CharacterObject);
             }
             else
             {
                 var specialScene = "";
                 var sceneLevels = "";
 
-                _currentMission = (Mission)Campaign.Current.CampaignMissionManager.OpenConversationMission(
-                new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true, false, false, false),
-                new ConversationCharacterData(targetHero.CharacterObject, targetParty, true, false, false, false),
-                specialScene, sceneLevels);
+                _currentMission = (Mission) Campaign.Current.CampaignMissionManager.OpenConversationMission(
+                    new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true),
+                    new ConversationCharacterData(targetHero.CharacterObject, targetParty, true),
+                    specialScene, sceneLevels);
             }
+
             _currentMission.AddListener(this);
         }
 
@@ -184,7 +184,9 @@ namespace Diplomacy.Messengers
 
         private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, Hero targetHero, int travelDays)
         {
-            var textObject = new TextObject("{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_NAME} within {TRAVEL_TIME} days.");
+            var textObject =
+                new TextObject(
+                    "{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_NAME} within {TRAVEL_TIME} days.");
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             textObject.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
             textObject.SetTextVariable("HERO_NAME", targetHero.Name.ToString());
@@ -200,7 +202,7 @@ namespace Diplomacy.Messengers
 
         public static bool IsTargetHeroAvailable(Hero opposingLeader)
         {
-            var available = opposingLeader.IsActive || (opposingLeader.IsWanderer && opposingLeader.HeroState == Hero.CharacterStates.NotSpawned);
+            var available = opposingLeader.IsActive || opposingLeader.IsWanderer && opposingLeader.HeroState == Hero.CharacterStates.NotSpawned;
             return available && !opposingLeader.IsHumanPlayerCharacter;
         }
 
@@ -215,8 +217,13 @@ namespace Diplomacy.Messengers
             return canPayCost && IsTargetHeroAvailable(opposingLeader);
         }
 
-        public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType) { }
-        public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType) { }
+        public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
+        {
+        }
+
+        public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType)
+        {
+        }
 
         public void OnEndMission()
         {
@@ -228,13 +235,16 @@ namespace Diplomacy.Messengers
 
         public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
         {
-            if (!AllowedMissionModes.Contains(_currentMission!.Mode) && AllowedMissionModes.Contains(oldMissionMode))
-            { 
-                _currentMission!.EndMission();
-            }
+            if (!AllowedMissionModes.Contains(_currentMission!.Mode) && AllowedMissionModes.Contains(oldMissionMode)) _currentMission!.EndMission();
         }
-        public void OnConversationCharacterChanged() { }
-        public void OnResetMission() { }
+
+        public void OnConversationCharacterChanged()
+        {
+        }
+
+        public void OnResetMission()
+        {
+        }
 
         private void CleanUpSettlementEncounter(float obj)
         {

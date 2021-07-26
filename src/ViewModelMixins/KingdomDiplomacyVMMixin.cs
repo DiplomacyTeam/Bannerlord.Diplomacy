@@ -35,7 +35,7 @@ namespace Diplomacy.ViewModelMixins
         private string _numOfPlayerAlliancesText;
         private bool _showStats;
         private bool _showOverview;
-        private PropertyChangedWithValueEventHandler _eventHandler;
+        private readonly PropertyChangedWithValueEventHandler _eventHandler;
 
         public KingdomDiplomacyVMMixin(KingdomDiplomacyVM vm) : base(vm)
         {
@@ -184,10 +184,7 @@ namespace Diplomacy.ViewModelMixins
 
         private void RefreshAlliances(List<KingdomTruceItemVM> alliances)
         {
-            if (PlayerAlliances is null)
-            {
-                PlayerAlliances = new MBBindingList<KingdomTruceItemVM>();
-            }
+            PlayerAlliances ??= new MBBindingList<KingdomTruceItemVM>();
 
             PlayerAlliances.Clear();
 

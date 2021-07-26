@@ -8,7 +8,7 @@ namespace Diplomacy.CivilWar
 {
     internal class FactionNameGenerator
     {
-        private static Dictionary<string, List<TitleSelection>> CultureToKingdomTitles { get; } = new Dictionary<string, List<TitleSelection>>()
+        private static Dictionary<string, List<TitleSelection>> CultureToKingdomTitles { get; } = new()
         {
             {"empire", new() { } },
             {"aserai", new()
@@ -54,7 +54,7 @@ namespace Diplomacy.CivilWar
             StringConstants.Faction_League
         };
 
-        private static Dictionary<string, List<string>> CultureToKingdomNames = new()
+        private static readonly Dictionary<string, List<string>> CultureToKingdomNames = new()
         {
             {
                 "aserai",
@@ -269,7 +269,7 @@ namespace Diplomacy.CivilWar
 
         public static TextObject GenerateKingdomName(RebelFaction rebelFaction)
         {
-            string? kingdomTitle = null;
+            string? kingdomTitle;
             var culture = rebelFaction.Clans.Select(x => x.Culture.StringId).GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key;
             CultureToKingdomTitles.TryGetValue(culture, out List<TitleSelection> cultureTitles);
             if (cultureTitles is not null && cultureTitles.Any() && MBRandom.RandomFloat < 0.5)
@@ -306,7 +306,7 @@ namespace Diplomacy.CivilWar
         {
             return new TextObject(FactionNames.GetRandomElementInefficiently()).SetTextVariable("CLAN_NAME", sponsorClan.Name);
         }
-        private struct TitleSelection
+        private readonly struct TitleSelection
         {
             public TitleSelection(string name, float weight = 1f)
             {

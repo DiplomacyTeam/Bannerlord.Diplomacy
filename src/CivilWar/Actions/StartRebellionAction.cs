@@ -63,7 +63,7 @@ namespace Diplomacy.CivilWar
                         new TextObject("{=2PpZkBOB}A civil war has broken out in {KINGDOM}. The {REBEL_KINGDOM} are led by clan {CLAN_NAME}. {DEMAND}", strVars).ToString(),
                         true,
                         false,
-                        GameTexts.FindText("str_ok", null).ToString(),
+                        GameTexts.FindText("str_ok").ToString(),
                         null,
                         null,
                         null), true);

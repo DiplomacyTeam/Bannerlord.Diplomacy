@@ -6,7 +6,7 @@ using TaleWorlds.Library;
 
 namespace Diplomacy.ViewModel
 {
-    class WarExhaustionMapIndicatorItemVM : TaleWorlds.Library.ViewModel
+    internal class WarExhaustionMapIndicatorItemVM : TaleWorlds.Library.ViewModel
     {
         private readonly Kingdom _opposingKingdom;
         private int _playerWarExhaustion, _opponentWarExhaustion;
@@ -17,9 +17,10 @@ namespace Diplomacy.ViewModel
 
         public WarExhaustionMapIndicatorItemVM(Kingdom opposingKingdom)
         {
-            this._opposingKingdom = opposingKingdom;
-            this.RefreshValues();
+            _opposingKingdom = opposingKingdom;
+            RefreshValues();
         }
+
         public override void RefreshValues()
         {
             base.RefreshValues();
@@ -32,10 +33,10 @@ namespace Diplomacy.ViewModel
 
         public void UpdateWarExhaustion()
         {
-            PlayerWarExhaustion = (int)WarExhaustionManager.Instance.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
-            OpponentWarExhaustion = (int)WarExhaustionManager.Instance.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
-            IsCriticalFaction1 = (PlayerWarExhaustion / WarExhaustionManager.MaxWarExhaustion) >= 0.75f;
-            IsCriticalFaction2 = (OpponentWarExhaustion / WarExhaustionManager.MaxWarExhaustion) >= 0.75f;
+            PlayerWarExhaustion = (int) WarExhaustionManager.Instance.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
+            OpponentWarExhaustion = (int) WarExhaustionManager.Instance.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
+            IsCriticalFaction1 = PlayerWarExhaustion / WarExhaustionManager.MaxWarExhaustion >= 0.75f;
+            IsCriticalFaction2 = OpponentWarExhaustion / WarExhaustionManager.MaxWarExhaustion >= 0.75f;
         }
 
         private void OpenDetailedWarView()
@@ -74,16 +75,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public ImageIdentifierVM Faction1Visual
         {
-            get
-            {
-                return this._faction1Visual;
-            }
+            get => _faction1Visual;
             set
             {
-                if (value != this._faction1Visual)
+                if (value != _faction1Visual)
                 {
-                    this._faction1Visual = value;
-                    base.OnPropertyChangedWithValue(value, "Faction1Visual");
+                    _faction1Visual = value;
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -91,16 +89,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public ImageIdentifierVM Faction2Visual
         {
-            get
-            {
-                return this._faction2Visual;
-            }
+            get => _faction2Visual;
             set
             {
-                if (value != this._faction2Visual)
+                if (value != _faction2Visual)
                 {
-                    this._faction2Visual = value;
-                    base.OnPropertyChangedWithValue(value, "Faction2Visual");
+                    _faction2Visual = value;
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -111,10 +106,10 @@ namespace Diplomacy.ViewModel
             get => _isCriticalFaction1;
             set
             {
-                if (value != this._isCriticalFaction1)
+                if (value != _isCriticalFaction1)
                 {
-                    this._isCriticalFaction1 = value;
-                    base.OnPropertyChangedWithValue(value, nameof(IsCriticalFaction1));
+                    _isCriticalFaction1 = value;
+                    OnPropertyChangedWithValue(value, nameof(IsCriticalFaction1));
                 }
             }
         }
@@ -125,13 +120,12 @@ namespace Diplomacy.ViewModel
             get => _isCriticalFaction2;
             set
             {
-                if (value != this._isCriticalFaction2)
+                if (value != _isCriticalFaction2)
                 {
-                    this._isCriticalFaction2 = value;
-                    base.OnPropertyChangedWithValue(value, nameof(IsCriticalFaction2));
+                    _isCriticalFaction2 = value;
+                    OnPropertyChangedWithValue(value, nameof(IsCriticalFaction2));
                 }
             }
         }
-
     }
 }

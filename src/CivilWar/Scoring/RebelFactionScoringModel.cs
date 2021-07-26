@@ -8,7 +8,8 @@ namespace Diplomacy.CivilWar.Scoring
         public const float RequiredScore = 100f;
 
         private static Dictionary<RebelDemandType, AbstractFactionDemandScoringModel> DemandScoreCalculators { get; } =
-            new Dictionary<RebelDemandType, AbstractFactionDemandScoringModel> {
+            new()
+            {
                 { RebelDemandType.Secession, new SecessionDemandScore() },
                 { RebelDemandType.Abdication, new AbdicationDemandScore() }
             };

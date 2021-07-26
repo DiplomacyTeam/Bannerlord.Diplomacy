@@ -1,12 +1,12 @@
 ﻿
-using Diplomacy.CivilWar;
-using Diplomacy.CivilWar.Actions;
-using Diplomacy.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Diplomacy.CivilWar;
+using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
+using Diplomacy.Extensions;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.Core;
@@ -22,7 +22,7 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, DailyTickClan);
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, y, z, a, b) => RemoveClanFromRebelFaction(x, y, z));
 #if e159
-            CampaignEvents.MercenaryClanChangedKingdom.AddNonSerializedListener(this, (x, y, z) => RemoveClanFromRebelFaction(x, y, z));
+            CampaignEvents.MercenaryClanChangedKingdom.AddNonSerializedListener(this, RemoveClanFromRebelFaction);
 #endif
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ResolveCivilWar);
             CampaignEvents.KingdomDecisionConcluded.AddNonSerializedListener(this, NewKing);
@@ -31,7 +31,7 @@ namespace Diplomacy.CampaignBehaviors
 
         public CivilWarBehavior()
         {
-            this._rebelFactionManager = new RebelFactionManager();
+            _rebelFactionManager = new RebelFactionManager();
         }
 
         private void DailyTick()
@@ -67,16 +67,13 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ResolveCivilWar(IFaction loser, IFaction winner)
         {
-            if (loser.IsKingdomFaction && winner.IsKingdomFaction)
+            if (loser is Kingdom kingdom1 && winner is Kingdom kingdom2)
             {
-                Kingdom kingdom1 = (Kingdom)loser;
-                Kingdom kingdom2 = (Kingdom)winner;
-
                 if (kingdom1.IsRebelKingdom() || kingdom2.IsRebelKingdom())
                 {
                     var rebelKingdom = kingdom1.IsRebelKingdom() ? kingdom1 : kingdom2;
                     var parentKingdom = kingdom1.IsRebelKingdom() ? kingdom2 : kingdom1;
-                    var rebelFaction = RebelFactionManager.GetRebelFaction(parentKingdom).Where(x => x.RebelKingdom == rebelKingdom).First();
+                    var rebelFaction = RebelFactionManager.GetRebelFaction(parentKingdom).First(x => x.RebelKingdom == rebelKingdom);
 
                     if (loser == rebelKingdom)
                         rebelFaction.EnforceFailure();
@@ -141,14 +138,12 @@ namespace Diplomacy.CampaignBehaviors
                 {
                     StartRebellionAction.Apply(ownFaction);
                     // need to return as starting a rebellion eliminates all other factions and we don't want to continue calculating
-                    return;
                 }
             }
         }
 
         private void ConsiderLeavingRebelFaction(Clan clan)
         {
-            List<Tuple<RebelFaction, ExplainedNumber>> scores = new();
             foreach (RebelFaction faction in RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => x.Clans.Contains(clan) && clan != x.SponsorClan))
             {
                 if (!JoinFactionAction.ShouldApply(clan, faction))

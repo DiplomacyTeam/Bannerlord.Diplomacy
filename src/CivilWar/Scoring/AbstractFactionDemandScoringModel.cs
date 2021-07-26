@@ -11,25 +11,18 @@ namespace Diplomacy.CivilWar.Scoring
     internal abstract class AbstractFactionDemandScoringModel
     {
         public IFactionDemandScores Scores { get; init; }
-        public AbstractFactionDemandScoringModel(IFactionDemandScores scores) => Scores = scores;
+        protected AbstractFactionDemandScoringModel(IFactionDemandScores scores) => Scores = scores;
 
-        private static readonly TextObject _TFactionTendency = new TextObject("{=Vp9EcnuC}Faction Tendency");
-        private static readonly TextObject _TRelationsFactionLeader = new TextObject("{=mouJZAAy}Relations with Leader");
-        private static readonly TextObject _TKingdomSize = new TextObject("{=FtX4LPXF}Kingdom Size");
+        private static readonly TextObject _TFactionTendency = new("{=Vp9EcnuC}Faction Tendency");
+        private static readonly TextObject _TRelationsFactionLeader = new("{=mouJZAAy}Relations with Leader");
+        private static readonly TextObject _TKingdomSize = new("{=FtX4LPXF}Kingdom Size");
 
         public ExplainedNumber GetScore(Clan clan, RebelFaction rebelFaction)
         {
             List<Tuple<TextObject, float>> scores = new();
             scores.AddRange(GetMemberScore(clan, rebelFaction));
 
-            if (rebelFaction.SponsorClan == clan)
-            {
-                scores.AddRange(GetLeaderOnlyScore(clan, rebelFaction));
-            }
-            else
-            {
-                scores.AddRange(GetMemberOnlyScore(clan, rebelFaction));
-            }
+            scores.AddRange(rebelFaction.SponsorClan == clan ? GetLeaderOnlyScore(clan, rebelFaction) : GetMemberOnlyScore(clan, rebelFaction));
             scores.AddRange(GetBaseScore(clan, rebelFaction));
 
             var score = new ExplainedNumber(Scores.Base, true);

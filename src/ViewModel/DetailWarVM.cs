@@ -11,8 +11,8 @@ namespace Diplomacy.ViewModel
 {
     internal class DetailWarVM : TaleWorlds.Library.ViewModel
     {
-        private Kingdom _opposingKingdom;
-        private Action _finalize;
+        private readonly Kingdom _opposingKingdom;
+        private readonly Action _finalize;
         private ImageIdentifierVM _faction1Visual;
         private ImageIdentifierVM _faction2Visual;
         private string _opponentWarExhaustion;
@@ -80,7 +80,7 @@ namespace Diplomacy.ViewModel
             OpponentKingdom = new DiplomacyFactionRelationshipVM(_opposingKingdom);
             Kingdom = new DiplomacyFactionRelationshipVM(Clan.PlayerClan.Kingdom);
             HelpHint = new(GameTexts.FindText("str_wardetail_help"));
-            WarExhaustionRate = string.Format("{0:p0}", WarExhaustionManager.Instance.GetWarExhaustionRate(Clan.PlayerClan.Kingdom, _opposingKingdom));
+            WarExhaustionRate = $"{WarExhaustionManager.Instance.GetWarExhaustionRate(Clan.PlayerClan.Kingdom, _opposingKingdom):p0}";
             RateHelpHint = new(GameTexts.FindText("str_warexhaustionrate_help"));
             StatsLabel = GameTexts.FindText("str_stat").ToString();
             WarReportLabel = new TextObject("{=mCue7aFc}War Report").ToString();
@@ -95,8 +95,8 @@ namespace Diplomacy.ViewModel
             Faction1Visual = new ImageIdentifierVM(BannerCode.CreateFrom(playerKingdom.Banner), true);
             Faction2Visual = new ImageIdentifierVM(BannerCode.CreateFrom(_opposingKingdom.Banner), true);
            
-            PlayerWarExhaustion = string.Format("{0:F1}{1}", WarExhaustionManager.Instance.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom), "%");
-            OpponentWarExhaustion = string.Format("{0:F1}{1}", WarExhaustionManager.Instance.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom), "%");
+            PlayerWarExhaustion = $"{WarExhaustionManager.Instance.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom):F1}%";
+            OpponentWarExhaustion = $"{WarExhaustionManager.Instance.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom):F1}%";
 
             Stats = new DetailWarStatsVM(playerKingdom);
             OpponentStats = new DetailWarStatsVM(_opposingKingdom);
@@ -146,16 +146,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public ImageIdentifierVM Faction1Visual
         {
-            get
-            {
-                return this._faction1Visual;
-            }
+            get => _faction1Visual;
             set
             {
                 if (value != this._faction1Visual)
                 {
                     this._faction1Visual = value;
-                    base.OnPropertyChangedWithValue(value, "Faction1Visual");
+                    OnPropertyChangedWithValue(value, "Faction1Visual");
                 }
             }
         }
@@ -163,16 +160,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public ImageIdentifierVM Faction2Visual
         {
-            get
-            {
-                return this._faction2Visual;
-            }
+            get => _faction2Visual;
             set
             {
                 if (value != this._faction2Visual)
                 {
                     this._faction2Visual = value;
-                    base.OnPropertyChangedWithValue(value, "Faction2Visual");
+                    OnPropertyChangedWithValue(value, "Faction2Visual");
                 }
             }
         }

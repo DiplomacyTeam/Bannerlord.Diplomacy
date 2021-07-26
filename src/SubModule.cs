@@ -16,7 +16,6 @@ using TaleWorlds.MountAndBlade;
 using Bannerlord.UIExtenderEx;
 using Diplomacy.Event;
 using TaleWorlds.ModuleManager;
-using System.IO;
 
 namespace Diplomacy
 {

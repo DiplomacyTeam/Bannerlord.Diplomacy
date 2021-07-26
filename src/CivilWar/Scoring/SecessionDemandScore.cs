@@ -9,10 +9,10 @@ namespace Diplomacy.CivilWar.Scoring
 {
     class SecessionDemandScore : ChangeRulerFactionScoreBase
     {
-        private static readonly TextObject _TCalculating = new TextObject("{=Jc1mCVuY}Trait: Calculating");
-        private static readonly TextObject _TClanTier = new TextObject("{=cjbVV7E3}Clan Tier Too Low");
-        private static readonly TextObject _TRightToRule = new TextObject("{=IYO5TNTg}Right to Rule");
-        private static readonly TextObject _TLeaderRightToRule = new TextObject("{=YLUocN5e}Leader has Right to Rule");
+        private static readonly TextObject _TCalculating = new("{=Jc1mCVuY}Trait: Calculating");
+        private static readonly TextObject _TClanTier = new("{=cjbVV7E3}Clan Tier Too Low");
+        private static readonly TextObject _TRightToRule = new("{=IYO5TNTg}Right to Rule");
+        private static readonly TextObject _TLeaderRightToRule = new("{=YLUocN5e}Leader has Right to Rule");
 
         public SecessionDemandScore() : base(new SecessionScores()) { }
 
@@ -23,8 +23,7 @@ namespace Diplomacy.CivilWar.Scoring
 
         protected override IEnumerable<Tuple<TextObject, float>> GetMemberScore(Clan clan, RebelFaction rebelFaction)
         {
-            List<Tuple<TextObject, float>> memberScores = new();
-            memberScores.Add(CalculateFiefDeficitScore(clan));
+            List<Tuple<TextObject, float>> memberScores = new() {CalculateFiefDeficitScore(clan)};
             memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Honor));
             memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Valor));
 

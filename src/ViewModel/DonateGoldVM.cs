@@ -135,7 +135,7 @@ namespace Diplomacy.ViewModel
         public string AcceptText { get; } = new TextObject(StringConstants.Accept).ToString();
 
         [DataSourceProperty]
-        public string CancelText { get; } = GameTexts.FindText("str_cancel", null).ToString();
+        public string CancelText { get; } = GameTexts.FindText("str_cancel").ToString();
 
         [DataSourceProperty]
         public string TitleText { get; } = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();

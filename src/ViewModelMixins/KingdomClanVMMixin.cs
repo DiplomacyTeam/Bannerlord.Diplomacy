@@ -17,9 +17,9 @@ namespace Diplomacy.ViewModelMixins
     {
 
         private bool _canGrantFiefToClan;
-        private GrantFiefInterface _grantFiefInterface;
+        private readonly GrantFiefInterface _grantFiefInterface;
         private HintViewModel? _grantFiefHint;
-        private PropertyChangedWithValueEventHandler _eventHandler;
+        private readonly PropertyChangedWithValueEventHandler _eventHandler;
 
         public KingdomClanVMMixin(KingdomClanVM vm) : base(vm)
         {

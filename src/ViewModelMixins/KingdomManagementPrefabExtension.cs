@@ -10,12 +10,12 @@ namespace Diplomacy.ViewModelMixins
     {
         public override InsertType Type => InsertType.Append;
 
-        private XmlDocument document;
+        private readonly XmlDocument _document;
 
         public KingdomManagementPrefabExtension()
         {
-            document = new XmlDocument();
-            document.LoadXml(@"
+            _document = new XmlDocument();
+            _document.LoadXml(@"
                 <!--Fiefs Tab-->
                 <ButtonWidget DoNotPassEventsToChildren='true' WidthSizePolicy='Fixed' HeightSizePolicy='Fixed' SuggestedWidth='!Header.Tab.Center.Width.Scaled' SuggestedHeight='!Header.Tab.Center.Height.Scaled' VerticalAlignment='Center' PositionYOffset='2' Brush='Header.Tab.Center' Command.Click='ExecuteShowFactions' UpdateChildrenStates='true'>
                   <Children>
@@ -25,7 +25,7 @@ namespace Diplomacy.ViewModelMixins
         }
 
         [PrefabExtensionXmlDocument]
-        public XmlDocument GetPrefabExtension() => document;
+        public XmlDocument GetPrefabExtension() => _document;
     }
 
     [PrefabExtension("KingdomManagement", "descendant::Constant[@Name='Header.Tab.Center.Width.Scaled']")]

@@ -4,7 +4,7 @@
     {
         public float Value { get; }
 
-        public DiplomacyCost(float value)
+        protected DiplomacyCost(float value)
         {
             Value = value;
         }

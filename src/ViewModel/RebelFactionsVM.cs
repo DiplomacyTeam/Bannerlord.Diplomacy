@@ -16,16 +16,16 @@ namespace Diplomacy.ViewModel
 {
     internal class RebelFactionsVM : TaleWorlds.Library.ViewModel
     {
-        private Action _onComplete;
+        private readonly Action _onComplete;
         private MBBindingList<RebelFactionItemVM> _rebelFactionItems;
         private EncyclopediaFactionVM _kingdomDisplay;
         private bool _shouldShowCreateFaction;
-        private Kingdom _kingdom;
+        private readonly Kingdom _kingdom;
 
         private DiplomacyCost _createFactionCost;
         private HintViewModel _createFactionHint;
 
-        private static readonly TextObject _TCreateFactionLabel = new TextObject("{=hBSo0Ziq}Create Faction");
+        private static readonly TextObject _TCreateFactionLabel = new("{=hBSo0Ziq}Create Faction");
 
         [DataSourceProperty]
         public string FactionsLabel { get; set; }
@@ -62,10 +62,9 @@ namespace Diplomacy.ViewModel
             RebelFactionItems.Clear();
             foreach (RebelFaction rebelFaction in RebelFactionManager.GetRebelFaction(_kingdom))
                 RebelFactionItems.Add(new RebelFactionItemVM(rebelFaction, _onComplete, this.RefreshValues));
-            var mainHeroIsClanSponsor = RebelFactionItems.Where(factionItem => factionItem.RebelFaction.SponsorClan == Clan.PlayerClan).Any();
+            var mainHeroIsClanSponsor = RebelFactionItems.Any(factionItem => factionItem.RebelFaction.SponsorClan == Clan.PlayerClan);
 
-            TextObject? reason = null;
-            ShouldShowCreateFaction = EligibleForCreateFactionMenu(out reason);
+            ShouldShowCreateFaction = EligibleForCreateFactionMenu(out var reason);
             CreateFactionHint = GenerateCreateFactionHint(reason);
         }
 

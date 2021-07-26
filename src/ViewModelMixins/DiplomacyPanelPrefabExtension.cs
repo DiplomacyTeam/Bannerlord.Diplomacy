@@ -15,23 +15,23 @@ namespace Diplomacy.ViewModelMixins
         //   ExampleFileInjectedPatch
         //   ExampleFileInjectedPatch.xml
 
-        private XmlDocument document;
+        private readonly XmlDocument _document;
 
         public DiplomacyPanelPrefabExtension()
         {
-            document = new XmlDocument();
+            _document = new XmlDocument();
 
             if (ApplicationVersionHelper.GameVersion() is { } gameVersion)
             {
                 if (gameVersion.Major <= 1 && gameVersion.Minor <= 5 && gameVersion.Revision <= 9)
-                    document.LoadXml(@"<DiplomacyPanel_159 />");
+                    _document.LoadXml(@"<DiplomacyPanel_159 />");
                 else
-                    document.LoadXml(@"<DiplomacyPanel_1510 />");
+                    _document.LoadXml(@"<DiplomacyPanel_1510 />");
             }
         }
 
         [PrefabExtensionXmlDocument]
-        public XmlDocument GetPrefabExtension() => document;
+        public XmlDocument GetPrefabExtension() => _document;
 
     }
 }

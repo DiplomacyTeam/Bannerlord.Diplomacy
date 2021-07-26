@@ -13,41 +13,43 @@ namespace Diplomacy.ViewModel
         private RebelFactionParticipantVM _sponsorClan;
         private int _loyalistStrength;
         private int _factionStrength;
-        private Action _onComplete;
-        private Action _refreshParent;
+        private readonly Action _onComplete;
+        private readonly Action _refreshParent;
         private bool _shouldAllowJoin;
         private bool _shouldShowLeave;
         private bool _shouldAllowStartRebellion;
         private bool _shouldShowStartRebellion;
         private string _factionName;
 
-        private static readonly TextObject _SJoinLabel = new TextObject("{=DZ6dpEn3}Join Faction");
-        private static readonly TextObject _SLeaveLabel = new TextObject("{=uTCw0WiH}Leave Faction");
-        private static readonly TextObject _SBOPLabel = new TextObject("{=1OUDq7Ul}Balance Of Power");
-        private static readonly TextObject _SStartRebellionLabel = new TextObject("{=5q7TvMGL}Start Rebellion");
-        private static readonly TextObject _SParticipantsText = new TextObject("{=VFwDRHc7}Participants");
+        private static readonly TextObject _TJoinLabel = new("{=DZ6dpEn3}Join Faction");
+        private static readonly TextObject _TLeaveLabel = new("{=uTCw0WiH}Leave Faction");
+        private static readonly TextObject _TBOPLabel = new("{=1OUDq7Ul}Balance Of Power");
+        private static readonly TextObject _TStartRebellionLabel = new("{=5q7TvMGL}Start Rebellion");
+        private static readonly TextObject _TParticipantsText = new("{=VFwDRHc7}Participants");
 
         public RebelFaction RebelFaction { get; }
 
         public RebelFactionItemVM(RebelFaction rebelFaction, Action onComplete, Action refreshParent)
         {
             RebelFaction = rebelFaction;
-            this._onComplete = onComplete;
+            _onComplete = onComplete;
 
-            _participatingClans = new();
-            StartDate = new TextObject("{=Ysrttgis}Start Date: {CAMPAIGN_TIME}").SetTextVariable("CAMPAIGN_TIME", RebelFaction.DateStarted.ToString()).ToString();
-            Demand = new TextObject("{=o3w3jNzZ}Demand: {DEMAND_NAME}").SetTextVariable("DEMAND_NAME", RebelFaction.RebelDemandType.GetName()).ToString();
+            _participatingClans = new MBBindingList<RebelFactionParticipantVM>();
+            StartDate = new TextObject("{=Ysrttgis}Start Date: {CAMPAIGN_TIME}").SetTextVariable("CAMPAIGN_TIME", RebelFaction.DateStarted.ToString())
+                .ToString();
+            Demand = new TextObject("{=o3w3jNzZ}Demand: {DEMAND_NAME}").SetTextVariable("DEMAND_NAME", RebelFaction.RebelDemandType.GetName())
+                .ToString();
             Status = new TextObject("{=hbPiVQVK}Status: {STATUS}").SetTextVariable("STATUS", RebelFaction.StatusText).ToString();
-            JoinLabel = _SJoinLabel.ToString();
-            LeaveLabel = _SLeaveLabel.ToString();
-            BOPLabel = _SBOPLabel.ToString();
-            StartRebellionLabel = _SStartRebellionLabel.ToString();
-            ParticipantsText = _SParticipantsText.ToString();
+            JoinLabel = _TJoinLabel.ToString();
+            LeaveLabel = _TLeaveLabel.ToString();
+            BOPLabel = _TBOPLabel.ToString();
+            StartRebellionLabel = _TStartRebellionLabel.ToString();
+            ParticipantsText = _TParticipantsText.ToString();
             LeaderText = GameTexts.FindText("str_leader").ToString();
             FactionText = GameTexts.FindText("str_faction").ToString();
             KingdomText = GameTexts.FindText("str_kingdom").ToString();
-            this._refreshParent = refreshParent;
-            this.RefreshValues();
+            _refreshParent = refreshParent;
+            RefreshValues();
         }
 
         public override void RefreshValues()
@@ -63,71 +65,60 @@ namespace Diplomacy.ViewModel
                     ParticipatingClans.Add(vm);
             }
 
-            this.ShouldAllowJoin = JoinFactionAction.CanApply(Clan.PlayerClan, RebelFaction, out _);
+            ShouldAllowJoin = JoinFactionAction.CanApply(Clan.PlayerClan, RebelFaction, out _);
 
-            this.ShouldShowLeave = RebelFaction.Clans.Contains(Hero.MainHero.Clan);
-            this.FactionStrength = (int)Math.Round(RebelFaction.FactionStrength);
-            this.LoyalistStrength = (int)Math.Round(RebelFaction.LoyalistStrength);
-            this.TotalStrength = FactionStrength + LoyalistStrength;
-            this.ShouldShowBalanceOfPower = !RebelFaction.AtWar;
-            this.ShouldShowStartRebellion = RebelFaction.SponsorClan == Clan.PlayerClan;
-            this.ShouldAllowStartRebellion = ShouldShowStartRebellion && FactionStrength > LoyalistStrength;
-            this.FactionName = RebelFaction.Name.ToString();
+            ShouldShowLeave = RebelFaction.Clans.Contains(Hero.MainHero.Clan);
+            FactionStrength = (int) Math.Round(RebelFaction.FactionStrength);
+            LoyalistStrength = (int) Math.Round(RebelFaction.LoyalistStrength);
+            TotalStrength = FactionStrength + LoyalistStrength;
+            ShouldShowBalanceOfPower = !RebelFaction.AtWar;
+            ShouldShowStartRebellion = RebelFaction.SponsorClan == Clan.PlayerClan;
+            ShouldAllowStartRebellion = ShouldShowStartRebellion && FactionStrength > LoyalistStrength;
+            FactionName = RebelFaction.Name.ToString();
 
             var bopSize = 300;
-            var offset = Convert.ToInt32((this.RebelFaction.RequiredStrengthRatio - 0.5f) * bopSize);
-            this.BreakingPointOffset = offset;
+            var offset = Convert.ToInt32((RebelFaction.RequiredStrengthRatio - 0.5f) * bopSize);
+            BreakingPointOffset = offset;
         }
 
         public void OnJoin()
         {
-            this.RebelFaction.AddClan(Clan.PlayerClan);
-            this.RefreshValues();
+            RebelFaction.AddClan(Clan.PlayerClan);
+            RefreshValues();
         }
 
         public void OnLeave()
         {
-            this.RebelFaction.RemoveClan(Clan.PlayerClan);
+            RebelFaction.RemoveClan(Clan.PlayerClan);
             _refreshParent();
         }
 
         public void OnStartRebellion()
         {
-            if (Game.Current.GameStateManager.ActiveState is KingdomState)
-            {
-                Game.Current.GameStateManager.PopState(0);
-            }
+            if (Game.Current.GameStateManager.ActiveState is KingdomState) Game.Current.GameStateManager.PopState(0);
             StartRebellionAction.Apply(RebelFaction);
             _refreshParent();
         }
 
-        [DataSourceProperty]
-        public string JoinLabel { get; set; }
+        [DataSourceProperty] public string JoinLabel { get; set; }
 
-        [DataSourceProperty]
-        public string LeaveLabel { get; set; }
+        [DataSourceProperty] public string LeaveLabel { get; set; }
 
-        [DataSourceProperty]
-        public string BOPLabel { get; private set; }
+        [DataSourceProperty] public string BOPLabel { get; }
 
-        [DataSourceProperty]
-        public string StartRebellionLabel { get; private set; }
-        [DataSourceProperty]
-        public string Status { get; private set; }
+        [DataSourceProperty] public string StartRebellionLabel { get; }
+        [DataSourceProperty] public string Status { get; }
 
         [DataSourceProperty]
         public bool ShouldAllowJoin
         {
-            get
-            {
-                return this._shouldAllowJoin;
-            }
+            get => _shouldAllowJoin;
             set
             {
-                if (value != this._shouldAllowJoin)
+                if (value != _shouldAllowJoin)
                 {
-                    this._shouldAllowJoin = value;
-                    base.OnPropertyChangedWithValue(value, nameof(ShouldAllowJoin));
+                    _shouldAllowJoin = value;
+                    OnPropertyChangedWithValue(value, nameof(ShouldAllowJoin));
                 }
             }
         }
@@ -135,16 +126,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool ShouldShowLeave
         {
-            get
-            {
-                return this._shouldShowLeave;
-            }
+            get => _shouldShowLeave;
             set
             {
-                if (value != this._shouldShowLeave)
+                if (value != _shouldShowLeave)
                 {
-                    this._shouldShowLeave = value;
-                    base.OnPropertyChangedWithValue(value, nameof(ShouldShowLeave));
+                    _shouldShowLeave = value;
+                    OnPropertyChangedWithValue(value, nameof(ShouldShowLeave));
                 }
             }
         }
@@ -152,16 +140,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool ShouldShowStartRebellion
         {
-            get
-            {
-                return this._shouldShowStartRebellion;
-            }
+            get => _shouldShowStartRebellion;
             set
             {
-                if (value != this._shouldShowStartRebellion)
+                if (value != _shouldShowStartRebellion)
                 {
-                    this._shouldShowStartRebellion = value;
-                    base.OnPropertyChangedWithValue(value, nameof(ShouldShowStartRebellion));
+                    _shouldShowStartRebellion = value;
+                    OnPropertyChangedWithValue(value, nameof(ShouldShowStartRebellion));
                 }
             }
         }
@@ -169,110 +154,85 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public bool ShouldAllowStartRebellion
         {
-            get
-            {
-                return this._shouldAllowStartRebellion;
-            }
+            get => _shouldAllowStartRebellion;
             set
             {
-                if (value != this._shouldAllowStartRebellion)
+                if (value != _shouldAllowStartRebellion)
                 {
-                    this._shouldAllowStartRebellion = value;
-                    base.OnPropertyChangedWithValue(value, nameof(ShouldAllowStartRebellion));
+                    _shouldAllowStartRebellion = value;
+                    OnPropertyChangedWithValue(value, nameof(ShouldAllowStartRebellion));
                 }
             }
         }
 
-        [DataSourceProperty]
-        public string ParticipantsText { get; set; }
+        [DataSourceProperty] public string ParticipantsText { get; set; }
 
-        [DataSourceProperty]
-        public string LeaderText { get; set; }
-        
-        [DataSourceProperty]
-        public string FactionText { get; private set; }
-        [DataSourceProperty]
-        public string KingdomText { get; private set; }
-        
+        [DataSourceProperty] public string LeaderText { get; set; }
+        [DataSourceProperty] public string FactionText { get; }
+        [DataSourceProperty] public string KingdomText { get; }
+
         [DataSourceProperty]
         public string FactionName
         {
-            get
-            {
-                return this._factionName;
-            }
+            get => _factionName;
             set
             {
-                if (value != this._factionName)
+                if (value != _factionName)
                 {
-                    this._factionName = value;
-                    base.OnPropertyChangedWithValue(value, nameof(FactionName));
+                    _factionName = value;
+                    OnPropertyChangedWithValue(value, nameof(FactionName));
                 }
             }
-
         }
 
-        [DataSourceProperty]
-        public int BreakingPointOffset { get; set; }
+        [DataSourceProperty] public int BreakingPointOffset { get; set; }
 
         [DataSourceProperty]
         public int FactionStrength
         {
-            get
-            {
-                return this._factionStrength;
-            }
+            get => _factionStrength;
             set
             {
-                if (value != this._factionStrength)
+                if (value != _factionStrength)
                 {
-                    this._factionStrength = value;
-                    base.OnPropertyChangedWithValue(value, nameof(FactionStrength));
+                    _factionStrength = value;
+                    OnPropertyChangedWithValue(value, nameof(FactionStrength));
                 }
             }
-
         }
+
         [DataSourceProperty]
         public int LoyalistStrength
         {
-            get
-            {
-                return this._loyalistStrength;
-            }
+            get => _loyalistStrength;
             set
             {
-                if (value != this._loyalistStrength)
+                if (value != _loyalistStrength)
                 {
-                    this._loyalistStrength = value;
-                    base.OnPropertyChangedWithValue(value, nameof(LoyalistStrength));
+                    _loyalistStrength = value;
+                    OnPropertyChangedWithValue(value, nameof(LoyalistStrength));
                 }
             }
         }
-        [DataSourceProperty]
-        public int TotalStrength { get; private set; }
 
-        [DataSourceProperty]
-        public bool ShouldShowBalanceOfPower { get; private set; }
+        [DataSourceProperty] public int TotalStrength { get; private set; }
 
-        [DataSourceProperty]
-        public string Demand { get; set; }
+        [DataSourceProperty] public bool ShouldShowBalanceOfPower { get; private set; }
 
-        [DataSourceProperty]
-        public string StartDate { get; set; }
+        [DataSourceProperty] public string Demand { get; set; }
+
+        [DataSourceProperty] public string StartDate { get; set; }
 
         [DataSourceProperty]
         public MBBindingList<RebelFactionParticipantVM> ParticipatingClans
         {
-            get
-            {
-                return this._participatingClans;
-            }
+            get => _participatingClans;
             set
             {
-                if (value != this._participatingClans)
+                if (value != _participatingClans)
                 {
-                    this._participatingClans = value;
-                    base.OnPropertyChangedWithValue(value, nameof(ParticipatingClans));
+                    _participatingClans = value;
+                    OnPropertyChangedWithValue(value, nameof(ParticipatingClans));
                 }
             }
         }
@@ -280,16 +240,13 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public RebelFactionParticipantVM SponsorClan
         {
-            get
-            {
-                return this._sponsorClan;
-            }
+            get => _sponsorClan;
             set
             {
-                if (value != this._sponsorClan)
+                if (value != _sponsorClan)
                 {
-                    this._sponsorClan = value;
-                    base.OnPropertyChangedWithValue(value, nameof(SponsorClan));
+                    _sponsorClan = value;
+                    OnPropertyChangedWithValue(value, nameof(SponsorClan));
                 }
             }
         }

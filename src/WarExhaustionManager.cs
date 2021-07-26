@@ -131,8 +131,7 @@ namespace Diplomacy
             }
             else
             {
-                float warExhaustionFactor;
-                if (!_warExhaustionMultiplier!.TryGetValue(key, out warExhaustionFactor))
+                if (!_warExhaustionMultiplier!.TryGetValue(key, out var warExhaustionFactor))
                 {
                     RegisterWarExhaustionMultiplier(kingdom1, kingdom2);
                     warExhaustionFactor = _warExhaustionMultiplier[key];
@@ -152,7 +151,8 @@ namespace Diplomacy
 
             if (Settings.Instance!.EnableWarExhaustionDebugMessages && kingdom1 == Hero.MainHero.MapFaction)
             {
-                var information = string.Format("Added {0} {1} war exhaustion to {2}'s war with {3}", finalWarExhaustionDelta, Enum.GetName(typeof(WarExhaustionType), warExhaustionType), kingdom1.Name, kingdom2.Name);
+                var information =
+                    $"Added {finalWarExhaustionDelta} {Enum.GetName(typeof(WarExhaustionType), warExhaustionType)} war exhaustion to {kingdom1.Name}'s war with {kingdom2.Name}";
                 InformationManager.DisplayMessage(new InformationMessage(information, Color.FromUint(4282569842U)));
             }
 
@@ -219,8 +219,7 @@ namespace Diplomacy
             var stance = kingdom1.GetStanceWith(kingdom2);
 
             var key = CreateKey(kingdom1, kingdom2);
-            float multiplier;
-            if (!_warExhaustionMultiplier.TryGetValue(key!, out multiplier))
+            if (!_warExhaustionMultiplier.TryGetValue(key!, out var multiplier))
             {
                 RegisterWarExhaustionMultiplier(kingdom1, kingdom2);
                 multiplier = _warExhaustionMultiplier[key!];

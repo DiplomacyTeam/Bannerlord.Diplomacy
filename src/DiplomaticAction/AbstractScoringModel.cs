@@ -11,7 +11,7 @@ namespace Diplomacy.DiplomaticAction
 {
     internal abstract class AbstractScoringModel<T> where T : AbstractScoringModel<T>, new()
     {
-        public static T Instance { get; } = new T();
+        public static T Instance { get; } = new();
 
         public virtual float ScoreThreshold { get; } = 100.0f;
 

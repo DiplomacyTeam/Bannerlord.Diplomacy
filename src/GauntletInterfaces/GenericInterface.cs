@@ -24,7 +24,7 @@ namespace Diplomacy.GauntletInterfaces
 
         protected object? LoadMovie()
         {
-            return LoadMovieDel is not null ? LoadMovieDel(_layer, MovieName, _vm!) : null;
+            return LoadMovieDel?.Invoke(_layer, MovieName, _vm!);
         }
 
         protected virtual void OnFinalize()

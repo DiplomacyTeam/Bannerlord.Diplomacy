@@ -25,7 +25,7 @@ namespace Diplomacy.Extensions
 
         public static bool IsAlliedWith(this IFaction faction1, IFaction faction2)
         {
-            if (faction1 is null || faction2 is null || faction1 == faction2)
+            if (faction1 == faction2)
             {
                 return false;
             }
@@ -59,7 +59,6 @@ namespace Diplomacy.Extensions
                     }
                 }
             }
-            yield break;
         }
 
         public static bool IsStrong(this Kingdom kingdom)
@@ -93,12 +92,12 @@ namespace Diplomacy.Extensions
 
         public static bool IsRebelKingdom(this Kingdom kingdom)
         {
-            return RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Select(rf => rf.RebelKingdom).Where(rk => rk == kingdom).Any() || RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom);
+            return RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Select(rf => rf.RebelKingdom).Any(rk => rk == kingdom) || RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom);
         }
 
         public static bool HasRebellion(this Kingdom kingdom)
         {
-            return GetRebelFactions(kingdom).Where(x => x.AtWar).Any();
+            return GetRebelFactions(kingdom).Any(x => x.AtWar);
         }
 
         public static IEnumerable<RebelFaction> GetRebelFactions(this Kingdom kingdom)

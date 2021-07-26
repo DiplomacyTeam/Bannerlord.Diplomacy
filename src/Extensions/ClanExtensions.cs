@@ -47,7 +47,7 @@ namespace Diplomacy.Extensions
         {
             if (clan.Kingdom != null)
             {
-                return RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => x.SponsorClan == clan).FirstOrDefault();
+                return RebelFactionManager.GetRebelFaction(clan.Kingdom).FirstOrDefault(x => x.SponsorClan == clan);
             }
             else
             {

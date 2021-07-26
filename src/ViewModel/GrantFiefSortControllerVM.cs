@@ -356,8 +356,8 @@ namespace Diplomacy.ViewModel
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
-                var num = (y.Settlement.Town is not null) ? y.Settlement.Town.FoodStocks : 0f;
-                var value = (x.Settlement.Town is not null) ? x.Settlement.Town.FoodStocks : 0f;
+                var num = y.Settlement.Town?.FoodStocks ?? 0f;
+                var value = x.Settlement.Town?.FoodStocks ?? 0f;
                 if (_isAcending)
                 {
                     return num.CompareTo(value) * -1;
