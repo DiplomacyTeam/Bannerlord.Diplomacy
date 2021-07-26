@@ -36,7 +36,7 @@ namespace Diplomacy.CampaignBehaviors
                                     txtRendered,
                                     true,
                                     false,
-                                    GameTexts.FindText("str_ok", null).ToString(),
+                                    GameTexts.FindText("str_ok").ToString(),
                                     null,
                                     null,
                                     null));

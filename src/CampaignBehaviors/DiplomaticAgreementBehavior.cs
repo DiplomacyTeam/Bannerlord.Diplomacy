@@ -15,6 +15,8 @@ namespace Diplomacy.CampaignBehaviors
 {
     internal sealed class DiplomaticAgreementBehavior : CampaignBehaviorBase
     {
+        private const float BasePactChance = 0.05f;
+
         private DiplomaticAgreementManager _diplomaticAgreementManager;
 
         public DiplomaticAgreementBehavior()
@@ -34,16 +36,18 @@ namespace Diplomacy.CampaignBehaviors
             // only apply to kingdom leader clans
             if (clan.MapFaction.IsKingdomFaction && clan.MapFaction.Leader == clan.Leader && !clan.Leader.IsHumanPlayerCharacter)
             {
-                ConsiderNonAggressionPact((Kingdom)clan.MapFaction);
+                ConsiderNonAggressionPact(clan.Kingdom);
             }
         }
 
         private void ConsiderNonAggressionPact(Kingdom proposingKingdom)
         {
-            if (MBRandom.RandomFloat < 0.05f)
+            var inverseNormalizedValorLevel = 1 - proposingKingdom.Leader.GetNormalizedTraitValue(DefaultTraits.Valor);
+
+            if (MBRandom.RandomFloat < BasePactChance * inverseNormalizedValorLevel)
             {
                 var proposedKingdom = Kingdom.All
-                    .Except(new Kingdom[] { proposingKingdom })?
+                    .Except(new[] { proposingKingdom })
                     .Where(kingdom => NonAggressionPactConditions.Instance.CanApply(proposingKingdom, kingdom))
                     .Where(kingdom => NonAggressionPactScoringModel.Instance.ShouldFormBidirectional(proposingKingdom, kingdom))
                     .OrderByDescending(kingdom => kingdom.GetExpansionism()).FirstOrDefault();
