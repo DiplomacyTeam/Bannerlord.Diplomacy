@@ -86,11 +86,11 @@ namespace Diplomacy
 
         [SettingPropertyFloatingInteger("{=8TFQWL55}War Exhaustion Per Day", 0f, 5f, RequireRestart = false, HintText = "{=lgza5wDq}The amount of war exhaustion added per day a war is ongoing. Default value is 1.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
-        public float WarExhaustionPerDay { get; set; } = 0.5f;
+        public float WarExhaustionPerDay { get; set; } = 0.25f;
 
         [SettingPropertyFloatingInteger("{=s6dNpM6M}War Exhaustion Per Casualty", 0f, 0.1f, "0.000", RequireRestart = false, HintText = "{=NcJtGeM7}The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.01.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
-        public float WarExhaustionPerCasualty { get; set; } = 0.01f;
+        public float WarExhaustionPerCasualty { get; set; } = 0.02f;
 
         [SettingPropertyFloatingInteger("{=gGIaLKHk}War Exhaustion Per Siege", 0f, 50f, RequireRestart = false, HintText = "{=mCEa773h}The amount of war exhaustion added when a faction loses a city. Default value is 10.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
