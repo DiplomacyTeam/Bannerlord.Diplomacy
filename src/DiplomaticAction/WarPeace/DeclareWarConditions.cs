@@ -11,7 +11,6 @@ namespace Diplomacy.DiplomaticAction.WarPeace
         private static readonly List<IDiplomacyCondition> _warConditions = new()
         {
             new HasEnoughInfluenceForWarCondition(),
-            new HasLowWarExhaustionCondition(),
             new NoNonAggressionPactCondition(),
             new NotInAllianceCondition(),
             new AtPeaceCondition(),

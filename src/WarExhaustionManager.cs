@@ -169,16 +169,6 @@ namespace Diplomacy
             return GetWarExhaustion(kingdom1, kingdom2) >= MaxWarExhaustion;
         }
 
-        public bool HasLowWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
-        {
-            return GetWarExhaustion(kingdom1, kingdom2) <= GetLowWarExhaustion();
-        }
-
-        public static double GetLowWarExhaustion()
-        {
-            return 0.5 * MaxWarExhaustion;
-        }
-
         internal List<WarExhaustionBreakdown> GetWarExhaustionBreakdown(Kingdom kingdom1, Kingdom kingdom2)
         {
             var result = new List<WarExhaustionBreakdown>();
