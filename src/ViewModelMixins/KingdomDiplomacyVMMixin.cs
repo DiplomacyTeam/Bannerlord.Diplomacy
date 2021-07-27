@@ -76,7 +76,7 @@ namespace Diplomacy.ViewModelMixins
         {
             Events.RemoveListeners(this);
             ViewModel!.PropertyChangedWithValue -= _eventHandler;
-#if e159
+#if e159 || e1510
             CampaignEvents.RemoveListeners(this);
 #else
             CampaignEventDispatcher.Instance.RemoveListeners(this);
