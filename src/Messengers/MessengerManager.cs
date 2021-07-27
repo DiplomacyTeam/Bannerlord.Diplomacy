@@ -29,7 +29,6 @@ namespace Diplomacy.Messengers
             Messengers = new MBReadOnlyList<Messenger>(_messengers);
         }
 
-        private static readonly TextObject _TAcknowledge = GameTexts.FindText("str_ok");
         private static readonly TextObject _TMessengerSent = new("{=zv12jjyW}Messenger Sent");
 
         public void SendMessenger(Hero targetHero)
@@ -42,7 +41,7 @@ namespace Diplomacy.Messengers
                         Settings.Instance!.MessengerTravelTime).ToString(),
                     true,
                     false,
-                    _TAcknowledge.ToString(),
+                    GameTexts.FindText("str_ok").ToString(),
                     string.Empty,
                     delegate { },
                     null));
@@ -90,7 +89,7 @@ namespace Diplomacy.Messengers
                         .ToString(),
                     true,
                     false,
-                    _TAcknowledge.ToString(),
+                    GameTexts.FindText("str_ok").ToString(),
                     null,
                     delegate { _messengers.Remove(messenger); },
                     null));
@@ -249,7 +248,7 @@ namespace Diplomacy.Messengers
         private void CleanUpSettlementEncounter(float obj)
         {
             PlayerEncounter.Finish();
-#if e159
+#if e159 || e1510
             CampaignEvents.RemoveListeners(this);
 #else
             CampaignEventDispatcher.Instance.RemoveListeners(this);
