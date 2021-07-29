@@ -21,6 +21,8 @@ namespace Diplomacy.Patches
         {
             new Postfix(nameof(ApplyPostfix), TargetType, nameof(DeclareWarAction.Apply)),
             new Postfix(nameof(ApplyDeclareWarOverProvocationPostfix), TargetType, nameof(DeclareWarAction.ApplyDeclareWarOverProvocation)),
+            new Postfix(nameof(ApplyDeclareWarOverProvocationPostfix), TargetType, nameof(DeclareWarAction.ApplyDeclareWarOverSettlement)),
+            new Postfix(nameof(ApplyDeclareWarOverProvocationPostfix), TargetType, nameof(DeclareWarAction.ApplyDeclareWarForThrone))
         };
 
         private static void ApplyPostfix(IFaction faction1, IFaction faction2)
@@ -28,7 +30,5 @@ namespace Diplomacy.Patches
 
         private static void ApplyDeclareWarOverProvocationPostfix(IFaction faction, IFaction provocatorFaction)
             => Events.Instance.OnWarDeclared(new WarDeclaredEvent(faction, provocatorFaction, true));
-
-        // FIXME: LO-PRIO: There are two other types of Apply* methods; they should probably also fire the event.
-   }
+    }
 }

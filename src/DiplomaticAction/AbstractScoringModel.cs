@@ -56,32 +56,56 @@ namespace Diplomacy.DiplomaticAction
                 .Where(k => k != ourKingdom
                          && k != otherKingdom
                          && FactionManager.IsAlliedWithFaction(otherKingdom, k)
-                         && !FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
-
-            // FIXME: alliedNeutrals also includes common allies as it's coded... Should they be scored differently? Probable answer: YES!
+                         && !FactionManager.IsAtWarAgainstFaction(ourKingdom, k)
+                         && !FactionManager.IsAlliedWithFaction(ourKingdom, k));
 
             foreach (var alliedNeutral in alliedNeutrals)
                 explainedNum.Add(Scores.ExistingAllianceWithNeutral, CreateTextWithKingdom(SAlliedToNeutral, alliedNeutral));
 
+            /// Their Alliances with Allies
+
+            var mutualAllies = Kingdom.All
+                .Where(k => k != ourKingdom
+                         && k != otherKingdom
+                         && FactionManager.IsAlliedWithFaction(otherKingdom, k)
+                         && FactionManager.IsAlliedWithFaction(ourKingdom, k));
+
+            foreach (var mutualAlly in mutualAllies)
+                explainedNum.Add(Scores.ExistingAllianceWithAlly, CreateTextWithKingdom(SAlliedToNeutral, mutualAlly));
+
+            /// Their Pacts with Enemies
+
             var pactEnemies = Kingdom.All
                 .Where(k => k != ourKingdom
-             && k != otherKingdom
-             && DiplomaticAgreementManager.HasNonAggressionPact(otherKingdom, k, out _)
-             && FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
+                         && k != otherKingdom
+                         && DiplomaticAgreementManager.HasNonAggressionPact(otherKingdom, k, out _)
+                         && FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
 
             foreach (var pactEnemy in pactEnemies)
                 explainedNum.Add(Scores.NonAggressionPactWithEnemy, CreateTextWithKingdom(SPactWithEnemy, pactEnemy));
 
-            /// Their Alliances with Neutrals
+            /// Their Pacts with Neutrals
 
             var pactNeutrals = Kingdom.All
                 .Where(k => k != ourKingdom
                          && k != otherKingdom
                          && DiplomaticAgreementManager.HasNonAggressionPact(otherKingdom, k, out _)
-                         && !FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
+                         && !FactionManager.IsAtWarAgainstFaction(ourKingdom, k)
+                         && !FactionManager.IsAlliedWithFaction(ourKingdom, k));
 
             foreach (var pactNeutral in pactNeutrals)
                 explainedNum.Add(Scores.NonAggressionPactWithNeutral, CreateTextWithKingdom(SPactWithNeutral, pactNeutral));
+
+            /// Their Pacts with Allies
+
+            var pactAllies = Kingdom.All
+                .Where(k => k != ourKingdom
+                         && k != otherKingdom
+                         && DiplomaticAgreementManager.HasNonAggressionPact(otherKingdom, k, out _)
+                         && FactionManager.IsAlliedWithFaction(ourKingdom, k));
+
+            foreach (var pactAlly in pactAllies)
+                explainedNum.Add(Scores.NonAggressionPactWithAlly, CreateTextWithKingdom(SPactWithNeutral, pactAlly));
 
             /// Relationship
 
@@ -121,9 +145,13 @@ namespace Diplomacy.DiplomaticAction
 
             public int ExistingAllianceWithNeutral { get; }
 
+            public int ExistingAllianceWithAlly { get; }
+
             public int NonAggressionPactWithEnemy { get; }
 
             public int NonAggressionPactWithNeutral { get; }
+
+            public int NonAggressionPactWithAlly { get; }
 
             public int Relationship { get; }
 
