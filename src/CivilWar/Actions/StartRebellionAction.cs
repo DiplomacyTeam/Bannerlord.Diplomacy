@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
@@ -28,15 +29,8 @@ namespace Diplomacy.CivilWar
                 rebelFaction.ParentKingdom.Culture,
                 rebelFaction.SponsorClan);
 
-
-            foreach (Kingdom kingdom in Kingdom.All)
-            {
-                if (kingdom.RulingClan == rebelFaction.SponsorClan)
-                {
-                    rebelFaction.StartRebellion(kingdom);
-                    break;
-                }
-            }
+            var kingdom = Kingdom.All.First(x => !x.IsEliminated && x.RulingClan == rebelFaction.SponsorClan);
+            rebelFaction.StartRebellion(kingdom);
 
             ChangeKingdomBannerAction.Apply(rebelFaction.RebelKingdom!, true);
 
