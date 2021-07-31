@@ -35,8 +35,8 @@ namespace Diplomacy.ViewModel
         {
             PlayerWarExhaustion = (int) WarExhaustionManager.Instance.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
             OpponentWarExhaustion = (int) WarExhaustionManager.Instance.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
-            IsCriticalFaction1 = PlayerWarExhaustion / WarExhaustionManager.MaxWarExhaustion >= 0.75f;
-            IsCriticalFaction2 = OpponentWarExhaustion / WarExhaustionManager.MaxWarExhaustion >= 0.75f;
+            IsCriticalFaction1 = WarExhaustionManager.Instance.IsCriticalWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
+            IsCriticalFaction2 = WarExhaustionManager.Instance.IsCriticalWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom); 
         }
 
         private void OpenDetailedWarView()
