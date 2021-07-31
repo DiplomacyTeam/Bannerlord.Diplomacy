@@ -48,6 +48,9 @@ namespace Diplomacy.ViewModelMixins
 
             if (Settings.Instance!.EnableWarExhaustion)
             {
+                if (ViewModel!.Stats[1].Name.Equals(_TWarExhaustion.ToString()))
+                    ViewModel!.Stats.RemoveAt(1);
+
                 ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM(
                     (int)WarExhaustionManager.Instance.GetWarExhaustion(_faction1, _faction2),
                     (int)WarExhaustionManager.Instance.GetWarExhaustion(_faction2, _faction1),

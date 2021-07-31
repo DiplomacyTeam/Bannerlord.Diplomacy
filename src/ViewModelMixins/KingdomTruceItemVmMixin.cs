@@ -35,6 +35,8 @@ namespace Diplomacy.ViewModelMixins
 
         public KingdomTruceItemVmMixin(KingdomTruceItemVM vm) : base(vm)
         {
+            _faction1 = (Kingdom)ViewModel!.Faction1;
+            _faction2 = (Kingdom)ViewModel!.Faction2;
             IsWarItem = false;
             AllianceActionName = _TFormAlliance.ToString();
             NonAggressionPactActionName = _TFormPact.ToString();
@@ -68,11 +70,12 @@ namespace Diplomacy.ViewModelMixins
 
             if (Settings.Instance!.EnableWarExhaustion)
             {
-                var warExhaustion1 = WarExhaustionManager.Instance.GetWarExhaustion((Kingdom) ViewModel!.Faction1, (Kingdom) ViewModel!.Faction2);
-                var warExhaustion2 = WarExhaustionManager.Instance.GetWarExhaustion((Kingdom) ViewModel!.Faction2, (Kingdom) ViewModel!.Faction1);
+                if (ViewModel!.Stats[1].Name.Equals(_TWarExhaustion.ToString()))
+                    ViewModel!.Stats.RemoveAt(1);
 
-                ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM((int) warExhaustion1,
-                    (int) warExhaustion2,
+                ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM(
+                    (int)WarExhaustionManager.Instance.GetWarExhaustion(_faction1, _faction2),
+                    (int)WarExhaustionManager.Instance.GetWarExhaustion(_faction2, _faction1),
                     _TWarExhaustion,
                     Color.FromUint(ViewModel!.Faction1.Color).ToString(),
                     Color.FromUint(ViewModel!.Faction2.Color).ToString(),
@@ -126,6 +129,8 @@ namespace Diplomacy.ViewModelMixins
         private static readonly TextObject _TRequiredScore = new("{=XIBUWDlT}Required Score");
         private static readonly TextObject _TCurrentScore = new("{=5r6fsHgm}Current Score");
         private readonly bool _isAlliance;
+        private readonly Kingdom _faction1;
+        private readonly Kingdom _faction2;
 
         private BasicTooltipViewModel UpdateDiplomacyTooltip(ExplainedNumber explainedNumber)
         {
