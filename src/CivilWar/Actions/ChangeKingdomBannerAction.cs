@@ -13,18 +13,22 @@ namespace Diplomacy.CivilWar
 {
     public class ChangeKingdomBannerAction
     {
-        private static readonly PropertyInfo _primaryColorProp = AccessTools.Property(typeof(Kingdom), "PrimaryBannerColor");
-        private static readonly PropertyInfo _secondaryColorProp = AccessTools.Property(typeof(Kingdom), "SecondaryBannerColor");
-        private static readonly MethodInfo _updateBannerColorsAccordingToKingdom = AccessTools.Method(typeof(Clan), "UpdateBannerColorsAccordingToKingdom");
+        private static readonly PropertyInfo PrimaryBannerColorProp = AccessTools.Property(typeof(Kingdom), "PrimaryBannerColor");
+        private static readonly PropertyInfo SecondaryBannerColorProp = AccessTools.Property(typeof(Kingdom), "SecondaryBannerColor");
+        private static readonly PropertyInfo PrimaryColorProp = AccessTools.Property(typeof(Kingdom), "Color");
+        private static readonly PropertyInfo SecondaryColorProp = AccessTools.Property(typeof(Kingdom), "Color2");
+        private static readonly MethodInfo UpdateBannerColorsAccordingToKingdom = AccessTools.Method(typeof(Clan), "UpdateBannerColorsAccordingToKingdom");
 
         public static void Apply(Kingdom kingdom, uint backgroundColor, uint sigilColor)
         {
-            _primaryColorProp.SetValue(kingdom, backgroundColor);
-            _secondaryColorProp.SetValue(kingdom, sigilColor);
+            PrimaryBannerColorProp.SetValue(kingdom, backgroundColor);
+            SecondaryBannerColorProp.SetValue(kingdom, sigilColor);
+            PrimaryColorProp.SetValue(kingdom, backgroundColor);
+            SecondaryColorProp.SetValue(kingdom, sigilColor);
 
             foreach (Clan clan in kingdom.Clans)
             {
-                _updateBannerColorsAccordingToKingdom.Invoke(clan, null);
+                UpdateBannerColorsAccordingToKingdom.Invoke(clan, null);
             }
 
             foreach (MobileParty mobileParty in MobileParty.All)
@@ -85,7 +89,7 @@ namespace Diplomacy.CivilWar
             else
             {
                 // choose random unused color from the palette
-                List<uint> currentBackgroundColors = Kingdom.All.Where(x => !x.IsEliminated).Select(x => (uint)_primaryColorProp.GetValue(x)).ToList();
+                List<uint> currentBackgroundColors = Kingdom.All.Where(x => !x.IsEliminated).Select(x => (uint)PrimaryBannerColorProp.GetValue(x)).ToList();
                 backgroundColor = BannerManager.ColorPalette.Where(x => !currentBackgroundColors.Contains(x.Value.Color)).GetRandomElementInefficiently().Value.Color;
                 sigilColor = GetUniqueSigilColor(backgroundColor);
             }
@@ -101,7 +105,7 @@ namespace Diplomacy.CivilWar
             uint selectedColor = BannerManager.ColorPalette.Where(x => background.Compare(GetRgb(x.Value.Color), new Cie1976Comparison()) > 40).GetRandomElementInefficiently().Value.Color;
             if (backgroundColor == RebelBackgroundColor)
             {
-                List<uint> currentSigilColors = Kingdom.All.Where(x => !x.IsEliminated && x.IsRebelKingdom()).Select(x => (uint)_secondaryColorProp.GetValue(x)).ToList();
+                List<uint> currentSigilColors = Kingdom.All.Where(x => !x.IsEliminated && x.IsRebelKingdom()).Select(x => (uint)SecondaryBannerColorProp.GetValue(x)).ToList();
                 var colors = BannerManager.ColorPalette.Select(x => x.Value.Color)
                     .Where(x => background.Compare(GetRgb(x), new Cie1976Comparison()) > 40)
                     .Where(x => !currentSigilColors.Contains(x));
