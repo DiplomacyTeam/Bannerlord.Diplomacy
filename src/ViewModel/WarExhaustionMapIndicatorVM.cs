@@ -41,13 +41,10 @@ namespace Diplomacy.ViewModel
 
         private void HandleStanceChange(IFaction arg1, IFaction arg2)
         {
-            Kingdom? kingdom1 = arg1 as Kingdom;
-            Kingdom? kingdom2 = arg2 as Kingdom;
-
-            Kingdom playerKingdom = Clan.PlayerClan.Kingdom;
-            bool isEitherPlayerFaction = playerKingdom != null && (playerKingdom == kingdom1 || playerKingdom == kingdom2);
-
-            if (kingdom1 != null && kingdom2 != null && isEitherPlayerFaction)
+            if (Clan.PlayerClan.MapFaction is Kingdom playerKingdom
+                && arg1 is Kingdom kingdom1
+                && arg2 is Kingdom kingdom2
+                && (kingdom1 == playerKingdom || kingdom2 == playerKingdom))
             {
                 RefreshValues();
             }
@@ -68,8 +65,11 @@ namespace Diplomacy.ViewModel
             KingdomsAtWar ??= new MBBindingList<WarExhaustionMapIndicatorItemVM>();
             KingdomsAtWar.Clear();
 
-            foreach (Kingdom enemyKingdom in FactionManager.GetEnemyKingdoms(Clan.PlayerClan.Kingdom))
-                KingdomsAtWar.Add(new WarExhaustionMapIndicatorItemVM(enemyKingdom));
+            if (Clan.PlayerClan.MapFaction is Kingdom playerKingdom)
+            {
+                foreach (Kingdom enemyKingdom in FactionManager.GetEnemyKingdoms(playerKingdom))
+                    KingdomsAtWar.Add(new WarExhaustionMapIndicatorItemVM(enemyKingdom));
+            }
         }
 
         [DataSourceProperty]

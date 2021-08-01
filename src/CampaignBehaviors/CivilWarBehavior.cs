@@ -21,9 +21,6 @@ namespace Diplomacy.CampaignBehaviors
         {
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, DailyTickClan);
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, y, z, a, b) => RemoveClanFromRebelFaction(x, y, z));
-#if e159 || e1510
-            CampaignEvents.MercenaryClanChangedKingdom.AddNonSerializedListener(this, RemoveClanFromRebelFaction);
-#endif
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ResolveCivilWar);
             CampaignEvents.KingdomDecisionConcluded.AddNonSerializedListener(this, NewKing);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
