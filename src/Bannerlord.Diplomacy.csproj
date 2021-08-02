@@ -30,6 +30,7 @@
   <PropertyGroup>
     <GameVersion Condition="$(IsStable) == 'true'">1.5.10</GameVersion>
     <GameVersion Condition="$(IsBeta) == 'true'">1.6.0</GameVersion>
+    <GameVersionFlat>$([System.String]::Copy('$(GameVersion)').Replace('.',''))</GameVersionFlat>
   </PropertyGroup>
 
   <!-- Game Folder(s) -->
@@ -58,10 +59,10 @@
 
   <!-- STABLE, BETA, and e.g., e157 / e158 Constants Defined in Code -->
   <PropertyGroup>
-    <GameVersionConstant>e$([System.String]::Copy('$(GameVersion)').Replace('.',''))</GameVersionConstant>
+    <GameVersionConstant>e$(GameVersionFlat)</GameVersionConstant>
     <DefineConstants>$(DefineConstants);$(GameVersionConstant)</DefineConstants>
   </PropertyGroup>
-  
+
   <!-- Extra Substitution Variables to Use in SubModule.xml -->
   <ItemGroup>
     <SubModuleOverrides Include="DisplayName">
@@ -71,6 +72,10 @@
     <SubModuleOverrides Include="MCMVersion">
       <Regex>\$mcmversion\$</Regex>
       <Replacement>$(MCMVersion)</Replacement>
+    </SubModuleOverrides>
+    <SubModuleOverrides Include="GameVersionFlat">
+      <Regex>\$gameversionflat\$</Regex>
+      <Replacement>$(GameVersionFlat)</Replacement>
     </SubModuleOverrides>
   </ItemGroup>
   
