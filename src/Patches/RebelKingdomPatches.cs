@@ -18,29 +18,65 @@ namespace Diplomacy.Patches
             Type conversationBehaviorType = Type.GetType("SandBox.LordConversationsCampaignBehavior, SandBox, Version=1.0.0.0, Culture=neutral")!;
             return new Patch[]
                     {
-            new Postfix(nameof(EnforceWarConditionsConversation), conversationBehaviorType, "conversation_player_threats_lord_verify_on_condition"),
-            new Postfix(nameof(EnforceWarConditionsConversation), conversationBehaviorType, "conversation_player_wants_to_make_peace_on_condition"),
-            new Postfix(nameof(EnforceWarConditionsConversation), conversationBehaviorType, "conversation_lord_request_mission_ask_on_condition"),
-            new Postfix(nameof(EnforceWarConditionsConversation), conversationBehaviorType, "conversation_player_want_to_join_faction_as_mercenary_or_vassal_on_condition"),
-            new Postfix(nameof(EnforceWarConditionsConversation), typeof(VillagerCampaignBehavior), "village_farmer_loot_on_condition"),
-            new Postfix(nameof(EnforceWarConditionsConversation), typeof(CaravansCampaignBehavior), "caravan_loot_on_condition"),
-            new Postfix(nameof(EnforceWarConditionsMenu), typeof(PlayerTownVisitCampaignBehavior), "game_menu_village_hostile_action_on_condition"),
+            new Postfix(nameof(PreventOtherActionsConversation), conversationBehaviorType, "conversation_lord_request_mission_ask_on_condition"),
+            new Postfix(nameof(PreventDiplomaticActionsConversation), conversationBehaviorType, "conversation_player_wants_to_make_peace_on_condition"),
+            new Postfix(nameof(PreventDiplomaticActionsConversation), conversationBehaviorType, "conversation_player_want_to_join_faction_as_mercenary_or_vassal_on_condition"),
+            new Postfix(nameof(PreventHostileActionsConversation), conversationBehaviorType, "conversation_player_threats_lord_verify_on_condition"),
+            new Postfix(nameof(PreventHostileActionsConversation), typeof(VillagerCampaignBehavior), "village_farmer_loot_on_condition"),
+            new Postfix(nameof(PreventHostileActionsConversation), typeof(CaravansCampaignBehavior), "caravan_loot_on_condition"),
+            new Postfix(nameof(PreventHostileActionsMenu), typeof(PlayerTownVisitCampaignBehavior), "game_menu_village_hostile_action_on_condition"),
             new Prefix(nameof(HandleThroneAbdication), typeof(KingdomManager), "AbdicateTheThrone"),
                     };
         }
 
-        private static void EnforceWarConditionsConversation(ref bool __result)
+        private static void PreventHostileActionsConversation(ref bool __result)
         {
+            if (!__result)
+            {
+                return;
+            }
+
             MobileParty conversationParty = Campaign.Current.ConversationManager.ConversationParty;
-            __result = !ShouldPreventAction(conversationParty.MapFaction);
+            __result = !ShouldPreventHostileAction(conversationParty.MapFaction);
         }
 
-        private static void EnforceWarConditionsMenu(ref bool __result)
+        private static void PreventHostileActionsMenu(ref bool __result)
         {
+            if (!__result)
+            {
+                return;
+            }
+
             Village village = Settlement.CurrentSettlement.Village;
-            __result = !ShouldPreventAction(village.Owner.MapFaction);
+            __result = !ShouldPreventHostileAction(village.Owner.MapFaction);
         }
-        private static bool ShouldPreventAction(IFaction otherFaction)
+
+        private static void PreventDiplomaticActionsConversation(ref bool __result)
+        {
+            if (!__result)
+            {
+                return;
+            }
+
+            MobileParty conversationParty = Campaign.Current.ConversationManager.ConversationParty;
+            var shouldPreventAction = conversationParty.MapFaction is Kingdom encounteredKingdom && encounteredKingdom.IsRebelKingdom();
+            __result = !shouldPreventAction;
+        }
+
+        private static void PreventOtherActionsConversation(ref bool __result)
+        {
+            if (!__result)
+            {
+                return;
+            }
+
+            MobileParty conversationParty = Campaign.Current.ConversationManager.ConversationParty;
+            var shouldPreventAction = conversationParty.MapFaction is Kingdom encounteredKingdom && encounteredKingdom.IsRebelKingdom() &&
+                                 Clan.PlayerClan.MapFaction != conversationParty.MapFaction;
+            __result = !shouldPreventAction;
+        }
+
+        private static bool ShouldPreventHostileAction(IFaction otherFaction)
         {
             var playerFaction = Clan.PlayerClan.MapFaction;
             var shouldPreventAction1 = otherFaction is Kingdom encounteredKingdom && encounteredKingdom.IsRebelKingdom() && !encounteredKingdom.IsAtWarWith(playerFaction);
