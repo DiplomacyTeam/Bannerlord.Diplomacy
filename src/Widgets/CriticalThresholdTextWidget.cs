@@ -1,7 +1,9 @@
-﻿using TaleWorlds.GauntletUI;
+﻿using JetBrains.Annotations;
+using TaleWorlds.GauntletUI;
 
 namespace Diplomacy.Widgets
 {
+    [UsedImplicitly]
     public class CriticalThresholdTextWidget : TextWidget
     {
         public CriticalThresholdTextWidget(UIContext context) : base(context) { }
@@ -17,16 +19,16 @@ namespace Diplomacy.Widgets
 
         private bool _isCritical;
 
-        [Editor(false)]
+        [Editor()]
         public bool IsCritical
         {
             get => _isCritical;
             set
             {
-                if (this._isCritical != value)
+                if (_isCritical != value)
                 {
-                    this._isCritical = value;
-                    base.OnPropertyChanged(value, nameof(IsCritical));
+                    _isCritical = value;
+                    OnPropertyChanged(value, nameof(IsCritical));
                 }
             }
         }

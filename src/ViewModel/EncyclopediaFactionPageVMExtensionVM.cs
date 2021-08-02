@@ -1,6 +1,7 @@
 ﻿using Diplomacy.DiplomaticAction;
 using Diplomacy.GauntletInterfaces;
 using System.Linq;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.EncyclopediaItems;
@@ -58,6 +59,7 @@ namespace Diplomacy.ViewModel
             base.Refresh();
         }
 
+        [UsedImplicitly]
         public void OpenFactions()
         {
             new RebelFactionsInterface().ShowInterface(ScreenManager.TopScreen, (_faction as Kingdom)!);

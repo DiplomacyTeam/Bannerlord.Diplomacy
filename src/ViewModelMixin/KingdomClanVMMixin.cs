@@ -3,6 +3,7 @@ using Bannerlord.UIExtenderEx.ViewModels;
 using Diplomacy.Event;
 using Diplomacy.GauntletInterfaces;
 using Diplomacy.GrantFief;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomClan;
 using TaleWorlds.Core.ViewModelCollection;
@@ -10,9 +11,10 @@ using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.ViewModelMixins
+namespace Diplomacy.ViewModelMixin
 {
     [ViewModelMixin]
+    [UsedImplicitly]
     internal sealed class KingdomClanVMMixin : BaseViewModelMixin<KingdomClanVM>
     {
 
@@ -68,9 +70,11 @@ namespace Diplomacy.ViewModelMixins
         }
 
         [DataSourceMethod]
+        [UsedImplicitly]
         public void GrantFief() => _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, ViewModel!.CurrentSelectedClan.Clan.Leader);
 
         [DataSourceMethod]
+        [UsedImplicitly]
         public void DonateGold() => new DonateGoldInterface().ShowInterface(ScreenManager.TopScreen, ViewModel!.CurrentSelectedClan.Clan);
 
         [DataSourceProperty]

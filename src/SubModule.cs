@@ -43,9 +43,9 @@ namespace Diplomacy
             base.OnSubModuleLoad();
             Instance = this;
 
-            var _extender = new UIExtender(Name);
-            _extender.Register(typeof(SubModule).Assembly);
-            _extender.Enable();
+            var extender = new UIExtender(Name);
+            extender.Register(typeof(SubModule).Assembly);
+            extender.Enable();
 
             this.AddSerilogLoggerProvider($"{Name}.log", new[] { $"{Name}.*" }, config => config.MinimumLevel.Is(LogEventLevel.Verbose));
             Log = LogFactory.Get<SubModule>();

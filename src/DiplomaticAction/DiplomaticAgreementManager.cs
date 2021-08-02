@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
@@ -9,7 +10,7 @@ namespace Diplomacy.DiplomaticAction
     {
         public static DiplomaticAgreementManager? Instance { get; internal set; }
 
-        [SaveableField(1)]
+        [SaveableField(1)] [UsedImplicitly]
         private Dictionary<FactionPair, List<DiplomaticAgreement>> _agreements;
 
         public DiplomaticAgreementManager()
@@ -26,7 +27,7 @@ namespace Diplomacy.DiplomaticAction
             {
                 var enumerable = agreements.Where(agreement => agreement.GetAgreementType() == AgreementType.NonAggressionPact && !agreement.IsExpired());
                 pactAgreement = enumerable.OfType<NonAggressionPactAgreement>().FirstOrDefault();
-                return enumerable.Any();
+                return pactAgreement != default;
             }
             else
             {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
-    class NonAggressionPactConditions : AbstractConditionEvaluator<NonAggressionPactConditions>
+    internal class NonAggressionPactConditions : AbstractConditionEvaluator<NonAggressionPactConditions>
     {
-        private static readonly List<IDiplomacyCondition> _formNonAggressionPactConditions = new()
+        private static readonly List<IDiplomacyCondition> Conditions = new()
         {
             new AtPeaceCondition(),
             new NotInAllianceCondition(),
@@ -16,6 +16,6 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
             new NotRebelKingdomCondition()
         };
 
-        public NonAggressionPactConditions() : base(_formNonAggressionPactConditions) { }
+        public NonAggressionPactConditions() : base(Conditions) { }
     }
 }

@@ -2,10 +2,12 @@
 using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.Prefabs2;
 using System.Xml;
+using JetBrains.Annotations;
 
-namespace Diplomacy.ViewModelMixins
+namespace Diplomacy.ViewModelMixin
 {
     [PrefabExtension("DiplomacyPanel", "descendant::Widget[@IsVisible='@Show']")]
+    [UsedImplicitly]
     internal sealed class DiplomacyPanelPrefabExtension : PrefabExtensionInsertPatch
     {
         public override InsertType Type => InsertType.Replace;
@@ -31,6 +33,7 @@ namespace Diplomacy.ViewModelMixins
         }
 
         [PrefabExtensionXmlDocument]
+        [UsedImplicitly]
         public XmlDocument GetPrefabExtension() => _document;
 
     }

@@ -4,12 +4,13 @@ using Diplomacy.DiplomaticAction;
 using Diplomacy.Messengers;
 
 using System.Collections.Generic;
-
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
 namespace Diplomacy
 {
+    [UsedImplicitly]
     internal class CustomSavedTypeDefiner : SaveableTypeDefiner
     {
         private const int SaveBaseId = 1_984_110_150;

@@ -1,7 +1,6 @@
-﻿
-using TaleWorlds.Localization;
+﻿using TaleWorlds.Localization;
 
-namespace Diplomacy.CivilWar
+namespace Diplomacy.CivilWar.Factions
 {
     public enum RebelDemandType
     {
@@ -9,7 +8,7 @@ namespace Diplomacy.CivilWar
         Abdication
     }
 
-    public static class RebelDemandStringHelper 
+    public static class RebelDemandStringHelper
     {
         public static string GetName(this RebelDemandType rebelDemandType)
         {
@@ -26,6 +25,7 @@ namespace Diplomacy.CivilWar
                     name = TextObject.Empty.ToString();
                     break;
             }
+
             return name;
         }
 
@@ -35,15 +35,19 @@ namespace Diplomacy.CivilWar
             switch (rebelDemandType)
             {
                 case RebelDemandType.Secession:
-                    hint = new TextObject("{=LF19GulH}Withdraw from the kingdom. Members of this faction will form a new kingdom. Only Tier 4 or higher clans may start a secession faction.").ToString();
+                    hint = new TextObject(
+                            "{=LF19GulH}Withdraw from the kingdom. Members of this faction will form a new kingdom. Only Tier 4 or higher clans may start a secession faction.")
+                        .ToString();
                     break;
                 case RebelDemandType.Abdication:
-                    hint = new TextObject("{=GK1seKeJ}Force the leader of the kingdom to step down. An election will decide the new leader of the kingdom.").ToString();
+                    hint = new TextObject(
+                        "{=GK1seKeJ}Force the leader of the kingdom to step down. An election will decide the new leader of the kingdom.").ToString();
                     break;
                 default:
                     hint = new TextObject().ToString();
                     break;
             }
+
             return hint;
         }
     }

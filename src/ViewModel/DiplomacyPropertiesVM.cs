@@ -85,13 +85,13 @@ namespace Diplomacy.ViewModel
             return new HintViewModel(textObject);
         }
 
-        private void AddNonAggressionPactRelationships(Kingdom kingdom, IFaction faction, MBBindingList<DiplomacyFactionRelationshipVM> FactionPacts)
+        private void AddNonAggressionPactRelationships(Kingdom kingdom, IFaction faction, MBBindingList<DiplomacyFactionRelationshipVM> factionPacts)
         {
             if (DiplomaticAgreementManager.HasNonAggressionPact(kingdom, (Kingdom)faction, out var pact))
             {
                 var textObject = _TDaysRemaining.CopyTextObject();
                 textObject.SetTextVariable("DAYS_LEFT", (int)Math.Round(pact!.EndDate.RemainingDaysFromNow));
-                FactionPacts.Add(new DiplomacyFactionRelationshipVM(kingdom, Compat.HintViewModel.Create(textObject)));
+                factionPacts.Add(new DiplomacyFactionRelationshipVM(kingdom, Compat.HintViewModel.Create(textObject)));
             }
         }
 

@@ -3,15 +3,12 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.InputSystem;
-using TaleWorlds.Library;
 
 namespace Diplomacy.GauntletInterfaces
 {
     internal sealed class RebelFactionsInterface : GenericInterface
     {
-        private const string _movieName = "RebelFactions";
-
-        protected override string MovieName => _movieName;
+        protected override string MovieName => "RebelFactions";
 
         public void ShowInterface(ScreenBase screenBase, Kingdom kingdom)
         {

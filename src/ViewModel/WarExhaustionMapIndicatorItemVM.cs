@@ -1,4 +1,5 @@
 ﻿using Diplomacy.GauntletInterfaces;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine.Screens;
@@ -6,43 +7,12 @@ using TaleWorlds.Library;
 
 namespace Diplomacy.ViewModel
 {
-    internal class WarExhaustionMapIndicatorItemVM : TaleWorlds.Library.ViewModel
+    internal sealed class WarExhaustionMapIndicatorItemVM : TaleWorlds.Library.ViewModel
     {
         private readonly Kingdom _opposingKingdom;
-        private int _playerWarExhaustion, _opponentWarExhaustion;
-        private ImageIdentifierVM _faction1Visual;
-        private ImageIdentifierVM _faction2Visual;
         private bool _isCriticalFaction1;
         private bool _isCriticalFaction2;
-
-        public WarExhaustionMapIndicatorItemVM(Kingdom opposingKingdom)
-        {
-            _opposingKingdom = opposingKingdom;
-            RefreshValues();
-        }
-
-        public override void RefreshValues()
-        {
-            base.RefreshValues();
-            var playerKingdom = Clan.PlayerClan.Kingdom;
-
-            UpdateWarExhaustion();
-            Faction1Visual = new ImageIdentifierVM(BannerCode.CreateFrom(playerKingdom.Banner), true);
-            Faction2Visual = new ImageIdentifierVM(BannerCode.CreateFrom(_opposingKingdom.Banner), true);
-        }
-
-        public void UpdateWarExhaustion()
-        {
-            PlayerWarExhaustion = (int) WarExhaustionManager.Instance.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
-            OpponentWarExhaustion = (int) WarExhaustionManager.Instance.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
-            IsCriticalFaction1 = WarExhaustionManager.Instance.IsCriticalWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
-            IsCriticalFaction2 = WarExhaustionManager.Instance.IsCriticalWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom); 
-        }
-
-        private void OpenDetailedWarView()
-        {
-            new DetailWarViewInterface().ShowInterface(ScreenManager.TopScreen, _opposingKingdom);
-        }
+        private int _playerWarExhaustion, _opponentWarExhaustion;
 
         [DataSourceProperty]
         public int OpponentWarExhaustion
@@ -72,33 +42,9 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        [DataSourceProperty]
-        public ImageIdentifierVM Faction1Visual
-        {
-            get => _faction1Visual;
-            set
-            {
-                if (value != _faction1Visual)
-                {
-                    _faction1Visual = value;
-                    OnPropertyChangedWithValue(value);
-                }
-            }
-        }
+        [DataSourceProperty] public ImageIdentifierVM Faction1Visual { get; set; } = null!;
 
-        [DataSourceProperty]
-        public ImageIdentifierVM Faction2Visual
-        {
-            get => _faction2Visual;
-            set
-            {
-                if (value != _faction2Visual)
-                {
-                    _faction2Visual = value;
-                    OnPropertyChangedWithValue(value);
-                }
-            }
-        }
+        [DataSourceProperty] public ImageIdentifierVM Faction2Visual { get; set; } = null!;
 
         [DataSourceProperty]
         public bool IsCriticalFaction1
@@ -126,6 +72,36 @@ namespace Diplomacy.ViewModel
                     OnPropertyChangedWithValue(value, nameof(IsCriticalFaction2));
                 }
             }
+        }
+
+        public WarExhaustionMapIndicatorItemVM(Kingdom opposingKingdom)
+        {
+            _opposingKingdom = opposingKingdom;
+            RefreshValues();
+        }
+
+        public override void RefreshValues()
+        {
+            base.RefreshValues();
+            var playerKingdom = Clan.PlayerClan.Kingdom;
+
+            UpdateWarExhaustion();
+            Faction1Visual = new ImageIdentifierVM(BannerCode.CreateFrom(playerKingdom.Banner), true);
+            Faction2Visual = new ImageIdentifierVM(BannerCode.CreateFrom(_opposingKingdom.Banner), true);
+        }
+
+        public void UpdateWarExhaustion()
+        {
+            PlayerWarExhaustion = (int) WarExhaustionManager.Instance.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
+            OpponentWarExhaustion = (int) WarExhaustionManager.Instance.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
+            IsCriticalFaction1 = WarExhaustionManager.Instance.IsCriticalWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
+            IsCriticalFaction2 = WarExhaustionManager.Instance.IsCriticalWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
+        }
+
+        [UsedImplicitly]
+        private void OpenDetailedWarView()
+        {
+            new DetailWarViewInterface().ShowInterface(ScreenManager.TopScreen, _opposingKingdom);
         }
     }
 }

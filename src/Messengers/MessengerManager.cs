@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Diplomacy.Costs;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
@@ -14,14 +16,16 @@ namespace Diplomacy.Messengers
     {
         private const float MessengerHourlySpeed = 20f;
 
-        [SaveableField(1)] private List<Messenger> _messengers;
+        private static readonly List<MissionMode> AllowedMissionModes = new() {MissionMode.Conversation, MissionMode.Barter};
 
-        public MBReadOnlyList<Messenger> Messengers { get; private set; }
+        private static readonly TextObject _TMessengerSent = new("{=zv12jjyW}Messenger Sent");
 
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
 
-        private static readonly List<MissionMode> AllowedMissionModes = new() {MissionMode.Conversation, MissionMode.Barter};
+        [SaveableField(1)] [UsedImplicitly] private List<Messenger> _messengers;
+
+        public MBReadOnlyList<Messenger> Messengers { get; private set; }
 
         internal MessengerManager()
         {
@@ -29,7 +33,34 @@ namespace Diplomacy.Messengers
             Messengers = new MBReadOnlyList<Messenger>(_messengers);
         }
 
-        private static readonly TextObject _TMessengerSent = new("{=zv12jjyW}Messenger Sent");
+        public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
+        {
+        }
+
+        public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType)
+        {
+        }
+
+        public void OnEndMission()
+        {
+            _messengers.Remove(_activeMessenger!);
+            _activeMessenger = null;
+            _currentMission = null;
+            CampaignEvents.TickEvent.AddNonSerializedListener(this, CleanUpSettlementEncounter);
+        }
+
+        public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
+        {
+            if (!AllowedMissionModes.Contains(_currentMission!.Mode) && AllowedMissionModes.Contains(oldMissionMode)) _currentMission!.EndMission();
+        }
+
+        public void OnConversationCharacterChanged()
+        {
+        }
+
+        public void OnResetMission()
+        {
+        }
 
         public void SendMessenger(Hero targetHero)
         {
@@ -108,7 +139,8 @@ namespace Diplomacy.Messengers
                     () => { _messengers.Remove(messenger); }), true);
                 return true;
             }
-            else if (messenger.TargetHero.IsDead)
+
+            if (messenger.TargetHero.IsDead)
             {
                 _messengers.Remove(messenger);
             }
@@ -214,35 +246,6 @@ namespace Diplomacy.Messengers
         {
             var canPayCost = diplomacyCost.CanPayCost();
             return canPayCost && IsTargetHeroAvailable(opposingLeader);
-        }
-
-        public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
-        {
-        }
-
-        public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType)
-        {
-        }
-
-        public void OnEndMission()
-        {
-            _messengers.Remove(_activeMessenger!);
-            _activeMessenger = null;
-            _currentMission = null;
-            CampaignEvents.TickEvent.AddNonSerializedListener(this, CleanUpSettlementEncounter);
-        }
-
-        public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
-        {
-            if (!AllowedMissionModes.Contains(_currentMission!.Mode) && AllowedMissionModes.Contains(oldMissionMode)) _currentMission!.EndMission();
-        }
-
-        public void OnConversationCharacterChanged()
-        {
-        }
-
-        public void OnResetMission()
-        {
         }
 
         private void CleanUpSettlementEncounter(float obj)

@@ -1,14 +1,16 @@
-﻿using Diplomacy.DiplomaticAction.Alliance;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Diplomacy.DiplomaticAction.Alliance;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Library;
 
-namespace Diplomacy.Extensions
+namespace Diplomacy
 {
     internal sealed class CampaignCheatsExtension
     {
         [CommandLineFunctionality.CommandLineArgumentFunction("form_alliance", "diplomacy")]
+        [UsedImplicitly]
         private static string FormAlliance(List<string> strings)
         {
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
@@ -50,6 +52,7 @@ namespace Diplomacy.Extensions
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("set_war_exhaustion", "diplomacy")]
+        [UsedImplicitly]
         private static string SetWarExhaustion(List<string> strings)
         {
             bool isNumeric = int.TryParse(strings[0], out int warExhaustion);
@@ -93,6 +96,7 @@ namespace Diplomacy.Extensions
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("toggle_debug_mode", "diplomacy")]
+        [UsedImplicitly]
         public static string ToggleUIDebugMode(List<string> strings)
         {
             UIConfig.DebugModeEnabled = !UIConfig.DebugModeEnabled;
@@ -100,6 +104,7 @@ namespace Diplomacy.Extensions
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("reload_ui", "diplomacy")]
+        [UsedImplicitly]
         public static string ReloadUI(List<string> strings)
         {
             UIResourceManager.Update();

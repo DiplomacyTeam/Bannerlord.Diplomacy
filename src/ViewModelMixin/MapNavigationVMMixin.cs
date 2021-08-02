@@ -1,16 +1,18 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
 using Diplomacy.Extensions;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.ViewModelMixins
+namespace Diplomacy.ViewModelMixin
 {
     [ViewModelMixin("RefreshPermissionValues")]
+    [UsedImplicitly]
     internal sealed class MapNavigationVMMixin : BaseViewModelMixin<MapNavigationVM>
     {
-        private static readonly TextObject _TRebelKingdomText = new TextObject("{=f66sNaiz}You cannot be part of a rebellion");
+        private static readonly TextObject _TRebelKingdomText = new("{=f66sNaiz}You cannot be part of a rebellion");
 
         public MapNavigationVMMixin(MapNavigationVM vm) : base(vm) { }
 

@@ -6,7 +6,7 @@ namespace Diplomacy.DiplomaticAction.Alliance
 {
     class FormAllianceConditions : AbstractConditionEvaluator<FormAllianceConditions>
     {
-        private static readonly List<IDiplomacyCondition> _formAllianceConditions = new()
+        private static readonly List<IDiplomacyCondition> Conditions = new()
         {
             new AlliancesEnabledCondition(),
             new AtPeaceCondition(),
@@ -18,6 +18,6 @@ namespace Diplomacy.DiplomaticAction.Alliance
             new NotRebelKingdomCondition()
         };
 
-        public FormAllianceConditions() : base(_formAllianceConditions) { }
+        public FormAllianceConditions() : base(Conditions) { }
     }
 }

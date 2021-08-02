@@ -3,9 +3,9 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 {
-    class SatisfiesQuestConditionsForPeaceCondition : IDiplomacyCondition
+    internal class SatisfiesQuestConditionsForPeaceCondition : IDiplomacyCondition
     {
-        private const string ACTIVE_QUEST = "{=XQFxDr11}There is an active quest preventing it!";
+        private static readonly TextObject _TActiveQuest = new("{=XQFxDr11}There is an active quest preventing it!");
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
@@ -20,7 +20,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
             var isValidQuestState = thirdPhase is null || !thirdPhase.OppositionKingdoms.Contains(otherKingdom);
             if (!isValidQuestState)
             {
-                textObject = new TextObject(ACTIVE_QUEST);
+                textObject = _TActiveQuest;
             }
             return isValidQuestState;
         }

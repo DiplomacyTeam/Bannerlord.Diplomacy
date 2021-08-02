@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 
 using System;
-
+using Diplomacy.Costs;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using Diplomacy.CivilWar.Factions;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 
-namespace Diplomacy.CivilWar
+namespace Diplomacy.CivilWar.Actions
 {
     public class ConsolidateKingdomsAction
     {

@@ -27,19 +27,19 @@ namespace Diplomacy.DiplomaticAction
                 ? new TextObject(text).SetTextVariable("KINGDOM", kingdom.Name)
                 : null;
 
-            /// Weak Kingdom (Us)
+            // Weak Kingdom (Us)
 
             if (!ourKingdom.IsStrong())
                 explainedNum.Add(Scores.BelowMedianStrength, _TWeakKingdom);
 
-            /// Common Enemies
+            // Common Enemies
 
             var commonEnemies = FactionManager.GetEnemyKingdoms(ourKingdom).Intersect(FactionManager.GetEnemyKingdoms(otherKingdom));
 
             foreach (var commonEnemy in commonEnemies)
                 explainedNum.Add(Scores.HasCommonEnemy, CreateTextWithKingdom(SCommonEnemy, commonEnemy));
 
-            /// Their Alliances with Enemies
+            // Their Alliances with Enemies
 
             var alliedEnemies = Kingdom.All
                 .Where(k => k != ourKingdom
@@ -50,7 +50,7 @@ namespace Diplomacy.DiplomaticAction
             foreach (var alliedEnemy in alliedEnemies)
                 explainedNum.Add(Scores.ExistingAllianceWithEnemy, CreateTextWithKingdom(SAlliedToEnemy, alliedEnemy));
 
-            /// Their Alliances with Neutrals
+            // Their Alliances with Neutrals
 
             var alliedNeutrals = Kingdom.All
                 .Where(k => k != ourKingdom
@@ -72,7 +72,7 @@ namespace Diplomacy.DiplomaticAction
             foreach (var pactEnemy in pactEnemies)
                 explainedNum.Add(Scores.NonAggressionPactWithEnemy, CreateTextWithKingdom(SPactWithEnemy, pactEnemy));
 
-            /// Their Alliances with Neutrals
+            // Their Alliances with Neutrals
 
             var pactNeutrals = Kingdom.All
                 .Where(k => k != ourKingdom
@@ -83,7 +83,7 @@ namespace Diplomacy.DiplomaticAction
             foreach (var pactNeutral in pactNeutrals)
                 explainedNum.Add(Scores.NonAggressionPactWithNeutral, CreateTextWithKingdom(SPactWithNeutral, pactNeutral));
 
-            /// Relationship
+            // Relationship
 
             var relationMult = MBMath.ClampFloat((float)Math.Log((ourKingdom.Leader.GetRelation(otherKingdom.Leader) + 100f) / 100f, 1.5),
                                                  -1f,
@@ -91,13 +91,13 @@ namespace Diplomacy.DiplomaticAction
 
             explainedNum.Add(Scores.Relationship * relationMult, _TRelationship);
 
-            /// Expansionism (Them)
+            // Expansionism (Them)
             var expansionismPenalty = otherKingdom.GetExpansionismDiplomaticPenalty();
 
             if (expansionismPenalty < 0)
                 explainedNum.Add(expansionismPenalty, _TExpansionism);
 
-            /// Tendency
+            // Tendency
                 explainedNum.Add(Scores.Tendency, _TTendency);
 
             return explainedNum;

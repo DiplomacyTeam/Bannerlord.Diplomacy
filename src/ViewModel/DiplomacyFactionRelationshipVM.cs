@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
@@ -19,6 +19,7 @@ namespace Diplomacy.ViewModel
             _hint = hint ?? new HintViewModel();
         }
 
+        [UsedImplicitly]
         private void ExecuteLink() => Campaign.Current.EncyclopediaManager.GoToLink(Faction.EncyclopediaLink);
 
         public override bool Equals(object obj) => obj is DiplomacyFactionRelationshipVM vm && Equals(vm);

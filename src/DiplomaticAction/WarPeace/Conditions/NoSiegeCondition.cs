@@ -3,10 +3,10 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 {
-    class NoPlayerSiegeCondition : IDiplomacyCondition
+    internal class NoPlayerSiegeCondition : IDiplomacyCondition
     {
 
-        private const string ACTIVE_PLAYER_SIEGE = "{=XlL50Ha9}Can't make peace with a kingdom during an active player siege.";
+        private static readonly TextObject _TActivePlayerSiege = new("{=XlL50Ha9}Can't make peace with a kingdom during an active player siege.");
 
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
@@ -19,7 +19,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 
                 if ((besiegedKingdom == playerKingdom || besiegingKingdom == playerKingdom) && (besiegedKingdom == otherKingdom || besiegingKingdom == otherKingdom))
                 {
-                    textObject = new TextObject(ACTIVE_PLAYER_SIEGE);
+                    textObject = _TActivePlayerSiege;
                     return false;
                 }
             }

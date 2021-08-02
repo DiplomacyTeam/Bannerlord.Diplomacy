@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Diplomacy.CivilWar.Factions;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -10,7 +11,7 @@ namespace Diplomacy.CivilWar
     {
         private static Dictionary<string, List<TitleSelection>> CultureToKingdomTitles { get; } = new()
         {
-            {"empire", new() { } },
+            // {"empire", new() { } },
             {"aserai", new()
             {
                 new("{=iLMqCvmk}Sultanate of {CLAN_NAME}"),
@@ -20,7 +21,7 @@ namespace Diplomacy.CivilWar
             } },
             {"battania", new()
             {
-                new(StringConstants.Faction_Confederation),
+                new(StringConstants.FactionConfederation),
             } },
             {"khuzait", new()
             {
@@ -40,7 +41,7 @@ namespace Diplomacy.CivilWar
 
         private static readonly List<TitleSelection> CommonKingdomTitles = new()
         {
-            new(StringConstants.Faction_League),
+            new(StringConstants.FactionLeague),
             new("{=kToqhmHh}Principality of {CLAN_NAME}"),
             new("{=WjB3SM1f}Kingdom of {CLAN_NAME}"),
             new("{=E63n30UM}{CLAN_NAME} Empire", 0.5f),
@@ -49,9 +50,9 @@ namespace Diplomacy.CivilWar
 
         private static readonly List<string> FactionNames = new()
         {
-            StringConstants.Faction_Conspiracy,
-            StringConstants.Faction_Confederation,
-            StringConstants.Faction_League
+            StringConstants.FactionConspiracy,
+            StringConstants.FactionConfederation,
+            StringConstants.FactionLeague
         };
 
         private static readonly Dictionary<string, List<string>> CultureToKingdomNames = new()

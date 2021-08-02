@@ -23,7 +23,7 @@ namespace Diplomacy.Patches
             if (!Settings.Instance!.EnableInfluenceBalancing)
                 return;
 
-            /// Corruption
+            // Corruption
 
             if (Settings.Instance!.EnableCorruption)
             {
@@ -33,7 +33,7 @@ namespace Diplomacy.Patches
                     __result.Add(-corruption, _TCorruption);
             }
 
-            /// Influence Decay
+            // Influence Decay
 
             if (Settings.Instance!.EnableInfluenceDecay && clan.Influence > Settings.Instance!.InfluenceDecayThreshold)
             {
@@ -44,7 +44,7 @@ namespace Diplomacy.Patches
                     __result.Add(-decay, _TInfluenceDecay);
             }
 
-            /// Minimum Influence Gain (Maximum Influence Loss)
+            // Minimum Influence Gain (Maximum Influence Loss)
             __result.LimitMin(-Settings.Instance!.MaximumInfluenceLoss);
         }
 

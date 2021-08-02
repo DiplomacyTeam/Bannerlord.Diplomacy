@@ -1,14 +1,16 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
 using Diplomacy.GauntletInterfaces;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.ViewModelMixins
+namespace Diplomacy.ViewModelMixin
 {
     [ViewModelMixin]
+    [UsedImplicitly]
     internal sealed class KingdomManagementVMMixin : BaseViewModelMixin<KingdomManagementVM>
     {
         [DataSourceProperty]
@@ -27,6 +29,7 @@ namespace Diplomacy.ViewModelMixins
 #endif
 
         [DataSourceMethod]
+        [UsedImplicitly]
         public void ExecuteShowFactions()
         {
             new RebelFactionsInterface().ShowInterface(ScreenManager.TopScreen, ViewModel!.Kingdom);

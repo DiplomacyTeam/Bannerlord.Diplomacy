@@ -1,10 +1,12 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.Prefabs2;
 using System.Xml;
+using JetBrains.Annotations;
 
-namespace Diplomacy.ViewModelMixins
+namespace Diplomacy.ViewModelMixin
 {
     [PrefabExtension("EncyclopediaHeroPage", "descendant::RichTextWidget[@Text='@InformationText']")]
+    [UsedImplicitly]
     internal sealed class EncyclopediaHeroPagePrefabExtension : PrefabExtensionInsertPatch
     {
         public override InsertType Type => InsertType.Append;
@@ -18,6 +20,7 @@ namespace Diplomacy.ViewModelMixins
         }
 
         [PrefabExtensionXmlDocument]
+        [UsedImplicitly]
         public XmlDocument GetPrefabExtension() => _document;
     }
 }

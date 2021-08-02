@@ -1,10 +1,9 @@
-﻿using Diplomacy.Costs;
-using System;
+﻿using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
-namespace Diplomacy
+namespace Diplomacy.Costs
 {
     class DiplomacyCostCalculator
     {
@@ -112,22 +111,12 @@ namespace Diplomacy
                     var kingdomMakingPeaceWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(kingdomMakingPeace, otherKingdom);
                     var otherKingdomWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(otherKingdom, kingdomMakingPeace);
                     var relativeWarExhaustion = (kingdomMakingPeaceWarExhaustion + 1f) / (otherKingdomWarExhaustion + 1f) - 1f;
-                    warExhaustionMultiplier = MBMath.ClampFloat(relativeWarExhaustion, 0, ((1 / 20) * kingdomMakingPeaceWarExhaustion) - 1f);
+                    warExhaustionMultiplier = MBMath.ClampFloat(relativeWarExhaustion, 0, ((1f / 20f) * kingdomMakingPeaceWarExhaustion) - 1f);
                 }
                 goldCost = Math.Min((int)(GetKingdomScalingFactor(kingdomMakingPeace) * warExhaustionMultiplier), kingdomMakingPeace.Leader.Gold / 2);
 
             }
             return new GoldCost(giver, otherKingdom.Leader, goldCost);
-        }
-
-        public static int GetTotalKingdomWealth(Kingdom kingdom)
-        {
-            var payableWealth = 0;
-            foreach (var hero in kingdom.Heroes)
-            {
-                payableWealth += hero.Gold;
-            }
-            return payableWealth;
         }
 
         private static int GetKingdomTierCount(Kingdom kingdom)
@@ -143,11 +132,11 @@ namespace Diplomacy
         public static HybridCost DetermineCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
             return new(
-                DetermineInfluenceCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts),
+                DetermineInfluenceCostForFormingAlliance(kingdom, forcePlayerCharacterCosts),
                 DetermineGoldCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts));
         }
 
-        private static InfluenceCost DetermineInfluenceCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        private static InfluenceCost DetermineInfluenceCostForFormingAlliance(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
         {
             var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)

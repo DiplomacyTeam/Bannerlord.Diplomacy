@@ -1,15 +1,15 @@
-﻿using ColorMine.ColorSpaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using ColorMine.ColorSpaces;
 using ColorMine.ColorSpaces.Comparisons;
 using Diplomacy.Event;
 using Diplomacy.Extensions;
 using HarmonyLib;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
-namespace Diplomacy.CivilWar
+namespace Diplomacy.CivilWar.Actions
 {
     public class ChangeKingdomBannerAction
     {
@@ -108,7 +108,8 @@ namespace Diplomacy.CivilWar
                 List<uint> currentSigilColors = Kingdom.All.Where(x => !x.IsEliminated && x.IsRebelKingdom()).Select(x => (uint)SecondaryBannerColorProp.GetValue(x)).ToList();
                 var colors = BannerManager.ColorPalette.Select(x => x.Value.Color)
                     .Where(x => background.Compare(GetRgb(x), new Cie1976Comparison()) > 40)
-                    .Where(x => !currentSigilColors.Contains(x));
+                    .Where(x => !currentSigilColors.Contains(x))
+                    .ToList();
 
                 if (colors.Any())
                     selectedColor = colors.GetRandomElementInefficiently();

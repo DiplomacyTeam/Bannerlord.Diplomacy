@@ -3,6 +3,7 @@
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
+using Diplomacy.Costs;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
@@ -192,7 +193,7 @@ namespace Diplomacy.CampaignBehaviors
 
             if (opposingKingdom is not null)
             {
-                var thirdPhase = StoryMode.StoryMode.Current?.MainStoryLine?.ThirdPhase;
+                var thirdPhase = StoryMode.StoryMode.Current.MainStoryLine?.ThirdPhase;
                 isValidQuestState = thirdPhase is null || !thirdPhase.OppositionKingdoms.Contains(opposingKingdom);
             }
 

@@ -1,7 +1,9 @@
-﻿using TaleWorlds.GauntletUI;
+﻿using JetBrains.Annotations;
+using TaleWorlds.GauntletUI;
 
 namespace Diplomacy.Widgets
 {
+    [UsedImplicitly]
     public class KingdomDiplomacyPanelTabControlWidget : ListPanel
     {
         private Widget? _statsPanel;
@@ -20,7 +22,7 @@ namespace Diplomacy.Widgets
             StatsButton.IsSelected = StatsPanel.IsVisible;
         }
 
-        [Editor(false)]
+        [Editor()]
         public ButtonWidget OverviewButton
         {
             get => _overviewButton!;
@@ -34,7 +36,7 @@ namespace Diplomacy.Widgets
             }
         }
 
-        [Editor(false)]
+        [Editor()]
         public ButtonWidget StatsButton
         {
             get => _statsButton!;
@@ -48,7 +50,7 @@ namespace Diplomacy.Widgets
             }
         }
 
-        [Editor(false)]
+        [Editor()]
         public Widget OverviewPanel
         {
             get => _overviewPanel!;
@@ -62,7 +64,7 @@ namespace Diplomacy.Widgets
             }
         }
 
-        [Editor(false)]
+        [Editor()]
         public Widget StatsPanel
         {
             get => _statsPanel!;
