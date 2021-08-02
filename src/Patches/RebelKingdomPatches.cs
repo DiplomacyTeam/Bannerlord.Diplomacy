@@ -58,8 +58,8 @@ namespace Diplomacy.Patches
                 return;
             }
 
-            MobileParty conversationParty = Campaign.Current.ConversationManager.ConversationParty;
-            var shouldPreventAction = conversationParty.MapFaction is Kingdom encounteredKingdom && encounteredKingdom.IsRebelKingdom();
+            IFaction conversationFaction = Campaign.Current.ConversationManager.ConversationParty?.MapFaction ?? Campaign.Current.ConversationManager.OneToOneConversationHero.MapFaction;
+            var shouldPreventAction = conversationFaction.MapFaction is Kingdom encounteredKingdom && encounteredKingdom.IsRebelKingdom();
             __result = !shouldPreventAction;
         }
 
