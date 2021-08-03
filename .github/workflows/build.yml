@@ -57,12 +57,9 @@ jobs:
         # Delete Implementations folder
         Remove-Item -Recurse $impl;
       shell: pwsh
-      
-    - name: Zip Bannerlord.Diplomacy
-      run: 7z a -tzip Bannerlord.Diplomacy.zip ./bannerlord/*
 
-    - name: Upload bannerlord artifact
+    - name: Upload bannerlord folder
       uses: actions/upload-artifact@v2
       with:
-        name: Bannerlord.Diplomacy
-        path: ./Bannerlord.Diplomacy.zip
+        name: bannerlord
+        path: ./bannerlord/Modules/
