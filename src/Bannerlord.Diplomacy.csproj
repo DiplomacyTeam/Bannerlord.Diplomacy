@@ -4,6 +4,7 @@
     <Version>1.1.5</Version>
     <ModuleName>$(MSBuildProjectName)</ModuleName>
     <DisplayName>Diplomacy</DisplayName>
+    <AssemblyName>$(ModuleName).$(GameVersion)</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup>
