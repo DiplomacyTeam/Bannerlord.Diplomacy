@@ -55,6 +55,10 @@
     <PackageReference Include="Bannerlord.ReferenceAssemblies.StoryMode.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
     <PackageReference Include="Bannerlord.ReferenceAssemblies.Sandbox.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bannerlord.Diplomacy.ImplementationLoader\Bannerlord.Diplomacy.ImplementationLoader.csproj" />
+  </ItemGroup>
   
 
 </Project>
