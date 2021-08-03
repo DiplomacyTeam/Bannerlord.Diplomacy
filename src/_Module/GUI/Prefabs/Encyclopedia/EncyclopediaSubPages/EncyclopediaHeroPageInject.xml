@@ -13,12 +13,12 @@
         <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" MarginLeft="5" MarginRight="5" Brush="ButtonBrush2" HorizontalAlignment="Left" UpdateChildrenStates="true" Command.Click="SendMessenger" IsEnabled="@IsMessengerAvailable">
           <Children>
             <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@SendMessengerActionName" />
-            <Widget UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="250">
+            <Widget UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionXOffset="255">
               <Children>
                 <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@SendMessengerCost">
                   <Children>
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-20" Sprite="SaveLoad\icon_gold" />
-                  </Children>
+                    <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-23" Brush="Diplomacy.Icon.Gold" />
+                  </Children> 
                 </TextWidget>
               </Children>
             </Widget>

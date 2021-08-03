@@ -17,7 +17,7 @@ namespace Diplomacy.Patches
         };
 
         private static readonly Type TargetType = typeof(SupportKingdomQuestBehavior)
-            .GetNestedType("SupportKingdomQuest", BindingFlags.NonPublic | BindingFlags.Instance);
+            .GetNestedType("SupportKingdomQuest", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
 
         private static readonly Action<QuestBase> CompleteQuestWithSuccess = new Reflect.Method<QuestBase>("CompleteQuestWithSuccess")
             .GetOpenDelegate<Action<QuestBase>>();

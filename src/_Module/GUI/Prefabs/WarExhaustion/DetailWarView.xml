@@ -12,7 +12,6 @@
     <Constant Name="Banner.Height" BrushLayer="Default" BrushName="Flat.Tuple.Banner.Small" BrushValueType="Height"/>
     <Constant Name="Banner.Width.Scaled" MultiplyResult="0.43" Value="!Banner.Width"/>
     <Constant Name="Banner.Height.Scaled" MultiplyResult="0.43" Value="!Banner.Height"/>
-
     <Constant Name="StatMargin" Value="30" />
   </Constants>
   <Window>
@@ -57,7 +56,7 @@
                             <Relationship VerticalAlignment="Top" DataSource="{Kingdom}"/>
                             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
-                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" VerticalAlignment="Top" PositionYOffset="7" Sprite="MapOverlay\Encounter\WarIcon" />
+                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" VerticalAlignment="Top" PositionYOffset="7" Brush="Diplomacy.Icon.WarIcon" />
                                 <HintWidget DataSource="{RateHelpHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginTop="10" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="true">
                                   <Children>
                                     <TextWidget DataSource="{..}" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Diplomacy.Faction.HelpButton"  Text="@WarExhaustionRate" />
