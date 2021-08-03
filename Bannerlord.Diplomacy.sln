@@ -9,7 +9,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bannerlord.Diplomacy.Implem
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12CCA2B5-A874-47B3-BB43-799275014D7B}"
 	ProjectSection(SolutionItems) = preProject
+		supported-game-versions.txt = supported-game-versions.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{CB20C6C8-2857-4B1E-9C00-265893C094E3}"
+	ProjectSection(SolutionItems) = preProject
 		build\common.props = build\common.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AE56FFC8-0129-4E0F-83C0-D00011A2B127}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{8CBC023C-EB40-415D-8A78-B6B7F82523E9}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
 	EndProjectSection
 EndProject
 Global
@@ -39,6 +51,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CB20C6C8-2857-4B1E-9C00-265893C094E3} = {12CCA2B5-A874-47B3-BB43-799275014D7B}
+		{AE56FFC8-0129-4E0F-83C0-D00011A2B127} = {12CCA2B5-A874-47B3-BB43-799275014D7B}
+		{8CBC023C-EB40-415D-8A78-B6B7F82523E9} = {AE56FFC8-0129-4E0F-83C0-D00011A2B127}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B3D4AB65-9162-4EE2-9413-1867C12DC041}
