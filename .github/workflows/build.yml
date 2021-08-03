@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '.github/workflows/test.yml'
-      - 'Bannerlord.Diplomacy.sln'
 
 env:
   # Disable the .NET logo in the console output.
