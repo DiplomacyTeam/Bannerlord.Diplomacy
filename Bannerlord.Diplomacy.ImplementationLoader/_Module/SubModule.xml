@@ -2,7 +2,7 @@
 <Module>
   <Name value="$displayname$" />
   <Id value="$modulename$" />
-  <Version value="v$version$.$gameversionflat$" />
+  <Version value="v$version$" />
   <Official value="false" />
   <DefaultModule value="false" />
   <SingleplayerModule value="true" />
