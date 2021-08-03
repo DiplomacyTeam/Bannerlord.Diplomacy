@@ -25,7 +25,9 @@ namespace Diplomacy.Patches
             new Postfix(nameof(PreventHostileActionsConversation), typeof(VillagerCampaignBehavior), "village_farmer_loot_on_condition"),
             new Postfix(nameof(PreventHostileActionsConversation), typeof(CaravansCampaignBehavior), "caravan_loot_on_condition"),
             new Postfix(nameof(PreventHostileActionsMenu), typeof(PlayerTownVisitCampaignBehavior), "game_menu_village_hostile_action_on_condition"),
+#if !e159
             new Prefix(nameof(HandleThroneAbdication), typeof(KingdomManager), "AbdicateTheThrone"),
+#endif
                     };
         }
 
@@ -84,7 +86,7 @@ namespace Diplomacy.Patches
                 playerFaction is Kingdom playerKingdom && playerKingdom.IsRebelKingdom() && !playerKingdom.IsAtWarWith(otherFaction);
             return shouldPreventAction1 || shouldPreventAction2;
         }
-
+#if !e159
         private static void HandleThroneAbdication(Kingdom kingdom)
         {
             if (kingdom.Clans.Count <= 1 && kingdom.HasRebellion())
@@ -97,5 +99,6 @@ namespace Diplomacy.Patches
                 kingdom.GetRebelFactions().First().EnforceSuccess();
             }
         }
+#endif
     }
 }

@@ -61,5 +61,5 @@ jobs:
     - name: Upload bannerlord folder
       uses: actions/upload-artifact@v2
       with:
-        name: bannerlord
+        name: Bannerlord.Diplomacy
         path: ./bannerlord/Modules/

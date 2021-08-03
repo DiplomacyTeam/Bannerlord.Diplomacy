@@ -281,7 +281,7 @@ namespace Diplomacy.ViewModelMixin
 
             if (Settings.Instance!.EnableWarExhaustion)
             {
-                if (ViewModel!.Stats[1].Name.Equals(_TWarExhaustion.ToString()))
+                if (ViewModel!.Stats.Count > 1 && ViewModel!.Stats[1].Name.Equals(_TWarExhaustion.ToString()))
                     ViewModel!.Stats.RemoveAt(1);
 
                 ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM(
