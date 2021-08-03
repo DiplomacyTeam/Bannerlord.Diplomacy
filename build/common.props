@@ -1,0 +1,86 @@
+<Project>
+
+  <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
+  <PropertyGroup>
+    <BuildResourcesVersion>1.0.0.33</BuildResourcesVersion>
+    <ButterLibVersion>1.0.24</ButterLibVersion>
+    <HarmonyVersion>2.0.4</HarmonyVersion>
+    <MCMVersion>4.3.10</MCMVersion>
+    <HarmonyExtensionsVersion>2.0.0.10</HarmonyExtensionsVersion>
+    <UIExtenderExVersion>2.1.5</UIExtenderExVersion>
+    <BUTRSharedVersion>1.6.1.39</BUTRSharedVersion>
+  </PropertyGroup>
+ 
+  <PropertyGroup>
+    <IsMinimal>true</IsMinimal>
+    <IsMinimal Condition="$(Configuration.Contains('Minimal'))">true</IsMinimal>
+    <IsStable>false</IsStable>
+    <IsStable Condition="$(Configuration.Contains('Stable'))">true</IsStable>
+    <IsBeta>false</IsBeta>
+    <IsBeta Condition="$(Configuration.Contains('Beta'))">true</IsBeta>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SGVFile>$([System.IO.File]::ReadAllText($(MSBuildThisFileDirectory)/../supported-game-versions.txt))</SGVFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <SGVItem Include="$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`))" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="$(OverrideGameVersion) == ''">
+  <!--Parsing  supported-game-versions.txt-->
+  <SGVLineCount>$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`).Length)</SGVLineCount>
+  <SGVLastEntryIndex>$([MSBuild]::Subtract($(SGVLineCount), 1))</SGVLastEntryIndex>
+  <!--First enrty is Beta, second Stable, last Minimal-->
+  <GameBetaVersion>$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`)[0])</GameBetaVersion>
+  <GameStableVersion>$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`)[1])</GameStableVersion>
+  <GameMinimalVersion>$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`)[$(SGVLastEntryIndex)])</GameMinimalVersion>
+  <!-- -->
+  <GameVersionWithPrefix>e1.1.0</GameVersionWithPrefix>
+    
+  <GameVersionWithPrefix Condition="$(IsStable)">$(GameStableVersion)</GameVersionWithPrefix>
+  <GameVersionWithPrefix Condition="$(IsBeta)">$(GameBetaVersion)</GameVersionWithPrefix>
+  <!-- -->
+  <GameVersion>$(GameVersionWithPrefix.Substring(1))</GameVersion>
+</PropertyGroup>
+
+  <PropertyGroup Condition="$(OverrideGameVersion) != ''">
+    <GameVersionWithPrefix>$(OverrideGameVersion)</GameVersionWithPrefix>
+    <GameVersion>$(GameVersionWithPrefix.Substring(1))</GameVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ConstGameVersionWithPrefix>$([System.String]::Copy('$(GameVersionWithPrefix)').Replace('.',''))</ConstGameVersionWithPrefix>
+  </PropertyGroup>
+
+  <!-- STABLE, BETA, and e.g., e157 / e158 Constants Defined in Code -->
+  <PropertyGroup>
+    <GameVersionFlat>$([System.String]::Copy('$(GameVersion)').Replace('.',''))</GameVersionFlat>
+    <GameVersionConstant>e$(GameVersionFlat)</GameVersionConstant>
+    <DefineConstants>$(DefineConstants);$(GameVersionConstant)</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Game Folder(s) -->
+  <PropertyGroup>
+    <!--
+    Bannerlord's Root Folder. Leave empty if you want to try autoresolution. Recommended setup is to set, as an
+    environment variable, BANNERLORD_GAME_DIR in the common case that you have only one game folder. If you have
+    separate game folders for the stable and beta versions of the game, likewise set BANNERLORD_STABLE_DIR and
+    BANNERLORD_BETA_DIR.
+    -->
+    <GameFolder Condition="$(IsStable) == 'true'">$(BANNERLORD_STABLE_DIR)</GameFolder>
+    <GameFolder Condition="$(IsBeta) == 'true'">$(BANNERLORD_BETA_DIR)</GameFolder>
+    <GameFolder Condition="$(GameFolder) == ''">$(BANNERLORD_GAME_DIR)</GameFolder>
+  </PropertyGroup>
+
+  <!-- Automatic Game Folder Resolution -->
+  <PropertyGroup>
+    <!--Windows-->
+    <!--Get from Registry (not working with dotnet right now)-->
+    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Windows_NT'">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261550@InstallLocation)</GameFolder>
+    <!--Set a default value if registry value is missing-->
+    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Windows_NT'">C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
+    <!--Unix-->
+    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Unix'">~/.steam/root/steamapps/common/Mount &amp; Blade II Bannerlord</GameFolder>
+  </PropertyGroup>
+
+</Project>
