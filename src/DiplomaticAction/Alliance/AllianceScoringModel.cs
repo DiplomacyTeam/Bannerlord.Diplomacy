@@ -1,9 +1,7 @@
 ﻿namespace Diplomacy.DiplomaticAction.Alliance
 {
-    internal sealed class AllianceScoringModel : AbstractScoringModel<AllianceScoringModel>
+    internal sealed class AllianceScoringModel : AbstractPactAllianceScoringModel<AllianceScoringModel>
     {
-        public AllianceScoringModel() : base(new AllianceScores()) { }
-
         public class AllianceScores : IDiplomacyScores
         {
             public int Base => 20;
@@ -23,5 +21,9 @@
             public int NonAggressionPactWithEnemy => -1000;
             public int NonAggressionPactWithNeutral => -10;
         }
+
+        public override float BaseDiplomaticBarterValue => 50;
+
+        public override IDiplomacyScores Scores => new AllianceScores();
     }
 }

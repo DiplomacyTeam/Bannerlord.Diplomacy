@@ -351,7 +351,7 @@ namespace Diplomacy.ViewModelMixin
                 list.Add(new TooltipProperty(name, PlusPrefixed(number), 0));
 
             list.Add(new TooltipProperty(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
-            list.Add(new TooltipProperty(_TRequiredScore.ToString(), $"{AllianceScoringModel.Instance.ScoreThreshold:0.##}", 0, false,
+            list.Add(new TooltipProperty(_TRequiredScore.ToString(), $"{AllianceScoringModel.AcceptOrProposeThreshold:0.##}", 0, false,
                 TooltipProperty.TooltipPropertyFlags.RundownResult));
 
             return new BasicTooltipViewModel(() => list);

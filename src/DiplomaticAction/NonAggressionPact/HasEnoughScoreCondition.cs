@@ -9,7 +9,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
-            var scoreTooLow = NonAggressionPactScoringModel.Instance.GetScore(otherKingdom, kingdom).ResultNumber < NonAggressionPactScoringModel.Instance.ScoreThreshold;
+            var scoreTooLow = !NonAggressionPactScoringModel.Instance.IsAcceptancePossible(kingdom, otherKingdom);
             if (scoreTooLow)
             {
                 var scoreTooLowText = new TextObject("{=M4SGjzQP}This faction is not interested in forming a non-aggression pact with you.");

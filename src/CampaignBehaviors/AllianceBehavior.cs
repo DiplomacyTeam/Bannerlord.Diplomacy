@@ -85,36 +85,6 @@ namespace Diplomacy.CampaignBehaviors
             if (clan.Leader == clan.Kingdom?.Leader && clan.Leader != Hero.MainHero && clan.MapFaction.IsKingdomFaction)
             {
                 var kingdom = clan.Kingdom;
-                ConsiderBreakingAlliances(kingdom);
-                ConsiderFormingAlliances(kingdom);
-            }
-        }
-
-        private static void ConsiderFormingAlliances(Kingdom kingdom)
-        {
-            var potentialAllies = Kingdom.All
-                .Where(k => k != kingdom && FormAllianceConditions.Instance.CanApply(kingdom, k))
-                .ToList();
-
-            foreach (var potentialAlly in potentialAllies)
-                if (MBRandom.RandomFloat < 0.05f && AllianceScoringModel.Instance.ShouldFormBidirectional(kingdom, potentialAlly))
-                    DeclareAllianceAction.Apply(kingdom, potentialAlly);
-        }
-
-        private static void ConsiderBreakingAlliances(Kingdom kingdom)
-        {
-            var alliedKingdoms = Kingdom.All
-                .Where(k => k != kingdom && FactionManager.IsAlliedWithFaction(kingdom, k))
-                .ToList();
-
-            foreach (var alliedKingdom in alliedKingdoms)
-            {
-                if (MBRandom.RandomFloat < 0.05f
-                    && BreakAllianceConditions.Instance.CanApply(kingdom, alliedKingdom)
-                    && !AllianceScoringModel.Instance.ShouldForm(kingdom, alliedKingdom))
-                {
-                    BreakAllianceAction.Apply(kingdom, alliedKingdom);
-                }
             }
         }
 

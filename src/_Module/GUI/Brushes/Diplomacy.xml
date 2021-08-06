@@ -6,6 +6,12 @@
     </Styles>
   </Brush>
 
+  <Brush Name="Diplomacy.DiplomaticBarter.Text" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
+    <Styles>
+      <Style Name="Default" FontColor="#FFFFFFFF" TextGlowColor="#00000000" TextOutlineColor="#000000FF" TextOutlineAmount="0.15" TextGlowRadius="0" TextBlur="1" FontSize="25" />
+    </Styles>
+  </Brush>
+
   <Brush Name="Diplomacy.Faction.HelpButton" TextHorizontalAlignment="Center">
     <Styles>
       <Style Name="Default" FontSize="22" FontColor="#BC9142FF" TextOutlineAmount="0" TextGlowRadius="0" TextBlur="0" TextShadowOffset="1" TextShadowAngle="60" />
@@ -19,6 +25,61 @@
     <Layers>
       <BrushLayer Name="Default" Sprite="SPGeneral\MapOverlay\Encounter\WarIcon" />
       <BrushLayer Name="Pre161" Sprite="MapOverlay\Encounter\WarIcon" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Icon.RelationIcon">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="SPGeneral\MapOverlay\Settlement\icon_loyalty" />
+      <BrushLayer Name="Pre161" Sprite="MapOverlay\Settlement\icon_loyalty" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
+      </Style>
+      <Style Name="VeryHigh">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#00FF00FF" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" Color="#00FF00FF"/>
+      </Style>
+      <Style Name="High">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#90EE90FF"/>
+        <BrushLayer Name="Pre161" AlphaFactor="1" Color="#90EE90FF"/>
+      </Style>
+      <Style Name="Low">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#FFA500FF"/>
+        <BrushLayer Name="Pre161" AlphaFactor="1" Color="#FFA500FF"/>
+      </Style>
+      <Style Name="VeryLow">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#FF0000FF"/>
+        <BrushLayer Name="Pre161" AlphaFactor="1" Color="#FF0000FF"/>
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Icon.Fiefs">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="General\Icons\Walls" />
+      <BrushLayer Name="Pre161" Sprite="Icons\Walls" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Icon.Strength">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="General\Icons\Garrison" />
+      <BrushLayer Name="Pre161" Sprite="Icons\Garrison" />
     </Layers>
     <Styles>
       <Style Name="Default">
@@ -50,6 +111,44 @@
       <Style Name="Default">
         <BrushLayer Name="Default" AlphaFactor="1" />
         <BrushLayer Name="Pre161" AlphaFactor="1" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Icon.Duration">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="SPGeneral\GameMenu\wait_icon" />
+      <BrushLayer Name="Pre161" Sprite="GameMenu\wait_icon" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Icon.Balance">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" Color="#333333FF"/>
+      <BrushLayer Name="Icon" Sprite="balance" ExtendTop="-2" ExtendBottom="-2" ExtendLeft="-2" ExtendRight="-2" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Icon" AlphaFactor="1" />
+
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.BalanceButton">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="balance" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
       </Style>
     </Styles>
   </Brush>
@@ -103,6 +202,54 @@
       </Style>
       <Style Name="Disabled">
         <BrushLayer Name="Default" ColorFactor="0.4" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.DiplomaticBarterScoreText" BaseBrush="InventoryDefaultFontBrush">
+
+    <Styles>
+      <Style Name="Default" />
+      <Style Name="Positive" FontColor="#4F7B95FF" TextHorizontalAlignment="Center"/>
+      <Style Name="Negative" FontColor="#CF0029FF" TextHorizontalAlignment="Center"/>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Slider.Frame">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="SPGeneral\SPOptions\standart_slider_frame" />
+      <BrushLayer Name="Pre161" Sprite="SPOptions\standart_slider_frame" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Slider.Canvas">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="SPGeneral\SPOptions\standart_slider_canvas" />
+      <BrushLayer Name="Pre161" Sprite="SPOptions\standart_slider_canvas" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Slider.Fill">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="SPGeneral\SPOptions\standart_slider_fill" />
+      <BrushLayer Name="Pre161" Sprite="SPOptions\standart_slider_fill" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
       </Style>
     </Styles>
   </Brush>

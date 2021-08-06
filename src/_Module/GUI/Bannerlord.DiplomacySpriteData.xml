@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SpriteData>
+  <SpriteCategories>
+    <SpriteCategory>
+      <Name>ui_diplomacy</Name>
+      <SpriteSheetCount>1</SpriteSheetCount>
+      <SpriteSheetSize ID="1" Width="128" Height="128" />
+    </SpriteCategory>
+  </SpriteCategories>
+  <SpriteParts>
+    <SpritePart>
+      <SheetID>1</SheetID>
+      <Name>balance</Name>
+      <Width>64</Width>
+      <Height>64</Height>
+      <SheetX>4</SheetX>
+      <SheetY>4</SheetY>
+      <CategoryName>ui_diplomacy</CategoryName>
+    </SpritePart>
+  </SpriteParts>
+  <Sprites>
+    <GenericSprite>
+      <Name>balance</Name>
+      <SpritePartName>balance</SpritePartName>
+    </GenericSprite>
+  </Sprites>
+</SpriteData>

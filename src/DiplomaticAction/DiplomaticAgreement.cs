@@ -61,6 +61,7 @@ namespace Diplomacy.DiplomaticAction
 
     public enum AgreementType
     {
-        NonAggressionPact
+        NonAggressionPact,
+        Tribute
     }
 }

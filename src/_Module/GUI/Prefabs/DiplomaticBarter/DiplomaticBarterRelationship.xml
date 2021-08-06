@@ -1,0 +1,31 @@
+<Prefab>
+  <Parameters>
+    <Parameter Name="DataSource" DefaultValue="DataSource" />
+    <Parameter Name="Name" DefaultValue="Name" />
+  </Parameters>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren">
+      <Children>
+        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Text="*Name" MarginTop="0" Brush="InventoryDefaultFontBrush" Brush.FontColor="#FFFFFFFF"/>
+            <GridWidget DataSource="*DataSource" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" PositionXOffset="6" DefaultCellWidth="35" DefaultCellHeight="42" HorizontalAlignment="Left" ColumnCount="8" LayoutImp.HorizontalLayoutMethod="LeftToRight" MinHeight="42">
+              <ItemTemplate>
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+                  <Children>
+                    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Command.Click="ExecuteLink">
+                      <Children>
+                        <MaskedTextureWidget DataSource="{ImageIdentifier}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="29" SuggestedHeight="37" HorizontalAlignment="Right" VerticalAlignment="Top" Brush="Kingdom.OtherWars.Faction.Small.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.15" />
+                      </Children>
+                    </ButtonWidget>
+                    <HintWidget DataSource="{Hint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                  </Children>
+                </Widget>
+              </ItemTemplate>
+            </GridWidget>
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

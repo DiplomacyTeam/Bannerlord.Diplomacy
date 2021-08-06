@@ -1,0 +1,56 @@
+<Prefab>
+  <Constants>
+    <Constant Name="Barter.Item.Tuple" Value="Barter.Left.ItemTuple" />
+    <Constant Name="Item.Width" BrushLayer="Default" BrushName="!Barter.Item.Tuple" BrushValueType="Width" />
+    <Constant Name="Item.Height" BrushLayer="Default" BrushName="!Barter.Item.Tuple" BrushValueType="Height" />
+  </Constants>
+  <Parameters>
+    <Parameter Name="IsOption" DefaultValue="false" />
+    <Parameter Name="IsFaction2Proposal" DefaultValue="false" />
+  </Parameters>
+  <Window>
+    <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
+      <Children>
+        <Widget UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="@CanSelect">
+          <Children>
+            <ButtonWidget HeightSizePolicy="Fixed" WidthSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="!Item.Height" Brush="!Barter.Item.Tuple" IsEnabled="@IsValid" Command.Click="@AddItemToProposal" DoNotPassEventsToChildren="true">
+              <Children>
+                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="10" MarginRight="10" MarginTop="10" MarginBottom="10">
+                  <Children>
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" VerticalAlignment="Center">
+                      <Children>
+                        <TextWidget Id="NameText" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Brush="InventoryDefaultFontBrush" Brush.FontColor="#F4E1C4FF" Brush.FontSize="17" Brush.TextVerticalAlignment="Center" MarginTop="0" Text="@Name" VerticalAlignment="Center"/>
+                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@ShowProperties">
+                          <Children>
+                            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="17" Brush="Diplomacy.Icon.Gold" IsVisible="@HasAmount" PositionYOffset="-1"/>
+                            <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Brush="InventoryDefaultFontBrush" Brush.FontColor="#F4E1C4FF" Brush.FontSize="17" MarginTop="0" IntText="@Amount" IsVisible="@HasAmount" />
+                            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="17" Brush="Diplomacy.Icon.Duration" IsVisible="@HasDuration" PositionYOffset="-1"/>
+                            <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Brush="InventoryDefaultFontBrush" Brush.FontColor="#F4E1C4FF" Brush.FontSize="17" MarginTop="0" IntText="@Duration" IsVisible="@HasDuration" />
+                          </Children>
+                        </ListPanel>
+                      </Children>
+                    </ListPanel>
+                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+                      <Children>
+                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right"  VerticalAlignment="Center">
+                          <Children>
+                            <DiplomaticBarterScoreTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Brush="Diplomacy.DiplomaticBarterScoreText" Brush.FontSize="17" Brush.TextVerticalAlignment="Center" Score="@Score" VerticalAlignment="Center" MarginRight="10" IsHidden="@IsOption"/>
+                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Brush="InventoryDefaultFontBrush" Brush.FontColor="#F4E1C4FF" Brush.FontSize="17" Brush.TextVerticalAlignment="Center" FloatText="@InfluenceCost" VerticalAlignment="Center"/>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
+                          </Children>
+                        </ListPanel>
+                      </Children>
+                    </Widget>
+                  </Children>
+                </ListPanel>
+              </Children>
+            </ButtonWidget>
+          </Children>
+        </Widget>
+        <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="10" SuggestedHeight="13" IsHidden="*IsOption" Brush="Barter.RemoveOffer.Button" HorizontalAlignment="Right" VerticalAlignment="Top" MarginRight="4" MarginTop="4" Command.Click="RemoveItemFromProposal"/>
+
+
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

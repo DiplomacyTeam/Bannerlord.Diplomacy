@@ -1,13 +1,9 @@
 ﻿using Diplomacy.DiplomaticAction;
 using Diplomacy.DiplomaticAction.Alliance;
-using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.Event;
 using Diplomacy.Extensions;
-
-using Microsoft.Extensions.Logging;
-
 using System.Linq;
-
+using Diplomacy.DiplomaticAction.Barter;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
@@ -27,38 +23,24 @@ namespace Diplomacy.CampaignBehaviors
         public override void RegisterEvents()
         {
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, UpdateDiplomaticAgreements);
-            CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, ConsiderDiplomaticAgreements);
+            CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, ClanDailyTick);
             Events.AllianceFormed.AddNonSerializedListener(this, ExpireNonAggressionPact);
         }
 
-        private void ConsiderDiplomaticAgreements(Clan clan)
+        private void ClanDailyTick(Clan clan)
         {
             // only apply to kingdom leader clans
             if (clan.MapFaction.IsKingdomFaction && clan.MapFaction.Leader == clan.Leader && !clan.Leader.IsHumanPlayerCharacter)
             {
-                ConsiderNonAggressionPact(clan.Kingdom);
+                ConsiderDiplomaticBarter(clan.Kingdom);
             }
         }
 
-        private void ConsiderNonAggressionPact(Kingdom proposingKingdom)
+        private void ConsiderDiplomaticBarter(Kingdom proposingKingdom)
         {
-            var inverseNormalizedValorLevel = 1 - proposingKingdom.Leader.GetNormalizedTraitValue(DefaultTraits.Valor);
-
-            if (MBRandom.RandomFloat < BasePactChance * inverseNormalizedValorLevel)
-            {
-                var proposedKingdom = Kingdom.All
-                    .Except(new[] { proposingKingdom })
-                    .Where(kingdom => NonAggressionPactConditions.Instance.CanApply(proposingKingdom, kingdom))
-                    .Where(kingdom => NonAggressionPactScoringModel.Instance.ShouldFormBidirectional(proposingKingdom, kingdom))
-                    .OrderByDescending(kingdom => kingdom.GetExpansionism()).FirstOrDefault();
-
-                if (proposedKingdom is not null)
-                {
-                    LogFactory.Get<DiplomaticAgreementBehavior>()
-                        .LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} decided to form a NAP with {proposedKingdom.Name}.");
-                    FormNonAggressionPactAction.Apply(proposingKingdom, proposedKingdom);
-                }
-            }
+            Kingdom kingdomToBarterWith = Kingdom.All.Where(x => x != proposingKingdom && !x.IsRebelKingdom() && !x.IsEliminated).GetRandomElementInefficiently();
+            DiplomaticBarter barter = new(proposingKingdom, kingdomToBarterWith);
+            barter.ExecuteAIBarter();
         }
 
         private void UpdateDiplomaticAgreements()

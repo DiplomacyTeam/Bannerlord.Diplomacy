@@ -1,0 +1,297 @@
+<Prefab>
+  <Constants>
+    <Constant Name="Height" Value="30" />
+    <Constant Name="Width" Value="30" />
+  </Constants>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Color="#000000CC">
+      a
+      <Children>
+        <Standard.Background />
+
+        <ScrollbarWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="Fixed" Id="RightSideScrollbar" SuggestedWidth="20" MinValue = "0" MaxValue = "100" MarginLeft="10" MarginBottom="15" MarginTop="15" AlignmentAxis="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Handle = "RightSideScrollbarHandle">
+          <Children>
+            <Widget Id="RightSideScrollbarHandle" WidthSizePolicy = "StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment = "Center"/>
+          </Children>
+        </ScrollbarWidget>
+
+        <ScrollablePanel Id="RightSideScrollablePanel"  HeightSizePolicy ="StretchToParent"  WidthSizePolicy="StretchToParent" InnerPanel="RightSideRect\RightSideList" ClipRect="RightSideRect" MouseScrollAxis="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalScrollbar="..\RightSideScrollbar" AutoHideScrollBars="false">
+          <Children>
+            <!-- Agreement Options -->
+            <BrushWidget  WidthSizePolicy="CoverChildren" SuggestedWidth="300" SuggestedHeight="700" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" Brush="Frame1Brush" IsEnabled="true" MarginBottom="10"  MarginRight="10" MarginTop="10">
+              <Children>
+                <Widget Id="RightSideRect" WidthSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="680" HeightSizePolicy="Fixed" ClipContents="true">
+                  <Children>
+                    <ListPanel Id="RightSideList" DataSource="{AgreementOptions}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                      <ItemTemplate>
+                        <DiplomaticBarterItemTuple Parameter.IsOption="true"/>
+                      </ItemTemplate>
+                    </ListPanel>
+                  </Children>
+                </Widget>
+              </Children>
+            </BrushWidget>
+          </Children>
+        </ScrollablePanel>
+
+        <MaskedTextureWidget PositionXOffset="-100" DataSource="{Faction1Visual}" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="243" SuggestedHeight="398" HorizontalAlignment="Left" Brush="Encyclopedia.Faction.Banner" OverlayTextureScale="1.5"/>
+        <!--Banner-->
+        <MaskedTextureWidget PositionXOffset="100" DataSource="{Faction2Visual}" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="243" SuggestedHeight="398" HorizontalAlignment="Right" Brush="Encyclopedia.Faction.Banner" OverlayTextureScale="1.5"/>
+
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="350" SuggestedHeight="1080" HorizontalAlignment="Right">
+          <Children>
+            <EncyclopediaCharacterTableauWidget DataSource="{HeroCharacter}" WidthSizePolicy="StretchToParent" HeightSizePolicy ="StretchToParent" BodyProperties="@BodyProperties" IsFemale="@IsFemale" EquipmentCode="@EquipmentCode" CharStringId="@CharStringId" StanceIndex="@StanceIndex" BannerCodeText="@BannerCodeText" MountCreationKey="@MountCreationKey" IsEnabled="false" IsDead="@IsDead" ArmorColor1="@ArmorColor1" ArmorColor2="@ArmorColor2" MarginTop="-50" MarginLeft="-400"  MarginRight="-200" />
+
+
+          </Children>
+        </Widget>
+
+        <!-- Proposal -->
+        <BrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Frame1Brush" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+          <Children>
+            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MinHeight="350" StackLayout.LayoutMethod="VerticalBottomToTop" MarginBottom="100" >
+              <Children>
+                <!-- Barter Balance -->
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="10" MarginBottom="10" StackLayout.LayoutMethod="VerticalBottomToTop">
+                  <Children>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="InventoryDefaultFontBrush" Text="Barter Balance" HorizontalAlignment="Center"  />
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginTop="5" MarginBottom="10">
+                      <Children>
+                        <!-- Faction 1 Bar -->
+                        <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="150" SuggestedHeight="10" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" AlphaFactor="0.2" Color="#FFFFFFFF" FillWidget="FillWidget" InitialAmountAsFloat="@NegativeBarterBalance" IsDirectionRightward="false" MaxAmountAsFloat="@BarterMaxBalance" MarginRight="3">
+                          <Children>
+                            <BrushWidget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.6" Brush.Color="#CF0029FF"/>
+                          </Children>
+                        </FillBarHorizontalWidget>
+                        <!-- Faction 2 Bar -->
+                        <FillBarHorizontalWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="150" SuggestedHeight="10" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" AlphaFactor="0.2" Color="#FFFFFFFF" FillWidget="FillWidget" InitialAmountAsFloat="@PositiveBarterBalance" IsDirectionRightward="true" MaxAmountAsFloat="@BarterMaxBalance" MarginLeft="3">
+                          <Children>
+                            <BrushWidget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.AlphaFactor="0.6" Brush.Color="#4F7B95FF"/>
+                          </Children>
+                        </FillBarHorizontalWidget>
+                      </Children>
+                    </ListPanel>
+                    <DiplomaticBarterScoreTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="Diplomacy.DiplomaticBarterScoreText" Score="@BarterBalance"  />
+                  </Children>
+                </ListPanel>
+
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
+                  <Children>
+                    <Widget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" MarginRight="5" >
+                      <Children>
+
+                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="InventoryDefaultFontBrush" Text="@OurContributionsLabel" HorizontalAlignment="Center" MarginTop="10"/>
+                        <ListPanel MarginTop="40" DataSource="{Faction1Contributions}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                          <ItemTemplate>
+                            <DiplomaticBarterItemTuple />
+                          </ItemTemplate>
+                        </ListPanel>
+                      </Children>
+                    </Widget>
+                    <Widget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" MarginLeft="5">
+                      <Children>
+
+                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="InventoryDefaultFontBrush" Text="@TheirContributionsLabel" HorizontalAlignment="Center" MarginTop="10"/>
+                        <ListPanel MarginTop="40" DataSource="{Faction2Contributions}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Right">
+                          <ItemTemplate>
+                            <DiplomaticBarterItemTuple Parameter.IsFaction2Proposal="true"/>
+                          </ItemTemplate>
+                        </ListPanel>
+                      </Children>
+
+                    </Widget>
+                  </Children>
+                </ListPanel>
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="InventoryDefaultFontBrush" Text="@MutualContributionsLabel" HorizontalAlignment="Center" MarginTop="10"/>
+                <ListPanel DataSource="{MutualContributions}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Center">
+                  <ItemTemplate>
+                    <DiplomaticBarterItemTuple />
+                  </ItemTemplate>
+                </ListPanel>
+              </Children>
+            </ListPanel>
+          </Children>
+        </BrushWidget>
+
+        <!-- Total Influence Cost -->
+        <ListPanel WidthSizePolicy="Fixed" SuggestedWidth="620" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="-50">
+          <Children>
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" />
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" >
+              <Children>
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" PositionXOffset="17">
+                  <Children>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="InventoryDefaultFontBrush" IntText="@TotalInfluenceCost"  />
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" VerticalAlignment="Top" Sprite="SPKingdom\influence_icon_small" />
+                  </Children>
+                </ListPanel>
+              </Children>
+            </Widget>
+          </Children>
+        </ListPanel>
+
+
+
+
+
+        <!-- Cancel / Reset / Propose -->
+        <Standard.TripleDialogCloseButtons Parameter.CancelButtonAction="OnComplete" Parameter.CancelButtonText="@CancelLabel" Parameter.DoneButtonAction="ExecuteBarter" Parameter.DoneButtonDisabled="@IsNotAcceptable" Parameter.DoneButtonText="@ProposeLabel" Parameter.ResetButtonAction="OnReset" />
+
+
+        <!-- Edit Duration/Gold Menu -->
+        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsVisible="@ShowPropertyChange" Sprite="BlankWhiteSquare_9" Color="#000000CC">
+          <Children>
+            <BrushWidget DataSource="{CurrentPropertyChangeItem}" WidthSizePolicy="Fixed" SuggestedWidth="650" HeightSizePolicy="CoverChildren" Brush="Frame1Brush" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="5" MarginBottom="5" MarginLeft="5" MarginRight="5">
+              <Children>
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+                  <Children>
+                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Text="@Name" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="10" MarginBottom="10" />
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" IsVisible="@HasAmount">
+                      <Children>
+                        <TextWidget DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="@AmountLabel" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="10" Brush="InventoryDefaultFontBrush"/>
+                        <SliderWidget SuggestedWidth="338" SuggestedHeight="42" VerticalAlignment="Center" HorizontalAlignment="Center" Filler="Filler" Handle="SliderHandle" MaxValueInt="@MaxAmount" MinValueInt="@MinAmount" ValueInt="@NewAmount" IsDiscrete="false" DoNotUpdateHandleSize="true">
+                          <Children>
+                            <BrushWidget SuggestedWidth="362" SuggestedHeight="38" VerticalAlignment="Center" HorizontalAlignment="Center" Brush="Diplomacy.Slider.Canvas" IsEnabled="false" />
+                            <Widget Id="Filler" SuggestedWidth="345" SuggestedHeight="35" VerticalAlignment="Center" HorizontalAlignment="Center" ClipContents="true" >
+                              <Children>
+                                <BrushWidget SuggestedWidth="345" SuggestedHeight="35" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Diplomacy.Slider.Fill"/>
+                              </Children>
+                            </Widget>
+                            <BrushWidget SuggestedWidth="400" SuggestedHeight="65" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="false" Brush="Diplomacy.Slider.Frame" />
+                            <BrushWidget Id="SliderHandle" SuggestedWidth="14" SuggestedHeight="38" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="SPOptions.Slider.Handle" DoNotAcceptEvents="true" />
+                          </Children>
+                        </SliderWidget>
+                        <Widget WidthSizePolicy="Fixed" SuggestedWidth="120" SuggestedHeight="30" HeightSizePolicy="Fixed"  HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Color="#00000099" MarginTop="10">
+                          <Children>
+                            <IntegerInputTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  IntText="@NewAmount" MaxInt="@MaxAmount" MinInt="@MinAmount" Brush="InventoryDefaultFontBrush" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center"     ClipContents="false"/>
+                          </Children>
+                        </Widget>
+                        <ButtonWidget DataSource="{..}" MarginTop="5" HorizontalAlignment="Center" HeightSizePolicy="Fixed" WidthSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="25" Brush="Diplomacy.Icon.Balance" Command.Click="BalanceBarterWithPayment" IsVisible="@ShowBalanceBarterInPropertyChange"/>
+
+                      </Children>
+                    </ListPanel>
+
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" IsVisible="@HasDuration">
+                      <Children>
+                        <TextWidget DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="@DurationLabel" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="10" Brush="InventoryDefaultFontBrush"/>
+                        <SliderWidget SuggestedWidth="338" SuggestedHeight="42" VerticalAlignment="Center" HorizontalAlignment="Center" Filler="Filler" Handle="SliderHandle" MaxValueInt="@MaxDuration" MinValueInt="@MinDuration" ValueInt="@NewDuration" IsDiscrete="false" DoNotUpdateHandleSize="true">
+                          <Children>
+                            <BrushWidget SuggestedWidth="362" SuggestedHeight="38" VerticalAlignment="Center" HorizontalAlignment="Center" Brush="Diplomacy.Slider.Canvas" IsEnabled="false" />
+                            <Widget Id="Filler" SuggestedWidth="345" SuggestedHeight="35" VerticalAlignment="Center" HorizontalAlignment="Center" ClipContents="true" >
+                              <Children>
+                                <BrushWidget SuggestedWidth="345" SuggestedHeight="35" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Diplomacy.Slider.Fill"/>
+                              </Children>
+                            </Widget>
+                            <BrushWidget SuggestedWidth="400" SuggestedHeight="65" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="false" Brush="Diplomacy.Slider.Frame" />
+                            <BrushWidget Id="SliderHandle" SuggestedWidth="14" SuggestedHeight="38" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="SPOptions.Slider.Handle" DoNotAcceptEvents="true" />
+                          </Children>
+                        </SliderWidget>
+                        <Widget WidthSizePolicy="Fixed" SuggestedWidth="120" SuggestedHeight="30" HeightSizePolicy="Fixed"  HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Color="#00000099" MarginTop="10">
+                          <Children>
+                            <IntegerInputTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  IntText="@NewDuration" MaxInt="@MaxDuration" MinInt="@MinDuration" Brush="InventoryDefaultFontBrush" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center"     ClipContents="false"/>
+                          </Children>
+                        </Widget>
+                      </Children>
+                    </ListPanel>
+                    <Standard.TripleDialogCloseButtons DataSource="{..}" Parameter.CancelButtonAction="OnCancelPropertyChange" Parameter.CancelButtonText="Cancel" Parameter.DoneButtonAction="OnApplyPropertyChange" Parameter.DoneButtonDisabled="false" Parameter.DoneButtonText="Accept" Parameter.ResetButtonAction="OnResetPropertyChange" />
+                  </Children>
+                </ListPanel>
+              </Children>
+            </BrushWidget>
+          </Children>
+        </Widget>
+
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="350" HorizontalAlignment="Right" VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#000000A5" MarginBottom="50" MarginRight="50">
+          <Children>
+            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginBottom="10" MarginTop="10" MarginLeft="10" MarginRight="10">
+              <Children>
+
+                <ListPanel DataSource="{CurrentSelectedFaction}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                  <Children>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Diplomacy.DiplomaticBarter.Text" Brush.FontSize="16" Brush.FontColor="#FFFFFFFF" Text="Negotiating with" MarginTop="0"/>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Diplomacy.DiplomaticBarter.Text" Brush.FontSize="24" Brush.FontColor="#FFFFFFFF" Text="@FactionLeaderName" MarginTop="0"/>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Diplomacy.DiplomaticBarter.Text" Brush.FontSize="16" Brush.FontColor="#FFFFFFFF" Text="of" MarginTop="0"/>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Diplomacy.DiplomaticBarter.Text" Brush.FontSize="36" Brush.FontColor="#FFFFFFFF" Text="@Name" MarginTop="0"/>
+                    <ListPanel DataSource="{LeaderTraits}" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
+                      <ItemTemplate>
+                        <EncyclopediaHeroTraitVisualWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="74" SuggestedHeight="75" MarginLeft="-7" MarginRight="-7" TraitId="@TraitId" TraitValue="@Value">
+                          <Children>
+                            <HintWidget DataSource="{Hint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                          </Children>
+                        </EncyclopediaHeroTraitVisualWidget>
+                      </ItemTemplate>
+                    </ListPanel>
+                  </Children>
+                </ListPanel>
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" DataSource="{CurrentSelectedFaction}">
+                  <Children>
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" MarginBottom="10" MarginTop="10" MarginLeft="10"  MarginRight="10">
+                      <Children>
+                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" >
+                          <Children>
+
+                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginRight="5">
+                              <Children>
+                                <ReputationColorWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" Brush="Diplomacy.Icon.RelationIcon" State="@RelationState" />
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" IntText="@Relation" Brush="InventoryDefaultFontBrush" Brush.FontColor="#FFFFFFFF"/>
+                              </Children>
+                            </ListPanel>
+
+                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="5" MarginRight="5">
+                              <Children>
+                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" Brush="Diplomacy.Icon.Fiefs" />
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" IntText="@Fiefs" Brush="InventoryDefaultFontBrush" Brush.FontColor="#FFFFFFFF"/>
+                              </Children>
+                            </ListPanel>
+
+                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="5">
+                              <Children>
+                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" Brush="Diplomacy.Icon.Strength" />
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" IntText="@TotalStrength" Brush="InventoryDefaultFontBrush" Brush.FontColor="#FFFFFFFF"/>
+                              </Children>
+                            </ListPanel>
+                          </Children>
+                        </ListPanel>
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </Widget>
+
+
+                <!-- Their Relationships -->
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="350" SuggestedHeight="580" VerticalAlignment="Bottom" HorizontalAlignment="Right" >
+                  <Children>
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"   StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="5" MarginLeft="5" MarginBottom="5" MarginRight="5">
+                      <Children>
+                        <DiplomaticBarterRelationship Parameter.DataSource="{CurrentSelectedFaction\Allies}" Parameter.Name="@AlliesLabel"/>
+                        <DiplomaticBarterRelationship Parameter.DataSource="{CurrentSelectedFaction\NAPacts}" Parameter.Name="@PactsLabel"/>
+                        <DiplomaticBarterRelationship Parameter.DataSource="{CurrentSelectedFaction\Wars}" Parameter.Name="@WarsLabel"/>
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </Widget>
+              </Children>
+            </ListPanel>
+          </Children>
+        </Widget>
+
+
+        <!-- Your Relationships -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="310" SuggestedHeight="380" VerticalAlignment="Top" HorizontalAlignment="Left" Sprite="BlankWhiteSquare_9" Color="#000000A5">
+          <Children>
+            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"   StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="5" MarginLeft="5" MarginBottom="5" MarginRight="5">
+              <Children>
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Top" HorizontalAlignment="Center" Text="@OurTreatiesLabel" Brush="InventoryDefaultFontBrush" Brush.FontColor="#FFFFFFFF" Brush.FontSize="26" MarginTop="10" MarginBottom="10" />
+                <DiplomaticBarterRelationship Parameter.DataSource="{PlayerFaction\Allies}" Parameter.Name="@AlliesLabel"/>
+                <DiplomaticBarterRelationship Parameter.DataSource="{PlayerFaction\NAPacts}" Parameter.Name="@PactsLabel"/>
+                <DiplomaticBarterRelationship Parameter.DataSource="{PlayerFaction\Wars}" Parameter.Name="@WarsLabel"/>
+              </Children>
+            </ListPanel>
+          </Children>
+        </Widget>
+
+        <DiplomaticBarterFactionDropdown DataSource="{FactionSelection}" MarginBottom="50" MarginLeft="50" MarginRight="100" MarginTop="50" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>
