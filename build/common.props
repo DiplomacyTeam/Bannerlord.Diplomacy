@@ -7,8 +7,8 @@
   <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
   <PropertyGroup>
     <BuildResourcesVersion>1.0.0.33</BuildResourcesVersion>
-    <ButterLibVersion>1.0.24</ButterLibVersion>
-    <HarmonyVersion>2.0.4</HarmonyVersion>
+    <ButterLibVersion>1.0.27</ButterLibVersion>
+    <HarmonyVersion>2.1.1</HarmonyVersion>
     <MCMVersion>4.3.10</MCMVersion>
     <HarmonyExtensionsVersion>2.0.0.10</HarmonyExtensionsVersion>
     <UIExtenderExVersion>2.1.5</UIExtenderExVersion>
