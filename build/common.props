@@ -1,5 +1,9 @@
 <Project>
 
+  <PropertyGroup>
+    <Version>1.1.6</Version>
+  </PropertyGroup>
+
   <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
   <PropertyGroup>
     <BuildResourcesVersion>1.0.0.33</BuildResourcesVersion>

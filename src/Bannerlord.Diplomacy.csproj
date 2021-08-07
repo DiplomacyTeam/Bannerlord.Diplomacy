@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.1.6</Version>
     <ModuleName>$(MSBuildProjectName)</ModuleName>
     <DisplayName>Diplomacy</DisplayName>
     <AssemblyName>$(ModuleName).$(GameVersion)</AssemblyName>

@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.1.5</Version>
     <ModuleName>Bannerlord.Diplomacy</ModuleName>
     <DisplayName>Diplomacy</DisplayName>
     <AssemblyName>$(ModuleName)</AssemblyName>
