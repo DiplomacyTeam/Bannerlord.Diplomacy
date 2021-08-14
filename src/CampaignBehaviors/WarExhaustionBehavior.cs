@@ -125,14 +125,14 @@ namespace Diplomacy.CampaignBehaviors
                         var warKingdom = (Kingdom) faction;
                         _warExhaustionManager.AddOccupiedWarExhaustion(oldOwnerKingdom, warKingdom);
                     }
-
-                    ConsiderPeaceActions(oldOwnerKingdom, false);
                 }
             }
         }
 
-        private void ConsiderPeaceActions(Kingdom kingdom, bool hasFiefsRemaining = true)
+        private void ConsiderPeaceActions(Kingdom kingdom)
         {
+            var hasFiefsRemaining = kingdom.Fiefs.Count > 0;
+
             foreach (var targetKingdom in FactionManager.GetEnemyKingdoms(kingdom).ToList())
             {
                 if (_warExhaustionManager.HasMaxWarExhaustion(kingdom, targetKingdom) && IsValidQuestState(kingdom, targetKingdom))
