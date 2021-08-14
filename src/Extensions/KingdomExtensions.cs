@@ -88,7 +88,7 @@ namespace Diplomacy.Extensions
 
         public static bool IsRebelKingdom(this Kingdom kingdom)
         {
-            return RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Select(rf => rf.RebelKingdom).Any(rk => rk == kingdom) || RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom);
+            return RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Any(rf => kingdom == rf.RebelKingdom) || RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom);
         }
 
         public static bool HasRebellion(this Kingdom kingdom)

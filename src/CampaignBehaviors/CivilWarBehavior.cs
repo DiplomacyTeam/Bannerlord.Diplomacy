@@ -6,6 +6,7 @@ using Diplomacy.CivilWar;
 using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
+using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Extensions;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
@@ -39,6 +40,21 @@ namespace Diplomacy.CampaignBehaviors
                 if (rebelFaction.AtWar)
                     continue;
                 RebelFactionManager.DestroyRebelFaction(rebelFaction);
+            }
+
+            // if war exhaustion is disabled, stop civil wars when the last rebel settlement is taken
+            if (!Settings.Instance!.EnableWarExhaustion)
+            {
+                foreach (var kingdom in Kingdom.All.Where(x => (x.IsRebelKingdom() || x.HasRebellion()) && x.Fiefs.IsEmpty()).ToList())
+                {
+                    var rebelFaction = RebelFactionManager.GetRebelFactionForRebelKingdom(kingdom) ?? kingdom.GetRebelFactions().FirstOrDefault();
+
+                    if (rebelFaction != null)
+                    {
+                        Kingdom otherKingdom = kingdom.IsRebelKingdom() ? rebelFaction.ParentKingdom : rebelFaction.RebelKingdom!;
+                        KingdomPeaceAction.ApplyPeace(kingdom, otherKingdom);
+                    }
+                }
             }
         }
 

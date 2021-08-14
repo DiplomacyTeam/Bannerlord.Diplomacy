@@ -90,6 +90,11 @@ namespace Diplomacy.CivilWar
             }
         }
 
+        public static RebelFaction? GetRebelFactionForRebelKingdom(Kingdom rebelKingdom)
+        {
+            return AllRebelFactions.Values.SelectMany(x => x).FirstOrDefault(rf => rebelKingdom == rf.RebelKingdom);
+        }
+
         public static IReadOnlyDictionary<Kingdom, List<RebelFaction>> AllRebelFactions => Instance!.RebelFactions;
     }
 }
