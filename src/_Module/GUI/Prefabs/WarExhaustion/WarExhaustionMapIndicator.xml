@@ -43,8 +43,8 @@
                   </Children>
 
                 </ListPanel>
-                <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" HorizontalAlignment="Center" SuggestedWidth="50" SuggestedHeight="50" Sprite="MapOverlay\Encounter\WarIcon" IsEnabled="false" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!RetreatIconSize" SuggestedHeight="!RetreatIconSize" HorizontalAlignment="Center" VerticalAlignment="Bottom" Sprite="GameMenu\retreat_icon" />
+                <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" HorizontalAlignment="Center" SuggestedWidth="50" SuggestedHeight="50" Brush="Diplomacy.Icon.WarIcon" IsEnabled="false" />
+                <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!RetreatIconSize" SuggestedHeight="!RetreatIconSize" HorizontalAlignment="Center" VerticalAlignment="Bottom" Brush="Diplomacy.Icon.Retreat" />
 
               </Children>
             </ButtonWidget>

@@ -9,11 +9,11 @@ namespace Diplomacy.ViewModel
         public GrantFiefSortControllerVM(ref MBBindingList<GrantFiefItemVM> listToControl)
         {
             _listToControl = listToControl;
-            _typeComparer = new GrantFiefSortControllerVM.ItemTypeComparer();
-            _prosperityComparer = new GrantFiefSortControllerVM.ItemProsperityComparer();
-            _defendersComparer = new GrantFiefSortControllerVM.ItemDefendersComparer();
-            _relationComparer = new GrantFiefSortControllerVM.ItemRelationComparer();
-            _nameComparer = new GrantFiefSortControllerVM.ItemNameComparer();
+            _typeComparer = new ItemTypeComparer();
+            _prosperityComparer = new ItemProsperityComparer();
+            _defendersComparer = new ItemDefendersComparer();
+            _relationComparer = new ItemRelationComparer();
+            _nameComparer = new ItemNameComparer();
         }
 
         private void ExecuteSortByType()
@@ -87,7 +87,7 @@ namespace Diplomacy.ViewModel
             IsDefendersSelected = true;
         }
 
-        private void SetAllStates(GrantFiefSortControllerVM.SortState state)
+        private void SetAllStates(SortState state)
         {
             TypeState = (int)state;
             NameState = (int)state;
@@ -243,15 +243,15 @@ namespace Diplomacy.ViewModel
 
         private readonly MBBindingList<GrantFiefItemVM> _listToControl;
 
-        private readonly GrantFiefSortControllerVM.ItemTypeComparer _typeComparer;
+        private readonly ItemTypeComparer _typeComparer;
 
-        private readonly GrantFiefSortControllerVM.ItemProsperityComparer _prosperityComparer;
+        private readonly ItemProsperityComparer _prosperityComparer;
 
-        private readonly GrantFiefSortControllerVM.ItemRelationComparer _relationComparer;
+        private readonly ItemRelationComparer _relationComparer;
 
-        private readonly GrantFiefSortControllerVM.ItemDefendersComparer _defendersComparer;
+        private readonly ItemDefendersComparer _defendersComparer;
 
-        private readonly GrantFiefSortControllerVM.ItemNameComparer _nameComparer;
+        private readonly ItemNameComparer _nameComparer;
 
         private int _typeState;
 
@@ -292,7 +292,7 @@ namespace Diplomacy.ViewModel
             protected bool _isAcending;
         }
 
-        private class ItemNameComparer : GrantFiefSortControllerVM.ItemComparerBase
+        private class ItemNameComparer : ItemComparerBase
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
@@ -304,7 +304,7 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        private class ItemClanComparer : GrantFiefSortControllerVM.ItemComparerBase
+        private class ItemClanComparer : ItemComparerBase
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
@@ -316,7 +316,7 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        private class ItemTypeComparer : GrantFiefSortControllerVM.ItemComparerBase
+        private class ItemTypeComparer : ItemComparerBase
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
@@ -328,7 +328,7 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        private class ItemProsperityComparer : GrantFiefSortControllerVM.ItemComparerBase
+        private class ItemProsperityComparer : ItemComparerBase
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
@@ -340,7 +340,7 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        private class ItemRelationComparer : GrantFiefSortControllerVM.ItemComparerBase
+        private class ItemRelationComparer : ItemComparerBase
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
@@ -352,7 +352,7 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        private class ItemFoodComparer : GrantFiefSortControllerVM.ItemComparerBase
+        private class ItemFoodComparer : ItemComparerBase
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
@@ -366,7 +366,7 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        private class ItemGarrisonComparer : GrantFiefSortControllerVM.ItemComparerBase
+        private class ItemGarrisonComparer : ItemComparerBase
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {
@@ -378,7 +378,7 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        private class ItemDefendersComparer : GrantFiefSortControllerVM.ItemComparerBase
+        private class ItemDefendersComparer : ItemComparerBase
         {
             public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
             {

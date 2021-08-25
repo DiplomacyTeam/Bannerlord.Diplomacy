@@ -1,7 +1,8 @@
-﻿using Diplomacy.PatchTools;
+﻿using System;
+using Diplomacy.PatchTools;
 
 using System.Collections.Generic;
-
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Patches
@@ -19,19 +20,17 @@ namespace Diplomacy.Patches
                 return false;
 
 
-            _SetStance(faction1, faction2, StanceType.Alliance);
+            SetStance(faction1, faction2, StanceType.Alliance);
             return false;
         }
 
         private enum StanceType
         {
-            Neutral,
-            War,
+            [UsedImplicitly] Neutral,
+            [UsedImplicitly] War,
             Alliance,
         }
 
-        private delegate StanceLink SetStanceDel(IFaction faction1, IFaction faction2, StanceType stanceType);
-
-        private static readonly SetStanceDel _SetStance = new Reflect.Method<FactionManager>("SetStance").GetDelegate<SetStanceDel>(); 
+        private static readonly Func<IFaction, IFaction, StanceType, StanceLink> SetStance = new Reflect.Method<FactionManager>("SetStance").GetDelegate<Func<IFaction, IFaction, StanceType, StanceLink>>(); 
     }
 }

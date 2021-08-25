@@ -7,7 +7,7 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
 {
     internal class TimeElapsedSinceLastWarCondition : IDiplomacyCondition
     {
-        private const string TOO_SOON = "{=DrnXprup}You have been at war too recently to consider an alliance. It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.";
+        private static readonly TextObject _TTooSoon = new("{=DrnXprup}You have been at war too recently to consider an alliance. It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.");
         private const double MinimumTimeFromLastWar = 30.0;
 
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
@@ -18,10 +18,10 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
             var lastPeaceTime = CampaignTime.Never;
             foreach (var logEntry in gameActionLogs)
             {
-                if (logEntry is MakePeaceLogEntry
-                    && ((((MakePeaceLogEntry)logEntry).Faction1 == kingdom.MapFaction && ((MakePeaceLogEntry)logEntry).Faction2 == otherKingdom.MapFaction) || (((MakePeaceLogEntry)logEntry).Faction1 == otherKingdom.MapFaction && ((MakePeaceLogEntry)logEntry).Faction2 == kingdom.MapFaction)))
+                if (logEntry is MakePeaceLogEntry entry
+                    && ((entry.Faction1 == kingdom.MapFaction && entry.Faction2 == otherKingdom.MapFaction) || (entry.Faction1 == otherKingdom.MapFaction && entry.Faction2 == kingdom.MapFaction)))
                 {
-                    lastPeaceTime = logEntry.GameTime;
+                    lastPeaceTime = entry.GameTime;
                     break;
                 }
             }
@@ -30,7 +30,7 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
             var hasEnoughTimeElapsed = lastPeaceTime == CampaignTime.Never || daysSinceLastWar > MinimumTimeFromLastWar;
             if (!hasEnoughTimeElapsed)
             {
-                textObject = new TextObject(TOO_SOON);
+                textObject = _TTooSoon.CopyTextObject();
                 textObject.SetTextVariable("ELAPSED_DAYS", (int)daysSinceLastWar);
                 textObject.SetTextVariable("REQUIRED_DAYS", (int)MinimumTimeFromLastWar);
             }

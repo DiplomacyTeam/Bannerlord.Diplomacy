@@ -14,6 +14,8 @@ namespace Diplomacy.DiplomaticAction.WarPeace
     internal sealed class KingdomPeaceAction
     {
 
+        private static readonly TextObject _TDefeatTitle = new("{=BXluvRnJ}Bitter Defeat");
+
         private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, DiplomacyCost diplomacyCost)
         {
             LogFactory.Get<KingdomPeaceAction>()
@@ -62,11 +64,44 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             }), true);
         }
 
-        public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, bool skipPlayerPrompts = false)
         {
-
             var diplomacyCost = DiplomacyCostCalculator.DetermineCostForMakingPeace(kingdomMakingPeace, otherKingdom, forcePlayerCharacterCosts);
-            if (!otherKingdom.Leader.IsHumanPlayerCharacter)
+            if (kingdomMakingPeace.Leader.IsHumanPlayerCharacter && !skipPlayerPrompts)
+            {
+                var hasFiefsRemaining = kingdomMakingPeace.Fiefs.Count > 0;
+                var strArgs = new Dictionary<string, object>() {
+                            { "DENARS", diplomacyCost.GoldCost.Value },
+                            { "INFLUENCE", diplomacyCost.InfluenceCost.Value },
+                            { "ENEMY_KINGDOM", otherKingdom.Name }
+                        };
+
+                if (hasFiefsRemaining)
+                {
+                    InformationManager.ShowInquiry(new InquiryData(
+                        _TDefeatTitle.ToString(),
+                        new TextObject("{=vLfbqXjq}Your armies and people are exhausted from the conflict with {ENEMY_KINGDOM} and have given up the fight. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence.", strArgs).ToString(),
+                        true,
+                        false,
+                        GameTexts.FindText("str_ok").ToString(),
+                        null,
+                        () => KingdomPeaceAction.ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts:true),
+                        null), true);
+                }
+                else
+                {
+                    InformationManager.ShowInquiry(new InquiryData(
+                    _TDefeatTitle.ToString(),
+                    new TextObject("{=ghZCj7hb}With your final stronghold falling to your enemies, you can no longer continue the fight with {ENEMY_KINGDOM}. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence.", strArgs).ToString(),
+                    true,
+                    false,
+                    GameTexts.FindText("str_ok").ToString(),
+                    null,
+                    () => KingdomPeaceAction.ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts: true),
+                    null), true);
+                }
+            }
+            else if (!otherKingdom.Leader.IsHumanPlayerCharacter)
             {
                 AcceptPeace(kingdomMakingPeace, otherKingdom, diplomacyCost);
             }

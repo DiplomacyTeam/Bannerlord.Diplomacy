@@ -15,13 +15,54 @@
     </Styles>
   </Brush>
 
-  <Brush Name="Diplomacy.Icon.Circle">
+  <Brush Name="Diplomacy.Icon.WarIcon">
     <Layers>
-      <BrushLayer Name="Default" Sprite="Nameplates\hover_ring" Color="#BC9142FF"/>
+      <BrushLayer Name="Default" Sprite="SPGeneral\MapOverlay\Encounter\WarIcon" />
+      <BrushLayer Name="Pre161" Sprite="MapOverlay\Encounter\WarIcon" />
     </Layers>
     <Styles>
       <Style Name="Default">
         <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Icon.Retreat">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="SPGeneral\GameMenu\retreat_icon" />
+      <BrushLayer Name="Pre161" Sprite="GameMenu\retreat_icon" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Icon.Gold">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="General\Icons\Coin@2x" />
+      <BrushLayer Name="Pre161" Sprite="Icons\Coin@2x" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Diplomacy.Icon.Circle">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="SPGeneral\Nameplates\hover_ring" Color="#BC9142FF"/>
+      <BrushLayer Name="Pre161" Sprite="Nameplates\hover_ring" Color="#BC9142FF"/>
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" />
+        <BrushLayer Name="Pre161" AlphaFactor="1" />
       </Style>
       <Style Name="Hovered">
         <BrushLayer Name="Default" ColorFactor="1.3" />

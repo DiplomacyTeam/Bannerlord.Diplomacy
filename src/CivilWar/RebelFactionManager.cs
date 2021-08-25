@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Diplomacy.CivilWar.Factions;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
@@ -9,11 +11,11 @@ namespace Diplomacy.CivilWar
     {
         public static RebelFactionManager? Instance { get; private set; }
 
-        [SaveableProperty(1)]
+        [SaveableProperty(1)] [UsedImplicitly]
         public Dictionary<Kingdom, List<RebelFaction>> RebelFactions { get; private set; }
-        [SaveableProperty(2)]
+        [SaveableProperty(2)] [UsedImplicitly]
         public List<Kingdom> DeadRebelKingdoms { get; private set; }
-        [SaveableProperty(3)]
+        [SaveableProperty(3)] [UsedImplicitly]
         public Dictionary<Kingdom, CampaignTime> LastCivilWar { get; private set; }
 
         public RebelFactionManager()
@@ -32,7 +34,6 @@ namespace Diplomacy.CivilWar
         public static void RegisterRebelFaction(RebelFaction rebelFaction)
         {
             Kingdom kingdom = rebelFaction.ParentKingdom;
-            Clan clan = rebelFaction.SponsorClan;
 
             if (Instance!.RebelFactions.TryGetValue(kingdom, out List<RebelFaction> rebelFactions))
             {
@@ -72,11 +73,6 @@ namespace Diplomacy.CivilWar
             Instance!.RebelFactions[rebelFaction.ParentKingdom].Remove(rebelFaction);
         }
 
-        public static bool HasRebelFaction(Kingdom kingdom)
-        {
-            return Instance!.RebelFactions.ContainsKey(kingdom);
-        }
-
         public static IEnumerable<RebelFaction> GetRebelFaction(Kingdom kingdom)
         {
             if (kingdom is null)
@@ -92,6 +88,11 @@ namespace Diplomacy.CivilWar
             {
                 return Enumerable.Empty<RebelFaction>();
             }
+        }
+
+        public static RebelFaction? GetRebelFactionForRebelKingdom(Kingdom rebelKingdom)
+        {
+            return AllRebelFactions.Values.SelectMany(x => x).FirstOrDefault(rf => rebelKingdom == rf.RebelKingdom);
         }
 
         public static IReadOnlyDictionary<Kingdom, List<RebelFaction>> AllRebelFactions => Instance!.RebelFactions;

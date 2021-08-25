@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.1.3</Version>
     <ModuleName>$(MSBuildProjectName)</ModuleName>
     <DisplayName>Diplomacy</DisplayName>
+    <AssemblyName>$(ModuleName).$(GameVersion)</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -14,65 +14,6 @@
     <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
     <RootNamespace>$(DisplayName)</RootNamespace>
   </PropertyGroup>
-
-  <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
-  <PropertyGroup>
-    <BuildResourcesVersion>1.0.0.33</BuildResourcesVersion>
-    <ButterLibVersion>1.0.24</ButterLibVersion>
-    <HarmonyVersion>2.0.4</HarmonyVersion>
-    <MCMVersion>4.3.10</MCMVersion>
-    <HarmonyExtensionsVersion>2.0.0.10</HarmonyExtensionsVersion>
-	  <UIExtenderExVersion>2.1.5</UIExtenderExVersion>
-    <BUTRSharedVersion>1.6.1.39</BUTRSharedVersion>
-  </PropertyGroup>
-
-  <!-- Game Versions for Stable and Beta -->
-  <PropertyGroup>
-    <GameVersion Condition="$(IsStable) == 'true'">1.5.10</GameVersion>
-    <GameVersion Condition="$(IsBeta) == 'true'">1.6.0</GameVersion>
-  </PropertyGroup>
-
-  <!-- Game Folder(s) -->
-  <PropertyGroup>
-    <!--
-    Bannerlord's Root Folder. Leave empty if you want to try autoresolution. Recommended setup is to set, as an
-    environment variable, BANNERLORD_GAME_DIR in the common case that you have only one game folder. If you have
-    separate game folders for the stable and beta versions of the game, likewise set BANNERLORD_STABLE_DIR and
-    BANNERLORD_BETA_DIR.
-    -->
-    <GameFolder Condition="$(IsStable) == 'true'">$(BANNERLORD_STABLE_DIR)</GameFolder>
-    <GameFolder Condition="$(IsBeta) == 'true'">$(BANNERLORD_BETA_DIR)</GameFolder>
-    <GameFolder Condition="$(GameFolder) == ''">$(BANNERLORD_GAME_DIR)</GameFolder>
-  </PropertyGroup>
-
-  <!-- Automatic Game Folder Resolution -->
-  <PropertyGroup>
-    <!--Windows-->
-    <!--Get from Registry (not working with dotnet right now)-->
-    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Windows_NT'">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261550@InstallLocation)</GameFolder>
-    <!--Set a default value if registry value is missing-->
-    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Windows_NT'">C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
-    <!--Unix-->
-    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Unix'">~/.steam/root/steamapps/common/Mount &amp; Blade II Bannerlord</GameFolder>
-  </PropertyGroup>
-
-  <!-- STABLE, BETA, and e.g., e157 / e158 Constants Defined in Code -->
-  <PropertyGroup>
-    <GameVersionConstant>e$([System.String]::Copy('$(GameVersion)').Replace('.',''))</GameVersionConstant>
-    <DefineConstants>$(DefineConstants);$(GameVersionConstant)</DefineConstants>
-  </PropertyGroup>
-  
-  <!-- Extra Substitution Variables to Use in SubModule.xml -->
-  <ItemGroup>
-    <SubModuleOverrides Include="DisplayName">
-      <Regex>\$displayname\$</Regex>
-      <Replacement>$(DisplayName)</Replacement>
-    </SubModuleOverrides>
-    <SubModuleOverrides Include="MCMVersion">
-      <Regex>\$mcmversion\$</Regex>
-      <Replacement>$(MCMVersion)</Replacement>
-    </SubModuleOverrides>
-  </ItemGroup>
   
   <!-- NuGet Packages -->
   <ItemGroup>
@@ -107,30 +48,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+
+    <PackageReference Include="Bannerlord.ReferenceAssemblies.Core.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
+    <PackageReference Include="Bannerlord.ReferenceAssemblies.Native.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
+    <PackageReference Include="Bannerlord.ReferenceAssemblies.StoryMode.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
+    <PackageReference Include="Bannerlord.ReferenceAssemblies.Sandbox.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
   </ItemGroup>
 
-  <!-- Directly-Referenced Game Assemblies -->
   <ItemGroup>
-    <Reference Include="$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.*.dll" Exclude="$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.Native.dll">
-      <HintPath>%(Identity)</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="$(GameFolder)\Modules\Native\bin\Win64_Shipping_Client\*.dll">
-      <HintPath>%(Identity)</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="$(GameFolder)\Modules\SandBox\bin\Win64_Shipping_Client\*.dll">
-      <HintPath>%(Identity)</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="$(GameFolder)\Modules\SandBoxCore\bin\Win64_Shipping_Client\*.dll">
-      <HintPath>%(Identity)</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="$(GameFolder)\Modules\StoryMode\bin\Win64_Shipping_Client\*.dll">
-      <HintPath>%(Identity)</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <ProjectReference Include="..\Bannerlord.Diplomacy.ImplementationLoader\Bannerlord.Diplomacy.ImplementationLoader.csproj" />
   </ItemGroup>
+  
 
 </Project>

@@ -11,7 +11,7 @@ namespace Diplomacy.DiplomaticAction.GenericConditions
             var atWar = FactionManager.IsAtWarAgainstFaction(kingdom, otherKingdom);
             if (atWar)
             {
-                textObject = new TextObject(StringConstants.AT_WAR);
+                textObject = new TextObject(StringConstants.AtWar);
             }
             return !atWar;
         }

@@ -1,4 +1,4 @@
-﻿namespace Diplomacy
+﻿namespace Diplomacy.Costs
 {
     abstract class DiplomacyCost
     {

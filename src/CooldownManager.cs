@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 
 namespace Diplomacy
@@ -15,13 +14,13 @@ namespace Diplomacy
         internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime => Instance!._lastPeaceProposalTime;
         internal static Dictionary<string, CampaignTime> LastAllianceFormedTime => Instance!._lastAllianceFormedTime;
 
-        [SaveableField(1)]
+        [SaveableField(1)] [UsedImplicitly]
         private Dictionary<string, CampaignTime> _lastWarTime;
 
-        [SaveableField(2)]
+        [SaveableField(2)] [UsedImplicitly]
         private Dictionary<Kingdom, CampaignTime> _lastPeaceProposalTime;
 
-        [SaveableField(3)]
+        [SaveableField(3)] [UsedImplicitly]
         private Dictionary<string, CampaignTime> _lastAllianceFormedTime;
 
         private static float MinimumDaysBetweenPeaceProposals => 5f;
@@ -67,24 +66,6 @@ namespace Diplomacy
             return string.Join("+", keyArguments);
         }
 
-        private static bool DecodeKeyToKingdoms(string key, out Tuple<Kingdom, Kingdom>? kingdoms)
-        {
-            var factionStringIds = key.Split('+');
-            Kingdom faction1 = MBObjectManager.Instance.GetObject<Kingdom>(factionStringIds[0]);
-            Kingdom faction2 = MBObjectManager.Instance.GetObject<Kingdom>(factionStringIds[1]);
-
-            if (faction1 is not null && faction2 is not null)
-            {
-                kingdoms = Tuple.Create(faction1, faction2);
-                return true;
-            }
-            else
-            {
-                kingdoms = default;
-                return false;
-            }
-        }
-
         public static CampaignTime GetLastWarTimeBetweenFactions(IFaction faction1, IFaction faction2)
         {
             if (LastWarTime.TryGetValue(CreateKey(faction1, faction2), out var value))
@@ -117,12 +98,6 @@ namespace Diplomacy
             return GetLastPeaceProposalTime(kingdom) != CampaignTime.Zero && GetLastPeaceProposalTime(kingdom).ElapsedDaysUntilNow < MinimumDaysBetweenPeaceProposals;
         }
 
-        public static bool HasPeaceProposalCooldown(Kingdom kingdomProposingPeace, Kingdom otherKingdom)
-        {
-            return (!HasExceededMinimumWarDuration(kingdomProposingPeace, otherKingdom, out var elapsedTime)
-                || (otherKingdom.Leader.IsHumanPlayerCharacter && HasPeaceProposalCooldownWithPlayerKingdom(kingdomProposingPeace)));
-        }
-
         public static bool HasExceededMinimumWarDuration(IFaction faction1, IFaction faction2, out float elapsedTime)
         {
             elapsedTime = -1f;
@@ -134,11 +109,6 @@ namespace Diplomacy
                 return elapsedTime >= minimumWarDurationInDays;
             }
             return true;
-        }
-
-        public static CampaignTime GetLastWarTimeWithPlayerFaction(IFaction faction)
-        {
-            return GetLastWarTimeBetweenFactions(faction, Hero.MainHero.MapFaction);
         }
 
         public static CampaignTime GetLastPeaceProposalTime(Kingdom kingdom)

@@ -1,19 +1,17 @@
-﻿using Diplomacy.ViewModel;
-using System;
+﻿using System;
+using Diplomacy.ViewModel;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.InputSystem;
-using TaleWorlds.Library;
 
 namespace Diplomacy.GauntletInterfaces
 {
     internal sealed class GrantFiefInterface : GenericInterface
     {
-        private const string _movieName = "GrantFief";
-        Action? _refreshAction;
+        private Action? _refreshAction;
 
-        protected override string MovieName => _movieName;
+        protected override string MovieName => "GrantFief";
 
         public void ShowFiefInterface(ScreenBase screenBase, Hero hero, Action refreshAction)
         {
@@ -46,6 +44,5 @@ namespace Diplomacy.GauntletInterfaces
             base.OnFinalize();
             _refreshAction!();
         }
-
     }
 }

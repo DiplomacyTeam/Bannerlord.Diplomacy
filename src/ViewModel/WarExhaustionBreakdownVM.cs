@@ -1,5 +1,4 @@
-﻿using System;
-using TaleWorlds.Library;
+﻿using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using static Diplomacy.WarExhaustionManager;
 
@@ -7,23 +6,18 @@ namespace Diplomacy.ViewModel
 {
     internal class WarExhaustionBreakdownVM : TaleWorlds.Library.ViewModel
     {
-        WarExhaustionBreakdown _breakdown;
+        [DataSourceProperty] public string Text { get; set; }
 
-        [DataSourceProperty]
-        public string Text { get; set; }
-        [DataSourceProperty]
-        public int ValueFaction1 { get; set; }
-        [DataSourceProperty]
-        public int ValueFaction2 { get; set; }
-        [DataSourceProperty]
-        public string WarExhaustionValueFaction1 { get; set; }
-        [DataSourceProperty]
-        public string WarExhaustionValueFaction2 { get; set; }
+        [DataSourceProperty] public int ValueFaction1 { get; set; }
+
+        [DataSourceProperty] public int ValueFaction2 { get; set; }
+
+        [DataSourceProperty] public string WarExhaustionValueFaction1 { get; set; }
+
+        [DataSourceProperty] public string WarExhaustionValueFaction2 { get; set; }
 
         public WarExhaustionBreakdownVM(WarExhaustionBreakdown breakdown)
         {
-            _breakdown = breakdown;
-
             switch (breakdown.Type)
             {
                 case WarExhaustionType.Casualty:

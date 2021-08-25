@@ -16,7 +16,7 @@ namespace Diplomacy.DiplomaticAction.GenericConditions
             var alreadyInAlliance = FactionManager.IsAlliedWithFaction(kingdom, otherKingdom);
 
             if (alreadyInAlliance)
-                textObject = new TextObject(StringConstants.IN_ALLIANCE);
+                textObject = new TextObject(StringConstants.InAlliance);
             
             return !alreadyInAlliance;
         }

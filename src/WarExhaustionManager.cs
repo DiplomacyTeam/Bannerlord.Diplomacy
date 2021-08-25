@@ -10,6 +10,7 @@ namespace Diplomacy
 {
     internal sealed class WarExhaustionManager
     {
+
         // new war exhaustion dictionary using Id
         [SaveableField(1)] private Dictionary<string, float> _warExhaustionById;
 
@@ -17,9 +18,13 @@ namespace Diplomacy
 
         public static WarExhaustionManager Instance { get; private set; } = default!;
 
-        internal static float MaxWarExhaustion => 100f;
+        private const float MaxWarExhaustion = 100f;
+        private const float MinWarExhaustion = 0f;
+        private const float CriticalThresholdWarExhaustion = 0.75f;
 
-        internal static float MinWarExhaustion => 0f;
+        private const float BaseKingdomStrengthForExhaustionRate = 2000f;
+        private const float MinExhaustionRate = 0.25f;
+        private const float MaxExhaustionRate = 1.0f;
 
         internal WarExhaustionManager()
         {
@@ -53,7 +58,7 @@ namespace Diplomacy
         internal void RegisterWarExhaustionMultiplier(Kingdom kingdom1, Kingdom kingdom2)
         {
             var average = (kingdom1.TotalStrength + kingdom2.TotalStrength) / 2;
-            var multiplier = MBMath.ClampFloat(1000f / average, 0.25f, 1.0f);
+            var multiplier = MBMath.ClampFloat(BaseKingdomStrengthForExhaustionRate / average, MinExhaustionRate, MaxExhaustionRate);
 
             var key = CreateKey(kingdom1, kingdom2);
             var key2 = CreateKey(kingdom2, kingdom1);
@@ -62,6 +67,11 @@ namespace Diplomacy
                 _warExhaustionMultiplier![key!] = multiplier;
                 _warExhaustionMultiplier![key2!] = multiplier;
             }
+        }
+
+        public bool IsCriticalWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            return GetWarExhaustion(kingdom1, kingdom2) / MaxWarExhaustion >= CriticalThresholdWarExhaustion;
         }
 
         private static bool KingdomsAreValid(Kingdom? kingdom1, Kingdom? kingdom2)

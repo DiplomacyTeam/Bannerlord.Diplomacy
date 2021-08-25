@@ -1,11 +1,12 @@
-﻿using Diplomacy.Extensions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
+using Diplomacy.Extensions;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.CivilWar
+namespace Diplomacy.CivilWar.Actions
 {
     public class JoinFactionAction
     {
@@ -25,7 +26,7 @@ namespace Diplomacy.CivilWar
         public static bool CanApply(Clan clan, RebelFaction rebelFaction, out TextObject? reason)
         {
             IEnumerable<TextObject> exceptions;
-            reason = (exceptions = CanApply(clan, rebelFaction)).Any() ? exceptions.First() : default;
+            reason = (exceptions = CanApply(clan, rebelFaction)).FirstOrDefault();
 
             return !exceptions.Any();
         }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Diplomacy.CivilWar.Factions;
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Extensions
@@ -31,11 +32,6 @@ namespace Diplomacy.Extensions
             }
             var stanceLink = faction1.GetStanceWith(faction2);
             return stanceLink.IsAllied;
-        }
-
-        public static IEnumerable<Kingdom> GetEnemyKingdoms(this Kingdom kingdom)
-        {
-            return FactionManager.GetEnemyKingdoms(kingdom);
         }
 
         public static IEnumerable<Kingdom> GetAlliedKingdoms(this Kingdom kingdom)
@@ -77,7 +73,7 @@ namespace Diplomacy.Extensions
             float medianStrength;
             var kingdomStrengths = Kingdom.All.Select(curKingdom => curKingdom.TotalStrength).OrderBy(a => a).ToArray();
 
-            var halfIndex = kingdomStrengths.Count() / 2;
+            var halfIndex = kingdomStrengths.Length / 2;
 
             if ((kingdomStrengths.Length % 2) == 0)
             {
@@ -92,7 +88,7 @@ namespace Diplomacy.Extensions
 
         public static bool IsRebelKingdom(this Kingdom kingdom)
         {
-            return RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Select(rf => rf.RebelKingdom).Any(rk => rk == kingdom) || RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom);
+            return RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Any(rf => kingdom == rf.RebelKingdom) || RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom);
         }
 
         public static bool HasRebellion(this Kingdom kingdom)

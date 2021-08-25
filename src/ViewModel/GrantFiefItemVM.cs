@@ -1,5 +1,6 @@
 ﻿using Diplomacy.GrantFief;
 using System;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
@@ -33,11 +34,13 @@ namespace Diplomacy.ViewModel
             RelationBonus = string.Concat(new[] { GrantFiefAction.PreviewPositiveRelationChange(Settlement, targetHero).ToString(), "+" });
         }
 
+        [UsedImplicitly]
         public void ExecuteLink()
         {
             Campaign.Current.EncyclopediaManager.GoToLink(Settlement.EncyclopediaLink);
         }
 
+        [UsedImplicitly]
         public void OnSelect()
         {
             _onSelect(this);

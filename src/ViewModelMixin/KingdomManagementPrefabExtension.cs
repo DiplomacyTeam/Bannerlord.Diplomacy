@@ -2,10 +2,12 @@
 using Bannerlord.UIExtenderEx.Prefabs2;
 using System.Collections.Generic;
 using System.Xml;
+using JetBrains.Annotations;
 
-namespace Diplomacy.ViewModelMixins
+namespace Diplomacy.ViewModelMixin
 {
     [PrefabExtension("KingdomManagement", "descendant::ButtonWidget[@Id='FiefsTabButton']")]
+    [UsedImplicitly]
     internal sealed class KingdomManagementPrefabExtension : PrefabExtensionInsertPatch
     {
         public override InsertType Type => InsertType.Append;
@@ -25,10 +27,12 @@ namespace Diplomacy.ViewModelMixins
         }
 
         [PrefabExtensionXmlDocument]
+        [UsedImplicitly]
         public XmlDocument GetPrefabExtension() => _document;
     }
 
     [PrefabExtension("KingdomManagement", "descendant::Constant[@Name='Header.Tab.Center.Width.Scaled']")]
+    [UsedImplicitly]
     internal sealed class KingdomManagementScalingPatch : PrefabExtensionSetAttributePatch
     {
         public override List<Attribute> Attributes => new()

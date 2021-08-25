@@ -1,8 +1,7 @@
-﻿
-using Diplomacy.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Diplomacy.Extensions;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
@@ -10,8 +9,7 @@ namespace Diplomacy
 {
     internal sealed class ExpansionismManager
     {
-        [SaveableField(1)]
-        private Dictionary<IFaction, float> _expansionism;
+        [SaveableField(1)] [UsedImplicitly] private Dictionary<IFaction, float> _expansionism;
 
         public static ExpansionismManager? Instance { get; private set; }
         public float SiegeExpansionism => Settings.Instance!.ExpanisonismPerSiege;
@@ -19,16 +17,16 @@ namespace Diplomacy
         public float MinimumExpansionismPerFief => Settings.Instance!.MinimumExpansionismPerFief;
         public float CriticalExpansionism => Settings.Instance!.CriticalExpansionism;
 
-
-        public float GetMinimumExpansionism(Kingdom kingdom)
-        {
-            return kingdom.Fiefs.Count() * MinimumExpansionismPerFief;
-        }
-
         public ExpansionismManager()
         {
             _expansionism = new Dictionary<IFaction, float>();
             Instance = this;
+        }
+
+
+        public float GetMinimumExpansionism(Kingdom kingdom)
+        {
+            return kingdom.Fiefs.Count * MinimumExpansionismPerFief;
         }
 
         public float GetExpansionism(IFaction faction)
@@ -50,14 +48,9 @@ namespace Diplomacy
         public void ApplyExpansionismDecay(IFaction faction)
         {
             if (_expansionism.TryGetValue(faction, out var value))
-            {
-                var minimumExpansionism = faction.IsKingdomFaction ? (faction as Kingdom)!.GetMinimumExpansionism() : default;
                 _expansionism[faction] = Math.Max(value - ExpansionismDecayPerDay, GetMinimumExpansionism(faction));
-            }
             else
-            {
                 _expansionism[faction] = GetMinimumExpansionism(faction);
-            }
         }
 
         internal void Sync()

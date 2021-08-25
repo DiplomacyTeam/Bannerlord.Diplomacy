@@ -1,7 +1,9 @@
-﻿using TaleWorlds.GauntletUI;
+﻿using JetBrains.Annotations;
+using TaleWorlds.GauntletUI;
 
 namespace Diplomacy.Widgets
 {
+    [UsedImplicitly]
     public class HoveredBrushWidget : BrushWidget
     {
         public HoveredBrushWidget(UIContext context) : base(context)

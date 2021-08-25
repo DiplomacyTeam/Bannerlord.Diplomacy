@@ -1,7 +1,9 @@
-﻿using Diplomacy.Event;
+﻿using Diplomacy.Costs;
+using Diplomacy.Event;
 using Diplomacy.GauntletInterfaces;
 using Diplomacy.GrantFief;
 using Diplomacy.Messengers;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 using TaleWorlds.Engine.Screens;
@@ -32,7 +34,7 @@ namespace Diplomacy.ViewModel
             RefreshValues();
         }
 
-        public override void RefreshValues()
+        public sealed override void RefreshValues()
         {
             base.RefreshValues();
             
@@ -51,17 +53,20 @@ namespace Diplomacy.ViewModel
             UpdateIsMessengerAvailable();
         }
 
+        [UsedImplicitly]
         protected void SendMessenger()
         {
             Events.Instance.OnMessengerSent(_hero);
             RefreshValues();
         }
 
+        [UsedImplicitly]
         private void ExecuteLink(string link)
         {
             Campaign.Current.EncyclopediaManager.GoToLink(link);
         }
 
+        [UsedImplicitly]
         private void GrantFief()
         {
             _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, _hero, RefreshValues);

@@ -1,19 +1,15 @@
-﻿
-using Diplomacy.ViewModel;
+﻿using Diplomacy.ViewModel;
+using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.InputSystem;
-using TaleWorlds.Library;
-
 
 namespace Diplomacy.GauntletInterfaces
 {
-    class DetailWarViewInterface : GenericInterface
+    internal class DetailWarViewInterface : GenericInterface
     {
-        private const string _movieName = "DetailWarView";
-
-        protected override string MovieName => _movieName;
+        protected override string MovieName => "DetailWarView";
 
         public void ShowInterface(ScreenBase screenBase, Kingdom opposingKingdom)
         {
@@ -35,6 +31,7 @@ namespace Diplomacy.GauntletInterfaces
             _movie = LoadMovie();
         }
 
+        [UsedImplicitly]
         protected override void OnFinalize()
         {
             base.OnFinalize();

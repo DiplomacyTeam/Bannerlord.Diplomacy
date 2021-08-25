@@ -123,7 +123,7 @@ namespace Diplomacy.DiplomaticAction.Usurp
             var kingdom = usurpingClan.Kingdom;
             var rulingClan = usurpingClan.Kingdom.RulingClan;
 
-            var validClans = kingdom.Clans.Except(new[] { usurpingClan, rulingClan });
+            var validClans = kingdom.Clans.Except(new[] { usurpingClan, rulingClan }).ToList();
 
             supportingClans = validClans.Where(clan => usurpingClan.Leader.GetRelation(clan.Leader) > rulingClan.Leader.GetRelation(clan.Leader)).ToList();
             opposingClans = validClans.Except(supportingClans).ToList();

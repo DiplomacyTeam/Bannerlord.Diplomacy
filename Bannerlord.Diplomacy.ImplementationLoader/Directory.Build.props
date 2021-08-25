@@ -1,0 +1,6 @@
+﻿<!--EXTERNAL_PROPERTIES: MSBuildThisFileDirectory-->
+<Project>
+
+  <Import Project="$(MSBuildThisFileDirectory)/../build/*.props" />
+
+</Project>

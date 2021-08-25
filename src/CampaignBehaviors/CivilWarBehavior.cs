@@ -6,6 +6,7 @@ using Diplomacy.CivilWar;
 using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
+using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Extensions;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
@@ -20,10 +21,7 @@ namespace Diplomacy.CampaignBehaviors
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, DailyTickClan);
-            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, y, z, a, b) => RemoveClanFromRebelFaction(x, y, z));
-#if e159
-            CampaignEvents.MercenaryClanChangedKingdom.AddNonSerializedListener(this, RemoveClanFromRebelFaction);
-#endif
+            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, y, z, _, _) => RemoveClanFromRebelFaction(x, y, z));
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ResolveCivilWar);
             CampaignEvents.KingdomDecisionConcluded.AddNonSerializedListener(this, NewKing);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
@@ -42,6 +40,21 @@ namespace Diplomacy.CampaignBehaviors
                 if (rebelFaction.AtWar)
                     continue;
                 RebelFactionManager.DestroyRebelFaction(rebelFaction);
+            }
+
+            // if war exhaustion is disabled, stop civil wars when the last rebel settlement is taken
+            if (!Settings.Instance!.EnableWarExhaustion)
+            {
+                foreach (var kingdom in Kingdom.All.Where(x => (x.IsRebelKingdom() || x.HasRebellion()) && x.Fiefs.IsEmpty()).ToList())
+                {
+                    var rebelFaction = RebelFactionManager.GetRebelFactionForRebelKingdom(kingdom) ?? kingdom.GetRebelFactions().FirstOrDefault();
+
+                    if (rebelFaction != null)
+                    {
+                        Kingdom otherKingdom = kingdom.IsRebelKingdom() ? rebelFaction.ParentKingdom : rebelFaction.RebelKingdom!;
+                        KingdomPeaceAction.ApplyPeace(kingdom, otherKingdom);
+                    }
+                }
             }
         }
 

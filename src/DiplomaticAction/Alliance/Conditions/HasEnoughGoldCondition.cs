@@ -1,11 +1,12 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using Diplomacy.Costs;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.Alliance.Conditions
 {
     class HasEnoughGoldCondition : AbstractCostCondition
     {
-        protected override TextObject FailedConditionText => new(StringConstants.NOT_ENOUGH_GOLD);
+        protected override TextObject FailedConditionText => new(StringConstants.NotEnoughGold);
 
         protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject? textObject, bool forcePlayerCharacterCosts = false)
         {

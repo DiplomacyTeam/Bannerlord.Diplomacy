@@ -18,7 +18,7 @@ namespace Diplomacy.CivilWar.Scoring
 
         protected override List<RebelFaction> GetPossibleFactions(Clan clan)
         {
-            return new List<RebelFaction>() { new SecessionFaction(clan) };
+            return new() { new SecessionFaction(clan) };
         }
 
         protected override IEnumerable<Tuple<TextObject, float>> GetMemberScore(Clan clan, RebelFaction rebelFaction)

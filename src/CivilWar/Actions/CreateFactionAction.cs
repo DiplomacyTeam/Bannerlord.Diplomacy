@@ -1,13 +1,14 @@
-﻿using Diplomacy.Costs;
-using Diplomacy.Extensions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
+using Diplomacy.Costs;
+using Diplomacy.Extensions;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.CivilWar
+namespace Diplomacy.CivilWar.Actions
 {
     public class CreateFactionAction
     {
@@ -54,7 +55,7 @@ namespace Diplomacy.CivilWar
         public static bool CanApply(Clan clan, RebelDemandType? demandType, out TextObject? reason)
         {
             IEnumerable<TextObject> exceptions;
-            reason = (exceptions = CanApply(clan, demandType)).Any() ? exceptions.First() : default;
+            reason = (exceptions = CanApply(clan, demandType)).FirstOrDefault();
 
             return !exceptions.Any();
         }
@@ -129,7 +130,7 @@ namespace Diplomacy.CivilWar
 
             if (!new InfluenceCost(clan, Settings.Instance!.FactionCreationInfluenceCost).CanPayCost())
             {
-                yield return new TextObject(StringConstants.NOT_ENOUGH_INFLUENCE);
+                yield return new TextObject(StringConstants.NotEnoughInfluence);
             }
         }
     }
