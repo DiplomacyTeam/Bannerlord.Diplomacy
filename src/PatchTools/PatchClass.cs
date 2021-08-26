@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Diplomacy.PatchTools
 {
@@ -25,13 +26,21 @@ namespace Diplomacy.PatchTools
         {
             private readonly HarmonyPatchType _type;
             private readonly Reflect.Method _patchMethod;
-            private readonly Reflect.Method _targetMethod;
+            private readonly MethodBase _targetMethod;
             private readonly int _priority;
 
             protected Patch(HarmonyPatchType type,
-                            Reflect.Method patchMethod,
-                            Reflect.Method targetMethod,
-                            int priority)
+                Reflect.Method patchMethod,
+                Reflect.Method targetMethod,
+                int priority) : this(type, patchMethod, targetMethod.MethodInfo, priority)
+            {
+            }
+
+            protected Patch(
+                HarmonyPatchType type,
+                Reflect.Method patchMethod,
+                MethodBase targetMethod,
+                int priority)
             {
                 _type = type;
                 _patchMethod = patchMethod;
@@ -43,7 +52,7 @@ namespace Diplomacy.PatchTools
             {
                 var harmonyMethod = new HarmonyMethod(_patchMethod.MethodInfo, _priority);
 
-                var newMethod = harmony.Patch(_targetMethod.MethodInfo,
+                var newMethod = harmony.Patch(_targetMethod,
                                               _type == HarmonyPatchType.Prefix ? harmonyMethod : null,
                                               _type == HarmonyPatchType.Postfix ? harmonyMethod : null,
                                               _type == HarmonyPatchType.Transpiler ? harmonyMethod : null,
@@ -54,7 +63,7 @@ namespace Diplomacy.PatchTools
             }
 
             public override string ToString() => $"{Enum.GetName(typeof(HarmonyPatchType), _type)} patch of "
-                                               + $"{_targetMethod.PrettyName} in type {_targetMethod.Type.Name} ({_targetMethod.Type.FullName})";
+                                               + $"{_targetMethod.Name} in type {_targetMethod.DeclaringType.Name} ({_targetMethod.DeclaringType.FullName})";
 
             private sealed class PatchCreationException : Exception
             {
@@ -80,7 +89,7 @@ namespace Diplomacy.PatchTools
                 : base(HarmonyPatchType.Prefix, new(typeof(TPatch), patchMethodName), targetMethod, priority) { }
 
             public Prefix(string patchMethodName, Type targetType, string targetMethodName, int priority = -1)
-                : base(HarmonyPatchType.Prefix, new(typeof(TPatch), patchMethodName), new(targetType, targetMethodName), priority) { }
+                : base(HarmonyPatchType.Prefix, new(typeof(TPatch), patchMethodName), new Reflect.Method(targetType, targetMethodName), priority) { }
         }
 
         protected sealed class Postfix : Patch
@@ -89,7 +98,7 @@ namespace Diplomacy.PatchTools
                 : base(HarmonyPatchType.Postfix, new(typeof(TPatch), patchMethodName), targetMethod, priority) { }
 
             public Postfix(string patchMethodName, Type targetType, string targetMethodName, int priority = -1)
-                : base(HarmonyPatchType.Postfix, new(typeof(TPatch), patchMethodName), new(targetType, targetMethodName), priority) { }
+                : base(HarmonyPatchType.Postfix, new(typeof(TPatch), patchMethodName), new Reflect.Method(targetType, targetMethodName), priority) { }
         }
 
         protected sealed class Transpiler : Patch
@@ -98,7 +107,7 @@ namespace Diplomacy.PatchTools
                 : base(HarmonyPatchType.Transpiler, new(typeof(TPatch), patchMethodName), targetMethod, priority) { }
 
             public Transpiler(string patchMethodName, Type targetType, string targetMethodName, int priority = -1)
-                : base(HarmonyPatchType.Transpiler, new(typeof(TPatch), patchMethodName), new(targetType, targetMethodName), priority) { }
+                : base(HarmonyPatchType.Transpiler, new(typeof(TPatch), patchMethodName), new Reflect.Method(targetType, targetMethodName), priority) { }
         }
 
         protected sealed class Finalizer : Patch
@@ -107,7 +116,7 @@ namespace Diplomacy.PatchTools
                 : base(HarmonyPatchType.Finalizer, new(typeof(TPatch), patchMethodName), targetMethod, priority) { }
 
             public Finalizer(string patchMethodName, Type targetType, string targetMethodName, int priority = -1)
-                : base(HarmonyPatchType.Finalizer, new(typeof(TPatch), patchMethodName), new(targetType, targetMethodName), priority) { }
+                : base(HarmonyPatchType.Finalizer, new(typeof(TPatch), patchMethodName), new Reflect.Method(targetType, targetMethodName), priority) { }
         }
     }
 
@@ -130,7 +139,7 @@ namespace Diplomacy.PatchTools
                 : base(HarmonyPatchType.Prefix, new(typeof(TPatch), patchMethodName), targetMethod, priority) { }
 
             public Prefix(string patchMethodName, string targetMethodName, int priority = -1)
-                : base(HarmonyPatchType.Prefix, new(typeof(TPatch), patchMethodName), new(typeof(TTarget), targetMethodName), priority) { }
+                : base(HarmonyPatchType.Prefix, new(typeof(TPatch), patchMethodName), new Reflect.Method(typeof(TTarget), targetMethodName), priority) { }
         }
 
         protected new sealed class Postfix : Patch
@@ -139,7 +148,10 @@ namespace Diplomacy.PatchTools
                 : base(HarmonyPatchType.Postfix, new(typeof(TPatch), patchMethodName), targetMethod, priority) { }
 
             public Postfix(string patchMethodName, string targetMethodName, int priority = -1)
-                : base(HarmonyPatchType.Postfix, new(typeof(TPatch), patchMethodName), new(typeof(TTarget), targetMethodName), priority) { }
+                : base(HarmonyPatchType.Postfix, new(typeof(TPatch), patchMethodName), new Reflect.Method(typeof(TTarget), targetMethodName), priority) { }
+
+            public Postfix(string patchMethodName, MethodBase targetMethod, int priority = -1)
+                : base(HarmonyPatchType.Postfix, new(typeof(TPatch), patchMethodName), targetMethod, priority) { }
         }
 
         protected new sealed class Transpiler : Patch
@@ -148,7 +160,7 @@ namespace Diplomacy.PatchTools
                 : base(HarmonyPatchType.Transpiler, new(typeof(TPatch), patchMethodName), targetMethod, priority) { }
 
             public Transpiler(string patchMethodName, string targetMethodName, int priority = -1)
-                : base(HarmonyPatchType.Transpiler, new(typeof(TPatch), patchMethodName), new(typeof(TTarget), targetMethodName), priority) { }
+                : base(HarmonyPatchType.Transpiler, new(typeof(TPatch), patchMethodName), new Reflect.Method(typeof(TTarget), targetMethodName), priority) { }
         }
 
         protected new sealed class Finalizer : Patch
@@ -157,7 +169,7 @@ namespace Diplomacy.PatchTools
                 : base(HarmonyPatchType.Finalizer, new(typeof(TPatch), patchMethodName), targetMethod, priority) { }
 
             public Finalizer(string patchMethodName, string targetMethodName, int priority = -1)
-                : base(HarmonyPatchType.Finalizer, new(typeof(TPatch), patchMethodName), new(typeof(TTarget), targetMethodName), priority) { }
+                : base(HarmonyPatchType.Finalizer, new(typeof(TPatch), patchMethodName), new Reflect.Method(typeof(TTarget), targetMethodName), priority) { }
         }
     }
 }
