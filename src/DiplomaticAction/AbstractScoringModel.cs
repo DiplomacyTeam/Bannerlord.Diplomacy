@@ -71,7 +71,7 @@ namespace Diplomacy.DiplomaticAction
                          && FactionManager.IsAlliedWithFaction(ourKingdom, k));
 
             foreach (var mutualAlly in mutualAllies)
-                explainedNum.Add(Scores.ExistingAllianceWithAlly, CreateTextWithKingdom(SAlliedToNeutral, mutualAlly));
+                explainedNum.Add(Scores.ExistingAllianceWithAlly, CreateTextWithKingdom(SAlliedToAlly, mutualAlly));
 
             /// Their Pacts with Enemies
 
@@ -105,7 +105,7 @@ namespace Diplomacy.DiplomaticAction
                          && FactionManager.IsAlliedWithFaction(ourKingdom, k));
 
             foreach (var pactAlly in pactAllies)
-                explainedNum.Add(Scores.NonAggressionPactWithAlly, CreateTextWithKingdom(SPactWithNeutral, pactAlly));
+                explainedNum.Add(Scores.NonAggressionPactWithAlly, CreateTextWithKingdom(SPactWithAlly, pactAlly));
 
             // Relationship
 
@@ -170,8 +170,10 @@ namespace Diplomacy.DiplomaticAction
         private const string SCommonEnemy = SWarWithKingdom;
         private const string SAlliedToEnemy = SAllianceWithKingdom;
         private const string SAlliedToNeutral = SAllianceWithKingdom;
+        private const string SAlliedToAlly = SAllianceWithKingdom;
 
         private const string SPactWithEnemy = SPactWithKingdom;
         private const string SPactWithNeutral = SPactWithKingdom;
+        private const string SPactWithAlly = SPactWithKingdom;
     }
 }
