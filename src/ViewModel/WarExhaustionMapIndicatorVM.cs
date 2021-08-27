@@ -66,6 +66,14 @@ namespace Diplomacy.ViewModel
             Events.WarExhaustionAdded.ClearListeners(this);
         }
 
+        public void UpdateBanners()
+        {
+            foreach (var warExhaustionMapIndicatorItemVM in KingdomsAtWar)
+            {
+                warExhaustionMapIndicatorItemVM.RefreshValues();
+            }
+        }
+
         public override void RefreshValues()
         {
             KingdomsAtWar.Clear();

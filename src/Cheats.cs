@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Diplomacy.CivilWar.Actions;
 using Diplomacy.DiplomaticAction.Alliance;
+using Diplomacy.Extensions;
 using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
@@ -93,6 +95,32 @@ namespace Diplomacy
 
             WarExhaustionManager.Instance.AddCasualtyWarExhaustion(kingdom1, kingdom2, (int)toAdd);
             return "done!";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("change_kingdom_banner_color", "diplomacy")]
+        [UsedImplicitly]
+        public static string ChangeKingdomBannerColor(List<string> strings)
+        {
+            if (!CampaignCheats.CheckParameters(strings, 1) || CampaignCheats.CheckHelp(strings))
+                return "Format uses 1 kingdom ID parameters without spaces: change_kingdom_banner_color [Kingdom1]";
+
+            var b1 = strings[0].ToLower();
+
+            Kingdom? kingdom1 = null;
+
+            foreach (var k in Kingdom.All)
+            {
+                var id = k.Name.ToString().ToLower().Replace(" ", "");
+
+                if (id == b1)
+                    kingdom1 = k;
+            }
+
+            if (kingdom1 is null)
+                return "Could not find required kingdom!";
+
+            ChangeKingdomBannerAction.Apply(kingdom1, kingdom1.IsRebelKingdom());
+            return $"Banner color changed for {kingdom1.Name}!";
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("toggle_debug_mode", "diplomacy")]

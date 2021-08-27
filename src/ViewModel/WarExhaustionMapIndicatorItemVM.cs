@@ -13,6 +13,8 @@ namespace Diplomacy.ViewModel
         private bool _isCriticalFaction1;
         private bool _isCriticalFaction2;
         private int _playerWarExhaustion, _opponentWarExhaustion;
+        private ImageIdentifierVM _faction1Visual = null!;
+        private ImageIdentifierVM _faction2Visual = null!;
 
         [DataSourceProperty]
         public int OpponentWarExhaustion
@@ -42,9 +44,19 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        [DataSourceProperty] public ImageIdentifierVM Faction1Visual { get; set; } = null!;
+        [DataSourceProperty]
+        public ImageIdentifierVM Faction1Visual
+        {
+            get => _faction1Visual;
+            set { _faction1Visual = value; OnPropertyChanged(nameof(Faction1Visual)); }
+        }
 
-        [DataSourceProperty] public ImageIdentifierVM Faction2Visual { get; set; } = null!;
+        [DataSourceProperty]
+        public ImageIdentifierVM Faction2Visual
+        {
+            get => _faction2Visual;
+            set { _faction2Visual = value; OnPropertyChanged(nameof(Faction2Visual));}
+        }
 
         [DataSourceProperty]
         public bool IsCriticalFaction1
