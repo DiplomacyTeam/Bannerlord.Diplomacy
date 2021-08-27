@@ -29,7 +29,7 @@ namespace Diplomacy.Views
             Layer = new GauntletLayer(100);
             _layerAsGauntletLayer = (Layer as GauntletLayer)!;
             _layerAsGauntletLayer!.LoadMovie("WarExhaustionMapIndicator", _dataSource);
-            Layer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.MouseButtons | InputUsageMask.Keyboardkeys);
+            Layer.InputRestrictions.SetInputRestrictions(false, InputUsageMask.MouseButtons | InputUsageMask.Keyboardkeys);
             MapScreen.AddLayer(Layer);
         }
     }
