@@ -86,8 +86,10 @@ namespace Diplomacy.CampaignBehaviors
                 {
                     var rebelKingdom = kingdom1.IsRebelKingdom() ? kingdom1 : kingdom2;
                     var parentKingdom = kingdom1.IsRebelKingdom() ? kingdom2 : kingdom1;
-                    var rebelFaction = RebelFactionManager.GetRebelFaction(parentKingdom).First(x => x.RebelKingdom == rebelKingdom);
+                    var rebelFaction = RebelFactionManager.GetRebelFaction(parentKingdom).FirstOrDefault(x => x.RebelKingdom == rebelKingdom);
 
+                    if (rebelFaction is null)
+                        return;
                     if (loser == rebelKingdom)
                         rebelFaction.EnforceFailure();
                     else
