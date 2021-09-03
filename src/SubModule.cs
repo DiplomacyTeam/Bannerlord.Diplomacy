@@ -99,6 +99,7 @@ namespace Diplomacy
                 gameStarter.AddBehavior(new ExpansionismBehavior());
                 gameStarter.AddBehavior(new CivilWarBehavior());
                 gameStarter.AddBehavior(new UIBehavior());
+                gameStarter.AddBehavior(new FactionConversationsCampaignBehavior());
                 LoadGameTexts(gameStarter);
                 Log.LogDebug("Campaign session started.");
 

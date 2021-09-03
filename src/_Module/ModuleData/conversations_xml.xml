@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="English" />
+  </tags>
+  <strings>
+    <!-- 
+    <string id="" text="" />
+    -->
+
+    <string id="7pojTm6C" text="Things are not going well in the kingdom. Will you join my faction, the {REBEL_FACTION_NAME}?" />
+    <string id="1i9KSLAv" text="Please speak to {CLAN_LEADER}, the leader of our clan." />
+    <string id="IIrplH6r" text="This is my kingdom. Rise up against me and you will regret it." />
+    <string id="xQt3pAau" text="The {REBEL_FACTION_NAME} does not align with my interests." />
+    <string id="ps5PVvUs" text="I will gladly join the {REBEL_FACTION_NAME}!" />
+  </strings>
+</base>
