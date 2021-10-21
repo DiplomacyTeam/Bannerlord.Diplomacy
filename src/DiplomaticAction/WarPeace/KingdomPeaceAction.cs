@@ -1,8 +1,10 @@
 ﻿using Diplomacy.Costs;
 using Diplomacy.Event;
+
 using Microsoft.Extensions.Logging;
 
 using System.Collections.Generic;
+using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -18,10 +20,12 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 
         private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, DiplomacyCost diplomacyCost)
         {
-            LogFactory.Get<KingdomPeaceAction>()
-                .LogTrace($"[{CampaignTime.Now}] {kingdomMakingPeace.Name} secured peace with {otherKingdom.Name} (cost: {diplomacyCost.Value}).");
+            LogFactory.Get<KingdomPeaceAction>().LogTrace($"[{CampaignTime.Now}] {kingdomMakingPeace.Name} secured peace with {otherKingdom.Name} (cost: {diplomacyCost.Value}).");
             diplomacyCost.ApplyCost();
             MakePeaceAction.Apply(kingdomMakingPeace, otherKingdom);
+            List<Kingdom> proposingAllies = Kingdom.All.Where(k => k != kingdomMakingPeace && k != otherKingdom && FactionManager.IsAlliedWithFaction(k, kingdomMakingPeace)).ToList();
+            List<Kingdom> receivingAllies = Kingdom.All.Where(k => k != kingdomMakingPeace && k != otherKingdom && FactionManager.IsAlliedWithFaction(k, otherKingdom)).ToList();
+            proposingAllies.SelectMany(proposer => receivingAllies.Select(receiver => (proposer, receiver))).ToList().ForEach(pair => MakePeaceDiplomaticAction.ApplyPeace(pair.proposer, pair.receiver));
         }
 
         private static string CreateMakePeaceInquiryText(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int payment)

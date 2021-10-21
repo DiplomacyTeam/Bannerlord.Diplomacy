@@ -3,18 +3,14 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.Alliance.Conditions
 {
-    internal class HasEnoughScoreCondition : IDiplomacyCondition
+    internal sealed class HasEnoughScoreCondition : AbstractScoreCondition
     {
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
-        {
-            textObject = null;
-            var scoreTooLow = AllianceScoringModel.Instance.GetScore(otherKingdom, kingdom).ResultNumber < AllianceScoringModel.Instance.ScoreThreshold;
-            if (scoreTooLow)
-            {
-                var scoreTooLowText = new TextObject("{=VvTTrRpl}This faction is not interested in forming an alliance with you.");
-                textObject = scoreTooLowText;
-            }
-            return !scoreTooLow;
-        }
+        private static readonly TextObject FailedConditionText = new("{=VvTTrRpl}This faction is not interested in forming an alliance with you.");
+
+        protected override float GetActionScore(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType) =>
+            DeclareAllianceAction.GetActionScore(kingdom, otherKingdom, kingdomPartyType);
+
+        protected override float GetPassThreshold() => - AllianceScoringModel.Instance.ScoreThreshold; //this is auto-rejection threshold!
+        protected override TextObject GetFailedConditionText() => FailedConditionText;
     }
 }

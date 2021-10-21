@@ -1,21 +1,17 @@
-﻿
-using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
-    class HasEnoughScoreCondition : IDiplomacyCondition
+    internal sealed class HasEnoughScoreCondition : AbstractScoreCondition
     {
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
-        {
-            textObject = null;
-            var scoreTooLow = NonAggressionPactScoringModel.Instance.GetScore(otherKingdom, kingdom).ResultNumber < NonAggressionPactScoringModel.Instance.ScoreThreshold;
-            if (scoreTooLow)
-            {
-                var scoreTooLowText = new TextObject("{=M4SGjzQP}This faction is not interested in forming a non-aggression pact with you.");
-                textObject = scoreTooLowText;
-            }
-            return !scoreTooLow;
-        }
+        private static readonly TextObject FailedConditionText = new("{=M4SGjzQP}This faction is not interested in forming a non-aggression pact with you.");
+
+        protected override float GetActionScore(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType) =>
+            FormNonAggressionPactAction.GetActionScore(kingdom, otherKingdom, kingdomPartyType);
+
+        protected override float GetPassThreshold() => NonAggressionPactScoringModel.Instance.ScoreThreshold;
+
+        protected override TextObject GetFailedConditionText() => FailedConditionText;
     }
 }

@@ -1,10 +1,14 @@
-﻿using System.Linq;
-using Bannerlord.UIExtenderEx.Attributes;
+﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
+
 using Diplomacy.Costs;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.ViewModel;
+
 using JetBrains.Annotations;
+
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Core;
@@ -133,8 +137,8 @@ namespace Diplomacy.ViewModelMixin
 
         private void UpdateActionAvailability()
         {
-            IsOptionAvailable = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!).IsEmpty();
-            var makePeaceException = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
+            var makePeaceException = MakePeaceConditions.Instance.CanApplyExplained(ViewModel!).FirstOrDefault();
+            IsOptionAvailable = makePeaceException is null;
             ActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
         }
     }

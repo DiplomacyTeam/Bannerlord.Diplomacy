@@ -1,6 +1,8 @@
-﻿using Diplomacy.DiplomaticAction.WarPeace;
+﻿using Diplomacy.DiplomaticAction;
+using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Extensions;
 using Diplomacy.PatchTools;
+
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
@@ -30,7 +32,7 @@ namespace Diplomacy.Patches
         private static bool ConsiderWarPrefix(Clan clan, Kingdom kingdom, IFaction otherFaction, ref bool __result)
         {
             if (otherFaction is Kingdom otherKingdom
-                && !DeclareWarConditions.Instance.CanApply(kingdom, otherKingdom, bypassCosts: true))
+                && !DeclareWarConditions.Instance.CanApply(kingdom, otherKingdom, accountedConditions: DiplomacyConditionType.BypassCosts))
             {
                 __result = false;
                 return false;
@@ -44,7 +46,7 @@ namespace Diplomacy.Patches
             decision = null;
 
             if (otherFaction is Kingdom otherKingdom
-                && !MakePeaceConditions.Instance.CanApply(kingdom, otherKingdom, bypassCosts: true))
+                && !MakePeaceConditions.Instance.CanApply(kingdom, otherKingdom, accountedConditions: DiplomacyConditionType.BypassCosts))
             {
                 __result = false;
                 return false;

@@ -8,7 +8,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 {
     internal sealed class DeclareWarConditions : AbstractConditionEvaluator<DeclareWarConditions>
     {
-        private static readonly List<IDiplomacyCondition> Conditions = new()
+        private static readonly List<AbstractDiplomacyCondition> Conditions = new()
         {
             new HasEnoughInfluenceForWarCondition(),
             new NoNonAggressionPactCondition(),

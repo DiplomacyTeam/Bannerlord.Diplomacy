@@ -3,23 +3,22 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction
 {
-    abstract class AbstractCostCondition : IDiplomacyCondition
+    internal abstract class AbstractCostCondition : AbstractDiplomacyCondition
     {
-        protected abstract TextObject FailedConditionText { get; }
+        internal override DiplomacyConditionType ConditionType => DiplomacyConditionType.CostRelated;
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
+        protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             textObject = null;
-            if (bypassCosts)
+            var canPayCost = CanPayCost(kingdom, otherKingdom, forcePlayerCharacterCosts, kingdomPartyType);
+            if (!canPayCost)
             {
-                return true;
+                textObject = GetFailedConditionText();
             }
-            else
-            {
-                return ApplyConditionInternal(kingdom, otherKingdom, ref textObject, forcePlayerCharacterCosts);
-            }
+            return canPayCost;
         }
 
-        protected abstract bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject? textObject, bool forcePlayerCharacterCosts = false);
+        protected abstract bool CanPayCost(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer);
+        protected abstract TextObject GetFailedConditionText();
     }
 }

@@ -5,7 +5,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
     internal class NonAggressionPactConditions : AbstractConditionEvaluator<NonAggressionPactConditions>
     {
-        private static readonly List<IDiplomacyCondition> Conditions = new()
+        private static readonly List<AbstractDiplomacyCondition> Conditions = new()
         {
             new AtPeaceCondition(),
             new NotInAllianceCondition(),

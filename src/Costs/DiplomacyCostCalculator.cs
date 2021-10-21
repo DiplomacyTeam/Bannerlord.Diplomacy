@@ -1,34 +1,39 @@
-﻿using System;
+﻿using Diplomacy.DiplomaticAction;
+
+using System;
 using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
 namespace Diplomacy.Costs
 {
-    class DiplomacyCostCalculator
+    internal static class DiplomacyCostCalculator
     {
+        //FIXME: Ideally, we could divide the costs in gold for some actions into direct and indirect.
+        //Direct costs will go to the other party, while indirect costs will simply be written off, representing a cost of organization process and will be subject to the PartyTypeFactor.
         private static float AllianceFactor { get; } = 5.0f;
         private static float PeaceFactor { get; } = 2.0f;
 
-        public static DiplomacyCost DetermineCostForDeclaringWar(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
+        public static DiplomacyCost DetermineCostForDeclaringWar(Kingdom kingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
                 return new InfluenceCost(clanPayingInfluence, 0f);
             if (!Settings.Instance!.ScalingInfluenceCosts)
-                return new InfluenceCost(clanPayingInfluence, Settings.Instance!.DeclareWarInfluenceCost);
+                return new InfluenceCost(clanPayingInfluence, Settings.Instance!.DeclareWarInfluenceCost * GetPartyTypeFactor(kingdomPartyType));
 
-            return new InfluenceCost(clanPayingInfluence, (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingInfluenceCostMultiplier));
+            return new InfluenceCost(clanPayingInfluence, (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingInfluenceCostMultiplier * GetPartyTypeFactor(kingdomPartyType)));
         }
 
-        public static HybridCost DetermineCostForMakingPeace(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static HybridCost DetermineCostForMakingPeace(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             return new(
-                DetermineInfluenceCostForMakingPeace(kingdom, forcePlayerCharacterCosts),
-                DetermineGoldCostForMakingPeace(kingdom, otherKingdom, forcePlayerCharacterCosts));
+                DetermineInfluenceCostForMakingPeace(kingdom, forcePlayerCharacterCosts, kingdomPartyType),
+                DetermineGoldCostForMakingPeace(kingdom, otherKingdom, forcePlayerCharacterCosts, kingdomPartyType));
         }
 
-        private static InfluenceCost DetermineInfluenceCostForMakingPeace(Kingdom kingdom, bool forcePlayerCharacterCosts)
+        public static InfluenceCost DetermineInfluenceCostForMakingPeace(Kingdom kingdom, bool forcePlayerCharacterCosts, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
             InfluenceCost influenceCost;
@@ -38,11 +43,11 @@ namespace Diplomacy.Costs
             }
             else if (!Settings.Instance!.ScalingInfluenceCosts)
             {
-                influenceCost = new InfluenceCost(clanPayingInfluence, Settings.Instance!.MakePeaceInfluenceCost);
+                influenceCost = new InfluenceCost(clanPayingInfluence, Settings.Instance!.MakePeaceInfluenceCost * GetPartyTypeFactor(kingdomPartyType));
             }
             else
             {
-                influenceCost = new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * PeaceFactor);
+                influenceCost = new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * PeaceFactor * GetPartyTypeFactor(kingdomPartyType));
             }
 
             return influenceCost;
@@ -53,25 +58,25 @@ namespace Diplomacy.Costs
             return (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingInfluenceCostMultiplier);
         }
 
-        public static HybridCost DetermineCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static HybridCost DetermineCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             return new(
-                DetermineInfluenceCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts),
-                DetermineGoldCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts));
+                DetermineInfluenceCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts, kingdomPartyType),
+                DetermineGoldCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts, kingdomPartyType));
         }
 
-        public static InfluenceCost DetermineInfluenceCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static InfluenceCost DetermineInfluenceCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
                 return new InfluenceCost(clanPayingInfluence, 0f);
             if (!Settings.Instance!.ScalingInfluenceCosts)
-                return new InfluenceCost(clanPayingInfluence, Settings.Instance!.MakePeaceInfluenceCost);
+                return new InfluenceCost(clanPayingInfluence, Settings.Instance!.MakePeaceInfluenceCost * GetPartyTypeFactor(kingdomPartyType));
 
-            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom));
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * GetPartyTypeFactor(kingdomPartyType));
         }
 
-        private static GoldCost DetermineGoldCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static GoldCost DetermineGoldCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             var giver = forcePlayerCharacterCosts ? Hero.MainHero : kingdom.Leader;
 
@@ -79,9 +84,9 @@ namespace Diplomacy.Costs
 
             var baseGoldCost = 500;
             var goldCostFactor = 100;
-            var goldCost = (int)((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * goldCostFactor) + baseGoldCost);
+            var goldCost = (int)(((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * goldCostFactor) + baseGoldCost) * GetPartyTypeFactor(kingdomPartyType));
 
-            return new GoldCost(giver, otherKingdom.Leader, goldCost);
+            return new GoldCost(giver, null, goldCost); //This is not a bribing or payout, the money is spent by both parties to organize the process.
         }
 
         private static float GetKingdomWarLoad(Kingdom kingdom)
@@ -94,7 +99,7 @@ namespace Diplomacy.Costs
             return new GoldCost(Hero.MainHero, null, Settings.Instance!.SendMessengerGoldCost);
         }
 
-        private static GoldCost DetermineGoldCostForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static GoldCost DetermineGoldCostForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             var giver = forcePlayerCharacterCosts ? Hero.MainHero : kingdomMakingPeace.Leader;
 
@@ -129,25 +134,25 @@ namespace Diplomacy.Costs
             return Math.Min(tierTotal, 20);
         }
 
-        public static HybridCost DetermineCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static HybridCost DetermineCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             return new(
-                DetermineInfluenceCostForFormingAlliance(kingdom, forcePlayerCharacterCosts),
-                DetermineGoldCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts));
+                DetermineInfluenceCostForFormingAlliance(kingdom, forcePlayerCharacterCosts, kingdomPartyType),
+                DetermineGoldCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts, kingdomPartyType));
         }
 
-        private static InfluenceCost DetermineInfluenceCostForFormingAlliance(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
+        public static InfluenceCost DetermineInfluenceCostForFormingAlliance(Kingdom kingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
                 return new InfluenceCost(clanPayingInfluence, 0f);
             if (!Settings.Instance!.ScalingInfluenceCosts)
-                return new InfluenceCost(clanPayingInfluence, Settings.Instance!.MakePeaceInfluenceCost * 2.0f);
+                return new InfluenceCost(clanPayingInfluence, Settings.Instance!.MakePeaceInfluenceCost * 2.0f * GetPartyTypeFactor(kingdomPartyType));
 
-            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * AllianceFactor);
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * AllianceFactor * GetPartyTypeFactor(kingdomPartyType));
         }
 
-        private static GoldCost DetermineGoldCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static GoldCost DetermineGoldCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             var giver = forcePlayerCharacterCosts ? Hero.MainHero : kingdom.Leader;
 
@@ -155,9 +160,21 @@ namespace Diplomacy.Costs
 
             var baseGoldCost = 500;
             var goldCostFactor = 100;
-            var goldCost = (int)((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * AllianceFactor * goldCostFactor) + baseGoldCost);
+            var goldCost = (int)(((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * AllianceFactor * goldCostFactor) + baseGoldCost) * GetPartyTypeFactor(kingdomPartyType));
 
-            return new GoldCost(giver, otherKingdom.Leader, goldCost);
+            return new GoldCost(giver, null, goldCost); //This is not a bribing or payout, the money is spent by both parties to organize the process.
+        }
+
+        private static float GetPartyTypeFactor(DiplomaticPartyType kingdomPartyType)
+        {
+            return kingdomPartyType switch
+            {
+                DiplomaticPartyType.Proposer => 1.0f,
+                DiplomaticPartyType.Recipient => 0.5f,
+                DiplomaticPartyType.ProposerInvolvee => 0.75f,
+                DiplomaticPartyType.ReceiverInvolvee => 0.25f,
+                _ => throw new ArgumentException(string.Format("{0} is not supported kingdom party type", kingdomPartyType.ToString()), nameof(kingdomPartyType)),
+            };
         }
     }
 }

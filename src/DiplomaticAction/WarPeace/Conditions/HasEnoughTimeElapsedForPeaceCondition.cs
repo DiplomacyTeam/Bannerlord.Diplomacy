@@ -1,24 +1,18 @@
-﻿using System;
-using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 {
-    internal class HasEnoughTimeElapsedForPeaceCondition : IDiplomacyCondition
+    internal sealed class HasEnoughTimeElapsedForPeaceCondition : AbstractTimeCondition
     {
         private static readonly TextObject _TTooSoon = new("{=ONNcmltF}This war hasn't gone on long enough to consider peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.");
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
+        protected override TextObject GetFailedConditionText() => _TTooSoon.CopyTextObject();
+
+        protected override bool HasEnoughTimeElapsed(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType, out float elapsedDaysUntilNow, out int requiredDays)
         {
-            textObject = null;
-            var hasEnoughTimeElapsed = CooldownManager.HasExceededMinimumWarDuration(kingdom, otherKingdom, out var elapsedDaysUntilNow);
-            if (!hasEnoughTimeElapsed)
-            {
-                textObject = _TTooSoon.CopyTextObject();
-                textObject.SetTextVariable("ELAPSED_DAYS", (float)Math.Floor(elapsedDaysUntilNow));
-                textObject.SetTextVariable("REQUIRED_DAYS", Settings.Instance!.MinimumWarDurationInDays);
-            }
-            return hasEnoughTimeElapsed;
+            requiredDays = Settings.Instance!.MinimumWarDurationInDays;
+            return CooldownManager.HasExceededMinimumWarDuration(kingdom, otherKingdom, out elapsedDaysUntilNow);
         }
     }
 }
