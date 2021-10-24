@@ -34,6 +34,8 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
         protected override float GetActionScoreInternal(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType) =>
             NonAggressionPactScoringModel.Instance.GetScore(kingdom, otherKingdom, kingdomPartyType).ResultNumber;
 
+        protected override float GetActionThreshold() => NonAggressionPactScoringModel.Instance.ScoreThreshold;
+
         protected override void ShowPlayerInquiry(Kingdom proposingKingdom, Action applyAction)
         {
             var textObject = new TextObject("{=gyLjlpJB}{KINGDOM} is proposing a non-aggression pact with {PLAYER_KINGDOM}.");

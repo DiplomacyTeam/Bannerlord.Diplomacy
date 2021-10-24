@@ -41,6 +41,8 @@ namespace Diplomacy.DiplomaticAction.Alliance
         protected override float GetActionScoreInternal(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType) =>
             AllianceScoringModel.Instance.GetScore(otherKingdom, kingdom, kingdomPartyType).ResultNumber;
 
+        protected override float GetActionThreshold() => AllianceScoringModel.Instance.ScoreThreshold;
+
         protected override Dictionary<InvolvedParty, List<Kingdom>>? GetInvolvedKingdoms(Kingdom proposingKingdom, Kingdom otherKingdom)
         {
             if (TryGetIvolvees(proposingKingdom, otherKingdom, out var proposingPartyIvolvees) | TryGetIvolvees(otherKingdom, proposingKingdom, out var receivingPartyIvolvees))

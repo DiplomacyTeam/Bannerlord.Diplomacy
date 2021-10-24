@@ -93,5 +93,10 @@ namespace Diplomacy.DiplomaticAction.Alliance
         {
             throw new NotImplementedException();
         }
+
+        protected override float GetActionThreshold()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

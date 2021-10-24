@@ -67,6 +67,8 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             static float GetKingdomSupportForDecision(KingdomDecision decision, int outcomeNo) => new KingdomElection(decision).GetLikelihoodForOutcome(outcomeNo);
         }
 
+        protected override float GetActionThreshold() => 0.0f;
+
         protected override void AssessCosts(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer) =>
             DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace(kingdom, forcePlayerCharacterCosts).ApplyCost();
 

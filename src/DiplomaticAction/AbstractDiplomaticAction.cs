@@ -14,7 +14,7 @@ namespace Diplomacy.DiplomaticAction
     {
         protected static T Instance { get; } = new();
         protected virtual bool JointResolutionRequired => false;
-        protected virtual float ScoreThreshold => 0f;
+        protected virtual float JointResolutionThreshold => 0f;
         protected virtual Dictionary<(Kingdom EvaluatingKingdom, Kingdom OtherKingdom), (CampaignTime ScoreTimestamp, float ScoreValue)> ActionScoreCache { get; } = new();
 
         public static void Apply(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, bool bypassCosts = false, float? customDurationInDays = null, bool queryPlayer = true)
@@ -70,12 +70,12 @@ namespace Diplomacy.DiplomaticAction
         {
             GetFullPartyLists(proposingKingdom, otherKingdom, involvedKingdoms, out var proposingPartyKingdoms, out var receivingPartyKingdoms);
             return
-                GetPartyCheckSum(proposingPartyKingdoms, receivingPartyKingdoms) >= Instance.ScoreThreshold
-                && GetPartyCheckSum(receivingPartyKingdoms, proposingPartyKingdoms) >= Instance.ScoreThreshold;
+                GetPartyCheckSum(proposingPartyKingdoms, receivingPartyKingdoms) >= Instance.JointResolutionThreshold
+                && GetPartyCheckSum(receivingPartyKingdoms, proposingPartyKingdoms) >= Instance.JointResolutionThreshold;
 
             float GetPartyCheckSum(Dictionary<Kingdom, DiplomaticPartyType> partyKingdoms, Dictionary<Kingdom, DiplomaticPartyType> otherPartyKingdoms) =>
                 partyKingdoms.SelectMany(proposer => otherPartyKingdoms.Select(receiver => (proposer, receiver)))
-                             .Sum(pair => GetActionScore(pair.proposer.Key, pair.receiver.Key, pair.proposer.Value) * Instance.GetKingdomWeight(pair.proposer.Key));
+                             .Sum(pair => (GetActionScore(pair.proposer.Key, pair.receiver.Key, pair.proposer.Value) - GetActionThreshold()) * Instance.GetKingdomWeight(pair.proposer.Key));
         }
 
         protected virtual float GetKingdomWeight(Kingdom kingdom) => 1f;
@@ -163,6 +163,8 @@ namespace Diplomacy.DiplomaticAction
         public abstract bool PassesConditions(Kingdom kingdom, Kingdom otherKingdom, DiplomacyConditionType accountedConditions = DiplomacyConditionType.All, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer);
 
         protected abstract float GetActionScoreInternal(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType);
+
+        protected abstract float GetActionThreshold();
 
         protected abstract void ShowPlayerInquiry(Kingdom proposingKingdom, Action acceptAction);
 
