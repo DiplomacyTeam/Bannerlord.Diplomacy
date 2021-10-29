@@ -72,13 +72,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@master
+    - name: Setup
+      uses: butr/actions-common-setup@v1.3
       with:
-        dotnet-version: 5.0.x
+        github-token: ${{secrets.GITHUB_TOKEN}}
 
     - name: Download stable bannerlord folder
       uses: actions/download-artifact@v2
