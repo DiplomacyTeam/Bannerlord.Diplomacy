@@ -200,7 +200,11 @@ namespace Diplomacy.Messengers
                     specialScene, sceneLevels);
             }
 
+#if e165
+            _currentMission.AddMissionBehavior(new LeaveEncounterLogic());
+#else
             _currentMission.AddMissionBehaviour(new LeaveEncounterLogic());
+#endif
             _currentMission.AddListener(this);
         }
 

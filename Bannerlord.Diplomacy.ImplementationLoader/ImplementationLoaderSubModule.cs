@@ -5,16 +5,21 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
+
 using Bannerlord.BUTR.Shared.Helpers;
+
 using Bannerlord.ButterLib.Common.Extensions;
 using Bannerlord.ButterLib.Common.Helpers;
 using Bannerlord.ButterLib.SubModuleWrappers;
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+
 using AccessTools2 = HarmonyLib.BUTR.Extensions.AccessTools2;
 
 namespace Diplomacy
