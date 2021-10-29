@@ -4,3 +4,9 @@ Version: 1.1.8.1
 Game Versions: e1.5.9,e1.5.10,e1.6.0,e1.6.1,e1.6.2,e1.6.3,e1.6.4,e1.6.5
 * Compatibility with e1.6.5
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.8
+Game Versions: e1.5.9,e1.5.10,e1.6.0,e1.6.1,e1.6.2
+* Allow players to change kingdom banner background color when they are the ruling clan.
+* Added a console command to change the banner colors of a kingdom.
+* Some buggixes
+---------------------------------------------------------------------------------------------------
