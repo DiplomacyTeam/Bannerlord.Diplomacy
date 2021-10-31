@@ -1,7 +1,10 @@
 ﻿using Bannerlord.BUTR.Shared.Helpers;
+
 using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.Prefabs2;
+
 using System.Xml;
+
 using JetBrains.Annotations;
 
 namespace Diplomacy.ViewModelMixin

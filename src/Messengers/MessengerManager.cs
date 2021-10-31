@@ -46,7 +46,6 @@ namespace Diplomacy.Messengers
             _messengers.Remove(_activeMessenger!);
             _activeMessenger = null;
             _currentMission = null;
-            CampaignEvents.TickEvent.AddNonSerializedListener(this, CleanUpSettlementEncounter);
         }
 
         public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
@@ -201,6 +200,11 @@ namespace Diplomacy.Messengers
                     specialScene, sceneLevels);
             }
 
+#if e165
+            _currentMission.AddMissionBehavior(new LeaveEncounterLogic());
+#else
+            _currentMission.AddMissionBehaviour(new LeaveEncounterLogic());
+#endif
             _currentMission.AddListener(this);
         }
 
@@ -246,16 +250,6 @@ namespace Diplomacy.Messengers
         {
             var canPayCost = diplomacyCost.CanPayCost();
             return canPayCost && IsTargetHeroAvailable(opposingLeader);
-        }
-
-        private void CleanUpSettlementEncounter(float obj)
-        {
-            PlayerEncounter.Finish();
-#if e159 || e1510
-            CampaignEvents.RemoveListeners(this);
-#else
-            CampaignEventDispatcher.Instance.RemoveListeners(this);
-#endif
         }
     }
 }
