@@ -70,7 +70,8 @@ namespace Diplomacy.PatchTools
             new DefaultEncyclopediaFactionPagePatch(),
             new RebelKingdomPatches(),
             new KingdomManagementVMPatch(),
-            new MBBannerEditorGauntletScreenPatch()
+            new MBBannerEditorGauntletScreenPatch(),
+            new TributeClanFinancePatch()
             // ... Only 1 class left to convert to declarative patching.
         };
     }

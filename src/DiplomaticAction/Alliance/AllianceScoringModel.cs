@@ -1,9 +1,7 @@
 ﻿namespace Diplomacy.DiplomaticAction.Alliance
 {
-    internal sealed class AllianceScoringModel : AbstractScoringModel<AllianceScoringModel>
+    internal sealed class AllianceScoringModel : AbstractPactAllianceScoringModel<AllianceScoringModel>
     {
-        public AllianceScoringModel() : base(new AllianceScores()) { }
-
         public class AllianceScores : IDiplomacyScores
         {
             public int Base => 20;
@@ -23,5 +21,9 @@
         }
         //Weak, no common or potential enemies, 30 avg relation, no penalties: 20 + 50 + 13.5 + 9 = 92.5
         //Maybe rise up positive scores a bit, or lower expansionism penalty. Right now it's really harsh.
+
+        public override float BaseDiplomaticBarterValue => 50;
+
+        public override IDiplomacyScores Scores => new AllianceScores();
     }
 }

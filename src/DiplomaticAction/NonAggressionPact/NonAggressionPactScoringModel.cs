@@ -1,9 +1,7 @@
 ﻿namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
-    internal sealed class NonAggressionPactScoringModel : AbstractScoringModel<NonAggressionPactScoringModel>
+    internal sealed class NonAggressionPactScoringModel : AbstractPactAllianceScoringModel<NonAggressionPactScoringModel>
     {
-        public NonAggressionPactScoringModel() : base(new NonAggressionPactScores()) { }
-
         public class NonAggressionPactScores : IDiplomacyScores
         {
             public int Base => 30;
@@ -24,5 +22,8 @@
         //Weak, no common enemies, 30 avg relation, no penalties: 30 + 50 + 13.5 + 9 = 102.5
         //Lower relations will require common enemies.
         //Maybe rise up positive scores a bit, or lower expansionism penalty. Right now it's really harsh.
+
+        public override float BaseDiplomaticBarterValue => 25;
+        public override IDiplomacyScores Scores => new NonAggressionPactScores();
     }
 }

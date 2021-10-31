@@ -2,9 +2,12 @@
 using Diplomacy.CivilWar.Actions;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.Extensions;
+using System.Linq;
+using Diplomacy.GauntletInterfaces;
 using JetBrains.Annotations;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
+using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 
 namespace Diplomacy
@@ -137,6 +140,14 @@ namespace Diplomacy
         {
             UIResourceManager.Update();
             return "Reloaded";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("show_barter", "diplomacy")]
+        [UsedImplicitly]
+        public static string ShowBarter(List<string> strings)
+        {
+            new DiplomaticBarterInterface().ShowInterface(ScreenManager.TopScreen, Kingdom.All.First(x => x != Clan.PlayerClan.Kingdom));
+            return "Barter Screen Shown";
         }
     }
 }

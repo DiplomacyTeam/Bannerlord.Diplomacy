@@ -9,6 +9,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
 
         protected override float GetActionScore(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType) =>
             FormNonAggressionPactAction.GetActionScore(kingdom, otherKingdom, kingdomPartyType);
+        //!NonAggressionPactScoringModel.Instance.IsAcceptancePossible(kingdom, otherKingdom);
 
         protected override float GetPassThreshold() => NonAggressionPactScoringModel.Instance.ScoreThreshold;
 

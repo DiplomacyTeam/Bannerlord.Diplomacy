@@ -1,4 +1,6 @@
-﻿using Diplomacy.CampaignBehaviors;
+﻿using System;
+using System.Collections.Generic;
+using Diplomacy.CampaignBehaviors;
 using Diplomacy.PatchTools;
 
 using Bannerlord.ButterLib.Common.Extensions;
@@ -15,12 +17,15 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using Bannerlord.UIExtenderEx;
 using Diplomacy.Event;
+using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.ModuleManager;
+using TaleWorlds.TwoDimension;
 
 namespace Diplomacy
 {
     public sealed class SubModule : MBSubModuleBase
     {
+        private const string ModuleName = "Bannerlord.Diplomacy";
         public static readonly int VersionMajor = 0;
         public static readonly int VersionMinor = 1;
         public static readonly int VersionPatch = 1;
@@ -46,6 +51,18 @@ namespace Diplomacy
             var extender = new UIExtender(Name);
             extender.Register(typeof(SubModule).Assembly);
             extender.Enable();
+
+            List<Tuple<string, string>> spriteCategories = new() { new("ui_diplomacy", "ui_diplomacy_1") };
+            foreach (var spriteCategoryName in spriteCategories)
+            {
+                var spriteData = UIResourceManager.SpriteData;
+                TaleWorlds.Engine.Texture texture = TaleWorlds.Engine.Texture.LoadTextureFromPath(spriteCategoryName.Item2 + ".png", BasePath.Name + $"Modules/{ModuleName}/AssetSources/GauntletUI");
+                texture.PreloadTexture();
+
+                TaleWorlds.TwoDimension.Texture texture2D = new TaleWorlds.TwoDimension.Texture(new EngineTexture(texture));
+                SpriteCategory spriteCategory = spriteData.SpriteCategories[spriteCategoryName.Item1];
+                spriteCategory.SpriteSheets.Add(texture2D);
+            }
 
             this.AddSerilogLoggerProvider($"{Name}.log", new[] { $"{Name}.*" }, config => config.MinimumLevel.Is(LogEventLevel.Verbose));
             Log = LogFactory.Get<SubModule>();
@@ -107,9 +124,8 @@ namespace Diplomacy
 
         private static void LoadGameTexts(CampaignGameStarter gameStarter)
         {
-            var module = "Bannerlord.Diplomacy";
-            gameStarter.LoadGameTexts(ModuleHelper.GetXmlPath(module, "gt_help"));
-            gameStarter.LoadGameTexts(ModuleHelper.GetXmlPath(module, "gt_common"));
+            gameStarter.LoadGameTexts(ModuleHelper.GetXmlPath(ModuleName, "gt_help"));
+            gameStarter.LoadGameTexts(ModuleHelper.GetXmlPath(ModuleName, "gt_common"));
         }
 
         public override void OnGameEnd(Game game)

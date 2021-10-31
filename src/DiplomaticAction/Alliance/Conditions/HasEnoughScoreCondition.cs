@@ -9,6 +9,7 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
 
         protected override float GetActionScore(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType) =>
             DeclareAllianceAction.GetActionScore(kingdom, otherKingdom, kingdomPartyType);
+        //!AllianceScoringModel.Instance.IsAcceptancePossible(kingdom, otherKingdom);
 
         protected override float GetPassThreshold() => - AllianceScoringModel.Instance.ScoreThreshold; //this is auto-rejection threshold!
         protected override TextObject GetFailedConditionText() => FailedConditionText;

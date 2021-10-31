@@ -1,8 +1,8 @@
 ﻿using Diplomacy.Extensions;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
-
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Barterables;
 using TaleWorlds.Library;
@@ -10,23 +10,18 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction
 {
-    internal abstract class AbstractScoringModel<T> where T : AbstractScoringModel<T>, new()
+    internal abstract class AbstractPactAllianceScoringModel<T> : AbstractAgreementScoringModel<T> where T : AbstractPactAllianceScoringModel<T>, new() 
     {
-        public static T Instance { get; } = new();
 
-        public virtual float ScoreThreshold { get; } = 100.0f;
+        public abstract IDiplomacyScores Scores { get; }
 
-        protected IDiplomacyScores Scores { get; init; }
+        public override List<ScoreEvaluator> ScoreEvaluators => new() { GetScore };
 
-        protected AbstractScoringModel(IDiplomacyScores scores) => Scores = scores;
+        public override float BaseScore => Scores.Base;
 
         public virtual ExplainedNumber GetScore(Kingdom ourKingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType, bool includeDesc = false)
         {
-            var explainedNum = new ExplainedNumber(Scores.Base, includeDesc);
-
-            TextObject? CreateTextWithKingdom(string text, Kingdom kingdom) => includeDesc
-                ? new TextObject(text).SetTextVariable("KINGDOM", kingdom.Name)
-                : null;
+            TextObject? CreateTextWithKingdom(string text, Kingdom kingdom) => new TextObject(text).SetTextVariable("KINGDOM", kingdom.Name);
 
             // Weak Kingdom (Us)
             if (!ourKingdom.IsStrong())

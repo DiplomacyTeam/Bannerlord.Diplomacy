@@ -36,16 +36,15 @@ namespace Diplomacy.DiplomaticAction
             }
         }
 
-        public static void RegisterAgreement(Kingdom kingdom, Kingdom otherKingdom, DiplomaticAgreement diplomaticAgreement)
+        public static void RegisterAgreement(DiplomaticAgreement diplomaticAgreement)
         {
-            var factionMapping = new FactionPair(kingdom, otherKingdom);
-            if (Instance!.Agreements.TryGetValue(factionMapping, out var agreements))
+            if (Instance!.Agreements.TryGetValue(diplomaticAgreement.Factions, out var agreements))
             {
                 agreements.Add(diplomaticAgreement);
             }
             else
             {
-                Instance!.Agreements[factionMapping] = new List<DiplomaticAgreement>() { diplomaticAgreement };
+                Instance!.Agreements[diplomaticAgreement.Factions] = new List<DiplomaticAgreement>() { diplomaticAgreement };
             }
         }
         public void Sync()
