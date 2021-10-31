@@ -3,10 +3,10 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 {
-    internal class SatisfiesQuestConditionsForPeaceCondition : IDiplomacyCondition
+    internal class SatisfiesQuestConditionsForPeaceCondition : AbstractDiplomacyCondition
     {
         private static readonly TextObject _TActiveQuest = new("{=XQFxDr11}There is an active quest preventing it!");
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
+        protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             textObject = null;
 

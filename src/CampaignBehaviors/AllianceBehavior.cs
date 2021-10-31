@@ -1,6 +1,8 @@
-﻿using Diplomacy.DiplomaticAction.Alliance;
+﻿using Diplomacy.DiplomaticAction;
+using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Event;
+
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
@@ -43,13 +45,37 @@ namespace Diplomacy.CampaignBehaviors
             }
             else
                 InformationManager.DisplayMessage(new InformationMessage(txtRendered, SubModule.StdTextColor));
+
+            Kingdom.All.Where(k => k != allianceFormedEvent.Kingdom && k != allianceFormedEvent.OtherKingdom
+                                   && (FactionManager.IsAtWarAgainstFaction(k, allianceFormedEvent.Kingdom) || FactionManager.IsAtWarAgainstFaction(k, allianceFormedEvent.OtherKingdom)))
+                       .ToList().ForEach(k => AllianceEnemiesSync(allianceFormedEvent, k));
+        }
+
+        private void AllianceEnemiesSync(AllianceEvent allianceFormedEvent, Kingdom kingdomToDeclareWarOn)
+        {
+            bool kingdomStanceIsWar = FactionManager.IsAtWarAgainstFaction(allianceFormedEvent.Kingdom, kingdomToDeclareWarOn);
+            bool otherKingdomStanceIsWar = FactionManager.IsAtWarAgainstFaction(allianceFormedEvent.OtherKingdom, kingdomToDeclareWarOn);
+
+            if (!kingdomStanceIsWar || !otherKingdomStanceIsWar)
+            {
+                Kingdom kingdomDeclaringWar = kingdomStanceIsWar ? allianceFormedEvent.OtherKingdom : allianceFormedEvent.Kingdom;
+                if (FactionManager.IsAlliedWithFaction(kingdomDeclaringWar, kingdomToDeclareWarOn))
+                {
+                    if (BreakAllianceAction.CanApply(kingdomDeclaringWar, kingdomToDeclareWarOn, DiplomacyConditionType.OnlyBasics))
+                    {
+                        BreakAllianceAction.Apply(kingdomDeclaringWar, kingdomToDeclareWarOn, bypassCosts: true);
+                    }
+                    if (DeclareWarConditions.Instance.CanApply(kingdomDeclaringWar, kingdomToDeclareWarOn, DiplomacyConditionType.OnlyBasics))
+                    {
+                        DoDeclareWar(kingdomDeclaringWar, kingdomToDeclareWarOn, kingdomStanceIsWar ? allianceFormedEvent.Kingdom : allianceFormedEvent.OtherKingdom);
+                    }
+                }
+            }
         }
 
         private void WarDeclared(WarDeclaredEvent warDeclaredEvent)
         {
-            if (!warDeclaredEvent.IsProvoked
-                && warDeclaredEvent.Faction is Kingdom attacker
-                && warDeclaredEvent.ProvocatorFaction is Kingdom defender)
+            if (!warDeclaredEvent.IsProvoked && warDeclaredEvent.Faction is Kingdom attacker && warDeclaredEvent.ProvocatorFaction is Kingdom defender)
             {
                 SupportAlliedKingdom(defender, attacker);
             }
@@ -61,17 +87,21 @@ namespace Diplomacy.CampaignBehaviors
 
             foreach (var ally in allies)
             {
-                if (!DeclareWarConditions.Instance.CanApply(ally, kingdomToDeclareWarOn, bypassCosts: true))
+                if (!DeclareWarConditions.Instance.CanApply(ally, kingdomToDeclareWarOn, accountedConditions: DiplomacyConditionType.BypassCosts))
                     continue;
-
-                DeclareWarAction.ApplyDeclareWarOverProvocation(ally, kingdomToDeclareWarOn);
-                var txt = new TextObject("{=UDC8eW7s}{ALLIED_KINGDOM} is joining their ally, {KINGDOM}, in the war against {ENEMY_KINGDOM}.");
-                txt.SetTextVariable("ALLIED_KINGDOM", ally.Name);
-                txt.SetTextVariable("KINGDOM", kingdom.Name);
-                txt.SetTextVariable("ENEMY_KINGDOM", kingdomToDeclareWarOn.Name);
-
-                InformationManager.DisplayMessage(new InformationMessage(txt.ToString(), SubModule.StdTextColor));
+                DoDeclareWar(ally, kingdomToDeclareWarOn, kingdom);
             }
+        }
+
+        private static void DoDeclareWar(Kingdom kingdomDeclaringWar, Kingdom kingdomToDeclareWarOn, Kingdom allyKingdom)
+        {
+            DeclareWarAction.ApplyDeclareWarOverProvocation(kingdomDeclaringWar, kingdomToDeclareWarOn);
+            var txt = new TextObject("{=UDC8eW7s}{ALLIED_KINGDOM} is joining their ally, {KINGDOM}, in the war against {ENEMY_KINGDOM}.");
+            txt.SetTextVariable("ALLIED_KINGDOM", kingdomDeclaringWar.Name);
+            txt.SetTextVariable("KINGDOM", allyKingdom.Name);
+            txt.SetTextVariable("ENEMY_KINGDOM", kingdomToDeclareWarOn.Name);
+
+            InformationManager.DisplayMessage(new InformationMessage(txt.ToString(), SubModule.StdTextColor));
         }
 
         private void DailyTickClan(Clan clan)
@@ -92,26 +122,28 @@ namespace Diplomacy.CampaignBehaviors
 
         private static void ConsiderFormingAlliances(Kingdom kingdom)
         {
-            var potentialAllies = Kingdom.All
-                .Where(k => k != kingdom && FormAllianceConditions.Instance.CanApply(kingdom, k))
-                .ToList();
+            var potentialAllies = Kingdom.All.Where(k => k != kingdom
+                                                         && FormAllianceConditions.Instance.CanApply(kingdom, k) //we need to doublecheck the score coz condition has auto-rejection threshold now. 
+                                                         && DeclareAllianceAction.GetActionScore(kingdom, k, DiplomaticPartyType.Proposer) >= AllianceScoringModel.Instance.ScoreThreshold).ToList();
 
             foreach (var potentialAlly in potentialAllies)
-                if (MBRandom.RandomFloat < 0.05f && AllianceScoringModel.Instance.ShouldFormBidirectional(kingdom, potentialAlly))
+            {
+                if (MBRandom.RandomFloat < 0.05f && DeclareAllianceAction.CanApply(kingdom, potentialAlly))
+                {
                     DeclareAllianceAction.Apply(kingdom, potentialAlly);
+                }
+            }
         }
 
         private static void ConsiderBreakingAlliances(Kingdom kingdom)
         {
-            var alliedKingdoms = Kingdom.All
-                .Where(k => k != kingdom && FactionManager.IsAlliedWithFaction(kingdom, k))
-                .ToList();
+            var alliedKingdoms = Kingdom.All.Where(k => k != kingdom && FactionManager.IsAlliedWithFaction(kingdom, k)).ToList();
 
             foreach (var alliedKingdom in alliedKingdoms)
             {
                 if (MBRandom.RandomFloat < 0.05f
-                    && BreakAllianceConditions.Instance.CanApply(kingdom, alliedKingdom)
-                    && !AllianceScoringModel.Instance.ShouldForm(kingdom, alliedKingdom))
+                    && !AllianceScoringModel.Instance.ShouldForm(kingdom, alliedKingdom)
+                    && BreakAllianceAction.CanApply(kingdom, alliedKingdom))
                 {
                     BreakAllianceAction.Apply(kingdom, alliedKingdom);
                 }
@@ -125,9 +157,7 @@ namespace Diplomacy.CampaignBehaviors
             if (kingdom is null)
                 return;
 
-            var alliedKingdoms = Kingdom.All
-                .Where(k => k != kingdom && FactionManager.IsAlliedWithFaction(kingdom, k))
-                .ToList();
+            var alliedKingdoms = Kingdom.All.Where(k => k != kingdom && FactionManager.IsAlliedWithFaction(kingdom, k)).ToList();
 
             foreach (var alliedKingdom in alliedKingdoms)
                 BreakAllianceAction.Apply(kingdom, alliedKingdom);

@@ -4,18 +4,19 @@ using System.Collections.Generic;
 
 namespace Diplomacy.DiplomaticAction.Alliance
 {
-    class FormAllianceConditions : AbstractConditionEvaluator<FormAllianceConditions>
+    internal sealed class FormAllianceConditions : AbstractConditionEvaluator<FormAllianceConditions>
     {
-        private static readonly List<IDiplomacyCondition> Conditions = new()
+        private static readonly List<AbstractDiplomacyCondition> Conditions = new()
         {
             new AlliancesEnabledCondition(),
+            new NotRebelKingdomCondition(),
             new AtPeaceCondition(),
             new TimeElapsedSinceLastWarCondition(),
             new NotInAllianceCondition(),
+            new HasNoConflictingTermsCondition(),
             new HasEnoughInfluenceCondition(),
             new HasEnoughGoldCondition(),
-            new HasEnoughScoreCondition(),
-            new NotRebelKingdomCondition()
+            new HasEnoughScoreCondition()
         };
 
         public FormAllianceConditions() : base(Conditions) { }

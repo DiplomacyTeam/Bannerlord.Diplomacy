@@ -1,8 +1,10 @@
 ﻿using Diplomacy.CivilWar;
+using Diplomacy.CivilWar.Factions;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Diplomacy.CivilWar.Factions;
+
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Extensions
@@ -99,6 +101,11 @@ namespace Diplomacy.Extensions
         public static IEnumerable<RebelFaction> GetRebelFactions(this Kingdom kingdom)
         {
             return RebelFactionManager.GetRebelFaction(kingdom);
+        }
+
+        public static bool IsRuledByPlayer(this Kingdom kingdom)
+        {
+            return kingdom == Clan.PlayerClan.Kingdom && kingdom.Leader.IsHumanPlayerCharacter;
         }
     }
 }

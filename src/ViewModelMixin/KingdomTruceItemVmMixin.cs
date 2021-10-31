@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Bannerlord.UIExtenderEx.Attributes;
+﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
+
 using Diplomacy.Costs;
+using Diplomacy.DiplomaticAction;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.ViewModel;
+
 using JetBrains.Annotations;
+
+using System.Collections.Generic;
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
@@ -296,20 +301,20 @@ namespace Diplomacy.ViewModelMixin
 
         private void UpdateActionAvailability()
         {
+            //FIXME:Need to properly assess the availability of diplomatic actions. Currently it handles recent changes pretty poorly.
             if (_isAlliance)
             {
-                var breakAllianceException = BreakAllianceConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
+                var breakAllianceException = BreakAllianceConditions.Instance.CanApplyExplained(ViewModel!).FirstOrDefault();
                 ActionHint = breakAllianceException is not null ? Compat.HintViewModel.Create(breakAllianceException) : new HintViewModel();
                 IsOptionAvailable = breakAllianceException is null;
                 return;
-            }
+            }            
 
-            IsOptionAvailable = DeclareWarConditions.Instance.CanApplyExceptions(ViewModel!).IsEmpty();
+            var allianceException = FormAllianceConditions.Instance.CanApplyExplained(ViewModel!).FirstOrDefault();
+            var declareWarException = DeclareWarConditions.Instance.CanApplyExplained(ViewModel!).FirstOrDefault();
+            var napException = NonAggressionPactConditions.Instance.CanApplyExplained(ViewModel!).FirstOrDefault();
 
-            var allianceException = FormAllianceConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
-            var declareWarException = DeclareWarConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
-            var napException = NonAggressionPactConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
-
+            IsOptionAvailable = declareWarException is null;
             IsAllianceAvailable = allianceException is null;
             IsNonAggressionPactAvailable = napException is null;
 
@@ -329,8 +334,8 @@ namespace Diplomacy.ViewModelMixin
             NonAggressionPactInfluenceCost = (int) nonAggressionPactCost.InfluenceCost.Value;
             NonAggressionPactGoldCost = (int) nonAggressionPactCost.GoldCost.Value;
 
-            var allianceScore = AllianceScoringModel.Instance.GetScore((Kingdom) ViewModel!.Faction2, (Kingdom) ViewModel!.Faction1, true);
-            var napScore = NonAggressionPactScoringModel.Instance.GetScore((Kingdom) ViewModel!.Faction2, (Kingdom) ViewModel!.Faction1, true);
+            var allianceScore = AllianceScoringModel.Instance.GetScore((Kingdom) ViewModel!.Faction2, (Kingdom) ViewModel!.Faction1, DiplomaticPartyType.Recipient, true);
+            var napScore = NonAggressionPactScoringModel.Instance.GetScore((Kingdom) ViewModel!.Faction2, (Kingdom) ViewModel!.Faction1, DiplomaticPartyType.Recipient, true);
             AllianceScoreHint = UpdateDiplomacyTooltip(allianceScore);
             NonAggressionPactScoreHint = UpdateDiplomacyTooltip(napScore);
         }

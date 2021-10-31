@@ -21,6 +21,7 @@
 
     <string id="t0ZS9maD" text="{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}." />
     <string id="ZrwszZww" text=" They are willing to pay war reparations of {DENARS} denars." />
+    <string id="rq0SHLq2" text="Kingdom {KINGDOM}{?INVOLVED_WITH_PROPOSER}, allied to kingdom {PLAYER_KINGDOM}, proposes peace treaty with {OTHER_KINGDOM}{?} proposes peace treaty with {OTHER_KINGDOM}, which is an ally of {PLAYER_KINGDOM}{//?}.{NEW_LINE} {NEW_LINE}As an active member of the existing alliance, you must vote whether or not to accept the peace. The treaty will be approved only if all the parties involved agree with it." />
 
     <string id="BkGSVccZ" text="Peace Proposal" />
     <string id="3fTqLwkC" text="Accept" />
@@ -51,6 +52,7 @@
     <string id="PdN5g5ub" text="Alliance Formed" />
     <string id="3pbwc8sh" text="Alliance Proposal"/>
     <string id="QbOqatd7" text="{KINGDOM} is proposing an alliance with {PLAYER_KINGDOM}." />
+	<string id="tjtDZNWq" text="Kingdom {KINGDOM}{?INVOLVED_WITH_PROPOSER}, allied to kingdom {PLAYER_KINGDOM}, proposes an alliance with {OTHER_KINGDOM}{?} proposes an alliance with {OTHER_KINGDOM}, which is an ally of {PLAYER_KINGDOM}{/?}.{NEW_LINE} {NEW_LINE}As an active member of the existing alliance, you must vote whether or not to accept the new kingdom in it. The treaty will be approved only if all the parties involved agree with it." />
 
     <string id="384jX28Q" text="{KINGDOM} is breaking the alliance with {PLAYER_KINGDOM}."/>
     <string id="D1ZQKZr1" text="Alliance Broken" />
@@ -63,6 +65,8 @@
 
     <string id="KqfNSsBE" text="Allies" />
     <string id="Dirltd6Z" text="Alliances are disabled." />
+
+    <string id="8rhYru1w" text="Has a diplomatic {?POTENTIAL_ENEMY_KINGDOMS.IS_PLURAL}agreements{?}agreement{/?} with {POTENTIAL_ENEMY_KINGDOMS} {?POTENTIAL_ENEMY_KINGDOMS.IS_PLURAL}kingdoms{?}kingdom{/?} that can not be broken." />
 
     <string id="XlL50Ha9" text="Can't make peace with a kingdom during an active player siege." />
 
@@ -96,7 +100,10 @@
     <string id="kMjfN2fB" text="Cancel Messenger"/>
 
     <string id="q5qphBwi" text="Weak Faction"/>
-    <string id="sygtLRqA" text="Relationship"/>
+    <string id="zXbesqx7" text="Too many diplomatic treaties"/>  
+    <string id="sygtLRqA" text="Leaders relationship"/>
+    <string id="gVtFqWfP" text="Public relations"/>
+    <string id="A06TcNG4" text="Appreciates the offer"/>
 
     <string id="cmOSpfyW" text="Alliance with {ALLIED_KINGDOM}"/>
     <string id="RqQ4oqvl"  text="War with {ENEMY_KINGDOM}"/>

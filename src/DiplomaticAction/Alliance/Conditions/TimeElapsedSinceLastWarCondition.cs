@@ -1,18 +1,21 @@
 ﻿using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.LogEntries;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.Alliance.Conditions
 {
-    internal class TimeElapsedSinceLastWarCondition : IDiplomacyCondition
+    internal sealed class TimeElapsedSinceLastWarCondition : AbstractTimeCondition
     {
         private static readonly TextObject _TTooSoon = new("{=DrnXprup}You have been at war too recently to consider an alliance. It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.");
-        private const double MinimumTimeFromLastWar = 30.0;
+        private const int MinimumTimeFromLastWar = 30;
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
+        protected override TextObject GetFailedConditionText() => _TTooSoon.CopyTextObject();
+
+        protected override bool HasEnoughTimeElapsed(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType, out float elapsedDaysUntilNow, out int requiredDays)
         {
-            textObject = null;
+            requiredDays = MinimumTimeFromLastWar;
             IEnumerable<LogEntry> gameActionLogs = Campaign.Current.LogEntryHistory.GameActionLogs;
 
             var lastPeaceTime = CampaignTime.Never;
@@ -26,15 +29,16 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
                 }
             }
 
-            var daysSinceLastWar = CampaignTime.Now.ToDays - lastPeaceTime.ToDays;
-            var hasEnoughTimeElapsed = lastPeaceTime == CampaignTime.Never || daysSinceLastWar > MinimumTimeFromLastWar;
-            if (!hasEnoughTimeElapsed)
+            if (lastPeaceTime == CampaignTime.Never)
             {
-                textObject = _TTooSoon.CopyTextObject();
-                textObject.SetTextVariable("ELAPSED_DAYS", (int)daysSinceLastWar);
-                textObject.SetTextVariable("REQUIRED_DAYS", (int)MinimumTimeFromLastWar);
+                elapsedDaysUntilNow = default;
+                return true;
             }
-            return hasEnoughTimeElapsed;
+            else
+            {
+                elapsedDaysUntilNow = lastPeaceTime.ElapsedDaysUntilNow;
+                return elapsedDaysUntilNow >= MinimumTimeFromLastWar;
+            }
         }
     }
 }

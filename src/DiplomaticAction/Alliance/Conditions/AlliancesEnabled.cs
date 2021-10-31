@@ -3,11 +3,11 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.Alliance.Conditions
 {
-    class AlliancesEnabledCondition : IDiplomacyCondition
+    internal sealed class AlliancesEnabledCondition : AbstractDiplomacyCondition
     {
         private static readonly TextObject _TAlliancesDisabled = new("{=Dirltd6Z}Alliances are disabled.");
 
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
+        protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             textObject = null;
             var alliancesEnabled = Settings.Instance!.EnableAlliances;

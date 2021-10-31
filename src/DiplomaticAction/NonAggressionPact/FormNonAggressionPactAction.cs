@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 
 using System;
+
 using Diplomacy.Costs;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -10,29 +12,29 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
     class FormNonAggressionPactAction : AbstractDiplomaticAction<FormNonAggressionPactAction>
     {
-        public override bool PassesConditions(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
-        {
-            return NonAggressionPactConditions.Instance.CanApply(proposingKingdom, otherKingdom, forcePlayerCharacterCosts, bypassCosts);
-        }
+        public override bool PassesConditions(Kingdom kingdom, Kingdom otherKingdom, DiplomacyConditionType accountedConditions = DiplomacyConditionType.All, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer) =>
+            NonAggressionPactConditions.Instance.CanApply(kingdom, otherKingdom, accountedConditions, forcePlayerCharacterCosts, kingdomPartyType);
 
-        protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
+        protected override void ApplyInternal(Kingdom kingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
-            LogFactory.Get<FormNonAggressionPactAction>()
-                .LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} secured a NAP with {otherKingdom.Name}.");
-            DiplomaticAgreementManager.RegisterAgreement(proposingKingdom, otherKingdom,
+            LogFactory.Get<FormNonAggressionPactAction>().LogTrace($"[{CampaignTime.Now}] {kingdom.Name} secured a NAP with {otherKingdom.Name}.");
+            DiplomaticAgreementManager.RegisterAgreement(kingdom, otherKingdom,
                 new NonAggressionPactAgreement(CampaignTime.Now,
-                    CampaignTime.DaysFromNow(customDurationInDays ?? Settings.Instance!.NonAggressionPactDuration), proposingKingdom, otherKingdom));
+                    CampaignTime.DaysFromNow(customDurationInDays ?? Settings.Instance!.NonAggressionPactDuration), kingdom, otherKingdom));
 
             var textObject = new TextObject("{=vB3RrMNf}The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}.");
-            textObject.SetTextVariable("KINGDOM", proposingKingdom.Name);
+            textObject.SetTextVariable("KINGDOM", kingdom.Name);
             textObject.SetTextVariable("OTHER_KINGDOM", otherKingdom.Name);
             InformationManager.DisplayMessage(new InformationMessage(textObject.ToString()));
         }
 
-        protected override void AssessCosts(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts)
-        {
-            DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(proposingKingdom, otherKingdom, forcePlayerCharacterCosts).ApplyCost();
-        }
+        protected override void AssessCosts(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer) =>
+            DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts, kingdomPartyType).ApplyCost();
+
+        protected override float GetActionScoreInternal(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType) =>
+            NonAggressionPactScoringModel.Instance.GetScore(kingdom, otherKingdom, kingdomPartyType).ResultNumber;
+
+        protected override float GetActionThreshold() => NonAggressionPactScoringModel.Instance.ScoreThreshold;
 
         protected override void ShowPlayerInquiry(Kingdom proposingKingdom, Action applyAction)
         {
@@ -48,6 +50,11 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
                 new TextObject(StringConstants.Decline).ToString(),
                 applyAction,
                 null), true);
+        }
+
+        protected override void ShowPlayerIvolvedInquiry(Kingdom proposingKingdom, Kingdom otherKingdom, InvolvedParty involvedParty, Action acceptAction)
+        {
+            throw new NotImplementedException();
         }
     }
 }

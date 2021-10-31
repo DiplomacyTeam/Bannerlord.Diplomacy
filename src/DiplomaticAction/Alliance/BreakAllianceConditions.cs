@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 namespace Diplomacy.DiplomaticAction.Alliance
 {
-    class BreakAllianceConditions : AbstractConditionEvaluator<BreakAllianceConditions>
+    internal sealed class BreakAllianceConditions : AbstractConditionEvaluator<BreakAllianceConditions>
     {
-        private static readonly List<IDiplomacyCondition> Conditions = new()
+        private static readonly List<AbstractDiplomacyCondition> Conditions = new()
         {
-            new TimeElapsedSinceAllianceFormedCondition()
+            new TimeElapsedSinceAllianceFormedCondition(),
+            new HasEnoughInfluenceCondition()
         };
         public BreakAllianceConditions() : base(Conditions) { }
     }

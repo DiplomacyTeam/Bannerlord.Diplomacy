@@ -3,9 +3,9 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.GenericConditions
 {
-    class AtPeaceCondition : IDiplomacyCondition
+    internal sealed class AtPeaceCondition : AbstractDiplomacyCondition
     {
-        public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
+        protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer)
         {
             textObject = null;
             var atWar = FactionManager.IsAtWarAgainstFaction(kingdom, otherKingdom);

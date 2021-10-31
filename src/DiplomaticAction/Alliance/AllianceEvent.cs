@@ -2,7 +2,7 @@
 
 namespace Diplomacy.DiplomaticAction.Alliance
 {
-    class AllianceEvent
+    public class AllianceEvent
     {
         public AllianceEvent(Kingdom kingdom, Kingdom otherKingdom)
         {

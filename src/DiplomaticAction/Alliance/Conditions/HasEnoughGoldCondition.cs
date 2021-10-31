@@ -1,21 +1,17 @@
 ﻿using Diplomacy.Costs;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.Alliance.Conditions
 {
-    class HasEnoughGoldCondition : AbstractCostCondition
+    internal sealed class HasEnoughGoldCondition : AbstractCostCondition
     {
-        protected override TextObject FailedConditionText => new(StringConstants.NotEnoughGold);
+        private static readonly TextObject FailedConditionText = new(StringConstants.NotEnoughGold);
 
-        protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject? textObject, bool forcePlayerCharacterCosts = false)
-        {
-            var hasEnoughGold = DiplomacyCostCalculator.DetermineCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts).GoldCost.CanPayCost();
-            if (!hasEnoughGold)
-            {
-                textObject = FailedConditionText;
-            }
-            return hasEnoughGold;
-        }
+        protected override bool CanPayCost(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer) =>
+            DiplomacyCostCalculator.DetermineGoldCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts, kingdomPartyType).CanPayCost();
+
+        protected override TextObject GetFailedConditionText() => FailedConditionText;
     }
 }

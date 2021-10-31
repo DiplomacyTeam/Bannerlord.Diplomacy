@@ -48,7 +48,7 @@ namespace Diplomacy.CampaignBehaviors
             {
                 var proposedKingdom = Kingdom.All
                     .Except(new[] { proposingKingdom })
-                    .Where(kingdom => NonAggressionPactConditions.Instance.CanApply(proposingKingdom, kingdom))
+                    .Where(kingdom => FormNonAggressionPactAction.CanApply(proposingKingdom, kingdom, DiplomacyConditionType.BypassScores))
                     .Where(kingdom => NonAggressionPactScoringModel.Instance.ShouldFormBidirectional(proposingKingdom, kingdom))
                     .OrderByDescending(kingdom => kingdom.GetExpansionism()).FirstOrDefault();
 
