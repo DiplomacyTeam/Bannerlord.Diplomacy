@@ -1,8 +1,10 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+
 using Diplomacy.PatchTools;
 
+using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Patches

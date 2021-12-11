@@ -251,11 +251,33 @@ namespace Diplomacy.Messengers
         private void CleanUpSettlementEncounter(float obj)
         {
             PlayerEncounter.Finish();
+            RemoveThisFromListeners();
+        }
+
+        internal void CleanUpAfterLoad(float obj)
+        {
+            if (PlayerEncounter.Current is PlayerEncounter playerEncounter && PlayerEncounter.LeaveEncounter
+                && FieldAccessHelper.PlayerEncounterAttackerPartyByRef(playerEncounter) is PartyBase attackerParty
+                && attackerParty == Hero.MainHero.PartyBelongedTo?.Party
+                && !(FieldAccessHelper.PlayerEncounterDefenderPartyByRef(playerEncounter) is PartyBase defenderParty && defenderParty.IsSettlement))
+            {
+                PlayerEncounter.Finish();
+            }
+            RemoveThisFromListeners();
+        }
+
+        private void RemoveThisFromListeners()
+        {
 #if e159 || e1510
             CampaignEvents.RemoveListeners(this);
 #else
             CampaignEventDispatcher.Instance.RemoveListeners(this);
 #endif
         }
+
+#if e170
+        public void OnDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan) { }
+#else
+#endif
     }
 }

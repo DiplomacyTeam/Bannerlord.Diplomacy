@@ -3,9 +3,10 @@ using Diplomacy.PatchTools;
 
 using HarmonyLib;
 
+using SandBox.GauntletUI;
+
 using System.Collections.Generic;
 
-using SandBox.GauntletUI;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 
 namespace Diplomacy.Patches

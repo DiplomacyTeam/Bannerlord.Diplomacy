@@ -1,9 +1,12 @@
-﻿using HarmonyLib;
+﻿using JetBrains.Annotations;
+
+using HarmonyLib;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 

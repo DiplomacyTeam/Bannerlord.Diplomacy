@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 using StoryMode.Behaviors.Quests;
+
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Patches
@@ -16,8 +17,12 @@ namespace Diplomacy.Patches
             new Postfix(nameof(MainStoryLineChosenPostfix), TargetType, "MainStoryLineChosen"),
         };
 
+#if e170
+        private static readonly Type TargetType = typeof(SupportKingdomQuest);
+#else
         private static readonly Type TargetType = typeof(SupportKingdomQuestBehavior)
             .GetNestedType("SupportKingdomQuest", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+#endif
 
         private static readonly Action<QuestBase> CompleteQuestWithSuccess = new Reflect.Method<QuestBase>("CompleteQuestWithSuccess")
             .GetOpenDelegate<Action<QuestBase>>();

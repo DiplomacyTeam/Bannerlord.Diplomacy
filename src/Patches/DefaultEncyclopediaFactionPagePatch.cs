@@ -12,7 +12,7 @@ namespace Diplomacy.Patches
 {
     internal sealed class DefaultEncyclopediaFactionPagePatch : PatchClass<DefaultEncyclopediaFactionPagePatch, DefaultEncyclopediaFactionPage>
     {
-#if e165
+#if e165 || e170
         protected override IEnumerable<Patch> Prepare() => new Patch[]
         {
             new Postfix(nameof(PassThroughPostfix), "InitializeListItems"),
