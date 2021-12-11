@@ -16,7 +16,7 @@ env:
 jobs:
 
   build:
-    name: Build for NexusMods (Stable)
+    name: Test build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
@@ -46,12 +46,14 @@ jobs:
             $gameversion = $gameversions[$i];
             $version = $gameversion.substring(1);
             $constgameversion = $gameversion.replace(".", "");
-            echo "Building for gameversion = $gameversion"
+            echo "::group::Build for $gameversion"
+            echo "Start building for gameversion = $gameversion"
             dotnet clean $proj --configuration Release;
             dotnet build $proj --configuration Release -p:OverrideGameVersion=$gameversion -p:GameFolder="$path" -p:ConstGameVersionWithPrefix="$constgameversion";
             # Copy Implementations to the Implementations folder
             Copy-Item $pdll $impl/;
             Copy-Item $ppdb $impl/;
+            echo "::endgroup::"
         }
         # Copy Implementations to the Module
         Copy-Item $impl/* $final;
