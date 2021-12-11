@@ -139,14 +139,14 @@ namespace Diplomacy.ViewModel
             var relationValuePerInfluence = (float) Campaign.Current.Models.DiplomacyModel.GetRelationValueOfSupportingClan()
                                             / Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfSupportingClan();
 
-            return MBMath.Round(influenceValue * relationValuePerInfluence);
+            return (int)Math.Round(influenceValue * relationValuePerInfluence);
         }
 
         private int GetEstimatedRelationValue()
         {
             var baseRelation = GetBaseRelationValueOfCurrentGoldCost();
             var adjustedRelation = Campaign.Current.Models.DiplomacyModel.GetRelationIncreaseFactor(Hero.MainHero, _clan.Leader, baseRelation);
-            return MBMath.Floor(adjustedRelation);
+            return (int)Math.Floor(adjustedRelation);
         }
     }
 }

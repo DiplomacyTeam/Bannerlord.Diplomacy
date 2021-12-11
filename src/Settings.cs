@@ -1,6 +1,7 @@
 ﻿using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
 using MCM.Abstractions.Settings.Base.Global;
+
 using TaleWorlds.Localization;
 
 namespace Diplomacy
@@ -184,10 +185,6 @@ namespace Diplomacy
 
         [SettingPropertyBool("{=lsyl0VSX}Storyline Protection", Order = -2, RequireRestart = false, HintText = "{=EVrErrTR}When enabled, prevents the player from breaking the main storyline. Disable when using mods like \"Just Let Me Play\". Default value is true.")]
         public bool EnableStorylineProtection { get; set; } = true;
-
-        [SettingPropertyBool("{=HSoZfvXH}Enable Usurp Throne Feature", RequireRestart = false, HintText = "{=ZIAo4er4}When enabled, this allows the player to usurp the throne of a kingdom. This feature is unbalanced and is pending a rework and thus not recommended. Default value is false.")]
-        [SettingPropertyGroup(HeadingUnfinishedFeatures, GroupOrder = 999)]
-        public bool EnableUsurpThroneFeature { get; set; } = false;
 
         public bool EnableCoalitions { get; set; } = false;
         public float CoalitionChancePercentage { get; set; } = 5.0f;

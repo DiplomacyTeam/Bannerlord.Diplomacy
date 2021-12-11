@@ -1,10 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Diplomacy.Costs;
+
+using Microsoft.Extensions.Logging;
 
 using System;
-using Diplomacy.Costs;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.Library;
 
 namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {

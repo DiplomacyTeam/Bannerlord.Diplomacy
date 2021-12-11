@@ -1,7 +1,9 @@
 ﻿using Diplomacy.DiplomaticAction.WarPeace;
 
 using Microsoft.Extensions.Logging;
+
 using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
@@ -140,8 +142,13 @@ namespace Diplomacy.CampaignBehaviors
 
         private bool IsValidQuestState(Kingdom kingdom1, Kingdom kingdom2)
         {
+#if e170
+            var currentStoryMode = StoryMode.StoryModeManager.Current;
+#else
+            var currentStoryMode = StoryMode.StoryMode.Current;
+#endif
             // not in story mode
-            if (StoryMode.StoryMode.Current == null)
+            if (currentStoryMode == null)
             {
                 return true;
             } 
@@ -151,7 +158,7 @@ namespace Diplomacy.CampaignBehaviors
 
             if (opposingKingdom is not null)
             {
-                var thirdPhase = StoryMode.StoryMode.Current.MainStoryLine?.ThirdPhase;
+                var thirdPhase = currentStoryMode?.MainStoryLine?.ThirdPhase;
                 isValidQuestState = thirdPhase is null || !thirdPhase.OppositionKingdoms.Contains(opposingKingdom);
             }
 

@@ -15,6 +15,7 @@ namespace Diplomacy.CampaignBehaviors
         public override void RegisterEvents()
         {
             Events.MessengerSent.AddNonSerializedListener(this, OnMessengerSent);
+            CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, OnAfterSessionLaunched);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HasMessengerArrivedHourlyTick);
         }
 
@@ -33,5 +34,10 @@ namespace Diplomacy.CampaignBehaviors
             => _messengerManager.SendMessengerWithCost(hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
 
         public void HasMessengerArrivedHourlyTick() => _messengerManager.MessengerArrived();
+
+        public void OnAfterSessionLaunched(CampaignGameStarter game)
+        {
+            CampaignEvents.TickEvent.AddNonSerializedListener(_messengerManager, _messengerManager.CleanUpAfterLoad);
+        }
     }
 }

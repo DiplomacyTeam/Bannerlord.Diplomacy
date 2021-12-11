@@ -1,5 +1,6 @@
 ﻿using Diplomacy.Event;
 using Diplomacy.PatchTools;
+
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;

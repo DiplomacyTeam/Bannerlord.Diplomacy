@@ -1,6 +1,7 @@
 ﻿using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Extensions;
 using Diplomacy.PatchTools;
+
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;

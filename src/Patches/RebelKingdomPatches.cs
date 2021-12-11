@@ -1,9 +1,11 @@
-﻿using Diplomacy.Extensions;
+﻿using Diplomacy.CivilWar.Factions;
+using Diplomacy.Extensions;
 using Diplomacy.PatchTools;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Diplomacy.CivilWar.Factions;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors.Towns;

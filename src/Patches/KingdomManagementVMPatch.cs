@@ -1,5 +1,7 @@
 ﻿using Diplomacy.PatchTools;
+
 using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 
 namespace Diplomacy.Patches
