@@ -40,17 +40,20 @@ jobs:
         New-Item -ItemType directory -Force -Path $path;
         $gameversions = Get-Content -Path supported-game-versions.txt;
         # Get all implementations except the minimal version (last element)
-        # Last entry is the Minimal version. We will use Bannerlord.ButterLib.dll from there
+        # Last entry is the Minimal version. We will use Bannerlord.Diplomacy.dll from there
         For ($i = 0; $i -le $gameversions.Length - 1; $i++)
         {
             $gameversion = $gameversions[$i];
             $version = $gameversion.substring(1);
             $constgameversion = $gameversion.replace(".", "");
+            echo "::group::Build for $gameversion"
+            echo "Start building for gameversion = $gameversion"
             dotnet clean $proj --configuration Release;
             dotnet build $proj --configuration Release -p:OverrideGameVersion=$gameversion -p:GameFolder="$path" -p:ConstGameVersionWithPrefix="$constgameversion";
             # Copy Implementations to the Implementations folder
             Copy-Item $pdll $impl/;
             Copy-Item $ppdb $impl/;
+            echo "::endgroup::"
         }
         # Copy Implementations to the Module
         Copy-Item $impl/* $final;
