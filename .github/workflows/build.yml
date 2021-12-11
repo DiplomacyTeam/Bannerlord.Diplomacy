@@ -73,7 +73,7 @@ jobs:
     needs: build
     steps:
     - name: Setup
-      uses: butr/actions-common-setup@v1.3
+      uses: butr/actions-common-setup@v2.0
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
