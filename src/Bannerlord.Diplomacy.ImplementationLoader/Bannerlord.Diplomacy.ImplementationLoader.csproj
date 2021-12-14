@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>$(ModuleName)</AssemblyName>
+        <Configurations>Minimal_Debug;Minimal_Release</Configurations>
+    </PropertyGroup>
+
+    <!-- NuGet Packages -->
+    <ItemGroup>
+        <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Bannerlord.BUTR.Shared" Version="$(BUTRSharedVersion)">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Bannerlord.ButterLib" Version="$(ButterLibVersion)" IncludeAssets="compile" />
+        <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" IncludeAssets="compile" />
+        <PackageReference Include="ColorMinePortable" Version="2.0.1" />
+        <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" IncludeAssets="compile" />
+        <PackageReference Include="Bannerlord.UIExtenderEx" Version="$(UIExtenderExVersion)" IncludeAssets="compile" />
+        <!-- Microsoft.CSharp is used for its source-only 'dynamic' implementation. -->
+        <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+        <!-- An old version of JSON.NET is distributed with the game, so no point in including the assembly,
+         and we need to reference that old version instead of the latest. -->
+        <PackageReference Include="Newtonsoft.Json" Version="11.0.2" IncludeAssets="compile" />
+        <!-- Enable NET5 Features on NET472 -->
+        <PackageReference Include="IsExternalInit" Version="1.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Nullable" Version="1.3.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Harmony.Extensions" Version="$(HarmonyExtensionsVersion)">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <!-- ReferenceAssemblies -->
+        <PackageReference Include="Bannerlord.ReferenceAssemblies.Core.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
+        <PackageReference Include="Bannerlord.ReferenceAssemblies.Native.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
+        <PackageReference Include="Bannerlord.ReferenceAssemblies.StoryMode.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
+        <PackageReference Include="Bannerlord.ReferenceAssemblies.Sandbox.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
+    </ItemGroup>
+
+    <!-- Extra Substitution Variables to Use in SubModule.xml -->
+    <ItemGroup>
+        <SubModuleOverrides Include="DisplayName">
+            <Regex>\$displayname\$</Regex>
+            <Replacement>$(DisplayName)</Replacement>
+        </SubModuleOverrides>
+        <SubModuleOverrides Include="MCMVersion">
+            <Regex>\$mcmversion\$</Regex>
+            <Replacement>$(MCMVersion)</Replacement>
+        </SubModuleOverrides>
+    </ItemGroup>
+
+</Project>

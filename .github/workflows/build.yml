@@ -32,15 +32,14 @@ jobs:
         $impl = $PWD.Path + '/bannerlord-implementations';
         $path = $PWD.Path + '/bannerlord';
         $final = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/';
-        $proj = 'src/Bannerlord.Diplomacy.csproj';
+        $proj = 'src/Bannerlord.Diplomacy/Bannerlord.Diplomacy.csproj';
         $pdll = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/Bannerlord.Diplomacy*.dll';
         $ppdb = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/Bannerlord.Diplomacy*.pdb';
         # The folders are required to be created before executing the script
         New-Item -ItemType directory -Force -Path $impl;
         New-Item -ItemType directory -Force -Path $path;
         $gameversions = Get-Content -Path supported-game-versions.txt;
-        # Get all implementations except the minimal version (last element)
-        # Last entry is the Minimal version. We will use Bannerlord.ButterLib.dll from there
+        # Process all implementations
         For ($i = 0; $i -le $gameversions.Length - 1; $i++)
         {
             $gameversion = $gameversions[$i];
