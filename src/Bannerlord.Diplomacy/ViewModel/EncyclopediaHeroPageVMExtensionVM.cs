@@ -3,7 +3,9 @@ using Diplomacy.Event;
 using Diplomacy.GauntletInterfaces;
 using Diplomacy.GrantFief;
 using Diplomacy.Messengers;
+
 using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 using TaleWorlds.Engine.Screens;
@@ -28,7 +30,7 @@ namespace Diplomacy.ViewModel
             _grantFiefInterface = new GrantFiefInterface();
             _hero = (Obj as Hero)!;
             _sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger();
-            SendMessengerCost = (int)_sendMessengerCost.Value;
+            SendMessengerCost = (int) _sendMessengerCost.Value;
             SendMessengerActionName = _TSendMessengerText.ToString();
             GrantFiefActionName = _TGrantFiefText.ToString();
             RefreshValues();
@@ -37,7 +39,7 @@ namespace Diplomacy.ViewModel
         public sealed override void RefreshValues()
         {
             base.RefreshValues();
-            
+
             // this is called before the constructor the first time
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (_hero is null)

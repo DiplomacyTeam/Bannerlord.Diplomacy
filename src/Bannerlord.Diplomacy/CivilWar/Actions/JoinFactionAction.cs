@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Diplomacy.CivilWar.Factions;
+﻿using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
 using Diplomacy.Extensions;
+
+using System.Collections.Generic;
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
@@ -10,12 +12,12 @@ namespace Diplomacy.CivilWar.Actions
 {
     public class JoinFactionAction
     {
-        public static void Apply(Clan clan, RebelFaction rebelFaction) 
+        public static void Apply(Clan clan, RebelFaction rebelFaction)
         {
             rebelFaction.AddClan(clan);
         }
 
-        public static bool ShouldApply(Clan clan, RebelFaction rebelFaction) 
+        public static bool ShouldApply(Clan clan, RebelFaction rebelFaction)
         {
             if (!CanApply(clan, rebelFaction, out _))
                 return false;

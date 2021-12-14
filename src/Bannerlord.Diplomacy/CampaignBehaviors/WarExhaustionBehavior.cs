@@ -151,7 +151,7 @@ namespace Diplomacy.CampaignBehaviors
             if (currentStoryMode == null)
             {
                 return true;
-            } 
+            }
 
             var isValidQuestState = true;
             var opposingKingdom = PlayerHelpers.GetOpposingKingdomIfPlayerKingdomProvided(kingdom1, kingdom2);

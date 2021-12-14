@@ -1,7 +1,9 @@
-﻿using Diplomacy.CampaignBehaviors;
-using Diplomacy.PatchTools;
+﻿using Bannerlord.ButterLib.Common.Extensions;
+using Bannerlord.UIExtenderEx;
 
-using Bannerlord.ButterLib.Common.Extensions;
+using Diplomacy.CampaignBehaviors;
+using Diplomacy.Event;
+using Diplomacy.PatchTools;
 
 using HarmonyLib;
 
@@ -12,10 +14,8 @@ using Serilog.Events;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade;
-using Bannerlord.UIExtenderEx;
-using Diplomacy.Event;
 using TaleWorlds.ModuleManager;
+using TaleWorlds.MountAndBlade;
 
 namespace Diplomacy
 {
@@ -82,7 +82,7 @@ namespace Diplomacy
             if (game.GameType is Campaign)
             {
                 Events.Instance = new Events();
-                var gameStarter = (CampaignGameStarter)gameStarterObject;
+                var gameStarter = (CampaignGameStarter) gameStarterObject;
 
                 gameStarter.AddBehavior(new DiplomaticAgreementBehavior());
                 gameStarter.AddBehavior(new CooldownBehavior());

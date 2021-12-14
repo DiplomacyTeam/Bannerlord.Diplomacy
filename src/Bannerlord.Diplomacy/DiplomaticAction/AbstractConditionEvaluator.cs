@@ -38,7 +38,7 @@ namespace Diplomacy.DiplomaticAction
             return Conditions
                 .Select(c =>
                 {
-                    c.ApplyCondition((Kingdom)item.Faction1, (Kingdom)item.Faction2, out var txt, forcePlayerCosts, bypassCosts);
+                    c.ApplyCondition((Kingdom) item.Faction1, (Kingdom) item.Faction2, out var txt, forcePlayerCosts, bypassCosts);
                     return txt;
                 })
                 .OfType<TextObject>()

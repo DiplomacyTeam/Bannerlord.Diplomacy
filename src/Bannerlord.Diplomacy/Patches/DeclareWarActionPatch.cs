@@ -30,5 +30,5 @@ namespace Diplomacy.Patches
             => Events.Instance.OnWarDeclared(new WarDeclaredEvent(faction, provocatorFaction, true));
 
         // FIXME: LO-PRIO: There are two other types of Apply* methods; they should probably also fire the event.
-   }
+    }
 }

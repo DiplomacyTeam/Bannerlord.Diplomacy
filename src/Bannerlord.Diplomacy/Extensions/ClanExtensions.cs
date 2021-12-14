@@ -1,7 +1,9 @@
 ﻿using Diplomacy.CivilWar;
+using Diplomacy.CivilWar.Factions;
+
 using System.Collections.Generic;
 using System.Linq;
-using Diplomacy.CivilWar.Factions;
+
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Extensions
@@ -37,7 +39,7 @@ namespace Diplomacy.Extensions
                 yield break;
             }
 
-            foreach(RebelFaction faction in RebelFactionManager.GetRebelFaction(clan.Kingdom))
+            foreach (RebelFaction faction in RebelFactionManager.GetRebelFaction(clan.Kingdom))
             {
                 if (faction.Clans.Contains(clan))
                     yield return faction;

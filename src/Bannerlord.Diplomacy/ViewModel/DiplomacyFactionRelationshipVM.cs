@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+
+using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
@@ -9,7 +11,7 @@ namespace Diplomacy.ViewModel
 {
     public sealed class DiplomacyFactionRelationshipVM : TaleWorlds.Library.ViewModel
     {
-        public IFaction Faction { get; init;  }
+        public IFaction Faction { get; init; }
 
         public DiplomacyFactionRelationshipVM(IFaction faction, HintViewModel? hint = null)
         {

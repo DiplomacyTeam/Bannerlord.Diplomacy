@@ -1,4 +1,5 @@
 ﻿using Diplomacy.Event;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 

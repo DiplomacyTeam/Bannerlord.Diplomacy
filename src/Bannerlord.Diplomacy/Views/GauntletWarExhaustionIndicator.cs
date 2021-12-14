@@ -1,6 +1,9 @@
 ﻿using Diplomacy.ViewModel;
+
 using JetBrains.Annotations;
+
 using SandBox.View.Map;
+
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;

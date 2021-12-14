@@ -1,5 +1,6 @@
 ﻿using Diplomacy.DiplomaticAction.GenericConditions;
 using Diplomacy.DiplomaticAction.WarPeace.Conditions;
+
 using System.Collections.Generic;
 
 namespace Diplomacy.DiplomaticAction.WarPeace

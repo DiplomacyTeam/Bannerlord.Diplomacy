@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Diplomacy.Costs;
+﻿using Diplomacy.Costs;
+
 using JetBrains.Annotations;
+
+using System.Collections.Generic;
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
@@ -16,7 +19,7 @@ namespace Diplomacy.Messengers
     {
         private const float MessengerHourlySpeed = 20f;
 
-        private static readonly List<MissionMode> AllowedMissionModes = new() {MissionMode.Conversation, MissionMode.Barter};
+        private static readonly List<MissionMode> AllowedMissionModes = new() { MissionMode.Conversation, MissionMode.Barter };
 
         private static readonly TextObject _TMessengerSent = new("{=zv12jjyW}Messenger Sent");
 
@@ -152,7 +155,7 @@ namespace Diplomacy.Messengers
         {
             return PartyBase.MainParty is not null
                    && PlayerEncounter.Current is null
-                   && GameStateManager.Current.ActiveState is MapState {AtMenu: false};
+                   && GameStateManager.Current.ActiveState is MapState { AtMenu: false };
         }
 
         internal void Sync()

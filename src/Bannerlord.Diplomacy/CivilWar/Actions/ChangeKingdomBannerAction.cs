@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using ColorMine.ColorSpaces;
+﻿using ColorMine.ColorSpaces;
 using ColorMine.ColorSpaces.Comparisons;
+
 using Diplomacy.Event;
 using Diplomacy.Extensions;
+
 using HarmonyLib;
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
@@ -89,7 +93,7 @@ namespace Diplomacy.CivilWar.Actions
             else
             {
                 // choose random unused color from the palette
-                List<uint> currentBackgroundColors = Kingdom.All.Where(x => !x.IsEliminated).Select(x => (uint)PrimaryBannerColorProp.GetValue(x)).ToList();
+                List<uint> currentBackgroundColors = Kingdom.All.Where(x => !x.IsEliminated).Select(x => (uint) PrimaryBannerColorProp.GetValue(x)).ToList();
                 backgroundColor = BannerManager.ColorPalette.Where(x => !currentBackgroundColors.Contains(x.Value.Color)).GetRandomElementInefficiently().Value.Color;
                 sigilColor = GetUniqueSigilColor(backgroundColor);
             }
@@ -105,7 +109,7 @@ namespace Diplomacy.CivilWar.Actions
             uint selectedColor = BannerManager.ColorPalette.Where(x => background.Compare(GetRgb(x.Value.Color), new Cie1976Comparison()) > 40).GetRandomElementInefficiently().Value.Color;
             if (backgroundColor == RebelBackgroundColor)
             {
-                List<uint> currentSigilColors = Kingdom.All.Where(x => !x.IsEliminated && x.IsRebelKingdom()).Select(x => (uint)SecondaryBannerColorProp.GetValue(x)).ToList();
+                List<uint> currentSigilColors = Kingdom.All.Where(x => !x.IsEliminated && x.IsRebelKingdom()).Select(x => (uint) SecondaryBannerColorProp.GetValue(x)).ToList();
                 var colors = BannerManager.ColorPalette.Select(x => x.Value.Color)
                     .Where(x => background.Compare(GetRgb(x), new Cie1976Comparison()) > 40)
                     .Where(x => !currentSigilColors.Contains(x))

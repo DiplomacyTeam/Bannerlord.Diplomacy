@@ -1,6 +1,9 @@
 ﻿using Diplomacy.GrantFief;
-using System;
+
 using JetBrains.Annotations;
+
+using System;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
@@ -21,12 +24,12 @@ namespace Diplomacy.ViewModel
             var component2 = settlement.GetComponent<Town>();
             if (component2 is not null)
             {
-                Prosperity = (int)Math.Round(component2.Prosperity);
+                Prosperity = (int) Math.Round(component2.Prosperity);
                 IconPath = component2.BackgroundMeshName;
             }
             else if (settlement.IsCastle)
             {
-                Prosperity = (int)Math.Round(settlement.Prosperity);
+                Prosperity = (int) Math.Round(settlement.Prosperity);
                 IconPath = "";
             }
             Garrison = Settlement.Town.GarrisonParty?.Party.NumberOfAllMembers ?? 0;

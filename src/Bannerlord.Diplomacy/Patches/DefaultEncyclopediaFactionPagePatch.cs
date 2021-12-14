@@ -38,12 +38,12 @@ namespace Diplomacy.Patches
         };
 
         // ReSharper disable once RedundantAssignment
-        private static void ApplyPostfix(ref IEnumerable<EncyclopediaListItem>  __result, ref IEnumerable<EncyclopediaListItem>  ____items)
+        private static void ApplyPostfix(ref IEnumerable<EncyclopediaListItem> __result, ref IEnumerable<EncyclopediaListItem> ____items)
         {
             var listItems = ____items.ToList();
             foreach (var item in listItems.ToList())
             {
-                var kingdom = (Kingdom)item.Object;
+                var kingdom = (Kingdom) item.Object;
                 if (kingdom.IsRebelKingdom() && kingdom.IsEliminated)
                 {
                     listItems.Remove(item);

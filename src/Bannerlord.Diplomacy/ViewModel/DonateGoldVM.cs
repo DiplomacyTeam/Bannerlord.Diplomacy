@@ -1,6 +1,8 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+
+using System;
 using System.ComponentModel;
-using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
@@ -139,14 +141,14 @@ namespace Diplomacy.ViewModel
             var relationValuePerInfluence = (float) Campaign.Current.Models.DiplomacyModel.GetRelationValueOfSupportingClan()
                                             / Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfSupportingClan();
 
-            return (int)Math.Round(influenceValue * relationValuePerInfluence);
+            return (int) Math.Round(influenceValue * relationValuePerInfluence);
         }
 
         private int GetEstimatedRelationValue()
         {
             var baseRelation = GetBaseRelationValueOfCurrentGoldCost();
             var adjustedRelation = Campaign.Current.Models.DiplomacyModel.GetRelationIncreaseFactor(Hero.MainHero, _clan.Leader, baseRelation);
-            return (int)Math.Floor(adjustedRelation);
+            return (int) Math.Floor(adjustedRelation);
         }
     }
 }

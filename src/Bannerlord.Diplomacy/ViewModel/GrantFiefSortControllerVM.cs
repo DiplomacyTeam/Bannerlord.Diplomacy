@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using TaleWorlds.Library;
 
 namespace Diplomacy.ViewModel
@@ -89,11 +90,11 @@ namespace Diplomacy.ViewModel
 
         private void SetAllStates(SortState state)
         {
-            TypeState = (int)state;
-            NameState = (int)state;
-            ProsperityState = (int)state;
-            DefendersState = (int)state;
-            RelationState = (int)state;
+            TypeState = (int) state;
+            NameState = (int) state;
+            ProsperityState = (int) state;
+            DefendersState = (int) state;
+            RelationState = (int) state;
             IsTypeSelected = false;
             IsNameSelected = false;
             IsProsperitySelected = false;

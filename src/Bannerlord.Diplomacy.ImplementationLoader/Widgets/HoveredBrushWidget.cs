@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+
 using TaleWorlds.GauntletUI;
 
 namespace Diplomacy.Widgets

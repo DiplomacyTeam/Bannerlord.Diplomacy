@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using Diplomacy.PatchTools;
 
-using Diplomacy.PatchTools;
+using JetBrains.Annotations;
 
 using System;
 using System.Collections.Generic;
@@ -33,6 +33,6 @@ namespace Diplomacy.Patches
             Alliance,
         }
 
-        private static readonly Func<IFaction, IFaction, StanceType, StanceLink> SetStance = new Reflect.Method<FactionManager>("SetStance").GetDelegate<Func<IFaction, IFaction, StanceType, StanceLink>>(); 
+        private static readonly Func<IFaction, IFaction, StanceType, StanceLink> SetStance = new Reflect.Method<FactionManager>("SetStance").GetDelegate<Func<IFaction, IFaction, StanceType, StanceLink>>();
     }
 }

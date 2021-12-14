@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
-using Diplomacy.DiplomaticAction.Alliance;
+﻿using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.WarPeace;
+
+using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Event

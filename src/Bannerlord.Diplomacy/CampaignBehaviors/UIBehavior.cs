@@ -1,5 +1,7 @@
 ﻿using Diplomacy.Views;
+
 using SandBox.View.Map;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
@@ -18,7 +20,7 @@ namespace Diplomacy.CampaignBehaviors
             if (!Settings.Instance!.EnableWarExhaustion)
             {
                 CampaignEvents.TickEvent.ClearListeners(this);
-            } 
+            }
             else if (Game.Current.GameStateManager.ActiveState is MapState)
             {
                 MapScreen.Instance.AddMapView<MapWarExhaustionIndicatorView>();

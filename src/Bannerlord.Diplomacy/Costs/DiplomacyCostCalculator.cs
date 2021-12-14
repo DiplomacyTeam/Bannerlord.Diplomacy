@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
@@ -18,7 +19,7 @@ namespace Diplomacy.Costs
             if (!Settings.Instance!.ScalingInfluenceCosts)
                 return new InfluenceCost(clanPayingInfluence, Settings.Instance!.DeclareWarInfluenceCost);
 
-            return new InfluenceCost(clanPayingInfluence, (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingInfluenceCostMultiplier));
+            return new InfluenceCost(clanPayingInfluence, (float) Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingInfluenceCostMultiplier));
         }
 
         public static HybridCost DetermineCostForMakingPeace(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
@@ -50,7 +51,7 @@ namespace Diplomacy.Costs
 
         private static float GetKingdomScalingFactor(Kingdom kingdom)
         {
-            return (float)Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingInfluenceCostMultiplier);
+            return (float) Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingInfluenceCostMultiplier);
         }
 
         public static HybridCost DetermineCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
@@ -79,7 +80,7 @@ namespace Diplomacy.Costs
 
             var baseGoldCost = 500;
             var goldCostFactor = 100;
-            var goldCost = (int)((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * goldCostFactor) + baseGoldCost);
+            var goldCost = (int) ((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * goldCostFactor) + baseGoldCost);
 
             return new GoldCost(giver, otherKingdom.Leader, goldCost);
         }
@@ -113,7 +114,7 @@ namespace Diplomacy.Costs
                     var relativeWarExhaustion = (kingdomMakingPeaceWarExhaustion + 1f) / (otherKingdomWarExhaustion + 1f) - 1f;
                     warExhaustionMultiplier = MBMath.ClampFloat(relativeWarExhaustion, 0, ((1f / 20f) * kingdomMakingPeaceWarExhaustion) - 1f);
                 }
-                goldCost = Math.Min((int)(GetKingdomScalingFactor(kingdomMakingPeace) * warExhaustionMultiplier), kingdomMakingPeace.Leader.Gold / 2);
+                goldCost = Math.Min((int) (GetKingdomScalingFactor(kingdomMakingPeace) * warExhaustionMultiplier), kingdomMakingPeace.Leader.Gold / 2);
 
             }
             return new GoldCost(giver, otherKingdom.Leader, goldCost);
@@ -155,7 +156,7 @@ namespace Diplomacy.Costs
 
             var baseGoldCost = 500;
             var goldCostFactor = 100;
-            var goldCost = (int)((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * AllianceFactor * goldCostFactor) + baseGoldCost);
+            var goldCost = (int) ((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * AllianceFactor * goldCostFactor) + baseGoldCost);
 
             return new GoldCost(giver, otherKingdom.Leader, goldCost);
         }

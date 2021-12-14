@@ -38,7 +38,7 @@ namespace Diplomacy.Patches
             if (Settings.Instance!.EnableInfluenceDecay && clan.Influence > Settings.Instance!.InfluenceDecayThreshold)
             {
                 float decayFactor = Settings.Instance!.InfluenceDecayPercentage / 100f;
-                int decay = (int)(decayFactor * (clan.Influence - Settings.Instance!.InfluenceDecayThreshold));
+                int decay = (int) (decayFactor * (clan.Influence - Settings.Instance!.InfluenceDecayThreshold));
 
                 if (decay > 0)
                     __result.Add(-decay, _TInfluenceDecay);

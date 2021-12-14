@@ -1,6 +1,8 @@
 ﻿using Diplomacy.Extensions;
+
 using System;
 using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Barterables;
 
@@ -45,7 +47,7 @@ namespace Diplomacy.CampaignBehaviors
             if (settlementToTrade is null)
                 return default;
 
-            var targetClan = ((Kingdom)ownerClan.MapFaction).Clans
+            var targetClan = ((Kingdom) ownerClan.MapFaction).Clans
                 .Where(c => c != ownerClan && !c.HasMaximumFiefs() && !c.IsUnderMercenaryService && c != Clan.PlayerClan)
                 .OrderByDescending(c => GetGoldValueForFief(c, settlementToTrade))
                 .FirstOrDefault();
@@ -60,7 +62,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private static int GetGoldValueForFief(Clan buyerClan, Settlement settlement)
         {
-            return (int)Math.Min(Campaign.Current.Models.SettlementValueModel.CalculateValueForFaction(settlement, buyerClan),
+            return (int) Math.Min(Campaign.Current.Models.SettlementValueModel.CalculateValueForFaction(settlement, buyerClan),
                                  buyerClan.Gold * 0.8);
         }
     }

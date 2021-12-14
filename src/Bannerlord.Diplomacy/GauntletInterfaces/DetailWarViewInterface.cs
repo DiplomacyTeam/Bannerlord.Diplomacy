@@ -1,5 +1,7 @@
 ﻿using Diplomacy.ViewModel;
+
 using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;

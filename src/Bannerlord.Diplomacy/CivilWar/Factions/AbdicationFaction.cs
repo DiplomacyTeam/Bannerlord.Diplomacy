@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Diplomacy.CivilWar.Actions;
 
-using Diplomacy.CivilWar.Actions;
+using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
@@ -55,7 +55,7 @@ namespace Diplomacy.CivilWar.Factions
         {
             RebelFactionManager.DestroyRebelFaction(this);
 
-            var strVars = new Dictionary<string, object> { { "PARENT_KINGDOM", this.ParentKingdom.Name }, { "REBELS", this.Name }};
+            var strVars = new Dictionary<string, object> { { "PARENT_KINGDOM", this.ParentKingdom.Name }, { "REBELS", this.Name } };
             InformationManager.ShowInquiry(
                 new InquiryData(
                     _TAbdicateTitle.ToString(),

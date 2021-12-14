@@ -18,18 +18,18 @@ namespace Diplomacy.Costs
         {
             if (_receiver is not null)
             {
-                GiveGoldAction.ApplyBetweenCharacters(_giver, _receiver, (int)Value);
+                GiveGoldAction.ApplyBetweenCharacters(_giver, _receiver, (int) Value);
 
             }
             else
             {
-                _giver.ChangeHeroGold(-(int)Value);
+                _giver.ChangeHeroGold(-(int) Value);
             }
         }
 
         public override bool CanPayCost()
         {
-            return _giver.Gold >= (int)Value;
+            return _giver.Gold >= (int) Value;
         }
     }
 }

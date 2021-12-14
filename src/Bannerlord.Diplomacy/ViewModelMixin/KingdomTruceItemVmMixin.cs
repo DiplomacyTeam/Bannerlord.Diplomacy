@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Bannerlord.UIExtenderEx.Attributes;
+﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
+
 using Diplomacy.Costs;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.ViewModel;
+
 using JetBrains.Annotations;
+
+using System.Collections.Generic;
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;

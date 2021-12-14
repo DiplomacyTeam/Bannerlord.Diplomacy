@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Diplomacy.CivilWar.Factions;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Diplomacy.CivilWar.Factions;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
@@ -23,7 +25,7 @@ namespace Diplomacy.CivilWar.Scoring
 
         protected override IEnumerable<Tuple<TextObject, float>> GetMemberScore(Clan clan, RebelFaction rebelFaction)
         {
-            List<Tuple<TextObject, float>> memberScores = new() {CalculateFiefDeficitScore(clan)};
+            List<Tuple<TextObject, float>> memberScores = new() { CalculateFiefDeficitScore(clan) };
             memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Honor));
             memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Valor));
 
@@ -38,7 +40,7 @@ namespace Diplomacy.CivilWar.Scoring
         protected override IEnumerable<Tuple<TextObject, float>> GetLeaderOnlyScore(Clan clan, RebelFaction rebelFaction)
         {
             // ambition of faction sponsor
-            yield return new Tuple<TextObject, float>(_TCalculating ,clan.Leader.GetTraitLevel(DefaultTraits.Calculating) * 20);
+            yield return new Tuple<TextObject, float>(_TCalculating, clan.Leader.GetTraitLevel(DefaultTraits.Calculating) * 20);
 
             // must be clan tier 4+
             if (clan.Tier < 4)

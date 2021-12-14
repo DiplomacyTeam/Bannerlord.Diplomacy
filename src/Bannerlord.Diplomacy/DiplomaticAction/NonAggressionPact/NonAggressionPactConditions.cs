@@ -1,4 +1,5 @@
 ﻿using Diplomacy.DiplomaticAction.GenericConditions;
+
 using System.Collections.Generic;
 
 namespace Diplomacy.DiplomaticAction.NonAggressionPact

@@ -1,5 +1,5 @@
-﻿using Diplomacy.ViewModel;
-using Diplomacy.PatchTools;
+﻿using Diplomacy.PatchTools;
+using Diplomacy.ViewModel;
 
 using HarmonyLib;
 
@@ -20,7 +20,7 @@ namespace Diplomacy.Patches
 
         public static void GetEncyclopediaPageInstancePostfix(ref EncyclopediaPageVM __result)
         {
-            var args = (EncyclopediaPageArgs)AccessTools.Field(typeof(EncyclopediaPageVM), "_args").GetValue(__result);
+            var args = (EncyclopediaPageArgs) AccessTools.Field(typeof(EncyclopediaPageVM), "_args").GetValue(__result);
 
             if (__result is EncyclopediaHeroPageVM)
                 __result = new EncyclopediaHeroPageVMExtensionVM(args);

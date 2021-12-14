@@ -1,5 +1,7 @@
 ﻿using Diplomacy.GauntletInterfaces;
+
 using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine.Screens;
@@ -55,7 +57,7 @@ namespace Diplomacy.ViewModel
         public ImageIdentifierVM Faction2Visual
         {
             get => _faction2Visual;
-            set { _faction2Visual = value; OnPropertyChanged(nameof(Faction2Visual));}
+            set { _faction2Visual = value; OnPropertyChanged(nameof(Faction2Visual)); }
         }
 
         [DataSourceProperty]

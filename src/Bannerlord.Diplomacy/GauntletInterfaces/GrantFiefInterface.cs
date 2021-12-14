@@ -1,5 +1,7 @@
-﻿using System;
-using Diplomacy.ViewModel;
+﻿using Diplomacy.ViewModel;
+
+using System;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;

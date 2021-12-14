@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TaleWorlds.SaveSystem;

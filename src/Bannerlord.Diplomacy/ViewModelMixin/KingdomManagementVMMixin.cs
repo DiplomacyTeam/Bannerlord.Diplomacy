@@ -1,7 +1,10 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
+
 using Diplomacy.GauntletInterfaces;
+
 using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;

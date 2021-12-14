@@ -1,7 +1,10 @@
-﻿using System;
-using Diplomacy.CivilWar.Actions;
+﻿using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
+
 using JetBrains.Annotations;
+
+using System;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Diplomacy.CivilWar.Factions;
+
+using System.Collections.Generic;
 using System.Linq;
-using Diplomacy.CivilWar.Factions;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -12,31 +14,46 @@ namespace Diplomacy.CivilWar
         private static Dictionary<string, List<TitleSelection>> CultureToKingdomTitles { get; } = new()
         {
             // {"empire", new() { } },
-            {"aserai", new()
             {
-                new("{=iLMqCvmk}Sultanate of {CLAN_NAME}"),
-                new("{=EnpnMNRH}Emirate of {CLAN_NAME}"),
-                new("{=uzd9mxIC}Banu {CLAN_NAME}"),
-                new("{=NTFz3B56}Sharifate of {CLAN_NAME}")
-            } },
-            {"battania", new()
+                "aserai",
+                new()
+                {
+                    new("{=iLMqCvmk}Sultanate of {CLAN_NAME}"),
+                    new("{=EnpnMNRH}Emirate of {CLAN_NAME}"),
+                    new("{=uzd9mxIC}Banu {CLAN_NAME}"),
+                    new("{=NTFz3B56}Sharifate of {CLAN_NAME}")
+                }
+            },
             {
-                new(StringConstants.FactionConfederation),
-            } },
-            {"khuzait", new()
+                "battania",
+                new()
+                {
+                    new(StringConstants.FactionConfederation),
+                }
+            },
             {
-                new("{=mEHufuep}Khaganate of {CLAN_NAME}", 0.5f),
-                new("{=DTBaowBi}{CLAN_NAME} Khaganate", 0.5f),
-                new("{=pRgQF4WY}{CLAN_NAME} Dynasty")
-            } },
-            {"sturgia", new()
+                "khuzait",
+                new()
+                {
+                    new("{=mEHufuep}Khaganate of {CLAN_NAME}", 0.5f),
+                    new("{=DTBaowBi}{CLAN_NAME} Khaganate", 0.5f),
+                    new("{=pRgQF4WY}{CLAN_NAME} Dynasty")
+                }
+            },
             {
-                new("{=z5VPFrfh}Earldom of {CLAN_NAME}")
-            } },
-            {"vlandia", new()
+                "sturgia",
+                new()
+                {
+                    new("{=z5VPFrfh}Earldom of {CLAN_NAME}")
+                }
+            },
             {
-                new("{=A4zT7H5g}Grand Duchy of {CLAN_NAME}")
-            } },
+                "vlandia",
+                new()
+                {
+                    new("{=A4zT7H5g}Grand Duchy of {CLAN_NAME}")
+                }
+            },
         };
 
         private static readonly List<TitleSelection> CommonKingdomTitles = new()

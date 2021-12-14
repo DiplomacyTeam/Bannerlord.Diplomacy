@@ -40,7 +40,7 @@ namespace Diplomacy.PatchTools
         {
             var log = LogFactory.Get<PatchManager>();
             log.LogDebug($"Applying unannotated Harmony patches (domain: {harmonyId})...");
-            
+
             Harmony = new(harmonyId);
             _patches = _PatchClasses.SelectMany(pc => pc.Patches).ToArray();
 

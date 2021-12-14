@@ -1,4 +1,5 @@
 ﻿using Diplomacy.DiplomaticAction.Alliance.Conditions;
+
 using System.Collections.Generic;
 
 namespace Diplomacy.DiplomaticAction.Alliance

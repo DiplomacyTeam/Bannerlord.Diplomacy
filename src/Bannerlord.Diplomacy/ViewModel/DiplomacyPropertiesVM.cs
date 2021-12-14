@@ -75,7 +75,7 @@ namespace Diplomacy.ViewModel
             {
                 textObject = _TDaysRemaining.CopyTextObject();
                 var remaining = Settings.Instance!.MinimumAllianceDuration - elapsedDaysUntilNow;
-                textObject.SetTextVariable("DAYS_LEFT", (int)Math.Round(remaining));
+                textObject.SetTextVariable("DAYS_LEFT", (int) Math.Round(remaining));
             }
             else
             {
@@ -87,10 +87,10 @@ namespace Diplomacy.ViewModel
 
         private void AddNonAggressionPactRelationships(Kingdom kingdom, IFaction faction, MBBindingList<DiplomacyFactionRelationshipVM> factionPacts)
         {
-            if (DiplomaticAgreementManager.HasNonAggressionPact(kingdom, (Kingdom)faction, out var pact))
+            if (DiplomaticAgreementManager.HasNonAggressionPact(kingdom, (Kingdom) faction, out var pact))
             {
                 var textObject = _TDaysRemaining.CopyTextObject();
-                textObject.SetTextVariable("DAYS_LEFT", (int)Math.Round(pact!.EndDate.RemainingDaysFromNow));
+                textObject.SetTextVariable("DAYS_LEFT", (int) Math.Round(pact!.EndDate.RemainingDaysFromNow));
                 factionPacts.Add(new DiplomacyFactionRelationshipVM(kingdom, Compat.HintViewModel.Create(textObject)));
             }
         }
@@ -98,10 +98,10 @@ namespace Diplomacy.ViewModel
         private void AddWarRelationships(IEnumerable<StanceLink> stances)
         {
             foreach (var stance in from x in stances
-                                          where x.IsAtWar
-                                          select x into w
-                                          orderby w.Faction1.Name.ToString() + w.Faction2.Name.ToString()
-                                          select w)
+                                   where x.IsAtWar
+                                   select x into w
+                                   orderby w.Faction1.Name.ToString() + w.Faction2.Name.ToString()
+                                   select w)
             {
                 var (f1, f2) = (stance.Faction1, stance.Faction2);
 

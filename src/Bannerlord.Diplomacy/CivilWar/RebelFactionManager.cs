@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Diplomacy.CivilWar.Factions;
+﻿using Diplomacy.CivilWar.Factions;
+
 using JetBrains.Annotations;
+
+using System.Collections.Generic;
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
@@ -11,11 +14,14 @@ namespace Diplomacy.CivilWar
     {
         public static RebelFactionManager? Instance { get; private set; }
 
-        [SaveableProperty(1)] [UsedImplicitly]
+        [SaveableProperty(1)]
+        [UsedImplicitly]
         public Dictionary<Kingdom, List<RebelFaction>> RebelFactions { get; private set; }
-        [SaveableProperty(2)] [UsedImplicitly]
+        [SaveableProperty(2)]
+        [UsedImplicitly]
         public List<Kingdom> DeadRebelKingdoms { get; private set; }
-        [SaveableProperty(3)] [UsedImplicitly]
+        [SaveableProperty(3)]
+        [UsedImplicitly]
         public Dictionary<Kingdom, CampaignTime> LastCivilWar { get; private set; }
 
         public RebelFactionManager()

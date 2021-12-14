@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
-using Diplomacy.CivilWar.Actions;
+﻿using Diplomacy.CivilWar.Actions;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.Extensions;
+
 using JetBrains.Annotations;
+
+using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Library;
@@ -93,7 +96,7 @@ namespace Diplomacy
             var current = WarExhaustionManager.Instance.GetWarExhaustion(kingdom1, kingdom2);
             var toAdd = (warExhaustion - current) / Settings.Instance!.WarExhaustionPerCasualty;
 
-            WarExhaustionManager.Instance.AddCasualtyWarExhaustion(kingdom1, kingdom2, (int)toAdd);
+            WarExhaustionManager.Instance.AddCasualtyWarExhaustion(kingdom1, kingdom2, (int) toAdd);
             return "done!";
         }
 
