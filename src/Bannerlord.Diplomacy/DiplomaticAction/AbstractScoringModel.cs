@@ -85,7 +85,7 @@ namespace Diplomacy.DiplomaticAction
 
             // Relationship
 
-            var relationMult = MBMath.ClampFloat((float)Math.Log((ourKingdom.Leader.GetRelation(otherKingdom.Leader) + 100f) / 100f, 1.5),
+            var relationMult = MBMath.ClampFloat((float) Math.Log((ourKingdom.Leader.GetRelation(otherKingdom.Leader) + 100f) / 100f, 1.5),
                                                  -1f,
                                                  +1f);
 
@@ -98,7 +98,7 @@ namespace Diplomacy.DiplomaticAction
                 explainedNum.Add(expansionismPenalty, _TExpansionism);
 
             // Tendency
-                explainedNum.Add(Scores.Tendency, _TTendency);
+            explainedNum.Add(Scores.Tendency, _TTendency);
 
             return explainedNum;
         }

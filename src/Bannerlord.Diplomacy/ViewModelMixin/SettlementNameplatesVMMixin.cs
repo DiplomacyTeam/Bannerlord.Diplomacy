@@ -1,8 +1,12 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
+
 using Diplomacy.Event;
+
 using JetBrains.Annotations;
+
 using SandBox.ViewModelCollection.Nameplate;
+
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.ViewModelMixin

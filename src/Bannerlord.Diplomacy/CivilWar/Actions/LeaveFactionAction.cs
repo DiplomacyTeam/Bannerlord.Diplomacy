@@ -1,4 +1,5 @@
 ﻿using Diplomacy.CivilWar.Factions;
+
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.CivilWar.Actions

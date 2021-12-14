@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Metadata;
-using System.Reflection.PortableExecutable;
-
-using Bannerlord.BUTR.Shared.Helpers;
-
+﻿using Bannerlord.BUTR.Shared.Helpers;
 using Bannerlord.ButterLib.Common.Extensions;
 using Bannerlord.ButterLib.Common.Helpers;
 using Bannerlord.ButterLib.SubModuleWrappers;
@@ -15,6 +6,14 @@ using Bannerlord.ButterLib.SubModuleWrappers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Metadata;
+using System.Reflection.PortableExecutable;
 
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -82,39 +81,39 @@ namespace Diplomacy
             switch (implementationsForGameVersion.Count)
             {
                 case > 1:
-                    {
-                        logger?.LogInformation("Found multiple matching implementations:");
-                        foreach (var (implementation1, version1) in implementationsForGameVersion)
-                            logger?.LogInformation("Implementation {name} for game {gameVersion}.", implementation1.Name, version1);
+                {
+                    logger?.LogInformation("Found multiple matching implementations:");
+                    foreach (var (implementation1, version1) in implementationsForGameVersion)
+                        logger?.LogInformation("Implementation {name} for game {gameVersion}.", implementation1.Name, version1);
 
 
-                        logger?.LogInformation("Loading the latest available.");
+                    logger?.LogInformation("Loading the latest available.");
 
-                        var (implementation, version) = ImplementationLatest(implementationsForGameVersion);
-                        logger?.LogInformation("Implementation {name} for game {gameVersion} is loaded.", implementation.Name, version);
-                        implementationAssemblies.Add(Assembly.LoadFrom(implementation.FullName));
-                        break;
-                    }
+                    var (implementation, version) = ImplementationLatest(implementationsForGameVersion);
+                    logger?.LogInformation("Implementation {name} for game {gameVersion} is loaded.", implementation.Name, version);
+                    implementationAssemblies.Add(Assembly.LoadFrom(implementation.FullName));
+                    break;
+                }
 
                 case 1:
-                    {
-                        logger?.LogInformation("Found matching implementation. Loading it.");
+                {
+                    logger?.LogInformation("Found matching implementation. Loading it.");
 
-                        var (implementation, version) = implementationsForGameVersion[0];
-                        logger?.LogInformation("Implementation {name} for game {gameVersion} is loaded.", implementation.Name, version);
-                        implementationAssemblies.Add(Assembly.LoadFrom(implementation.FullName));
-                        break;
-                    }
+                    var (implementation, version) = implementationsForGameVersion[0];
+                    logger?.LogInformation("Implementation {name} for game {gameVersion} is loaded.", implementation.Name, version);
+                    implementationAssemblies.Add(Assembly.LoadFrom(implementation.FullName));
+                    break;
+                }
 
                 case 0:
-                    {
-                        logger?.LogInformation("Found no matching implementations. Loading the latest available.");
+                {
+                    logger?.LogInformation("Found no matching implementations. Loading the latest available.");
 
-                        var (implementation, version) = ImplementationLatest(implementationsWithVersions);
-                        logger?.LogInformation("Implementation {name} for game {gameVersion} is loaded.", implementation.Name, version);
-                        implementationAssemblies.Add(Assembly.LoadFrom(implementation.FullName));
-                        break;
-                    }
+                    var (implementation, version) = ImplementationLatest(implementationsWithVersions);
+                    logger?.LogInformation("Implementation {name} for game {gameVersion} is loaded.", implementation.Name, version);
+                    implementationAssemblies.Add(Assembly.LoadFrom(implementation.FullName));
+                    break;
+                }
             }
 
             var subModules = implementationAssemblies.SelectMany(a =>
@@ -171,8 +170,8 @@ namespace Diplomacy
                     var ctorHandle = attr.Constructor;
                     if (ctorHandle.Kind != HandleKind.MemberReference) continue;
 
-                    var container = mdReader.GetMemberReference((MemberReferenceHandle)ctorHandle).Parent;
-                    var name = mdReader.GetTypeReference((TypeReferenceHandle)container).Name;
+                    var container = mdReader.GetMemberReference((MemberReferenceHandle) ctorHandle).Parent;
+                    var name = mdReader.GetTypeReference((TypeReferenceHandle) container).Name;
                     if (!string.Equals(mdReader.GetString(name), "AssemblyMetadataAttribute")) continue;
 
                     var attributeReader = mdReader.GetBlobReader(attr.Value);

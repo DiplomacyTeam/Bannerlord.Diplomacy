@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Bannerlord.UIExtenderEx.Attributes;
+﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
+
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.Event;
 using Diplomacy.Extensions;
+
 using HarmonyLib;
+
 using JetBrains.Annotations;
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Core;
@@ -173,7 +178,7 @@ namespace Diplomacy.ViewModelMixin
 
         private void OnDiplomacyItemSelection(KingdomDiplomacyItemVM item)
         {
-            OnDiplomacyItemSelectionMethod.Invoke(ViewModel, new object[] {item});
+            OnDiplomacyItemSelectionMethod.Invoke(ViewModel, new object[] { item });
 #if !(e159 || e1510)
             ExecuteShowStatComparison();
 #endif

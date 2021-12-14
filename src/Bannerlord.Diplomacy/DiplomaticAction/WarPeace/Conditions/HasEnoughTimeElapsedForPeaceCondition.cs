@@ -1,4 +1,5 @@
 ﻿using System;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
@@ -15,7 +16,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
             if (!hasEnoughTimeElapsed)
             {
                 textObject = _TTooSoon.CopyTextObject();
-                textObject.SetTextVariable("ELAPSED_DAYS", (float)Math.Floor(elapsedDaysUntilNow));
+                textObject.SetTextVariable("ELAPSED_DAYS", (float) Math.Floor(elapsedDaysUntilNow));
                 textObject.SetTextVariable("REQUIRED_DAYS", Settings.Instance!.MinimumWarDurationInDays);
             }
             return hasEnoughTimeElapsed;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.LogEntries;
 using TaleWorlds.Localization;
@@ -31,8 +32,8 @@ namespace Diplomacy.DiplomaticAction.Alliance.Conditions
             if (!hasEnoughTimeElapsed)
             {
                 textObject = _TTooSoon.CopyTextObject();
-                textObject.SetTextVariable("ELAPSED_DAYS", (int)daysSinceLastWar);
-                textObject.SetTextVariable("REQUIRED_DAYS", (int)MinimumTimeFromLastWar);
+                textObject.SetTextVariable("ELAPSED_DAYS", (int) daysSinceLastWar);
+                textObject.SetTextVariable("REQUIRED_DAYS", (int) MinimumTimeFromLastWar);
             }
             return hasEnoughTimeElapsed;
         }

@@ -3,8 +3,10 @@ using Diplomacy.CivilWar.Factions;
 using Diplomacy.DiplomaticAction;
 using Diplomacy.Messengers;
 
-using System.Collections.Generic;
 using JetBrains.Annotations;
+
+using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 

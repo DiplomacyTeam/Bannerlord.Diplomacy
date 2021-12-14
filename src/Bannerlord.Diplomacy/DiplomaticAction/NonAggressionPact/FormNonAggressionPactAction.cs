@@ -6,8 +6,8 @@ using System;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.Localization;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {

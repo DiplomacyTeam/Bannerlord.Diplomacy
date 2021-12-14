@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using HarmonyLib;
 
-using HarmonyLib;
+using JetBrains.Annotations;
 
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace Diplomacy.Patches
         private static readonly Action<Hero, UrbanCharactersCampaignBehavior> ActivateCharacter = (hero, __instance) =>
         {
             hero.ChangeState(Hero.CharacterStates.Active);
-            var companionsList = (List<Hero>)CompanionsFieldInfo.GetValue(__instance);
+            var companionsList = (List<Hero>) CompanionsFieldInfo.GetValue(__instance);
             companionsList.Remove(hero);
         };
 
@@ -32,7 +32,7 @@ namespace Diplomacy.Patches
             CampaignEvents.NewCompanionAdded.AddNonSerializedListener(__instance, hero => ActivateCharacter(hero, __instance));
         }
 
-//      It Seems they changed this to "DailyTickHero" in 1.5.0
+        //      It Seems they changed this to "DailyTickHero" in 1.5.0
         //[HarmonyPostfix, HarmonyPatch("DailyTick")]
         [HarmonyPostfix, HarmonyPatch("DailyTickHero")]
         [UsedImplicitly]

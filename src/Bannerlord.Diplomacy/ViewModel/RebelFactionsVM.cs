@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Diplomacy.CivilWar;
+﻿using Diplomacy.CivilWar;
 using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
 using Diplomacy.Extensions;
+
 using JetBrains.Annotations;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.EncyclopediaItems;
 using TaleWorlds.Core;

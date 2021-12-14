@@ -1,7 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Diplomacy.Extensions;
+﻿using Diplomacy.Extensions;
+
 using JetBrains.Annotations;
+
+using System;
+using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 

@@ -3,7 +3,9 @@ using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.Event;
 using Diplomacy.Extensions;
+
 using Microsoft.Extensions.Logging;
+
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.CampaignBehaviors
@@ -55,7 +57,7 @@ namespace Diplomacy.CampaignBehaviors
         {
             LogFactory.Get<CooldownBehavior>()
                 .LogTrace($"[{CampaignTime.Now}] {kingdom.Name} sent a peace proposal.");
-         
+
             _cooldownManager.UpdateLastPeaceProposalTime(kingdom, CampaignTime.Now);
         }
 

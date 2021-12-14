@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
-using Diplomacy.CivilWar.Factions;
+﻿using Diplomacy.CivilWar.Factions;
+
+using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 

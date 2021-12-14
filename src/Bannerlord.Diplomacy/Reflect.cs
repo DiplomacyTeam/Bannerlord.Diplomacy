@@ -1,8 +1,8 @@
-﻿using System;
+﻿using HarmonyLib;
+
+using System;
 using System.Linq;
 using System.Reflection;
-
-using HarmonyLib;
 
 namespace Diplomacy
 {
@@ -11,16 +11,16 @@ namespace Diplomacy
         public class Method
         {
             public Type RequestedType { get; init; }
-            
+
             public string Name { get; init; }
-            
+
             public Type[]? Parameters { get; init; }
-            
+
             public Type[]? Generics { get; init; }
 
             public MethodInfo MethodInfo { get; init; }
 
-            public Type Type => MethodInfo is {DeclaringType: { } dt} ? dt : RequestedType;
+            public Type Type => MethodInfo is { DeclaringType: { } dt } ? dt : RequestedType;
 
             protected virtual string MethodType => "method";
 

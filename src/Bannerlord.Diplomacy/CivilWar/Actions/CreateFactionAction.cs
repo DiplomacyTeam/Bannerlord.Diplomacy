@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using Diplomacy.CivilWar.Factions;
+﻿using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
 using Diplomacy.Costs;
 using Diplomacy.Extensions;
+
+using System.Collections.Generic;
+using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -74,7 +74,7 @@ namespace Diplomacy.CivilWar.Actions
             {
                 yield return new TextObject("{=luvsD6Zn}Cannot create a faction in a rebel kingdom.");
             }
-            
+
             // ruling clan can't create factions
             if (clan == clan.Kingdom!.RulingClan)
             {

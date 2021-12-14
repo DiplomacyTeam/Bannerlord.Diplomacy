@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Diplomacy.CivilWar.Actions;
+
+using JetBrains.Annotations;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Diplomacy.CivilWar.Actions;
-using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
@@ -169,18 +172,18 @@ namespace Diplomacy.CivilWar.Factions
         private void ApplyReputationChanges()
         {
             var loyalistCombinations = from clan in ParentKingdom.Clans
-                from otherClan in ParentKingdom.Clans
-                where clan.Id < otherClan.Id
-                select Tuple.Create(clan, otherClan);
+                                       from otherClan in ParentKingdom.Clans
+                                       where clan.Id < otherClan.Id
+                                       select Tuple.Create(clan, otherClan);
 
             var rebelCombinations = from clan in Clans
-                from otherClan in Clans
-                where clan.Id < otherClan.Id
-                select Tuple.Create(clan, otherClan);
+                                    from otherClan in Clans
+                                    where clan.Id < otherClan.Id
+                                    select Tuple.Create(clan, otherClan);
 
             var opposingCombinations = from clan in ParentKingdom.Clans
-                from otherClan in Clans
-                select Tuple.Create(clan, otherClan);
+                                       from otherClan in Clans
+                                       select Tuple.Create(clan, otherClan);
 
             foreach (Tuple<Clan, Clan> tuple in loyalistCombinations)
                 ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader,

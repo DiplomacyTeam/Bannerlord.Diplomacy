@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+
+using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
@@ -14,13 +16,16 @@ namespace Diplomacy
         internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime => Instance!._lastPeaceProposalTime;
         internal static Dictionary<string, CampaignTime> LastAllianceFormedTime => Instance!._lastAllianceFormedTime;
 
-        [SaveableField(1)] [UsedImplicitly]
+        [SaveableField(1)]
+        [UsedImplicitly]
         private Dictionary<string, CampaignTime> _lastWarTime;
 
-        [SaveableField(2)] [UsedImplicitly]
+        [SaveableField(2)]
+        [UsedImplicitly]
         private Dictionary<Kingdom, CampaignTime> _lastPeaceProposalTime;
 
-        [SaveableField(3)] [UsedImplicitly]
+        [SaveableField(3)]
+        [UsedImplicitly]
         private Dictionary<string, CampaignTime> _lastAllianceFormedTime;
 
         private static float MinimumDaysBetweenPeaceProposals => 5f;
@@ -71,7 +76,7 @@ namespace Diplomacy
             if (LastWarTime.TryGetValue(CreateKey(faction1, faction2), out var value))
             {
                 return value;
-            } 
+            }
             else
             {
                 return CampaignTime.Zero;

@@ -1,5 +1,6 @@
 ﻿using TaleWorlds.Library;
 using TaleWorlds.Localization;
+
 using static Diplomacy.WarExhaustionManager;
 
 namespace Diplomacy.ViewModel

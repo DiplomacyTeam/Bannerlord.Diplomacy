@@ -1,9 +1,12 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
+
 using Diplomacy.Event;
 using Diplomacy.GauntletInterfaces;
 using Diplomacy.GrantFief;
+
 using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomClan;
 using TaleWorlds.Core.ViewModelCollection;

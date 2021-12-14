@@ -1,4 +1,5 @@
 ﻿using System;
+
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Character
@@ -19,7 +20,7 @@ namespace Diplomacy.Character
             PlayerCharacterTraitHelper.UpdateTrait(this);
         }
 
-        private static readonly Func<int, TraitObject, PlayerCharacterTraitEventExperience> Create = (a,b) => new PlayerCharacterTraitEventExperience(a, b);
+        private static readonly Func<int, TraitObject, PlayerCharacterTraitEventExperience> Create = (a, b) => new PlayerCharacterTraitEventExperience(a, b);
 
         public static readonly PlayerCharacterTraitEventExperience FiefGranted = Create(50, DefaultTraits.Generosity);
         public static readonly PlayerCharacterTraitEventExperience FiefClaimed = Create(-50, DefaultTraits.Generosity);

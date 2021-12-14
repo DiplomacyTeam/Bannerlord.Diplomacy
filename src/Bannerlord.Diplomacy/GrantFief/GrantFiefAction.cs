@@ -1,8 +1,10 @@
-﻿using System;
-using System.Linq;
-using Diplomacy.Character;
+﻿using Diplomacy.Character;
 using Diplomacy.Event;
 using Diplomacy.Extensions;
+
+using System;
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Localization;

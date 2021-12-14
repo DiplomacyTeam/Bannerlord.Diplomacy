@@ -116,7 +116,7 @@ namespace Diplomacy
         public int GrantFiefRelationPenalty { get; set; } = -2;
 
         // Costs
-        
+
         [SettingPropertyFloatingInteger(displayName: "{=HFtZsD6v}Scaling War Reparations Gold Cost Multiplier", 0, 10000, Order = 0, RequireRestart = false, HintText = "{=MIhbrqbr}Multiplier for the scaling of war reparations gold costs. Default value is 100.")]
         [SettingPropertyGroup(HeadingGoldCosts)]
         public float ScalingWarReparationsGoldCostMultiplier { get; set; } = 100.0f;
@@ -140,7 +140,7 @@ namespace Diplomacy
         [SettingPropertyFloatingInteger(displayName: "{=TvAYJv5Q}Scaling Influence Cost Multiplier", 0, 100, Order = 1, RequireRestart = false, HintText = "{=AQ5gRYN6}Multiplier for the scaling influence costs. Default value is 5.")]
         [SettingPropertyGroup(HeadingInfluenceCosts)]
         public float ScalingInfluenceCostMultiplier { get; set; } = 5.0f;
-        
+
         // Influence
 
         [SettingPropertyBool("{=4jlYRUdZ}Enable Influence Balancing", RequireRestart = false, HintText = "{=tOMN9DQD}Enables influence balancing. May need to be disabled for mod compatibility.")]

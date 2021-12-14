@@ -1,10 +1,10 @@
 ﻿using Diplomacy.PatchTools;
 
+using StoryMode.Behaviors.Quests;
+
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-
-using StoryMode.Behaviors.Quests;
 
 using TaleWorlds.CampaignSystem;
 
@@ -29,7 +29,7 @@ namespace Diplomacy.Patches
 
         private static void MainStoryLineChosenPostfix(object __instance)
         {
-            var quest = (QuestBase)__instance;
+            var quest = (QuestBase) __instance;
 
             if (!quest.IsFinalized)
                 CompleteQuestWithSuccess(quest);

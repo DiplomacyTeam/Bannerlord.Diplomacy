@@ -1,8 +1,10 @@
 ﻿using Diplomacy.CivilWar;
+using Diplomacy.CivilWar.Factions;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Diplomacy.CivilWar.Factions;
+
 using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Extensions

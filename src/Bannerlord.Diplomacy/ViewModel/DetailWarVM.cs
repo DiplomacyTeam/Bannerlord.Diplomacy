@@ -1,11 +1,14 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+
+using System;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+
 using static Diplomacy.WarExhaustionManager;
 
 namespace Diplomacy.ViewModel

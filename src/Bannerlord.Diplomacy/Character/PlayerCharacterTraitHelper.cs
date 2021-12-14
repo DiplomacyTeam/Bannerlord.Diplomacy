@@ -1,11 +1,13 @@
 ﻿using HarmonyLib;
+
 using System;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment.Managers;
 
 namespace Diplomacy.Character
 {
-    
+
     internal class PlayerCharacterTraitHelper
     {
         private static readonly Action<TraitObject, int, ActionNotes, Hero> AddPlayerTraitXPAndLogEntry =

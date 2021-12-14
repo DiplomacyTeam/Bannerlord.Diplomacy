@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+
+using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.SaveSystem;
 
@@ -10,7 +12,8 @@ namespace Diplomacy.DiplomaticAction
     {
         public static DiplomaticAgreementManager? Instance { get; internal set; }
 
-        [SaveableField(1)] [UsedImplicitly]
+        [SaveableField(1)]
+        [UsedImplicitly]
         private Dictionary<FactionPair, List<DiplomaticAgreement>> _agreements;
 
         public DiplomaticAgreementManager()

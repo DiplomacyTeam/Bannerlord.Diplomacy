@@ -1,8 +1,10 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.Prefabs2;
+
+using JetBrains.Annotations;
+
 using System.Collections.Generic;
 using System.Xml;
-using JetBrains.Annotations;
 
 namespace Diplomacy.ViewModelMixin
 {

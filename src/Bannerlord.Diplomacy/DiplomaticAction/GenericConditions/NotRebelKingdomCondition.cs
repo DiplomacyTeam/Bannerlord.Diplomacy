@@ -1,4 +1,5 @@
 ﻿using Diplomacy.Extensions;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 

@@ -1,13 +1,15 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Diplomacy.CivilWar;
 using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Extensions;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.Core;

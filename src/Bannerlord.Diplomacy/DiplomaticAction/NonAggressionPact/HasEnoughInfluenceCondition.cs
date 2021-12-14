@@ -1,4 +1,5 @@
 ﻿using Diplomacy.Costs;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 

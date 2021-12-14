@@ -1,7 +1,10 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
+
 using Diplomacy.Extensions;
+
 using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map;
 using TaleWorlds.Localization;

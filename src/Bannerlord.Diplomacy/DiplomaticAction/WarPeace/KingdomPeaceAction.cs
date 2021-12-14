@@ -56,7 +56,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 
         private static void CreatePeaceInquiry(Kingdom kingdom, Kingdom faction, HybridCost diplomacyCost)
         {
-            var payment = (int)diplomacyCost.GoldCost.Value;
+            var payment = (int) diplomacyCost.GoldCost.Value;
             InformationManager.ShowInquiry(new InquiryData(new TextObject("{=BkGSVccZ}Peace Proposal").ToString(), CreateMakePeaceInquiryText(kingdom, faction, payment), true, true, new TextObject("{=3fTqLwkC}Accept").ToString(), new TextObject("{=dRoMejb0}Decline").ToString(), () =>
             {
                 AcceptPeace(kingdom, faction, diplomacyCost);
@@ -87,7 +87,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
                         false,
                         GameTexts.FindText("str_ok").ToString(),
                         null,
-                        () => KingdomPeaceAction.ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts:true),
+                        () => KingdomPeaceAction.ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts: true),
                         null), true);
                 }
                 else

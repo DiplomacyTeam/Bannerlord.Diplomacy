@@ -1,8 +1,11 @@
-﻿using System;
-using System.Linq;
-using Diplomacy.Extensions;
+﻿using Diplomacy.Extensions;
 using Diplomacy.GrantFief;
+
 using JetBrains.Annotations;
+
+using System;
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;

@@ -17,7 +17,7 @@ namespace Diplomacy.DiplomaticAction.GenericConditions
 
             if (alreadyInAlliance)
                 textObject = new TextObject(StringConstants.InAlliance);
-            
+
             return !alreadyInAlliance;
         }
     }
