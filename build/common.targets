@@ -1,4 +1,4 @@
-<!--EXTERNAL_PROPERTIES: GameVersionWithPrefix;BANNERLORD_GAME_DIR;BANNERLORD_STABLE_DIR;BANNERLORD_BETA_DIR-->
+<!--EXTERNAL_PROPERTIES: OverrideGameVersion;GameVersionWithPrefix;BANNERLORD_GAME_DIR;BANNERLORD_STABLE_DIR;BANNERLORD_BETA_DIR-->
 <Project>
 
     <Target Name="WarningsForEnvs" BeforeTargets="BeforeCompile">
