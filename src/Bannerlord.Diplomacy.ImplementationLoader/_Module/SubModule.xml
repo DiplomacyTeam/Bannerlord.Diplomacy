@@ -7,6 +7,7 @@
   <DefaultModule value="false" />
   <SingleplayerModule value="true" />
   <MultiplayerModule value="false" />
+  <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/832" />
   <DependedModules>
     <DependedModule Id="Bannerlord.Harmony" />
     <DependedModule Id="Bannerlord.ButterLib" />
