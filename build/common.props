@@ -18,9 +18,9 @@
         <!--UIExtenderEx Version-->
         <UIExtenderExVersion>2.1.6</UIExtenderExVersion>
         <!--BUTRShared Version-->
-        <BUTRSharedVersion>2.0.0.76</BUTRSharedVersion>
+        <BUTRSharedVersion>2.0.0.77</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->
-        <BUTRModuleManagerVersion>3.0.83</BUTRModuleManagerVersion>
+        <BUTRModuleManagerVersion>3.0.85</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
         <BUTRModuleLoaderVersion>1.0.0</BUTRModuleLoaderVersion>
         <!--Harmony Extensions Version-->
