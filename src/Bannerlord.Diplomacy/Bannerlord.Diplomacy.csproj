@@ -14,14 +14,16 @@
 
     <!-- NuGet Packages -->
     <ItemGroup>
-        <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Bannerlord.BUTR.Shared" Version="$(BUTRSharedVersion)">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+      <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Bannerlord.BUTR.Shared" Version="$(BUTRSharedVersion)">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Bannerlord.ModuleLoader" Version="$(BUTRModuleLoaderVersion)" />
+      <PackageReference Include="Bannerlord.ModuleManager.Source" Version="$(BUTRModuleManagerVersion)" />
         <PackageReference Include="Bannerlord.ButterLib" Version="$(ButterLibVersion)" IncludeAssets="compile" />
         <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" IncludeAssets="compile" />
         <PackageReference Include="ColorMinePortable" Version="2.0.1" />
@@ -50,10 +52,6 @@
         <PackageReference Include="Bannerlord.ReferenceAssemblies.Native.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
         <PackageReference Include="Bannerlord.ReferenceAssemblies.StoryMode.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
         <PackageReference Include="Bannerlord.ReferenceAssemblies.Sandbox.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\Bannerlord.Diplomacy.ImplementationLoader\Bannerlord.Diplomacy.ImplementationLoader.csproj" />
     </ItemGroup>
 
 </Project>
