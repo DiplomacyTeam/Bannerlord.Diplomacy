@@ -22,7 +22,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Bannerlord.ModuleLoader" Version="$(BUTRModuleLoaderVersion)" />
+      <PackageReference Include="Bannerlord.ModuleLoader.Injector" Version="$(BUTRModuleLoaderVersion)" />
       <PackageReference Include="Bannerlord.ModuleManager.Source" Version="$(BUTRModuleManagerVersion)" />
         <PackageReference Include="Bannerlord.ButterLib" Version="$(ButterLibVersion)" IncludeAssets="compile" />
         <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" IncludeAssets="compile" />
