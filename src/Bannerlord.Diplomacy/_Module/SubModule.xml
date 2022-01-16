@@ -33,10 +33,10 @@
     <!-- Bannerlord Module Loader. Do not change the name! -->
     <SubModule>
       <Name value="Bannerlord Module Loader" />
-      <DLLName value="$modulename$.Loader.dll" />
-      <SubModuleClassType value="$modulename$.Loader.SubModule" />
+      <DLLName value="Bannerlord.ModuleLoader.$modulename$.dll" />
+      <SubModuleClassType value="Bannerlord.ModuleLoader.Bannerlord_Diplomacy" />
       <Tags>
-        <Tag key="LoaderFilter" value ="Bannerlord.Diplomacy.*.dll" />
+        <Tag key="LoaderFilter" value ="$modulename$.*.dll" />
       </Tags>
     </SubModule>
   </SubModules>
