@@ -4,6 +4,9 @@ using StoryMode.Behaviors.Quests;
 
 using System;
 using System.Collections.Generic;
+#if !e170
+using System.Reflection;
+#endif
 
 using TaleWorlds.CampaignSystem;
 
