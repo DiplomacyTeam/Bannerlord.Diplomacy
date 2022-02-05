@@ -97,7 +97,7 @@
     <string id="6kNmdLxZ" text="Faction Creation Influence Cost" />
     <string id="EwbXg3va" text="The influence cost of starting a faction. Default value is 100." />
     <string id="7wK0mmw1" text="Faction Tendency" />
-    <string id="7wK0mmw1" text="Score modifier affecting the tendency of clans to create or join factions. Increasing the modifier increases faction participation. Default value is 0." />
+    <string id="aqvIdG7w" text="Score modifier affecting the tendency of clans to create or join factions. Increasing the modifier increases faction participation. Default value is 0." />
     
   </strings>
 </base>

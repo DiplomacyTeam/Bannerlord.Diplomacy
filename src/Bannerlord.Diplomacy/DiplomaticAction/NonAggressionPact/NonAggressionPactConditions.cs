@@ -1,8 +1,7 @@
-﻿using Diplomacy.DiplomaticAction.GenericConditions;
+﻿using Diplomacy.DiplomaticAction.Conditioning;
+using Diplomacy.DiplomaticAction.Conditioning.GenericConditions;
 
 using System.Collections.Generic;
-using System.Linq;
-using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
@@ -18,9 +17,6 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
             new HasEnoughScoreCondition(),
             new NotRebelKingdomCondition()
         };
-
-        private static readonly List<IDiplomacyCondition> ConditionsWithoutScore =
-            Conditions.Where(x => x.GetType() != typeof(HasEnoughScoreCondition)).ToList();
 
         public NonAggressionPactConditions() : base(Conditions) { }
     }

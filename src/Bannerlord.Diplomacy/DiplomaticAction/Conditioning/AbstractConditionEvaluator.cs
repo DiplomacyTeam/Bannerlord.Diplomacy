@@ -1,4 +1,4 @@
-﻿using Diplomacy.DiplomaticAction.GenericConditions;
+﻿using Diplomacy.DiplomaticAction.Conditioning.GenericConditions;
 using Diplomacy.Extensions;
 
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.DiplomaticAction
+namespace Diplomacy.DiplomaticAction.Conditioning
 {
     internal abstract class AbstractConditionEvaluator<T> where T : AbstractConditionEvaluator<T>, new()
     {

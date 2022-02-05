@@ -1,7 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.DiplomaticAction
+namespace Diplomacy.DiplomaticAction.Conditioning
 {
     internal abstract class AbstractScoreCondition : AbstractDiplomacyCondition
     {

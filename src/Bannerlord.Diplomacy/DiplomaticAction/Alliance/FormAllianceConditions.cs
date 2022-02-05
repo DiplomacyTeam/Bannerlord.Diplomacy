@@ -1,5 +1,6 @@
 ﻿using Diplomacy.DiplomaticAction.Alliance.Conditions;
-using Diplomacy.DiplomaticAction.GenericConditions;
+using Diplomacy.DiplomaticAction.Conditioning;
+using Diplomacy.DiplomaticAction.Conditioning.GenericConditions;
 
 using System.Collections.Generic;
 

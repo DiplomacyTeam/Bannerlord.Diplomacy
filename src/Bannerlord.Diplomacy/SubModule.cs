@@ -11,11 +11,16 @@ using Microsoft.Extensions.Logging;
 
 using Serilog.Events;
 
+using System;
+using System.Collections.Generic;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Library;
 using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 
 namespace Diplomacy
 {
@@ -53,9 +58,13 @@ namespace Diplomacy
             {
                 var spriteData = UIResourceManager.SpriteData;
                 TaleWorlds.Engine.Texture texture = TaleWorlds.Engine.Texture.LoadTextureFromPath(spriteCategoryName.Item2 + ".png", BasePath.Name + $"Modules/{ModuleName}/AssetSources/GauntletUI");
+#if e164 || e165 || e170
+                texture.PreloadTexture(false);
+#else
                 texture.PreloadTexture();
+#endif
 
-                TaleWorlds.TwoDimension.Texture texture2D = new TaleWorlds.TwoDimension.Texture(new EngineTexture(texture));
+                Texture texture2D = new(new EngineTexture(texture));
                 SpriteCategory spriteCategory = spriteData.SpriteCategories[spriteCategoryName.Item1];
                 spriteCategory.SpriteSheets.Add(texture2D);
             }

@@ -1,4 +1,6 @@
-﻿namespace Diplomacy.DiplomaticAction.NonAggressionPact
+﻿using Diplomacy.DiplomaticAction.Scoring;
+
+namespace Diplomacy.DiplomaticAction.NonAggressionPact
 {
     internal sealed class NonAggressionPactScoringModel : AbstractPactAllianceScoringModel<NonAggressionPactScoringModel>
     {
@@ -8,7 +10,7 @@
             public int BelowMedianStrength => 50;
             public int HasCommonEnemy => 15;
             public int HasPotentialEnemy => 0; //does not apply to NAPs
-            public int TooManyTreaties => -15;
+            public int TreatiesOverburden => -15;
             public int ExistingAllianceWithEnemy => -1000;
             public int ExistingAllianceWithNeutral => -50;
             public int LeadersRelationship => 30;

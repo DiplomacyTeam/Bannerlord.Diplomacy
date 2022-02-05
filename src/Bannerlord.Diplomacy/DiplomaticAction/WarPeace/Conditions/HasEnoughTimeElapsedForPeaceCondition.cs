@@ -1,4 +1,6 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using Diplomacy.DiplomaticAction.Conditioning;
+
+using TaleWorlds.CampaignSystem;
 
 using TaleWorlds.Localization;
 

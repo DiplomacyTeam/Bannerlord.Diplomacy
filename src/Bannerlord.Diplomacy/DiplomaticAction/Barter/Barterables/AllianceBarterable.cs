@@ -35,20 +35,21 @@ namespace Diplomacy.DiplomaticAction.Barter
 
             var thisKingdom = Kingdoms[contributionParty];
             var otherKingdom = Kingdoms[GetOtherParty(contributionParty)];
-            var explainedNumber = AllianceScoringModel.Instance.GetScore(thisKingdom, otherKingdom!);
+            var explainedNumber = AllianceScoringModel.Instance.GetScore(thisKingdom, otherKingdom!, contributionParty == ContributionParty.Proposing ? DiplomaticPartyType.Proposer : DiplomaticPartyType.Recipient);
             var dealValue = (explainedNumber.ResultNumber - AllianceScoringModel.AcceptOrProposeThreshold) *
-                            (AllianceScoringModel.Instance.BaseDiplomaticBarterValue / 100);
+                            (AllianceScoringModel.Instance.BaseDiplomaticBarterValue / AllianceScoringModel.AcceptOrProposeThreshold);
             return IsBreakAgreement ? -dealValue : dealValue;
         }
 
         protected override bool IsValidOption(IReadOnlyList<AbstractDiplomaticBarterable> currentProposal)
         {
-            return IsKingdomAgreement() && (FormAllianceConditions.Instance.CanApply(Kingdom1!, Kingdom2!, bypassCosts: true) && !currentProposal.Any(x => x is NonAggressionPactBarterable) ||
+            return IsKingdomAgreement() && (FormAllianceConditions.Instance.CanApply(Kingdom1!, Kingdom2!) && !currentProposal.Any(x => x is NonAggressionPactBarterable) ||
                                             IsBreakAgreement && BreakAllianceConditions.Instance.CanApply(Kingdom1!, Kingdom2!));
         }
 
         public override void Execute()
         {
+            //TODO: rewrite! Need to check if alliance can be applied
             if (Kingdom1!.IsAlliedWith(Kingdom2!))
                 BreakAllianceAction.Apply(Kingdom1!, Kingdom2!, bypassCosts: true);
             else

@@ -47,16 +47,16 @@ namespace Diplomacy.DiplomaticAction.Barter
 
             var thisKingdom = Kingdoms[contributionParty];
             var otherKingdom = Kingdoms[GetOtherParty(contributionParty)];
-            var explainedNumber = NonAggressionPactScoringModel.Instance.GetScore(thisKingdom, otherKingdom!);
+            var explainedNumber = NonAggressionPactScoringModel.Instance.GetScore(thisKingdom, otherKingdom!, contributionParty == ContributionParty.Proposing ? DiplomaticPartyType.Proposer : DiplomaticPartyType.Recipient);
             var dealValue = (explainedNumber.ResultNumber - NonAggressionPactScoringModel.AcceptOrProposeThreshold) *
-                            (NonAggressionPactScoringModel.Instance.BaseDiplomaticBarterValue / 100);
+                            (NonAggressionPactScoringModel.Instance.BaseDiplomaticBarterValue / NonAggressionPactScoringModel.AcceptOrProposeThreshold);
             return IsBreakAgreement ? -dealValue : dealValue;
         }
 
         protected override bool IsValidOption(IReadOnlyList<AbstractDiplomaticBarterable> currentProposal)
         {
             return IsBreakAgreement ||
-                   IsKingdomAgreement() && NonAggressionPactConditions.Instance.CanApply(Kingdom1!, Kingdom2!, bypassCosts: true) &&
+                   IsKingdomAgreement() && NonAggressionPactConditions.Instance.CanApply(Kingdom1!, Kingdom2!) &&
                    !currentProposal.Any(x => x is AllianceBarterable);
         }
 

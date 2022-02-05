@@ -13,7 +13,7 @@ namespace Diplomacy.DiplomaticAction.Barter
     internal class DeclareWarBarterable : AbstractDiplomaticBarterable
     {
         public override ContributionParty ContributionParty => ContributionParty.Mutual;
-        public override InfluenceCost InfluenceCost => DiplomacyCostCalculator.DetermineCostForDeclaringWar((_proposingFaction as Kingdom)!);
+        public override InfluenceCost InfluenceCost => (InfluenceCost) DiplomacyCostCalculator.DetermineCostForDeclaringWar((_proposingFaction as Kingdom)!);
         public override bool IsExclusive => true;
 
         public override TextObject Name => GameTexts.FindText("str_kingdom_declate_war_action");

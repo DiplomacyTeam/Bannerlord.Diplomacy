@@ -1,4 +1,6 @@
-﻿namespace Diplomacy.DiplomaticAction.Alliance
+﻿using Diplomacy.DiplomaticAction.Scoring;
+
+namespace Diplomacy.DiplomaticAction.Alliance
 {
     internal sealed class AllianceScoringModel : AbstractPactAllianceScoringModel<AllianceScoringModel>
     {
@@ -8,7 +10,7 @@
             public int BelowMedianStrength => 50;
             public int HasCommonEnemy => 20;
             public int HasPotentialEnemy => 20;
-            public int TooManyTreaties => -15;
+            public int TreatiesOverburden => -15;
             public int ExistingAllianceWithEnemy => -1000;
             public int ExistingAllianceWithNeutral => -50;
             public int LeadersRelationship => 30;

@@ -1,6 +1,6 @@
 ﻿namespace Diplomacy.DiplomaticAction
 {
-    internal enum DiplomaticPartyType : byte
+    public enum DiplomaticPartyType : byte
     {
         Proposer = 0,
         Recipient = 1,

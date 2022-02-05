@@ -1,10 +1,9 @@
 ﻿using Diplomacy.Costs;
+using Diplomacy.DiplomaticAction.Conditioning;
 
 using Microsoft.Extensions.Logging;
 
 using System;
-
-using Diplomacy.Costs;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -21,9 +20,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
         protected override void ApplyInternal(Kingdom kingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
             LogFactory.Get<FormNonAggressionPactAction>().LogTrace($"[{CampaignTime.Now}] {kingdom.Name} secured a NAP with {otherKingdom.Name}.");
-            DiplomaticAgreementManager.RegisterAgreement(kingdom, otherKingdom,
-                new NonAggressionPactAgreement(CampaignTime.Now,
-                    CampaignTime.DaysFromNow(customDurationInDays ?? Settings.Instance!.NonAggressionPactDuration), kingdom, otherKingdom));
+            DiplomaticAgreementManager.RegisterAgreement(new NonAggressionPactAgreement(CampaignTime.Now, CampaignTime.DaysFromNow(customDurationInDays ?? Settings.Instance!.NonAggressionPactDuration), kingdom, otherKingdom));
 
             var textObject = new TextObject("{=vB3RrMNf}The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}.");
             textObject.SetTextVariable("KINGDOM", kingdom.Name);
@@ -37,7 +34,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
         protected override float GetActionScoreInternal(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType) =>
             NonAggressionPactScoringModel.Instance.GetScore(kingdom, otherKingdom, kingdomPartyType).ResultNumber;
 
-        protected override float GetActionThreshold() => NonAggressionPactScoringModel.Instance.ScoreThreshold;
+        protected override float GetActionThreshold() => NonAggressionPactScoringModel.AcceptOrProposeThreshold;
 
         protected override void ShowPlayerInquiry(Kingdom proposingKingdom, Action applyAction)
         {

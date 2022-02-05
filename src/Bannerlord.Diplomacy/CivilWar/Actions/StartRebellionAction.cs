@@ -29,6 +29,7 @@ namespace Diplomacy.CivilWar.Actions
                 .SetTextVariable("REBELS", rebelFaction.Name)
                 .SetTextVariable("KINGDOM", rebelFaction.ParentKingdom.Name);
 
+            //FIXME: add all the new e164 fields, add randomized polocies.
             Campaign.Current.KingdomManager.CreateKingdom(
                 rebelKingdomName,
                 rebelKingdomName,

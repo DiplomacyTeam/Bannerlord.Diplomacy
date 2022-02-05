@@ -1,7 +1,8 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction
@@ -11,7 +12,7 @@ namespace Diplomacy.DiplomaticAction
         public int PaymentAmount { get; }
 
         // payments made, payments received
-        public Tuple<int, int> PaymentsRemaining { get; }
+        //public Tuple<int, int> PaymentsRemaining { get; }
 
         public int PaymentsMade { get; set; }
         public int PaymentsReceived { get; set; }

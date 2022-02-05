@@ -1,4 +1,6 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using Diplomacy.DiplomaticAction.Conditioning;
+
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.NonAggressionPact
@@ -9,9 +11,8 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
 
         protected override float GetActionScore(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType) =>
             FormNonAggressionPactAction.GetActionScore(kingdom, otherKingdom, kingdomPartyType);
-        //!NonAggressionPactScoringModel.Instance.IsAcceptancePossible(kingdom, otherKingdom);
 
-        protected override float GetPassThreshold() => NonAggressionPactScoringModel.Instance.ScoreThreshold;
+        protected override float GetPassThreshold() => NonAggressionPactScoringModel.ConsiderationThreshold;
 
         protected override TextObject GetFailedConditionText() => FailedConditionText;
     }

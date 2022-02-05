@@ -3,7 +3,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.DiplomaticAction
+namespace Diplomacy.DiplomaticAction.Conditioning
 {
     internal abstract class AbstractTimeCondition : AbstractDiplomacyCondition
     {

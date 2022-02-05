@@ -332,7 +332,7 @@
                     </ListPanel>
 
                     <!--Expel-->
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginLeft="10" MarginRight="10" VerticalAlignment="Bottom" IsHidden="@ShowUsurpThrone">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginLeft="10" MarginRight="10" VerticalAlignment="Bottom">
                       <Children>
 
                         <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="250" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="@CanExpelCurrentClan" Text="@ExpelActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
@@ -358,40 +358,6 @@
 
                           </Children>
                         </Widget>
-
-
-
-                      </Children>
-                    </ListPanel>
-
-                    <!--Usurp-->
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginLeft="10" MarginRight="10" VerticalAlignment="Bottom" IsVisible="@ShowUsurpThrone">
-                      <Children>
-
-                        <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="250" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" Text="@UsurpThroneExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
-
-                        <!--Usurp Button-->
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center" MarginTop="5">
-                          <Children>
-
-                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" HorizontalAlignment="Center" Brush="ButtonBrush2" Command.Click="UsurpThrone" IsEnabled="@CanUsurpThrone" UpdateChildrenStates="true">
-                              <Children>
-                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@UsurpThroneActionName" />
-                              </Children>
-                            </ButtonWidget>
-
-                            <HintWidget DataSource="{UsurpThroneHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
-
-                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" PositionYOffset="40">
-                              <Children>
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.GeneralButtons.Text" IntText="@UsurpThroneInfluenceCost" />
-                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Right" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
-                              </Children>
-                            </ListPanel>
-
-                          </Children>
-                        </Widget>
-
 
                       </Children>
                     </ListPanel>

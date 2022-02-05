@@ -1,5 +1,7 @@
 ﻿using System;
+
 using JetBrains.Annotations;
+
 using TaleWorlds.GauntletUI;
 
 namespace Widgets
@@ -34,7 +36,7 @@ namespace Widgets
         public float Score
         {
             get => _score;
-            set { _score = value; base.SetText($"{Math.Floor(_score * 10) / 10:0.0}"); }
+            set { _score = value; Text = $"{Math.Floor(_score * 10) / 10:0.0}"; }
         }
     }
 }

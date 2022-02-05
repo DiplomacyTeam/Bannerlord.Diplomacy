@@ -1,9 +1,15 @@
 ﻿using Diplomacy.DiplomaticAction;
 using Diplomacy.DiplomaticAction.Alliance;
+using Diplomacy.DiplomaticAction.Barter;
+using Diplomacy.DiplomaticAction.Conditioning;
+using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.Event;
 using Diplomacy.Extensions;
+
+using Microsoft.Extensions.Logging;
+
 using System.Linq;
-using Diplomacy.DiplomaticAction.Barter;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
@@ -32,6 +38,7 @@ namespace Diplomacy.CampaignBehaviors
             // only apply to kingdom leader clans
             if (clan.MapFaction.IsKingdomFaction && clan.MapFaction.Leader == clan.Leader && !clan.Leader.IsHumanPlayerCharacter)
             {
+                ConsiderNonAggressionPact(clan.Kingdom);
                 ConsiderDiplomaticBarter(clan.Kingdom);
             }
         }
@@ -50,8 +57,7 @@ namespace Diplomacy.CampaignBehaviors
 
                 if (proposedKingdom is not null)
                 {
-                    LogFactory.Get<DiplomaticAgreementBehavior>()
-                        .LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} decided to form a NAP with {proposedKingdom.Name}.");
+                    LogFactory.Get<DiplomaticAgreementBehavior>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} decided to form a NAP with {proposedKingdom.Name}.");
                     FormNonAggressionPactAction.Apply(proposingKingdom, proposedKingdom);
                 }
             }

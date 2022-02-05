@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Diplomacy.DiplomaticAction
+namespace Diplomacy.DiplomaticAction.Conditioning
 {
     [Flags]
     internal enum DiplomacyConditionType : byte

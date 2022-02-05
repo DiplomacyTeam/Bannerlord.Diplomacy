@@ -1,5 +1,6 @@
 ﻿using Diplomacy.DiplomaticAction;
 using Diplomacy.DiplomaticAction.Alliance;
+using Diplomacy.DiplomaticAction.Conditioning;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Event;
 
@@ -125,7 +126,7 @@ namespace Diplomacy.CampaignBehaviors
         {
             var potentialAllies = Kingdom.All.Where(k => k != kingdom
                                                          && FormAllianceConditions.Instance.CanApply(kingdom, k) //we need to doublecheck the score coz condition has auto-rejection threshold now. 
-                                                         && DeclareAllianceAction.GetActionScore(kingdom, k, DiplomaticPartyType.Proposer) >= AllianceScoringModel.Instance.ScoreThreshold).ToList();
+                                                         && DeclareAllianceAction.GetActionScore(kingdom, k, DiplomaticPartyType.Proposer) >= AllianceScoringModel.AcceptOrProposeThreshold).ToList();
 
             foreach (var potentialAlly in potentialAllies)
             {

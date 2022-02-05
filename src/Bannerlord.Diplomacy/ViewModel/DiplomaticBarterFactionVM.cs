@@ -61,7 +61,9 @@ namespace Diplomacy.ViewModel
             }
         }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable. //Its initialized via property!
         public DiplomaticBarterFactionVM(IFaction faction) : base(faction.Name)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             Faction = faction;
             Name = faction.Name.ToString();

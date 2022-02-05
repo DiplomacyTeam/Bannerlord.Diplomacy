@@ -3,7 +3,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.DiplomaticAction.GenericConditions
+namespace Diplomacy.DiplomaticAction.Conditioning.GenericConditions
 {
     internal class NotRebelKingdomCondition : AbstractDiplomacyCondition
     {

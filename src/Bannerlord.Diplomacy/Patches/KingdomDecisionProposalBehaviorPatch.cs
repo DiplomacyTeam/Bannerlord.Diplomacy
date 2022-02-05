@@ -1,4 +1,4 @@
-﻿using Diplomacy.DiplomaticAction;
+﻿using Diplomacy.DiplomaticAction.Conditioning;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Extensions;
 using Diplomacy.PatchTools;

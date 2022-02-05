@@ -1,4 +1,5 @@
 ﻿using Diplomacy.Costs;
+using Diplomacy.DiplomaticAction.Conditioning;
 using Diplomacy.Event;
 using Diplomacy.Extensions;
 
@@ -42,7 +43,7 @@ namespace Diplomacy.DiplomaticAction.Alliance
         protected override float GetActionScoreInternal(Kingdom kingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType) =>
             AllianceScoringModel.Instance.GetScore(otherKingdom, kingdom, kingdomPartyType).ResultNumber;
 
-        protected override float GetActionThreshold() => AllianceScoringModel.Instance.ScoreThreshold;
+        protected override float GetActionThreshold() => AllianceScoringModel.AcceptOrProposeThreshold;
 
         protected override Dictionary<InvolvedParty, List<Kingdom>>? GetInvolvedKingdoms(Kingdom proposingKingdom, Kingdom otherKingdom)
         {

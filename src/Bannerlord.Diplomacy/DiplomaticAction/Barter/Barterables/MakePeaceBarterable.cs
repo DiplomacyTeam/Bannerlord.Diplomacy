@@ -31,8 +31,7 @@ namespace Diplomacy.DiplomaticAction.Barter
 
         protected override bool IsValidOption(IReadOnlyList<AbstractDiplomaticBarterable> currentProposal)
         {
-            return IsKingdomAgreement() && FactionManager.IsAtWarAgainstFaction(Kingdom1, Kingdom2) &&
-                   MakePeaceConditions.Instance.CanApply(Kingdom1!, Kingdom2!, bypassCosts: true);
+            return IsKingdomAgreement() && FactionManager.IsAtWarAgainstFaction(Kingdom1, Kingdom2) && MakePeaceConditions.Instance.CanApply(Kingdom1!, Kingdom2!);
         }
 
         public override void Execute()

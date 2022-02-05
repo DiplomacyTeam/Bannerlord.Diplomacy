@@ -3,35 +3,44 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Barterables;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.DiplomaticAction
+namespace Diplomacy.DiplomaticAction.Scoring
 {
     internal abstract class AbstractPactAllianceScoringModel<T> : AbstractAgreementScoringModel<T> where T : AbstractPactAllianceScoringModel<T>, new() 
     {
 
         public abstract IDiplomacyScores Scores { get; }
 
-        public override List<ScoreEvaluator> ScoreEvaluators => new() { GetScore };
+        public override List<ScoreEvaluator> ScoreEvaluators => new() { BaselineEvaluator, ThirdPartyDiplomaticRelationsEvaluator, TreatiesOverburdenEvaluator, RelationsEvaluator, ExpansionismEvaluator };
 
         public override float BaseScore => Scores.Base;
 
-        public virtual ExplainedNumber GetScore(Kingdom ourKingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType, bool includeDesc = false)
+        protected virtual void BaselineEvaluator(Kingdom ourKingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType, ref ExplainedNumber explainedNumber)
         {
-            TextObject? CreateTextWithKingdom(string text, Kingdom kingdom) => new TextObject(text).SetTextVariable("KINGDOM", kingdom.Name);
-
             // Weak Kingdom (Us)
             if (!ourKingdom.IsStrong())
-                explainedNum.Add(Scores.BelowMedianStrength, _TWeakKingdom);
+                explainedNumber.Add(Scores.BelowMedianStrength, _TWeakKingdom);
 
+            //Offer appreciation (Us)
+            if (kingdomPartyType == DiplomaticPartyType.Recipient)
+                explainedNumber.Add(Scores.AppreciatesTheOffer, _TOfferAppreciation);
+
+            // Tendency
+            explainedNumber.Add(Scores.Tendency, _TTendency);
+        }
+
+        protected virtual void ThirdPartyDiplomaticRelationsEvaluator(Kingdom ourKingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType, ref ExplainedNumber explainedNumber)
+        {
             // Common Enemies
             var commonEnemies = FactionManager.GetEnemyKingdoms(ourKingdom).Intersect(FactionManager.GetEnemyKingdoms(otherKingdom));
             //TODO: add [0.0f ; 1.0f] multiplier based on how close is each individual war to an end. Supposedly.
             foreach (var commonEnemy in commonEnemies)
-                explainedNum.Add(Scores.HasCommonEnemy, CreateTextWithKingdom(SCommonEnemy, commonEnemy));
+                explainedNumber.Add(Scores.HasCommonEnemy, CreateTextWithKingdom(SCommonEnemy, commonEnemy));
 
             // Potential Enemies (Them)
             if (Scores.HasPotentialEnemy != 0)
@@ -41,14 +50,9 @@ namespace Diplomacy.DiplomaticAction
                 {
                     var multiplier = GetNewEnemyMultiplier(ourKingdom, potentialEnemy);
                     if (multiplier != 0)
-                        explainedNum.Add((int)(Scores.HasPotentialEnemy * multiplier), CreateTextWithKingdom(SUnwantedEnemy, potentialEnemy));
+                        explainedNumber.Add((int) (Scores.HasPotentialEnemy * multiplier), CreateTextWithKingdom(SUnwantedEnemy, potentialEnemy));
                 }
             }
-
-            // Too many diplomatic treaties (Us + Them)
-            var treatiesOverburdenPenalty = (GetTreatiesOverburden(ourKingdom) + GetTreatiesOverburden(otherKingdom)) * Scores.TooManyTreaties;
-            if (treatiesOverburdenPenalty < 0)
-                explainedNum.Add(treatiesOverburdenPenalty, _TTooManyTreaties);
 
             // Their Alliances with Enemies
             var alliedEnemies = Kingdom.All
@@ -58,7 +62,7 @@ namespace Diplomacy.DiplomaticAction
                          && FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
 
             foreach (var alliedEnemy in alliedEnemies)
-                explainedNum.Add(Scores.ExistingAllianceWithEnemy, CreateTextWithKingdom(SAlliedToEnemy, alliedEnemy));
+                explainedNumber.Add(Scores.ExistingAllianceWithEnemy, CreateTextWithKingdom(SAlliedToEnemy, alliedEnemy));
 
             // Their Alliances with Neutrals
             var alliedNeutrals = Kingdom.All
@@ -69,7 +73,7 @@ namespace Diplomacy.DiplomaticAction
                          && !FactionManager.IsAlliedWithFaction(ourKingdom, k));
 
             foreach (var alliedNeutral in alliedNeutrals)
-                explainedNum.Add(Scores.ExistingAllianceWithNeutral, CreateTextWithKingdom(SAlliedToNeutral, alliedNeutral));
+                explainedNumber.Add(Scores.ExistingAllianceWithNeutral, CreateTextWithKingdom(SAlliedToNeutral, alliedNeutral));
 
             // Their Pacts with Enemies
             var pactEnemies = Kingdom.All
@@ -79,7 +83,7 @@ namespace Diplomacy.DiplomaticAction
                          && FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
 
             foreach (var pactEnemy in pactEnemies)
-                explainedNum.Add(Scores.NonAggressionPactWithEnemy, CreateTextWithKingdom(SPactWithEnemy, pactEnemy));
+                explainedNumber.Add(Scores.NonAggressionPactWithEnemy, CreateTextWithKingdom(SPactWithEnemy, pactEnemy));
 
             // Their Pacts with Neutral
             var pactNeutrals = Kingdom.All
@@ -90,7 +94,7 @@ namespace Diplomacy.DiplomaticAction
                          && !FactionManager.IsAlliedWithFaction(ourKingdom, k));
 
             foreach (var pactNeutral in pactNeutrals)
-                explainedNum.Add(Scores.NonAggressionPactWithNeutral, CreateTextWithKingdom(SPactWithNeutral, pactNeutral));
+                explainedNumber.Add(Scores.NonAggressionPactWithNeutral, CreateTextWithKingdom(SPactWithNeutral, pactNeutral));
 
             // Their Pacts with Allies
             var pactAllies = Kingdom.All
@@ -100,34 +104,39 @@ namespace Diplomacy.DiplomaticAction
                          && FactionManager.IsAlliedWithFaction(ourKingdom, k));
 
             foreach (var pactAlly in pactAllies)
-                explainedNum.Add(Scores.NonAggressionPactWithAlly, CreateTextWithKingdom(SPactWithAlly, pactAlly));
+                explainedNumber.Add(Scores.NonAggressionPactWithAlly, CreateTextWithKingdom(SPactWithAlly, pactAlly));
+        }
 
+        protected virtual void TreatiesOverburdenEvaluator(Kingdom ourKingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType, ref ExplainedNumber explainedNumber)
+        {
+            // Too many diplomatic treaties (Us + Them)
+            var treatiesOverburdenPenalty = (GetTreatiesOverburden(ourKingdom) + GetTreatiesOverburden(otherKingdom)) * Scores.TreatiesOverburden;
+            if (treatiesOverburdenPenalty < 0)
+                explainedNumber.Add(treatiesOverburdenPenalty, _TTreatiesOverburden);
+        }
+
+        protected virtual void RelationsEvaluator(Kingdom ourKingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType, ref ExplainedNumber explainedNumber)
+        {
             // Leaders Relationship
             var relationMult = NormalizeSmootly(ourKingdom.Leader.GetRelation(otherKingdom.Leader), 100);
-            explainedNum.Add((int)(Scores.LeadersRelationship * relationMult), _TLeadersRelationship);
+            explainedNumber.Add((int)(Scores.LeadersRelationship * relationMult), _TLeadersRelationship);
 
             //Public Relations
             var publicRelationMult = NormalizeSmootly(GetPublicRelations(ourKingdom, otherKingdom), 100);
-            explainedNum.Add((int)(Scores.PublicRelations * publicRelationMult), _TPublicRelations);
+            explainedNumber.Add((int)(Scores.PublicRelations * publicRelationMult), _TPublicRelations);
+        }
 
-            //Offer appreciation (Us)
-            if (kingdomPartyType == DiplomaticPartyType.Recipient)
-                explainedNum.Add(Scores.AppreciatesTheOffer, _TOfferAppreciation);
-
+        protected virtual void ExpansionismEvaluator(Kingdom ourKingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType, ref ExplainedNumber explainedNumber)
+        {
             // Expansionism (Them)
             var expansionismPenalty = otherKingdom.GetExpansionismDiplomaticPenalty();
             if (expansionismPenalty < 0)
-                explainedNum.Add((int)expansionismPenalty, _TExpansionism);
-
-            // Tendency
-            explainedNum.Add(Scores.Tendency, _TTendency);
-
-            return explainedNum;
+                explainedNumber.Add((int)expansionismPenalty, _TExpansionism);
         }
 
         public virtual bool ShouldFormBidirectional(Kingdom ourKingdom, Kingdom otherKingdom) => ShouldForm(ourKingdom, otherKingdom) && ShouldForm(otherKingdom, ourKingdom, DiplomaticPartyType.Recipient);
 
-        public virtual bool ShouldForm(Kingdom ourKingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer) => GetScore(ourKingdom, otherKingdom, kingdomPartyType).ResultNumber >= ScoreThreshold;
+        public virtual bool ShouldForm(Kingdom ourKingdom, Kingdom otherKingdom, DiplomaticPartyType kingdomPartyType = DiplomaticPartyType.Proposer) => GetScore(ourKingdom, otherKingdom, kingdomPartyType).ResultNumber >= AcceptOrProposeThreshold;
 
         protected virtual int GetTreatiesOverburden(Kingdom kingdom) =>
             Math.Max(Kingdom.All.Count(k => k != kingdom && FactionManager.IsAlliedWithFaction(kingdom, k)) - 1, 0)
@@ -158,42 +167,27 @@ namespace Diplomacy.DiplomaticAction
 
         protected float NormalizeLinearly(float originalValue, float originalValueMax, float normalizedValueMax = 1.0f) => normalizedValueMax * MBMath.ClampFloat(originalValue / originalValueMax, -1.0f, +1.0f);
 
+        private static TextObject? CreateTextWithKingdom(string text, Kingdom kingdom) => new TextObject(text).SetTextVariable("KINGDOM", kingdom.Name);
+
         public interface IDiplomacyScores
         {
             public int Base { get; }
-
             public int BelowMedianStrength { get; } //Positive score
-
             public int HasCommonEnemy { get; } //Positive score
-
-            public int HasPotentialEnemy { get; } //Positive score, result depends on multipler and can be negative
-
-            public int TooManyTreaties { get; } //Negative score
-
+            public int HasPotentialEnemy { get; } //Double-edged score
+            public int TreatiesOverburden { get; } //Negative score
             public int ExistingAllianceWithEnemy { get; } //Negative score
-
             public int ExistingAllianceWithNeutral { get; } //Negative score            
-
             public int NonAggressionPactWithEnemy { get; } //Negative score
-
             public int NonAggressionPactWithNeutral { get; } //Negative score
-
             public int NonAggressionPactWithAlly { get; } //Positive score
-
-            public int LeadersRelationship { get; } //Positive score, result depends on multipler and can be negative
-
-            public int PublicRelations { get; } //Positive score, result depends on multipler and can be negative
-
+            public int LeadersRelationship { get; } //Double-edged score
+            public int PublicRelations { get; } //Double-edged score
             public int AppreciatesTheOffer { get; } //Positive score
-
-            //public int Culture { get; } //Positive score, result depends on multipler and can be negative
-
-            //public int Distance { get; } //Positive score, result depends on multipler and can be negative
-
+            //public int Culture { get; } //Double-edged score
+            //public int Distance { get; } //Double-edged score
             //public int IsDeterrentNeighbor { get; } //Negative score
-
-            //public int ReliabilityRating { get; } //Positive score, result depends on multipler and can be negative
-
+            //public int ReliabilityRating { get; } //Double-edged score
             public int Tendency { get; }
         }
 
@@ -206,7 +200,7 @@ namespace Diplomacy.DiplomaticAction
         protected const int EssentialFactor = 50;
 
         private static readonly TextObject _TWeakKingdom = new("{=q5qphBwi}Weak Kingdom");
-        private static readonly TextObject _TTooManyTreaties = new("{=zXbesqx7}Too many diplomatic treaties");
+        private static readonly TextObject _TTreatiesOverburden = new("{=zXbesqx7}Too many diplomatic treaties");
         private static readonly TextObject _TLeadersRelationship = new("{=sygtLRqA}Leaders relationship");
         private static readonly TextObject _TPublicRelations = new("{=gVtFqWfP}Public relations");
         private static readonly TextObject _TExpansionism = new("{=CxdpR6w4}Expansionism");
