@@ -58,7 +58,7 @@ jobs:
       shell: pwsh
 
     - name: Upload bannerlord folder
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3.1.0
       with:
         name: Bannerlord.Diplomacy
         path: ./bannerlord/Modules/
