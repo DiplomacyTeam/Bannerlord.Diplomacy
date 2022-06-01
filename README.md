@@ -22,7 +22,8 @@ Diplomacy is a fork of a popular, now defunct Bannerlord mod called DiplomacyFix
 
 Authors:
 
-- **Katarn2000x**
-- Matthew D. Hall (**zijistark**), 
+- **Katarn2000x**,
+- Matthew D. Hall (**zijistark**),
+- Alexey Chernyshov (**artifixer**)
 
 License: [MIT License](LICENSE)
