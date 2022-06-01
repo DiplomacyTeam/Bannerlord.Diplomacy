@@ -17,7 +17,7 @@ namespace Diplomacy.Patches
     {
         protected override IEnumerable<Patch> Prepare()
         {
-            Type conversationBehaviorType = Type.GetType("SandBox.LordConversationsCampaignBehavior, SandBox, Version=1.0.0.0, Culture=neutral")!;
+            Type conversationBehaviorType = Type.GetType("SandBox.CampaignBehaviors.LordConversationsCampaignBehavior, SandBox, Version=1.0.0.0, Culture=neutral")!;
             return new Patch[]
                     {
             new Postfix(nameof(PreventOtherActionsConversation), conversationBehaviorType, "conversation_lord_request_mission_ask_on_condition"),

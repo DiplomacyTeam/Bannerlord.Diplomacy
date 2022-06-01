@@ -54,4 +54,16 @@
         <PackageReference Include="Bannerlord.ReferenceAssemblies.Sandbox.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
     </ItemGroup>
 
+    <!-- Extra Substitution Variables to Use in SubModule.xml -->
+    <ItemGroup>
+        <SubModuleOverrides Include="DisplayName">
+            <Regex>\$displayname\$</Regex>
+            <Replacement>$(DisplayName)</Replacement>
+        </SubModuleOverrides>
+        <SubModuleOverrides Include="MCMVersion">
+            <Regex>\$mcmversion\$</Regex>
+            <Replacement>$(MCMVersion)</Replacement>
+        </SubModuleOverrides>
+    </ItemGroup>
+
 </Project>
