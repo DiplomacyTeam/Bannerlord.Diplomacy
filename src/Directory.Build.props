@@ -1,3 +1,7 @@
+
 <Project>
-  <Import Project="../build/*.props" />
+  <!--It must be named explicitly for the Dependency bot to work.-->
+  <Import Project="../build/common.props" />
+  <!--Uncomment if needed. Will cause warnings on build-->
+  <!--<Import Project="../build/*.props" />-->
 </Project>
