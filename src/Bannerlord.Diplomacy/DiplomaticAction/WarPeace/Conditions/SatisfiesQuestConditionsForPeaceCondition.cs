@@ -9,11 +9,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;
-#if e170
             var currentStoryMode = StoryMode.StoryModeManager.Current;
-#else
-            var currentStoryMode = StoryMode.StoryMode.Current;
-#endif
             // not in story mode
             if (currentStoryMode == null)
             {

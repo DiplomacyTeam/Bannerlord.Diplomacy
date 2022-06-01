@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar.Scoring

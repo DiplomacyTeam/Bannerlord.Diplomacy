@@ -136,9 +136,7 @@ namespace Diplomacy.ViewModelMixin
         {
             if (e.PropertyName == nameof(ViewModel.CurrentSelectedDiplomacyItem))
             {
-#if !(e159 || e1510)
                 OnDiplomacyItemSelection(ViewModel!.CurrentSelectedDiplomacyItem);
-#endif
             }
         }
 
@@ -146,11 +144,7 @@ namespace Diplomacy.ViewModelMixin
         {
             Events.RemoveListeners(this);
             ViewModel!.PropertyChangedWithValue -= _eventHandler;
-#if e159 || e1510
-            CampaignEvents.RemoveListeners(this);
-#else
             CampaignEventDispatcher.Instance.RemoveListeners(this);
-#endif
         }
 
         [DataSourceMethod]
@@ -168,20 +162,16 @@ namespace Diplomacy.ViewModelMixin
             ShowStats = false;
         }
 
-#if !(e159 || e1510)
         public void ExecuteShowStatComparison()
         {
             ViewModel!.IsDisplayingStatComparisons = true;
             ViewModel!.IsDisplayingWarLogs = false;
         }
-#endif
 
         private void OnDiplomacyItemSelection(KingdomDiplomacyItemVM item)
         {
             OnDiplomacyItemSelectionMethod.Invoke(ViewModel, new object[] { item });
-#if !(e159 || e1510)
             ExecuteShowStatComparison();
-#endif
         }
 
         public override void OnRefresh()

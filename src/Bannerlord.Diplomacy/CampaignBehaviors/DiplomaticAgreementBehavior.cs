@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 
 namespace Diplomacy.CampaignBehaviors

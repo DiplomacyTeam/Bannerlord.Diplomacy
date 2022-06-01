@@ -11,6 +11,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.EncyclopediaIte
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.ScreenSystem;
 
 namespace Diplomacy.ViewModel
 {

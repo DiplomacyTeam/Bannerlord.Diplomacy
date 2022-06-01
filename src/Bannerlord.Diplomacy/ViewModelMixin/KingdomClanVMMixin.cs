@@ -7,12 +7,12 @@ using Diplomacy.GrantFief;
 
 using JetBrains.Annotations;
 
-using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomClan;
 using TaleWorlds.Core.ViewModelCollection;
-using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.ScreenSystem;
 
 namespace Diplomacy.ViewModelMixin
 {

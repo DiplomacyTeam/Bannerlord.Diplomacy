@@ -4,7 +4,7 @@ using Diplomacy.PatchTools;
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents;
+using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.Patches

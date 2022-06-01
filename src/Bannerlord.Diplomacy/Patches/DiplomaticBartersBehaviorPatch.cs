@@ -4,7 +4,7 @@ using Diplomacy.PatchTools;
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors.BarterBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors.BarterBehaviors;
 
 namespace Diplomacy.Patches
 {

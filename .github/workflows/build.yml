@@ -38,7 +38,7 @@ jobs:
         # The folders are required to be created before executing the script
         New-Item -ItemType directory -Force -Path $impl;
         New-Item -ItemType directory -Force -Path $path;
-        $gameversions = Get-Content -Path supported-game-versions.txt;
+        [string[]]$gameversions = Get-Content -Path supported-game-versions.txt;
         # Process all implementations
         For ($i = 0; $i -le $gameversions.Length - 1; $i++)
         {

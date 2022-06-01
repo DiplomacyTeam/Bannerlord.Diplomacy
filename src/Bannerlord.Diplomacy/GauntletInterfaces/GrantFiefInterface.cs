@@ -4,8 +4,8 @@ using System;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.Engine.Screens;
 using TaleWorlds.InputSystem;
+using TaleWorlds.ScreenSystem;
 
 namespace Diplomacy.GauntletInterfaces
 {

@@ -1,4 +1,5 @@
 ﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Siege;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction.WarPeace.Conditions

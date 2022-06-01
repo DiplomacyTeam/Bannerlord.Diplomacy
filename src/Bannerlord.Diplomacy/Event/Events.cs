@@ -4,6 +4,7 @@ using Diplomacy.DiplomaticAction.WarPeace;
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Settlements;
 
 namespace Diplomacy.Event
 {

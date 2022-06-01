@@ -1,6 +1,6 @@
 ﻿using System;
 
-using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 
 namespace Diplomacy.Character
 {

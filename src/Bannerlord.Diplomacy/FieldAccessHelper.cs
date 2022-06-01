@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.Party;
 
 using static HarmonyLib.AccessTools;
 

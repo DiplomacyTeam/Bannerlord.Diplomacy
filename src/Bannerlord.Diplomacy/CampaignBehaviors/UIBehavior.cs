@@ -3,6 +3,7 @@
 using SandBox.View.Map;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.Core;
 
 namespace Diplomacy.CampaignBehaviors

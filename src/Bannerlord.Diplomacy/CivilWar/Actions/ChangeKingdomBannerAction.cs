@@ -11,6 +11,8 @@ using System.Linq;
 using System.Reflection;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 
 namespace Diplomacy.CivilWar.Actions

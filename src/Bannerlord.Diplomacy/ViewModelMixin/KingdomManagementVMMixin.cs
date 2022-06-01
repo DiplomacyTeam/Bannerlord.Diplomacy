@@ -6,9 +6,9 @@ using Diplomacy.GauntletInterfaces;
 using JetBrains.Annotations;
 
 using TaleWorlds.CampaignSystem.ViewModelCollection;
-using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.ScreenSystem;
 
 namespace Diplomacy.ViewModelMixin
 {
@@ -24,12 +24,10 @@ namespace Diplomacy.ViewModelMixin
             FactionsLabel = new TextObject("{=gypPPxUJ}Factions").ToString();
         }
 
-#if !(e159 || e1510)
         public override void OnFinalize()
         {
             ViewModel!.Diplomacy.OnFinalize();
         }
-#endif
 
         [DataSourceMethod]
         [UsedImplicitly]

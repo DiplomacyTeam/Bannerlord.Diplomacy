@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using System;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Library;
 
 namespace Diplomacy.ViewModel

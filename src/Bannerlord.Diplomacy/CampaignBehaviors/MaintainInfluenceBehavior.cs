@@ -4,7 +4,8 @@ using System;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Barterables;
+using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
+using TaleWorlds.CampaignSystem.Settlements;
 
 namespace Diplomacy.CampaignBehaviors
 {
@@ -62,7 +63,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private static int GetGoldValueForFief(Clan buyerClan, Settlement settlement)
         {
-            return (int) Math.Min(Campaign.Current.Models.SettlementValueModel.CalculateValueForFaction(settlement, buyerClan),
+            return (int) Math.Min(Campaign.Current.Models.SettlementValueModel.CalculateSettlementValueForFaction(settlement, buyerClan),
                                  buyerClan.Gold * 0.8);
         }
     }

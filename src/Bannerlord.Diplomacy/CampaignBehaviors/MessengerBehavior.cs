@@ -15,11 +15,7 @@ namespace Diplomacy.CampaignBehaviors
         public override void RegisterEvents()
         {
             Events.MessengerSent.AddNonSerializedListener(this, OnMessengerSent);
-#if e165 || e170
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, OnAfterSessionLaunched);
-#else
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnAfterSessionLaunched);
-#endif
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HasMessengerArrivedHourlyTick);
         }
 

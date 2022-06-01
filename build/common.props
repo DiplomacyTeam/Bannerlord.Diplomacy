@@ -2,7 +2,7 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.1.9</Version>
+        <Version>1.1.10</Version>
     </PropertyGroup>
 
     <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
@@ -10,7 +10,7 @@
         <!--BuildResources Version-->
         <BuildResourcesVersion>1.0.1.68</BuildResourcesVersion>
         <!--Harmony Version-->
-        <HarmonyVersion>2.1.1</HarmonyVersion>
+        <HarmonyVersion>2.2.1</HarmonyVersion>
         <!--ButterLib Version-->
         <ButterLibVersion>2.1.2</ButterLibVersion>
         <!--MCM Version-->
@@ -62,13 +62,20 @@
     </ItemGroup>
 
     <PropertyGroup Condition="$(OverrideGameVersion) == ''">
-        <!--Parsing  supported-game-versions.txt-->
+        <!-- Parsing  supported-game-versions.txt -->
         <SGVLineCount>$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`).Length)</SGVLineCount>
         <SGVLastEntryIndex>$([MSBuild]::Subtract($(SGVLineCount), 1))</SGVLastEntryIndex>
-        <!--First enrty is Beta, second Stable, last Minimal-->
-        <GameBetaVersion>$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`)[0])</GameBetaVersion>
-        <GameStableVersion>$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`)[1])</GameStableVersion>
-        <GameMinimalVersion>$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`)[$(SGVLastEntryIndex)])</GameMinimalVersion>
+        <!-- First enrty is Beta, second Stable, last Minimal -->
+        <FirstLine  Condition="'$(SGVLineCount)' &gt; 0">$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`)[0])</FirstLine>
+        <SecondLine Condition="'$(SGVLineCount)' &gt; 1">$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`)[1])</SecondLine>
+        <LastLine   Condition="'$(SGVLineCount)' &gt; 0">$([System.Text.RegularExpressions.Regex]::Split($(SGVFile), `\r\n|\r|\n`)[$(SGVLastEntryIndex)])</LastLine>
+        <!-- -->
+        <SecondLine Condition="'$(SecondLine)' == ''">$(FirstLine)</SecondLine>
+        <LastLine Condition="'$(LastLine)' == ''">$(SecondLine)</LastLine>
+        <!-- -->
+        <GameBetaVersion>$(FirstLine)</GameBetaVersion>
+        <GameStableVersion>$(SecondLine)</GameStableVersion>
+        <GameMinimalVersion>$(LastLine)</GameMinimalVersion>
         <!-- -->
         <GameVersionWithPrefix>e1.1.0</GameVersionWithPrefix>
         <GameVersionWithPrefix Condition="$(IsMinimal)">$(GameMinimalVersion)</GameVersionWithPrefix>

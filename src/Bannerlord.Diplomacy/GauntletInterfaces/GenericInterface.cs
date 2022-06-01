@@ -2,7 +2,7 @@
 using HarmonyLib.BUTR.Extensions;
 
 using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.Engine.Screens;
+using TaleWorlds.ScreenSystem;
 
 namespace Diplomacy.GauntletInterfaces
 {

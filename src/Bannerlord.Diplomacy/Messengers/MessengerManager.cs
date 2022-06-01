@@ -7,6 +7,11 @@ using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Conversation;
+using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.GameState;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -271,16 +276,9 @@ namespace Diplomacy.Messengers
 
         private void RemoveThisFromListeners()
         {
-#if e159 || e1510
-            CampaignEvents.RemoveListeners(this);
-#else
             CampaignEventDispatcher.Instance.RemoveListeners(this);
-#endif
         }
 
-#if e170
         public void OnDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan) { }
-#else
-#endif
     }
 }

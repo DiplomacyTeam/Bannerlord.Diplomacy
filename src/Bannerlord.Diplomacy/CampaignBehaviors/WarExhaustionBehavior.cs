@@ -6,6 +6,8 @@ using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 
 namespace Diplomacy.CampaignBehaviors
@@ -142,11 +144,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private bool IsValidQuestState(Kingdom kingdom1, Kingdom kingdom2)
         {
-#if e170
             var currentStoryMode = StoryMode.StoryModeManager.Current;
-#else
-            var currentStoryMode = StoryMode.StoryMode.Current;
-#endif
             // not in story mode
             if (currentStoryMode == null)
             {
