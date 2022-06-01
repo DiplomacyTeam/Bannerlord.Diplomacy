@@ -22,7 +22,7 @@ namespace Diplomacy.Patches
         {
             foreach (var item in values.ToList())
             {
-                var kingdom = (Kingdom)item.Object;
+                var kingdom = (Kingdom) item.Object;
                 if (kingdom.IsRebelKingdom() && kingdom.IsEliminated)
                 {
                     continue;
