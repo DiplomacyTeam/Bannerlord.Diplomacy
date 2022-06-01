@@ -22,7 +22,7 @@
         <!--BUTRModuleManager Version-->
         <BUTRModuleManagerVersion>3.0.87</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
-        <BUTRModuleLoaderVersion>1.0.1.19</BUTRModuleLoaderVersion>
+        <BUTRModuleLoaderVersion>1.0.1.24</BUTRModuleLoaderVersion>
         <!--Harmony Extensions Version-->
         <HarmonyExtensionsVersion>2.0.0.53</HarmonyExtensionsVersion>
     </PropertyGroup>
