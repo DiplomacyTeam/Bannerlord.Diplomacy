@@ -5,8 +5,6 @@ using Diplomacy.CampaignBehaviors;
 using Diplomacy.Event;
 using Diplomacy.PatchTools;
 
-using HarmonyLib;
-
 using Microsoft.Extensions.Logging;
 
 using Serilog.Events;
@@ -51,7 +49,6 @@ namespace Diplomacy
             Log = LogFactory.Get<SubModule>();
 
             PatchManager.PatchAll(HarmonyDomain);
-            //new Harmony(HarmonyDomain).PatchAll(); // Will only keep this around while I convert all the remaining annotated patches.
         }
 
         protected override void OnSubModuleUnloaded()

@@ -5,8 +5,8 @@ using Diplomacy.PatchTools;
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Election;
 
 namespace Diplomacy.Patches
 {

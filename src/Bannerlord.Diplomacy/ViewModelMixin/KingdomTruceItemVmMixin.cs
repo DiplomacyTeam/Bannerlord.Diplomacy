@@ -251,7 +251,7 @@ namespace Diplomacy.ViewModelMixin
 
         [DataSourceProperty] public string AllianceActionName { get; }
 
-        [DataSourceProperty] [UsedImplicitly] public bool IsGoldCostVisible { get; }
+        [DataSourceProperty][UsedImplicitly] public bool IsGoldCostVisible { get; }
 
         [DataSourceProperty] public string NonAggressionPactHelpText { get; }
 

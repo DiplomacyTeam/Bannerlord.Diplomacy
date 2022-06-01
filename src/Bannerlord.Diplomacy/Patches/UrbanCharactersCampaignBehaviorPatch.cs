@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿/*
+using HarmonyLib;
 
 using JetBrains.Annotations;
 
@@ -9,10 +10,11 @@ using System.Reflection;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+*/
 
+// Outdated since e1.7.2?
 namespace Diplomacy.Patches
 {
-    // Outdated since e1.7.2?
     /*
     [HarmonyPatch(typeof(UrbanCharactersCampaignBehavior))]
     [UsedImplicitly]
