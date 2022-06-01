@@ -77,7 +77,7 @@ jobs:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
     - name: Download stable bannerlord folder
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: Bannerlord.Diplomacy
         path: ./bannerlord/Modules/
