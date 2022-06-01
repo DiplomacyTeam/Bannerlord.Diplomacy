@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3.0.2
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@master
@@ -32,15 +32,14 @@ jobs:
         $impl = $PWD.Path + '/bannerlord-implementations';
         $path = $PWD.Path + '/bannerlord';
         $final = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/';
-        $proj = 'src/Bannerlord.Diplomacy.csproj';
+        $proj = 'src/Bannerlord.Diplomacy/Bannerlord.Diplomacy.csproj';
         $pdll = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/Bannerlord.Diplomacy*.dll';
         $ppdb = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/Bannerlord.Diplomacy*.pdb';
         # The folders are required to be created before executing the script
         New-Item -ItemType directory -Force -Path $impl;
         New-Item -ItemType directory -Force -Path $path;
-        $gameversions = Get-Content -Path supported-game-versions.txt;
-        # Get all implementations except the minimal version (last element)
-        # Last entry is the Minimal version. We will use Bannerlord.Diplomacy.dll from there
+        [string[]]$gameversions = Get-Content -Path supported-game-versions.txt;
+        # Process all implementations
         For ($i = 0; $i -le $gameversions.Length - 1; $i++)
         {
             $gameversion = $gameversions[$i];
@@ -62,7 +61,7 @@ jobs:
       shell: pwsh
 
     - name: Upload bannerlord folder
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3.1.0
       with:
         name: Bannerlord.Diplomacy
         path: ./bannerlord/Modules/
@@ -81,7 +80,7 @@ jobs:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
     - name: Download stable bannerlord folder
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: Bannerlord.Diplomacy
         path: ./bannerlord/Modules/

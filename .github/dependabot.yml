@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "Newtonsoft.Json"
+      - dependency-name: "Bannerlord.ReferenceAssemblies.*"
+      - dependency-name: "Lib.Harmony"
+      - dependency-name: "Microsoft.Extensions.*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
