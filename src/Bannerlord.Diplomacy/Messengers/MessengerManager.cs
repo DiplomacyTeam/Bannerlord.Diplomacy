@@ -31,7 +31,7 @@ namespace Diplomacy.Messengers
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
 
-        [SaveableField(1)][UsedImplicitly] private List<Messenger> _messengers;
+        [SaveableField(1)] [UsedImplicitly] private List<Messenger> _messengers;
 
         public MBReadOnlyList<Messenger> Messengers { get; private set; }
 

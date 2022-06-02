@@ -64,7 +64,7 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        [DataSourceProperty][UsedImplicitly] public float MinValue { get; }
+        [DataSourceProperty] [UsedImplicitly] public float MinValue { get; }
 
         [DataSourceProperty]
         public int IntValue
@@ -80,11 +80,11 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        [DataSourceProperty][UsedImplicitly] public string AcceptText { get; } = new TextObject(StringConstants.Accept).ToString();
+        [DataSourceProperty] [UsedImplicitly] public string AcceptText { get; } = new TextObject(StringConstants.Accept).ToString();
 
-        [DataSourceProperty][UsedImplicitly] public string CancelText { get; } = GameTexts.FindText("str_cancel").ToString();
+        [DataSourceProperty] [UsedImplicitly] public string CancelText { get; } = GameTexts.FindText("str_cancel").ToString();
 
-        [DataSourceProperty][UsedImplicitly] public string TitleText { get; } = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
+        [DataSourceProperty] [UsedImplicitly] public string TitleText { get; } = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
 
         public DonateGoldVM(Clan clan, Action onFinalize)
         {
