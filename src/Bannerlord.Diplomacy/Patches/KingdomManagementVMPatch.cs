@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-using TaleWorlds.CampaignSystem.ViewModelCollection;
+using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement;
 
 namespace Diplomacy.Patches
 {

@@ -5,7 +5,7 @@ using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
@@ -101,7 +101,7 @@ namespace Diplomacy.ViewModel
             Duration = new TextObject("{=qHrihV27}War Duration: {WAR_DURATION} days")
                 .SetTextVariable("WAR_DURATION", (int) warStartDate.ElapsedDaysUntilNow)
                 .ToString();
-            WarExhaustionLabel = GameTexts.FindText("str_war_exhaustion").ToString();
+            WarExhaustionLabel = GameTexts.FindText("str_war_exhaustion").ToString() + "!!!";
             WarExhaustionReportLabel = new TextObject("{=IlFEeNkY}War Exhaustion Report").ToString();
             KingdomName = Clan.PlayerClan.Kingdom.Name.ToString();
             OpponentKingdomName = _opposingKingdom.Name.ToString();

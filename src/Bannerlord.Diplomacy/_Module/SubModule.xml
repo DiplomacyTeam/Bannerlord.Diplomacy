@@ -40,4 +40,12 @@
       </Tags>
     </SubModule>
   </SubModules>
+  <Xmls>
+    <XmlNode>
+      <XmlName id="GameText" path="gt_common"/>
+    </XmlNode>
+    <XmlNode>
+      <XmlName id="GameText" path="gt_help"/>
+    </XmlNode>
+  </Xmls>
 </Module>

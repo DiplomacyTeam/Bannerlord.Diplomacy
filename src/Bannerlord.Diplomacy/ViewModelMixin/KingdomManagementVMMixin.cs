@@ -5,7 +5,7 @@ using Diplomacy.GauntletInterfaces;
 
 using JetBrains.Annotations;
 
-using TaleWorlds.CampaignSystem.ViewModelCollection;
+using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ScreenSystem;

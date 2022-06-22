@@ -6,7 +6,7 @@ using Diplomacy.Extensions;
 using JetBrains.Annotations;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Map;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.ViewModelMixin

@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using Diplomacy.Actions;
+
+using JetBrains.Annotations;
 
 using System;
 using System.ComponentModel;

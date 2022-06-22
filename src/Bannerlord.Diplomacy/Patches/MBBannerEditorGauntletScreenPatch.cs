@@ -1,7 +1,7 @@
 ﻿using Diplomacy.CivilWar.Actions;
 using Diplomacy.PatchTools;
 
-using SandBox.GauntletUI;
+using SandBox.GauntletUI.BannerEditor;
 
 using System.Collections.Generic;
 
@@ -11,15 +11,15 @@ using TaleWorlds.Core;
 
 namespace Diplomacy.Patches
 {
-    internal sealed class MBBannerEditorGauntletScreenPatch : PatchClass<MBBannerEditorGauntletScreenPatch, MBBannerEditorGauntletScreen>
+    internal sealed class MBBannerEditorGauntletScreenPatch : PatchClass<MBBannerEditorGauntletScreenPatch, GauntletBannerEditorScreen>
     {
         protected override IEnumerable<Patch> Prepare()
         {
             return new Patch[]
             {
                 new Postfix(nameof(SetClanRelatedRulesPostfix),
-                    typeof(MBBannerEditorGauntletScreen).GetConstructor(new[] {typeof(BannerEditorState)})!),
-                new Prefix(nameof(SetColorsPrefix), nameof(MBBannerEditorGauntletScreen.OnDone))
+                    typeof(GauntletBannerEditorScreen).GetConstructor(new[] {typeof(BannerEditorState)})!),
+                new Prefix(nameof(SetColorsPrefix), nameof(GauntletBannerEditorScreen.OnDone))
             };
         }
 

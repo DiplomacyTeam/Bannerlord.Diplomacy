@@ -8,8 +8,8 @@ using Diplomacy.GrantFief;
 using JetBrains.Annotations;
 
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomClan;
-using TaleWorlds.Core.ViewModelCollection;
+using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Clans;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ScreenSystem;

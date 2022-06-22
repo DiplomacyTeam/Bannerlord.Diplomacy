@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
+using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Diplomacy;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.DiplomaticAction

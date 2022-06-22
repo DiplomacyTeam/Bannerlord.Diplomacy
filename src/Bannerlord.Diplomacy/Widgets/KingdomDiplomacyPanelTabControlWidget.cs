@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 
 using TaleWorlds.GauntletUI;
+using TaleWorlds.GauntletUI.BaseTypes;
 
 namespace Diplomacy.Widgets
 {

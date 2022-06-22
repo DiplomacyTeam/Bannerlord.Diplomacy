@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 
 namespace Diplomacy.ViewModel
