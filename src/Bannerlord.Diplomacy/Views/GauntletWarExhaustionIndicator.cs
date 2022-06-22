@@ -7,7 +7,7 @@ using SandBox.View.Map;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.View.Missions;
+using TaleWorlds.MountAndBlade.View;
 
 namespace Diplomacy.Views
 {

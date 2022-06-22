@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace Diplomacy.ViewModelMixin
 {
-    [PrefabExtension("EncyclopediaFactionPage", "descendant::GridWidget[@Id='EnemiesGrid']")]
+    [PrefabExtension("EncyclopediaFactionPage", "descendant::NavigatableGridWidget[@Id='EnemiesGrid']")]
     [UsedImplicitly]
     internal sealed class EncyclopediaFactionPagePrefabExtension : PrefabExtensionInsertPatch
     {

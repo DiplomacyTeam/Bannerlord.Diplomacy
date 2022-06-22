@@ -10,9 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.EncyclopediaItems;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Items;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
@@ -154,7 +154,7 @@ namespace Diplomacy.ViewModel
         [UsedImplicitly]
         public void OnCreateFaction()
         {
-            InformationManager.HideInformations();
+            MBInformationManager.HideInformations();
             List<InquiryElement> inquiryElements = new();
             foreach (int value in Enum.GetValues(typeof(RebelDemandType)))
             {
@@ -171,7 +171,7 @@ namespace Diplomacy.ViewModel
 
             GameTexts.SetVariable("INFLUENCE_ICON", "{=!}<img src=\"Icons\\Influence@2x\" extend=\"7\">");
 
-            InformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(
+            MBInformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(
                 CreateFactionLabel,
                 new TextObject("{=2PglxF8k}Choose a faction demand to create a faction.{newline}Cost: {INFLUENCE_COST}{INFLUENCE_ICON}")
                     .SetTextVariable("INFLUENCE_COST", CreateFactionInfluenceCost).ToString(),

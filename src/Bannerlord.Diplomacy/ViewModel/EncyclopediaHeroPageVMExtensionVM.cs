@@ -7,7 +7,7 @@ using Diplomacy.Messengers;
 using JetBrains.Annotations;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ScreenSystem;
@@ -63,7 +63,7 @@ namespace Diplomacy.ViewModel
         }
 
         [UsedImplicitly]
-        private void ExecuteLink(string link)
+        private new void ExecuteLink(string link)
         {
             Campaign.Current.EncyclopediaManager.GoToLink(link);
         }

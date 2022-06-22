@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
   <strings>
     <!--  
     <string id="" text="" />
@@ -11,4 +10,3 @@
 	
 	<string id="str_warexhaustionrate_help" text="{=dh2NE8Of}The war exhaustion rate is the rate at which war exhaustion accumulates in the war. War exhaustion accumulates  more slowly in wars between larger kingdoms." />
   </strings>
-</base>

@@ -96,17 +96,8 @@ namespace Diplomacy
                 gameStarter.AddBehavior(new ExpansionismBehavior());
                 gameStarter.AddBehavior(new CivilWarBehavior());
                 gameStarter.AddBehavior(new UIBehavior());
-                LoadGameTexts(gameStarter);
                 Log.LogDebug("Campaign session started.");
-
             }
-        }
-
-        private static void LoadGameTexts(CampaignGameStarter gameStarter)
-        {
-            var module = "Bannerlord.Diplomacy";
-            gameStarter.LoadGameTexts(ModuleHelper.GetXmlPath(module, "gt_help"));
-            gameStarter.LoadGameTexts(ModuleHelper.GetXmlPath(module, "gt_common"));
         }
 
         public override void OnGameEnd(Game game)

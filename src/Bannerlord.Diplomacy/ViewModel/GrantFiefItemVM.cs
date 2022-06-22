@@ -20,9 +20,9 @@ namespace Diplomacy.ViewModel
         {
             Settlement = settlement;
             Name = settlement.Name.ToString();
-            var component = settlement.GetComponent<SettlementComponent>();
+            var component = settlement.SettlementComponent;
             SettlementImagePath = ((component is null) ? "placeholder" : (component.BackgroundMeshName + "_t"));
-            var component2 = settlement.GetComponent<Town>();
+            var component2 = settlement.Town;
             if (component2 is not null)
             {
                 Prosperity = (int) Math.Round(component2.Prosperity);

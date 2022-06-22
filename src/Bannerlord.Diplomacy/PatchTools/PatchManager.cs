@@ -63,7 +63,6 @@ namespace Diplomacy.PatchTools
             new DiplomaticBartersBehaviorPatch(),
             new EncyclopediaDataPatch(),
             new GameMenusCallbacksPatch(),
-            new GiveGoldToClanActionPatch(),
             new KingdomDecisionProposalBehaviorPatch(),
             new SupportKingdomQuestPatch(),
             new FactionManagerPatch(),

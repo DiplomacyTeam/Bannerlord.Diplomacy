@@ -10,9 +10,9 @@ using JetBrains.Annotations;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
+using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Diplomacy;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
@@ -60,7 +60,7 @@ namespace Diplomacy.ViewModelMixin
             }
         }
 
-        [DataSourceProperty][UsedImplicitly] public bool IsGoldCostVisible { get; } = true;
+        [DataSourceProperty] [UsedImplicitly] public bool IsGoldCostVisible { get; } = true;
 
         [DataSourceProperty]
         public bool IsOptionAvailable

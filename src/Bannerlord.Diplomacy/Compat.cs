@@ -6,7 +6,7 @@ namespace Diplomacy
     {
         internal static class HintViewModel
         {
-            public static TaleWorlds.Core.ViewModelCollection.HintViewModel Create(TextObject text)
+            public static TaleWorlds.Core.ViewModelCollection.Information.HintViewModel Create(TextObject text)
             {
                 return new(text);
             }

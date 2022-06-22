@@ -14,9 +14,9 @@ using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.KingdomDiplomacy;
+using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Diplomacy;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
@@ -251,7 +251,7 @@ namespace Diplomacy.ViewModelMixin
 
         [DataSourceProperty] public string AllianceActionName { get; }
 
-        [DataSourceProperty][UsedImplicitly] public bool IsGoldCostVisible { get; }
+        [DataSourceProperty] [UsedImplicitly] public bool IsGoldCostVisible { get; }
 
         [DataSourceProperty] public string NonAggressionPactHelpText { get; }
 

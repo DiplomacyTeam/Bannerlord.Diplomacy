@@ -3,11 +3,11 @@ using Diplomacy.ViewModel;
 
 using HarmonyLib;
 
-using SandBox.GauntletUI;
+using SandBox.GauntletUI.Encyclopedia;
 
 using System.Collections.Generic;
 
-using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
 
 namespace Diplomacy.Patches
 {
