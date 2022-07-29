@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.11.2
+Game Versions: e1.8.0
+
+* Startup crash fix for 1.8.0 (butterlib dependency bump)
+* Fix kingdom selection in Diplomacy screen (used to always pick Vlandia)
+
+The kingdom selection fix is an ugly workaround, make sure to backup your save as this is very fragile
+---------------------------------------------------------------------------------------------------
 Version: 1.1.11
 Game Versions: e1.8.0
 * Compatibility with e1.8.0
