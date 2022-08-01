@@ -35,7 +35,7 @@
          and we need to reference that old version instead of the latest. -->
         <PackageReference Include="Newtonsoft.Json" Version="11.0.2" IncludeAssets="compile" />
         <!-- Enable NET5 Features on NET472 -->
-        <PackageReference Include="IsExternalInit" Version="1.0.2">
+        <PackageReference Include="IsExternalInit" Version="1.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
