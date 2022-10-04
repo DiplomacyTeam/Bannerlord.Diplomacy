@@ -39,6 +39,22 @@ namespace Diplomacy.Patches
                     MixinInstance.OnRefresh();
                 }
             }
+            else if (instance != null && instance.GetValue(methodInfo) is ViewModelMixin.KingdomWarItemVMMixin)
+            {
+                if (!Environment.StackTrace.Contains("OnRefresh"))
+                {
+                    var MixinInstance = (ViewModelMixin.KingdomWarItemVMMixin) instance.GetValue(methodInfo);
+                    var BadVm = MixinInstance.GetType().BaseType.GetField("_vm", BindingFlags.Instance | BindingFlags.NonPublic);
+                    // Replace VM with obj
+                    BadVm.SetValue(MixinInstance, new WeakReference<KingdomWarItemVM>((KingdomWarItemVM) obj));
+
+                    // Replace private _factionn reference
+                    var vm = MixinInstance.GetType().GetField("_faction2", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.IgnoreCase);
+                    vm.SetValue(MixinInstance, ((KingdomWarItemVM) obj).Faction2);
+                    MixinInstance.GetType().GetProperty("DiplomacyProperties").SetValue(MixinInstance, new ViewModel.DiplomacyPropertiesVM(((KingdomWarItemVM) obj).Faction1, ((KingdomWarItemVM) obj).Faction2));
+                    MixinInstance.OnRefresh();
+                }
+            }
         }
     }
 }
