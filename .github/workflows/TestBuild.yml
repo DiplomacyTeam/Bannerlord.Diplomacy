@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3.1.0
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@master
