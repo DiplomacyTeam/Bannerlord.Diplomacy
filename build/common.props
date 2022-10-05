@@ -26,7 +26,6 @@
         <!--Harmony Extensions Version-->
         <HarmonyExtensionsVersion>3.1.0.61</HarmonyExtensionsVersion>
     </PropertyGroup>
-
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
         <Platforms>x64</Platforms>

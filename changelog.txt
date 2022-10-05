@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.12
+Game Versions: e1.8.1,e1.8.0
+* Update dependencies to fix 1.8.0 hotfix crash
+* Fix faction selection issue in the kingdom diplomacy view
+* Fix messenger teleportation issue
+---------------------------------------------------------------------------------------------------
 Version: 1.1.11
 Game Versions: e1.8.0
 * Compatibility with e1.8.0
