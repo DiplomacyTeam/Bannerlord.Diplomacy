@@ -8,9 +8,9 @@ namespace Diplomacy.Messengers
 {
     internal class Messenger
     {
-        [SaveableProperty(1)] [UsedImplicitly] public CampaignTime DispatchTime { get; private set; }
+        [SaveableProperty(1)][UsedImplicitly] public CampaignTime DispatchTime { get; private set; }
 
-        [SaveableProperty(2)] [UsedImplicitly] public Hero TargetHero { get; private set; }
+        [SaveableProperty(2)][UsedImplicitly] public Hero TargetHero { get; private set; }
 
         [SaveableProperty(3)] public Vec2 CurrentPosition { get; set; }
 
