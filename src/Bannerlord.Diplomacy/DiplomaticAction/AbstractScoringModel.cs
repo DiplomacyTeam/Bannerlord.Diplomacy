@@ -19,7 +19,7 @@ namespace Diplomacy.DiplomaticAction
 
         protected AbstractScoringModel(IDiplomacyScores scores) => Scores = scores;
 
-        public virtual ExplainedNumber GetScore(Kingdom ourKingdom, Kingdom otherKingdom, bool includeDesc = false)
+        public virtual ExplainedNumber GetScore(Kingdom otherKingdom, Kingdom ourKingdom, bool includeDesc = false)
         {
             var explainedNum = new ExplainedNumber(Scores.Base, includeDesc);
 

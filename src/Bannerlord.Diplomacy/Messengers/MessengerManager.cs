@@ -11,6 +11,7 @@ using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -31,7 +32,7 @@ namespace Diplomacy.Messengers
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
 
-        [SaveableField(1)] [UsedImplicitly] private List<Messenger> _messengers;
+        [SaveableField(1)][UsedImplicitly] private List<Messenger> _messengers;
 
         public MBReadOnlyList<Messenger> Messengers { get; private set; }
 
@@ -184,31 +185,18 @@ namespace Diplomacy.Messengers
             else
                 targetParty = targetHero.PartyBelongedTo?.Party ?? targetHero.BornSettlement?.Party;
 
-            var settlement = targetHero.CurrentSettlement;
-
             PlayerEncounter.Start();
             PlayerEncounter.Current.SetupFields(heroParty, targetParty ?? heroParty);
 
             Campaign.Current.CurrentConversationContext = ConversationContext.Default;
-            if (settlement != null)
-            {
-                PlayerEncounter.EnterSettlement();
-                Location locationOfCharacter = LocationComplex.Current.GetLocationOfCharacter(targetHero);
-                CampaignEventDispatcher.Instance.OnPlayerStartTalkFromMenu(targetHero);
-                _currentMission =
-                    (Mission) PlayerEncounter.LocationEncounter.CreateAndOpenMissionController(locationOfCharacter, null, targetHero.CharacterObject);
-            }
-            else
-            {
-                var specialScene = "";
-                var sceneLevels = "";
+            var specialScene = "";
+            var sceneLevels = "";
 
-                _currentMission = (Mission) Campaign.Current.CampaignMissionManager.OpenConversationMission(
-                    new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true),
-                    new ConversationCharacterData(targetHero.CharacterObject, targetParty, true),
-                    specialScene, sceneLevels);
-            }
-
+            // TODO: hack the scene to show the scene of the target instead of the player's
+            _currentMission = (Mission) Campaign.Current.CampaignMissionManager.OpenConversationMission(
+                new ConversationCharacterData(Hero.MainHero.CharacterObject, Hero.MainHero.PartyBelongedTo.Party, true),
+                new ConversationCharacterData(targetHero.CharacterObject, targetHero.PartyBelongedTo?.Party, true),
+                specialScene, sceneLevels);
             _currentMission.AddListener(this);
         }
 
