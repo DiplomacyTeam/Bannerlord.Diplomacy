@@ -1,51 +1,52 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <Name value="$displayname$" />
-  <Id value="$modulename$" />
-  <Version value="v$version$" />
-  <Official value="false" />
-  <DefaultModule value="false" />
-  <SingleplayerModule value="true" />
-  <MultiplayerModule value="false" />
-  <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/832" />
-  <DependedModules>
-    <DependedModule Id="Bannerlord.Harmony" />
-    <DependedModule Id="Bannerlord.ButterLib" />
-    <DependedModule Id="Bannerlord.MBOptionScreen" />
-    <DependedModule Id="Bannerlord.UIExtenderEx" />
-    <DependedModule Id="Native" />
-    <DependedModule Id="SandBoxCore" />
-    <DependedModule Id="Sandbox" />
-    <DependedModule Id="StoryMode" />
-  </DependedModules>
-  <DependedModuleMetadatas>
-    <DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" version="v$harmonyversion$" />
-    <DependedModuleMetadata id="Bannerlord.ButterLib" order="LoadBeforeThis" version="v$butterlibversion$" />
-    <DependedModuleMetadata id="Bannerlord.MBOptionScreen" order="LoadBeforeThis" version="v$mcmversion$" />
-    <DependedModuleMetadata id="Bannerlord.UIExtenderEx" order="LoadBeforeThis" version="v$uiextenderexversion$" />
-    <DependedModuleMetadata id="Native" order="LoadBeforeThis" version="e$gameversion$.*" />
-    <DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" version="e$gameversion$.*" />
-    <DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" version="e$gameversion$.*" />
-    <DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" version="e$gameversion$.*" />
-    <DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis" version="e$gameversion$.*" optional="true" />
-  </DependedModuleMetadatas>
-  <SubModules>
-    <!-- Bannerlord Module Loader. Do not change the name! -->
-    <SubModule>
-      <Name value="Bannerlord Module Loader" />
-      <DLLName value="Bannerlord.ModuleLoader.$modulename$.dll" />
-      <SubModuleClassType value="Bannerlord.ModuleLoader.Bannerlord_Diplomacy" />
-      <Tags>
-        <Tag key="LoaderFilter" value ="$modulename$.*.dll" />
-      </Tags>
-    </SubModule>
-  </SubModules>
-  <Xmls>
-    <XmlNode>
-      <XmlName id="GameText" path="gt_common"/>
-    </XmlNode>
-    <XmlNode>
-      <XmlName id="GameText" path="gt_help"/>
-    </XmlNode>
-  </Xmls>
+    <Name value="$displayname$" />
+    <Id value="$modulename$" />
+    <Version value="v$version$" />
+    <ModuleType value="Community"/>
+    <Official value="false" />
+    <DefaultModule value="false" />
+    <SingleplayerModule value="true" />
+    <MultiplayerModule value="false" />
+    <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/832" />
+    <DependedModules>
+        <DependedModule Id="Bannerlord.Harmony" />
+        <DependedModule Id="Bannerlord.ButterLib" />
+        <DependedModule Id="Bannerlord.MBOptionScreen" />
+        <DependedModule Id="Bannerlord.UIExtenderEx" />
+        <DependedModule Id="Native" />
+        <DependedModule Id="SandBoxCore" />
+        <DependedModule Id="Sandbox" />
+        <DependedModule Id="StoryMode" />
+    </DependedModules>
+    <DependedModuleMetadatas>
+        <DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" version="v$harmonyversion$" />
+        <DependedModuleMetadata id="Bannerlord.ButterLib" order="LoadBeforeThis" version="v$butterlibversion$" />
+        <DependedModuleMetadata id="Bannerlord.MBOptionScreen" order="LoadBeforeThis" version="v$mcmversion$" />
+        <DependedModuleMetadata id="Bannerlord.UIExtenderEx" order="LoadBeforeThis" version="v$uiextenderexversion$" />
+        <DependedModuleMetadata id="Native" order="LoadBeforeThis" version="e$gameversion$.*" />
+        <DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" version="e$gameversion$.*" />
+        <DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" version="e$gameversion$.*" />
+        <DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" version="e$gameversion$.*" />
+        <DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis" version="e$gameversion$.*" optional="true" />
+    </DependedModuleMetadatas>
+    <SubModules>
+        <!-- Bannerlord Module Loader. Do not change the name! -->
+        <SubModule>
+            <Name value="Bannerlord Module Loader" />
+            <DLLName value="Bannerlord.ModuleLoader.$modulename$.dll" />
+            <SubModuleClassType value="Bannerlord.ModuleLoader.Bannerlord_Diplomacy" />
+            <Tags>
+                <Tag key="LoaderFilter" value ="$modulename$.*.dll" />
+            </Tags>
+        </SubModule>
+    </SubModules>
+    <Xmls>
+        <XmlNode>
+            <XmlName id="GameText" path="gt_common"/>
+        </XmlNode>
+        <XmlNode>
+            <XmlName id="GameText" path="gt_help"/>
+        </XmlNode>
+    </Xmls>
 </Module>
