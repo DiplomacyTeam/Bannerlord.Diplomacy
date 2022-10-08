@@ -60,7 +60,7 @@ namespace Diplomacy.ViewModelMixin
             }
         }
 
-        [DataSourceProperty] [UsedImplicitly] public bool IsGoldCostVisible { get; } = true;
+        [DataSourceProperty][UsedImplicitly] public bool IsGoldCostVisible { get; } = true;
 
         [DataSourceProperty]
         public bool IsOptionAvailable
