@@ -24,11 +24,11 @@
         <DependedModuleMetadata id="Bannerlord.ButterLib" order="LoadBeforeThis" version="v$butterlibversion$" />
         <DependedModuleMetadata id="Bannerlord.MBOptionScreen" order="LoadBeforeThis" version="v$mcmversion$" />
         <DependedModuleMetadata id="Bannerlord.UIExtenderEx" order="LoadBeforeThis" version="v$uiextenderexversion$" />
-        <DependedModuleMetadata id="Native" order="LoadBeforeThis" version="e$gameversion$.*" />
-        <DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" version="e$gameversion$.*" />
-        <DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" version="e$gameversion$.*" />
-        <DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" version="e$gameversion$.*" />
-        <DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis" version="e$gameversion$.*" optional="true" />
+        <DependedModuleMetadata id="Native" order="LoadBeforeThis" version="v$gameversion$.*" />
+        <DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" version="v$gameversion$.*" />
+        <DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" version="v$gameversion$.*" />
+        <DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" version="v$gameversion$.*" />
+        <DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis" version="v$gameversion$.*" optional="true" />
     </DependedModuleMetadatas>
     <SubModules>
         <!-- Bannerlord Module Loader. Do not change the name! -->

@@ -48,10 +48,10 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <!-- ReferenceAssemblies -->
-        <PackageReference Include="Bannerlord.ReferenceAssemblies.Core.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
-        <PackageReference Include="Bannerlord.ReferenceAssemblies.Native.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
-        <PackageReference Include="Bannerlord.ReferenceAssemblies.StoryMode.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
-        <PackageReference Include="Bannerlord.ReferenceAssemblies.Sandbox.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
+        <PackageReference Include="Bannerlord.ReferenceAssemblies.Core" Version="$(GameVersion).*" PrivateAssets="All" />
+        <PackageReference Include="Bannerlord.ReferenceAssemblies.Native" Version="$(GameVersion).*" PrivateAssets="All" />
+        <PackageReference Include="Bannerlord.ReferenceAssemblies.StoryMode" Version="$(GameVersion).*" PrivateAssets="All" />
+        <PackageReference Include="Bannerlord.ReferenceAssemblies.Sandbox" Version="$(GameVersion).*" PrivateAssets="All" />
     </ItemGroup>
 
     <!-- Extra Substitution Variables to Use in SubModule.xml -->
