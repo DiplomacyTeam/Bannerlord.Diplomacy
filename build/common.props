@@ -2,7 +2,8 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.1.13</Version>
+        <Version>1.1.14</Version>
+        <GameVersion>1.0.0</GameVersion>
     </PropertyGroup>
 
     <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
@@ -20,7 +21,7 @@
         <!--BUTRShared Version-->
         <BUTRSharedVersion>2.0.0.101</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->
-        <BUTRModuleManagerVersion>4.0.146</BUTRModuleManagerVersion>
+        <BUTRModuleManagerVersion>4.0.149</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
         <BUTRModuleLoaderVersion>1.0.1.42</BUTRModuleLoaderVersion>
         <!--Harmony Extensions Version-->
