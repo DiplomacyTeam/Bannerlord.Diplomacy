@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.15
 Game Versions: 1.0.0
-* Bump dependencies (mainly for Steam Workshop)
+* Bumped dependencies (mainly for Steam Workshop)
+* Fixed some issues with eliminated factions
+* Changes to peace offering price calculations
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.14
 Game Versions: 1.0.0
