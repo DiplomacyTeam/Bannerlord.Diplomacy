@@ -1,4 +1,4 @@
-﻿using Diplomacy.CivilWar;
+using Diplomacy.CivilWar;
 using Diplomacy.CivilWar.Factions;
 
 using System;
@@ -6,11 +6,20 @@ using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Library;
 
 namespace Diplomacy.Extensions
 {
     public static class KingdomExtensions
     {
+        public static MBReadOnlyList<Kingdom> AllActiveKingdoms
+        {
+            get
+            {
+                return new MBReadOnlyList<Kingdom>(Kingdom.All.Where((kingdom) => !kingdom.IsEliminated).ToList());
+            }
+        }
+
         public static float GetExpansionism(this Kingdom kingdom)
         {
             return ExpansionismManager.Instance!.GetExpansionism(kingdom);
@@ -73,7 +82,7 @@ namespace Diplomacy.Extensions
         private static float GetMedianStrength()
         {
             float medianStrength;
-            var kingdomStrengths = Kingdom.All.Select(curKingdom => curKingdom.TotalStrength).OrderBy(a => a).ToArray();
+            var kingdomStrengths = KingdomExtensions.AllActiveKingdoms.Select(curKingdom => curKingdom.TotalStrength).OrderBy(a => a).ToArray();
 
             var halfIndex = kingdomStrengths.Length / 2;
 

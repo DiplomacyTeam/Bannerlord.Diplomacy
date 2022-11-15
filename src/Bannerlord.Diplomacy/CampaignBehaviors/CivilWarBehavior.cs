@@ -1,4 +1,4 @@
-﻿
+
 using Diplomacy.CivilWar;
 using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
@@ -47,7 +47,7 @@ namespace Diplomacy.CampaignBehaviors
             // if war exhaustion is disabled, stop civil wars when the last rebel settlement is taken
             if (!Settings.Instance!.EnableWarExhaustion)
             {
-                foreach (var kingdom in Kingdom.All.Where(x => (x.IsRebelKingdom() || x.HasRebellion()) && x.Fiefs.IsEmpty()).ToList())
+                foreach (var kingdom in KingdomExtensions.AllActiveKingdoms.Where(x => (x.IsRebelKingdom() || x.HasRebellion()) && x.Fiefs.IsEmpty()).ToList())
                 {
                     var rebelFaction = RebelFactionManager.GetRebelFactionForRebelKingdom(kingdom) ?? kingdom.GetRebelFactions().FirstOrDefault();
 

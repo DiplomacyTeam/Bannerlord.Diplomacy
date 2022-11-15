@@ -1,6 +1,7 @@
-﻿using Diplomacy.DiplomaticAction.Alliance;
+using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Event;
+using Diplomacy.Extensions;
 
 using System.Linq;
 
@@ -59,7 +60,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void SupportAlliedKingdom(Kingdom kingdom, Kingdom kingdomToDeclareWarOn)
         {
-            var allies = Kingdom.All.Where(k => kingdom != k && FactionManager.IsAlliedWithFaction(kingdom, k));
+            var allies = KingdomExtensions.AllActiveKingdoms.Where(k => kingdom != k && FactionManager.IsAlliedWithFaction(kingdom, k));
 
             foreach (var ally in allies)
             {
@@ -94,7 +95,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private static void ConsiderFormingAlliances(Kingdom kingdom)
         {
-            var potentialAllies = Kingdom.All
+            var potentialAllies = KingdomExtensions.AllActiveKingdoms
                 .Where(k => k != kingdom && FormAllianceConditions.Instance.CanApply(kingdom, k))
                 .ToList();
 
@@ -105,7 +106,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private static void ConsiderBreakingAlliances(Kingdom kingdom)
         {
-            var alliedKingdoms = Kingdom.All
+            var alliedKingdoms = KingdomExtensions.AllActiveKingdoms
                 .Where(k => k != kingdom && FactionManager.IsAlliedWithFaction(kingdom, k))
                 .ToList();
 
@@ -127,7 +128,7 @@ namespace Diplomacy.CampaignBehaviors
             if (kingdom is null)
                 return;
 
-            var alliedKingdoms = Kingdom.All
+            var alliedKingdoms = KingdomExtensions.AllActiveKingdoms
                 .Where(k => k != kingdom && FactionManager.IsAlliedWithFaction(kingdom, k))
                 .ToList();
 

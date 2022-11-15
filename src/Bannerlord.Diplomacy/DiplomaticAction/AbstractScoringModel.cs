@@ -1,4 +1,4 @@
-﻿using Diplomacy.Extensions;
+using Diplomacy.Extensions;
 
 using System;
 using System.Linq;
@@ -41,7 +41,7 @@ namespace Diplomacy.DiplomaticAction
 
             // Their Alliances with Enemies
 
-            var alliedEnemies = Kingdom.All
+            var alliedEnemies = KingdomExtensions.AllActiveKingdoms
                 .Where(k => k != ourKingdom
                          && k != otherKingdom
                          && FactionManager.IsAlliedWithFaction(otherKingdom, k)
@@ -52,7 +52,7 @@ namespace Diplomacy.DiplomaticAction
 
             // Their Alliances with Neutrals
 
-            var alliedNeutrals = Kingdom.All
+            var alliedNeutrals = KingdomExtensions.AllActiveKingdoms
                 .Where(k => k != ourKingdom
                          && k != otherKingdom
                          && FactionManager.IsAlliedWithFaction(otherKingdom, k)
@@ -63,7 +63,7 @@ namespace Diplomacy.DiplomaticAction
             foreach (var alliedNeutral in alliedNeutrals)
                 explainedNum.Add(Scores.ExistingAllianceWithNeutral, CreateTextWithKingdom(SAlliedToNeutral, alliedNeutral));
 
-            var pactEnemies = Kingdom.All
+            var pactEnemies = KingdomExtensions.AllActiveKingdoms
                 .Where(k => k != ourKingdom
              && k != otherKingdom
              && DiplomaticAgreementManager.HasNonAggressionPact(otherKingdom, k, out _)
@@ -74,7 +74,7 @@ namespace Diplomacy.DiplomaticAction
 
             // Their Alliances with Neutrals
 
-            var pactNeutrals = Kingdom.All
+            var pactNeutrals = KingdomExtensions.AllActiveKingdoms
                 .Where(k => k != ourKingdom
                          && k != otherKingdom
                          && DiplomaticAgreementManager.HasNonAggressionPact(otherKingdom, k, out _)
