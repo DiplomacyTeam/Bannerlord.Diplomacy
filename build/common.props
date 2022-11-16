@@ -2,8 +2,8 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.1.14</Version>
-        <GameVersion>1.0.0</GameVersion>
+        <Version>1.1.16</Version>
+        <GameVersion>1.0.1</GameVersion>
     </PropertyGroup>
 
     <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
@@ -13,17 +13,17 @@
         <!--Harmony Version-->
         <HarmonyVersion>2.2.2</HarmonyVersion>
         <!--ButterLib Version-->
-        <ButterLibVersion>2.3.4</ButterLibVersion>
+        <ButterLibVersion>2.5.1</ButterLibVersion>
         <!--MCM Version-->
-        <MCMVersion>5.0.4</MCMVersion>
+        <MCMVersion>5.3.1</MCMVersion>
         <!--UIExtenderEx Version-->
         <UIExtenderExVersion>2.3.1</UIExtenderExVersion>
         <!--BUTRShared Version-->
         <BUTRSharedVersion>3.0.0.121</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->
-        <BUTRModuleManagerVersion>4.0.149</BUTRModuleManagerVersion>
+        <BUTRModuleManagerVersion>4.0.150</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
-        <BUTRModuleLoaderVersion>1.0.1.42</BUTRModuleLoaderVersion>
+        <BUTRModuleLoaderVersion>1.0.1.43</BUTRModuleLoaderVersion>
         <!--Harmony Extensions Version-->
         <HarmonyExtensionsVersion>3.1.0.67</HarmonyExtensionsVersion>
     </PropertyGroup>

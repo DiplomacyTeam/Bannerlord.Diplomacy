@@ -233,7 +233,7 @@
 
     <string id="8ZPKToTq" text="Influence Balancing"/>
     <string id="4jlYRUdZ" text="Enable Influence Balancing"/>
-    <string id="tOMN9DQD" text="Enables influence balancing. May need to be disabled for mod compatibility."/>
+    <string id="tOMN9DQD" text="Controls whether Influence Decay and Corruption calculations are active. May need to be disabled for mod compatibility."/>
 
     <string id="vzKRX2JA" text="Influence Decay"/>
     <string id="szYr4OTG" text="Enable Influence Decay" />
