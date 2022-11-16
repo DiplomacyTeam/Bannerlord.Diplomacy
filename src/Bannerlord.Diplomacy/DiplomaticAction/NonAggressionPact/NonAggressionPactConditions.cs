@@ -15,7 +15,7 @@ namespace Diplomacy.DiplomaticAction.NonAggressionPact
             new NoNonAggressionPactCondition(),
             new HasEnoughScoreCondition(),
             new NotRebelKingdomCondition(),
-			new NotEliminatedCondition()
+            new NotEliminatedCondition()
         };
 
         public NonAggressionPactConditions() : base(Conditions) { }

@@ -15,7 +15,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             new NotInAllianceCondition(),
             new AtPeaceCondition(),
             new NotRebelKingdomCondition(),
-			new NotEliminatedCondition()
+            new NotEliminatedCondition()
         };
 
         public DeclareWarConditions() : base(Conditions) { }
