@@ -1,4 +1,4 @@
-﻿using Diplomacy.CivilWar.Actions;
+using Diplomacy.CivilWar.Actions;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.Extensions;
 
@@ -33,7 +33,7 @@ namespace Diplomacy
             Kingdom? kingdom1 = null;
             Kingdom? kingdom2 = null;
 
-            foreach (var k in Kingdom.All)
+            foreach (var k in KingdomExtensions.AllActiveKingdoms)
             {
                 var id = k.Name.ToString().ToLower().Replace(" ", "");
 
@@ -74,7 +74,7 @@ namespace Diplomacy
             Kingdom? kingdom1 = null;
             Kingdom? kingdom2 = null;
 
-            foreach (var k in Kingdom.All)
+            foreach (var k in KingdomExtensions.AllActiveKingdoms)
             {
                 var id = k.Name.ToString().ToLower().Replace(" ", "");
 
@@ -111,7 +111,7 @@ namespace Diplomacy
 
             Kingdom? kingdom1 = null;
 
-            foreach (var k in Kingdom.All)
+            foreach (var k in KingdomExtensions.AllActiveKingdoms)
             {
                 var id = k.Name.ToString().ToLower().Replace(" ", "");
 

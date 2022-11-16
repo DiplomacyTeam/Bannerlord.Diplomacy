@@ -1,4 +1,5 @@
-﻿using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.Extensions;
 
 using Microsoft.Extensions.Logging;
 
@@ -87,7 +88,7 @@ namespace Diplomacy.CampaignBehaviors
         {
             _warExhaustionManager.UpdateDailyWarExhaustionForAllKingdoms();
 
-            foreach (var kingdom in Kingdom.All.ToList())
+            foreach (var kingdom in KingdomExtensions.AllActiveKingdoms.ToList())
             {
                 ConsiderPeaceActions(kingdom);
             }

@@ -1,4 +1,5 @@
-﻿using Diplomacy.CivilWar.Factions;
+using Diplomacy.CivilWar.Factions;
+using Diplomacy.Extensions;
 
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace Diplomacy.CivilWar.Actions
                 rebelFaction.ParentKingdom.Culture,
                 rebelFaction.SponsorClan);
 
-            var kingdom = Kingdom.All.First(x => !x.IsEliminated && x.RulingClan == rebelFaction.SponsorClan);
+            var kingdom = KingdomExtensions.AllActiveKingdoms.First(x => !x.IsEliminated && x.RulingClan == rebelFaction.SponsorClan);
             rebelFaction.StartRebellion(kingdom);
 
             ChangeKingdomBannerAction.Apply(rebelFaction.RebelKingdom!, true);
