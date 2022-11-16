@@ -23,7 +23,8 @@ namespace Diplomacy.Patches
             var args = (EncyclopediaPageArgs) AccessTools.Field(typeof(EncyclopediaPageVM), "_args").GetValue(__result);
 
             if (__result is EncyclopediaHeroPageVM)
-                __result = new EncyclopediaHeroPageVMExtensionVM(args);
+                //__result = new EncyclopediaHeroPageVMExtensionVM(args);
+				return;
             else if (__result is EncyclopediaFactionPageVM)
                 __result = new EncyclopediaFactionPageVMExtensionVM(args);
         }
