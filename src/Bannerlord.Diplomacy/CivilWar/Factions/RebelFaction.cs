@@ -95,7 +95,6 @@ namespace Diplomacy.CivilWar.Factions
                 ? new TextObject("{=ChzQncc0}Rebellion")
                 : new TextObject("{=WUAv0u4U}Gathering Support");
 
-
         protected RebelFaction(Clan sponsorClan)
         {
             _participatingClans = new List<Clan>();
@@ -148,7 +147,6 @@ namespace Diplomacy.CivilWar.Factions
 
             ConsolidateKingdomsAction.Apply(this);
             RebelFactionManager.DestroyRebelFaction(this);
-
 
             InformationManager.ShowInquiry(
                 new InquiryData(

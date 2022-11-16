@@ -12,7 +12,6 @@ namespace Diplomacy
 {
     internal sealed class WarExhaustionManager
     {
-
         // new war exhaustion dictionary using Id
         [SaveableField(1)] private Dictionary<string, float> _warExhaustionById;
 

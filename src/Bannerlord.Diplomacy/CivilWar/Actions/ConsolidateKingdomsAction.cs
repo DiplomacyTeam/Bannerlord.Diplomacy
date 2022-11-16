@@ -47,7 +47,6 @@ namespace Diplomacy.CivilWar.Actions
                     ChangeOwnerOfSettlementAction.ApplyByDefault(originalOwner.Leader, fief.Settlement);
                 }
             }
-
         }
     }
 }

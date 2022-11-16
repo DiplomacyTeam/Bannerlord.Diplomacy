@@ -6,7 +6,6 @@ namespace Diplomacy.ViewModel
 {
     class GrantFiefSortControllerVM : TaleWorlds.Library.ViewModel
     {
-
         public GrantFiefSortControllerVM(ref MBBindingList<GrantFiefItemVM> listToControl)
         {
             _listToControl = listToControl;

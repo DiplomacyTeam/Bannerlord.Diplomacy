@@ -6,7 +6,6 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 {
     internal class NoPlayerSiegeCondition : IDiplomacyCondition
     {
-
         private static readonly TextObject _TActivePlayerSiege = new("{=XlL50Ha9}Can't make peace with a kingdom during an active player siege.");
 
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)

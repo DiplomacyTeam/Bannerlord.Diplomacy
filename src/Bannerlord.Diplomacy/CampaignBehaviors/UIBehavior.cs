@@ -13,7 +13,6 @@ namespace Diplomacy.CampaignBehaviors
         public override void RegisterEvents()
         {
             CampaignEvents.TickEvent.AddNonSerializedListener(this, AddUIElements);
-
         }
 
         private void AddUIElements(float obj)

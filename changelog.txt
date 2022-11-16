@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.16
+Game Versions: 1.0.0, 1.0.1
+* Fixed more issues with eliminated factions
+* Better compatibility with other encyclopedia mods for Hero page
+* Fixed some inaccurate settings descriptions
+---------------------------------------------------------------------------------------------------
 Version: 1.1.15
 Game Versions: 1.0.0
 * Bumped dependencies (mainly for Steam Workshop)

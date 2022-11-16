@@ -57,7 +57,6 @@ namespace Diplomacy.ViewModel
 
             foreach (var kingdom in Kingdom.All)
             {
-
                 if (FactionManager.IsAlliedWithFaction(kingdom, Faction1) && kingdom != Faction1)
                     Faction1Allies.Add(new DiplomacyFactionRelationshipVM(kingdom, CreateAllianceHint(kingdom, (Faction1 as Kingdom)!)));
 
@@ -204,6 +203,5 @@ namespace Diplomacy.ViewModel
                 }
             }
         }
-
     }
 }

@@ -11,7 +11,6 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar.Scoring
 {
-
     internal abstract class ChangeRulerFactionScoreBase : AbstractFactionDemandScoringModel
     {
         public float FiefDeficit => 10;
@@ -22,7 +21,6 @@ namespace Diplomacy.CivilWar.Scoring
         protected static readonly TextObject _TLeaderTrait = new("{=EYB5Uggd}Leader is {TRAIT}");
         protected static readonly TextObject _TRulerTrait = new("{=E00ywbqb}Ruler is {TRAIT}");
         protected static readonly TextObject _TRulerNeedsRightToRule = new("{=1AZK0UVJ}Ruler doesn't have Right to Rule");
-
 
         protected ChangeRulerFactionScoreBase(IFactionDemandScores scores) : base(scores) { }
 

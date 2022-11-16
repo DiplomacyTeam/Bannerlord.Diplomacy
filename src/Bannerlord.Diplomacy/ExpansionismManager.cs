@@ -26,7 +26,6 @@ namespace Diplomacy
             Instance = this;
         }
 
-
         public float GetMinimumExpansionism(Kingdom kingdom)
         {
             return kingdom.Fiefs.Count * MinimumExpansionismPerFief;

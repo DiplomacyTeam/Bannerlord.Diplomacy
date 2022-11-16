@@ -30,8 +30,6 @@ namespace Diplomacy.ViewModel
             var explainedNumber = RebelFactionScoringModel.GetDemandScore(clan, rebelFaction);
             _onComplete = onComplete;
 
-
-
             List<TooltipProperty> list = new()
             {
                 new TooltipProperty(_TClanText.ToString(), clan.Name.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title),
@@ -39,7 +37,6 @@ namespace Diplomacy.ViewModel
                 new TooltipProperty(_TCurrentScore.ToString(), $"{explainedNumber.ResultNumber:0.##}", 0, false,
                     TooltipProperty.TooltipPropertyFlags.Title)
             };
-
 
             foreach (var (name, number) in explainedNumber.GetLines())
                 list.Add(new TooltipProperty(name, PlusPrefixed(number), 0));

@@ -116,7 +116,6 @@ namespace Diplomacy.Costs
                 }
                 var baseGoldCost = 500;
                 goldCost = Math.Min((int) ((GetKingdomScalingFactor(kingdomMakingPeace) * Settings.Instance!.ScalingWarReparationsGoldCostMultiplier) * warExhaustionMultiplier) + baseGoldCost, kingdomMakingPeace.Leader.Gold / 2);
-
             }
             return new GoldCost(giver, otherKingdom.Leader, goldCost);
         }

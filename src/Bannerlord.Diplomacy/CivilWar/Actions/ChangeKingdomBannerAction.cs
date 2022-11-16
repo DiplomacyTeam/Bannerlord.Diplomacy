@@ -105,7 +105,6 @@ namespace Diplomacy.CivilWar.Actions
 
         private static uint GetUniqueSigilColor(uint backgroundColor)
         {
-
             Rgb background = GetRgb(backgroundColor);
 
             uint selectedColor = BannerManager.ColorPalette.Where(x => background.Compare(GetRgb(x.Value.Color), new Cie1976Comparison()) > 40).GetRandomElementInefficiently().Value.Color;

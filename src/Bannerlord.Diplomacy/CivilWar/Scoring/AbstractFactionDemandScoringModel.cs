@@ -112,7 +112,6 @@ namespace Diplomacy.CivilWar.Scoring
                 relationshipWithFactionLeaderAdj = Scores.NegativeLeaderRelationshipWeight * relationshipWithFactionLeader;
             }
 
-
             yield return new Tuple<TextObject, float>(_TRelationsFactionLeader, relationshipWithFactionLeaderAdj);
             yield return GetRelationshipScoreWithTarget(clan, rebelFaction);
         }
