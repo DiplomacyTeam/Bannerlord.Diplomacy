@@ -7,15 +7,13 @@ using Diplomacy.GauntletInterfaces;
 using Diplomacy.GrantFief;
 using Diplomacy.Messengers;
 
-using JetBrains.Annotations;
-
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ScreenSystem;
 
-namespace Diplomacy.ViewModel
+namespace Diplomacy.ViewModelMixin
 {
     [ViewModelMixin(nameof(EncyclopediaHeroPageVM.RefreshValues))]
     class EncyclopediaHeroPageVMMixin : BaseViewModelMixin<EncyclopediaHeroPageVM>
@@ -62,16 +60,9 @@ namespace Diplomacy.ViewModel
         [DataSourceMethod]
         public void SendMessenger()
         {
-
             Events.Instance.OnMessengerSent(_hero);
             OnRefresh();
         }
-
-        //[UsedImplicitly]
-        //private new void ExecuteLink(string link)
-        //{
-        //    Campaign.Current.EncyclopediaManager.GoToLink(link);
-        //}
 
         [DataSourceMethod]
         public void GrantFief()
