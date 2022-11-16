@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       mod_version: ${{ steps.changelog.outputs.mod_version }}
-      mod_description: ${{ steps.changelog.outputs.mod_description }}    
+      mod_description: ${{ steps.changelog.outputs.mod_description }}
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
