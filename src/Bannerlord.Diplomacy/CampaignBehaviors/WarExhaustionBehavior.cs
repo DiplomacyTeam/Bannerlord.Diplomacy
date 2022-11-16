@@ -1,4 +1,4 @@
-using Diplomacy.DiplomaticAction.WarPeace;
+﻿using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Extensions;
 
 using Microsoft.Extensions.Logging;

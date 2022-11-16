@@ -1,4 +1,4 @@
-using Diplomacy.CivilWar.Actions;
+﻿using Diplomacy.CivilWar.Actions;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.Extensions;
 

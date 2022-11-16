@@ -1,4 +1,4 @@
-using Diplomacy.CivilWar.Factions;
+﻿using Diplomacy.CivilWar.Factions;
 using Diplomacy.Extensions;
 
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-using Diplomacy.Extensions;
+﻿using Diplomacy.Extensions;
 
 using System;
 using System.Linq;
