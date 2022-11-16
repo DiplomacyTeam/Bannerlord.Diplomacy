@@ -47,7 +47,7 @@ namespace Diplomacy.CampaignBehaviors
 
             if (MBRandom.RandomFloat < BasePactChance * inverseNormalizedValorLevel)
             {
-                var proposedKingdom = Kingdom.All
+                var proposedKingdom = KingdomExtensions.AllActiveKingdoms
                     .Except(new[] { proposingKingdom })
                     .Where(kingdom => NonAggressionPactConditions.Instance.CanApply(proposingKingdom, kingdom))
                     .Where(kingdom => NonAggressionPactScoringModel.Instance.ShouldFormBidirectional(proposingKingdom, kingdom))
