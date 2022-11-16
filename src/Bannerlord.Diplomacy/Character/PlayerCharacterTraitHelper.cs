@@ -7,7 +7,6 @@ using TaleWorlds.CampaignSystem.CharacterDevelopment;
 
 namespace Diplomacy.Character
 {
-
     internal class PlayerCharacterTraitHelper
     {
         private static readonly Action<TraitObject, int, ActionNotes, Hero> AddPlayerTraitXPAndLogEntry =

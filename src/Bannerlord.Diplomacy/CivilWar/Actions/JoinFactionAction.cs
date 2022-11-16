@@ -44,7 +44,6 @@ namespace Diplomacy.CivilWar.Actions
         /// </returns>
         public static IEnumerable<TextObject> CanApply(Clan clan, RebelFaction rebelFaction)
         {
-
             // can only join a faction of a kingdom that they're in
             if (rebelFaction.ParentKingdom != clan.Kingdom)
             {

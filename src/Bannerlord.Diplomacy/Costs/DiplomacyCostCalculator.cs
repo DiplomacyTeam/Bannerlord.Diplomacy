@@ -111,11 +111,11 @@ namespace Diplomacy.Costs
                 {
                     var kingdomMakingPeaceWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(kingdomMakingPeace, otherKingdom);
                     var otherKingdomWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(otherKingdom, kingdomMakingPeace);
-                    var relativeWarExhaustion = (kingdomMakingPeaceWarExhaustion + 1f) / (otherKingdomWarExhaustion + 1f) - 1f;
-                    warExhaustionMultiplier = MBMath.ClampFloat(relativeWarExhaustion, 0, ((1f / 20f) * kingdomMakingPeaceWarExhaustion) - 1f);
+                    var relativeWarExhaustion = (kingdomMakingPeaceWarExhaustion + 1f) / (otherKingdomWarExhaustion + 1f);
+                    warExhaustionMultiplier = MBMath.ClampFloat(relativeWarExhaustion, 0, ((1f / 20f) * kingdomMakingPeaceWarExhaustion) + 1f);
                 }
-                goldCost = Math.Min((int) (GetKingdomScalingFactor(kingdomMakingPeace) * warExhaustionMultiplier), kingdomMakingPeace.Leader.Gold / 2);
-
+                var baseGoldCost = 500;
+                goldCost = Math.Min((int) ((GetKingdomScalingFactor(kingdomMakingPeace) * Settings.Instance!.ScalingWarReparationsGoldCostMultiplier) * warExhaustionMultiplier) + baseGoldCost, kingdomMakingPeace.Leader.Gold / 2);
             }
             return new GoldCost(giver, otherKingdom.Leader, goldCost);
         }

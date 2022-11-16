@@ -1,10 +1,11 @@
-﻿using TaleWorlds.Library;
-using Diplomacy.PatchTools;
+﻿using Diplomacy.PatchTools;
 
+using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System;
+
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Diplomacy;
+using TaleWorlds.Library;
 
 namespace Diplomacy.Patches
 {

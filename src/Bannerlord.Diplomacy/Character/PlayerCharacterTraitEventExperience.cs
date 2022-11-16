@@ -24,6 +24,5 @@ namespace Diplomacy.Character
 
         public static readonly PlayerCharacterTraitEventExperience FiefGranted = Create(50, DefaultTraits.Generosity);
         public static readonly PlayerCharacterTraitEventExperience FiefClaimed = Create(-50, DefaultTraits.Generosity);
-
     }
 }

@@ -88,7 +88,6 @@ namespace Diplomacy.ViewModel
 
         [DataSourceProperty] public MBBindingList<WarExhaustionBreakdownVM> Breakdowns { get; set; }
 
-
         public DetailWarVM(Kingdom opposingKingdom, Action onFinalize)
         {
             _opposingKingdom = opposingKingdom;

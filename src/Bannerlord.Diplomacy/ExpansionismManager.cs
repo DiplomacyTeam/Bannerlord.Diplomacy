@@ -12,7 +12,7 @@ namespace Diplomacy
 {
     internal sealed class ExpansionismManager
     {
-        [SaveableField(1)] [UsedImplicitly] private Dictionary<IFaction, float> _expansionism;
+        [SaveableField(1)][UsedImplicitly] private Dictionary<IFaction, float> _expansionism;
 
         public static ExpansionismManager? Instance { get; private set; }
         public float SiegeExpansionism => Settings.Instance!.ExpanisonismPerSiege;
@@ -25,7 +25,6 @@ namespace Diplomacy
             _expansionism = new Dictionary<IFaction, float>();
             Instance = this;
         }
-
 
         public float GetMinimumExpansionism(Kingdom kingdom)
         {

@@ -21,19 +21,19 @@ namespace Diplomacy.CivilWar.Factions
     {
         [SaveableProperty(1)] public Clan SponsorClan { get; private set; }
 
-        [SaveableField(2)] [UsedImplicitly] private List<Clan> _participatingClans;
+        [SaveableField(2)][UsedImplicitly] private List<Clan> _participatingClans;
 
-        [SaveableProperty(3)] [UsedImplicitly] public Kingdom ParentKingdom { get; private set; }
+        [SaveableProperty(3)][UsedImplicitly] public Kingdom ParentKingdom { get; private set; }
 
         [SaveableProperty(4)] public Kingdom? RebelKingdom { get; private set; }
 
         [SaveableProperty(5)] public bool AtWar { get; set; }
 
-        [SaveableProperty(6)] [UsedImplicitly] public CampaignTime DateStarted { get; private set; }
+        [SaveableProperty(6)][UsedImplicitly] public CampaignTime DateStarted { get; private set; }
 
         [SaveableProperty(7)] public TextObject Name { get; private set; }
 
-        [SaveableProperty(8)] [UsedImplicitly] public Dictionary<Town, Clan> OriginalFiefOwners { get; private set; }
+        [SaveableProperty(8)][UsedImplicitly] public Dictionary<Town, Clan> OriginalFiefOwners { get; private set; }
 
         public abstract RebelDemandType RebelDemandType { get; }
 
@@ -95,7 +95,6 @@ namespace Diplomacy.CivilWar.Factions
                 ? new TextObject("{=ChzQncc0}Rebellion")
                 : new TextObject("{=WUAv0u4U}Gathering Support");
 
-
         protected RebelFaction(Clan sponsorClan)
         {
             _participatingClans = new List<Clan>();
@@ -148,7 +147,6 @@ namespace Diplomacy.CivilWar.Factions
 
             ConsolidateKingdomsAction.Apply(this);
             RebelFactionManager.DestroyRebelFaction(this);
-
 
             InformationManager.ShowInquiry(
                 new InquiryData(

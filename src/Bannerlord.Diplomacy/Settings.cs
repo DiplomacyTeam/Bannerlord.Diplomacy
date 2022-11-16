@@ -1,6 +1,6 @@
 ﻿using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
-using MCM.Abstractions.Settings.Base.Global;
+using MCM.Abstractions.Base.Global;
 
 using TaleWorlds.Localization;
 
@@ -31,8 +31,6 @@ namespace Diplomacy
         public override string FormatType => "json2";
 
         // Kingdom Diplomacy
-
-
         [SettingPropertyBool(displayName: "{=tis8Ddzn}Allow Player To Claim Player-Taken Settlements", Order = 0, RequireRestart = true, HintText = "{=TfxLCxcD}Gives the player the option to claim a settlement that they have taken rather than let it go to an election.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableFiefFirstRight { get; set; } = true;
@@ -89,7 +87,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerDay { get; set; } = 0.25f;
 
-        [SettingPropertyFloatingInteger("{=s6dNpM6M}War Exhaustion Per Casualty", 0f, 0.1f, "0.000", RequireRestart = false, HintText = "{=NcJtGeM7}The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.01.")]
+        [SettingPropertyFloatingInteger("{=s6dNpM6M}War Exhaustion Per Casualty", 0f, 0.1f, "0.000", RequireRestart = false, HintText = "{=NcJtGeM7}The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.02.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerCasualty { get; set; } = 0.02f;
 
@@ -193,15 +191,15 @@ namespace Diplomacy
         // Civil Wars
 
         // FIXME fix localization on new settings
-        [SettingPropertyFloatingInteger("{=UdadyqpN}Daily Chance To Start Rebel Faction", 0, 1, "#0%", Order = 0, RequireRestart = false, HintText = "{=yznXCi1d}The daily chance for a clan to start a rebel faction. Default value is 100%.")]
+        [SettingPropertyFloatingInteger("{=UdadyqpN}Daily Chance To Start Rebel Faction", 0, 1, "#0%", Order = 0, RequireRestart = false, HintText = "{=yznXCi1d}The daily chance for a clan to start a rebel faction. Default value is 5%.")]
         [SettingPropertyGroup(HeadingCivilWar)]
         public float DailyChanceToStartRebelFaction { get; set; } = 0.05f;
 
-        [SettingPropertyFloatingInteger("{=r312b3Of}Daily Chance To Join Rebel Faction", 0, 1, "#0%", Order = 1, RequireRestart = false, HintText = "{=06oPGRj0}The daily chance for a clan to join a rebel faction that they would support. Default value is 100%.")]
+        [SettingPropertyFloatingInteger("{=r312b3Of}Daily Chance To Join Rebel Faction", 0, 1, "#0%", Order = 1, RequireRestart = false, HintText = "{=06oPGRj0}The daily chance for a clan to join a rebel faction that they would support. Default value is 10%.")]
         [SettingPropertyGroup(HeadingCivilWar)]
         public float DailyChanceToJoinRebelFaction { get; set; } = 0.1f;
 
-        [SettingPropertyFloatingInteger("{=lIbUuQB1}Daily Chance To Start Civil War", 0, 1, "#0%", Order = 2, RequireRestart = false, HintText = "{=zr10ZS3L}The daily chance for a faction with enough support to start a civil war. Default value is 50%.")]
+        [SettingPropertyFloatingInteger("{=lIbUuQB1}Daily Chance To Start Civil War", 0, 1, "#0%", Order = 2, RequireRestart = false, HintText = "{=zr10ZS3L}The daily chance for a faction with enough support to start a civil war. Default value is 10%.")]
         [SettingPropertyGroup(HeadingCivilWar)]
         public float DailyChanceToStartCivilWar { get; set; } = 0.1f;
 

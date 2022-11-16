@@ -1,10 +1,11 @@
-﻿using Diplomacy.Costs;
+﻿using Bannerlord.UIExtenderEx.Attributes;
+using Bannerlord.UIExtenderEx.ViewModels;
+
+using Diplomacy.Costs;
 using Diplomacy.Event;
 using Diplomacy.GauntletInterfaces;
 using Diplomacy.GrantFief;
 using Diplomacy.Messengers;
-
-using JetBrains.Annotations;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
@@ -12,9 +13,10 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ScreenSystem;
 
-namespace Diplomacy.ViewModel
+namespace Diplomacy.ViewModelMixin
 {
-    class EncyclopediaHeroPageVMExtensionVM : EncyclopediaHeroPageVM
+    [ViewModelMixin(nameof(EncyclopediaHeroPageVM.RefreshValues))]
+    class EncyclopediaHeroPageVMMixin : BaseViewModelMixin<EncyclopediaHeroPageVM>
     {
         private bool _isMessengerAvailable;
         private bool _canGrantFief;
@@ -25,20 +27,20 @@ namespace Diplomacy.ViewModel
         private static readonly TextObject _TSendMessengerText = new("{=cXfcwzPp}Send Messenger");
         private static readonly TextObject _TGrantFiefText = new("{=LpoyhORp}Grant Fief");
 
-        public EncyclopediaHeroPageVMExtensionVM(EncyclopediaPageArgs args) : base(args)
+        public EncyclopediaHeroPageVMMixin(EncyclopediaHeroPageVM vm) : base(vm)
         {
             _grantFiefInterface = new GrantFiefInterface();
-            _hero = (Obj as Hero)!;
+            _hero = (vm.Obj as Hero)!;
             _sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger();
             SendMessengerCost = (int) _sendMessengerCost.Value;
             SendMessengerActionName = _TSendMessengerText.ToString();
             GrantFiefActionName = _TGrantFiefText.ToString();
-            RefreshValues();
+            vm.RefreshValues();
         }
 
-        public sealed override void RefreshValues()
+        public override void OnRefresh()
         {
-            base.RefreshValues();
+            //ViewModel?.RefreshValues();
 
             // this is called before the constructor the first time
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
@@ -55,23 +57,17 @@ namespace Diplomacy.ViewModel
             UpdateIsMessengerAvailable();
         }
 
-        [UsedImplicitly]
-        protected void SendMessenger()
+        [DataSourceMethod]
+        public void SendMessenger()
         {
             Events.Instance.OnMessengerSent(_hero);
-            RefreshValues();
+            OnRefresh();
         }
 
-        [UsedImplicitly]
-        private new void ExecuteLink(string link)
+        [DataSourceMethod]
+        public void GrantFief()
         {
-            Campaign.Current.EncyclopediaManager.GoToLink(link);
-        }
-
-        [UsedImplicitly]
-        private void GrantFief()
-        {
-            _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, _hero, RefreshValues);
+            _grantFiefInterface.ShowFiefInterface(ScreenManager.TopScreen, _hero, OnRefresh);
         }
 
         [DataSourceProperty]
@@ -83,7 +79,7 @@ namespace Diplomacy.ViewModel
                 if (value != _canGrantFief)
                 {
                     _canGrantFief = value;
-                    OnPropertyChanged(nameof(CanGrantFief));
+                    ViewModel?.OnPropertyChanged(nameof(CanGrantFief));
                 }
             }
         }
@@ -100,7 +96,7 @@ namespace Diplomacy.ViewModel
                 if (value != _isMessengerAvailable)
                 {
                     _isMessengerAvailable = value;
-                    OnPropertyChanged(nameof(IsMessengerAvailable));
+                    ViewModel?.OnPropertyChanged(nameof(IsMessengerAvailable));
                 }
             }
         }

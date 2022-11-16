@@ -8,7 +8,6 @@ namespace Diplomacy.DiplomaticAction
     abstract class AbstractDiplomaticAction<T> where T : AbstractDiplomaticAction<T>, new()
     {
         public static void Apply(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false, bool bypassCosts = false, float? customDurationInDays = null, bool queryPlayer = true)
-
         {
             Instance.TryApply(kingdom, otherKingdom, forcePlayerCharacterCosts, bypassCosts, customDurationInDays, queryPlayer);
         }

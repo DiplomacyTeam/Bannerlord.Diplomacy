@@ -1,6 +1,26 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.16
+Game Versions: 1.0.0, 1.0.1
+* Fixed more issues with eliminated factions
+* Better compatibility with other encyclopedia mods for Hero page
+* Fixed some inaccurate settings descriptions
+---------------------------------------------------------------------------------------------------
+Version: 1.1.15
+Game Versions: 1.0.0
+* Bumped dependencies (mainly for Steam Workshop)
+* Fixed some issues with eliminated factions
+* Changes to peace offering price calculations
+---------------------------------------------------------------------------------------------------
+Version: 1.1.14
+Game Versions: 1.0.0
+* Recompiled for 1.0.0
+---------------------------------------------------------------------------------------------------
+Version: 1.1.13
+Game Versions: e1.8.0,e1.8.1,e1.9.0
+* Recompiled for e1.9.0
+---------------------------------------------------------------------------------------------------
 Version: 1.1.12
-Game Versions: e1.8.1,e1.8.0
+Game Versions: e1.8.0,e1.8.1
 * Update dependencies to fix 1.8.0 hotfix crash
 * Fix faction selection issue in the kingdom diplomacy view
 * Fix messenger teleportation issue

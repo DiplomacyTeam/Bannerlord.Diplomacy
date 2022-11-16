@@ -16,7 +16,8 @@ namespace Diplomacy.DiplomaticAction.Alliance
             new HasEnoughInfluenceCondition(),
             new HasEnoughGoldCondition(),
             new HasEnoughScoreCondition(),
-            new NotRebelKingdomCondition()
+            new NotRebelKingdomCondition(),
+            new NotEliminatedCondition()
         };
 
         public FormAllianceConditions() : base(Conditions) { }

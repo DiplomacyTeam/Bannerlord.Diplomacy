@@ -21,7 +21,6 @@ namespace Diplomacy.Patches
             if (faction1 == faction2 || faction1.IsBanditFaction || faction2.IsBanditFaction)
                 return false;
 
-
             SetStance(faction1, faction2, StanceType.Alliance);
             return false;
         }

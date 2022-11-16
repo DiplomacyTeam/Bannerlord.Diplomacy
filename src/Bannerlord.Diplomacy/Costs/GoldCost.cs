@@ -19,7 +19,6 @@ namespace Diplomacy.Costs
             if (_receiver is not null)
             {
                 GiveGoldAction.ApplyBetweenCharacters(_giver, _receiver, (int) Value);
-
             }
             else
             {

@@ -24,6 +24,7 @@ Authors:
 
 - **Katarn2000x**,
 - Matthew D. Hall (**zijistark**),
-- Alexey Chernyshov (**artifixer**)
+- Alexey Chernyshov (**artifixer**),
+- Benny Zlotnik (**bennyz**)
 
 License: [MIT License](LICENSE)

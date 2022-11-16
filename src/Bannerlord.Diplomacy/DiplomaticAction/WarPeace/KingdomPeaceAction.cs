@@ -15,7 +15,6 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 {
     internal sealed class KingdomPeaceAction
     {
-
         private static readonly TextObject _TDefeatTitle = new("{=BXluvRnJ}Bitter Defeat");
 
         private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, DiplomacyCost diplomacyCost)
