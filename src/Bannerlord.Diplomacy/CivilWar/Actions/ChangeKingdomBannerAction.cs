@@ -1,4 +1,4 @@
-using ColorMine.ColorSpaces;
+﻿using ColorMine.ColorSpaces;
 using ColorMine.ColorSpaces.Comparisons;
 
 using Diplomacy.Event;

@@ -1,4 +1,4 @@
-
+﻿
 using Diplomacy.CivilWar;
 using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;

@@ -1,4 +1,4 @@
-using Diplomacy.DiplomaticAction.Alliance;
+﻿using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Event;
 using Diplomacy.Extensions;

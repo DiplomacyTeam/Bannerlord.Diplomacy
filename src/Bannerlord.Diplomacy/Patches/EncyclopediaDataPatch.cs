@@ -24,7 +24,7 @@ namespace Diplomacy.Patches
 
             if (__result is EncyclopediaHeroPageVM)
                 //__result = new EncyclopediaHeroPageVMExtensionVM(args);
-				return;
+                return;
             else if (__result is EncyclopediaFactionPageVM)
                 __result = new EncyclopediaFactionPageVMExtensionVM(args);
         }
