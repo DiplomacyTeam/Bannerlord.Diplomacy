@@ -218,7 +218,7 @@ namespace Diplomacy.Messengers
         {
             var textObject =
                 new TextObject(
-                    "{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_TEXT} within {TRAVEL_TIME} days.");
+                    "{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} {FACTION2_TEXT} within {TRAVEL_TIME} days.");
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             if (faction2 != null)
             {
