@@ -3,7 +3,7 @@
     <Constant Name="ButtonWidth" Value="227" />
   </Constants>
   <Window>
-    <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" >
+    <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginRight="42">
       <Children>
         <!-- Form Non-Aggression Pact Button -->
         <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" HeightSizePolicy="CoverChildren" IsHidden="@IsWarItem" MarginRight="10">
