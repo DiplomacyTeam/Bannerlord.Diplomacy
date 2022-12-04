@@ -14,10 +14,10 @@ namespace Diplomacy.CivilWar.Actions
         {
             var rebelKingdomClans = new List<Clan>(rebelKingdom.Clans);
 
-            foreach (Clan clan in rebelKingdomClans)
+            foreach (var clan in rebelKingdomClans)
             {
                 // make sure to retain influence
-                float influence = clan.Influence;
+                var influence = clan.Influence;
                 ChangeKingdomAction.ApplyByJoinToKingdom(clan, parentKingdom, false);
                 clan.Influence = influence;
             }
@@ -35,13 +35,13 @@ namespace Diplomacy.CivilWar.Actions
             Apply(rebelFaction.RebelKingdom!, rebelFaction.ParentKingdom);
 
             // return fiefs to owners
-            foreach (Town fief in rebelFaction.OriginalFiefOwners.Keys)
+            foreach (var fief in rebelFaction.OriginalFiefOwners.Keys)
             {
-                Clan currentOwner = fief.OwnerClan;
+                var currentOwner = fief.OwnerClan;
                 if (currentOwner.Kingdom != rebelFaction.ParentKingdom)
                     continue;
 
-                Clan originalOwner = rebelFaction.OriginalFiefOwners[fief];
+                var originalOwner = rebelFaction.OriginalFiefOwners[fief];
                 if (currentOwner != originalOwner && originalOwner.Kingdom == rebelFaction.ParentKingdom)
                 {
                     ChangeOwnerOfSettlementAction.ApplyByDefault(originalOwner.Leader, fief.Settlement);

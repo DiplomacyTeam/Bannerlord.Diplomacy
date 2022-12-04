@@ -20,7 +20,7 @@ namespace Diplomacy.CivilWar.Scoring
         public static Dictionary<RebelFaction, ExplainedNumber> GetDemandScore(Clan clan)
         {
             Dictionary<RebelFaction, ExplainedNumber> response = new();
-            foreach (KeyValuePair<RebelDemandType, AbstractFactionDemandScoringModel> demand in DemandScoreCalculators)
+            foreach (var demand in DemandScoreCalculators)
             {
                 var calculatorResponse = demand.Value.GetScore(clan);
                 response[calculatorResponse.Item1] = calculatorResponse.Item2;

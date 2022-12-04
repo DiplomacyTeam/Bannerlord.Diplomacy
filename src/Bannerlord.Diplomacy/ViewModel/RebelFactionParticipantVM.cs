@@ -23,7 +23,8 @@ namespace Diplomacy.ViewModel
         private static readonly TextObject _TClanText = GameTexts.FindText("str_clan");
         private readonly Action _onComplete;
 
-        [DataSourceProperty] public BasicTooltipViewModel Hint { get; set; }
+        [DataSourceProperty]
+        public BasicTooltipViewModel Hint { get; set; }
 
         public RebelFactionParticipantVM(Clan clan, RebelFaction rebelFaction, Action onComplete) : base(clan)
         {

@@ -32,63 +32,38 @@ namespace Diplomacy.ViewModelMixin
         private int _goldCost;
         private bool _isOptionAvailable;
 
-        [DataSourceProperty] public bool IsWarItem { get; }
-
-        [DataSourceProperty] public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
-
-        [DataSourceProperty] public string ActionName { get; init; }
-
-        [DataSourceProperty] public string AllianceText { get; }
-
-        [DataSourceProperty] public string WarsText { get; }
-
-        [DataSourceProperty] public string PactsText { get; }
-
-        [DataSourceProperty] public int InfluenceCost { get; }
+        [DataSourceProperty]
+        public bool IsWarItem { get; }
 
         [DataSourceProperty]
-        public int GoldCost
-        {
-            get => _goldCost;
-            set
-            {
-                if (value != _goldCost)
-                {
-                    _goldCost = value;
-                    ViewModel!.OnPropertyChanged(nameof(GoldCost));
-                }
-            }
-        }
-
-        [DataSourceProperty][UsedImplicitly] public bool IsGoldCostVisible { get; } = true;
+        public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
 
         [DataSourceProperty]
-        public bool IsOptionAvailable
-        {
-            get => _isOptionAvailable;
-            set
-            {
-                if (value != _isOptionAvailable)
-                {
-                    _isOptionAvailable = value;
-                    ViewModel!.OnPropertyChanged(nameof(IsOptionAvailable));
-                }
-            }
-        }
+        public string ActionName { get; }
 
         [DataSourceProperty]
-        public HintViewModel? ActionHint
-        {
-            get => _actionHint;
-            set
-            {
-                if (value != _actionHint)
-                {
-                    _actionHint = value;
-                    ViewModel!.OnPropertyChanged(nameof(ActionHint));
-                }
-            }
-        }
+        public string AllianceText { get; }
+
+        [DataSourceProperty]
+        public string WarsText { get; }
+
+        [DataSourceProperty]
+        public string PactsText { get; }
+
+        [DataSourceProperty]
+        public int InfluenceCost { get; }
+
+        [DataSourceProperty]
+        public int GoldCost { get => _goldCost; set => SetField(ref _goldCost, value, nameof(GoldCost)); }
+
+        [DataSourceProperty][UsedImplicitly]
+        public bool IsGoldCostVisible { get; } = true;
+
+        [DataSourceProperty]
+        public bool IsOptionAvailable { get => _isOptionAvailable; set => SetField(ref _isOptionAvailable, value, nameof(IsOptionAvailable)); }
+
+        [DataSourceProperty]
+        public HintViewModel? ActionHint { get => _actionHint; set => SetField(ref _actionHint, value, nameof(ActionHint)); }
 
         public KingdomWarItemVMMixin(KingdomWarItemVM vm) : base(vm)
         {
@@ -107,7 +82,7 @@ namespace Diplomacy.ViewModelMixin
 
         public override void OnRefresh()
         {
-            DiplomacyProperties ??= new DiplomacyPropertiesVM(ViewModel!.Faction1, ViewModel!.Faction2);
+            DiplomacyProperties ??= new DiplomacyPropertiesVM(_faction1, _faction2);
 
             DiplomacyProperties.UpdateDiplomacyProperties();
 
@@ -122,8 +97,8 @@ namespace Diplomacy.ViewModelMixin
                     (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction1, _faction2),
                     (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction2, _faction1),
                     _TWarExhaustion,
-                    Color.FromUint(ViewModel!.Faction1.Color).ToString(),
-                    Color.FromUint(ViewModel!.Faction2.Color).ToString(),
+                    Color.FromUint(_faction1.Color).ToString(),
+                    Color.FromUint(_faction2.Color).ToString(),
                     100));
             }
         }

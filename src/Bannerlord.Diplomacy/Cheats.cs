@@ -60,7 +60,7 @@ namespace Diplomacy
         [UsedImplicitly]
         private static string SetWarExhaustion(List<string> strings)
         {
-            bool isNumeric = int.TryParse(strings[0], out int warExhaustion);
+            var isNumeric = int.TryParse(strings[0], out var warExhaustion);
 
             if (!CampaignCheats.CheckParameters(strings, 3) || CampaignCheats.CheckHelp(strings) || !isNumeric)
                 return "Format uses 2 kingdom ID parameters without spaces and a war exhaustion integer: diplomacy.form_alliance [Kingdom1] [Kingdom2] [int]";

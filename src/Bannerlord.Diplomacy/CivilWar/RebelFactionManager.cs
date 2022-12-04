@@ -39,15 +39,15 @@ namespace Diplomacy.CivilWar
 
         public static void RegisterRebelFaction(RebelFaction rebelFaction)
         {
-            Kingdom kingdom = rebelFaction.ParentKingdom;
+            var kingdom = rebelFaction.ParentKingdom;
 
-            if (Instance!.RebelFactions.TryGetValue(kingdom, out List<RebelFaction> rebelFactions))
+            if (Instance!.RebelFactions.TryGetValue(kingdom, out var rebelFactions))
             {
                 // if we're starting a secession faction, remove this clan from other secession factions
                 if (rebelFaction.RebelDemandType == RebelDemandType.Secession)
                 {
                     var otherSecessionFactions = rebelFactions.Where(x => x.RebelDemandType == RebelDemandType.Secession && x.Clans.Contains(rebelFaction.SponsorClan));
-                    foreach (RebelFaction faction in otherSecessionFactions)
+                    foreach (var faction in otherSecessionFactions)
                     {
                         faction.RemoveClan(rebelFaction.SponsorClan);
                     }
@@ -86,7 +86,7 @@ namespace Diplomacy.CivilWar
                 return Enumerable.Empty<RebelFaction>();
             }
 
-            if (Instance!.RebelFactions.TryGetValue(kingdom, out List<RebelFaction> rebelFactions))
+            if (Instance!.RebelFactions.TryGetValue(kingdom, out var rebelFactions))
             {
                 return new List<RebelFaction>(rebelFactions);
             }

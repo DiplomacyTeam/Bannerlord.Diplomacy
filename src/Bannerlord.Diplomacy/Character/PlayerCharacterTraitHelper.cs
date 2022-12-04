@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+﻿using HarmonyLib.BUTR.Extensions;
 
 using System;
 
@@ -9,12 +9,13 @@ namespace Diplomacy.Character
 {
     internal class PlayerCharacterTraitHelper
     {
-        private static readonly Action<TraitObject, int, ActionNotes, Hero> AddPlayerTraitXPAndLogEntry =
-            AccessTools.MethodDelegate<Action<TraitObject, int, ActionNotes, Hero>>(AccessTools.Method(typeof(TraitLevelingHelper), "AddPlayerTraitXPAndLogEntry"));
+        private delegate void AddPlayerTraitXPAndLogEntryDelegate(TraitObject trait, int xpValue, ActionNotes context, Hero referenceHero);
+        private static readonly AddPlayerTraitXPAndLogEntryDelegate? AddPlayerTraitXPAndLogEntry =
+            AccessTools2.GetDelegate<AddPlayerTraitXPAndLogEntryDelegate>(typeof(TraitLevelingHelper), "AddPlayerTraitXPAndLogEntry");
 
         public static void UpdateTrait(TraitObject trait, int xpValue, ActionNotes context = ActionNotes.DefaultNote, Hero? referenceHero = null)
         {
-            AddPlayerTraitXPAndLogEntry(trait, xpValue, context, referenceHero!);
+            AddPlayerTraitXPAndLogEntry?.Invoke(trait, xpValue, context, referenceHero!);
         }
 
         public static void UpdateTrait(PlayerCharacterTraitEventExperience eventExperience)

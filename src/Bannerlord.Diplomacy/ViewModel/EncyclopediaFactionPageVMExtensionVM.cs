@@ -72,59 +72,15 @@ namespace Diplomacy.ViewModel
         public string FactionsText { get; set; }
 
         [DataSourceProperty]
-        public string AlliesText
-        {
-            get => _alliesText;
-            set
-            {
-                if (value != _alliesText)
-                {
-                    _alliesText = value;
-                    OnPropertyChanged(nameof(AlliesText));
-                }
-            }
-        }
+        public string AlliesText { get => _alliesText; set => SetField(ref _alliesText, value, nameof(AlliesText)); }
 
         [DataSourceProperty]
-        public string NonAggressionPactsText
-        {
-            get => _nonAggressionPactsText;
-            set
-            {
-                if (value != _nonAggressionPactsText)
-                {
-                    _nonAggressionPactsText = value;
-                    OnPropertyChanged(nameof(NonAggressionPactsText));
-                }
-            }
-        }
+        public string NonAggressionPactsText { get => _nonAggressionPactsText; set => SetField(ref _nonAggressionPactsText, value, nameof(NonAggressionPactsText)); }
 
         [DataSourceProperty]
-        public MBBindingList<EncyclopediaFactionVM>? Allies
-        {
-            get => _allies;
-            set
-            {
-                if (value != _allies)
-                {
-                    _allies = value;
-                    OnPropertyChanged(nameof(Allies));
-                }
-            }
-        }
+        public MBBindingList<EncyclopediaFactionVM>? Allies { get => _allies; set => SetField(ref _allies, value, nameof(Allies)); }
 
         [DataSourceProperty]
-        public MBBindingList<EncyclopediaFactionVM>? NonAggressionPacts
-        {
-            get => _nonAggressionPacts;
-            set
-            {
-                if (value != _nonAggressionPacts)
-                {
-                    _nonAggressionPacts = value;
-                    OnPropertyChanged(nameof(NonAggressionPacts));
-                }
-            }
-        }
+        public MBBindingList<EncyclopediaFactionVM>? NonAggressionPacts { get => _nonAggressionPacts; set => SetField(ref _nonAggressionPacts, value, nameof(NonAggressionPacts)); }
     }
 }

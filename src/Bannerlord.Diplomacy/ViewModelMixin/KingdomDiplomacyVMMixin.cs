@@ -6,12 +6,13 @@ using Diplomacy.Event;
 using Diplomacy.Extensions;
 
 using HarmonyLib;
+using HarmonyLib.BUTR.Extensions;
 
 using JetBrains.Annotations;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Diplomacy;
@@ -25,18 +26,30 @@ namespace Diplomacy.ViewModelMixin
     [UsedImplicitly]
     internal sealed class KingdomDiplomacyVMMixin : BaseViewModelMixin<KingdomDiplomacyVM>
     {
+        static KingdomDiplomacyVMMixin()
+        {
+            var harmony = new Harmony("Diplomacy.ViewModelMixin.KingdomDiplomacyVMMixin");
+
+            harmony.Patch(
+                AccessTools2.Method(typeof(KingdomDiplomacyVM), "OnDiplomacyItemSelection"),
+                postfix: new HarmonyMethod(typeof(KingdomDiplomacyVMMixin), nameof(OnDiplomacyItemSelectionPostfix)));
+        }
+
+        private static void OnDiplomacyItemSelectionPostfix(KingdomDiplomacyVM __instance, KingdomDiplomacyItemVM item)
+        {
+            if (__instance.GetPropertyValue(nameof(Mixin)) is WeakReference<KingdomDiplomacyVMMixin> weakReference && weakReference.TryGetTarget(out var mixin))
+            {
+                mixin.OnDiplomacyItemSelection(item);
+            }
+        }
+
+
         private static readonly TextObject _TAlliances = new("{=zpNalMeA}Alliances");
         private static readonly TextObject _TStats = new("{=1occw3EF}Stats");
         private static readonly TextObject _TOverview = new("{=OvbY5qxL}Overview");
         private static readonly TextObject _TDiplomacy = new("{=Q2vXbwvC}Diplomacy");
 
-        private static readonly MethodInfo OnDiplomacyItemSelectionMethod =
-            AccessTools.DeclaredMethod(typeof(KingdomDiplomacyVM), "OnDiplomacyItemSelection");
 
-        private static readonly MethodInfo SetDefaultSelectedItemMethod =
-            AccessTools.DeclaredMethod(typeof(KingdomDiplomacyVM), "SetDefaultSelectedItem");
-
-        private readonly PropertyChangedWithValueEventHandler _eventHandler;
         private string _numOfPlayerAlliancesText = null!;
 
 
@@ -45,68 +58,31 @@ namespace Diplomacy.ViewModelMixin
         private bool _showStats;
 
         [DataSourceProperty]
-        public bool ShowOverview
-        {
-            get => _showOverview;
-            set
-            {
-                if (value != _showOverview)
-                {
-                    _showOverview = value;
-                    ViewModel!.OnPropertyChanged(nameof(ShowOverview));
-                }
-            }
-        }
+        public WeakReference<KingdomDiplomacyVMMixin> Mixin => new(this);
 
         [DataSourceProperty]
-        public bool ShowStats
-        {
-            get => _showStats;
-            set
-            {
-                if (value != _showStats)
-                {
-                    _showStats = value;
-                    ViewModel!.OnPropertyChanged(nameof(ShowStats));
-                }
-            }
-        }
-
-        [DataSourceProperty] public string PlayerAlliancesText { get; }
-
-        [DataSourceProperty] public string StatsText { get; }
-
-        [DataSourceProperty] public string OverviewText { get; }
-
-        [DataSourceProperty] public string DiplomacyText { get; }
+        public bool ShowOverview { get => _showOverview; set => SetField(ref _showOverview, value, nameof(ShowOverview)); }
 
         [DataSourceProperty]
-        public string NumOfPlayerAlliancesText
-        {
-            get => _numOfPlayerAlliancesText;
-            set
-            {
-                if (value != _numOfPlayerAlliancesText)
-                {
-                    _numOfPlayerAlliancesText = value;
-                    ViewModel!.OnPropertyChanged(nameof(NumOfPlayerAlliancesText));
-                }
-            }
-        }
+        public bool ShowStats { get => _showStats; set => SetField(ref _showStats, value, nameof(ShowStats)); }
 
         [DataSourceProperty]
-        public MBBindingList<KingdomTruceItemVM> PlayerAlliances
-        {
-            get => _playerAlliances;
-            set
-            {
-                if (value != _playerAlliances)
-                {
-                    _playerAlliances = value;
-                    ViewModel!.OnPropertyChanged(nameof(PlayerAlliances));
-                }
-            }
-        }
+        public string PlayerAlliancesText { get; }
+
+        [DataSourceProperty]
+        public string StatsText { get; }
+
+        [DataSourceProperty]
+        public string OverviewText { get; }
+
+        [DataSourceProperty]
+        public string DiplomacyText { get; }
+
+        [DataSourceProperty]
+        public string NumOfPlayerAlliancesText { get => _numOfPlayerAlliancesText; set => SetField(ref _numOfPlayerAlliancesText, value, nameof(NumOfPlayerAlliancesText)); }
+
+        [DataSourceProperty]
+        public MBBindingList<KingdomTruceItemVM> PlayerAlliances { get => _playerAlliances; set => SetField(ref _playerAlliances, value, nameof(PlayerAlliances)); }
 
         public KingdomDiplomacyVMMixin(KingdomDiplomacyVM vm) : base(vm)
         {
@@ -127,23 +103,11 @@ namespace Diplomacy.ViewModelMixin
             });
 
             OnRefresh();
-            _eventHandler = OnPropertyChangedWithValue;
-
-            ViewModel!.PropertyChangedWithValue += _eventHandler;
-        }
-
-        private void OnPropertyChangedWithValue(object sender, PropertyChangedWithValueEventArgs e)
-        {
-            if (e.PropertyName == nameof(ViewModel.CurrentSelectedDiplomacyItem))
-            {
-                OnDiplomacyItemSelection(ViewModel!.CurrentSelectedDiplomacyItem);
-            }
         }
 
         public override void OnFinalize()
         {
             Events.RemoveListeners(this);
-            ViewModel!.PropertyChangedWithValue -= _eventHandler;
             CampaignEventDispatcher.Instance.RemoveListeners(this);
         }
 
@@ -170,7 +134,6 @@ namespace Diplomacy.ViewModelMixin
 
         private void OnDiplomacyItemSelection(KingdomDiplomacyItemVM item)
         {
-            OnDiplomacyItemSelectionMethod.Invoke(ViewModel, new object[] { item });
             ExecuteShowStatComparison();
         }
 
@@ -181,7 +144,7 @@ namespace Diplomacy.ViewModelMixin
             RemoveRebelKingdoms(ViewModel!.PlayerWars);
 
             var alliances = ViewModel!.PlayerTruces.Where(item => item.Faction1.IsAlliedWith(item.Faction2)).ToList();
-            foreach (KingdomTruceItemVM alliance in alliances) ViewModel!.PlayerTruces.Remove(alliance);
+            foreach (var alliance in alliances) ViewModel!.PlayerTruces.Remove(alliance);
 
             foreach (var truce in ViewModel!.PlayerTruces.ToList())
             {
@@ -195,8 +158,6 @@ namespace Diplomacy.ViewModelMixin
             ViewModel!.NumOfPlayerTrucesText = GameTexts.FindText("str_STR_in_parentheses").ToString();
             GameTexts.SetVariable("STR", ViewModel!.PlayerWars.Count);
             ViewModel!.NumOfPlayerWarsText = GameTexts.FindText("str_STR_in_parentheses").ToString();
-
-            SetDefaultSelectedItemMethod.Invoke(ViewModel!, new object[] { });
         }
 
         private void RemoveRebelKingdoms<T>(MBBindingList<T> items) where T : KingdomDiplomacyItemVM

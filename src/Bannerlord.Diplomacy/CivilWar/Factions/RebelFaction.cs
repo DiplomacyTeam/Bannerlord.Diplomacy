@@ -110,7 +110,7 @@ namespace Diplomacy.CivilWar.Factions
         {
             AtWar = true;
             RebelKingdom = rebelKingdom;
-            foreach (Town fief in ParentKingdom.Fiefs.Union(rebelKingdom.Fiefs)) OriginalFiefOwners[fief] = fief.OwnerClan;
+            foreach (var fief in ParentKingdom.Fiefs.Union(rebelKingdom.Fiefs)) OriginalFiefOwners[fief] = fief.OwnerClan;
         }
 
         public void AddClan(Clan clan)
@@ -189,7 +189,7 @@ namespace Diplomacy.CivilWar.Factions
                 ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader,
                     tuple.Item1 == SponsorClan || tuple.Item2 == SponsorClan ? 10 : 5);
 
-            foreach (Tuple<Clan, Clan> tuple in rebelCombinations)
+            foreach (var tuple in rebelCombinations)
                 ChangeRelationAction.ApplyRelationChangeBetweenHeroes(tuple.Item1.Leader, tuple.Item2.Leader,
                     tuple.Item1 == SponsorClan || tuple.Item2 == SponsorClan ? 10 : 5);
 
@@ -200,7 +200,7 @@ namespace Diplomacy.CivilWar.Factions
                 int value;
                 if (hasSponsorClan && hasRulerClan)
                     value = -20;
-                else if (hasSponsorClan || hasSponsorClan)
+                else if (hasSponsorClan || hasSponsorClan) // TODO: maybe hasSponsorClan || hasRulerClan ?
                     value = -10;
                 else
                     value = -5;
@@ -211,12 +211,12 @@ namespace Diplomacy.CivilWar.Factions
 
         private void ApplyInfluenceChanges(bool success)
         {
-            foreach (Clan clan in ParentKingdom.Clans)
+            foreach (var clan in ParentKingdom.Clans)
                 clan.Influence = clan == ParentKingdom.RulingClan
                     ? MBMath.ClampFloat(clan.Influence + (success ? LeaderInfluenceOnFailure : LeaderInfluenceOnSuccess), 0f, float.MaxValue)
                     : MBMath.ClampFloat(clan.Influence + (success ? MemberInfluenceOnFailure : MemberInfluenceOnSuccess), 0f, float.MaxValue);
 
-            foreach (Clan clan in Clans)
+            foreach (var clan in Clans)
                 clan.Influence = clan == SponsorClan
                     ? MBMath.ClampFloat(clan.Influence + (success ? LeaderInfluenceOnSuccess : LeaderInfluenceOnFailure), 0f, float.MaxValue)
                     : MBMath.ClampFloat(clan.Influence + (success ? MemberInfluenceOnSuccess : MemberInfluenceOnFailure), 0f, float.MaxValue);

@@ -31,47 +31,14 @@ namespace Diplomacy.ViewModel
         public override int GetHashCode() => -301155118 + EqualityComparer<IFaction>.Default.GetHashCode(Faction);
 
         [DataSourceProperty]
-        public string NameText
-        {
-            get => _nameText;
-            set
-            {
-                if (value != _nameText)
-                {
-                    _nameText = value;
-                    OnPropertyChanged(nameof(NameText));
-                }
-            }
-        }
+        public string NameText { get => _nameText; set => SetField(ref _nameText, value, nameof(NameText)); }
 
         [DataSourceProperty]
-        public ImageIdentifierVM ImageIdentifier
-        {
-            get => _imageIdentifier;
-            set
-            {
-                if (value != _imageIdentifier)
-                {
-                    _imageIdentifier = value;
-                    // FIXME: Property named below was "Banner" -- interpreted as bug, but check functionality switching between ImageIdentifiers
-                    OnPropertyChanged(nameof(ImageIdentifier));
-                }
-            }
-        }
+        // TODO: FIXME: Property named below was "Banner" -- interpreted as bug, but check functionality switching between ImageIdentifiers
+        public ImageIdentifierVM ImageIdentifier { get => _imageIdentifier; set => SetField(ref _imageIdentifier, value, nameof(ImageIdentifier)); }
 
         [DataSourceProperty]
-        public HintViewModel Hint
-        {
-            get => _hint;
-            set
-            {
-                if (value != _hint)
-                {
-                    _hint = value;
-                    OnPropertyChanged(nameof(Hint));
-                }
-            }
-        }
+        public HintViewModel Hint { get => _hint; set => SetField(ref _hint, value, nameof(Hint)); }
 
         private ImageIdentifierVM _imageIdentifier;
         private string _nameText;

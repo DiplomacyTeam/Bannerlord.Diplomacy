@@ -29,71 +29,32 @@ namespace Diplomacy.ViewModel
         private MBBindingList<RebelFactionItemVM> _rebelFactionItems = null!;
         private bool _shouldShowCreateFaction;
 
-        [DataSourceProperty] public string FactionsLabel { get; set; }
-
-        [DataSourceProperty] public string CreateFactionLabel { get; set; }
-
-        [DataSourceProperty] public int CreateFactionInfluenceCost { get; set; }
-
-        [DataSourceProperty] public string KingdomName { get; set; }
-
-        [DataSourceProperty] public HintViewModel HelpHint { get; set; }
+        [DataSourceProperty]
+        public string FactionsLabel { get; set; }
 
         [DataSourceProperty]
-        public MBBindingList<RebelFactionItemVM> RebelFactionItems
-        {
-            get => _rebelFactionItems;
-            set
-            {
-                if (value != _rebelFactionItems)
-                {
-                    _rebelFactionItems = value;
-                    OnPropertyChanged(nameof(RebelFactionItems));
-                }
-            }
-        }
+        public string CreateFactionLabel { get; set; }
 
         [DataSourceProperty]
-        public EncyclopediaFactionVM KingdomDisplay
-        {
-            get => _kingdomDisplay;
-            set
-            {
-                if (value != _kingdomDisplay)
-                {
-                    _kingdomDisplay = value;
-                    OnPropertyChanged(nameof(KingdomDisplay));
-                }
-            }
-        }
+        public int CreateFactionInfluenceCost { get; set; }
 
         [DataSourceProperty]
-        public bool ShouldShowCreateFaction
-        {
-            get => _shouldShowCreateFaction;
-            set
-            {
-                if (value != _shouldShowCreateFaction)
-                {
-                    _shouldShowCreateFaction = value;
-                    OnPropertyChanged(nameof(ShouldShowCreateFaction));
-                }
-            }
-        }
+        public string KingdomName { get; set; }
 
         [DataSourceProperty]
-        public HintViewModel CreateFactionHint
-        {
-            get => _createFactionHint;
-            set
-            {
-                if (value != _createFactionHint)
-                {
-                    _createFactionHint = value;
-                    OnPropertyChanged(nameof(CreateFactionHint));
-                }
-            }
-        }
+        public HintViewModel HelpHint { get; set; }
+
+        [DataSourceProperty]
+        public MBBindingList<RebelFactionItemVM> RebelFactionItems {            get => _rebelFactionItems; set => SetField(ref _rebelFactionItems, value, nameof(RebelFactionItems)); }
+
+        [DataSourceProperty]
+        public EncyclopediaFactionVM KingdomDisplay { get => _kingdomDisplay; set => SetField(ref _kingdomDisplay, value, nameof(KingdomDisplay)); }
+
+        [DataSourceProperty]
+        public bool ShouldShowCreateFaction { get => _shouldShowCreateFaction; set => SetField(ref _shouldShowCreateFaction, value, nameof(ShouldShowCreateFaction)); }
+
+        [DataSourceProperty]
+        public HintViewModel CreateFactionHint { get => _createFactionHint; set => SetField(ref _createFactionHint, value, nameof(CreateFactionHint)); }
 
         public RebelFactionsVM(Kingdom kingdom, Action onComplete)
         {
@@ -112,7 +73,7 @@ namespace Diplomacy.ViewModel
         {
             base.RefreshValues();
             RebelFactionItems.Clear();
-            foreach (RebelFaction rebelFaction in RebelFactionManager.GetRebelFaction(_kingdom))
+            foreach (var rebelFaction in RebelFactionManager.GetRebelFaction(_kingdom))
                 RebelFactionItems.Add(new RebelFactionItemVM(rebelFaction, _onComplete, RefreshValues));
 
             ShouldShowCreateFaction = EligibleForCreateFactionMenu(out var reason);
@@ -160,7 +121,7 @@ namespace Diplomacy.ViewModel
             {
                 var demandType = (RebelDemandType) value;
                 var canCreate = CreateFactionAction.CanApply(Clan.PlayerClan, demandType, out var reason);
-                string hint = demandType.GetHint();
+                var hint = demandType.GetHint();
                 if (reason != null)
                     hint = new TextObject("{=ALSuNVzE}{EXCEPTION}{newline} {newline}{DEMAND_HINT}")
                         .SetTextVariable("EXCEPTION", reason)
@@ -187,7 +148,7 @@ namespace Diplomacy.ViewModel
 
         private void HandleCreateFaction(List<InquiryElement> inquiryElements)
         {
-            object identifier = inquiryElements.First().Identifier;
+            var identifier = inquiryElements.First().Identifier;
 
             // canceled 
             if (identifier == null) return;

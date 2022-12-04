@@ -24,7 +24,7 @@ namespace Diplomacy.Widgets
             StatsButton.IsSelected = StatsPanel.IsVisible;
         }
 
-        [Editor()]
+        [Editor]
         public ButtonWidget OverviewButton
         {
             get => _overviewButton!;
@@ -38,7 +38,7 @@ namespace Diplomacy.Widgets
             }
         }
 
-        [Editor()]
+        [Editor]
         public ButtonWidget StatsButton
         {
             get => _statsButton!;
@@ -52,7 +52,7 @@ namespace Diplomacy.Widgets
             }
         }
 
-        [Editor()]
+        [Editor]
         public Widget OverviewPanel
         {
             get => _overviewPanel!;
@@ -66,7 +66,7 @@ namespace Diplomacy.Widgets
             }
         }
 
-        [Editor()]
+        [Editor]
         public Widget StatsPanel
         {
             get => _statsPanel!;

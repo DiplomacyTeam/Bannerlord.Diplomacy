@@ -10,18 +10,7 @@ namespace Diplomacy.ViewModel
         private MBBindingList<WarExhaustionMapIndicatorItemVM> _kingdomsAtWar;
 
         [DataSourceProperty]
-        public MBBindingList<WarExhaustionMapIndicatorItemVM> KingdomsAtWar
-        {
-            get => _kingdomsAtWar;
-            set
-            {
-                if (value != _kingdomsAtWar)
-                {
-                    _kingdomsAtWar = value;
-                    OnPropertyChanged(nameof(KingdomsAtWar));
-                }
-            }
-        }
+        public MBBindingList<WarExhaustionMapIndicatorItemVM> KingdomsAtWar { get => _kingdomsAtWar; set => SetField(ref _kingdomsAtWar, value, nameof(KingdomsAtWar)); }
 
         public WarExhaustionMapIndicatorVM()
         {
@@ -40,9 +29,9 @@ namespace Diplomacy.ViewModel
 
         private void HandleWarExhaustionChange(WarExhaustionEvent warExhaustionEvent)
         {
-            Kingdom playerKingdom = Clan.PlayerClan.Kingdom;
+            var playerKingdom = Clan.PlayerClan.Kingdom;
             if (warExhaustionEvent.Kingdom == playerKingdom || warExhaustionEvent.OtherKingdom == playerKingdom)
-                foreach (WarExhaustionMapIndicatorItemVM item in _kingdomsAtWar)
+                foreach (var item in _kingdomsAtWar)
                     item.UpdateWarExhaustion();
         }
 
@@ -77,7 +66,7 @@ namespace Diplomacy.ViewModel
             KingdomsAtWar.Clear();
 
             if (Clan.PlayerClan.MapFaction is Kingdom playerKingdom)
-                foreach (Kingdom enemyKingdom in FactionManager.GetEnemyKingdoms(playerKingdom))
+                foreach (var enemyKingdom in FactionManager.GetEnemyKingdoms(playerKingdom))
                     KingdomsAtWar.Add(new WarExhaustionMapIndicatorItemVM(enemyKingdom));
         }
     }
