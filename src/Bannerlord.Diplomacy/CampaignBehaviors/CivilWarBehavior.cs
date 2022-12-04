@@ -1,5 +1,4 @@
-﻿
-using Diplomacy.CivilWar;
+﻿using Diplomacy.CivilWar;
 using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
@@ -36,8 +35,8 @@ namespace Diplomacy.CampaignBehaviors
 
         private void DailyTick()
         {
-            IEnumerable<RebelFaction> expiredFactions = RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Where(x => x.DateStarted.ElapsedDaysUntilNow > Settings.Instance!.MaximumFactionDurationInDays);
-            foreach (RebelFaction rebelFaction in expiredFactions.ToList())
+            var expiredFactions = RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Where(x => x.DateStarted.ElapsedDaysUntilNow > Settings.Instance!.MaximumFactionDurationInDays);
+            foreach (var rebelFaction in expiredFactions.ToList())
             {
                 if (rebelFaction.AtWar)
                     continue;
@@ -51,9 +50,9 @@ namespace Diplomacy.CampaignBehaviors
                 {
                     var rebelFaction = RebelFactionManager.GetRebelFactionForRebelKingdom(kingdom) ?? kingdom.GetRebelFactions().FirstOrDefault();
 
+                    var otherKingdom = kingdom.IsRebelKingdom() ? rebelFaction.ParentKingdom : rebelFaction.RebelKingdom!;
                     if (rebelFaction != null)
                     {
-                        Kingdom otherKingdom = kingdom.IsRebelKingdom() ? rebelFaction.ParentKingdom : rebelFaction.RebelKingdom!;
                         KingdomPeaceAction.ApplyPeace(kingdom, otherKingdom);
                     }
                 }
@@ -70,7 +69,7 @@ namespace Diplomacy.CampaignBehaviors
             var kingdom = decision.Kingdom;
             var newKing = kingdom.Leader;
 
-            foreach (RebelFaction rebelFaction in RebelFactionManager.GetRebelFaction(kingdom))
+            foreach (var rebelFaction in RebelFactionManager.GetRebelFaction(kingdom))
             {
                 if (rebelFaction is AbdicationFaction abdicationFaction)
                 {
@@ -102,7 +101,7 @@ namespace Diplomacy.CampaignBehaviors
         private void RemoveClanFromRebelFaction(Clan clan, Kingdom oldKingdom, Kingdom newKingdom)
         {
             var rebelFactions = RebelFactionManager.GetRebelFaction(oldKingdom);
-            foreach (RebelFaction rf in rebelFactions)
+            foreach (var rf in rebelFactions)
             {
                 if (newKingdom != null)
                 {
@@ -119,8 +118,8 @@ namespace Diplomacy.CampaignBehaviors
             if (!clan.MapFaction.IsKingdomFaction || clan.MapFaction.Leader == clan.Leader || clan.IsMinorFaction || clan.IsUnderMercenaryService || clan.Leader.IsHumanPlayerCharacter || clan.Kingdom.IsRebelKingdom())
                 return;
 
-            Kingdom kingdom = (clan.MapFaction as Kingdom)!;
-            IEnumerable<RebelFaction> rebelFactions = RebelFactionManager.GetRebelFaction(kingdom)!;
+            var kingdom = (clan.MapFaction as Kingdom)!;
+            var rebelFactions = RebelFactionManager.GetRebelFaction(kingdom)!;
 
             // active rebellion
             if (rebelFactions.Any(x => x.AtWar))
@@ -161,7 +160,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ConsiderLeavingRebelFaction(Clan clan)
         {
-            foreach (RebelFaction faction in RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => x.Clans.Contains(clan) && clan != x.SponsorClan))
+            foreach (var faction in RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => x.Clans.Contains(clan) && clan != x.SponsorClan))
             {
                 if (!JoinFactionAction.ShouldApply(clan, faction))
                 {
@@ -172,10 +171,10 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ConsiderJoiningRebelFaction(Clan clan)
         {
-            List<Tuple<RebelFaction, ExplainedNumber>> scores = new();
-            foreach (RebelFaction faction in RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => !x.Clans.Contains(clan)))
+            var scores = new List<Tuple<RebelFaction, ExplainedNumber>>();
+            foreach (var faction in RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => !x.Clans.Contains(clan)))
             {
-                scores.Add(new Tuple<RebelFaction, ExplainedNumber>(faction, RebelFactionScoringModel.GetDemandScore(clan, faction)));
+                scores.Add(new(faction, RebelFactionScoringModel.GetDemandScore(clan, faction)));
             }
 
             var bestFactionToJoin = scores.OrderByDescending(x => x.Item2.ResultNumber).FirstOrDefault()?.Item1;
@@ -199,7 +198,7 @@ namespace Diplomacy.CampaignBehaviors
 
             var rebelFactionScore = RebelFactionScoringModel.GetDemandScore(clan).OrderByDescending(x => x.Value.ResultNumber).First();
 
-            bool shouldStartFaction = CreateFactionAction.ShouldApply(rebelFactionScore.Key);
+            var shouldStartFaction = CreateFactionAction.ShouldApply(rebelFactionScore.Key);
             // score + random chance
             if (shouldStartFaction)
             {

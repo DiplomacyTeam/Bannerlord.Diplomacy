@@ -45,7 +45,7 @@ namespace Diplomacy.CivilWar.Actions
 
         public static bool ShouldApply(RebelFaction rebelFaction)
         {
-            Clan clan = rebelFaction.SponsorClan;
+            var clan = rebelFaction.SponsorClan;
             if (!CanApply(clan, default, out _))
             {
                 return false;
@@ -94,7 +94,7 @@ namespace Diplomacy.CivilWar.Actions
 
             // rebel kingdoms can't have factions
 
-            if (RebelFactionManager.AllRebelFactions.TryGetValue(clan.Kingdom, out List<RebelFaction> rebelFactions))
+            if (RebelFactionManager.AllRebelFactions.TryGetValue(clan.Kingdom, out var rebelFactions))
             {
                 // no active rebellions
                 if (rebelFactions.Any(x => x.AtWar))
@@ -121,9 +121,9 @@ namespace Diplomacy.CivilWar.Actions
                 }
             }
 
-            if (RebelFactionManager.Instance!.LastCivilWar.TryGetValue(clan.Kingdom, out CampaignTime lastTime))
+            if (RebelFactionManager.Instance!.LastCivilWar.TryGetValue(clan.Kingdom, out var lastTime))
             {
-                float daysSinceLastCivilWar = lastTime.ElapsedDaysUntilNow;
+                var daysSinceLastCivilWar = lastTime.ElapsedDaysUntilNow;
 
                 if (daysSinceLastCivilWar < Settings.Instance!.MinimumTimeSinceLastCivilWarInDays)
                 {

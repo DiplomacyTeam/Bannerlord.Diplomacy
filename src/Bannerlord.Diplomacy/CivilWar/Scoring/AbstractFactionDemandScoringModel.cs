@@ -31,7 +31,7 @@ namespace Diplomacy.CivilWar.Scoring
 
             var score = new ExplainedNumber(Scores.Base, true);
 
-            foreach (Tuple<TextObject, float> scoreTuple in scores)
+            foreach (var scoreTuple in scores)
             {
                 score.Add(scoreTuple.Item2, scoreTuple.Item1);
             }
@@ -44,7 +44,7 @@ namespace Diplomacy.CivilWar.Scoring
         public Tuple<RebelFaction, ExplainedNumber> GetScore(Clan clan)
         {
             Dictionary<RebelFaction, ExplainedNumber> possibilityScores = new();
-            foreach (RebelFaction faction in GetPossibleFactions(clan))
+            foreach (var faction in GetPossibleFactions(clan))
             {
                 possibilityScores[faction] = GetScore(clan, faction);
             }
@@ -66,14 +66,14 @@ namespace Diplomacy.CivilWar.Scoring
 
             // relation with ruling clan
             var relationships = GetRelationshipScores(clan, rebelFaction);
-            foreach (Tuple<TextObject, float> relationship in relationships)
+            foreach (var relationship in relationships)
                 yield return relationship;
 
             // valor modifier
             int[] valorModifier = { -20, -10, 0, 10, 20 };
-            TraitObject trait = DefaultTraits.Valor;
-            int traitLevel = clan.Leader.GetTraitLevel(trait);
-            TextObject valorText = GetTraitText(trait, traitLevel);
+            var trait = DefaultTraits.Valor;
+            var traitLevel = clan.Leader.GetTraitLevel(trait);
+            var valorText = GetTraitText(trait, traitLevel);
             var normalizedTraitLevel = traitLevel + Math.Abs(trait.MinValue);
             var valorScore = valorModifier[normalizedTraitLevel];
             yield return new Tuple<TextObject, float>(valorText, valorScore);

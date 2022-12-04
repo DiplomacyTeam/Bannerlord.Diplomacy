@@ -86,7 +86,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
                         false,
                         GameTexts.FindText("str_ok").ToString(),
                         null,
-                        () => KingdomPeaceAction.ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts: true),
+                        () => ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts: true),
                         null), true);
                 }
                 else
@@ -98,7 +98,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
                     false,
                     GameTexts.FindText("str_ok").ToString(),
                     null,
-                    () => KingdomPeaceAction.ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts: true),
+                    () => ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts: true),
                     null), true);
                 }
             }

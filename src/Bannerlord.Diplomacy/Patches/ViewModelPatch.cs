@@ -24,11 +24,11 @@ namespace Diplomacy.Patches
         private static void FixInvoke(MethodInfo methodInfo, object obj, object[] args)
         {
             var instance = methodInfo.GetType().GetField("_instance", BindingFlags.NonPublic | BindingFlags.Instance);
-            if (instance != null && instance.GetValue(methodInfo) is ViewModelMixin.KingdomTruceItemVmMixin)
+            if (instance != null && instance.GetValue(methodInfo) is ViewModelMixin.KingdomTruceItemVMMixin)
             {
                 if (!Environment.StackTrace.Contains("OnRefresh"))
                 {
-                    var MixinInstance = (ViewModelMixin.KingdomTruceItemVmMixin) instance.GetValue(methodInfo);
+                    var MixinInstance = (ViewModelMixin.KingdomTruceItemVMMixin) instance.GetValue(methodInfo);
                     var BadVm = MixinInstance.GetType().BaseType.GetField("_vm", BindingFlags.Instance | BindingFlags.NonPublic);
                     // Replace VM with obj
                     BadVm.SetValue(MixinInstance, new WeakReference<KingdomTruceItemVM>((KingdomTruceItemVM) obj));

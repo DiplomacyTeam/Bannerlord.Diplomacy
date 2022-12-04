@@ -24,7 +24,7 @@ namespace Diplomacy.ViewModelMixin
 {
     [ViewModelMixin("UpdateDiplomacyProperties")]
     [UsedImplicitly]
-    internal sealed class KingdomTruceItemVmMixin : BaseViewModelMixin<KingdomTruceItemVM>
+    internal sealed class KingdomTruceItemVMMixin : BaseViewModelMixin<KingdomTruceItemVM>
     {
         private static readonly TextObject _TFormAlliance = new("{=0WPWbx70}Form Alliance");
         private static readonly TextObject _TFormPact = new("{=9pY0NQrk}Form Pact");
@@ -40,6 +40,7 @@ namespace Diplomacy.ViewModelMixin
         private static readonly TextObject _TPlus = new("{=eTw2aNV5}+");
         private static readonly TextObject _TRequiredScore = new("{=XIBUWDlT}Required Score");
         private static readonly TextObject _TCurrentScore = new("{=5r6fsHgm}Current Score");
+
         private readonly Kingdom _faction1;
         private readonly Kingdom _faction2;
         private readonly bool _isAlliance;
@@ -58,208 +59,76 @@ namespace Diplomacy.ViewModelMixin
         private BasicTooltipViewModel? _nonAggressionPactScoreHint;
 
         [DataSourceProperty]
-        public bool IsAllianceAvailable
-        {
-            get => _isAllianceAvailable;
-            set
-            {
-                if (value != _isAllianceAvailable)
-                {
-                    _isAllianceAvailable = value;
-                    ViewModel!.OnPropertyChanged(nameof(IsAllianceAvailable));
-                }
-            }
-        }
+        public bool IsAllianceAvailable { get => _isAllianceAvailable; set => SetField(ref _isAllianceAvailable, value, nameof(IsAllianceAvailable)); }
 
         [DataSourceProperty]
-        public int AllianceInfluenceCost
-        {
-            get => _allianceInfluenceCost;
-            set
-            {
-                if (value != _allianceInfluenceCost)
-                {
-                    _allianceInfluenceCost = value;
-                    ViewModel!.OnPropertyChanged(nameof(AllianceInfluenceCost));
-                }
-            }
-        }
+        public int AllianceInfluenceCost { get => _allianceInfluenceCost; set => SetField(ref _allianceInfluenceCost, value, nameof(AllianceInfluenceCost)); }
 
         [DataSourceProperty]
-        public int AllianceGoldCost
-        {
-            get => _allianceGoldCost;
-            set
-            {
-                if (value != _allianceGoldCost)
-                {
-                    _allianceGoldCost = value;
-                    ViewModel!.OnPropertyChanged(nameof(AllianceGoldCost));
-                }
-            }
-        }
+        public int AllianceGoldCost { get => _allianceGoldCost; set => SetField(ref _allianceGoldCost, value, nameof(AllianceGoldCost)); }
 
         [DataSourceProperty]
-        public bool IsNonAggressionPactAvailable
-        {
-            get => _isNonAggressionPactAvailable;
-            set
-            {
-                if (value != _isNonAggressionPactAvailable)
-                {
-                    _isNonAggressionPactAvailable = value;
-                    ViewModel!.OnPropertyChanged(nameof(IsNonAggressionPactAvailable));
-                }
-            }
-        }
+        public bool IsNonAggressionPactAvailable { get => _isNonAggressionPactAvailable; set => SetField(ref _isNonAggressionPactAvailable, value, nameof(IsNonAggressionPactAvailable)); }
 
         [DataSourceProperty]
-        public int NonAggressionPactInfluenceCost
-        {
-            get => _nonAggressionPactInfluenceCost;
-            set
-            {
-                if (value != _nonAggressionPactInfluenceCost)
-                {
-                    _nonAggressionPactInfluenceCost = value;
-                    ViewModel!.OnPropertyChanged(nameof(NonAggressionPactInfluenceCost));
-                }
-            }
-        }
+        public int NonAggressionPactInfluenceCost { get => _nonAggressionPactInfluenceCost; set => SetField(ref _nonAggressionPactInfluenceCost, value, nameof(NonAggressionPactInfluenceCost)); }
 
         [DataSourceProperty]
-        public int NonAggressionPactGoldCost
-        {
-            get => _nonAggressionPactGoldCost;
-            set
-            {
-                if (value != _nonAggressionPactGoldCost)
-                {
-                    _nonAggressionPactGoldCost = value;
-                    ViewModel!.OnPropertyChanged(nameof(NonAggressionPactGoldCost));
-                }
-            }
-        }
+        public int NonAggressionPactGoldCost { get => _nonAggressionPactGoldCost; set => SetField(ref _nonAggressionPactGoldCost, value, nameof(NonAggressionPactGoldCost)); }
 
         [DataSourceProperty]
-        public string ActionName
-        {
-            get => _actionName;
-            set
-            {
-                if (value != _actionName)
-                {
-                    _actionName = value;
-                    ViewModel!.OnPropertyChanged(nameof(ActionName));
-                }
-            }
-        }
-
-        [DataSourceProperty] public string NonAggressionPactActionName { get; }
-
-        [DataSourceProperty] public string AllianceText { get; }
-
-        [DataSourceProperty] public string WarsText { get; }
-
-        [DataSourceProperty] public string PactsText { get; }
-
-        [DataSourceProperty] public int InfluenceCost { get; }
+        public string ActionName { get => _actionName; set => SetField(ref _actionName, value, nameof(ActionName)); }
 
         [DataSourceProperty]
-        public bool IsOptionAvailable
-        {
-            get => _isOptionAvailable;
-            set
-            {
-                if (value != _isOptionAvailable)
-                {
-                    _isOptionAvailable = value;
-                    ViewModel!.OnPropertyChanged(nameof(IsOptionAvailable));
-                }
-            }
-        }
+        public string NonAggressionPactActionName { get; }
 
         [DataSourceProperty]
-        public HintViewModel? ActionHint
-        {
-            get => _actionHint;
-            set
-            {
-                if (value != _actionHint)
-                {
-                    _actionHint = value;
-                    ViewModel!.OnPropertyChanged(nameof(ActionHint));
-                }
-            }
-        }
+        public string AllianceText { get; }
 
         [DataSourceProperty]
-        public HintViewModel? AllianceHint
-        {
-            get => _allianceHint;
-            set
-            {
-                if (value != _allianceHint)
-                {
-                    _allianceHint = value;
-                    ViewModel!.OnPropertyChanged(nameof(AllianceHint));
-                }
-            }
-        }
+        public string WarsText { get; }
 
         [DataSourceProperty]
-        public HintViewModel? NonAggressionPactHint
-        {
-            get => _nonAggressionPactHint;
-            set
-            {
-                if (value != _nonAggressionPactHint)
-                {
-                    _nonAggressionPactHint = value;
-                    ViewModel!.OnPropertyChanged(nameof(NonAggressionPactHint));
-                }
-            }
-        }
+        public string PactsText { get; }
 
         [DataSourceProperty]
-        public BasicTooltipViewModel? AllianceScoreHint
-        {
-            get => _allianceScoreHint;
-            set
-            {
-                if (value != _allianceScoreHint)
-                {
-                    _allianceScoreHint = value;
-                    ViewModel!.OnPropertyChanged(nameof(AllianceScoreHint));
-                }
-            }
-        }
+        public int InfluenceCost { get; }
 
         [DataSourceProperty]
-        public BasicTooltipViewModel? NonAggressionPactScoreHint
-        {
-            get => _nonAggressionPactScoreHint;
-            set
-            {
-                if (value != _nonAggressionPactScoreHint)
-                {
-                    _nonAggressionPactScoreHint = value;
-                    ViewModel!.OnPropertyChanged(nameof(NonAggressionPactScoreHint));
-                }
-            }
-        }
+        public bool IsOptionAvailable { get => _isOptionAvailable; set => SetField(ref _isOptionAvailable, value, nameof(IsOptionAvailable)); }
 
-        [DataSourceProperty] public string AllianceActionName { get; }
+        [DataSourceProperty]
+        public HintViewModel? ActionHint { get => _actionHint; set => SetField(ref _actionHint, value, nameof(ActionHint)); }
 
-        [DataSourceProperty][UsedImplicitly] public bool IsGoldCostVisible { get; }
+        [DataSourceProperty]
+        public HintViewModel? AllianceHint { get => _allianceHint; set => SetField(ref _allianceHint, value, nameof(AllianceHint)); }
 
-        [DataSourceProperty] public string NonAggressionPactHelpText { get; }
+        [DataSourceProperty]
+        public HintViewModel? NonAggressionPactHint { get => _nonAggressionPactHint; set => SetField(ref _nonAggressionPactHint, value, nameof(NonAggressionPactHint)); }
 
-        [DataSourceProperty] public DiplomacyPropertiesVM? DiplomacyProperties { get; set; }
+        [DataSourceProperty]
+        public BasicTooltipViewModel? AllianceScoreHint { get => _allianceScoreHint; set => SetField(ref _allianceScoreHint, value, nameof(AllianceScoreHint)); }
 
-        [DataSourceProperty] public bool IsWarItem { get; }
+        [DataSourceProperty]
+        public BasicTooltipViewModel? NonAggressionPactScoreHint { get => _nonAggressionPactScoreHint; set => SetField(ref _nonAggressionPactScoreHint, value, nameof(NonAggressionPactScoreHint)); }
 
-        public KingdomTruceItemVmMixin(KingdomTruceItemVM vm) : base(vm)
+        [DataSourceProperty]
+        public string AllianceActionName { get; }
+
+        [DataSourceProperty]
+        [UsedImplicitly]
+        public bool IsGoldCostVisible { get; }
+
+        [DataSourceProperty]
+        public string NonAggressionPactHelpText { get; }
+
+        [DataSourceProperty]
+        public DiplomacyPropertiesVM? DiplomacyProperties { get; set; }
+
+        [DataSourceProperty]
+        public bool IsWarItem { get; }
+
+        public KingdomTruceItemVMMixin(KingdomTruceItemVM vm) : base(vm)
         {
             _faction1 = (Kingdom) ViewModel!.Faction1;
             _faction2 = (Kingdom) ViewModel!.Faction2;

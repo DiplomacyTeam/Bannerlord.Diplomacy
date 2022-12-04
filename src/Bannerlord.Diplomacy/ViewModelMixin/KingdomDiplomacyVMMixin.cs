@@ -6,9 +6,11 @@ using Diplomacy.Event;
 using Diplomacy.Extensions;
 
 using HarmonyLib;
+using HarmonyLib.BUTR.Extensions;
 
 using JetBrains.Annotations;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -45,68 +47,30 @@ namespace Diplomacy.ViewModelMixin
         private bool _showStats;
 
         [DataSourceProperty]
-        public bool ShowOverview
-        {
-            get => _showOverview;
-            set
-            {
-                if (value != _showOverview)
-                {
-                    _showOverview = value;
-                    ViewModel!.OnPropertyChanged(nameof(ShowOverview));
-                }
-            }
-        }
 
         [DataSourceProperty]
-        public bool ShowStats
-        {
-            get => _showStats;
-            set
-            {
-                if (value != _showStats)
-                {
-                    _showStats = value;
-                    ViewModel!.OnPropertyChanged(nameof(ShowStats));
-                }
-            }
-        }
-
-        [DataSourceProperty] public string PlayerAlliancesText { get; }
-
-        [DataSourceProperty] public string StatsText { get; }
-
-        [DataSourceProperty] public string OverviewText { get; }
-
-        [DataSourceProperty] public string DiplomacyText { get; }
+        public bool ShowOverview { get => _showOverview; set => SetField(ref _showOverview, value, nameof(ShowOverview)); }
 
         [DataSourceProperty]
-        public string NumOfPlayerAlliancesText
-        {
-            get => _numOfPlayerAlliancesText;
-            set
-            {
-                if (value != _numOfPlayerAlliancesText)
-                {
-                    _numOfPlayerAlliancesText = value;
-                    ViewModel!.OnPropertyChanged(nameof(NumOfPlayerAlliancesText));
-                }
-            }
-        }
+        public bool ShowStats { get => _showStats; set => SetField(ref _showStats, value, nameof(ShowStats)); }
 
         [DataSourceProperty]
-        public MBBindingList<KingdomTruceItemVM> PlayerAlliances
-        {
-            get => _playerAlliances;
-            set
-            {
-                if (value != _playerAlliances)
-                {
-                    _playerAlliances = value;
-                    ViewModel!.OnPropertyChanged(nameof(PlayerAlliances));
-                }
-            }
-        }
+        public string PlayerAlliancesText { get; }
+
+        [DataSourceProperty]
+        public string StatsText { get; }
+
+        [DataSourceProperty]
+        public string OverviewText { get; }
+
+        [DataSourceProperty]
+        public string DiplomacyText { get; }
+
+        [DataSourceProperty]
+        public string NumOfPlayerAlliancesText { get => _numOfPlayerAlliancesText; set => SetField(ref _numOfPlayerAlliancesText, value, nameof(NumOfPlayerAlliancesText)); }
+
+        [DataSourceProperty]
+        public MBBindingList<KingdomTruceItemVM> PlayerAlliances { get => _playerAlliances; set => SetField(ref _playerAlliances, value, nameof(PlayerAlliances)); }
 
         public KingdomDiplomacyVMMixin(KingdomDiplomacyVM vm) : base(vm)
         {
@@ -181,7 +145,7 @@ namespace Diplomacy.ViewModelMixin
             RemoveRebelKingdoms(ViewModel!.PlayerWars);
 
             var alliances = ViewModel!.PlayerTruces.Where(item => item.Faction1.IsAlliedWith(item.Faction2)).ToList();
-            foreach (KingdomTruceItemVM alliance in alliances) ViewModel!.PlayerTruces.Remove(alliance);
+            foreach (var alliance in alliances) ViewModel!.PlayerTruces.Remove(alliance);
 
             foreach (var truce in ViewModel!.PlayerTruces.ToList())
             {

@@ -17,7 +17,7 @@ namespace Diplomacy.Patches
     {
         protected override IEnumerable<Patch> Prepare()
         {
-            Type conversationBehaviorType = Type.GetType("SandBox.CampaignBehaviors.LordConversationsCampaignBehavior, SandBox, Version=1.0.0.0, Culture=neutral")!;
+            var conversationBehaviorType = Type.GetType("SandBox.CampaignBehaviors.LordConversationsCampaignBehavior, SandBox, Version=1.0.0.0, Culture=neutral")!;
             return new Patch[]
                     {
             new Postfix(nameof(PreventOtherActionsConversation), conversationBehaviorType, "conversation_lord_request_mission_ask_on_condition"),
@@ -38,7 +38,7 @@ namespace Diplomacy.Patches
                 return;
             }
 
-            MobileParty conversationParty = Campaign.Current.ConversationManager.ConversationParty;
+            var conversationParty = Campaign.Current.ConversationManager.ConversationParty;
             __result = !ShouldPreventHostileAction(conversationParty.MapFaction);
         }
 
@@ -49,7 +49,7 @@ namespace Diplomacy.Patches
                 return;
             }
 
-            Village village = Settlement.CurrentSettlement.Village;
+            var village = Settlement.CurrentSettlement.Village;
             __result = !ShouldPreventHostileAction(village.Owner.MapFaction);
         }
 
@@ -60,7 +60,7 @@ namespace Diplomacy.Patches
                 return;
             }
 
-            IFaction conversationFaction = Campaign.Current.ConversationManager.ConversationParty?.MapFaction ?? Campaign.Current.ConversationManager.OneToOneConversationHero.MapFaction;
+            var conversationFaction = Campaign.Current.ConversationManager.ConversationParty?.MapFaction ?? Campaign.Current.ConversationManager.OneToOneConversationHero.MapFaction;
             var shouldPreventAction = conversationFaction.MapFaction is Kingdom encounteredKingdom && encounteredKingdom.IsRebelKingdom();
             __result = !shouldPreventAction;
         }
@@ -72,7 +72,7 @@ namespace Diplomacy.Patches
                 return;
             }
 
-            MobileParty conversationParty = Campaign.Current.ConversationManager.ConversationParty;
+            var conversationParty = Campaign.Current.ConversationManager.ConversationParty;
             var shouldPreventAction = conversationParty.MapFaction is Kingdom encounteredKingdom && encounteredKingdom.IsRebelKingdom() &&
                                  Clan.PlayerClan.MapFaction != conversationParty.MapFaction;
             __result = !shouldPreventAction;

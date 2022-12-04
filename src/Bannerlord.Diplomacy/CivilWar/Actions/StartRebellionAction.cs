@@ -18,7 +18,7 @@ namespace Diplomacy.CivilWar.Actions
 
         public static void Apply(RebelFaction rebelFaction)
         {
-            foreach (RebelFaction rf in RebelFactionManager.GetRebelFaction(rebelFaction.ParentKingdom))
+            foreach (var rf in RebelFactionManager.GetRebelFaction(rebelFaction.ParentKingdom))
             {
                 if (rf == rebelFaction)
                     continue;
@@ -41,7 +41,7 @@ namespace Diplomacy.CivilWar.Actions
 
             ChangeKingdomBannerAction.Apply(rebelFaction.RebelKingdom!, true);
 
-            foreach (Clan clan in rebelFaction.Clans)
+            foreach (var clan in rebelFaction.Clans)
             {
                 // make sure to retain influence
                 var influence = clan.Influence;
