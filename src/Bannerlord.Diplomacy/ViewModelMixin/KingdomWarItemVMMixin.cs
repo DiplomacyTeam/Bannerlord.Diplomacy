@@ -82,7 +82,7 @@ namespace Diplomacy.ViewModelMixin
 
         public override void OnRefresh()
         {
-            DiplomacyProperties ??= new DiplomacyPropertiesVM(ViewModel!.Faction1, ViewModel!.Faction2);
+            DiplomacyProperties ??= new DiplomacyPropertiesVM(_faction1, _faction2);
 
             DiplomacyProperties.UpdateDiplomacyProperties();
 
@@ -97,8 +97,8 @@ namespace Diplomacy.ViewModelMixin
                     (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction1, _faction2),
                     (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction2, _faction1),
                     _TWarExhaustion,
-                    Color.FromUint(ViewModel!.Faction1.Color).ToString(),
-                    Color.FromUint(ViewModel!.Faction2.Color).ToString(),
+                    Color.FromUint(_faction1.Color).ToString(),
+                    Color.FromUint(_faction2.Color).ToString(),
                     100));
             }
         }

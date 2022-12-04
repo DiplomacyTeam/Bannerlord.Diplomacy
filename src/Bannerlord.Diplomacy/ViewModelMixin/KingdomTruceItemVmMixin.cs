@@ -139,15 +139,15 @@ namespace Diplomacy.ViewModelMixin
             WarsText = _TWars.ToString();
             PactsText = _TPacts.ToString();
             NonAggressionPactHelpText = _TNapHelpText.SetTextVariable("DAYS", Settings.Instance!.NonAggressionPactDuration).ToString();
-            _isAlliance = ViewModel!.Faction1.GetStanceWith(ViewModel!.Faction2).IsAllied;
+            _isAlliance = _faction1.GetStanceWith(_faction2).IsAllied;
             ActionName = _isAlliance ? _TBreakAlliance.ToString() : GameTexts.FindText("str_kingdom_declate_war_action").ToString();
-            InfluenceCost = _isAlliance ? 0 : (int) DiplomacyCostCalculator.DetermineCostForDeclaringWar((Kingdom) ViewModel!.Faction1, true).Value;
+            InfluenceCost = _isAlliance ? 0 : (int) DiplomacyCostCalculator.DetermineCostForDeclaringWar(_faction1, true).Value;
             OnRefresh();
         }
 
         public override void OnRefresh()
         {
-            DiplomacyProperties ??= new DiplomacyPropertiesVM(ViewModel!.Faction1, ViewModel!.Faction2);
+            DiplomacyProperties ??= new DiplomacyPropertiesVM(_faction1, _faction2);
 
             DiplomacyProperties.UpdateDiplomacyProperties();
             UpdateActionAvailability();
@@ -161,8 +161,8 @@ namespace Diplomacy.ViewModelMixin
                     (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction1, _faction2),
                     (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction2, _faction1),
                     _TWarExhaustion,
-                    Color.FromUint(ViewModel!.Faction1.Color).ToString(),
-                    Color.FromUint(ViewModel!.Faction2.Color).ToString(),
+                    Color.FromUint(_faction1.Color).ToString(),
+                    Color.FromUint(_faction2.Color).ToString(),
                     100));
             }
         }
@@ -190,20 +190,16 @@ namespace Diplomacy.ViewModelMixin
             AllianceHint = allianceException is not null ? Compat.HintViewModel.Create(allianceException) : new HintViewModel();
             NonAggressionPactHint = napException is not null ? Compat.HintViewModel.Create(napException) : new HintViewModel();
 
-            var allianceCost = DiplomacyCostCalculator.DetermineCostForFormingAlliance((Kingdom) ViewModel!.Faction1,
-                (Kingdom) ViewModel!.Faction2,
-                true);
+            var allianceCost = DiplomacyCostCalculator.DetermineCostForFormingAlliance(_faction1, _faction2, true);
             AllianceInfluenceCost = (int) allianceCost.InfluenceCost.Value;
             AllianceGoldCost = (int) allianceCost.GoldCost.Value;
 
-            var nonAggressionPactCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact((Kingdom) ViewModel!.Faction1,
-                (Kingdom) ViewModel!.Faction2,
-                true);
+            var nonAggressionPactCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(_faction1, _faction2, true);
             NonAggressionPactInfluenceCost = (int) nonAggressionPactCost.InfluenceCost.Value;
             NonAggressionPactGoldCost = (int) nonAggressionPactCost.GoldCost.Value;
 
-            var allianceScore = AllianceScoringModel.Instance.GetScore((Kingdom) ViewModel!.Faction2, (Kingdom) ViewModel!.Faction1, true);
-            var napScore = NonAggressionPactScoringModel.Instance.GetScore((Kingdom) ViewModel!.Faction2, (Kingdom) ViewModel!.Faction1, true);
+            var allianceScore = AllianceScoringModel.Instance.GetScore(_faction2, _faction1, true);
+            var napScore = NonAggressionPactScoringModel.Instance.GetScore(_faction2, _faction1, true);
             AllianceScoreHint = UpdateDiplomacyTooltip(allianceScore);
             NonAggressionPactScoreHint = UpdateDiplomacyTooltip(napScore);
         }
@@ -236,12 +232,12 @@ namespace Diplomacy.ViewModelMixin
         {
             if (_isAlliance)
             {
-                BreakAllianceAction.Apply((Kingdom) ViewModel!.Faction1, (Kingdom) ViewModel!.Faction2);
+                BreakAllianceAction.Apply(_faction1, _faction2);
             }
             else
             {
-                DiplomacyCostCalculator.DetermineCostForDeclaringWar((Kingdom) ViewModel!.Faction1, true).ApplyCost();
-                DeclareWarAction.Apply(ViewModel!.Faction1, ViewModel!.Faction2);
+                DiplomacyCostCalculator.DetermineCostForDeclaringWar(_faction1, true).ApplyCost();
+                DeclareWarAction.Apply(_faction1, _faction2);
             }
 
             OnRefresh();
@@ -251,7 +247,7 @@ namespace Diplomacy.ViewModelMixin
         [UsedImplicitly]
         public void FormAlliance()
         {
-            DeclareAllianceAction.Apply((Kingdom) ViewModel!.Faction1, (Kingdom) ViewModel!.Faction2, true);
+            DeclareAllianceAction.Apply(_faction1, _faction2, true);
             OnRefresh();
         }
 
@@ -259,7 +255,7 @@ namespace Diplomacy.ViewModelMixin
         [UsedImplicitly]
         public void ProposeNonAggressionPact()
         {
-            FormNonAggressionPactAction.Apply((Kingdom) ViewModel!.Faction1, (Kingdom) ViewModel!.Faction2, true);
+            FormNonAggressionPactAction.Apply(_faction1, _faction2, true);
             OnRefresh();
         }
     }

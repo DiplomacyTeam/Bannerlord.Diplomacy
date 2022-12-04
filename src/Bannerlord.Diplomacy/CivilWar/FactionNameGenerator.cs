@@ -301,7 +301,7 @@ namespace Diplomacy.CivilWar
 
             var kingdomName = CultureToKingdomNames.TryGetValue(culture, out var value) && value.Any() ? new TextObject(value.GetRandomElement()) : rebelFaction.SponsorClan.Name;
 
-            return new TextObject(kingdomTitle, new Dictionary<string, object>() { { "CLAN_NAME", kingdomName } });
+            return new TextObject(kingdomTitle, new Dictionary<string, object> { { "CLAN_NAME", kingdomName } });
         }
 
         private static string ResolveTitle(List<TitleSelection> selections)
