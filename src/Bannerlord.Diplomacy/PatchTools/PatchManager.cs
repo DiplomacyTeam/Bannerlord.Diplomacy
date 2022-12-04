@@ -70,7 +70,6 @@ namespace Diplomacy.PatchTools
             new RebelKingdomPatches(),
             new KingdomManagementVMPatch(),
             new MBBannerEditorGauntletScreenPatch(),
-            new ViewModelPatch()
             // ... Only 1 class left to convert to declarative patching.
         };
     }

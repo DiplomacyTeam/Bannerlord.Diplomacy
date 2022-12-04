@@ -1,5 +1,4 @@
-﻿using HarmonyLib;
-using HarmonyLib.BUTR.Extensions;
+﻿using HarmonyLib.BUTR.Extensions;
 
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.ScreenSystem;
@@ -9,10 +8,10 @@ namespace Diplomacy.GauntletInterfaces
     public abstract class GenericInterface
     {
         protected static readonly LoadMovieDelegate? LoadMovieDel =
-            AccessTools2.GetDelegateObjectInstance<LoadMovieDelegate>(AccessTools.Method(typeof(GauntletLayer), "LoadMovie"));
+            AccessTools2.GetDelegate<LoadMovieDelegate>(typeof(GauntletLayer), "LoadMovie");
 
         protected static readonly ReleaseMovieDelegate? ReleaseMovieDel =
-            AccessTools2.GetDelegateObjectInstance<ReleaseMovieDelegate>(AccessTools.Method(typeof(GauntletLayer), "ReleaseMovie"));
+            AccessTools2.GetDelegate<ReleaseMovieDelegate>(typeof(GauntletLayer), "ReleaseMovie");
 
         protected GauntletLayer _layer = default!;
 

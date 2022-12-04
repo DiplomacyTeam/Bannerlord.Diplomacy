@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.SaveSystem;
 
@@ -12,10 +11,14 @@ namespace Diplomacy
 {
     internal sealed class WarExhaustionManager
     {
-        // new war exhaustion dictionary using Id
-        [SaveableField(1)] private Dictionary<string, float> _warExhaustionById;
+        private record Kingdoms(Kingdom Kingdom1, Kingdom Kingdom2);
 
-        [SaveableField(2)] private Dictionary<string, float> _warExhaustionMultiplier;
+        // new war exhaustion dictionary using Id
+        [SaveableField(1)]
+        private Dictionary<string, float> _warExhaustionById;
+
+        [SaveableField(2)]
+        private Dictionary<string, float> _warExhaustionMultiplier;
 
         public static WarExhaustionManager Instance { get; private set; } = default!;
 
@@ -65,8 +68,8 @@ namespace Diplomacy
             var key2 = CreateKey(kingdom2, kingdom1);
             if (key is not null && key2 is not null)
             {
-                _warExhaustionMultiplier![key!] = multiplier;
-                _warExhaustionMultiplier![key2!] = multiplier;
+                _warExhaustionMultiplier[key] = multiplier;
+                _warExhaustionMultiplier[key2] = multiplier;
             }
         }
 
@@ -82,13 +85,13 @@ namespace Diplomacy
 
         private string? CreateKey(Kingdom kingdom1, Kingdom kingdom2)
         {
-            return CreateKey(new Tuple<Kingdom, Kingdom>(kingdom1, kingdom2));
+            return CreateKey(new Kingdoms(kingdom1, kingdom2));
         }
 
-        private string? CreateKey(Tuple<Kingdom, Kingdom> kingdoms)
+        private string? CreateKey(Kingdoms kingdoms)
         {
-            return KingdomsAreValid(kingdoms.Item1, kingdoms.Item2)
-                ? string.Join("+", kingdoms.Item1.Id, kingdoms.Item2.Id)
+            return KingdomsAreValid(kingdoms.Kingdom1, kingdoms.Kingdom2)
+                ? string.Join("+", kingdoms.Kingdom1.Id, kingdoms.Kingdom2.Id)
                 : null;
         }
 
@@ -133,7 +136,7 @@ namespace Diplomacy
             }
             else
             {
-                if (!_warExhaustionMultiplier!.TryGetValue(key, out var warExhaustionFactor))
+                if (!_warExhaustionMultiplier.TryGetValue(key, out var warExhaustionFactor))
                 {
                     RegisterWarExhaustionMultiplier(kingdom1, kingdom2);
                     warExhaustionFactor = _warExhaustionMultiplier[key];
@@ -170,7 +173,7 @@ namespace Diplomacy
                 foreach (var enemyKingdom in enemyKingdoms)
                 {
                     var warStartDate = kingdom.GetStanceWith(enemyKingdom).WarStartDate.ElapsedDaysUntilNow;
-                    if (warStartDate >= 1.0f) AddDailyWarExhaustion(Tuple.Create(kingdom, enemyKingdom));
+                    if (warStartDate >= 1.0f) AddDailyWarExhaustion(new(kingdom, enemyKingdom));
                 }
             }
         }
@@ -194,7 +197,7 @@ namespace Diplomacy
 
             var valueFaction1 = stance.GetCasualties(kingdom1);
             var valueFaction2 = stance.GetCasualties(kingdom2);
-            result.Add(new WarExhaustionBreakdown()
+            result.Add(new WarExhaustionBreakdown
             {
                 Type = WarExhaustionType.Casualty,
                 ValueFaction1 = valueFaction1,
@@ -204,7 +207,7 @@ namespace Diplomacy
             });
             valueFaction1 = stance.GetSuccessfulRaids(kingdom2);
             valueFaction2 = stance.GetSuccessfulRaids(kingdom1);
-            result.Add(new WarExhaustionBreakdown()
+            result.Add(new WarExhaustionBreakdown
             {
                 Type = WarExhaustionType.Raid,
                 ValueFaction1 = valueFaction1,
@@ -214,7 +217,7 @@ namespace Diplomacy
             });
             valueFaction1 = stance.GetSuccessfulSieges(kingdom2);
             valueFaction2 = stance.GetSuccessfulSieges(kingdom1);
-            result.Add(new WarExhaustionBreakdown()
+            result.Add(new WarExhaustionBreakdown
             {
                 Type = WarExhaustionType.Siege,
                 ValueFaction1 = valueFaction1,
@@ -223,7 +226,7 @@ namespace Diplomacy
                 WarExhaustionValueFaction2 = valueFaction2 * Settings.Instance!.WarExhaustionPerSiege * multiplier
             });
             valueFaction1 = (int) stance.WarStartDate.ElapsedDaysUntilNow;
-            result.Add(new WarExhaustionBreakdown()
+            result.Add(new WarExhaustionBreakdown
             {
                 Type = WarExhaustionType.Daily,
                 ValueFaction1 = valueFaction1,
@@ -248,9 +251,9 @@ namespace Diplomacy
         {
             Instance = this;
             // ReSharper disable once ConstantNullCoalescingCondition
-            _warExhaustionById ??= new Dictionary<string, float>();
+            _warExhaustionById ??= new();
             // ReSharper disable once ConstantNullCoalescingCondition
-            _warExhaustionMultiplier ??= new Dictionary<string, float>();
+            _warExhaustionMultiplier ??= new();
         }
 
         internal enum WarExhaustionType

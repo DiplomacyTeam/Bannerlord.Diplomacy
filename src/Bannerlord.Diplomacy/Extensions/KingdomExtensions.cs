@@ -82,7 +82,7 @@ namespace Diplomacy.Extensions
         private static float GetMedianStrength()
         {
             float medianStrength;
-            var kingdomStrengths = KingdomExtensions.AllActiveKingdoms.Select(curKingdom => curKingdom.TotalStrength).OrderBy(a => a).ToArray();
+            var kingdomStrengths = AllActiveKingdoms.Select(curKingdom => curKingdom.TotalStrength).OrderBy(a => a).ToArray();
 
             var halfIndex = kingdomStrengths.Length / 2;
 

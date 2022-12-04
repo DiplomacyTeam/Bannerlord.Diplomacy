@@ -2,6 +2,7 @@
 using Diplomacy.ViewModel;
 
 using HarmonyLib;
+using HarmonyLib.BUTR.Extensions;
 
 using SandBox.GauntletUI.Encyclopedia;
 
@@ -13,6 +14,9 @@ namespace Diplomacy.Patches
 {
     internal sealed class EncyclopediaDataPatch : PatchClass<EncyclopediaDataPatch, EncyclopediaData>
     {
+        private static readonly AccessTools.FieldRef<EncyclopediaPageVM, EncyclopediaPageArgs>? _args =
+            AccessTools2.FieldRefAccess<EncyclopediaPageVM, EncyclopediaPageArgs>("_args");
+
         protected override IEnumerable<Patch> Prepare() => new Patch[]
         {
             new Postfix(nameof(GetEncyclopediaPageInstancePostfix), "GetEncyclopediaPageInstance")
@@ -20,9 +24,7 @@ namespace Diplomacy.Patches
 
         public static void GetEncyclopediaPageInstancePostfix(ref EncyclopediaPageVM __result)
         {
-            var args = (EncyclopediaPageArgs) AccessTools.Field(typeof(EncyclopediaPageVM), "_args").GetValue(__result);
-
-            if (__result is EncyclopediaFactionPageVM)
+            if (_args?.Invoke(__result) is { } args && __result is EncyclopediaFactionPageVM)
                 __result = new EncyclopediaFactionPageVMExtensionVM(args);
         }
     }

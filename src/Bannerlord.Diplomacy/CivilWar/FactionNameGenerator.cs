@@ -289,7 +289,7 @@ namespace Diplomacy.CivilWar
         {
             string? kingdomTitle;
             var culture = rebelFaction.Clans.Select(x => x.Culture.StringId).GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key;
-            CultureToKingdomTitles.TryGetValue(culture, out List<TitleSelection> cultureTitles);
+            CultureToKingdomTitles.TryGetValue(culture, out var cultureTitles);
             if (cultureTitles is not null && cultureTitles.Any() && MBRandom.RandomFloat < 0.5)
             {
                 kingdomTitle = ResolveTitle(cultureTitles);
@@ -299,9 +299,9 @@ namespace Diplomacy.CivilWar
                 kingdomTitle = ResolveTitle(CommonKingdomTitles);
             }
 
-            TextObject kingdomName = CultureToKingdomNames.TryGetValue(culture, out List<string> value) && value.Any() ? new TextObject(value.GetRandomElement()) : rebelFaction.SponsorClan.Name;
+            var kingdomName = CultureToKingdomNames.TryGetValue(culture, out var value) && value.Any() ? new TextObject(value.GetRandomElement()) : rebelFaction.SponsorClan.Name;
 
-            return new TextObject(kingdomTitle, new Dictionary<string, object>() { { "CLAN_NAME", kingdomName } });
+            return new TextObject(kingdomTitle, new Dictionary<string, object> { { "CLAN_NAME", kingdomName } });
         }
 
         private static string ResolveTitle(List<TitleSelection> selections)
@@ -313,7 +313,7 @@ namespace Diplomacy.CivilWar
 
             while (kingdomTitle == null)
             {
-                TitleSelection tempKingdomTitle = selections.GetRandomElement();
+                var tempKingdomTitle = selections.GetRandomElement();
                 if (tempKingdomTitle.Weight > MBRandom.RandomFloat)
                     kingdomTitle = tempKingdomTitle.Name;
             }

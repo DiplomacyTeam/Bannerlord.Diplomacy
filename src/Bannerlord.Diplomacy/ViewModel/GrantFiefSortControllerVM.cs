@@ -102,144 +102,34 @@ namespace Diplomacy.ViewModel
         }
 
         [DataSourceProperty]
-        public int TypeState
-        {
-            get => _typeState;
-            set
-            {
-                if (value != _typeState)
-                {
-                    _typeState = value;
-                    OnPropertyChanged(nameof(TypeState));
-                }
-            }
-        }
+        public int TypeState { get => _typeState; set => SetField(ref _typeState, value, nameof(TypeState)); }
 
         [DataSourceProperty]
-        public int NameState
-        {
-            get => _nameState;
-            set
-            {
-                if (value != _nameState)
-                {
-                    _nameState = value;
-                    OnPropertyChanged(nameof(NameState));
-                }
-            }
-        }
+        public int NameState { get => _nameState; set => SetField(ref _nameState, value, nameof(NameState)); }
 
         [DataSourceProperty]
-        public int ProsperityState
-        {
-            get => _prosperityState;
-            set
-            {
-                if (value != _prosperityState)
-                {
-                    _prosperityState = value;
-                    OnPropertyChanged(nameof(ProsperityState));
-                }
-            }
-        }
+        public int ProsperityState { get => _prosperityState; set => SetField(ref _prosperityState, value, nameof(ProsperityState)); }
 
         [DataSourceProperty]
-        public int RelationState
-        {
-            get => _relationState;
-            set
-            {
-                if (value != _relationState)
-                {
-                    _relationState = value;
-                    OnPropertyChanged(nameof(RelationState));
-                }
-            }
-        }
+        public int RelationState { get => _relationState; set => SetField(ref _relationState, value, nameof(RelationState)); }
 
         [DataSourceProperty]
-        public int DefendersState
-        {
-            get => _defendersState;
-            set
-            {
-                if (value != _defendersState)
-                {
-                    _defendersState = value;
-                    OnPropertyChanged(nameof(DefendersState));
-                }
-            }
-        }
+        public int DefendersState { get => _defendersState; set => SetField(ref _defendersState, value, nameof(DefendersState)); }
 
         [DataSourceProperty]
-        public bool IsTypeSelected
-        {
-            get => _isTypeSelected;
-            set
-            {
-                if (value != _isTypeSelected)
-                {
-                    _isTypeSelected = value;
-                    OnPropertyChanged(nameof(IsTypeSelected));
-                }
-            }
-        }
+        public bool IsTypeSelected { get => _isTypeSelected; set => SetField(ref _isTypeSelected, value, nameof(IsTypeSelected)); }
 
         [DataSourceProperty]
-        public bool IsNameSelected
-        {
-            get => _isNameSelected;
-            set
-            {
-                if (value != _isNameSelected)
-                {
-                    _isNameSelected = value;
-                    OnPropertyChanged(nameof(IsNameSelected));
-                }
-            }
-        }
+        public bool IsNameSelected { get => _isNameSelected; set => SetField(ref _isNameSelected, value, nameof(IsNameSelected)); }
 
         [DataSourceProperty]
-        public bool IsDefendersSelected
-        {
-            get => _isDefendersSelected;
-            set
-            {
-                if (value != _isDefendersSelected)
-                {
-                    _isDefendersSelected = value;
-                    OnPropertyChanged(nameof(IsDefendersSelected));
-                }
-            }
-        }
+        public bool IsDefendersSelected { get => _isDefendersSelected; set => SetField(ref _isDefendersSelected, value, nameof(IsDefendersSelected)); }
 
         [DataSourceProperty]
-        public bool IsProsperitySelected
-        {
-            get => _isProsperitySelected;
-            set
-            {
-                if (value != _isProsperitySelected)
-                {
-                    _isProsperitySelected = value;
-                    OnPropertyChanged(nameof(IsProsperitySelected));
-                }
-            }
-        }
+        public bool IsProsperitySelected { get => _isProsperitySelected; set => SetField(ref _isProsperitySelected, value, nameof(IsProsperitySelected)); }
 
         [DataSourceProperty]
-        public bool IsRelationSelected
-        {
-            get => _isRelationSelected;
-            set
-            {
-                if (value != _isRelationSelected)
-                {
-                    _isRelationSelected = value;
-                    OnPropertyChanged(nameof(IsRelationSelected));
-                }
-            }
-        }
+        public bool IsRelationSelected { get => _isRelationSelected; set => SetField(ref _isRelationSelected, value, nameof(IsRelationSelected)); }
 
         private readonly MBBindingList<GrantFiefItemVM> _listToControl;
 

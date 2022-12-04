@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using HarmonyLib.BUTR.Extensions;
 
 using System;
 using System.Linq;
@@ -41,23 +42,17 @@ namespace Diplomacy
             {
                 return instance is null
                     ? throw new ArgumentNullException(nameof(instance), $"{Type.Name} instance cannot be null when binding closed instance delegate to {PrettyName}!")
-                    : Delegate.CreateDelegate(typeof(TDelegate), instance, MethodInfo.Name) is not TDelegate @delegate
-                    ? throw new InvalidOperationException($"Failed to bind closed delegate to instance {PrettyName} of type {instance.GetType().FullName}!")
-                    : @delegate;
+                    : AccessTools2.GetDelegate<TDelegate>(instance, MethodInfo) ?? throw new InvalidOperationException($"Failed to bind closed delegate to instance {PrettyName} of type {instance.GetType().FullName}!");
             }
 
             public TDelegate GetOpenDelegate<TDelegate>() where TDelegate : Delegate
             {
-                return Delegate.CreateDelegate(typeof(TDelegate), null, MethodInfo) is not TDelegate @delegate
-                    ? throw new InvalidOperationException($"Failed to bind open delegate to {PrettyName} of type {Type.FullName}!")
-                    : @delegate;
+                return AccessTools2.GetDelegate<TDelegate>(MethodInfo) ?? throw new InvalidOperationException($"Failed to bind open delegate to {PrettyName} of type {Type.FullName}!");
             }
 
             public TDelegate GetDelegate<TDelegate>() where TDelegate : Delegate
             {
-                return Delegate.CreateDelegate(typeof(TDelegate), MethodInfo) is not TDelegate @delegate
-                    ? throw new InvalidOperationException($"Failed to bind closed delegate to {PrettyName} of type {Type.FullName}!")
-                    : @delegate;
+                return AccessTools2.GetDelegate<TDelegate>(MethodInfo) ?? throw new InvalidOperationException($"Failed to bind closed delegate to {PrettyName} of type {Type.FullName}!");
             }
 
             protected string ParametersString => Parameters is null || Parameters.Length == 0

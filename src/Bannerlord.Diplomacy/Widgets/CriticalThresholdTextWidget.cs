@@ -21,7 +21,7 @@ namespace Diplomacy.Widgets
 
         private bool _isCritical;
 
-        [Editor()]
+        [Editor]
         public bool IsCritical
         {
             get => _isCritical;

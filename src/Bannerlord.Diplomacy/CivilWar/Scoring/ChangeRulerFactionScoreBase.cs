@@ -36,19 +36,19 @@ namespace Diplomacy.CivilWar.Scoring
 
         protected IEnumerable<Tuple<TextObject, float>> CalculateTraitScore(Clan clan, RebelFaction rebelFaction, Hero hero, TraitObject trait)
         {
-            Hero clanLeader = clan.Leader;
+            var clanLeader = clan.Leader;
 
-            bool factionLeader = hero == rebelFaction.SponsorClan.Leader;
+            var factionLeader = hero == rebelFaction.SponsorClan.Leader;
 
             if (clanLeader.GetTraitLevel(trait) > 0)
             {
-                int heroTraitLevel = hero.GetTraitLevel(trait);
+                var heroTraitLevel = hero.GetTraitLevel(trait);
                 if (heroTraitLevel != 0)
                 {
-                    TextObject traitName = GameTexts.FindText("str_trait_name_" + trait.StringId.ToLower(), (heroTraitLevel + Math.Abs(trait.MinValue)).ToString());
-                    TextObject baseText = factionLeader ? _TLeaderTrait : _TRulerTrait;
-                    TextObject heroTraitText = baseText.CopyTextObject().SetTextVariable("TRAIT", traitName);
-                    float score = heroTraitLevel * 10f;
+                    var traitName = GameTexts.FindText("str_trait_name_" + trait.StringId.ToLower(), (heroTraitLevel + Math.Abs(trait.MinValue)).ToString());
+                    var baseText = factionLeader ? _TLeaderTrait : _TRulerTrait;
+                    var heroTraitText = baseText.CopyTextObject().SetTextVariable("TRAIT", traitName);
+                    var score = heroTraitLevel * 10f;
                     yield return new Tuple<TextObject, float>(heroTraitText, factionLeader ? score : -score);
                 }
             }
