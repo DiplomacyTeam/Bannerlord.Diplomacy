@@ -200,9 +200,14 @@ namespace Diplomacy.Messengers
 
         private TextObject GetMessengerArrivedText(IFaction faction1, IFaction faction2, Hero targetHero)
         {
-            var textObject = new TextObject("{=YnRmSele}The messenger from {FACTION1_NAME} has arrived at {HERO_NAME} of {FACTION2_NAME}.");
+            var textObject = new TextObject("{=YnRmSele}The messenger from {FACTION1_NAME} has arrived at {HERO_NAME} {FACTION2_TEXT}");
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
-            textObject.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
+            if (faction2 != null)
+            {
+                var faction2Text = new TextObject("of {FACTION2_NAME}");
+                faction2Text.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
+                textObject.SetTextVariable("FACTION2_TEXT", faction2Text);
+            }
             textObject.SetTextVariable("HERO_NAME", targetHero.Name.ToString());
             return textObject;
         }
@@ -211,9 +216,14 @@ namespace Diplomacy.Messengers
         {
             var textObject =
                 new TextObject(
-                    "{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_NAME} within {TRAVEL_TIME} days.");
+                    "{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} {FACTION2_TEXT} within {TRAVEL_TIME} days.");
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
-            textObject.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
+            if (faction2 != null)
+            {
+                var faction2Text = new TextObject("of {FACTION2_NAME}");
+                faction2Text.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
+                textObject.SetTextVariable("FACTION2_TEXT", faction2Text);
+            }
             textObject.SetTextVariable("HERO_NAME", targetHero.Name.ToString());
             textObject.SetTextVariable("TRAVEL_TIME", travelDays);
             return textObject;
