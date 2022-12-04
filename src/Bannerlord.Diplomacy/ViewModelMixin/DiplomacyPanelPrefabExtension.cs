@@ -27,10 +27,7 @@ namespace Diplomacy.ViewModelMixin
 
             if (ApplicationVersionHelper.GameVersion() is { } gameVersion)
             {
-                if (gameVersion.Major <= 1 && gameVersion.Minor <= 5 && gameVersion.Revision <= 9)
-                    _document.LoadXml(@"<DiplomacyPanel_159 />");
-                else
-                    _document.LoadXml(@"<DiplomacyPanel_1510 />");
+                _document.LoadXml(@"<DiplomacyPanel_actual />");
             }
         }
 
