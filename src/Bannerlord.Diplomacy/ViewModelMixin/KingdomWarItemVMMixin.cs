@@ -56,7 +56,8 @@ namespace Diplomacy.ViewModelMixin
         [DataSourceProperty]
         public int GoldCost { get => _goldCost; set => SetField(ref _goldCost, value, nameof(GoldCost)); }
 
-        [DataSourceProperty][UsedImplicitly]
+        [DataSourceProperty]
+        [UsedImplicitly]
         public bool IsGoldCostVisible { get; } = true;
 
         [DataSourceProperty]

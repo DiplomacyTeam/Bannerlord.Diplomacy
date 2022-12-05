@@ -45,7 +45,7 @@ namespace Diplomacy.ViewModel
         public HintViewModel HelpHint { get; set; }
 
         [DataSourceProperty]
-        public MBBindingList<RebelFactionItemVM> RebelFactionItems {            get => _rebelFactionItems; set => SetField(ref _rebelFactionItems, value, nameof(RebelFactionItems)); }
+        public MBBindingList<RebelFactionItemVM> RebelFactionItems { get => _rebelFactionItems; set => SetField(ref _rebelFactionItems, value, nameof(RebelFactionItems)); }
 
         [DataSourceProperty]
         public EncyclopediaFactionVM KingdomDisplay { get => _kingdomDisplay; set => SetField(ref _kingdomDisplay, value, nameof(KingdomDisplay)); }

@@ -33,19 +33,23 @@ namespace Diplomacy.ViewModel
         [DataSourceProperty]
         public string RelationGain { get => _relationGain; set => SetField(ref _relationGain, value, nameof(RelationGain)); }
 
-        [DataSourceProperty][UsedImplicitly]
+        [DataSourceProperty]
+        [UsedImplicitly]
         public float MinValue { get; }
 
         [DataSourceProperty]
         public int IntValue { get => _intValue; set => SetField(ref _intValue, value, nameof(IntValue)); }
 
-        [DataSourceProperty][UsedImplicitly]
+        [DataSourceProperty]
+        [UsedImplicitly]
         public string AcceptText { get; } = new TextObject(StringConstants.Accept).ToString();
 
-        [DataSourceProperty][UsedImplicitly]
+        [DataSourceProperty]
+        [UsedImplicitly]
         public string CancelText { get; } = GameTexts.FindText("str_cancel").ToString();
 
-        [DataSourceProperty][UsedImplicitly]
+        [DataSourceProperty]
+        [UsedImplicitly]
         public string TitleText { get; } = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
 
         public DonateGoldVM(Clan clan, Action onFinalize)
