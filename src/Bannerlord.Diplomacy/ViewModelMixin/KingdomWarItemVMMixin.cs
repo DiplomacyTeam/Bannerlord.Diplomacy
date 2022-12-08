@@ -28,18 +28,23 @@ namespace Diplomacy.ViewModelMixin
         private readonly Kingdom _faction1;
         private readonly Kingdom _faction2;
 
-        private HintViewModel? _actionHint;
+        private HintViewModel? _diplomaticActionHint;
         private int _goldCost;
         private bool _isOptionAvailable;
-
-        [DataSourceProperty]
-        public bool IsWarItem { get; }
 
         [DataSourceProperty]
         public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
 
         [DataSourceProperty]
         public string ActionName { get; }
+
+        [DataSourceProperty]
+        [UsedImplicitly]
+        public bool IsAllianceVisible => false;
+
+        [DataSourceProperty]
+        [UsedImplicitly]
+        public bool IsNonAggressionPactVisible => false;
 
         [DataSourceProperty]
         public string AllianceText { get; }
@@ -63,7 +68,7 @@ namespace Diplomacy.ViewModelMixin
         public bool IsOptionAvailable { get => _isOptionAvailable; set => SetField(ref _isOptionAvailable, value, nameof(IsOptionAvailable)); }
 
         [DataSourceProperty]
-        public HintViewModel? ActionHint { get => _actionHint; set => SetField(ref _actionHint, value, nameof(ActionHint)); }
+        public HintViewModel? DiplomaticActionHint { get => _diplomaticActionHint; set => SetField(ref _diplomaticActionHint, value, nameof(DiplomaticActionHint)); }
 
         public KingdomWarItemVMMixin(KingdomWarItemVM vm) : base(vm)
         {
@@ -76,7 +81,6 @@ namespace Diplomacy.ViewModelMixin
             AllianceText = _TAlliances.ToString();
             WarsText = _TWars.ToString();
             PactsText = _TNonAggressionPacts.ToString();
-            IsWarItem = true;
             OnRefresh();
         }
 
@@ -114,7 +118,7 @@ namespace Diplomacy.ViewModelMixin
         {
             IsOptionAvailable = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!).IsEmpty();
             var makePeaceException = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
-            ActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
+            DiplomaticActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
         }
     }
 }

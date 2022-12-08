@@ -6,7 +6,7 @@
     <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginRight="42">
       <Children>
         <!-- Form Non-Aggression Pact Button -->
-        <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" HeightSizePolicy="CoverChildren" IsHidden="@IsWarItem" MarginRight="10">
+        <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" HeightSizePolicy="CoverChildren" IsVisible="@IsNonAggressionPactVisible" MarginRight="10">
           <Children>
             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
               <Children>
@@ -44,7 +44,7 @@
         </ListPanel>
 
         <!-- Form Alliance Button -->
-        <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="10" MarginRight="10" IsHidden="@IsWarItem">
+        <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="10" MarginRight="10" IsVisible="@IsAllianceVisible">
           <Children>
             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
               <Children>
@@ -98,6 +98,7 @@
                     <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="0" Brush="Kingdom.GeneralButtons.Text" IntText="@ActionInfluenceCost" IsEnabled="@IsActionEnabled"/>
                   </Children>
                 </ListPanel>
+                <HintWidget DataSource="{ActionHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
               </Children>
             </ListPanel>
           </Children>
@@ -122,7 +123,7 @@
                     <TextWidget IsVisible="@IsGoldCostVisible" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-4" Brush="Kingdom.GeneralButtons.Text" IntText="@GoldCost"/>
                   </Children>
                 </ListPanel>
-                <HintWidget DataSource="{ActionHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                <HintWidget DataSource="{DiplomaticActionHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
               </Children>
             </ListPanel>
           </Children>

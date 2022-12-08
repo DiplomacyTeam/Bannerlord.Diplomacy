@@ -21,28 +21,33 @@ namespace Diplomacy.DiplomaticAction
             Conditions.AddRange(conditions);
         }
 
-        public bool CanApply(Kingdom kingdom,
-                             Kingdom otherKingdom,
-                             bool forcePlayerCosts = false,
-                             bool bypassCosts = false)
+        public bool CanApply(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCosts = false, bool bypassCosts = false)
         {
             // FIXME: Simplified LINQ here, but it also had the effect of not executing ApplyCondition on some conditions if an early one failed.
             // So if there are conditions with side effects that should still execute even upon failure, this needs to be changed.
             return Conditions.All(c => c.ApplyCondition(kingdom, otherKingdom, out _, forcePlayerCosts, bypassCosts));
         }
 
-        public List<TextObject> CanApplyExceptions(KingdomDiplomacyItemVM item,
-                                                   bool forcePlayerCosts = true,
-                                                   bool bypassCosts = false)
+        public List<TextObject> CanApplyExceptions(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCosts = false, bool bypassCosts = false)
         {
-            return Conditions
-                .Select(c =>
-                {
-                    c.ApplyCondition((Kingdom) item.Faction1, (Kingdom) item.Faction2, out var txt, forcePlayerCosts, bypassCosts);
-                    return txt;
-                })
-                .OfType<TextObject>()
-                .ToList();
+            TextObject? selector(IDiplomacyCondition c)
+            {
+                c.ApplyCondition(kingdom, otherKingdom, out var txt, forcePlayerCosts, bypassCosts);
+                return txt;
+            }
+
+            return Conditions.Select(selector).OfType<TextObject>().ToList();
+        }
+
+        public List<TextObject> CanApplyExceptions(KingdomDiplomacyItemVM item, bool forcePlayerCosts = true, bool bypassCosts = false)
+        {
+            TextObject? selector(IDiplomacyCondition c)
+            {
+                c.ApplyCondition((Kingdom) item.Faction1, (Kingdom) item.Faction2, out var txt, forcePlayerCosts, bypassCosts);
+                return txt;
+            }
+
+            return Conditions.Select(selector).OfType<TextObject>().ToList();
         }
     }
 }

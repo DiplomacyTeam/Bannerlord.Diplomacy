@@ -2,6 +2,7 @@
 using Bannerlord.UIExtenderEx.ViewModels;
 
 using Diplomacy.Costs;
+using Diplomacy.DiplomaticAction;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.DiplomaticAction.WarPeace;
@@ -44,19 +45,24 @@ namespace Diplomacy.ViewModelMixin
         private readonly Kingdom _faction1;
         private readonly Kingdom _faction2;
         private readonly bool _isAlliance;
-        private HintViewModel? _actionHint;
+        private HintViewModel? _diplomaticActionHint;
         private string _actionName = null!;
         private int _allianceGoldCost;
         private HintViewModel? _allianceHint;
         private int _allianceInfluenceCost;
         private BasicTooltipViewModel? _allianceScoreHint;
+        private bool _isAllianceVisible;
         private bool _isAllianceAvailable;
+        private bool _isNonAggressionPactVisible;
         private bool _isNonAggressionPactAvailable;
         private bool _isOptionAvailable;
         private int _nonAggressionPactGoldCost;
         private HintViewModel? _nonAggressionPactHint;
         private int _nonAggressionPactInfluenceCost;
         private BasicTooltipViewModel? _nonAggressionPactScoreHint;
+
+        [DataSourceProperty]
+        public bool IsAllianceVisible { get => _isAllianceVisible; set => SetField(ref _isAllianceVisible, value, nameof(IsAllianceVisible)); }
 
         [DataSourceProperty]
         public bool IsAllianceAvailable { get => _isAllianceAvailable; set => SetField(ref _isAllianceAvailable, value, nameof(IsAllianceAvailable)); }
@@ -66,6 +72,9 @@ namespace Diplomacy.ViewModelMixin
 
         [DataSourceProperty]
         public int AllianceGoldCost { get => _allianceGoldCost; set => SetField(ref _allianceGoldCost, value, nameof(AllianceGoldCost)); }
+
+        [DataSourceProperty]
+        public bool IsNonAggressionPactVisible { get => _isNonAggressionPactVisible; set => SetField(ref _isNonAggressionPactVisible, value, nameof(IsNonAggressionPactVisible)); }
 
         [DataSourceProperty]
         public bool IsNonAggressionPactAvailable { get => _isNonAggressionPactAvailable; set => SetField(ref _isNonAggressionPactAvailable, value, nameof(IsNonAggressionPactAvailable)); }
@@ -98,7 +107,7 @@ namespace Diplomacy.ViewModelMixin
         public bool IsOptionAvailable { get => _isOptionAvailable; set => SetField(ref _isOptionAvailable, value, nameof(IsOptionAvailable)); }
 
         [DataSourceProperty]
-        public HintViewModel? ActionHint { get => _actionHint; set => SetField(ref _actionHint, value, nameof(ActionHint)); }
+        public HintViewModel? DiplomaticActionHint { get => _diplomaticActionHint; set => SetField(ref _diplomaticActionHint, value, nameof(DiplomaticActionHint)); }
 
         [DataSourceProperty]
         public HintViewModel? AllianceHint { get => _allianceHint; set => SetField(ref _allianceHint, value, nameof(AllianceHint)); }
@@ -125,14 +134,10 @@ namespace Diplomacy.ViewModelMixin
         [DataSourceProperty]
         public DiplomacyPropertiesVM? DiplomacyProperties { get; set; }
 
-        [DataSourceProperty]
-        public bool IsWarItem { get; }
-
         public KingdomTruceItemVMMixin(KingdomTruceItemVM vm) : base(vm)
         {
             _faction1 = (Kingdom) ViewModel!.Faction1;
             _faction2 = (Kingdom) ViewModel!.Faction2;
-            IsWarItem = false;
             AllianceActionName = _TFormAlliance.ToString();
             NonAggressionPactActionName = _TFormPact.ToString();
             AllianceText = _TAlliances.ToString();
@@ -172,8 +177,10 @@ namespace Diplomacy.ViewModelMixin
             if (_isAlliance)
             {
                 var breakAllianceException = BreakAllianceConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
-                ActionHint = breakAllianceException is not null ? Compat.HintViewModel.Create(breakAllianceException) : new HintViewModel();
+                DiplomaticActionHint = breakAllianceException is not null ? Compat.HintViewModel.Create(breakAllianceException) : new HintViewModel();
                 IsOptionAvailable = breakAllianceException is null;
+                IsAllianceVisible = false;
+                IsNonAggressionPactVisible = false;
                 return;
             }
 
@@ -183,10 +190,12 @@ namespace Diplomacy.ViewModelMixin
             var declareWarException = DeclareWarConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
             var napException = NonAggressionPactConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
 
+            IsAllianceVisible = true;
+            IsNonAggressionPactVisible = !DiplomaticAgreementManager.HasNonAggressionPact(_faction1, _faction2, out _);
             IsAllianceAvailable = allianceException is null;
             IsNonAggressionPactAvailable = napException is null;
 
-            ActionHint = declareWarException is not null ? Compat.HintViewModel.Create(declareWarException) : new HintViewModel();
+            DiplomaticActionHint = declareWarException is not null ? Compat.HintViewModel.Create(declareWarException) : new HintViewModel();
             AllianceHint = allianceException is not null ? Compat.HintViewModel.Create(allianceException) : new HintViewModel();
             NonAggressionPactHint = napException is not null ? Compat.HintViewModel.Create(napException) : new HintViewModel();
 
