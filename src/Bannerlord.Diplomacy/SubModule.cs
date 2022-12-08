@@ -102,12 +102,9 @@ namespace Diplomacy
 
                 var currentKingdomDecisionPermissionModel = GetGameModel<KingdomDecisionPermissionModel>(gameStarterObject);
                 if (currentKingdomDecisionPermissionModel is null)
-                {
-                    Log.LogError("No KingdomDecisionPermissionModel found!");
-                    InformationManager.DisplayMessage(new InformationMessage("Error loading one of the game models! See mod log for details.", StdTextColor));
-                }
-                else
-                    gameStarter.AddModel(new DiplomacyKingdomDecisionPermissionModel(currentKingdomDecisionPermissionModel));
+                    Log.LogWarning("No default KingdomDecisionPermissionModel found!");
+
+                gameStarter.AddModel(new DiplomacyKingdomDecisionPermissionModel(currentKingdomDecisionPermissionModel));
 
                 Log.LogDebug("Campaign session started.");
             }
