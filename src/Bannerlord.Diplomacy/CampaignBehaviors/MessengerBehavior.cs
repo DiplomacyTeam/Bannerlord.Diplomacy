@@ -37,7 +37,7 @@ namespace Diplomacy.CampaignBehaviors
 
         public void OnAfterSessionLaunched(CampaignGameStarter game)
         {
-            CampaignEvents.TickEvent.AddNonSerializedListener(_messengerManager, _messengerManager.CleanUpAfterLoad);
+            CampaignEvents.TickEvent.AddNonSerializedListener(_messengerManager, _messengerManager.OnAfterSaveLoad);
         }
     }
 }

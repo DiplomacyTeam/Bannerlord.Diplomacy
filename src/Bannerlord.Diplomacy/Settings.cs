@@ -73,7 +73,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingMessengers)]
         public int SendMessengerGoldCost { get; set; } = 100;
 
-        [SettingPropertyInteger("{=nnXi6MmH}Messenger Travel Time in Days", 0, 500, RequireRestart = false, HintText = "{=zkvCGLuK}The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3.")]
+        [SettingPropertyInteger("{=nnXi6MmH}Messenger Travel Time in Days", 0, 10, RequireRestart = false, HintText = "{=zkvCGLuK}The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3.")]
         [SettingPropertyGroup(HeadingMessengers)]
         public int MessengerTravelTime { get; set; } = 3;
 

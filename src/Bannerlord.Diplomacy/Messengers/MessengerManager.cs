@@ -11,24 +11,39 @@ using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements.Locations;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.SaveSystem;
+using TaleWorlds.CampaignSystem.Map;
+using System;
+using TaleWorlds.CampaignSystem.ComponentInterfaces;
+using static Bannerlord.ButterLib.Common.Helpers.LocalizationHelper;
+using TaleWorlds.CampaignSystem.GameComponents;
+using HarmonyLib.BUTR.Extensions;
+using SandBox.Missions.MissionLogics.Arena;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 
 namespace Diplomacy.Messengers
 {
     internal sealed class MessengerManager : IMissionListener
     {
-        private const float MessengerHourlySpeed = 20f;
+        private static float MessengerHourlySpeedMin = 5f;
+        private static float MessengerHourlySpeed = 5f;
 
         private static readonly List<MissionMode> AllowedMissionModes = new() { MissionMode.Conversation, MissionMode.Barter };
 
         private static readonly TextObject _TMessengerSent = new("{=zv12jjyW}Messenger Sent");
 
+        private Vec2 _position2D = Vec2.Invalid;
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
+
+        private delegate int GetBribeInternalDelegate(DefaultBribeCalculationModel instance, Settlement settlement);
+        private static readonly GetBribeInternalDelegate? deGetBribeInternal = AccessTools2.GetDelegate<GetBribeInternalDelegate>(typeof(DefaultBribeCalculationModel), "GetBribeInternal");
 
         [SaveableField(1)][UsedImplicitly] private List<Messenger> _messengers;
 
@@ -40,33 +55,20 @@ namespace Diplomacy.Messengers
             Messengers = new MBReadOnlyList<Messenger>(_messengers);
         }
 
-        public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
-        {
-        }
-
-        public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType)
-        {
-        }
-
         public void OnEndMission()
         {
             _messengers.Remove(_activeMessenger!);
             _activeMessenger = null;
+
+            _currentMission!.RemoveListener(this);
             _currentMission = null;
+            
             CampaignEvents.TickEvent.AddNonSerializedListener(this, CleanUpSettlementEncounter);
         }
 
         public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
         {
             if (!AllowedMissionModes.Contains(_currentMission!.Mode) && AllowedMissionModes.Contains(oldMissionMode)) _currentMission!.EndMission();
-        }
-
-        public void OnConversationCharacterChanged()
-        {
-        }
-
-        public void OnResetMission()
-        {
         }
 
         public void SendMessenger(Hero targetHero)
@@ -123,7 +125,7 @@ namespace Diplomacy.Messengers
                 // FIXME: Definitely would like to remove the silliness here.
                 // Jiros: Added to catch crash when Hero and Target are in the same party. [v1.5.3-release]
                 InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Eaten").ToString(),
-                    new TextObject("Oh no. The messenger was ambushed and eaten by a Grue while trying to reach " + messenger.TargetHero.Name)
+                    new TextObject("{=JmgAuONd}Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!", new() { ["HERO_NAME"] = messenger.TargetHero.Name })
                         .ToString(),
                     true,
                     false,
@@ -137,10 +139,13 @@ namespace Diplomacy.Messengers
             if (IsTargetHeroAvailableNow(messenger.TargetHero) && IsPlayerHeroAvailable())
             {
                 InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Arrived").ToString(),
-                    GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero).ToString(), true, true,
+                    GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero, out var additionalExpenses).ToString(), additionalExpenses.CanPayCost(), true,
                     GameTexts.FindText("str_ok").ToString(), new TextObject("{=kMjfN2fB}Cancel Messenger").ToString(), delegate
                     {
                         _activeMessenger = messenger;
+                        int bribeValue = (int) additionalExpenses.Value;
+                        if (bribeValue > 0)
+                            BribeGuardsAction.Apply(messenger.TargetHero.CurrentSettlement, bribeValue);
                         StartDialogue(messenger.TargetHero, messenger);
                     },
                     () => { _messengers.Remove(messenger); }), true);
@@ -178,8 +183,9 @@ namespace Diplomacy.Messengers
             }
 
             PartyBase? targetParty;
-            if (targetHero.CurrentSettlement != null)
-                targetParty = targetHero.CurrentSettlement?.Party ?? targetHero.BornSettlement?.Party;
+            var targetSettlement = targetHero.CurrentSettlement;
+            if (targetSettlement != null)
+                targetParty = targetSettlement.Party ?? targetHero.BornSettlement?.Party;
             else
                 targetParty = targetHero.PartyBelongedTo?.Party ?? targetHero.BornSettlement?.Party;
 
@@ -187,44 +193,88 @@ namespace Diplomacy.Messengers
             PlayerEncounter.Current.SetupFields(heroParty, targetParty ?? heroParty);
 
             Campaign.Current.CurrentConversationContext = ConversationContext.Default;
-            var specialScene = "";
-            var sceneLevels = "";
+            if (targetSettlement != null)
+            {
+                _position2D = new(Hero.MainHero.GetMapPoint().Position2D);
 
-            // TODO: hack the scene to show the scene of the target instead of the player's
-            _currentMission = (Mission) Campaign.Current.CampaignMissionManager.OpenConversationMission(
-                new ConversationCharacterData(Hero.MainHero.CharacterObject, Hero.MainHero.PartyBelongedTo.Party, true),
-                new ConversationCharacterData(targetHero.CharacterObject, targetHero.PartyBelongedTo?.Party, true),
-                specialScene, sceneLevels);
+                PlayerEncounter.EnterSettlement();
+
+                var locationOfTarget = LocationComplex.Current.GetLocationOfCharacter(targetHero);
+                var locationOfCharacter = LocationComplex.Current.GetLocationOfCharacter(Hero.MainHero);
+
+                CampaignEventDispatcher.Instance.OnPlayerStartTalkFromMenu(targetHero);
+                _currentMission =
+                    (Mission) PlayerEncounter.LocationEncounter.CreateAndOpenMissionController(locationOfTarget, locationOfCharacter, targetHero.CharacterObject);
+            }
+            else
+            {
+                _position2D = Vec2.Invalid;
+
+                var specialScene = "";
+                var sceneLevels = "";
+
+                _currentMission = (Mission) Campaign.Current.CampaignMissionManager.OpenConversationMission(
+                    new ConversationCharacterData(Hero.MainHero.CharacterObject, heroParty, true),
+                    new ConversationCharacterData(targetHero.CharacterObject, targetParty, true),
+                    specialScene, sceneLevels);
+            }
             _currentMission.AddListener(this);
         }
 
-        private TextObject GetMessengerArrivedText(IFaction faction1, IFaction faction2, Hero targetHero)
+        private TextObject GetMessengerArrivedText(IFaction faction1, IFaction faction2, Hero targetHero, out GoldCost additionalExpenses)
         {
-            var textObject = new TextObject("{=YnRmSele}The messenger from {FACTION1_NAME} has arrived at {HERO_NAME} {FACTION2_TEXT}");
-            textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
-            if (faction2 != null)
+            bool requiresBribing = false;
+            if ((targetHero.CurrentSettlement?.IsTown ?? false) && targetHero.IsLord && !targetHero.IsPrisoner)
             {
-                var faction2Text = new TextObject("of {FACTION2_NAME}");
-                faction2Text.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
-                textObject.SetTextVariable("FACTION2_TEXT", faction2Text);
+                Campaign.Current.Models.SettlementAccessModel.CanMainHeroEnterLordsHall(targetHero.CurrentSettlement, out var accessDetails);
+                requiresBribing = (accessDetails.AccessLevel == SettlementAccessModel.AccessLevel.NoAccess || accessDetails.AccessLevel == SettlementAccessModel.AccessLevel.LimitedAccess);
             }
-            textObject.SetTextVariable("HERO_NAME", targetHero.Name.ToString());
+
+            var textObject = new TextObject("{=YnRmSele}The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}");
+            TextObject addressee = new("{=vGyBQeEk}{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\\?}", new()
+                {
+                    ["HERO_NAME"] = targetHero.Name,
+                    ["HAS_FACTION"] = new TextObject(faction2 != null ? 1 : 0),
+                    ["FACTION2_NAME"] = faction2?.Name ?? TextObject.Empty
+            });
+            TextObject bribeTextObject;
+            if (requiresBribing)
+            {
+                bribeTextObject = new("{=sQxAljGF}{NEW_LINE} {NEW_LINE}Unfortunately, the messenger is denied access to the keep, but can try to bribe the guards. It would cost {?IS_FEMALE}her{?}him{\\?} {GOLD_COST}{GOLD_ICON} and you will have to cover the expenses{?CAN_AFFORD}.{?}, which you can't afford at the moment.{\\?}");
+                bribeTextObject.SetTextVariable("NEW_LINE", Environment.NewLine);
+                bribeTextObject.SetTextVariable("IS_FEMALE", Hero.MainHero.IsFemale ? 1 : 0);
+
+                var model = (Campaign.Current.Models.BribeCalculationModel as DefaultBribeCalculationModel);
+                additionalExpenses = new(Hero.MainHero, null, deGetBribeInternal!(model ?? new DefaultBribeCalculationModel(), targetHero.CurrentSettlement!));
+
+                bribeTextObject.SetTextVariable("GOLD_COST", (int) additionalExpenses.Value);
+                bribeTextObject.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+                bribeTextObject.SetTextVariable("CAN_AFFORD", additionalExpenses.CanPayCost() ? 1 : 0);
+            }
+            else
+            {
+                bribeTextObject = TextObject.Empty;
+                additionalExpenses = new(Hero.MainHero, null, 0);
+            }
+
+            textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
+            textObject.SetTextVariable("ADDRESSEE_TEXT", addressee.ToString());
+            textObject.SetTextVariable("BRIBE_TEXT", bribeTextObject.ToString());
+
             return textObject;
         }
 
         private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, Hero targetHero, int travelDays)
         {
-            var textObject =
-                new TextObject(
-                    "{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} {FACTION2_TEXT} within {TRAVEL_TIME} days.");
+            TextObject textObject = new("{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days.");
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
-            if (faction2 != null)
+            TextObject addressee = new("{=vGyBQeEk}{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\\?}", new()
             {
-                var faction2Text = new TextObject("of {FACTION2_NAME}");
-                faction2Text.SetTextVariable("FACTION2_NAME", faction2.Name.ToString());
-                textObject.SetTextVariable("FACTION2_TEXT", faction2Text);
-            }
-            textObject.SetTextVariable("HERO_NAME", targetHero.Name.ToString());
+                ["HERO_NAME"] = targetHero.Name,
+                ["HAS_FACTION"] = new TextObject(faction2 != null ? 1 : 0),
+                ["FACTION2_NAME"] = faction2?.Name ?? TextObject.Empty
+            });
+            textObject.SetTextVariable("ADDRESSEE_TEXT", addressee.ToString());
             textObject.SetTextVariable("TRAVEL_TIME", travelDays);
             return textObject;
         }
@@ -255,11 +305,19 @@ namespace Diplomacy.Messengers
         private void CleanUpSettlementEncounter(float obj)
         {
             PlayerEncounter.Finish();
+
+            if (_position2D != Vec2.Invalid)
+            {
+                MobileParty.MainParty.Position2D = _position2D;                
+            }
+            _position2D = Vec2.Invalid;
+
             RemoveThisFromListeners();
         }
 
-        internal void CleanUpAfterLoad(float obj)
+        internal void OnAfterSaveLoad(float obj)
         {
+            //Cleanup possible faulty encounters
             if (PlayerEncounter.Current is PlayerEncounter playerEncounter && PlayerEncounter.LeaveEncounter
                 && FieldAccessHelper.PlayerEncounterAttackerPartyByRef(playerEncounter) is PartyBase attackerParty
                 && attackerParty == Hero.MainHero.PartyBelongedTo?.Party
@@ -267,6 +325,9 @@ namespace Diplomacy.Messengers
             {
                 PlayerEncounter.Finish();
             }
+            //Recalculate speed
+            MessengerHourlySpeed = Math.Max(Campaign.MapDiagonal / (CampaignTime.HoursInDay * Math.Max(Settings.Instance!.MessengerTravelTime, 0.5f)), MessengerHourlySpeedMin);
+            //Remove from listeners
             RemoveThisFromListeners();
         }
 
@@ -275,7 +336,13 @@ namespace Diplomacy.Messengers
             CampaignEventDispatcher.Instance.RemoveListeners(this);
         }
 
-        public void OnDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan) { }
+        public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType) { }
+
+        public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType) { }
+
+        public void OnConversationCharacterChanged() { }
+
+        public void OnResetMission() { }
 
         public void OnInitialDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan) { }
     }

@@ -5,6 +5,11 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2
 * Fixed several issues with the Diplomacy panel in Kingdom Management.
 * Fixed several issues with peace and war restrictions not applying properly.
 * Fixed a crash that occurred when sending a Messenger to a factionless hero.
+* Fixed a crash that occurred when trying to create a caravan using a Messenger.
+* Messengers now use correct the scene for the conversation.
+* Messengers can no longer freely access highborn locations unless you can.
+* The speed of Messengers now depends on the maximum arrival time.
+* Made some adjustments to setting hints related to Messengers to make them clearer.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.16
 Game Versions: v1.0.0,v1.0.1

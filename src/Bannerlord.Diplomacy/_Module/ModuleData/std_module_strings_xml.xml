@@ -16,8 +16,12 @@
     <string id="zv12jjyW" text="Messenger Sent" />
     <string id="uy86VZX2" text="Messenger Arrived" />
 
-    <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {HERO_NAME} of {FACTION2_NAME}." />
-    <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_NAME} within {TRAVEL_TIME} days." />
+
+    <string id="JmgAuONd" text="Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
+    <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}" />
+    <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days." />
+    <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\?}" />
+    <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Unfortunately, the messenger is denied access to the keep, but can try to bribe the guards. It would cost {?IS_FEMALE}her{?}him{\?} {GOLD_COST}{GOLD_ICON} and you will have to cover the expenses{?CAN_AFFORD}.{?}, which you can't afford at the moment.{\?}" />
 
     <string id="t0ZS9maD" text="{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}." />
     <string id="ZrwszZww" text=" They are willing to pay war reparations of {DENARS} denars." />
@@ -195,7 +199,7 @@
     <string id="ehMf7xvE" text="Gold cost for sending a messenger to another character. Default value is 100." />
 
     <string id="nnXi6MmH" text="Messenger Travel Time in Days" />
-    <string id="zkvCGLuK" text="The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3." />
+    <string id="zkvCGLuK" text="The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3." />
 
 
     <string id="V542tneW" text="War Exhaustion" />
