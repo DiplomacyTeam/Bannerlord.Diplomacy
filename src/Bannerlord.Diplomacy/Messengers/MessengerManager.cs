@@ -4,21 +4,17 @@ using HarmonyLib.BUTR.Extensions;
 
 using JetBrains.Annotations;
 
-using SandBox.Missions.MissionLogics.Arena;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.GameState;
-using TaleWorlds.CampaignSystem.Map;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
@@ -28,13 +24,11 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.SaveSystem;
 
-using static Bannerlord.ButterLib.Common.Helpers.LocalizationHelper;
-
 namespace Diplomacy.Messengers
 {
     internal sealed class MessengerManager : IMissionListener
     {
-        private static float MessengerHourlySpeedMin = 5f;
+        private static float MessengerHourlySpeedMin = 2f;
         private static float MessengerHourlySpeed = 5f;
 
         private static readonly List<MissionMode> AllowedMissionModes = new() { MissionMode.Conversation, MissionMode.Barter };
@@ -44,6 +38,7 @@ namespace Diplomacy.Messengers
         private Vec2 _position2D = Vec2.Invalid;
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
+        private int _cachedMessengerTravelTime;
 
         private delegate int GetBribeInternalDelegate(DefaultBribeCalculationModel instance, Settlement settlement);
         private static readonly GetBribeInternalDelegate? deGetBribeInternal = AccessTools2.GetDelegate<GetBribeInternalDelegate>(typeof(DefaultBribeCalculationModel), "GetBribeInternal");
@@ -94,19 +89,34 @@ namespace Diplomacy.Messengers
 
         public void MessengerArrived()
         {
+            SyncMessengerHourlySpeed();
             foreach (var messenger in Messengers.ToList())
             {
-                if (IsTargetHeroAvailable(messenger.TargetHero))
+                if (IsTargetHeroAvailable(messenger.TargetHero) && !messenger.Arrived)
                     UpdateMessengerPosition(messenger);
 
-                if (messenger.DispatchTime.ElapsedDaysUntilNow >= Settings.Instance!.MessengerTravelTime || messenger.Arrived)
-                    if (MessengerArrived(messenger))
-                        break;
+                if (messenger.Arrived && MessengerArrived(messenger))
+                    break;
             }
+        }
+
+        private void SyncMessengerHourlySpeed(bool forceRecalculation = false)
+        {
+            if (!forceRecalculation && _cachedMessengerTravelTime == Settings.Instance!.MessengerTravelTime)
+                return;
+
+            MessengerHourlySpeed = Math.Max(Campaign.MapDiagonal / (CampaignTime.HoursInDay * Math.Max(Settings.Instance!.MessengerTravelTime, 0.5f) * 1.5f), MessengerHourlySpeedMin);
+            _cachedMessengerTravelTime = Settings.Instance!.MessengerTravelTime;
         }
 
         private static void UpdateMessengerPosition(Messenger messenger)
         {
+            if (messenger.DispatchTime.ElapsedDaysUntilNow >= Settings.Instance!.MessengerTravelTime)
+            {
+                messenger.Arrived = true;
+                return;
+            }
+
             var targetHeroLocationPoint = messenger.TargetHero.GetMapPoint();
 
             if (messenger.CurrentPosition.Equals(default(Vec2)) || targetHeroLocationPoint is null)
@@ -142,11 +152,11 @@ namespace Diplomacy.Messengers
             if (IsTargetHeroAvailableNow(messenger.TargetHero) && IsPlayerHeroAvailable())
             {
                 InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Arrived").ToString(),
-                    GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero, out var additionalExpenses).ToString(), additionalExpenses.CanPayCost(), true,
+                    GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero, out var additionalExpenses).ToString(), additionalExpenses?.CanPayCost() ?? true, true,
                     GameTexts.FindText("str_ok").ToString(), new TextObject("{=kMjfN2fB}Cancel Messenger").ToString(), delegate
                     {
                         _activeMessenger = messenger;
-                        int bribeValue = (int) additionalExpenses.Value;
+                        int bribeValue = (int) (additionalExpenses?.Value ?? 0f);
                         if (bribeValue > 0)
                             BribeGuardsAction.Apply(messenger.TargetHero.CurrentSettlement, bribeValue);
                         StartDialogue(messenger.TargetHero, messenger);
@@ -224,13 +234,21 @@ namespace Diplomacy.Messengers
             _currentMission.AddListener(this);
         }
 
-        private TextObject GetMessengerArrivedText(IFaction faction1, IFaction faction2, Hero targetHero, out GoldCost additionalExpenses)
+        private TextObject GetMessengerArrivedText(IFaction faction1, IFaction faction2, Hero targetHero, out GoldCost? additionalExpenses)
         {
             bool requiresBribing = false;
+            additionalExpenses = null;
+
             if ((targetHero.CurrentSettlement?.IsTown ?? false) && targetHero.IsLord && !targetHero.IsPrisoner)
             {
                 Campaign.Current.Models.SettlementAccessModel.CanMainHeroEnterLordsHall(targetHero.CurrentSettlement, out var accessDetails);
                 requiresBribing = (accessDetails.AccessLevel == SettlementAccessModel.AccessLevel.NoAccess || accessDetails.AccessLevel == SettlementAccessModel.AccessLevel.LimitedAccess);
+
+                if (requiresBribing)
+                {
+                    var model = (Campaign.Current.Models.BribeCalculationModel as DefaultBribeCalculationModel);
+                    additionalExpenses = new(Hero.MainHero, null, deGetBribeInternal!(model ?? new DefaultBribeCalculationModel(), targetHero.CurrentSettlement!));
+                }
             }
 
             var textObject = new TextObject("{=YnRmSele}The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}");
@@ -241,24 +259,17 @@ namespace Diplomacy.Messengers
                 ["FACTION2_NAME"] = faction2?.Name ?? TextObject.Empty
             });
             TextObject bribeTextObject;
-            if (requiresBribing)
+            if (requiresBribing && additionalExpenses?.Value > 0)
             {
                 bribeTextObject = new("{=sQxAljGF}{NEW_LINE} {NEW_LINE}Unfortunately, the messenger is denied access to the keep, but can try to bribe the guards. It would cost {?IS_FEMALE}her{?}him{\\?} {GOLD_COST}{GOLD_ICON} and you will have to cover the expenses{?CAN_AFFORD}.{?}, which you can't afford at the moment.{\\?}");
                 bribeTextObject.SetTextVariable("NEW_LINE", Environment.NewLine);
                 bribeTextObject.SetTextVariable("IS_FEMALE", Hero.MainHero.IsFemale ? 1 : 0);
-
-                var model = (Campaign.Current.Models.BribeCalculationModel as DefaultBribeCalculationModel);
-                additionalExpenses = new(Hero.MainHero, null, deGetBribeInternal!(model ?? new DefaultBribeCalculationModel(), targetHero.CurrentSettlement!));
-
                 bribeTextObject.SetTextVariable("GOLD_COST", (int) additionalExpenses.Value);
                 bribeTextObject.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
                 bribeTextObject.SetTextVariable("CAN_AFFORD", additionalExpenses.CanPayCost() ? 1 : 0);
             }
             else
-            {
                 bribeTextObject = TextObject.Empty;
-                additionalExpenses = new(Hero.MainHero, null, 0);
-            }
 
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             textObject.SetTextVariable("ADDRESSEE_TEXT", addressee.ToString());
@@ -288,21 +299,75 @@ namespace Diplomacy.Messengers
             SendMessenger(targetHero);
         }
 
-        public static bool IsTargetHeroAvailable(Hero opposingLeader)
+        public static bool IsTargetHeroAvailable(Hero targetHero)
         {
-            var available = opposingLeader.IsActive || opposingLeader.IsWanderer && opposingLeader.HeroState == Hero.CharacterStates.NotSpawned;
-            return available && !opposingLeader.IsHumanPlayerCharacter;
+            var available = targetHero.IsActive || targetHero.IsWanderer && targetHero.HeroState == Hero.CharacterStates.NotSpawned;
+            return available && !targetHero.IsHumanPlayerCharacter;
         }
 
-        public static bool IsTargetHeroAvailableNow(Hero opposingLeader)
+        public static bool IsTargetHeroAvailable(Hero targetHero, out TextObject exception)
         {
-            return IsTargetHeroAvailable(opposingLeader) && opposingLeader.PartyBelongedTo?.MapEvent == null;
+            var available = targetHero.IsActive || targetHero.IsWanderer && targetHero.HeroState == Hero.CharacterStates.NotSpawned;
+            if (!available)
+            {
+                exception = new("{=bLR91Eob}{REASON}The messenger won't be able to reach the addressee.");
+
+                TextObject reason;
+                if (targetHero.IsDead)
+                    reason = new("{=vhsHDMil}{HERO_NAME} is dead. ", new() { ["HERO_NAME"] = targetHero.Name });
+                else if (targetHero.IsPrisoner)
+                    reason = new("{=CusN2JMb}{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\\?} {DETENTION_PLACE}. ", new()
+                    {
+                        ["HERO_NAME"] = targetHero.Name,
+                        ["IS_MOBILE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? 0 : 1,
+                        ["DETENTION_PLACE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? targetHero.PartyBelongedToAsPrisoner.Settlement.Name : targetHero.PartyBelongedToAsPrisoner.LeaderHero.Name
+                    });
+                else if (targetHero.IsFugitive)
+                    reason = new("{=1BISlFYx}{HERO_NAME} is fugitive and doesn't want to be found. ", new() { ["HERO_NAME"] = targetHero.Name });
+                else if (targetHero.IsReleased)
+                    reason = new("{=ze8KJ1oL}{HERO_NAME} has just been released from custody and is not yet ready to make appointments. ", new() { ["HERO_NAME"] = targetHero.Name });
+                else if (targetHero.IsTraveling)
+                    reason = new("{=N5T6IXWJ}{HERO_NAME} is traveling incognito. ", new() { ["HERO_NAME"] = targetHero.Name });
+                else if (targetHero.IsChild)
+                    reason = new("{=3lknR86H}{HERO_NAME} is too inexperienced to participate in formal meetings. ", new() { ["HERO_NAME"] = targetHero.Name });
+                else
+                    reason = TextObject.Empty;
+
+                exception.SetTextVariable("REASON", reason);
+                return false;
+            }
+
+            if (targetHero.IsHumanPlayerCharacter)
+            {
+                exception = new("{=hPra5uwZ}The messenger either does not understand or does not like your joke and refuses the task.");
+                return false;
+            }
+
+            exception = TextObject.Empty;
+            return true;
         }
 
-        public static bool CanSendMessengerWithCost(Hero opposingLeader, DiplomacyCost diplomacyCost)
+        public static bool IsTargetHeroAvailableNow(Hero targetHero)
+        {
+            return IsTargetHeroAvailable(targetHero) && targetHero.PartyBelongedTo?.MapEvent == null;
+        }
+
+        public static bool CanSendMessengerWithCost(Hero targetHero, DiplomacyCost diplomacyCost)
         {
             var canPayCost = diplomacyCost.CanPayCost();
-            return canPayCost && IsTargetHeroAvailable(opposingLeader);
+            return canPayCost && IsTargetHeroAvailable(targetHero);
+        }
+
+        public static bool CanSendMessengerWithCost(Hero targetHero, DiplomacyCost diplomacyCost, out TextObject exception)
+        {
+            var canPayCost = diplomacyCost.CanPayCost();
+            if (!canPayCost)
+            {
+                exception = new("{=IWZ91JVk}Not enough gold!");
+                return false;
+            }
+            
+            return IsTargetHeroAvailable(targetHero, out exception);
         }
 
         private void CleanUpSettlementEncounter(float obj)
@@ -329,7 +394,7 @@ namespace Diplomacy.Messengers
                 PlayerEncounter.Finish();
             }
             //Recalculate speed
-            MessengerHourlySpeed = Math.Max(Campaign.MapDiagonal / (CampaignTime.HoursInDay * Math.Max(Settings.Instance!.MessengerTravelTime, 0.5f)), MessengerHourlySpeedMin);
+            SyncMessengerHourlySpeed(true);
             //Remove from listeners
             RemoveThisFromListeners();
         }

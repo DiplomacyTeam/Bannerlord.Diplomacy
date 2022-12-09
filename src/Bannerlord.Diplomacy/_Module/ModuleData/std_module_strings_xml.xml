@@ -23,6 +23,16 @@
     <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\?}" />
     <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Unfortunately, the messenger is denied access to the keep, but can try to bribe the guards. It would cost {?IS_FEMALE}her{?}him{\?} {GOLD_COST}{GOLD_ICON} and you will have to cover the expenses{?CAN_AFFORD}.{?}, which you can't afford at the moment.{\?}" />
 
+    <string id="bLR91Eob" text="{REASON}The messenger won't be able to reach the addressee." />
+    <string id="hPra5uwZ" text="The messenger either does not understand or does not like your joke and refuses the task." />
+
+    <string id="vhsHDMil" text="{HERO_NAME} is dead. " />
+    <string id="CusN2JMb" text="{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\\?} {DETENTION_PLACE}. " />
+    <string id="1BISlFYx" text="{HERO_NAME} is fugitive and doesn't want to be found. " />
+    <string id="ze8KJ1oL" text="{HERO_NAME} has just been released from custody and is not yet ready to make appointments. " />
+    <string id="N5T6IXWJ" text="{HERO_NAME} is traveling incognito. " />
+    <string id="3lknR86H" text="{HERO_NAME} is too inexperienced to participate in formal meetings. " />
+
     <string id="t0ZS9maD" text="{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}." />
     <string id="ZrwszZww" text=" They are willing to pay war reparations of {DENARS} denars." />
 
