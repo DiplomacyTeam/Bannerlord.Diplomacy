@@ -9,8 +9,9 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2
 * Messengers now use correct the scene for the conversation.
 * Messengers can no longer freely access highborn locations unless you can.
 * The speed of Messengers now depends on the maximum arrival time.
-* Added an explanation for why some people may not be available to send messengers to.
+* Added an explanation for why some characters may not be available to send Messengers to.
 * Made some adjustments to setting hints related to Messengers to make them clearer.
+* Added a separate option to show/hide war exhaustion indicator on the campaign map.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.16
 Game Versions: v1.0.0,v1.0.1

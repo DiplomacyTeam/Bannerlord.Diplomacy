@@ -25,6 +25,9 @@ namespace Diplomacy
 
         private const string HeadingCivilWar = "{=eDZeFUTH}Civil Wars";
 
+
+        private bool _enableWarExhaustionCampaignMapWidget = true;
+
         public override string Id => "DiplomacySettings_1";
         public override string DisplayName => new TextObject("{=MYz8nKqq}Diplomacy").ToString();
         public override string FolderName => "Diplomacy";
@@ -98,6 +101,21 @@ namespace Diplomacy
         [SettingPropertyFloatingInteger("{=eWVGwf2m}War Exhaustion Per Raid", 0f, 50f, RequireRestart = false, HintText = "{=ufHDJt8H}The amount of war exhaustion added when a faction's village is raided. Default value is 3.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerRaid { get; set; } = 3f;
+
+        [SettingPropertyBool("{=F4iFH6un}Campaign Map Widget", Order = 99, RequireRestart = false, HintText = "{=zTvbZ8Br}Enables a dedicated war exhaustion widget for each ongoing war at the top of the campaign map screen. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public bool EnableWarExhaustionCampaignMapWidget
+        {
+            get => _enableWarExhaustionCampaignMapWidget;
+            set
+            {
+                if (_enableWarExhaustionCampaignMapWidget != value)
+                {
+                    _enableWarExhaustionCampaignMapWidget = value;
+                    OnPropertyChanged(nameof(EnableWarExhaustionCampaignMapWidget));
+                }
+            }
+        }
 
         [SettingPropertyBool("{=jI9NSxtz}Enable Player War Exhaustion Debug Messages", Order = 100, RequireRestart = false, HintText = "{=LYyNbQds}Enables debug messages for war exhaustion added to the player kingdom. Default value is false.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]

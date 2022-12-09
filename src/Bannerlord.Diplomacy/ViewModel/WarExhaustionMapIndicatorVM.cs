@@ -20,6 +20,7 @@ namespace Diplomacy.ViewModel
             CampaignEvents.MakePeace.AddNonSerializedListener(this, HandleStanceChange);
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, _, _, _, _) => HandleClanChangedKingdom(x));
             Events.WarExhaustionAdded.AddNonSerializedListener(this, HandleWarExhaustionChange);
+            Settings.Instance!.PropertyChanged += Settings_PropertyChanged;
         }
 
         private void HandleClanChangedKingdom(Clan clan)
@@ -64,10 +65,20 @@ namespace Diplomacy.ViewModel
         public override void RefreshValues()
         {
             KingdomsAtWar.Clear();
+            if (!Settings.Instance!.EnableWarExhaustionCampaignMapWidget)
+                return;
 
             if (Clan.PlayerClan.MapFaction is Kingdom playerKingdom)
                 foreach (var enemyKingdom in FactionManager.GetEnemyKingdoms(playerKingdom))
                     KingdomsAtWar.Add(new WarExhaustionMapIndicatorItemVM(enemyKingdom));
+        }
+
+        private void Settings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Settings.Instance.EnableWarExhaustionCampaignMapWidget))
+            {                
+                RefreshValues();
+            }
         }
     }
 }
