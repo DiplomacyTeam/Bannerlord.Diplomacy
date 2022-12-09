@@ -1,31 +1,34 @@
 ﻿using Diplomacy.Costs;
 
+using HarmonyLib.BUTR.Extensions;
+
 using JetBrains.Annotations;
 
+using SandBox.Missions.MissionLogics.Arena;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.GameState;
+using TaleWorlds.CampaignSystem.Map;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.SaveSystem;
-using TaleWorlds.CampaignSystem.Map;
-using System;
-using TaleWorlds.CampaignSystem.ComponentInterfaces;
+
 using static Bannerlord.ButterLib.Common.Helpers.LocalizationHelper;
-using TaleWorlds.CampaignSystem.GameComponents;
-using HarmonyLib.BUTR.Extensions;
-using SandBox.Missions.MissionLogics.Arena;
-using TaleWorlds.CampaignSystem.CharacterDevelopment;
 
 namespace Diplomacy.Messengers
 {
@@ -62,7 +65,7 @@ namespace Diplomacy.Messengers
 
             _currentMission!.RemoveListener(this);
             _currentMission = null;
-            
+
             CampaignEvents.TickEvent.AddNonSerializedListener(this, CleanUpSettlementEncounter);
         }
 
@@ -232,10 +235,10 @@ namespace Diplomacy.Messengers
 
             var textObject = new TextObject("{=YnRmSele}The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}");
             TextObject addressee = new("{=vGyBQeEk}{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\\?}", new()
-                {
-                    ["HERO_NAME"] = targetHero.Name,
-                    ["HAS_FACTION"] = new TextObject(faction2 != null ? 1 : 0),
-                    ["FACTION2_NAME"] = faction2?.Name ?? TextObject.Empty
+            {
+                ["HERO_NAME"] = targetHero.Name,
+                ["HAS_FACTION"] = new TextObject(faction2 != null ? 1 : 0),
+                ["FACTION2_NAME"] = faction2?.Name ?? TextObject.Empty
             });
             TextObject bribeTextObject;
             if (requiresBribing)
@@ -308,7 +311,7 @@ namespace Diplomacy.Messengers
 
             if (_position2D != Vec2.Invalid)
             {
-                MobileParty.MainParty.Position2D = _position2D;                
+                MobileParty.MainParty.Position2D = _position2D;
             }
             _position2D = Vec2.Invalid;
 
