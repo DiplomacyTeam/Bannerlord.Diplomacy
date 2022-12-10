@@ -366,7 +366,7 @@ namespace Diplomacy.Messengers
                 exception = new("{=IWZ91JVk}Not enough gold!");
                 return false;
             }
-            
+
             return IsTargetHeroAvailable(targetHero, out exception);
         }
 

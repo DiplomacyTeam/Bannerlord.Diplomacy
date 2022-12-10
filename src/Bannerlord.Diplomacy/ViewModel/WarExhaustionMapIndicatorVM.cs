@@ -76,7 +76,7 @@ namespace Diplomacy.ViewModel
         private void Settings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Settings.Instance.EnableWarExhaustionCampaignMapWidget))
-            {                
+            {
                 RefreshValues();
             }
         }
