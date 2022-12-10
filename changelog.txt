@@ -12,6 +12,7 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2
 * Added an explanation for why some characters may not be available to send Messengers to.
 * Made some adjustments to setting hints related to Messengers to make them clearer.
 * Added a separate option to show/hide war exhaustion indicator on the campaign map.
+* Fixed an issue where the detailed war exhaustion report would sometimes have odd formatting.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.16
 Game Versions: v1.0.0,v1.0.1

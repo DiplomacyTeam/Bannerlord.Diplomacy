@@ -230,7 +230,7 @@ namespace Diplomacy
             {
                 Type = WarExhaustionType.Daily,
                 ValueFaction1 = valueFaction1,
-                ValueFaction2 = valueFaction2,
+                ValueFaction2 = valueFaction1,
                 WarExhaustionValueFaction1 = valueFaction1 * Settings.Instance!.WarExhaustionPerDay,
                 WarExhaustionValueFaction2 = valueFaction1 * Settings.Instance!.WarExhaustionPerDay
             });
