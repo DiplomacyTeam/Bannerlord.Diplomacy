@@ -14,8 +14,6 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ScreenSystem;
 
-
-
 namespace Diplomacy.ViewModelMixin
 {
     [ViewModelMixin(nameof(EncyclopediaHeroPageVM.RefreshValues))]

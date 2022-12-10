@@ -25,7 +25,6 @@ namespace Diplomacy
 
         private const string HeadingCivilWar = "{=eDZeFUTH}Civil Wars";
 
-
         private bool _enableWarExhaustionCampaignMapWidget = true;
 
         public override string Id => "DiplomacySettings_1";
