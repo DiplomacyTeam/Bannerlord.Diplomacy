@@ -1,8 +1,5 @@
-﻿using Diplomacy.CivilWar;
-using Diplomacy.DiplomaticAction.Alliance;
-using Diplomacy.DiplomaticAction.NonAggressionPact;
+﻿using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.Event;
-using Diplomacy.Extensions;
 
 using Microsoft.Extensions.Logging;
 
@@ -38,18 +35,7 @@ namespace Diplomacy.CampaignBehaviors
         {
             if (faction1 is Kingdom kingdom1 && faction2 is Kingdom kingdom2)
             {
-                LogFactory.Get<CooldownBehavior>()
-                    .LogTrace($"[{CampaignTime.Now}] {kingdom1.Name} got a war declaration cooldown with {kingdom2.Name}.");
-
-                // if loser is rebel kingdom or winner is rebel kingdom and is now dissolved
-                if (kingdom1.IsRebelKingdom() || (kingdom2.IsRebelKingdom() && RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom2)))
-                    return;
-
-                FormNonAggressionPactAction.Apply(kingdom1,
-                                                  kingdom2,
-                                                  bypassCosts: true,
-                                                  customDurationInDays: Settings.Instance!.DeclareWarCooldownInDays,
-                                                  queryPlayer: false);
+                LogFactory.Get<CooldownBehavior>().LogTrace($"[{CampaignTime.Now}] {kingdom1.Name} got a war declaration cooldown with {kingdom2.Name}.");
             }
         }
 

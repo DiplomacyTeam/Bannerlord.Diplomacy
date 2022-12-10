@@ -13,6 +13,8 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2
 * Made some adjustments to setting hints related to Messengers to make them clearer.
 * Added a separate option to show/hide war exhaustion indicator on the campaign map.
 * Fixed an issue where the detailed war exhaustion report would sometimes have odd formatting.
+* Peace treaties no longer force NAPs, but the war cooldowns are intact.
+* Adjusted the cost of declaring war and making peace without holding elections.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.16
 Game Versions: v1.0.0,v1.0.1
