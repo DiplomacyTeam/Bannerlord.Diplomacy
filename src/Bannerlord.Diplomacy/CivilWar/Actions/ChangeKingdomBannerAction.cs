@@ -4,48 +4,69 @@ using ColorMine.ColorSpaces.Comparisons;
 using Diplomacy.Event;
 using Diplomacy.Extensions;
 
-using HarmonyLib;
+using HarmonyLib.BUTR.Extensions;
 
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 
 namespace Diplomacy.CivilWar.Actions
 {
     public class ChangeKingdomBannerAction
     {
-        private static readonly PropertyInfo PrimaryBannerColorProp = AccessTools.Property(typeof(Kingdom), "PrimaryBannerColor");
-        private static readonly PropertyInfo SecondaryBannerColorProp = AccessTools.Property(typeof(Kingdom), "SecondaryBannerColor");
-        private static readonly PropertyInfo PrimaryColorProp = AccessTools.Property(typeof(Kingdom), "Color");
-        private static readonly PropertyInfo SecondaryColorProp = AccessTools.Property(typeof(Kingdom), "Color2");
-        private static readonly MethodInfo UpdateBannerColorsAccordingToKingdom = AccessTools.Method(typeof(Clan), "UpdateBannerColorsAccordingToKingdom");
+        private delegate uint GetPrimaryBannerColorDelegate(Kingdom instance);
+        private delegate void SetPrimaryBannerColorDelegate(Kingdom instance, uint value);
+
+        private delegate uint GetSecondaryBannerColorDelegate(Kingdom instance);
+        private delegate void SetSecondaryBannerColorDelegate(Kingdom instance, uint value);
+
+        private delegate void SetColorDelegate(Kingdom instance, uint value);
+
+        private delegate void SetColor2Delegate(Kingdom instance, uint value);
+
+        private delegate void UpdateBannerColorsAccordingToKingdomDelegate(Clan instance);
+
+        private static readonly GetPrimaryBannerColorDelegate? GetPrimaryBannerColor =
+            AccessTools2.GetPropertyGetterDelegate<GetPrimaryBannerColorDelegate>(typeof(Kingdom), "PrimaryBannerColor");
+        private static readonly SetPrimaryBannerColorDelegate? SetPrimaryBannerColor =
+            AccessTools2.GetPropertySetterDelegate<SetPrimaryBannerColorDelegate>(typeof(Kingdom), "PrimaryBannerColor");
+
+        private static readonly GetSecondaryBannerColorDelegate? GetSecondaryBannerColor =
+            AccessTools2.GetPropertyGetterDelegate<GetSecondaryBannerColorDelegate>(typeof(Kingdom), "SecondaryBannerColor");
+        private static readonly SetSecondaryBannerColorDelegate? SetSecondaryBannerColor =
+            AccessTools2.GetPropertySetterDelegate<SetSecondaryBannerColorDelegate>(typeof(Kingdom), "SecondaryBannerColor");
+
+        private static readonly SetColorDelegate? SetPrimaryColor =
+            AccessTools2.GetPropertySetterDelegate<SetColorDelegate>(typeof(Kingdom), "Color");
+        private static readonly SetColor2Delegate? SetSecondaryColor =
+            AccessTools2.GetPropertySetterDelegate<SetColor2Delegate>(typeof(Kingdom), "Color2");
+
+        private static readonly UpdateBannerColorsAccordingToKingdomDelegate? UpdateBannerColorsAccordingToKingdom =
+            AccessTools2.GetDelegate<UpdateBannerColorsAccordingToKingdomDelegate>(typeof(Clan), "UpdateBannerColorsAccordingToKingdom");
 
         public static void Apply(Kingdom kingdom, uint backgroundColor, uint sigilColor)
         {
-            PrimaryBannerColorProp.SetValue(kingdom, backgroundColor);
-            SecondaryBannerColorProp.SetValue(kingdom, sigilColor);
-            PrimaryColorProp.SetValue(kingdom, backgroundColor);
-            SecondaryColorProp.SetValue(kingdom, sigilColor);
+            SetPrimaryBannerColor?.Invoke(kingdom, backgroundColor);
+            SetSecondaryBannerColor?.Invoke(kingdom, sigilColor);
+            SetPrimaryColor?.Invoke(kingdom, backgroundColor);
+            SetSecondaryColor?.Invoke(kingdom, sigilColor);
 
-            foreach (Clan clan in kingdom.Clans)
+            foreach (var clan in kingdom.Clans)
             {
-                UpdateBannerColorsAccordingToKingdom.Invoke(clan, null);
+                UpdateBannerColorsAccordingToKingdom?.Invoke(clan);
             }
 
-            foreach (MobileParty mobileParty in MobileParty.All)
+            foreach (var mobileParty in MobileParty.All)
             {
-                Hero? owner = mobileParty.Party?.Owner;
+                var owner = mobileParty.Party?.Owner;
 
-                Kingdom? clanKingdom = owner?.Clan?.Kingdom;
+                var clanKingdom = owner?.Clan?.Kingdom;
 
                 if (clanKingdom == kingdom)
                 {
-                    IPartyVisual visuals = mobileParty.Party!.Visuals;
+                    var visuals = mobileParty.Party!.Visuals;
                     if (visuals != null)
                     {
                         visuals.SetMapIconAsDirty();
@@ -53,9 +74,9 @@ namespace Diplomacy.CivilWar.Actions
                 }
             }
 
-            foreach (Settlement settlement in kingdom.Settlements)
+            foreach (var settlement in kingdom.Settlements)
             {
-                IPartyVisual visuals = settlement.Party.Visuals;
+                var visuals = settlement.Party.Visuals;
                 if (visuals != null)
                 {
                     visuals.SetMapIconAsDirty();
@@ -95,7 +116,7 @@ namespace Diplomacy.CivilWar.Actions
             else
             {
                 // choose random unused color from the palette
-                List<uint> currentBackgroundColors = KingdomExtensions.AllActiveKingdoms.Where(x => !x.IsEliminated).Select(x => (uint) PrimaryBannerColorProp.GetValue(x)).ToList();
+                var currentBackgroundColors = KingdomExtensions.AllActiveKingdoms.Where(x => !x.IsEliminated).Select(x => GetPrimaryBannerColor?.Invoke(x)).ToList();
                 backgroundColor = BannerManager.ColorPalette.Where(x => !currentBackgroundColors.Contains(x.Value.Color)).GetRandomElementInefficiently().Value.Color;
                 sigilColor = GetUniqueSigilColor(backgroundColor);
             }
@@ -105,12 +126,12 @@ namespace Diplomacy.CivilWar.Actions
 
         private static uint GetUniqueSigilColor(uint backgroundColor)
         {
-            Rgb background = GetRgb(backgroundColor);
+            var background = GetRgb(backgroundColor);
 
-            uint selectedColor = BannerManager.ColorPalette.Where(x => background.Compare(GetRgb(x.Value.Color), new Cie1976Comparison()) > 40).GetRandomElementInefficiently().Value.Color;
+            var selectedColor = BannerManager.ColorPalette.Where(x => background.Compare(GetRgb(x.Value.Color), new Cie1976Comparison()) > 40).GetRandomElementInefficiently().Value.Color;
             if (backgroundColor == RebelBackgroundColor)
             {
-                List<uint> currentSigilColors = KingdomExtensions.AllActiveKingdoms.Where(x => !x.IsEliminated && x.IsRebelKingdom()).Select(x => (uint) SecondaryBannerColorProp.GetValue(x)).ToList();
+                var currentSigilColors = KingdomExtensions.AllActiveKingdoms.Where(x => !x.IsEliminated && x.IsRebelKingdom()).Select(x => GetSecondaryBannerColor?.Invoke(x)).ToList();
                 var colors = BannerManager.ColorPalette.Select(x => x.Value.Color)
                     .Where(x => background.Compare(GetRgb(x), new Cie1976Comparison()) > 40)
                     .Where(x => !currentSigilColors.Contains(x))
@@ -127,7 +148,7 @@ namespace Diplomacy.CivilWar.Actions
 
         private static Rgb GetRgb(uint color)
         {
-            string hex = color.ToHexadecimalString();
+            var hex = color.ToHexadecimalString();
             hex = hex.Substring(2);
             var rgb = new Hex(hex).To<Rgb>();
             return rgb;

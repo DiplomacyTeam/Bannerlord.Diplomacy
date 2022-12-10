@@ -2,7 +2,7 @@
   <Constants>
   </Constants>
   <Window>
-    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" IsVisible="@ShowOverview" MarginTop="20">
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" IsVisible="@ShowOverview" MarginTop="20" MarginRight="42">
       <Children>
         <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
           <Children>

@@ -14,7 +14,7 @@ namespace Diplomacy.Event
         private readonly MbEvent<AllianceEvent> _allianceFormed = new();
         private readonly MbEvent<Town> _fiefGranted = new();
         private readonly MbEvent<Kingdom> _kingdomBannerChanged = new();
-        private readonly List<object> _listeners;
+        private readonly List<IMbEventBase> _listeners;
 
         private readonly MbEvent<Hero> _messengerSent = new();
         private readonly MbEvent<Kingdom> _peaceProposalSent = new();
@@ -25,7 +25,7 @@ namespace Diplomacy.Event
         public Events()
         {
             Instance = this;
-            _listeners = new List<object>
+            _listeners = new List<IMbEventBase>
             {
                 _allianceBroken,
                 _allianceFormed,
@@ -111,7 +111,7 @@ namespace Diplomacy.Event
 
         private void RemoveListenersInternal(object obj)
         {
-            foreach (dynamic listener in _listeners)
+            foreach (var listener in _listeners)
                 listener.ClearListeners(obj);
         }
     }

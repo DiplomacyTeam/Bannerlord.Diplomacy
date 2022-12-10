@@ -9,6 +9,7 @@ using Diplomacy.Messengers;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ScreenSystem;
@@ -16,10 +17,11 @@ using TaleWorlds.ScreenSystem;
 namespace Diplomacy.ViewModelMixin
 {
     [ViewModelMixin(nameof(EncyclopediaHeroPageVM.RefreshValues))]
-    class EncyclopediaHeroPageVMMixin : BaseViewModelMixin<EncyclopediaHeroPageVM>
+    internal sealed class EncyclopediaHeroPageVMMixin : BaseViewModelMixin<EncyclopediaHeroPageVM>
     {
         private bool _isMessengerAvailable;
         private bool _canGrantFief;
+        private HintViewModel? _sendMessengerHint;
         private readonly Hero _hero;
         private readonly DiplomacyCost _sendMessengerCost;
         private readonly GrantFiefInterface _grantFiefInterface;
@@ -71,43 +73,25 @@ namespace Diplomacy.ViewModelMixin
         }
 
         [DataSourceProperty]
-        public bool CanGrantFief
-        {
-            get => _canGrantFief;
-            set
-            {
-                if (value != _canGrantFief)
-                {
-                    _canGrantFief = value;
-                    ViewModel?.OnPropertyChanged(nameof(CanGrantFief));
-                }
-            }
-        }
+        public bool CanGrantFief { get => _canGrantFief; set => SetField(ref _canGrantFief, value, nameof(CanGrantFief)); }
 
         [DataSourceProperty]
         public int SendMessengerCost { get; }
 
         [DataSourceProperty]
-        public bool IsMessengerAvailable
-        {
-            get => _isMessengerAvailable;
-            set
-            {
-                if (value != _isMessengerAvailable)
-                {
-                    _isMessengerAvailable = value;
-                    ViewModel?.OnPropertyChanged(nameof(IsMessengerAvailable));
-                }
-            }
-        }
+        public bool IsMessengerAvailable { get => _isMessengerAvailable; set => SetField(ref _isMessengerAvailable, value, nameof(IsMessengerAvailable)); }
 
         private void UpdateIsMessengerAvailable()
         {
-            IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(_hero, _sendMessengerCost);
+            IsMessengerAvailable = MessengerManager.CanSendMessengerWithCost(_hero, _sendMessengerCost, out var exception);
+            SendMessengerHint = !IsMessengerAvailable ? Compat.HintViewModel.Create(exception) : new HintViewModel();
         }
 
         [DataSourceProperty]
         public string SendMessengerActionName { get; }
+
+        [DataSourceProperty]
+        public HintViewModel? SendMessengerHint { get => _sendMessengerHint; set => SetField(ref _sendMessengerHint, value, nameof(SendMessengerHint)); }
 
         [DataSourceProperty]
         public string GrantFiefActionName { get; }

@@ -48,7 +48,7 @@ namespace Diplomacy.DiplomaticAction
             }
             else
             {
-                Instance!.Agreements[factionMapping] = new List<DiplomaticAgreement>() { diplomaticAgreement };
+                Instance!.Agreements[factionMapping] = new List<DiplomaticAgreement> { diplomaticAgreement };
             }
         }
         public void Sync()

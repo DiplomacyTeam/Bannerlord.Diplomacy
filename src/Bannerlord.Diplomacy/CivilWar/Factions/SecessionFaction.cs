@@ -26,12 +26,12 @@ namespace Diplomacy.CivilWar.Factions
         protected override void ApplyDemand()
         {
             var kingdomName = FactionNameGenerator.GenerateKingdomName(this);
-            Kingdom newKingdom = this.RebelKingdom!;
+            var newKingdom = RebelKingdom!;
             newKingdom.ChangeKingdomName(kingdomName, kingdomName);
 
             var strVars = new Dictionary<string, object>
             {
-                {"PARENT_KINGDOM", this.ParentKingdom.Name},
+                {"PARENT_KINGDOM", ParentKingdom.Name},
                 {"KINGDOM", newKingdom.Name},
                 {"PLAYER_PARTICIPATION", GetPlayerParticipationText(true)}
             };

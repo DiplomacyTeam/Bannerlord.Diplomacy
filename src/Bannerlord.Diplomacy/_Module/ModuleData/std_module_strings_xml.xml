@@ -10,14 +10,29 @@
     <string id="TS1iV2pO" text="Not enough influence!" />
     <string id="XQFxDr11" text="There is an active quest preventing it!" />
     <string id="ONNcmltF" text="This war hasn't gone on long enough to consider peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
+    <string id="GuPOCNNZ" text="The truce was concluded too recently to consider breaking it now.! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
 
     <string id="v0cDMIcl" text="Cannot declare war on this kingdom. " />
     <string id="Pqk3WuGz" text="Cannot make peace with this kingdom. " />
     <string id="zv12jjyW" text="Messenger Sent" />
     <string id="uy86VZX2" text="Messenger Arrived" />
 
-    <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {HERO_NAME} of {FACTION2_NAME}." />
-    <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at {HERO_NAME} of {FACTION2_NAME} within {TRAVEL_TIME} days." />
+
+    <string id="JmgAuONd" text="Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
+    <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}" />
+    <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days." />
+    <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\?}" />
+    <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Unfortunately, the messenger is denied access to the keep, but can try to bribe the guards. It would cost {?IS_FEMALE}her{?}him{\?} {GOLD_COST}{GOLD_ICON} and you will have to cover the expenses{?CAN_AFFORD}.{?}, which you can't afford at the moment.{\?}" />
+
+    <string id="bLR91Eob" text="{REASON}The messenger won't be able to reach the addressee." />
+    <string id="hPra5uwZ" text="The messenger either does not understand or does not like your joke and refuses the task." />
+
+    <string id="vhsHDMil" text="{HERO_NAME} is dead. " />
+    <string id="CusN2JMb" text="{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\\?} {DETENTION_PLACE}. " />
+    <string id="1BISlFYx" text="{HERO_NAME} is fugitive and doesn't want to be found. " />
+    <string id="ze8KJ1oL" text="{HERO_NAME} has just been released from custody and is not yet ready to make appointments. " />
+    <string id="N5T6IXWJ" text="{HERO_NAME} is traveling incognito. " />
+    <string id="3lknR86H" text="{HERO_NAME} is too inexperienced to participate in formal meetings. " />
 
     <string id="t0ZS9maD" text="{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}." />
     <string id="ZrwszZww" text=" They are willing to pay war reparations of {DENARS} denars." />
@@ -186,36 +201,40 @@
 
     <string id="BazjeCZw" text="Influence Costs/Flat" />
     <string id="OnTeAgin" text="Flat Declare War Influence Cost" />
-    <string id="O5XvybTI" text="Influence cost for declaring war on another kingdom. Default value is 100." />
+    <string id="O5XvybTI" text="Influence cost for declaring war on another kingdom. Default value is 500." />
     <string id="iNsXQD2q" text="Flat Make Peace Influence Cost" />
-    <string id="WB5zdvdT" text="Influence cost for making peace with another kingdom. Default value is 100." />
+    <string id="WB5zdvdT" text="Influence cost for making peace with another kingdom. Default value is 500." />
 
     <string id="nueOs6m9" text="Messengers" />
     <string id="nMwWHj4h" text="Send Messenger Gold Cost" />
     <string id="ehMf7xvE" text="Gold cost for sending a messenger to another character. Default value is 100." />
 
     <string id="nnXi6MmH" text="Messenger Travel Time in Days" />
-    <string id="zkvCGLuK" text="The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3." />
+    <string id="zkvCGLuK" text="The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3." />
 
 
     <string id="V542tneW" text="War Exhaustion" />
     <string id="lSttctYC" text="Enable War Exhaustion" />
     <string id="Cxyn9ROT" text="If disabled, this disables the war exhaustion mechanic. Default value is enabled." />
     <string id="8TFQWL55" text="War Exhaustion Per Day" />
-    <string id="lgza5wDq" text="The amount of war exhaustion added per day a war is ongoing. Default value is 1.0." />
+    <string id="lgza5wDq" text="The amount of war exhaustion added per day a war is ongoing. Default value is 0.25." />
     <string id="s6dNpM6M" text="War Exhaustion Per Casualty" />
     <string id="NcJtGeM7" text="The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.01." />
     <string id="gGIaLKHk" text="War Exhaustion Per Siege" />
     <string id="mCEa773h" text="The amount of war exhaustion added when a faction loses a city. Default value is 10.0." />
+    <string id="eWVGwf2m" text="War Exhaustion Per Raid" />
+    <string id="ufHDJt8H" text="The amount of war exhaustion added when a faction's village is raided. Default value is 3.0." />
+    <string id="F4iFH6un" text="Campaign Map Widget" />
+    <string id="zTvbZ8Br" text="Enables a dedicated war exhaustion widget for each ongoing war at the top of the campaign map screen. Default value is enabled." />
     <string id="jI9NSxtz" text="Enable Player War Exhaustion Debug Messages" />
     <string id="LYyNbQds" text="Enables debug messages for war exhaustion added to the player kingdom. Default value is false."/>
 
+    <!--
     <string id="Bh7vme9y" text="Max War Exhaustion" />
     <string id="6Ij1WEWz" text="The amount of war exhaustion that forces a faction to propose peace. Default value is 100.0." />
-    <string id="eWVGwf2m" text="War Exhaustion Per Raid" />
-    <string id="ufHDJt8H" text="The amount of war exhaustion added when a faction's village is raided. Default value is 3.0." />
     <string id="Fyion5Hw" text="War Exhaustion Decay per Day" />
     <string id="o99AUWR8" text="The amount of war exhaustion decay per day the factions are at peace. Default value is 2.0." />
+    -->
 
     <string id="Ckd1Lsoa" text="Gold Costs" />
     <string id="HFtZsD6v" text="Scaling War Reparations Gold Cost Multiplier" />

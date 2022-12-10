@@ -24,6 +24,7 @@
             </Widget>
           </Children>
         </ButtonWidget>
+        <HintWidget DataSource="{SendMessengerHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
       </Children>
     </ListPanel>
   </Window>

@@ -27,7 +27,7 @@ namespace Diplomacy.Patches
 
             if (Settings.Instance!.EnableCorruption)
             {
-                float corruption = clan.GetCorruption();
+                var corruption = clan.GetCorruption();
 
                 if (corruption >= 0.01f)
                     __result.Add(-corruption, _TCorruption);
@@ -37,8 +37,8 @@ namespace Diplomacy.Patches
 
             if (Settings.Instance!.EnableInfluenceDecay && clan.Influence > Settings.Instance!.InfluenceDecayThreshold)
             {
-                float decayFactor = Settings.Instance!.InfluenceDecayPercentage / 100f;
-                int decay = (int) (decayFactor * (clan.Influence - Settings.Instance!.InfluenceDecayThreshold));
+                var decayFactor = Settings.Instance!.InfluenceDecayPercentage / 100f;
+                var decay = (int) (decayFactor * (clan.Influence - Settings.Instance!.InfluenceDecayThreshold));
 
                 if (decay > 0)
                     __result.Add(-decay, _TInfluenceDecay);

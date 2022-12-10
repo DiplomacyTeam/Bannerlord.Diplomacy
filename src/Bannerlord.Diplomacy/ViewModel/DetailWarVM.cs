@@ -20,73 +20,70 @@ namespace Diplomacy.ViewModel
         private string _opponentWarExhaustion = null!;
         private string _playerWarExhaustion = null!;
 
-        [DataSourceProperty] public string StartDate { get; set; }
-
-        [DataSourceProperty] public string Duration { get; set; }
-
-        [DataSourceProperty] public string WarExhaustionLabel { get; set; }
-
-        [DataSourceProperty] public string WarExhaustionReportLabel { get; set; }
-
-        [DataSourceProperty] public string KingdomName { get; set; }
-
-        [DataSourceProperty] public string OpponentKingdomName { get; set; }
-
-        [DataSourceProperty] public HeroVM FactionLeader { get; set; }
-
-        [DataSourceProperty] public HeroVM OpponentFactionLeader { get; set; }
-
-        [DataSourceProperty] public DiplomacyFactionRelationshipVM OpponentKingdom { get; set; }
-
-        [DataSourceProperty] public DiplomacyFactionRelationshipVM Kingdom { get; set; }
-
-        [DataSourceProperty] public DetailWarStatsVM Stats { get; set; } = null!;
-
-        [DataSourceProperty] public string StatsLabel { get; set; }
-
-        [DataSourceProperty] public DetailWarStatsVM OpponentStats { get; set; } = null!;
-
-        [DataSourceProperty] public HintViewModel HelpHint { get; set; }
-
-        [DataSourceProperty] public string WarExhaustionRate { get; set; }
-
-        [DataSourceProperty] public HintViewModel RateHelpHint { get; set; }
-
-        [DataSourceProperty] public string WarReportLabel { get; set; }
+        [DataSourceProperty]
+        public string StartDate { get; set; }
 
         [DataSourceProperty]
-        public string OpponentWarExhaustion
-        {
-            get => _opponentWarExhaustion;
-            set
-            {
-                if (value != _opponentWarExhaustion)
-                {
-                    _opponentWarExhaustion = value;
-                    OnPropertyChanged(nameof(OpponentWarExhaustion));
-                }
-            }
-        }
+        public string Duration { get; set; }
 
         [DataSourceProperty]
-        public string PlayerWarExhaustion
-        {
-            get => _playerWarExhaustion;
-            set
-            {
-                if (value != _playerWarExhaustion)
-                {
-                    _playerWarExhaustion = value;
-                    OnPropertyChanged(nameof(PlayerWarExhaustion));
-                }
-            }
-        }
+        public string WarExhaustionLabel { get; set; }
 
-        [DataSourceProperty] public ImageIdentifierVM Faction1Visual { get; set; } = null!;
+        [DataSourceProperty]
+        public string WarExhaustionReportLabel { get; set; }
 
-        [DataSourceProperty] public ImageIdentifierVM Faction2Visual { get; set; } = null!;
+        [DataSourceProperty]
+        public string KingdomName { get; set; }
 
-        [DataSourceProperty] public MBBindingList<WarExhaustionBreakdownVM> Breakdowns { get; set; }
+        [DataSourceProperty]
+        public string OpponentKingdomName { get; set; }
+
+        [DataSourceProperty]
+        public HeroVM FactionLeader { get; set; }
+
+        [DataSourceProperty]
+        public HeroVM OpponentFactionLeader { get; set; }
+
+        [DataSourceProperty]
+        public DiplomacyFactionRelationshipVM OpponentKingdom { get; set; }
+
+        [DataSourceProperty]
+        public DiplomacyFactionRelationshipVM Kingdom { get; set; }
+
+        [DataSourceProperty]
+        public DetailWarStatsVM Stats { get; set; } = null!;
+
+        [DataSourceProperty]
+        public string StatsLabel { get; set; }
+
+        [DataSourceProperty]
+        public DetailWarStatsVM OpponentStats { get; set; } = null!;
+
+        [DataSourceProperty]
+        public HintViewModel HelpHint { get; set; }
+
+        [DataSourceProperty]
+        public string WarExhaustionRate { get; set; }
+
+        [DataSourceProperty]
+        public HintViewModel RateHelpHint { get; set; }
+
+        [DataSourceProperty]
+        public string WarReportLabel { get; set; }
+
+        [DataSourceProperty]
+        public string OpponentWarExhaustion { get => _opponentWarExhaustion; set => SetField(ref _opponentWarExhaustion, value, nameof(OpponentWarExhaustion)); }
+
+        [DataSourceProperty]
+        public string PlayerWarExhaustion { get => _playerWarExhaustion; set => SetField(ref _playerWarExhaustion, value, nameof(PlayerWarExhaustion)); }
+        [DataSourceProperty]
+        public ImageIdentifierVM Faction1Visual { get; set; } = null!;
+
+        [DataSourceProperty]
+        public ImageIdentifierVM Faction2Visual { get; set; } = null!;
+
+        [DataSourceProperty]
+        public MBBindingList<WarExhaustionBreakdownVM> Breakdowns { get; set; }
 
         public DetailWarVM(Kingdom opposingKingdom, Action onFinalize)
         {
@@ -100,7 +97,7 @@ namespace Diplomacy.ViewModel
             Duration = new TextObject("{=qHrihV27}War Duration: {WAR_DURATION} days")
                 .SetTextVariable("WAR_DURATION", (int) warStartDate.ElapsedDaysUntilNow)
                 .ToString();
-            WarExhaustionLabel = GameTexts.FindText("str_war_exhaustion").ToString() + "!!!";
+            WarExhaustionLabel = GameTexts.FindText("str_war_exhaustion").ToString();
             WarExhaustionReportLabel = new TextObject("{=IlFEeNkY}War Exhaustion Report").ToString();
             KingdomName = Clan.PlayerClan.Kingdom.Name.ToString();
             OpponentKingdomName = _opposingKingdom.Name.ToString();

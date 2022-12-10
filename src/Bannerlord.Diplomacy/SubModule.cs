@@ -3,16 +3,19 @@ using Bannerlord.UIExtenderEx;
 
 using Diplomacy.CampaignBehaviors;
 using Diplomacy.Event;
+using Diplomacy.Models;
 using Diplomacy.PatchTools;
 
 using Microsoft.Extensions.Logging;
 
 using Serilog.Events;
 
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
 
 namespace Diplomacy
@@ -96,8 +99,27 @@ namespace Diplomacy
                 gameStarter.AddBehavior(new ExpansionismBehavior());
                 gameStarter.AddBehavior(new CivilWarBehavior());
                 gameStarter.AddBehavior(new UIBehavior());
+
+                var currentKingdomDecisionPermissionModel = GetGameModel<KingdomDecisionPermissionModel>(gameStarterObject);
+                if (currentKingdomDecisionPermissionModel is null)
+                    Log.LogWarning("No default KingdomDecisionPermissionModel found!");
+
+                gameStarter.AddModel(new DiplomacyKingdomDecisionPermissionModel(currentKingdomDecisionPermissionModel));
+
                 Log.LogDebug("Campaign session started.");
             }
+        }
+
+        private T? GetGameModel<T>(IGameStarter gameStarterObject) where T : GameModel
+        {
+            var models = gameStarterObject.Models.ToArray();
+
+            for (int index = models.Length - 1; index >= 0; --index)
+            {
+                if (models[index] is T gameModel1)
+                    return gameModel1;
+            }
+            return default;
         }
 
         public override void OnGameEnd(Game game)

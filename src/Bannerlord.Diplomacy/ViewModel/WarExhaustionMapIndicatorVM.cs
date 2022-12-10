@@ -10,18 +10,7 @@ namespace Diplomacy.ViewModel
         private MBBindingList<WarExhaustionMapIndicatorItemVM> _kingdomsAtWar;
 
         [DataSourceProperty]
-        public MBBindingList<WarExhaustionMapIndicatorItemVM> KingdomsAtWar
-        {
-            get => _kingdomsAtWar;
-            set
-            {
-                if (value != _kingdomsAtWar)
-                {
-                    _kingdomsAtWar = value;
-                    OnPropertyChanged(nameof(KingdomsAtWar));
-                }
-            }
-        }
+        public MBBindingList<WarExhaustionMapIndicatorItemVM> KingdomsAtWar { get => _kingdomsAtWar; set => SetField(ref _kingdomsAtWar, value, nameof(KingdomsAtWar)); }
 
         public WarExhaustionMapIndicatorVM()
         {
@@ -31,6 +20,7 @@ namespace Diplomacy.ViewModel
             CampaignEvents.MakePeace.AddNonSerializedListener(this, HandleStanceChange);
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, _, _, _, _) => HandleClanChangedKingdom(x));
             Events.WarExhaustionAdded.AddNonSerializedListener(this, HandleWarExhaustionChange);
+            Settings.Instance!.PropertyChanged += Settings_PropertyChanged;
         }
 
         private void HandleClanChangedKingdom(Clan clan)
@@ -40,9 +30,9 @@ namespace Diplomacy.ViewModel
 
         private void HandleWarExhaustionChange(WarExhaustionEvent warExhaustionEvent)
         {
-            Kingdom playerKingdom = Clan.PlayerClan.Kingdom;
+            var playerKingdom = Clan.PlayerClan.Kingdom;
             if (warExhaustionEvent.Kingdom == playerKingdom || warExhaustionEvent.OtherKingdom == playerKingdom)
-                foreach (WarExhaustionMapIndicatorItemVM item in _kingdomsAtWar)
+                foreach (var item in _kingdomsAtWar)
                     item.UpdateWarExhaustion();
         }
 
@@ -75,10 +65,20 @@ namespace Diplomacy.ViewModel
         public override void RefreshValues()
         {
             KingdomsAtWar.Clear();
+            if (!Settings.Instance!.EnableWarExhaustionCampaignMapWidget)
+                return;
 
             if (Clan.PlayerClan.MapFaction is Kingdom playerKingdom)
-                foreach (Kingdom enemyKingdom in FactionManager.GetEnemyKingdoms(playerKingdom))
+                foreach (var enemyKingdom in FactionManager.GetEnemyKingdoms(playerKingdom))
                     KingdomsAtWar.Add(new WarExhaustionMapIndicatorItemVM(enemyKingdom));
+        }
+
+        private void Settings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Settings.Instance.EnableWarExhaustionCampaignMapWidget))
+            {
+                RefreshValues();
+            }
         }
     }
 }

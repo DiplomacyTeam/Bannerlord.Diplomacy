@@ -7,15 +7,20 @@ namespace Diplomacy.ViewModel
 {
     internal class WarExhaustionBreakdownVM : TaleWorlds.Library.ViewModel
     {
-        [DataSourceProperty] public string Text { get; set; }
+        [DataSourceProperty]
+        public string Text { get; set; }
 
-        [DataSourceProperty] public int ValueFaction1 { get; set; }
+        [DataSourceProperty]
+        public int ValueFaction1 { get; set; }
 
-        [DataSourceProperty] public int ValueFaction2 { get; set; }
+        [DataSourceProperty]
+        public int ValueFaction2 { get; set; }
 
-        [DataSourceProperty] public string WarExhaustionValueFaction1 { get; set; }
+        [DataSourceProperty]
+        public string WarExhaustionValueFaction1 { get; set; }
 
-        [DataSourceProperty] public string WarExhaustionValueFaction2 { get; set; }
+        [DataSourceProperty]
+        public string WarExhaustionValueFaction2 { get; set; }
 
         public WarExhaustionBreakdownVM(WarExhaustionBreakdown breakdown)
         {

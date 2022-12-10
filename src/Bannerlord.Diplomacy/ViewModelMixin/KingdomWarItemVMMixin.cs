@@ -28,67 +28,48 @@ namespace Diplomacy.ViewModelMixin
         private readonly Kingdom _faction1;
         private readonly Kingdom _faction2;
 
-        private HintViewModel? _actionHint;
+        private HintViewModel? _diplomaticActionHint;
         private int _goldCost;
         private bool _isOptionAvailable;
 
-        [DataSourceProperty] public bool IsWarItem { get; }
-
-        [DataSourceProperty] public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
-
-        [DataSourceProperty] public string ActionName { get; init; }
-
-        [DataSourceProperty] public string AllianceText { get; }
-
-        [DataSourceProperty] public string WarsText { get; }
-
-        [DataSourceProperty] public string PactsText { get; }
-
-        [DataSourceProperty] public int InfluenceCost { get; }
+        [DataSourceProperty]
+        public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
 
         [DataSourceProperty]
-        public int GoldCost
-        {
-            get => _goldCost;
-            set
-            {
-                if (value != _goldCost)
-                {
-                    _goldCost = value;
-                    ViewModel!.OnPropertyChanged(nameof(GoldCost));
-                }
-            }
-        }
-
-        [DataSourceProperty][UsedImplicitly] public bool IsGoldCostVisible { get; } = true;
+        public string ActionName { get; }
 
         [DataSourceProperty]
-        public bool IsOptionAvailable
-        {
-            get => _isOptionAvailable;
-            set
-            {
-                if (value != _isOptionAvailable)
-                {
-                    _isOptionAvailable = value;
-                    ViewModel!.OnPropertyChanged(nameof(IsOptionAvailable));
-                }
-            }
-        }
+        [UsedImplicitly]
+        public bool IsAllianceVisible => false;
 
         [DataSourceProperty]
-        public HintViewModel? ActionHint
-        {
-            get => _actionHint;
-            set
-            {
-                if (value != _actionHint)
-                {
-                    _actionHint = value;
-                    ViewModel!.OnPropertyChanged(nameof(ActionHint));
-                }
-            }
-        }
+        [UsedImplicitly]
+        public bool IsNonAggressionPactVisible => false;
+
+        [DataSourceProperty]
+        public string AllianceText { get; }
+
+        [DataSourceProperty]
+        public string WarsText { get; }
+
+        [DataSourceProperty]
+        public string PactsText { get; }
+
+        [DataSourceProperty]
+        public int InfluenceCost { get; }
+
+        [DataSourceProperty]
+        public int GoldCost { get => _goldCost; set => SetField(ref _goldCost, value, nameof(GoldCost)); }
+
+        [DataSourceProperty]
+        [UsedImplicitly]
+        public bool IsGoldCostVisible { get; } = true;
+
+        [DataSourceProperty]
+        public bool IsOptionAvailable { get => _isOptionAvailable; set => SetField(ref _isOptionAvailable, value, nameof(IsOptionAvailable)); }
+
+        [DataSourceProperty]
+        public HintViewModel? DiplomaticActionHint { get => _diplomaticActionHint; set => SetField(ref _diplomaticActionHint, value, nameof(DiplomaticActionHint)); }
 
         public KingdomWarItemVMMixin(KingdomWarItemVM vm) : base(vm)
         {
@@ -101,13 +82,12 @@ namespace Diplomacy.ViewModelMixin
             AllianceText = _TAlliances.ToString();
             WarsText = _TWars.ToString();
             PactsText = _TNonAggressionPacts.ToString();
-            IsWarItem = true;
             OnRefresh();
         }
 
         public override void OnRefresh()
         {
-            DiplomacyProperties ??= new DiplomacyPropertiesVM(ViewModel!.Faction1, ViewModel!.Faction2);
+            DiplomacyProperties ??= new DiplomacyPropertiesVM(_faction1, _faction2);
 
             DiplomacyProperties.UpdateDiplomacyProperties();
 
@@ -122,8 +102,8 @@ namespace Diplomacy.ViewModelMixin
                     (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction1, _faction2),
                     (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction2, _faction1),
                     _TWarExhaustion,
-                    Color.FromUint(ViewModel!.Faction1.Color).ToString(),
-                    Color.FromUint(ViewModel!.Faction2.Color).ToString(),
+                    Color.FromUint(_faction1.Color).ToString(),
+                    Color.FromUint(_faction2.Color).ToString(),
                     100));
             }
         }
@@ -139,7 +119,7 @@ namespace Diplomacy.ViewModelMixin
         {
             IsOptionAvailable = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!).IsEmpty();
             var makePeaceException = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
-            ActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
+            DiplomaticActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
         }
     }
 }

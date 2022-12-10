@@ -12,13 +12,12 @@ namespace Diplomacy
     {
         public static CooldownManager? Instance { get; private set; }
 
-        internal static Dictionary<string, CampaignTime> LastWarTime => Instance!._lastWarTime;
         internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime => Instance!._lastPeaceProposalTime;
         internal static Dictionary<string, CampaignTime> LastAllianceFormedTime => Instance!._lastAllianceFormedTime;
 
         [SaveableField(1)]
         [UsedImplicitly]
-        private Dictionary<string, CampaignTime> _lastWarTime;
+        private Dictionary<string, CampaignTime> _lastWarTime; //Unused. Keep to maintain saves' backwards compatibility.
 
         [SaveableField(2)]
         [UsedImplicitly]
@@ -73,9 +72,10 @@ namespace Diplomacy
 
         public static CampaignTime GetLastWarTimeBetweenFactions(IFaction faction1, IFaction faction2)
         {
-            if (LastWarTime.TryGetValue(CreateKey(faction1, faction2), out var value))
+            var stanceLink = faction1.GetStanceWith(faction2);
+            if ((stanceLink?.IsNeutral ?? false) || (stanceLink?.IsAllied ?? false))
             {
-                return value;
+                return stanceLink.PeaceDeclarationDate;
             }
             else
             {

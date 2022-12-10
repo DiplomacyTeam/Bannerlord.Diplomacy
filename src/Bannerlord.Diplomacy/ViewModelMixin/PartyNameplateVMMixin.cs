@@ -17,7 +17,7 @@ namespace Diplomacy.ViewModelMixin
     {
         public PartyNameplateVMMixin(PartyNameplateVM vm) : base(vm)
         {
-            Events.KingdomBannerChanged.AddNonSerializedListener(this, this.KingdomBannerChanged);
+            Events.KingdomBannerChanged.AddNonSerializedListener(this, KingdomBannerChanged);
         }
 
         private void KingdomBannerChanged(Kingdom obj)

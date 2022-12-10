@@ -8,8 +8,9 @@ namespace Diplomacy.Costs
 {
     class DiplomacyCostCalculator
     {
-        private static float AllianceFactor { get; } = 5.0f;
-        private static float PeaceFactor { get; } = 2.0f;
+        private static float AllianceFactor => 5.0f;
+        private static float PeaceFactor => 20.0f;
+        private static float WarFactor => 10.0f;
 
         public static DiplomacyCost DetermineCostForDeclaringWar(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
         {
@@ -19,7 +20,7 @@ namespace Diplomacy.Costs
             if (!Settings.Instance!.ScalingInfluenceCosts)
                 return new InfluenceCost(clanPayingInfluence, Settings.Instance!.DeclareWarInfluenceCost);
 
-            return new InfluenceCost(clanPayingInfluence, (float) Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingInfluenceCostMultiplier));
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * WarFactor);
         }
 
         public static HybridCost DetermineCostForMakingPeace(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)

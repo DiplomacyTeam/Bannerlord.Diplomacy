@@ -1,4 +1,5 @@
 ﻿using Bannerlord.BUTR.Shared.Helpers;
+
 using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.Prefabs2;
 
@@ -27,10 +28,7 @@ namespace Diplomacy.ViewModelMixin
 
             if (ApplicationVersionHelper.GameVersion() is { } gameVersion)
             {
-                if (gameVersion.Major <= 1 && gameVersion.Minor <= 5 && gameVersion.Revision <= 9)
-                    _document.LoadXml(@"<DiplomacyPanel_159 />");
-                else
-                    _document.LoadXml(@"<DiplomacyPanel_1510 />");
+                _document.LoadXml(@"<DiplomacyPanelCustom />");
             }
         }
 

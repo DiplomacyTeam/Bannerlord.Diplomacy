@@ -1,11 +1,5 @@
 ﻿using Helpers;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Library;
@@ -14,7 +8,7 @@ namespace Diplomacy.Actions
 {
     internal static class GiveGoldToClanAction
     {
-        private static void ApplyInternal(Hero giverHero, Clan clan, int goldAmount)
+        private static void ApplyInternal(Hero? giverHero, Clan? clan, int goldAmount)
         {
             if (giverHero != null)
             {
@@ -28,9 +22,9 @@ namespace Diplomacy.Actions
 
         private static void GiveGoldToClan(int gold, Clan clan)
         {
-            foreach (var valueTuple in MBMath.DistributeShares(gold, clan.Lords, new Func<Hero, int>(CalculateShare)))
+            foreach (var valueTuple in MBMath.DistributeShares(gold, clan.Lords, CalculateShare))
             {
-                GiveGoldAction.ApplyBetweenCharacters(null, valueTuple.Item1, valueTuple.Item2, false);
+                GiveGoldAction.ApplyBetweenCharacters(null, valueTuple.Item1, valueTuple.Item2);
             }
         }
 

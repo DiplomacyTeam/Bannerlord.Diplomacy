@@ -14,6 +14,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             new NoNonAggressionPactCondition(),
             new NotInAllianceCondition(),
             new AtPeaceCondition(),
+            new HasEnoughTimeElapsedForWarCondition(),
             new NotRebelKingdomCondition(),
             new NotEliminatedCondition()
         };

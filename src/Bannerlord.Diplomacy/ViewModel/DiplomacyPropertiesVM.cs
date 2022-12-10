@@ -70,7 +70,7 @@ namespace Diplomacy.ViewModel
         private HintViewModel CreateAllianceHint(Kingdom kingdom1, Kingdom kingdom2)
         {
             TextObject textObject;
-            if (CooldownManager.HasBreakAllianceCooldown(kingdom1, kingdom2, out float elapsedDaysUntilNow))
+            if (CooldownManager.HasBreakAllianceCooldown(kingdom1, kingdom2, out var elapsedDaysUntilNow))
             {
                 textObject = _TDaysRemaining.CopyTextObject();
                 var remaining = Settings.Instance!.MinimumAllianceDuration - elapsedDaysUntilNow;
@@ -122,86 +122,21 @@ namespace Diplomacy.ViewModel
         }
 
         [DataSourceProperty]
-        public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Wars
-        {
-            get => _faction1Wars;
-            set
-            {
-                if (value != _faction1Wars)
-                {
-                    _faction1Wars = value;
-                    OnPropertyChanged(nameof(Faction1Wars));
-                }
-            }
-        }
+        public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Wars { get => _faction1Wars; set => SetField(ref _faction1Wars, value, nameof(Faction1Wars)); }
 
         [DataSourceProperty]
-        public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Allies
-        {
-            get => _faction1Allies;
-            set
-            {
-                if (value != _faction1Allies)
-                {
-                    _faction1Allies = value;
-                    OnPropertyChanged(nameof(Faction1Allies));
-                }
-            }
-        }
+        public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Allies { get => _faction1Allies; set => SetField(ref _faction1Allies, value, nameof(Faction1Allies)); }
 
         [DataSourceProperty]
-        public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Wars
-        {
-            get => _faction2Wars;
-            set
-            {
-                if (value != _faction2Wars)
-                {
-                    _faction2Wars = value;
-                    OnPropertyChanged(nameof(Faction2Wars));
-                }
-            }
-        }
-        [DataSourceProperty]
-        public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Allies
-        {
-            get => _faction2Allies;
-            set
-            {
-                if (value != _faction2Allies)
-                {
-                    _faction2Allies = value;
-                    OnPropertyChanged(nameof(Faction2Allies));
-                }
-            }
-        }
+        public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Wars { get => _faction2Wars; set => SetField(ref _faction2Wars, value, nameof(Faction2Wars)); }
 
         [DataSourceProperty]
-        public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Pacts
-        {
-            get => _faction1Pacts;
-            set
-            {
-                if (value != _faction1Pacts)
-                {
-                    _faction1Pacts = value;
-                    OnPropertyChanged(nameof(Faction1Pacts));
-                }
-            }
-        }
+        public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Allies { get => _faction2Allies; set => SetField(ref _faction2Allies, value, nameof(Faction2Allies)); }
 
         [DataSourceProperty]
-        public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Pacts
-        {
-            get => _faction2Pacts;
-            set
-            {
-                if (value != _faction2Pacts)
-                {
-                    _faction2Pacts = value;
-                    OnPropertyChanged(nameof(Faction2Pacts));
-                }
-            }
-        }
+        public MBBindingList<DiplomacyFactionRelationshipVM> Faction1Pacts { get => _faction1Pacts; set => SetField(ref _faction1Pacts, value, nameof(Faction1Pacts)); }
+
+        [DataSourceProperty]
+        public MBBindingList<DiplomacyFactionRelationshipVM> Faction2Pacts { get => _faction2Pacts; set => SetField(ref _faction2Pacts, value, nameof(Faction2Pacts)); }
     }
 }

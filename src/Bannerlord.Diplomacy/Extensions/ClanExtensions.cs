@@ -40,7 +40,7 @@ namespace Diplomacy.Extensions
                 yield break;
             }
 
-            foreach (RebelFaction faction in RebelFactionManager.GetRebelFaction(clan.Kingdom))
+            foreach (var faction in RebelFactionManager.GetRebelFaction(clan.Kingdom))
             {
                 if (faction.Clans.Contains(clan))
                     yield return faction;

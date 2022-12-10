@@ -25,6 +25,8 @@ namespace Diplomacy
 
         private const string HeadingCivilWar = "{=eDZeFUTH}Civil Wars";
 
+        private bool _enableWarExhaustionCampaignMapWidget = true;
+
         public override string Id => "DiplomacySettings_1";
         public override string DisplayName => new TextObject("{=MYz8nKqq}Diplomacy").ToString();
         public override string FolderName => "Diplomacy";
@@ -73,7 +75,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingMessengers)]
         public int SendMessengerGoldCost { get; set; } = 100;
 
-        [SettingPropertyInteger("{=nnXi6MmH}Messenger Travel Time in Days", 0, 500, RequireRestart = false, HintText = "{=zkvCGLuK}The amount of time (in days) a messenger takes to reach a kingdom's leader. Default value is 3.")]
+        [SettingPropertyInteger("{=nnXi6MmH}Messenger Travel Time in Days", 0, 10, RequireRestart = false, HintText = "{=zkvCGLuK}The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3.")]
         [SettingPropertyGroup(HeadingMessengers)]
         public int MessengerTravelTime { get; set; } = 3;
 
@@ -83,7 +85,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public bool EnableWarExhaustion { get; set; } = true;
 
-        [SettingPropertyFloatingInteger("{=8TFQWL55}War Exhaustion Per Day", 0f, 5f, RequireRestart = false, HintText = "{=lgza5wDq}The amount of war exhaustion added per day a war is ongoing. Default value is 1.0.")]
+        [SettingPropertyFloatingInteger("{=8TFQWL55}War Exhaustion Per Day", 0f, 5f, RequireRestart = false, HintText = "{=lgza5wDq}The amount of war exhaustion added per day a war is ongoing. Default value is 0.25.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerDay { get; set; } = 0.25f;
 
@@ -98,6 +100,21 @@ namespace Diplomacy
         [SettingPropertyFloatingInteger("{=eWVGwf2m}War Exhaustion Per Raid", 0f, 50f, RequireRestart = false, HintText = "{=ufHDJt8H}The amount of war exhaustion added when a faction's village is raided. Default value is 3.0.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerRaid { get; set; } = 3f;
+
+        [SettingPropertyBool("{=F4iFH6un}Campaign Map Widget", Order = 99, RequireRestart = false, HintText = "{=zTvbZ8Br}Enables a dedicated war exhaustion widget for each ongoing war at the top of the campaign map screen. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public bool EnableWarExhaustionCampaignMapWidget
+        {
+            get => _enableWarExhaustionCampaignMapWidget;
+            set
+            {
+                if (_enableWarExhaustionCampaignMapWidget != value)
+                {
+                    _enableWarExhaustionCampaignMapWidget = value;
+                    OnPropertyChanged(nameof(EnableWarExhaustionCampaignMapWidget));
+                }
+            }
+        }
 
         [SettingPropertyBool("{=jI9NSxtz}Enable Player War Exhaustion Debug Messages", Order = 100, RequireRestart = false, HintText = "{=LYyNbQds}Enables debug messages for war exhaustion added to the player kingdom. Default value is false.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
@@ -119,13 +136,13 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingGoldCosts)]
         public float ScalingWarReparationsGoldCostMultiplier { get; set; } = 100.0f;
 
-        [SettingPropertyInteger(displayName: "{=OnTeAgin}Flat Declare War Influence Cost", 0, 10000, Order = 2, RequireRestart = false, HintText = "{=O5XvybTI}Influence cost for declaring war on another kingdom. Default value is 100.")]
+        [SettingPropertyInteger(displayName: "{=OnTeAgin}Flat Declare War Influence Cost", 0, 10000, Order = 2, RequireRestart = false, HintText = "{=O5XvybTI}Influence cost for declaring war on another kingdom. Default value is 500.")]
         [SettingPropertyGroup(HeadingInfluenceCosts)]
-        public int DeclareWarInfluenceCost { get; set; } = 100;
+        public int DeclareWarInfluenceCost { get; set; } = 500;
 
-        [SettingPropertyInteger("{=iNsXQD2q}Flat Make Peace Influence Cost", 0, 10000, Order = 3, RequireRestart = false, HintText = "{=WB5zdvdT}Influence cost for making peace with another kingdom. Default value is 100.")]
+        [SettingPropertyInteger("{=iNsXQD2q}Flat Make Peace Influence Cost", 0, 10000, Order = 3, RequireRestart = false, HintText = "{=WB5zdvdT}Influence cost for making peace with another kingdom. Default value is 500.")]
         [SettingPropertyGroup(HeadingInfluenceCosts)]
-        public int MakePeaceInfluenceCost { get; set; } = 100;
+        public int MakePeaceInfluenceCost { get; set; } = 500;
 
         [SettingPropertyBool(displayName: "{=WbOKuWbQ}Enable Influence Costs", RequireRestart = false, HintText = "{=K2vLGalN}If disabled, this removes all costs for war and peace declaration actions. Default value is true.")]
         [SettingPropertyGroup(HeadingInfluenceCosts)]

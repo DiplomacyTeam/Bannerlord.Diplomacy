@@ -25,68 +25,32 @@ namespace Diplomacy.ViewModel
         private string _relationGain = string.Empty;
 
         [DataSourceProperty]
-        public float MaxValue
-        {
-            get => _maxValue;
-            set
-            {
-                if (value != _maxValue)
-                {
-                    _maxValue = value;
-                    OnPropertyChanged(nameof(MaxValue));
-                }
-            }
-        }
+        public float MaxValue { get => _maxValue; set => SetField(ref _maxValue, value, nameof(MaxValue)); }
 
         [DataSourceProperty]
-        public string GoldCost
-        {
-            get => _goldCost;
-            set
-            {
-                if (value != _goldCost)
-                {
-                    _goldCost = value;
-                    OnPropertyChanged(nameof(GoldCost));
-                }
-            }
-        }
+        public string GoldCost { get => _goldCost; set => SetField(ref _goldCost, value, nameof(GoldCost)); }
 
         [DataSourceProperty]
-        public string RelationGain
-        {
-            get => _relationGain;
-            set
-            {
-                if (value != _relationGain)
-                {
-                    _relationGain = value;
-                    OnPropertyChanged(nameof(RelationGain));
-                }
-            }
-        }
-
-        [DataSourceProperty][UsedImplicitly] public float MinValue { get; }
+        public string RelationGain { get => _relationGain; set => SetField(ref _relationGain, value, nameof(RelationGain)); }
 
         [DataSourceProperty]
-        public int IntValue
-        {
-            get => _intValue;
-            set
-            {
-                if (value != _intValue)
-                {
-                    _intValue = value;
-                    OnPropertyChanged(nameof(IntValue));
-                }
-            }
-        }
+        [UsedImplicitly]
+        public float MinValue { get; }
 
-        [DataSourceProperty][UsedImplicitly] public string AcceptText { get; } = new TextObject(StringConstants.Accept).ToString();
+        [DataSourceProperty]
+        public int IntValue { get => _intValue; set => SetField(ref _intValue, value, nameof(IntValue)); }
 
-        [DataSourceProperty][UsedImplicitly] public string CancelText { get; } = GameTexts.FindText("str_cancel").ToString();
+        [DataSourceProperty]
+        [UsedImplicitly]
+        public string AcceptText { get; } = new TextObject(StringConstants.Accept).ToString();
 
-        [DataSourceProperty][UsedImplicitly] public string TitleText { get; } = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
+        [DataSourceProperty]
+        [UsedImplicitly]
+        public string CancelText { get; } = GameTexts.FindText("str_cancel").ToString();
+
+        [DataSourceProperty]
+        [UsedImplicitly]
+        public string TitleText { get; } = new TextObject("{=Gzq6VHPt}Donate Gold").ToString();
 
         public DonateGoldVM(Clan clan, Action onFinalize)
         {

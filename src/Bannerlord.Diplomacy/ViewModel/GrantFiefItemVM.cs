@@ -51,18 +51,7 @@ namespace Diplomacy.ViewModel
         }
 
         [DataSourceProperty]
-        public bool IsSelected
-        {
-            get => _isSelected;
-            set
-            {
-                if (value != _isSelected)
-                {
-                    _isSelected = value;
-                    OnPropertyChanged(nameof(IsSelected));
-                }
-            }
-        }
+        public bool IsSelected { get => _isSelected; set => SetField(ref _isSelected, value, nameof(IsSelected)); }
 
         [DataSourceProperty]
         public string? IconPath { get; }

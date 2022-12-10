@@ -26,39 +26,37 @@ namespace Diplomacy.ViewModel
         private MBBindingList<GrantFiefItemVM> _settlements;
 
         [DataSourceProperty]
-        public MBBindingList<GrantFiefItemVM> Settlements
-        {
-            get => _settlements;
-            set
-            {
-                if (value != _settlements)
-                {
-                    _settlements = value;
-                    OnPropertyChanged(nameof(Settlements));
-                }
-            }
-        }
+        public MBBindingList<GrantFiefItemVM> Settlements { get => _settlements; set => SetField(ref _settlements, value, nameof(Settlements)); }
 
-        [DataSourceProperty] public GrantFiefSortControllerVM SortController { get; }
+        [DataSourceProperty]
+        public GrantFiefSortControllerVM SortController { get; }
 
         // Doesn't need a [DataSourceProperty] attribute because the selected item is already in the Settlements list. This is just to keep the reference of the selected item.
         public GrantFiefItemVM SelectedSettlementItem { get; private set; }
 
-        [DataSourceProperty] public string NameText { get; }
+        [DataSourceProperty]
+        public string NameText { get; }
 
-        [DataSourceProperty] public string TypeText { get; }
+        [DataSourceProperty]
+        public string TypeText { get; }
 
-        [DataSourceProperty] public string ProsperityText { get; }
+        [DataSourceProperty]
+        public string ProsperityText { get; }
 
-        [DataSourceProperty] public string DefendersText { get; }
+        [DataSourceProperty]
+        public string DefendersText { get; }
 
-        [DataSourceProperty] public string GrantFiefActionName { get; }
+        [DataSourceProperty]
+        public string GrantFiefActionName { get; }
 
-        [DataSourceProperty] public string CancelText { get; }
+        [DataSourceProperty]
+        public string CancelText { get; }
 
-        [DataSourceProperty] public string RelationText { get; }
+        [DataSourceProperty]
+        public string RelationText { get; }
 
-        [DataSourceProperty] public HintViewModel RelationHint { get; }
+        [DataSourceProperty]
+        public HintViewModel RelationHint { get; }
 
         public GrantFiefVM(Hero hero, Action onComplete)
         {

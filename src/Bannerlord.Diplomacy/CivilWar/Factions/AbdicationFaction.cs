@@ -29,15 +29,15 @@ namespace Diplomacy.CivilWar.Factions
         {
             var strVars = new Dictionary<string, object>
             {
-                {"PARENT_KINGDOM", this.ParentKingdom.Name},
-                {"REBELS", this.Name},
-                {"LEADER", this.ParentKingdom.Leader.Name},
+                {"PARENT_KINGDOM", ParentKingdom.Name},
+                {"REBELS", Name},
+                {"LEADER", ParentKingdom.Leader.Name},
                 {"PLAYER_PARTICIPATION", GetPlayerParticipationText(true)}
             };
 
             ConsolidateKingdomsAction.Apply(this);
             RebelFactionManager.DestroyRebelFaction(this);
-            this.ParentKingdom.AddDecision(new KingSelectionKingdomDecision(this.SponsorClan, this.ParentKingdom.Leader.Clan), true);
+            ParentKingdom.AddDecision(new KingSelectionKingdomDecision(SponsorClan, ParentKingdom.Leader.Clan), true);
 
             InformationManager.ShowInquiry(
                 new InquiryData(
@@ -55,7 +55,7 @@ namespace Diplomacy.CivilWar.Factions
         {
             RebelFactionManager.DestroyRebelFaction(this);
 
-            var strVars = new Dictionary<string, object> { { "PARENT_KINGDOM", this.ParentKingdom.Name }, { "REBELS", this.Name } };
+            var strVars = new Dictionary<string, object> { { "PARENT_KINGDOM", ParentKingdom.Name }, { "REBELS", Name } };
             InformationManager.ShowInquiry(
                 new InquiryData(
                     _TAbdicateTitle.ToString(),

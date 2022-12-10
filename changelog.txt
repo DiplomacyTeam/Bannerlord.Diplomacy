@@ -1,58 +1,75 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.17
+Game Versions: v1.0.0,v1.0.1,v1.0.2
+* Recompiled for v1.0.2.
+* Fixed several issues with the Diplomacy panel in Kingdom Management.
+* Fixed several issues with peace and war restrictions not applying properly.
+* Fixed a crash that occurred when sending a Messenger to a factionless hero.
+* Fixed a crash that occurred when trying to create a caravan using a Messenger.
+* Messengers now use correct the scene for the conversation.
+* Messengers can no longer freely access highborn locations unless you can.
+* The speed of Messengers now depends on the maximum arrival time.
+* Added an explanation for why some characters may not be available to send Messengers to.
+* Made some adjustments to setting hints related to Messengers to make them clearer.
+* Added a separate option to show/hide war exhaustion indicator on the campaign map.
+* Fixed an issue where the detailed war exhaustion report would sometimes have odd formatting.
+* Peace treaties no longer force NAPs, but the war cooldowns are intact.
+* Adjusted the cost of declaring war and making peace without holding elections.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.16
-Game Versions: 1.0.0, 1.0.1
-* Fixed more issues with eliminated factions
-* Better compatibility with other encyclopedia mods for Hero page
-* Fixed some inaccurate settings descriptions
+Game Versions: v1.0.0,v1.0.1
+* Fixed more issues with eliminated factions.
+* Better compatibility with other encyclopedia mods for Hero page.
+* Fixed some inaccurate setting descriptions.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.15
-Game Versions: 1.0.0
-* Bumped dependencies (mainly for Steam Workshop)
-* Fixed some issues with eliminated factions
-* Changes to peace offering price calculations
+Game Versions: v1.0.0
+* Bumped dependencies (mainly for Steam Workshop).
+* Fixed some issues with eliminated factions.
+* Changes to peace offering price calculations.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.14
-Game Versions: 1.0.0
-* Recompiled for 1.0.0
+Game Versions: v1.0.0
+* Recompiled for 1.0.0.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.13
 Game Versions: e1.8.0,e1.8.1,e1.9.0
-* Recompiled for e1.9.0
+* Recompiled for e1.9.0.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.12
 Game Versions: e1.8.0,e1.8.1
-* Update dependencies to fix 1.8.0 hotfix crash
-* Fix faction selection issue in the kingdom diplomacy view
-* Fix messenger teleportation issue
+* Update dependencies to fix 1.8.0 hotfix crash.
+* Fix faction selection issue in the kingdom diplomacy view.
+* Fix messenger teleportation issue.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.11
 Game Versions: e1.8.0
-* Compatibility with e1.8.0
+* Compatibility with e1.8.0.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.10
 Game Versions: e1.7.2
-* Compatibility with e1.7.2
+* Compatibility with e1.7.2.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.9
 Game Versions: e1.5.9,e1.5.10,e1.6.0,e1.6.1,e1.6.2,e1.6.3,e1.6.4,e1.6.5,e1.7.0
-* Compatibility with e1.7.0
-* Messengers fix
+* Compatibility with e1.7.0.
+* Messengers fix.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.8.3
 Game Versions: e1.5.9,e1.5.10,e1.6.0,e1.6.1,e1.6.2,e1.6.3,e1.6.4,e1.6.5
-* Messengers fix
+* Messengers fix.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.8.2
 Game Versions: e1.5.9,e1.5.10,e1.6.0,e1.6.1,e1.6.2,e1.6.3,e1.6.4,e1.6.5
-* Compatibility with e1.6.5
+* Compatibility with e1.6.5.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.8.1
 Game Versions: e1.5.9,e1.5.10,e1.6.0,e1.6.1,e1.6.2,e1.6.3,e1.6.4,e1.6.5
-* Compatibility with e1.6.5 (still not working though)
+* Compatibility with e1.6.5 (still not working though).
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.8
 Game Versions: e1.5.9,e1.5.10,e1.6.0,e1.6.1,e1.6.2
 * Allow players to change kingdom banner background color when they are the ruling clan.
 * Added a console command to change the banner colors of a kingdom.
-* Some buggixes
+* Some buggixes.
 ---------------------------------------------------------------------------------------------------

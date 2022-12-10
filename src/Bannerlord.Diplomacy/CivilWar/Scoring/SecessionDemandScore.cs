@@ -62,7 +62,7 @@ namespace Diplomacy.CivilWar.Scoring
                 yield return new Tuple<TextObject, float>(_TLeaderRightToRule, 25f);
             }
 
-            IEnumerable<Clan> friendlyClans = rebelFaction.Clans.Where(x => x != clan && x != rebelFaction.SponsorClan && clan.Leader.IsFriend(x.Leader));
+            var friendlyClans = rebelFaction.Clans.Where(x => x != clan && x != rebelFaction.SponsorClan && clan.Leader.IsFriend(x.Leader));
 
             yield return new Tuple<TextObject, float>(_TFriendlyClansInFaction, friendlyClans.Count() * 5f);
 

@@ -71,11 +71,12 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             if (kingdomMakingPeace.Leader.IsHumanPlayerCharacter && !skipPlayerPrompts)
             {
                 var hasFiefsRemaining = kingdomMakingPeace.Fiefs.Count > 0;
-                var strArgs = new Dictionary<string, object>() {
-                            { "DENARS", diplomacyCost.GoldCost.Value },
-                            { "INFLUENCE", diplomacyCost.InfluenceCost.Value },
-                            { "ENEMY_KINGDOM", otherKingdom.Name }
-                        };
+                var strArgs = new Dictionary<string, object>
+                {
+                    {"DENARS", diplomacyCost.GoldCost.Value},
+                    {"INFLUENCE", diplomacyCost.InfluenceCost.Value},
+                    {"ENEMY_KINGDOM", otherKingdom.Name}
+                };
 
                 if (hasFiefsRemaining)
                 {
@@ -86,7 +87,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
                         false,
                         GameTexts.FindText("str_ok").ToString(),
                         null,
-                        () => KingdomPeaceAction.ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts: true),
+                        () => ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts: true),
                         null), true);
                 }
                 else
@@ -98,7 +99,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
                     false,
                     GameTexts.FindText("str_ok").ToString(),
                     null,
-                    () => KingdomPeaceAction.ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts: true),
+                    () => ApplyPeace(kingdomMakingPeace, otherKingdom, skipPlayerPrompts: true),
                     null), true);
                 }
             }
