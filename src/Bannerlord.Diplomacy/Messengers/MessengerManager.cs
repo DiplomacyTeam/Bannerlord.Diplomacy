@@ -315,12 +315,12 @@ namespace Diplomacy.Messengers
                 TextObject reason;
                 if (targetHero.IsDead)
                     reason = new("{=vhsHDMil}{HERO_NAME} is dead. ", new() { ["HERO_NAME"] = targetHero.Name });
-                else if (targetHero.IsPrisoner)
+                else if (targetHero.IsPrisoner && targetHero.PartyBelongedToAsPrisoner != null)
                     reason = new("{=CusN2JMb}{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\\?} {DETENTION_PLACE}. ", new()
                     {
                         ["HERO_NAME"] = targetHero.Name,
                         ["IS_MOBILE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? 0 : 1,
-                        ["DETENTION_PLACE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? targetHero.PartyBelongedToAsPrisoner.Settlement.Name : targetHero.PartyBelongedToAsPrisoner.LeaderHero.Name
+                        ["DETENTION_PLACE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? targetHero.PartyBelongedToAsPrisoner.Settlement.Name : ((targetHero.PartyBelongedToAsPrisoner.LeaderHero?.Name ?? targetHero.PartyBelongedToAsPrisoner.Name) ?? TextObject.Empty)
                     });
                 else if (targetHero.IsFugitive)
                     reason = new("{=1BISlFYx}{HERO_NAME} is fugitive and doesn't want to be found. ", new() { ["HERO_NAME"] = targetHero.Name });
