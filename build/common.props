@@ -2,8 +2,8 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.1.17</Version>
-        <GameVersion>1.0.1</GameVersion>
+        <Version>1.1.18</Version>
+        <GameVersion>1.0.0</GameVersion>
     </PropertyGroup>
 
     <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
@@ -78,7 +78,7 @@
         <GameStableVersion>$(SecondLine)</GameStableVersion>
         <GameMinimalVersion>$(LastLine)</GameMinimalVersion>
         <!-- -->
-        <GameVersionWithPrefix>e1.1.0</GameVersionWithPrefix>
+        <GameVersionWithPrefix>v1.0.0</GameVersionWithPrefix>
         <GameVersionWithPrefix Condition="$(IsMinimal)">$(GameMinimalVersion)</GameVersionWithPrefix>
         <GameVersionWithPrefix Condition="$(IsStable)">$(GameStableVersion)</GameVersionWithPrefix>
         <GameVersionWithPrefix Condition="$(IsBeta)">$(GameBetaVersion)</GameVersionWithPrefix>

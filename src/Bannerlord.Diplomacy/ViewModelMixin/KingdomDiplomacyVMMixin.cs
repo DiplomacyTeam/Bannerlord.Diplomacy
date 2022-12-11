@@ -5,12 +5,8 @@ using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.Event;
 using Diplomacy.Extensions;
 
-using HarmonyLib;
-using HarmonyLib.BUTR.Extensions;
-
 using JetBrains.Annotations;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,24 +22,6 @@ namespace Diplomacy.ViewModelMixin
     [UsedImplicitly]
     internal sealed class KingdomDiplomacyVMMixin : BaseViewModelMixin<KingdomDiplomacyVM>
     {
-        static KingdomDiplomacyVMMixin()
-        {
-            var harmony = new Harmony("Diplomacy.ViewModelMixin.KingdomDiplomacyVMMixin");
-
-            harmony.Patch(
-                AccessTools2.Method(typeof(KingdomDiplomacyVM), "OnDiplomacyItemSelection"),
-                postfix: new HarmonyMethod(typeof(KingdomDiplomacyVMMixin), nameof(OnDiplomacyItemSelectionPostfix)));
-        }
-
-        private static void OnDiplomacyItemSelectionPostfix(KingdomDiplomacyVM __instance, KingdomDiplomacyItemVM item)
-        {
-            if (__instance.GetPropertyValue(nameof(Mixin)) is WeakReference<KingdomDiplomacyVMMixin> weakReference && weakReference.TryGetTarget(out var mixin))
-            {
-                mixin.OnDiplomacyItemSelection(item);
-            }
-        }
-
-
         private static readonly TextObject _TAlliances = new("{=zpNalMeA}Alliances");
         private static readonly TextObject _TStats = new("{=1occw3EF}Stats");
         private static readonly TextObject _TOverview = new("{=OvbY5qxL}Overview");
@@ -56,9 +34,6 @@ namespace Diplomacy.ViewModelMixin
         private MBBindingList<KingdomTruceItemVM> _playerAlliances;
         private bool _showOverview;
         private bool _showStats;
-
-        [DataSourceProperty]
-        public WeakReference<KingdomDiplomacyVMMixin> Mixin => new(this);
 
         [DataSourceProperty]
         public bool ShowOverview { get => _showOverview; set => SetField(ref _showOverview, value, nameof(ShowOverview)); }
@@ -124,17 +99,6 @@ namespace Diplomacy.ViewModelMixin
         {
             ShowOverview = true;
             ShowStats = false;
-        }
-
-        public void ExecuteShowStatComparison()
-        {
-            ViewModel!.IsDisplayingStatComparisons = true;
-            ViewModel!.IsDisplayingWarLogs = false;
-        }
-
-        private void OnDiplomacyItemSelection(KingdomDiplomacyItemVM item)
-        {
-            ExecuteShowStatComparison();
         }
 
         public override void OnRefresh()

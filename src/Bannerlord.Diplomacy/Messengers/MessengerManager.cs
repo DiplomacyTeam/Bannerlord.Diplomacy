@@ -204,8 +204,8 @@ namespace Diplomacy.Messengers
 
             PlayerEncounter.Start();
             PlayerEncounter.Current.SetupFields(heroParty, targetParty ?? heroParty);
-
             Campaign.Current.CurrentConversationContext = ConversationContext.Default;
+
             if (targetSettlement != null)
             {
                 _position2D = new(Hero.MainHero.GetMapPoint().Position2D);
@@ -311,28 +311,7 @@ namespace Diplomacy.Messengers
             if (!available)
             {
                 exception = new("{=bLR91Eob}{REASON}The messenger won't be able to reach the addressee.");
-
-                TextObject reason;
-                if (targetHero.IsDead)
-                    reason = new("{=vhsHDMil}{HERO_NAME} is dead. ", new() { ["HERO_NAME"] = targetHero.Name });
-                else if (targetHero.IsPrisoner)
-                    reason = new("{=CusN2JMb}{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\\?} {DETENTION_PLACE}. ", new()
-                    {
-                        ["HERO_NAME"] = targetHero.Name,
-                        ["IS_MOBILE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? 0 : 1,
-                        ["DETENTION_PLACE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? targetHero.PartyBelongedToAsPrisoner.Settlement.Name : targetHero.PartyBelongedToAsPrisoner.LeaderHero.Name
-                    });
-                else if (targetHero.IsFugitive)
-                    reason = new("{=1BISlFYx}{HERO_NAME} is fugitive and doesn't want to be found. ", new() { ["HERO_NAME"] = targetHero.Name });
-                else if (targetHero.IsReleased)
-                    reason = new("{=ze8KJ1oL}{HERO_NAME} has just been released from custody and is not yet ready to make appointments. ", new() { ["HERO_NAME"] = targetHero.Name });
-                else if (targetHero.IsTraveling)
-                    reason = new("{=N5T6IXWJ}{HERO_NAME} is traveling incognito. ", new() { ["HERO_NAME"] = targetHero.Name });
-                else if (targetHero.IsChild)
-                    reason = new("{=3lknR86H}{HERO_NAME} is too inexperienced to participate in formal meetings. ", new() { ["HERO_NAME"] = targetHero.Name });
-                else
-                    reason = TextObject.Empty;
-
+                var reason = GetUnavailabilityReason(targetHero);
                 exception.SetTextVariable("REASON", reason);
                 return false;
             }
@@ -345,6 +324,31 @@ namespace Diplomacy.Messengers
 
             exception = TextObject.Empty;
             return true;
+        }
+
+        private static TextObject GetUnavailabilityReason(Hero targetHero)
+        {
+            TextObject reason;
+            if (targetHero.IsDead)
+                reason = new("{=vhsHDMil}{HERO_NAME} is dead. ", new() { ["HERO_NAME"] = targetHero.Name });
+            else if (targetHero.IsPrisoner && targetHero.PartyBelongedToAsPrisoner != null)
+                reason = new("{=CusN2JMb}{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\\?} {DETENTION_PLACE}. ", new()
+                {
+                    ["HERO_NAME"] = targetHero.Name,
+                    ["IS_MOBILE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? 0 : 1,
+                    ["DETENTION_PLACE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? targetHero.PartyBelongedToAsPrisoner.Settlement.Name : ((targetHero.PartyBelongedToAsPrisoner.LeaderHero?.Name ?? targetHero.PartyBelongedToAsPrisoner.Name) ?? TextObject.Empty)
+                });
+            else if (targetHero.IsFugitive)
+                reason = new("{=1BISlFYx}{HERO_NAME} is fugitive and doesn't want to be found. ", new() { ["HERO_NAME"] = targetHero.Name });
+            else if (targetHero.IsReleased)
+                reason = new("{=ze8KJ1oL}{HERO_NAME} has just been released from custody and is not yet ready to make appointments. ", new() { ["HERO_NAME"] = targetHero.Name });
+            else if (targetHero.IsTraveling)
+                reason = new("{=N5T6IXWJ}{HERO_NAME} is traveling incognito. ", new() { ["HERO_NAME"] = targetHero.Name });
+            else if (targetHero.IsChild)
+                reason = new("{=3lknR86H}{HERO_NAME} is too inexperienced to participate in formal meetings. ", new() { ["HERO_NAME"] = targetHero.Name });
+            else
+                reason = TextObject.Empty;
+            return reason;
         }
 
         public static bool IsTargetHeroAvailableNow(Hero targetHero)
@@ -374,7 +378,7 @@ namespace Diplomacy.Messengers
         {
             PlayerEncounter.Finish();
 
-            if (_position2D != Vec2.Invalid)
+            if (_position2D.IsValid)
             {
                 MobileParty.MainParty.Position2D = _position2D;
             }
