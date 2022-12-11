@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.18
+Game Versions: v1.0.0,v1.0.1,v1.0.2
+* Fixed a crash that occurred when sending a Messenger to a hero in the field.
+* Hopefully fixed a rare crash, which sometimes occurred in Kingdom Management.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.17
 Game Versions: v1.0.0,v1.0.1,v1.0.2
 * Recompiled for v1.0.2.
@@ -6,7 +11,7 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2
 * Fixed several issues with peace and war restrictions not applying properly.
 * Fixed a crash that occurred when sending a Messenger to a factionless hero.
 * Fixed a crash that occurred when trying to create a caravan using a Messenger.
-* Messengers now use correct the scene for the conversation.
+* Messengers now use correct scene for the conversation.
 * Messengers can no longer freely access highborn locations unless you can.
 * The speed of Messengers now depends on the maximum arrival time.
 * Added an explanation for why some characters may not be available to send Messengers to.

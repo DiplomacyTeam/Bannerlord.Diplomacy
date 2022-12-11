@@ -204,8 +204,8 @@ namespace Diplomacy.Messengers
 
             PlayerEncounter.Start();
             PlayerEncounter.Current.SetupFields(heroParty, targetParty ?? heroParty);
-
             Campaign.Current.CurrentConversationContext = ConversationContext.Default;
+
             if (targetSettlement != null)
             {
                 _position2D = new(Hero.MainHero.GetMapPoint().Position2D);
@@ -374,7 +374,7 @@ namespace Diplomacy.Messengers
         {
             PlayerEncounter.Finish();
 
-            if (_position2D != Vec2.Invalid)
+            if (_position2D.IsValid)
             {
                 MobileParty.MainParty.Position2D = _position2D;
             }

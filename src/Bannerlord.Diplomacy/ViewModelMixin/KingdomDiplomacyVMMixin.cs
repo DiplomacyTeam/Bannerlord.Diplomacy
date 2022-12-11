@@ -43,7 +43,6 @@ namespace Diplomacy.ViewModelMixin
             }
         }
 
-
         private static readonly TextObject _TAlliances = new("{=zpNalMeA}Alliances");
         private static readonly TextObject _TStats = new("{=1occw3EF}Stats");
         private static readonly TextObject _TOverview = new("{=OvbY5qxL}Overview");
@@ -128,6 +127,9 @@ namespace Diplomacy.ViewModelMixin
 
         public void ExecuteShowStatComparison()
         {
+            if (ViewModel is null)
+                return;
+
             ViewModel!.IsDisplayingStatComparisons = true;
             ViewModel!.IsDisplayingWarLogs = false;
         }
