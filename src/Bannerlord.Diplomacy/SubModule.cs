@@ -50,8 +50,6 @@ namespace Diplomacy
 
             this.AddSerilogLoggerProvider($"{Name}.log", new[] { $"{Name}.*" }, config => config.MinimumLevel.Is(LogEventLevel.Verbose));
             Log = LogFactory.Get<SubModule>();
-
-            PatchManager.PatchAll(HarmonyDomain);
         }
 
         protected override void OnSubModuleUnloaded()
@@ -81,6 +79,8 @@ namespace Diplomacy
 
             if (game.GameType is Campaign)
             {
+                PatchManager.PatchAll(HarmonyDomain);
+
                 Events.Instance = new Events();
                 var gameStarter = (CampaignGameStarter) gameStarterObject;
 
@@ -127,7 +127,11 @@ namespace Diplomacy
             base.OnGameEnd(game);
 
             if (game.GameType is Campaign)
+            {
+                //PatchManager.UnpatchAll();
+
                 Log.LogDebug("Campaign session ended.");
+            }
         }
     }
 }
