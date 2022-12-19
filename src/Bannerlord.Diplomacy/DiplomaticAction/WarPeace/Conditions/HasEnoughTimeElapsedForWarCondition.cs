@@ -7,7 +7,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 {
     internal class HasEnoughTimeElapsedForWarCondition : IDiplomacyCondition
     {
-        private static readonly TextObject _TTooSoon = new("{=GuPOCNNZ}The truce was concluded too recently to consider breaking it now.! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.");
+        private static readonly TextObject _TTooSoon = new("{=GuPOCNNZ}The truce was concluded too recently to consider breaking it now! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days.");
 
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject? textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {

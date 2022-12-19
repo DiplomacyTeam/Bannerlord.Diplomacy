@@ -13,6 +13,9 @@ namespace Diplomacy.GauntletInterfaces
 
         public void ShowInterface(ScreenBase screenBase, Kingdom kingdom)
         {
+            if (!ShowInterfaceWithCheck())
+                return;
+
             _screenBase = screenBase;
 
             var spriteData = UIResourceManager.SpriteData;

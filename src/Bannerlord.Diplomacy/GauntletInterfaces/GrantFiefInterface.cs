@@ -17,6 +17,9 @@ namespace Diplomacy.GauntletInterfaces
 
         public void ShowFiefInterface(ScreenBase screenBase, Hero hero, Action refreshAction)
         {
+            if (!ShowInterfaceWithCheck())
+                return;
+
             _screenBase = screenBase;
             _refreshAction = refreshAction;
 

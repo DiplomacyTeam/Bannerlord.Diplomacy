@@ -1,9 +1,9 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
 
+using Diplomacy.Actions;
 using Diplomacy.Event;
 using Diplomacy.GauntletInterfaces;
-using Diplomacy.GrantFief;
 
 using JetBrains.Annotations;
 

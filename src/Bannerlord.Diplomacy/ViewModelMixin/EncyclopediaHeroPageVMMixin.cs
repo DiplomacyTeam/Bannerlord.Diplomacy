@@ -1,10 +1,10 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
 
+using Diplomacy.Actions;
 using Diplomacy.Costs;
 using Diplomacy.Event;
 using Diplomacy.GauntletInterfaces;
-using Diplomacy.GrantFief;
 using Diplomacy.Messengers;
 
 using TaleWorlds.CampaignSystem;

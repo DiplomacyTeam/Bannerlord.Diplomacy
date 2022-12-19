@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.19
+Game Versions: v1.0.0,v1.0.1,v1.0.2
+* Fiexed a crash that occured for some users on mod loading.
+* Fixed a crash that occurred when pressing the "Grant fief" button multiple times in a row in Encyclopedia.
+* Granting a fief to a clan would no longer worsen relations with mercenary clans or clans that own considerably more land.
+* Granting fief interface now includes the name of the clan you are granting a fief to.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.18
 Game Versions: v1.0.0,v1.0.1,v1.0.2
 * Fixed a crash that occurred when sending a Messenger to a hero in the field.
@@ -25,7 +32,7 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2
 Version: 1.1.16
 Game Versions: v1.0.0,v1.0.1
 * Fixed more issues with eliminated factions.
-* Better compatibility with other encyclopedia mods for Hero page.
+* Better compatibility with other Encyclopedia mods for Hero page.
 * Fixed some inaccurate setting descriptions.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.15

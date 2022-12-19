@@ -7,6 +7,8 @@ namespace Diplomacy.GauntletInterfaces
 {
     public abstract class GenericInterface
     {
+        protected bool _isShown = false;
+
         protected static readonly LoadMovieDelegate? LoadMovieDel =
             AccessTools2.GetDelegate<LoadMovieDelegate>(typeof(GauntletLayer), "LoadMovie");
 
@@ -20,6 +22,13 @@ namespace Diplomacy.GauntletInterfaces
         protected TaleWorlds.Library.ViewModel? _vm;
 
         protected abstract string MovieName { get; }
+
+        protected bool ShowInterfaceWithCheck()
+        {
+            if (_isShown)
+                return false;
+            return _isShown = true;
+        }
 
         protected object? LoadMovie()
         {
@@ -35,6 +44,7 @@ namespace Diplomacy.GauntletInterfaces
             _movie = null!;
             _vm = null;
             _screenBase = null!;
+            _isShown = false;
         }
 
         protected delegate object LoadMovieDelegate(object instance, string movieName, TaleWorlds.Library.ViewModel dataSource);

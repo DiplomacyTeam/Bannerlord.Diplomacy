@@ -1,4 +1,4 @@
-﻿using Diplomacy.GrantFief;
+﻿using Diplomacy.Actions;
 
 using JetBrains.Annotations;
 
