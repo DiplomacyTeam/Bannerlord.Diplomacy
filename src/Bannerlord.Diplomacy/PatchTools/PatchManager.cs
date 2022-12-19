@@ -20,29 +20,54 @@ namespace Diplomacy.PatchTools
     /// </remarks>
     internal sealed class PatchManager
     {
-        public static PatchManager? Instance { get; private set; }
+        public static PatchManager? MainInstance { get; private set; }
+        public static PatchManager? CampaignInstance { get; private set; }
 
-        public static IReadOnlyList<PatchClass> PatchClasses => _PatchClasses;
+        public static IReadOnlyList<PatchClass> MainPatchClasses => _mainPatchClasses;
+        public static IReadOnlyList<PatchClass> CampaignPatchClasses => _campaignPatchClasses;
 
         public IReadOnlyList<PatchClass.Patch> Patches => _patches;
 
         public Harmony Harmony { get; init; }
 
-        public static void PatchAll(string harmonyId)
+        public static void ApplyMainPatches(string harmonyId)
         {
-            if (Instance is not null)
-                throw new InvalidOperationException($"Cannot call {nameof(PatchManager)}.{nameof(PatchAll)} more than once!");
+            if (MainInstance is not null)
+                throw new InvalidOperationException($"Cannot call {nameof(PatchManager)}.{nameof(ApplyMainPatches)} more than once!");
 
-            Instance = new PatchManager(harmonyId);
+            MainInstance = new PatchManager(harmonyId);
         }
 
-        private PatchManager(string harmonyId)
+        public static void ApplyCampaignPatches(string harmonyId)
+        {
+            CampaignInstance ??= new PatchManager(harmonyId, false);
+        }
+
+        public static void RemoveCampaignPatches()
+        {
+            if (CampaignInstance is null)
+                throw new InvalidOperationException($"Cannot call {nameof(PatchManager)}.{nameof(RemoveCampaignPatches)} before calling {nameof(PatchManager)}.{nameof(ApplyCampaignPatches)}!");
+
+            var log = LogFactory.Get<PatchManager>();
+            log.LogDebug($"Removing unannotated Harmony patches (domain: {CampaignInstance.Harmony.Id})...");
+
+            foreach (var patch in CampaignInstance.Patches)
+            {
+                log.LogDebug($"Removing: {patch}");
+                patch.Remove(CampaignInstance.Harmony);
+            }
+
+            CampaignInstance = null;        
+        }
+
+        private PatchManager(string harmonyId, bool useMainPatches = true)
         {
             var log = LogFactory.Get<PatchManager>();
             log.LogDebug($"Applying unannotated Harmony patches (domain: {harmonyId})...");
 
             Harmony = new(harmonyId);
-            _patches = _PatchClasses.SelectMany(pc => pc.Patches).ToArray();
+            var sourcePatches = useMainPatches ? _mainPatchClasses : _campaignPatchClasses;
+            _patches = sourcePatches.SelectMany(pc => pc.Patches).ToArray();
 
             foreach (var patch in _patches)
             {
@@ -50,13 +75,13 @@ namespace Diplomacy.PatchTools
                 patch.Apply(Harmony);
             }
 
-            log.LogDebug($"Applied {_patches.Length} patches from {_PatchClasses.Length} patch classes.");
+            log.LogDebug($"Applied {_patches.Length} patches of {sourcePatches.Length} patch classes (domain: {harmonyId})..");
         }
 
         private readonly PatchClass.Patch[] _patches;
 
-        // REGISTER ALL ACTIVE HARMONY PATCH CLASSES HERE:
-        private static readonly PatchClass[] _PatchClasses = new PatchClass[]
+        // REGISTER ALL ACTIVE HARMONY PATCH CLASSES TO USE OnSubModuleLoad HERE:
+        private static readonly PatchClass[] _mainPatchClasses = new PatchClass[]
         {
             new DeclareWarActionPatch(),
             new DefaultClanPoliticsModelPatch(),
@@ -67,10 +92,14 @@ namespace Diplomacy.PatchTools
             new SupportKingdomQuestPatch(),
             new FactionManagerPatch(),
             new DefaultEncyclopediaFactionPagePatch(),
-            new RebelKingdomPatches(),
             new KingdomManagementVMPatch(),
             new MBBannerEditorGauntletScreenPatch(),
-            // ... Only 1 class left to convert to declarative patching.
+        };
+
+        // REGISTER ALL ACTIVE HARMONY PATCH CLASSES TO USE OnGameStart HERE:
+        private static readonly PatchClass[] _campaignPatchClasses = new PatchClass[]
+        {
+            new RebelKingdomPatches(),
         };
     }
 }
