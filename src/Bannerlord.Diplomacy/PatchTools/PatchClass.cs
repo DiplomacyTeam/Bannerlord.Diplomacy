@@ -62,6 +62,8 @@ namespace Diplomacy.PatchTools
                     throw new PatchCreationException(this);
             }
 
+            public void Remove(Harmony harmony) => harmony.Unpatch(_targetMethod, _patchMethod.MethodInfo);
+
             public override string ToString() => $"{Enum.GetName(typeof(HarmonyPatchType), _type)} patch of "
                                                + $"{_targetMethod.Name} in type {_targetMethod.DeclaringType.Name} ({_targetMethod.DeclaringType.FullName})";
 
