@@ -70,9 +70,9 @@ jobs:
         echo "::set-output name=mod_version::$vers"
         desc="$(bannerlord_changelog_parser fulldescription -f "$PWD/changelog.txt")"
         desc="${desc//'%'/'%25'}"
+        desc="${desc//$'"'/'%22'}"
         desc="${desc//$'\n'/'%0A'}"
         desc="${desc//$'\r'/'%0D'}"
-        desc="${desc//$'"'/'%22'}"
         echo "::set-output name=mod_description::$desc"
 
     - name: Upload bannerlord folder
