@@ -21,7 +21,7 @@
         <!--BUTRShared Version-->
         <BUTRSharedVersion>3.0.0.124</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->
-        <BUTRModuleManagerVersion>4.0.150</BUTRModuleManagerVersion>
+        <BUTRModuleManagerVersion>4.1.154</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
         <BUTRModuleLoaderVersion>1.0.1.44</BUTRModuleLoaderVersion>
         <!--Harmony Extensions Version-->
