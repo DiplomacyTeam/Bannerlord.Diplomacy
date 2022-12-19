@@ -72,6 +72,7 @@ jobs:
         desc="${desc//'%'/'%25'}"
         desc="${desc//$'\n'/'%0A'}"
         desc="${desc//$'\r'/'%0D'}"
+        desc="${desc//$'"'/'%22'}"
         echo "::set-output name=mod_description::$desc"
 
     - name: Upload bannerlord folder
