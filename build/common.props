@@ -2,7 +2,7 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.1.18</Version>
+        <Version>1.1.19</Version>
         <GameVersion>1.0.0</GameVersion>
     </PropertyGroup>
 
@@ -21,11 +21,11 @@
         <!--BUTRShared Version-->
         <BUTRSharedVersion>3.0.0.124</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->
-        <BUTRModuleManagerVersion>4.0.150</BUTRModuleManagerVersion>
+        <BUTRModuleManagerVersion>4.1.154</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
         <BUTRModuleLoaderVersion>1.0.1.44</BUTRModuleLoaderVersion>
         <!--Harmony Extensions Version-->
-        <HarmonyExtensionsVersion>3.1.0.69</HarmonyExtensionsVersion>
+        <HarmonyExtensionsVersion>3.2.0.72</HarmonyExtensionsVersion>
     </PropertyGroup>
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>

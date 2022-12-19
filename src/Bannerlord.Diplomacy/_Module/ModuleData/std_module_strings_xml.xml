@@ -10,7 +10,7 @@
     <string id="TS1iV2pO" text="Not enough influence!" />
     <string id="XQFxDr11" text="There is an active quest preventing it!" />
     <string id="ONNcmltF" text="This war hasn't gone on long enough to consider peace! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
-    <string id="GuPOCNNZ" text="The truce was concluded too recently to consider breaking it now.! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
+    <string id="GuPOCNNZ" text="The truce was concluded too recently to consider breaking it now! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
 
     <string id="v0cDMIcl" text="Cannot declare war on this kingdom. " />
     <string id="Pqk3WuGz" text="Cannot make peace with this kingdom. " />
@@ -51,6 +51,7 @@
     <string id="IWZ91JVk" text="Not enough gold!" />
 
     <string id="LpoyhORp" text="Grant Fief" />
+    <string id="h3b1S5Wq" text="Grant Fief to {CLAN_NAME}" />
     <string id="jznJfkfU" text="Fief Granted" />
     <string id="cXbgaPSm" text="{SETTLEMENT_NAME} was granted to {CLAN_NAME}."/>
 

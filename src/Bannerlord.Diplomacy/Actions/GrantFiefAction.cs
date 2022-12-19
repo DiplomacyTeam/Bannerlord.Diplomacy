@@ -10,7 +10,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
 
-namespace Diplomacy.GrantFief
+namespace Diplomacy.Actions
 {
     internal sealed class GrantFiefAction
     {
@@ -19,20 +19,32 @@ namespace Diplomacy.GrantFief
         private static readonly TextObject _TNoFiefsToGrant = new("{=D61vzEC7}You don't have any fiefs to grant.");
         private static readonly TextObject _TNoGrantsToMercenaries = new("{=Q7jRqnez}You cannot grant fiefs to mercenary clans.");
 
+        private static readonly float _noJealousyMultiplier = 1.2f;
+
         public static void Apply(Settlement settlement, Clan grantedClan)
         {
+            var grantedClanFiefCount = grantedClan.Fiefs.Count;
+            var grantedClanProsperity = grantedClan.Fiefs.Sum(f => f.Prosperity);
+
             ChangeOwnerOfSettlementAction.ApplyByDefault(grantedClan.Leader, settlement);
 
             var relationChange = CalculateBaseRelationChange(settlement);
             ChangeRelationAction.ApplyPlayerRelation(grantedClan.Leader, relationChange);
 
-            foreach (var clan in Clan.PlayerClan.Kingdom.Clans.Where(c => c != grantedClan && c != Clan.PlayerClan))
+            foreach (var clan in Clan.PlayerClan.Kingdom.Clans.Where(c => ShouldNegativeRelationBeApplied(c, grantedClan, grantedClanFiefCount, grantedClanProsperity)))
                 ChangeRelationAction.ApplyPlayerRelation(clan.Leader, Settings.Instance!.GrantFiefRelationPenalty);
 
             // gain generosity when granting fief
             PlayerCharacterTraitEventExperience.FiefGranted.Apply();
 
             Events.Instance.OnFiefGranted(settlement.Town);
+        }
+
+        private static bool ShouldNegativeRelationBeApplied(Clan clan, Clan grantedClan, int grantedClanFiefCount, float grantedClanProsperity)
+        {
+            if (clan == grantedClan || clan == Clan.PlayerClan || clan.IsUnderMercenaryService)
+                return false;
+            return clan.Fiefs.Count <= grantedClanFiefCount * _noJealousyMultiplier || clan.Fiefs.Sum(f => f.Prosperity) <= grantedClanProsperity * _noJealousyMultiplier;
         }
 
         private static int CalculateBaseRelationChange(Settlement settlement)

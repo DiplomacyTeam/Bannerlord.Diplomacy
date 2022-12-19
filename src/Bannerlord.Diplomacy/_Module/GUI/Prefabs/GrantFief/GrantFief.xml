@@ -31,7 +31,7 @@
                 <!--List and Scrollbar Horizontal Group-->
                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop" MarginTop="10" MarginBottom="10" MarginLeft="10" MarginRight="10">
                   <Children>
-                    <TextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="CoverChildren" Text="@GrantFiefActionName" HorizontalAlignment="Center" />
+                    <TextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="CoverChildren" Text="@GrantFiefCaption" HorizontalAlignment="Center" />
 					  <BrushWidget WidthSizePolicy = "Fixed" SuggestedWidth="500" HorizontalAlignment="Center" HeightSizePolicy = "Fixed" SuggestedHeight="2" VerticalAlignment="Bottom" MarginTop="5" MarginBottom="10" Brush="Kingdom.Divider.White" />
                     <Widget HorizontalAlignment="Center" HeightSizePolicy="Fixed" WidthSizePolicy="CoverChildren" SuggestedHeight="450" VerticalAlignment="Top">
 

@@ -92,10 +92,12 @@ namespace Diplomacy.DiplomaticAction
             explainedNum.Add(Scores.Relationship * relationMult, _TRelationship);
 
             // Expansionism (Them)
+            /*
             var expansionismPenalty = otherKingdom.GetExpansionismDiplomaticPenalty();
 
             if (expansionismPenalty < 0)
                 explainedNum.Add(expansionismPenalty, _TExpansionism);
+            */
 
             // Tendency
             explainedNum.Add(Scores.Tendency, _TTendency);
