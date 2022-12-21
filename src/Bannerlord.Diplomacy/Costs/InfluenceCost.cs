@@ -3,9 +3,11 @@ using TaleWorlds.Library;
 
 namespace Diplomacy.Costs
 {
-    class InfluenceCost : DiplomacyCost
+    public sealed class InfluenceCost : AbstractDiplomacyCost
     {
         private readonly Clan _clan;
+
+        public Clan Clan => _clan;
 
         public InfluenceCost(Clan clan, float value) : base(value)
         {

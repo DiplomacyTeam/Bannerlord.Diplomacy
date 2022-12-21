@@ -247,7 +247,7 @@ namespace Diplomacy.Messengers
                 if (requiresBribing)
                 {
                     var model = (Campaign.Current.Models.BribeCalculationModel as DefaultBribeCalculationModel);
-                    additionalExpenses = new(Hero.MainHero, null, deGetBribeInternal!(model ?? new DefaultBribeCalculationModel(), targetHero.CurrentSettlement!));
+                    additionalExpenses = new(Hero.MainHero, deGetBribeInternal!(model ?? new DefaultBribeCalculationModel(), targetHero.CurrentSettlement!));
                 }
             }
 
@@ -293,7 +293,7 @@ namespace Diplomacy.Messengers
             return textObject;
         }
 
-        public void SendMessengerWithCost(Hero targetHero, DiplomacyCost diplomacyCost)
+        public void SendMessengerWithCost(Hero targetHero, GoldCost diplomacyCost)
         {
             diplomacyCost.ApplyCost();
             SendMessenger(targetHero);
@@ -356,13 +356,13 @@ namespace Diplomacy.Messengers
             return IsTargetHeroAvailable(targetHero) && targetHero.PartyBelongedTo?.MapEvent == null;
         }
 
-        public static bool CanSendMessengerWithCost(Hero targetHero, DiplomacyCost diplomacyCost)
+        public static bool CanSendMessengerWithCost(Hero targetHero, GoldCost diplomacyCost)
         {
             var canPayCost = diplomacyCost.CanPayCost();
             return canPayCost && IsTargetHeroAvailable(targetHero);
         }
 
-        public static bool CanSendMessengerWithCost(Hero targetHero, DiplomacyCost diplomacyCost, out TextObject exception)
+        public static bool CanSendMessengerWithCost(Hero targetHero, GoldCost diplomacyCost, out TextObject exception)
         {
             var canPayCost = diplomacyCost.CanPayCost();
             if (!canPayCost)

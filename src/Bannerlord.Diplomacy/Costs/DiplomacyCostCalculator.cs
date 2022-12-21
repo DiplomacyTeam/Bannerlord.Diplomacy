@@ -12,7 +12,7 @@ namespace Diplomacy.Costs
         private static float PeaceFactor => 20.0f;
         private static float WarFactor => 10.0f;
 
-        public static DiplomacyCost DetermineCostForDeclaringWar(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
+        public static InfluenceCost DetermineCostForDeclaringWar(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
         {
             var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
@@ -91,9 +91,9 @@ namespace Diplomacy.Costs
             return FactionManager.GetEnemyFactions(kingdom)?.Select(x => x.TotalStrength).Aggregate(0f, (result, item) => result + item) / kingdom.TotalStrength ?? 0f;
         }
 
-        public static DiplomacyCost DetermineCostForSendingMessenger()
+        public static GoldCost DetermineCostForSendingMessenger()
         {
-            return new GoldCost(Hero.MainHero, null, Settings.Instance!.SendMessengerGoldCost);
+            return new (Hero.MainHero, Settings.Instance!.SendMessengerGoldCost);
         }
 
         private static GoldCost DetermineGoldCostForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)

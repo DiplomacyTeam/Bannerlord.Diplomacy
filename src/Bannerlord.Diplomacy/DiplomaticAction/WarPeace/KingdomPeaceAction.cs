@@ -17,10 +17,10 @@ namespace Diplomacy.DiplomaticAction.WarPeace
     {
         private static readonly TextObject _TDefeatTitle = new("{=BXluvRnJ}Bitter Defeat");
 
-        private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, DiplomacyCost diplomacyCost)
+        private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, HybridCost diplomacyCost)
         {
             LogFactory.Get<KingdomPeaceAction>()
-                .LogTrace($"[{CampaignTime.Now}] {kingdomMakingPeace.Name} secured peace with {otherKingdom.Name} (cost: {diplomacyCost.Value}).");
+                .LogTrace($"[{CampaignTime.Now}] {kingdomMakingPeace.Name} secured peace with {otherKingdom.Name} (cost: {diplomacyCost.GoldCost.Value} gold and {diplomacyCost.InfluenceCost.Value} influence).");
             diplomacyCost.ApplyCost();
             MakePeaceAction.Apply(kingdomMakingPeace, otherKingdom);
         }

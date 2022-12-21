@@ -23,7 +23,7 @@ namespace Diplomacy.ViewModelMixin
         private bool _canGrantFief;
         private HintViewModel? _sendMessengerHint;
         private readonly Hero _hero;
-        private readonly DiplomacyCost _sendMessengerCost;
+        private readonly GoldCost _sendMessengerCost;
         private readonly GrantFiefInterface _grantFiefInterface;
 
         private static readonly TextObject _TSendMessengerText = new("{=cXfcwzPp}Send Messenger");
