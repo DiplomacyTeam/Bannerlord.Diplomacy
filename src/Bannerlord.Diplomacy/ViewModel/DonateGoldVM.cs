@@ -1,4 +1,5 @@
 ﻿using Diplomacy.Actions;
+using Diplomacy.Character;
 
 using JetBrains.Annotations;
 
@@ -7,6 +8,7 @@ using System.ComponentModel;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -77,10 +79,14 @@ namespace Diplomacy.ViewModel
         {
             GiveGoldToClanAction.ApplyFromHeroToClan(Hero.MainHero, _clan, IntValue);
 
-            var relationValue = GetBaseRelationValueOfCurrentGoldCost();
+            var relationValue = GetEstimatedRelationValue();
 
             if (relationValue > 0)
+            { 
                 ChangeRelationAction.ApplyPlayerRelation(_clan.Leader, relationValue);
+                PlayerCharacterTraitHelper.UpdateTrait(DefaultTraits.Generosity, MBMath.ClampInt(-relationValue, -50, 0));
+                PlayerCharacterTraitHelper.UpdateTrait(DefaultTraits.Calculating, MBMath.ClampInt(relationValue * 2, 0, 50));
+            }
 
             _onFinalize();
         }
