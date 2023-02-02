@@ -18,12 +18,19 @@ namespace Diplomacy.CivilWar.Actions
 
         public static void Apply(RebelFaction rebelFaction)
         {
-            foreach (var rf in RebelFactionManager.GetRebelFaction(rebelFaction.ParentKingdom))
+            foreach (var rf in RebelFactionManager.GetRebelFaction(rebelFaction.ParentKingdom).ToList())
             {
                 if (rf == rebelFaction)
                     continue;
 
                 RebelFactionManager.DestroyRebelFaction(rf);
+            }
+
+            if (rebelFaction.SponsorClan.IsEliminated)
+            {
+                rebelFaction.RemoveClan(rebelFaction.SponsorClan);
+                if (RebelFactionManager.GetRebelFaction(rebelFaction.ParentKingdom).Any(x => x == rebelFaction))
+                    return;
             }
 
             var rebelKingdomName = _TRebelKingdomName.CopyTextObject()
@@ -43,6 +50,11 @@ namespace Diplomacy.CivilWar.Actions
 
             foreach (var clan in rebelFaction.Clans)
             {
+                if (clan.IsEliminated)
+                {
+                    rebelFaction.RemoveClan(clan);
+                    continue;
+                }
                 // make sure to retain influence
                 var influence = clan.Influence;
                 ChangeKingdomAction.ApplyByJoinToKingdom(clan, rebelFaction.RebelKingdom, false);

@@ -123,7 +123,7 @@ namespace Diplomacy.CivilWar.Factions
         {
             if (_participatingClans.Contains(clan))
             {
-                if (_participatingClans.Count == 1)
+                if (_participatingClans.Where(x => !x.IsEliminated).ToList().Count == 1)
                 {
                     RebelFactionManager.DestroyRebelFaction(this);
                     return;
@@ -131,7 +131,7 @@ namespace Diplomacy.CivilWar.Factions
 
                 if (clan == SponsorClan)
                 {
-                    SponsorClan = _participatingClans.Where(x => x != clan).GetRandomElementInefficiently();
+                    SponsorClan = _participatingClans.Where(x => x != clan && !x.IsEliminated).GetRandomElementInefficiently();
                     Name = FactionNameGenerator.GenerateFactionName(SponsorClan);
                 }
 

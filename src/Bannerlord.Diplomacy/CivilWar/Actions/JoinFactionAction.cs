@@ -91,6 +91,12 @@ namespace Diplomacy.CivilWar.Actions
             {
                 yield return TextObject.Empty;
             }
+
+            // can't join a faction when eliminated
+            if (clan.IsEliminated)
+            {
+                yield return TextObject.Empty;
+            }
         }
     }
 }

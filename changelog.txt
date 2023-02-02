@@ -20,6 +20,10 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
 * Adjusted kingdom scaling factor calculation to be more notable for larger kingdoms.
 ------------------------------------------- Donate Gold -------------------------------------------<Remove this before releasing!>
 * Donating gold to a clan now affects character traits.
+--------------------------------------------- Factions --------------------------------------------<Remove this before releasing!>
+* Fixed a bug preventing faction to consolidate when its demands are fulfilled.
+* Fixed a bug where eliminated clans were not removed from factions.
+* Made some overall stability improvements.
 ------------------------------------------- Peacemaking -------------------------------------------<Remove this before releasing!>
 * Making peace without an election, whether it be from Kingdom Management or due to War Exhaustion, now imposes a tribute as usual.
 * Making peace while on Critical War Exhaustion may result in war reparations being paid, if the other side is winning the War Exhaustion race.
