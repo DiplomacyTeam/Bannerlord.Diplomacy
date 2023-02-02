@@ -23,6 +23,7 @@ namespace Diplomacy.ViewModelMixin
 
         private bool _canGrantFiefToClan;
         private readonly GrantFiefInterface _grantFiefInterface;
+        private readonly DonateGoldInterface _donateGoldInterface;
         private HintViewModel? _grantFiefHint;
         private readonly PropertyChangedWithValueEventHandler _eventHandler;
 
@@ -31,6 +32,7 @@ namespace Diplomacy.ViewModelMixin
             DiplomacyEvents.FiefGranted.AddNonSerializedListener(this, RefreshCanGrantFief);
 
             _grantFiefInterface = new GrantFiefInterface();
+            _donateGoldInterface = new DonateGoldInterface();
             GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             GrantFiefExplanationText = new TextObject("{=98hwXUTp}Grant fiefs to clans in your kingdom").ToString();
 
@@ -78,7 +80,7 @@ namespace Diplomacy.ViewModelMixin
 
         [DataSourceMethod]
         [UsedImplicitly]
-        public void DonateGold() => new DonateGoldInterface().ShowInterface(ScreenManager.TopScreen, ViewModel!.CurrentSelectedClan.Clan);
+        public void DonateGold() => _donateGoldInterface.ShowInterface(ScreenManager.TopScreen, ViewModel!.CurrentSelectedClan.Clan);
 
         [DataSourceProperty]
         public string GrantFiefActionName { get; }

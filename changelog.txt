@@ -4,6 +4,7 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
 * Adapted for v1.1.0
 * Diplomacy events should now be ready to be a part of the public API, if we ever have one.
 * Changed some setting hints to make them clearer.
+* Fixed excessive UI overlap when repeatedly pressing the Factions button in the Encyclopedia.
 ----------------------------------------- Console commands ----------------------------------------<Remove this before releasing!>
 * Diplomacy console commands should no longer cause crashes when executed from the main menu.
 * Added diplomacy.form_non_aggression_pact console command.

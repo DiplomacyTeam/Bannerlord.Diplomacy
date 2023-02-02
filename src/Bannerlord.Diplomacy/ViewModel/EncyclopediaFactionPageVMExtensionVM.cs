@@ -19,6 +19,7 @@ namespace Diplomacy.ViewModel
         private static readonly TextObject _TAllies = new(StringConstants.Allies);
         private static readonly TextObject _TNonAggressionPacts = new(StringConstants.NonAggressionPacts);
         private static readonly TextObject _TFactions = new(StringConstants.Factions);
+        private readonly RebelFactionsInterface _rebelFactionsInterface;
 
         private IFaction _faction;
         private string _alliesText;
@@ -28,6 +29,7 @@ namespace Diplomacy.ViewModel
 
         public EncyclopediaFactionPageVMExtensionVM(EncyclopediaPageArgs args) : base(args)
         {
+            _rebelFactionsInterface = new RebelFactionsInterface();
             _faction = (IFaction) Obj;
             _alliesText = _TAllies.ToString();
             _nonAggressionPactsText = _TNonAggressionPacts.ToString();
@@ -63,10 +65,7 @@ namespace Diplomacy.ViewModel
         }
 
         [UsedImplicitly]
-        public void OpenFactions()
-        {
-            new RebelFactionsInterface().ShowInterface(ScreenManager.TopScreen, (_faction as Kingdom)!);
-        }
+        public void OpenFactions() => _rebelFactionsInterface.ShowInterface(ScreenManager.TopScreen, (_faction as Kingdom)!);
 
         [DataSourceProperty]
         public string FactionsText { get; set; }

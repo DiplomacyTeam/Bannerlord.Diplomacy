@@ -8,7 +8,6 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TaleWorlds.SaveSystem;
 
-using static Diplomacy.WarExhaustion.WarExhaustionManager;
 using static Diplomacy.WarExhaustion.WarExhaustionRecord;
 
 namespace Diplomacy.WarExhaustion
