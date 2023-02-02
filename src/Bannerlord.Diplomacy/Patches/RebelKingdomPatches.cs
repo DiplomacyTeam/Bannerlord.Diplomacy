@@ -25,8 +25,12 @@ namespace Diplomacy.Patches
             new Postfix(nameof(PreventHostileActionsConversation), conversationBehaviorType, "conversation_player_threats_lord_verify_on_condition"),
             new Postfix(nameof(PreventHostileActionsConversation), typeof(VillagerCampaignBehavior), "village_farmer_loot_on_condition"),
             new Postfix(nameof(PreventHostileActionsConversation), typeof(CaravansCampaignBehavior), "caravan_loot_on_condition"),
+#if v100 || v101 || v102 || v103
             new Postfix(nameof(PreventHostileActionsMenu), typeof(PlayerTownVisitCampaignBehavior), "game_menu_village_hostile_action_on_condition"),
-            new Prefix(nameof(HandleThroneAbdication), typeof(KingdomManager), "AbdicateTheThrone"),
+#else
+            new Postfix(nameof(PreventHostileActionsMenu), typeof(VillageHostileActionCampaignBehavior), "game_menu_village_hostile_action_on_condition"),
+#endif
+                        new Prefix(nameof(HandleThroneAbdication), typeof(KingdomManager), "AbdicateTheThrone"),
                     };
         }
 

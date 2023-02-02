@@ -83,7 +83,9 @@ namespace Diplomacy.PatchTools
         // REGISTER ALL ACTIVE HARMONY PATCH CLASSES TO USE OnSubModuleLoad HERE:
         private static readonly PatchClass[] _mainPatchClasses = new PatchClass[]
         {
+#if v100 || v101 || v102 || v103
             new DeclareWarActionPatch(),
+#endif
             new DefaultClanPoliticsModelPatch(),
             new DiplomaticBartersBehaviorPatch(),
             new EncyclopediaDataPatch(),

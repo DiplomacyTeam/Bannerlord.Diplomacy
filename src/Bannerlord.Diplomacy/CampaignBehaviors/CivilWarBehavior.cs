@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.Core;
 
@@ -26,6 +27,8 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ResolveCivilWar);
             CampaignEvents.KingdomDecisionConcluded.AddNonSerializedListener(this, NewKing);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
+            //TODO:
+            //CampaignEvents.OnClanDestroyedEvent //use this to track eliminated clans
         }
 
         public CivilWarBehavior()
@@ -79,7 +82,11 @@ namespace Diplomacy.CampaignBehaviors
             }
         }
 
+#if v100 || v101 || v102 || v103
         private void ResolveCivilWar(IFaction loser, IFaction winner)
+#else
+        private void ResolveCivilWar(IFaction loser, IFaction winner, MakePeaceAction.MakePeaceDetail makePeaceDetail)
+#endif
         {
             if (loser is Kingdom kingdom1 && winner is Kingdom kingdom2)
             {

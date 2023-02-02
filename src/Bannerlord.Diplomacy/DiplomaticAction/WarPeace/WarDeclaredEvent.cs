@@ -1,8 +1,9 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿#if v100 || v101 || v102 || v103
+using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.DiplomaticAction.WarPeace
 {
-    internal sealed class WarDeclaredEvent
+    public readonly struct WarDeclaredEvent
     {
         public IFaction Faction { get; }
 
@@ -18,3 +19,4 @@ namespace Diplomacy.DiplomaticAction.WarPeace
         }
     }
 }
+#endif

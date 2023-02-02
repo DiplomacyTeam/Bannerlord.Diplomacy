@@ -2,7 +2,7 @@
 using Bannerlord.UIExtenderEx.ViewModels;
 
 using Diplomacy.Actions;
-using Diplomacy.Event;
+using Diplomacy.Events;
 using Diplomacy.GauntletInterfaces;
 
 using JetBrains.Annotations;
@@ -28,7 +28,7 @@ namespace Diplomacy.ViewModelMixin
 
         public KingdomClanVMMixin(KingdomClanVM vm) : base(vm)
         {
-            Events.FiefGranted.AddNonSerializedListener(this, RefreshCanGrantFief);
+            DiplomacyEvents.FiefGranted.AddNonSerializedListener(this, RefreshCanGrantFief);
 
             _grantFiefInterface = new GrantFiefInterface();
             GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
@@ -48,7 +48,7 @@ namespace Diplomacy.ViewModelMixin
         public override void OnFinalize()
         {
             base.OnFinalize();
-            Events.RemoveListeners(this);
+            DiplomacyEvents.RemoveListeners(this);
             ViewModel!.PropertyChangedWithValue -= _eventHandler;
         }
 

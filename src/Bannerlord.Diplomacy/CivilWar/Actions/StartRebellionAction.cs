@@ -49,7 +49,11 @@ namespace Diplomacy.CivilWar.Actions
                 clan.Influence = influence;
             }
 
+#if v100 || v101 || v102 || v103
             DeclareWarAction.Apply(rebelFaction.RebelKingdom, rebelFaction.ParentKingdom);
+#else
+            DeclareWarAction.ApplyByKingdomCreation(rebelFaction.RebelKingdom, rebelFaction.ParentKingdom);
+#endif
 
             var strVars = new Dictionary<string, object>
             {

@@ -1,5 +1,5 @@
 ﻿using Diplomacy.Character;
-using Diplomacy.Event;
+using Diplomacy.Events;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -11,7 +11,7 @@ namespace Diplomacy.CampaignBehaviors
 {
     internal sealed class KeepFiefAfterSiegeBehavior : CampaignBehaviorBase
     {
-        public override void RegisterEvents() => Events.PlayerSettlementTaken.AddNonSerializedListener(this, OnPlayerSettlementTaken);
+        public override void RegisterEvents() => DiplomacyEvents.PlayerSettlementTaken.AddNonSerializedListener(this, OnPlayerSettlementTaken);
 
         public override void SyncData(IDataStore dataStore) { }
 

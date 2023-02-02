@@ -5,9 +5,9 @@ using System.Text;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace Diplomacy
+namespace Diplomacy.Helpers
 {
-    class MessageHelper
+    internal static class MessageHelper
     {
         public static void SendFailedActionMessage(string action, List<string> exceptions)
         {

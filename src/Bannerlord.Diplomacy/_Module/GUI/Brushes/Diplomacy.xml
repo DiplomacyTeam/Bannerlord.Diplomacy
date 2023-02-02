@@ -1,8 +1,15 @@
 ﻿<Brushes>
   <Brush Name="Map.WarExhaustionIndicator.Text" Font="Galahad" TextHorizontalAlignment="Center">
     <Styles>
-      <Style Name="Default" FontColor="#FFFFFFFF" TextGlowColor="#000000FF" TextOutlineColor="#000000FF" TextOutlineAmount="0.15" TextGlowRadius="0" TextBlur="1" FontSize="25" />
+      <Style Name="Default" FontColor="#00FF00FF" TextGlowColor="#000000FF" TextOutlineColor="#000000FF" TextOutlineAmount="0.15" TextGlowRadius="0" TextBlur="1" FontSize="25" />
       <Style Name="Critical" FontColor="#FF0000FF" TextOutlineColor="#000000FF" TextOutlineAmount="0.15" TextGlowRadius="0" TextBlur="1" FontSize="25" />
+    </Styles>
+  </Brush>
+
+  <Brush Name="Map.WarExhaustionReport.Text" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
+    <Styles>
+      <Style Name="Default" FontColor="#E1E1E1FF" TextOutlineAmount="0" TextGlowRadius="0.0" TextBlur="0" TextShadowOffset="0" FontSize="24" />
+      <Style Name="Critical" FontColor="#FF0000FF" TextOutlineAmount="0" TextGlowRadius="0.0" TextBlur="0" TextShadowOffset="0" FontSize="24" />
     </Styles>
   </Brush>
 

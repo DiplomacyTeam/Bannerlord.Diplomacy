@@ -1,4 +1,5 @@
 ﻿using Diplomacy.Costs;
+using Diplomacy.Helpers;
 
 using HarmonyLib.BUTR.Extensions;
 
@@ -265,7 +266,7 @@ namespace Diplomacy.Messengers
                 bribeTextObject.SetTextVariable("NEW_LINE", Environment.NewLine);
                 bribeTextObject.SetTextVariable("IS_FEMALE", Hero.MainHero.IsFemale ? 1 : 0);
                 bribeTextObject.SetTextVariable("GOLD_COST", (int) additionalExpenses.Value);
-                bribeTextObject.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+                bribeTextObject.SetTextVariable("GOLD_ICON", StringConstants.GoldIcon);
                 bribeTextObject.SetTextVariable("CAN_AFFORD", additionalExpenses.CanPayCost() ? 1 : 0);
             }
             else

@@ -64,8 +64,8 @@
     <string id="qAcR4Yee" text="Friendly Clans In Faction" />
     <string id="1AZK0UVJ" text="Ruler doesn't have Right to Rule" />
 
-	  <string id="ovgs58sT" text="Can't start a faction during an active rebellion." />
-	  <string id="VbpiW2bd" text="Can't start a faction so soon after a civil war." />
+    <string id="ovgs58sT" text="Can't start a faction during an active rebellion." />
+    <string id="VbpiW2bd" text="Can't start a faction so soon after a civil war." />
     <string id="JDk8ustS" text="Mercenaries cannot create factions." />
     <string id="quo5erz6" text="Rulers cannot create factions." />
     <string id="luvsD6Zn" text="Cannot create a faction in a rebel kingdom." />
@@ -76,8 +76,8 @@
     
     <!-- <string id="" text="" /> -->
 
-	  <string id="EYB5Uggd" text="Leader is {TRAIT}" />
-	  <string id="E00ywbqb" text="Ruler is {TRAIT}" />
+    <string id="EYB5Uggd" text="Leader is {TRAIT}" />
+    <string id="E00ywbqb" text="Ruler is {TRAIT}" />
 
     <string id="GeevRiNR" text="{LABEL}{newline} {newline}{REASON}" />
     <string id="ALSuNVzE" text="{EXCEPTION}{newline} {newline}{DEMAND_HINT}" />

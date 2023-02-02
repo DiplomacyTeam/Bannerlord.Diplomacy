@@ -10,14 +10,14 @@
     <MultiplayerModule value="false" />
     <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/832" />
     <DependedModules>
-        <DependedModule Id="Bannerlord.Harmony" />
-        <DependedModule Id="Bannerlord.ButterLib" />
-        <DependedModule Id="Bannerlord.MBOptionScreen" />
-        <DependedModule Id="Bannerlord.UIExtenderEx" />
-        <DependedModule Id="Native" />
-        <DependedModule Id="SandBoxCore" />
-        <DependedModule Id="Sandbox" />
-        <DependedModule Id="StoryMode" />
+        <DependedModule Id="Bannerlord.Harmony" DependentVersion="v$harmonyversion$" />
+        <DependedModule Id="Bannerlord.ButterLib" DependentVersion="v$butterlibversion$" />
+        <DependedModule Id="Bannerlord.MBOptionScreen" DependentVersion="v$mcmversion$" />
+        <DependedModule Id="Bannerlord.UIExtenderEx" DependentVersion="v$uiextenderexversion$" />
+        <DependedModule Id="Native" DependentVersion="v$gameversion$" />
+        <DependedModule Id="SandBoxCore" DependentVersion="v$gameversion$" />
+        <DependedModule Id="Sandbox" DependentVersion="v$gameversion$" />
+        <DependedModule Id="StoryMode" DependentVersion="v$gameversion$" />
     </DependedModules>
     <DependedModuleMetadatas>
         <DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" version="v$harmonyversion$" />
@@ -29,6 +29,7 @@
         <DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" version="v$gameversion$.*" />
         <DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" version="v$gameversion$.*" />
         <DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis" version="v$gameversion$.*" optional="true" />
+        <DependedModuleMetadata id="BirthAndDeath" order="LoadBeforeThis" version="v$gameversion$.*" optional="true" />
     </DependedModuleMetadatas>
     <SubModules>
         <!-- Bannerlord Module Loader. Do not change the name! -->
@@ -47,6 +48,9 @@
         </XmlNode>
         <XmlNode>
             <XmlName id="GameText" path="gt_help"/>
+        </XmlNode>
+        <XmlNode>
+            <XmlName id="GameText" path="gt_war_exhaustion"/>
         </XmlNode>
     </Xmls>
 </Module>

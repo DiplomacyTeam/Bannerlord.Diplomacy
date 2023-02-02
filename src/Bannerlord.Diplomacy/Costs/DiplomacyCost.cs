@@ -7,6 +7,8 @@ namespace Diplomacy.Costs
     {
         protected readonly List<IDiplomacyCost> _diplomacyCosts;
 
+        public List<IDiplomacyCost> DiplomacyCosts => _diplomacyCosts;
+
         public DiplomacyCost(List<IDiplomacyCost> diplomacyCosts)
         {
             _diplomacyCosts = diplomacyCosts;

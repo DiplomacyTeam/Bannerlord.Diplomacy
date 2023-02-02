@@ -1,6 +1,6 @@
 ﻿using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.WarPeace;
-using Diplomacy.Event;
+using Diplomacy.Events;
 using Diplomacy.Extensions;
 
 using System.Linq;
@@ -18,8 +18,12 @@ namespace Diplomacy.CampaignBehaviors
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, DailyTickClan);
-            Events.WarDeclared.AddNonSerializedListener(this, WarDeclared);
-            Events.AllianceFormed.AddNonSerializedListener(this, AllianceFormed);
+#if v100 || v101 || v102 || v103
+            DiplomacyEvents.WarDeclared.AddNonSerializedListener(this, WarDeclared);
+#else
+            CampaignEvents.WarDeclared.AddNonSerializedListener(this, WarDeclared);
+#endif
+            DiplomacyEvents.AllianceFormed.AddNonSerializedListener(this, AllianceFormed);
         }
 
         public override void SyncData(IDataStore dataStore) { }
@@ -48,6 +52,7 @@ namespace Diplomacy.CampaignBehaviors
                 InformationManager.DisplayMessage(new InformationMessage(txtRendered, SubModule.StdTextColor));
         }
 
+#if v100 || v101 || v102 || v103
         private void WarDeclared(WarDeclaredEvent warDeclaredEvent)
         {
             if (!warDeclaredEvent.IsProvoked
@@ -57,7 +62,17 @@ namespace Diplomacy.CampaignBehaviors
                 SupportAlliedKingdom(defender, attacker);
             }
         }
-
+#else
+        private void WarDeclared(IFaction faction1, IFaction faction2, DeclareWarAction.DeclareWarDetail declareWarDetail)
+        {
+            if (declareWarDetail != DeclareWarAction.DeclareWarDetail.CausedByPlayerHostility
+                && faction1 is Kingdom attacker
+                && faction2 is Kingdom defender)
+            {
+                SupportAlliedKingdom(defender, attacker);
+            }
+        }
+#endif
         private void SupportAlliedKingdom(Kingdom kingdom, Kingdom kingdomToDeclareWarOn)
         {
             var allies = KingdomExtensions.AllActiveKingdoms.Where(k => kingdom != k && FactionManager.IsAlliedWithFaction(kingdom, k));
@@ -67,7 +82,11 @@ namespace Diplomacy.CampaignBehaviors
                 if (!DeclareWarConditions.Instance.CanApply(ally, kingdomToDeclareWarOn, bypassCosts: true))
                     continue;
 
+#if v100 || v101 || v102 || v103
                 DeclareWarAction.ApplyDeclareWarOverProvocation(ally, kingdomToDeclareWarOn);
+#else
+                DeclareWarAction.ApplyByKingdomDecision(ally, kingdomToDeclareWarOn);
+#endif
                 var txt = new TextObject("{=UDC8eW7s}{ALLIED_KINGDOM} is joining their ally, {KINGDOM}, in the war against {ENEMY_KINGDOM}.");
                 txt.SetTextVariable("ALLIED_KINGDOM", ally.Name);
                 txt.SetTextVariable("KINGDOM", kingdom.Name);

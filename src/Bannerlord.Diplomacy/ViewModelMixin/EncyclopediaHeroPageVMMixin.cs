@@ -3,7 +3,7 @@ using Bannerlord.UIExtenderEx.ViewModels;
 
 using Diplomacy.Actions;
 using Diplomacy.Costs;
-using Diplomacy.Event;
+using Diplomacy.Events;
 using Diplomacy.GauntletInterfaces;
 using Diplomacy.Messengers;
 
@@ -62,7 +62,7 @@ namespace Diplomacy.ViewModelMixin
         [DataSourceMethod]
         public void SendMessenger()
         {
-            Events.Instance.OnMessengerSent(_hero);
+            DiplomacyEvents.Instance.OnMessengerSent(_hero);
             OnRefresh();
         }
 

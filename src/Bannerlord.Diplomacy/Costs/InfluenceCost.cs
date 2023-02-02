@@ -1,4 +1,6 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
 namespace Diplomacy.Costs
@@ -16,7 +18,7 @@ namespace Diplomacy.Costs
 
         public override void ApplyCost()
         {
-            _clan.Influence = MBMath.ClampFloat(_clan.Influence - Value, 0f, float.MaxValue);
+            _clan.Influence = MBMath.ClampFloat(_clan.Influence - Math.Max(Value, 0f), 0f, float.MaxValue);
         }
 
         public override bool CanPayCost()

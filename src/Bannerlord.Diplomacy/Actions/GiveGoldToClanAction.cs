@@ -22,20 +22,25 @@ namespace Diplomacy.Actions
 
         private static void GiveGoldToClan(int gold, Clan clan)
         {
-            foreach (var valueTuple in MBMath.DistributeShares(gold, clan.Lords, CalculateShare))
+            foreach ((var recipientHero, var amount) in MBMath.DistributeShares(gold, clan.Lords, CalculateShare))
             {
-                GiveGoldAction.ApplyBetweenCharacters(null, valueTuple.Item1, valueTuple.Item2);
+                GiveGoldAction.ApplyBetweenCharacters(null, recipientHero, amount);
             }
         }
 
         private static int CalculateShare(Hero member)
         {
-            return HeroHelper.CalculateTotalStrength(member) + 10;
+            return HeroHelper.CalculateTotalStrength(member) + (member == member.Clan?.Leader ? 100 : 10);
         }
 
         public static void ApplyFromHeroToClan(Hero giverHero, Clan clan, int amount)
         {
             ApplyInternal(giverHero, clan, amount);
+        }
+
+        public static void ApplyToClan(Clan clan, int amount)
+        {
+            ApplyInternal(null, clan, amount);
         }
     }
 }

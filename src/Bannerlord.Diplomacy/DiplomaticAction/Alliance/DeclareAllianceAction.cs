@@ -1,5 +1,5 @@
 ﻿using Diplomacy.Costs;
-using Diplomacy.Event;
+using Diplomacy.Events;
 
 using Microsoft.Extensions.Logging;
 
@@ -23,7 +23,7 @@ namespace Diplomacy.DiplomaticAction.Alliance
         {
             LogFactory.Get<DeclareAllianceAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} secured an alliance with {otherKingdom.Name}.");
             FactionManager.DeclareAlliance(proposingKingdom, otherKingdom);
-            Events.Instance.OnAllianceFormed(new AllianceEvent(proposingKingdom, otherKingdom));
+            DiplomacyEvents.Instance.OnAllianceFormed(new AllianceEvent(proposingKingdom, otherKingdom));
         }
 
         protected override void AssessCosts(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCosts)

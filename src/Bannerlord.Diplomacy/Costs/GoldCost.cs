@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.ObjectSystem;
 
 namespace Diplomacy.Costs
 {
@@ -11,12 +12,11 @@ namespace Diplomacy.Costs
     {
         private readonly Hero _giver;
 
-        private readonly Hero? _receiver = null;
-        private readonly Clan? _receivingClan = null;
-        private readonly PartyBase? _receivingParty = null;
-        private readonly Settlement? _receivingSettlement = null;
+        private readonly MBObjectBase? _receiver = null;
 
         public Hero Giver => _giver;
+        public bool HasReceiver => _receiver != null;
+        public MBObjectBase? Receiver => _receiver;
 
         public GoldCost(Hero giver, float value) : base(value)
         {
@@ -32,48 +32,55 @@ namespace Diplomacy.Costs
         public GoldCost(Hero giver, Clan? receivingClan, float value) : base(value)
         {
             _giver = giver;
-            _receivingClan = receivingClan;
+            _receiver = receivingClan;
         }
 
-        public GoldCost(Hero giver, PartyBase? receivingParty, float value) : base(value)
+        public GoldCost(Hero giver, Kingdom? receivingKingdom, float value) : base(value)
         {
             _giver = giver;
-            _receivingParty = receivingParty;
+            _receiver = receivingKingdom;
+        }
+
+        public GoldCost(Hero giver, MobileParty? receivingParty, float value) : base(value)
+        {
+            _giver = giver;
+            _receiver = receivingParty;
         }
 
         public GoldCost(Hero giver, Settlement? receivingSettlement, float value) : base(value)
         {
             _giver = giver;
-            _receivingSettlement = receivingSettlement;
+            _receiver = receivingSettlement;
         }
 
         public override void ApplyCost()
         {
-            if (_receiver is not null)
+            if (Value <= 0f)
+                return;
+
+            switch (_receiver)
             {
-                GiveGoldAction.ApplyBetweenCharacters(_giver, _receiver, (int) Value);
-            }
-            else if (_receivingClan is not null)
-            {
-                GiveGoldToClanAction.ApplyFromHeroToClan(_giver, _receivingClan, (int) Value);
-            }
-            else if (_receivingParty is not null)
-            {
-                GiveGoldAction.ApplyForCharacterToParty(_giver, _receivingParty, (int) Value);
-            }
-            else if (_receivingSettlement is not null)
-            {
-                GiveGoldAction.ApplyForCharacterToSettlement(_giver, _receivingSettlement, (int) Value);
-            }
-            else
-            {
-                _giver.ChangeHeroGold(-(int) Value);
+                case Hero receiverHero:
+                    GiveGoldAction.ApplyBetweenCharacters(_giver, receiverHero, (int) Value);
+                    return;
+                case Clan receivingClan:
+                    GiveGoldToClanAction.ApplyFromHeroToClan(_giver, receivingClan, (int) Value);
+                    return;
+                case Kingdom receivingKingdom:
+                    GiveGoldToKingdomAction.ApplyFromHeroToKingdom(_giver, receivingKingdom, (int) Value);
+                    return;
+                case MobileParty mobileParty:
+                    GiveGoldAction.ApplyForCharacterToParty(_giver, mobileParty.Party, (int) Value);
+                    return;
+                case Settlement receivingSettlement:
+                    GiveGoldAction.ApplyForCharacterToSettlement(_giver, receivingSettlement, (int) Value);
+                    return;
+                default:
+                    _giver.ChangeHeroGold(-(int) Value);
+                    return;
             }
         }
 
-        public override bool CanPayCost()
-        {
-            return _giver.Gold >= (int) Value;
-        }
+        public override bool CanPayCost() => _giver.Gold >= (int) Value;
     }
 }

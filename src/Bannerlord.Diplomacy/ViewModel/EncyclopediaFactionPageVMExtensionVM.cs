@@ -16,7 +16,7 @@ namespace Diplomacy.ViewModel
 {
     class EncyclopediaFactionPageVMExtensionVM : EncyclopediaFactionPageVM
     {
-        private static readonly TextObject _TAllies = new("{=KqfNSsBE}Allies");
+        private static readonly TextObject _TAllies = new(StringConstants.Allies);
         private static readonly TextObject _TNonAggressionPacts = new(StringConstants.NonAggressionPacts);
         private static readonly TextObject _TFactions = new(StringConstants.Factions);
 

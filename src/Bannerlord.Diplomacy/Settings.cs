@@ -65,7 +65,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int AllianceTendency { get; set; } = 0;
 
-        [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 999, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player total control over their kingdom's war and peace declarations. Default value is false.")]
+        [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 999, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player full control over declaring war and making peace in the kingdom they belong to, even if they are just a vassal and not the leader of the kingdom. Default value is disabled.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool PlayerDiplomacyControl { get; set; } = false;
 
@@ -81,25 +81,57 @@ namespace Diplomacy
 
         // War Exhaustion
 
-        [SettingPropertyBool("{=lSttctYC}Enable War Exhaustion", RequireRestart = true, HintText = "{=Cxyn9ROT}If disabled, this disables the war exhaustion mechanic. Default value is enabled.")]
+        [SettingPropertyBool("{=lSttctYC}Enable War Exhaustion", Order = 0, RequireRestart = true, HintText = "{=Cxyn9ROT}Enables the war exhaustion mechanic. Default value is enabled.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public bool EnableWarExhaustion { get; set; } = true;
 
-        [SettingPropertyFloatingInteger("{=8TFQWL55}War Exhaustion Per Day", 0f, 5f, RequireRestart = false, HintText = "{=lgza5wDq}The amount of war exhaustion added per day a war is ongoing. Default value is 0.25.")]
+        [SettingPropertyBool("{=Yc2YUIva}Enable Diminishing Returns", Order = 1, RequireRestart = true, HintText = "{=CaxxEEdC}Enables diminishing returns for some events when calculating war exhaustion. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public bool EnableDiminishingReturns { get; set; } = true;
+
+        [SettingPropertyBool("{=HPFINWrc}Individual War Exhaustion Rates", Order = 2, RequireRestart = false, HintText = "{=LFVkLcIp}Enables the individual war exhaustion rates for factions. If disabled, a single rate will be calculated for every war based on combined strength of the opposing factions. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public bool IndividualWarExhaustionRates { get; set; } = true;
+
+        [SettingPropertyFloatingInteger("{=8TFQWL55}War Exhaustion Per Day", 0f, 5f, "0.00\\%", Order = 10, RequireRestart = false, HintText = "{=lgza5wDq}The amount of war exhaustion added per day a war is ongoing. Not affected by war exhaustion rate. Default value is 0.25%.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerDay { get; set; } = 0.25f;
 
-        [SettingPropertyFloatingInteger("{=s6dNpM6M}War Exhaustion Per Casualty", 0f, 0.1f, "0.000", RequireRestart = false, HintText = "{=NcJtGeM7}The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.02.")]
+        [SettingPropertyFloatingInteger("{=PAmPVWgD}Fiefless Multiplier", 0f, 100f, "0.0", Order = 11, RequireRestart = false, HintText = "{=SdjYeYM5}Multiplier for the amount of war exhaustion added per day for a faction with no fiefs compared to a faction with fiefs. Default value is 10.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public float FieflessWarExhaustionMultiplier { get; set; } = 10f;
+
+        [SettingPropertyFloatingInteger("{=s6dNpM6M}War Exhaustion Per Casualty", 0f, 0.1f, "0.000\\%", Order = 20, RequireRestart = false, HintText = "{=NcJtGeM7}The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.02%.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerCasualty { get; set; } = 0.02f;
 
-        [SettingPropertyFloatingInteger("{=gGIaLKHk}War Exhaustion Per Siege", 0f, 50f, RequireRestart = false, HintText = "{=mCEa773h}The amount of war exhaustion added when a faction loses a city. Default value is 10.0.")]
+        [SettingPropertyFloatingInteger("{=kr5zAufg}War Exhaustion Per Caravan Raid", 0f, 50f, "0.00\\%", Order = 25, RequireRestart = false, HintText = "{=PinVMCUE}The amount of war exhaustion added when a faction's caravan is raided. Default value is 3.0%.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public float WarExhaustionPerCaravanRaid { get; set; } = 3f;
+
+        [SettingPropertyFloatingInteger("{=qFJ23KxQ}War Exhaustion Per Hero Imprisoned", 0f, 50f, "0.00\\%", Order = 30, RequireRestart = false, HintText = "{=wctCn9uO}The base amount of war exhaustion added when a faction's noble hero is imprisoned. Affected by the hero significance for the faction. Potentially subject to diminishing returns. Default value is 2.0%.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public float WarExhaustionPerImprisonment { get; set; } = 2f;
+
+        [SettingPropertyFloatingInteger("{=4vTzbsXD}War Exhaustion Per Hero Perished", 0f, 50f, "0.00\\%", Order = 35, RequireRestart = false, HintText = "{=w80tUaVd}The base amount of war exhaustion added when a faction's noble hero is killed. Affected by the hero significance for the faction. Potentially subject to diminishing returns when multiple heroes of the same clan are killed. Default value is 5.0%.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public float WarExhaustionPerDeath { get; set; } = 5f;
+
+        [SettingPropertyFloatingInteger("{=eWVGwf2m}War Exhaustion Per Raid", 0f, 50f, "0.00\\%", Order = 40, RequireRestart = false, HintText = "{=ufHDJt8H}The amount of war exhaustion added when a faction's village is raided. Potentially subject to diminishing returns. Default value is 3.0%.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public float WarExhaustionPerRaid { get; set; } = 3f;
+
+        [SettingPropertyFloatingInteger("{=gGIaLKHk}War Exhaustion Per Siege", 0f, 50f, "0.00\\%", Order = 45, RequireRestart = false, HintText = "{=mCEa773h}The amount of war exhaustion added when a faction loses a city. Losing a castle adds half as much. Potentially subject to diminishing returns. Default value is 10.0%.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerSiege { get; set; } = 10f;
 
-        [SettingPropertyFloatingInteger("{=eWVGwf2m}War Exhaustion Per Raid", 0f, 50f, RequireRestart = false, HintText = "{=ufHDJt8H}The amount of war exhaustion added when a faction's village is raided. Default value is 3.0.")]
+        [SettingPropertyFloatingInteger("{=JmUPtZdw}War Exhaustion When Occupied", 0f, 50f, "0.00\\%", Order = 50, RequireRestart = false, HintText = "{=541jGrpb}The amount of war exhaustion added when a faction's lost all fiefs. Not affected by war exhaustion rate. Potentially subject to diminishing returns. Default value is 15.0%.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
-        public float WarExhaustionPerRaid { get; set; } = 3f;
+        public float WarExhaustionWhenOccupied { get; set; } = 15f;
+
+        [SettingPropertyInteger("{=pPHLRIml}Maximum Entries In Breakdown Tooltip", 0, 100, Order = 98, RequireRestart = false, HintText = "{=YMf0mSqy}Maximum number of entries in any given breakdown tooltip in war exhaustion report. Set this to any value that is convenient for viewing. Default value is 35.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public int MaxShownBreakdownEntries { get; set; } = 35;
 
         [SettingPropertyBool("{=F4iFH6un}Campaign Map Widget", Order = 99, RequireRestart = false, HintText = "{=zTvbZ8Br}Enables a dedicated war exhaustion widget for each ongoing war at the top of the campaign map screen. Default value is enabled.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
@@ -116,7 +148,7 @@ namespace Diplomacy
             }
         }
 
-        [SettingPropertyBool("{=jI9NSxtz}Enable Player War Exhaustion Debug Messages", Order = 100, RequireRestart = false, HintText = "{=LYyNbQds}Enables debug messages for war exhaustion added to the player kingdom. Default value is false.")]
+        [SettingPropertyBool("{=jI9NSxtz}Enable Player War Exhaustion Debug Messages", Order = 100, RequireRestart = false, HintText = "{=LYyNbQds}Enables debug messages for war exhaustion added to the player kingdom. Default value is disabled.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public bool EnableWarExhaustionDebugMessages { get; set; } = false;
 
@@ -130,31 +162,45 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingRelations)]
         public int GrantFiefRelationPenalty { get; set; } = -2;
 
-        // Costs
+        // Gold Costs
 
-        [SettingPropertyFloatingInteger(displayName: "{=HFtZsD6v}Scaling War Reparations Gold Cost Multiplier", 0, 10000, Order = 0, RequireRestart = false, HintText = "{=MIhbrqbr}Multiplier for the scaling of war reparations gold costs. Default value is 100.")]
+        [SettingPropertyBool(displayName: "{=t4hNAoD7}Enable Scaling Gold Costs", Order = 0, RequireRestart = false, HintText = "{=5MMIDE5A}If enabled, this will scale gold costs of diplomatic actions and war reparations based on your kingdom size. Otherwise, the generic multipliers of 100 for diplomatic actions and 1000 for war reparations will apply. The default value is enabled.")]
         [SettingPropertyGroup(HeadingGoldCosts)]
-        public float ScalingWarReparationsGoldCostMultiplier { get; set; } = 100.0f;
+        public bool ScalingGoldCosts { get; set; } = true;
 
-        [SettingPropertyInteger(displayName: "{=OnTeAgin}Flat Declare War Influence Cost", 0, 10000, Order = 2, RequireRestart = false, HintText = "{=O5XvybTI}Influence cost for declaring war on another kingdom. Default value is 500.")]
-        [SettingPropertyGroup(HeadingInfluenceCosts)]
-        public int DeclareWarInfluenceCost { get; set; } = 500;
+        [SettingPropertyFloatingInteger(displayName: "{=vD270X6H}Scaling Gold Cost Multiplier", 0, 100, Order = 10, RequireRestart = false, HintText = "{=Gd52NzBP}Multiplier for the scaling gold costs. Default value is 5.")]
+        [SettingPropertyGroup(HeadingGoldCosts)]
+        public float ScalingGoldCostMultiplier { get; set; } = 5;
 
-        [SettingPropertyInteger("{=iNsXQD2q}Flat Make Peace Influence Cost", 0, 10000, Order = 3, RequireRestart = false, HintText = "{=WB5zdvdT}Influence cost for making peace with another kingdom. Default value is 500.")]
-        [SettingPropertyGroup(HeadingInfluenceCosts)]
-        public int MakePeaceInfluenceCost { get; set; } = 500;
+        [SettingPropertyFloatingInteger(displayName: "{=HFtZsD6v}Scaling War Reparations Gold Cost Multiplier", 0, 1000, Order = 11, RequireRestart = false, HintText = "{=MIhbrqbr}Multiplier for the scaling of war reparations gold costs. Default value is 50.")]
+        [SettingPropertyGroup(HeadingGoldCosts)]
+        public float ScalingWarReparationsGoldCostMultiplier { get; set; } = 50;
 
-        [SettingPropertyBool(displayName: "{=WbOKuWbQ}Enable Influence Costs", RequireRestart = false, HintText = "{=K2vLGalN}If disabled, this removes all costs for war and peace declaration actions. Default value is true.")]
+        [SettingPropertyInteger(displayName: "{=Cr6a5Jap}Defeated War Reparations Gold Cost", 0, 10000, Order = 12, RequireRestart = false, HintText = "{=NH4GNKva}The cost in gold for losing a war of attrition against another kingdom, measured in millions. The default value is 500.")]
+        [SettingPropertyGroup(HeadingGoldCosts)]
+        public int DefeatedGoldCost { get; set; } = 500;
+
+        // Influence Costs
+
+        [SettingPropertyBool(displayName: "{=WbOKuWbQ}Enable Influence Costs", Order = 0, RequireRestart = false, HintText = "{=K2vLGalN}If disabled, this removes influence costs for war and peace declaration actions. Default value is enabled.")]
         [SettingPropertyGroup(HeadingInfluenceCosts)]
         public bool EnableInfluenceCostsForDiplomacyActions { get; set; } = true;
 
-        [SettingPropertyBool(displayName: "{=P1g6Ht1e}Enable Scaling Influence Cost", Order = 0, RequireRestart = false, HintText = "{=xfVFBxfj}If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is true.")]
+        [SettingPropertyBool(displayName: "{=P1g6Ht1e}Enable Scaling Influence Costs", Order = 1, RequireRestart = false, HintText = "{=xfVFBxfj}If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is enabled.")]
         [SettingPropertyGroup(HeadingInfluenceCosts)]
         public bool ScalingInfluenceCosts { get; set; } = true;
 
-        [SettingPropertyFloatingInteger(displayName: "{=TvAYJv5Q}Scaling Influence Cost Multiplier", 0, 100, Order = 1, RequireRestart = false, HintText = "{=AQ5gRYN6}Multiplier for the scaling influence costs. Default value is 5.")]
+        [SettingPropertyFloatingInteger(displayName: "{=TvAYJv5Q}Scaling Influence Cost Multiplier", 0, 100, Order = 10, RequireRestart = false, HintText = "{=AQ5gRYN6}Multiplier for the scaling influence costs. Default value is 5.")]
         [SettingPropertyGroup(HeadingInfluenceCosts)]
         public float ScalingInfluenceCostMultiplier { get; set; } = 5.0f;
+
+        [SettingPropertyInteger(displayName: "{=OnTeAgin}Flat Declare War Influence Cost", 0, 10000, Order = 11, RequireRestart = false, HintText = "{=O5XvybTI}Influence cost for declaring war on another kingdom. Default value is 500.")]
+        [SettingPropertyGroup(HeadingInfluenceCosts)]
+        public int DeclareWarInfluenceCost { get; set; } = 500;
+
+        [SettingPropertyInteger("{=iNsXQD2q}Flat Make Peace Influence Cost", 0, 10000, Order = 12, RequireRestart = false, HintText = "{=WB5zdvdT}Influence cost for making peace with another kingdom. Default value is 500.")]
+        [SettingPropertyGroup(HeadingInfluenceCosts)]
+        public int MakePeaceInfluenceCost { get; set; } = 500;
 
         // Influence
 
@@ -198,7 +244,7 @@ namespace Diplomacy
 
         // Misc
 
-        [SettingPropertyBool("{=lsyl0VSX}Storyline Protection", Order = -2, RequireRestart = false, HintText = "{=EVrErrTR}When enabled, prevents the player from breaking the main storyline. Disable when using mods like \"Just Let Me Play\". Default value is true.")]
+        [SettingPropertyBool("{=lsyl0VSX}Storyline Protection", Order = -2, RequireRestart = false, HintText = "{=EVrErrTR}When enabled, prevents the player from breaking the main storyline. Disable when using mods like \"Just Let Me Play\". Default value is enabled.")]
         public bool EnableStorylineProtection { get; set; } = true;
 
         public bool EnableCoalitions { get; set; } = false;
