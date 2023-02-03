@@ -21,11 +21,14 @@
     <string id="JmgAuONd" text="Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
     <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}" />
     <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days." />
+    <string id="nYrezEOX" text="Messenger killed" />
+    <string id="A5lug0JY" text="Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!" />
     <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\?}" />
     <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Unfortunately, the messenger is denied access to the keep, but can try to bribe the guards. It would cost {?IS_FEMALE}her{?}him{\?} {GOLD_COST}{GOLD_ICON} and you will have to cover the expenses{?CAN_AFFORD}.{?}, which you can't afford at the moment.{\?}" />
 
     <string id="bLR91Eob" text="{REASON}The messenger won't be able to reach the addressee." />
     <string id="hPra5uwZ" text="The messenger either does not understand or does not like your joke and refuses the task." />
+    <string id="1mlXBnSs" text="You know too little of {HERO_NAME} to point them out for a messenger." />
 
     <string id="vhsHDMil" text="{HERO_NAME} is dead. " />
     <string id="CusN2JMb" text="{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\?} {DETENTION_PLACE}. " />
@@ -192,11 +195,14 @@
     <string id="WB5zdvdT" text="Influence cost for making peace with another kingdom. Default value is 500." />
 
     <string id="nueOs6m9" text="Messengers" />
-    <string id="nMwWHj4h" text="Send Messenger Gold Cost" />
-    <string id="ehMf7xvE" text="Gold cost for sending a messenger to another character. Default value is 100." />
-
+    <string id="nwTyegdV" text="Enable Messengers Accidents" />
+    <string id="T7yybpw3" text="If enabled, adds a small chance of failure for messengers. The longer the journey, the higher the chance of an accident on the road. Default value is enabled." />
+    <string id="ysYCYvwT" text="Restrict Messengers Sending" />
+    <string id="5O87pSL3" text="If enabled, you can only send a messenger to people you have met or at least likely to know of. Otherwise, you can send a messenger to a person regardless your knowledge of addressee. Default value is enabled." />
     <string id="nnXi6MmH" text="Messenger Travel Time in Days" />
     <string id="zkvCGLuK" text="The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3." />
+    <string id="nMwWHj4h" text="Send Messenger Gold Cost" />
+    <string id="ehMf7xvE" text="Gold cost for sending a messenger to another character. Default value is 100." />
 
     <string id="Ckd1Lsoa" text="Gold Costs" />
     <string id="t4hNAoD7" text="Enable Scaling Gold Costs" />

@@ -16,8 +16,11 @@ namespace Diplomacy.CampaignBehaviors
         {
             DiplomacyEvents.MessengerSent.AddNonSerializedListener(this, OnMessengerSent);
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, OnAfterSessionLaunched);
-            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HasMessengerArrivedHourlyTick);
+            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, OnHourlyTick);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         }
+
+        private void OnDailyTick() => _messengerManager.CheckForAccidents();
 
         public override void SyncData(IDataStore dataStore)
         {
@@ -33,7 +36,7 @@ namespace Diplomacy.CampaignBehaviors
         private void OnMessengerSent(Hero hero)
             => _messengerManager.SendMessengerWithCost(hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
 
-        public void HasMessengerArrivedHourlyTick() => _messengerManager.MessengerArrived();
+        public void OnHourlyTick() => _messengerManager.UpdateMessengerPositions();
 
         public void OnAfterSessionLaunched(CampaignGameStarter game)
         {

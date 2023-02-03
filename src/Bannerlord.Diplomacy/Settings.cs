@@ -71,13 +71,21 @@ namespace Diplomacy
 
         // Messengers
 
-        [SettingPropertyInteger("{=nMwWHj4h}Send Messenger Gold Cost", 0, 10000, RequireRestart = false, HintText = "{=ehMf7xvE}Gold cost for sending a messenger to another character. Default value is 100.")]
+        [SettingPropertyBool("{=nwTyegdV}Enable Messengers Accidents", Order = 0, RequireRestart = false, HintText = "{=T7yybpw3}If enabled, adds a small chance of failure for messengers. The longer the journey, the higher the chance of an accident on the road. Default value is enabled.")]
         [SettingPropertyGroup(HeadingMessengers)]
-        public int SendMessengerGoldCost { get; set; } = 100;
+        public bool EnableMessengerAccidents { get; set; } = true;
 
-        [SettingPropertyInteger("{=nnXi6MmH}Messenger Travel Time in Days", 0, 10, RequireRestart = false, HintText = "{=zkvCGLuK}The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3.")]
+        [SettingPropertyBool("{=ysYCYvwT}Restrict Messengers Sending", Order = 1, RequireRestart = false, HintText = "{=5O87pSL3}If enabled, you can only send a messenger to people you have met or at least likely to know of. Otherwise, you can send a messenger to a person regardless your knowledge of addressee. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingMessengers)]
+        public bool EnableMessengerRestictions { get; set; } = true;
+
+        [SettingPropertyInteger("{=nnXi6MmH}Messenger Travel Time in Days", 0, 10, Order = 10, RequireRestart = false, HintText = "{=zkvCGLuK}The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3.")]
         [SettingPropertyGroup(HeadingMessengers)]
         public int MessengerTravelTime { get; set; } = 3;
+
+        [SettingPropertyInteger("{=nMwWHj4h}Send Messenger Gold Cost", 0, 10000, Order = 11, RequireRestart = false, HintText = "{=ehMf7xvE}Gold cost for sending a messenger to another character. Default value is 100.")]
+        [SettingPropertyGroup(HeadingMessengers)]
+        public int SendMessengerGoldCost { get; set; } = 100;
 
         // War Exhaustion
 

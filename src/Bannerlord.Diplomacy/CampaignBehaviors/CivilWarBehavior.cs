@@ -87,7 +87,7 @@ namespace Diplomacy.CampaignBehaviors
         }
 
 #if v100 || v101 || v102 || v103
-        private void ResolveCivilWar(IFaction loser, IFaction winner)
+        private void ResolveCivilWar(IFaction factionMakingPeace, IFaction otherFaction)
 #else
         private void ResolveCivilWar(IFaction factionMakingPeace, IFaction otherFaction, MakePeaceAction.MakePeaceDetail makePeaceDetail)
 #endif
