@@ -1,4 +1,4 @@
-﻿using Diplomacy.Event;
+﻿using Diplomacy.Events;
 
 using Microsoft.Extensions.Logging;
 
@@ -22,7 +22,7 @@ namespace Diplomacy.DiplomaticAction.Alliance
         {
             LogFactory.Get<BreakAllianceAction>().LogTrace($"[{CampaignTime.Now}] {proposingKingdom.Name} broke their alliance with {otherKingdom.Name}.");
             FactionManager.SetNeutral(proposingKingdom, otherKingdom);
-            Events.Instance.OnAllianceBroken(new AllianceEvent(proposingKingdom, otherKingdom));
+            DiplomacyEvents.Instance.OnAllianceBroken(new AllianceEvent(proposingKingdom, otherKingdom));
         }
 
         protected override void AssessCosts(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts)

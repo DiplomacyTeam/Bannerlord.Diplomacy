@@ -1,4 +1,5 @@
 ﻿using Diplomacy.DiplomaticAction;
+using Diplomacy.Extensions;
 
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,7 @@ namespace Diplomacy.ViewModel
             AddWarRelationships(Faction1.Stances);
             AddWarRelationships(Faction2.Stances);
 
-            foreach (var kingdom in Kingdom.All)
+            foreach (var kingdom in KingdomExtensions.AllActiveKingdoms)
             {
                 if (FactionManager.IsAlliedWithFaction(kingdom, Faction1) && kingdom != Faction1)
                     Faction1Allies.Add(new DiplomacyFactionRelationshipVM(kingdom, CreateAllianceHint(kingdom, (Faction1 as Kingdom)!)));

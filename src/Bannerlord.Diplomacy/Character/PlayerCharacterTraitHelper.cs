@@ -1,7 +1,5 @@
 ﻿using HarmonyLib.BUTR.Extensions;
 
-using System;
-
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 

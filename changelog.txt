@@ -1,4 +1,59 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.0
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
+* Adapted for v1.1.0
+* Diplomacy events should now be ready to be a part of the public API, if we ever have one.
+* Changed some setting hints to make them clearer.
+* Fixed excessive UI overlap when repeatedly pressing the Factions button in the Encyclopedia.
+* Better compatibility with other Encyclopedia mods for Faction page.
+----------------------------------------- Console commands ----------------------------------------<Remove this before releasing!>
+* Diplomacy console commands should no longer cause crashes when executed from the main menu.
+* Added diplomacy.form_non_aggression_pact console command.
+* Added diplomacy.break_non_aggression_pact console command.
+* Added diplomacy.legitimize_rebel_kingdom console command to help fix broken civil wars.
+* Fixed diplomacy.set_war_exhaustion console command.
+----------------------------------------- Diplomacy Costs -----------------------------------------<Remove this before releasing!>
+* Fixed some cost calculations using wrong settings.
+* Added Kingdom Wallet costs. They are used to pay war reparations and other interstate payments.
+* Diplomatic actions now include up to 3 different costs: a gold cost (usually representing organizational expenses and benefiting no one), an influence cost, and a kingdom wallet cost (used for interstate payments when required).
+* Added settings for proper calculating of gold and kingdom wallet costs.
+* Adjusted kingdom scaling factor calculation for kingdoms with mercenary clans.
+* Adjusted kingdom scaling factor calculation to be more notable for larger kingdoms.
+------------------------------------------- Donate Gold -------------------------------------------<Remove this before releasing!>
+* Donating gold to a clan now affects character traits.
+--------------------------------------------- Factions --------------------------------------------<Remove this before releasing!>
+* Fixed a bug preventing faction to consolidate when its demands are fulfilled.
+* Fixed a bug where eliminated clans were not removed from factions.
+* Fixed several crashes related to factions and Civil Wars.
+* Made some overall stability improvements.
+* Added a checkup on game load to fix the most common issues with current factions and civil wars from older saves.
+-------------------------------------------- Messengers -------------------------------------------<Remove this before releasing!>
+* Fixed a bug due to which messengers did not move if the game was not saved and reloaded after sending the messenger.
+* Resticted sending messengers only to the people you personally met or at least likely to know of, in order to keep intended game pace.
+* Added a chance of messengers not reaching their target (road accidents).
+* Added new mod settings to regulate new changes to messengers.
+------------------------------------------- Peacemaking -------------------------------------------<Remove this before releasing!>
+* Making peace without an election, whether it be from Kingdom Management or due to War Exhaustion, now imposes a tribute as usual.
+* Making peace while on Critical War Exhaustion may result in war reparations being paid, if the other side is winning the War Exhaustion race.
+* Losing a war due to War Exhaustion may result in some or even all of the territories captured by the defeated side being returned to the victor.
+* A faction without fiefs is now destroyed if it loses the last ongoing war due to War Exhaustion.
+------------------------------------------ War Exhaustion -----------------------------------------<Remove this before releasing!>
+* Fixed an issue where War Exhaustion report showed incorrect breakdown numbers if Exhaustion gain settings were changed during the war.
+* Added War Exhaustion numbers to the campaign map indicator.
+* Optimized the performance of the War Exhaustion map indicator.
+* Added UI notification and explanation when War Exhaustion is critical.
+* Critical War Exhaustion now affects Kingdom Management.
+* Added UI notification when War Exhaustion can not be fully applied due to a campaign questline.
+* Active questline now prevents War Exhaustion raising above the critical threshold, rather than capping it at 100%.
+* Losing all fiefs no longer instantly raises War Exhaustion to its cap, but moderately increases it and effectively puts a fiefless faction on a timer, greatly increasing its daily Exhaustion gain.
+* Some War Exhaustion events now can optionally be accounted for with diminishing returns, preventing rapid and meaningless Exhaustion accumulation when, for example, a single settlement is repeatedly recaptured by the belligerents.
+* Added a setting allowing for War Exhaustion multipliers to be set differently for every side of the conflict, depending on the factions individual power scores.
+* Added new War Exhaustion entries: heroes imprisoned and heroes perished. Both take into account hero significance for the faction.
+* Added new War Exhaustion entry: caravans raided.
+* Successful castle sieges now add half as much War Exhaustion as towns.
+* Added detailed tooltips to War Exhaustion breakdown numbers in the report.
+* War Exhaustion for all ongoing conflicts will be recalculated on first save load according to current mod settings.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.19
 Game Versions: v1.0.0,v1.0.1,v1.0.2
 * Fixed a crash that occurred for some users on mod loading.

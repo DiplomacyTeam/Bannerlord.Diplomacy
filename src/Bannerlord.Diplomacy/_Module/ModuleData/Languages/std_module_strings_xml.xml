@@ -21,21 +21,21 @@
     <string id="JmgAuONd" text="Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
     <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}" />
     <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days." />
+    <string id="nYrezEOX" text="Messenger killed" />
+    <string id="A5lug0JY" text="Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!" />
     <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\?}" />
     <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Unfortunately, the messenger is denied access to the keep, but can try to bribe the guards. It would cost {?IS_FEMALE}her{?}him{\?} {GOLD_COST}{GOLD_ICON} and you will have to cover the expenses{?CAN_AFFORD}.{?}, which you can't afford at the moment.{\?}" />
 
     <string id="bLR91Eob" text="{REASON}The messenger won't be able to reach the addressee." />
     <string id="hPra5uwZ" text="The messenger either does not understand or does not like your joke and refuses the task." />
+    <string id="1mlXBnSs" text="You know too little of {HERO_NAME} to point them out for a messenger." />
 
     <string id="vhsHDMil" text="{HERO_NAME} is dead. " />
-    <string id="CusN2JMb" text="{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\\?} {DETENTION_PLACE}. " />
+    <string id="CusN2JMb" text="{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\?} {DETENTION_PLACE}. " />
     <string id="1BISlFYx" text="{HERO_NAME} is fugitive and doesn't want to be found. " />
     <string id="ze8KJ1oL" text="{HERO_NAME} has just been released from custody and is not yet ready to make appointments. " />
     <string id="N5T6IXWJ" text="{HERO_NAME} is traveling incognito. " />
     <string id="3lknR86H" text="{HERO_NAME} is too inexperienced to participate in formal meetings. " />
-
-    <string id="t0ZS9maD" text="{KINGDOM_LEADER} of the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}." />
-    <string id="ZrwszZww" text=" They are willing to pay war reparations of {DENARS} denars." />
 
     <string id="BkGSVccZ" text="Peace Proposal" />
     <string id="3fTqLwkC" text="Accept" />
@@ -45,8 +45,6 @@
 
     <string id="N06wk0dB" text="Settlement Captured" />
     <string id="Zy0yjTha" text="As the capturer of {SETTLEMENT_NAME}, you have the right of first refusal. Would you like to claim this fief?" />
-
-    <string id="XmVTQ0bH" text="War Exhaustion" />
 
     <string id="IWZ91JVk" text="Not enough gold!" />
 
@@ -79,6 +77,14 @@
 
     <string id="KqfNSsBE" text="Allies" />
     <string id="Dirltd6Z" text="Alliances are disabled." />
+
+    <string id="Q8ItogIP" text="Propose directly to {ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}" />
+    <string id="BC7823G2" text="{?REPARATIONS_PAY}, paying {REPARATIONS} war reparations{?TRIBUTE_PAY} and {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, but receiving {TRIBUTE} tribute/day.{?}{\?}{\?}{?}{?REPARATIONS_GET}, receiving {REPARATIONS} war reparations{?TRIBUTE_PAY}, but paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET} and {TRIBUTE} tribute/day.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, receiving {TRIBUTE} tribute/day.{?}.{\?}{\?}{\?}{\?}" />
+    <string id="9CvcPwJA" text="{?FIEFS_ANY} You may have to return some of the captured fiefs back!{?}{\?}" />
+
+    <!--Millions and thousands-->
+    <string id="6xcW68Tw" text="{VALUE}M" />
+    <string id="oD4fZ2tY" text="{VALUE}K" />
 
     <string id="XlL50Ha9" text="Can't make peace with a kingdom during an active player siege." />
 
@@ -148,24 +154,7 @@
     <string id="4lG3JG2e" text="Relation Gain: {RELATION_GAIN}+"/>
 
     <string id="Q2vXbwvC" text="Diplomacy"/>
-    <string id="BXluvRnJ" text="Bitter Defeat"/>
-    <string id="vLfbqXjq" text="Your armies and people are exhausted from the conflict with {ENEMY_KINGDOM} and have given up the fight. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence."/>
-    <string id="ghZCj7hb" text="With your final stronghold falling to your enemies, you can no longer continue the fight with {ENEMY_KINGDOM}. You must accept terms of defeat and pay war reparations of {DENARS} denars. The shame of defeat will also cost you {INFLUENCE} influence." />
-
-    <string id="mCue7aFc" text="War Report" />
-    <string id="zYVH0xYa" text="Casualties" />
-    <string id="elRjo1ab" text="Villages Raided" />
-    <string id="DrNBDhx3" text="Fiefs Lost" />
-    <string id="XIPMI3gR" text="War Duration" />
-    <string id="IlFEeNkY" text="War Exhaustion Report" />
-
-    <string id="hAoIC2Iq" text="Date Started: {START_DATE}" />
-    <string id="qHrihV27" text="War Duration: {WAR_DURATION} days" />
-
-    <!-- -
-    ||||||||||||||||||||||||||| War Exhaustion |||||||||||||||||||||||||||
-    -->
-    <string id="HWiDa4R1" text="Exhausted from the war, the {KINGDOM} is proposing peace with the {PLAYER_KINGDOM}." />
+    
     <!--
     ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
     -->
@@ -176,7 +165,7 @@
     <string id="4MzQHMVj" text="Declare War Cooldown in Days" />
     <string id="q2duqN8d" text="The minimum duration (in days) to declare war after making peace. Default value is 100." />
     <string id="6m1SspFW" text="Enable Player Kingdom Diplomacy Control" />
-    <string id="N5EouSSj" text="Gives the player total control over their kingdom's war and peace declarations. Default value is false." />
+    <string id="N5EouSSj" text="Gives the player full control over declaring war and making peace in the kingdom they belong to, even if they are just a vassal and not the leader of the kingdom. Default value is disabled." />
     <string id="tis8Ddzn" text="Allow Player To Claim Player-Taken Settlements" />
     <string id="TfxLCxcD" text="Gives the player the option to claim a settlement that they have taken rather than let it go to an election." />
     <string id="H6XMjwpF" text="Minimum Alliance Duration in Days" />
@@ -189,14 +178,13 @@
     <string id="7nSjs8UL" text="Score modifier affecting the tendency of kingdoms to form alliances. Increasing the modifier makes alliances more desirable to AI kingdoms. Default value is 0." />
     <string id="lhysZl9j" text="Action Tendency" />
 
-
-    <string id="WbOKuWbQ" text="Enable Influence Costs" />
-    <string id="P1g6Ht1e" text="Enable Scaling Influence Cost" />
-
     <string id="SEViwYTl" text="Influence Costs" />
-    <string id="K2vLGalN" text="If disabled, this removes all costs for war and peace declaration actions. Default value is true." />
+    <string id="WbOKuWbQ" text="Enable Influence Costs" />
+    <string id="K2vLGalN" text="If disabled, this removes influence costs for war and peace declaration actions. Default value is enabled." />
+
     <string id="9PlT57Nl" text="Influence Costs/Scaling" />
-    <string id="xfVFBxfj" text="If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is true." />
+    <string id="P1g6Ht1e" text="Enable Scaling Influence Costs" />
+    <string id="xfVFBxfj" text="If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is enabled." />
     <string id="TvAYJv5Q" text="Scaling Influence Cost Multiplier" />
     <string id="AQ5gRYN6" text="Multiplier for the scaling influence costs. Default value is 5." />
 
@@ -207,43 +195,27 @@
     <string id="WB5zdvdT" text="Influence cost for making peace with another kingdom. Default value is 500." />
 
     <string id="nueOs6m9" text="Messengers" />
+    <string id="nwTyegdV" text="Enable Messengers Accidents" />
+    <string id="T7yybpw3" text="If enabled, adds a small chance of failure for messengers. The longer the journey, the higher the chance of an accident on the road. Default value is enabled." />
+    <string id="ysYCYvwT" text="Restrict Messengers Sending" />
+    <string id="5O87pSL3" text="If enabled, you can only send a messenger to people you have met or at least likely to know of. Otherwise, you can send a messenger to a person regardless your knowledge of addressee. Default value is enabled." />
+    <string id="nnXi6MmH" text="Messenger Travel Time in Days" />
+    <string id="zkvCGLuK" text="The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3." />
     <string id="nMwWHj4h" text="Send Messenger Gold Cost" />
     <string id="ehMf7xvE" text="Gold cost for sending a messenger to another character. Default value is 100." />
 
-    <string id="nnXi6MmH" text="Messenger Travel Time in Days" />
-    <string id="zkvCGLuK" text="The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3." />
-
-
-    <string id="V542tneW" text="War Exhaustion" />
-    <string id="lSttctYC" text="Enable War Exhaustion" />
-    <string id="Cxyn9ROT" text="If disabled, this disables the war exhaustion mechanic. Default value is enabled." />
-    <string id="8TFQWL55" text="War Exhaustion Per Day" />
-    <string id="lgza5wDq" text="The amount of war exhaustion added per day a war is ongoing. Default value is 0.25." />
-    <string id="s6dNpM6M" text="War Exhaustion Per Casualty" />
-    <string id="NcJtGeM7" text="The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.01." />
-    <string id="gGIaLKHk" text="War Exhaustion Per Siege" />
-    <string id="mCEa773h" text="The amount of war exhaustion added when a faction loses a city. Default value is 10.0." />
-    <string id="eWVGwf2m" text="War Exhaustion Per Raid" />
-    <string id="ufHDJt8H" text="The amount of war exhaustion added when a faction's village is raided. Default value is 3.0." />
-    <string id="F4iFH6un" text="Campaign Map Widget" />
-    <string id="zTvbZ8Br" text="Enables a dedicated war exhaustion widget for each ongoing war at the top of the campaign map screen. Default value is enabled." />
-    <string id="jI9NSxtz" text="Enable Player War Exhaustion Debug Messages" />
-    <string id="LYyNbQds" text="Enables debug messages for war exhaustion added to the player kingdom. Default value is false."/>
-
-    <!--
-    <string id="Bh7vme9y" text="Max War Exhaustion" />
-    <string id="6Ij1WEWz" text="The amount of war exhaustion that forces a faction to propose peace. Default value is 100.0." />
-    <string id="Fyion5Hw" text="War Exhaustion Decay per Day" />
-    <string id="o99AUWR8" text="The amount of war exhaustion decay per day the factions are at peace. Default value is 2.0." />
-    -->
-
     <string id="Ckd1Lsoa" text="Gold Costs" />
+    <string id="t4hNAoD7" text="Enable Scaling Gold Costs" />
+    <string id="5MMIDE5A" text="If enabled, this will scale gold costs of diplomatic actions and war reparations based on your kingdom size. Otherwise, the generic multipliers of 100 for diplomatic actions and 1000 for war reparations will apply. The default value is enabled." />
+    <string id="vD270X6H" text="Scaling Gold Cost Multiplier" />
+    <string id="Gd52NzBP" text="Multiplier for the scaling gold costs. Default value is 5." />
     <string id="HFtZsD6v" text="Scaling War Reparations Gold Cost Multiplier" />
-    <string id="MIhbrqbr" text="Multiplier for the scaling of war reparations gold costs. Default value is 100." />
+    <string id="MIhbrqbr" text="Multiplier for the scaling of war reparations gold costs. Default value is 50." />
+    <string id="Cr6a5Jap" text="Defeated War Reparations Gold Cost" />
+    <string id="NH4GNKva" text="The cost in gold for losing a war of attrition against another kingdom, measured in millions. The default value is 500." />
 
     <string id="2XC8QHkl" text="Enable Alliances" />
     <string id="5YJBZx28" text="If disabled, this disables the ability to form alliances for both player and AI kingdoms. Default value is enabled." />
-
 
     <string id="OfEMJWiR" text="Relation" />
     <string id="6l9QNMrB" text="Grant Fief Postiive Relation Multiplier" />
@@ -287,7 +259,7 @@
     <string id="9ugCWA3v" text="The percentage change of a coalition forming against a faction over the expansionism threshold. Default value is 5."/>
 
     <string id="lsyl0VSX" text ="Storyline Protection"/>
-    <string id="EVrErrTR" text="When enabled, prevents the player from breaking the main storyline. Disable when using mods like &quot;Just Let Me Play&quot;. Default value is true." />
+    <string id="EVrErrTR" text="When enabled, prevents the player from breaking the main storyline. Disable when using mods like &quot;Just Let Me Play&quot;. Default value is enabled." />
 
     <string id="f6n2UAEC" text="Unfinished Features" />
     <string id="HSoZfvXH" text="Enable Usurp Throne Feature" />

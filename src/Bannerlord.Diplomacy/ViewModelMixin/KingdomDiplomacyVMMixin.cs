@@ -2,7 +2,7 @@
 using Bannerlord.UIExtenderEx.ViewModels;
 
 using Diplomacy.DiplomaticAction.Alliance;
-using Diplomacy.Event;
+using Diplomacy.Events;
 using Diplomacy.Extensions;
 
 using JetBrains.Annotations;
@@ -68,10 +68,15 @@ namespace Diplomacy.ViewModelMixin
             DiplomacyText = _TDiplomacy.ToString();
 
             // No refresh needed on NAP because it doesn't move the item from one diplomacy group (At War / Alliances / At Peace) to another
-            Events.AllianceFormed.AddNonSerializedListener(this, _ => ViewModel!.RefreshValues());
-            Events.AllianceBroken.AddNonSerializedListener(this, _ => ViewModel!.RefreshValues());
+            DiplomacyEvents.AllianceFormed.AddNonSerializedListener(this, _ => ViewModel!.RefreshValues());
+            DiplomacyEvents.AllianceBroken.AddNonSerializedListener(this, _ => ViewModel!.RefreshValues());
+#if v100 || v101 || v102 || v103
             CampaignEvents.MakePeace.AddNonSerializedListener(this, (_, _) => ViewModel!.RefreshValues());
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, (_, _) =>
+#else
+            CampaignEvents.MakePeace.AddNonSerializedListener(this, (_, _, _) => ViewModel!.RefreshValues());
+            CampaignEvents.WarDeclared.AddNonSerializedListener(this, (_, _, _) =>
+#endif
             {
                 if (Hero.MainHero.MapFaction is Kingdom)
                     ViewModel!.RefreshValues();
@@ -82,7 +87,7 @@ namespace Diplomacy.ViewModelMixin
 
         public override void OnFinalize()
         {
-            Events.RemoveListeners(this);
+            DiplomacyEvents.RemoveListeners(this);
             CampaignEventDispatcher.Instance.RemoveListeners(this);
         }
 

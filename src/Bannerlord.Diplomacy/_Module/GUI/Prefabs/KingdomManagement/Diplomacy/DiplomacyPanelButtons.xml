@@ -5,6 +5,7 @@
   <Window>
     <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginRight="42">
       <Children>
+
         <!-- Form Non-Aggression Pact Button -->
         <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" HeightSizePolicy="CoverChildren" IsVisible="@IsNonAggressionPactVisible" MarginRight="10">
           <Children>
@@ -13,9 +14,7 @@
                 <TextWidget HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" IsEnabled="true" Text="@NonAggressionPactHelpText" DoNotAcceptEvents="true" ClipContents="false"/>
                 <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ProposeNonAggressionPact" IsEnabled="@IsNonAggressionPactAvailable">
                   <Children>
-
                     <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@NonAggressionPactActionName" />
-
                   </Children>
                 </ButtonWidget>
                 <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" HorizontalAlignment="Center" MarginTop="5">
@@ -36,10 +35,8 @@
                   </Children>
                 </ListPanel>
                 <HintWidget DataSource="{NonAggressionPactHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
-
               </Children>
             </ListPanel>
-
           </Children>
         </ListPanel>
 
@@ -57,7 +54,6 @@
                   <Children>
                     <ListPanel DoNotPassEventsToChildren="true"  WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" >
                       <Children>
-
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
                         <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@AllianceInfluenceCost"/>
                         <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" MarginLeft="5" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="Diplomacy.Icon.Gold" />
@@ -74,7 +70,6 @@
                 <HintWidget DataSource="{AllianceHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
               </Children>
             </ListPanel>
-
           </Children>
         </ListPanel>
 
@@ -86,12 +81,9 @@
                 <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" IsEnabled="true" Text="@ProposeActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
                 <ButtonWidget HorizontalAlignment="Center" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ExecuteAction" IsEnabled="@IsActionEnabled"  >
                   <Children>
-
                     <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@ActionName" />
                   </Children>
                 </ButtonWidget>
-
-
                 <ListPanel DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginTop="5">
                   <Children>
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
@@ -109,10 +101,10 @@
           <Children>
             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
               <Children>
+                <TextWidget HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" IsEnabled="true" Text="@DiplomaticActionHelpText" DoNotAcceptEvents="true" ClipContents="false"/>
                 <ButtonWidget HorizontalAlignment="Center" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ExecuteExecutiveAction" IsEnabled="@IsOptionAvailable">
                   <Children>
                     <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@ActionName" />
-
                   </Children>
                 </ButtonWidget>
                 <ListPanel DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="5">
@@ -128,8 +120,8 @@
             </ListPanel>
           </Children>
         </ListPanel>
+
       </Children>
     </ListPanel>
-
   </Window>
 </Prefab>

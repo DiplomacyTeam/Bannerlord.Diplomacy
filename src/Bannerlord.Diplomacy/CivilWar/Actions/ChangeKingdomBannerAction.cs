@@ -1,7 +1,7 @@
 ﻿using ColorMine.ColorSpaces;
 using ColorMine.ColorSpaces.Comparisons;
 
-using Diplomacy.Event;
+using Diplomacy.Events;
 using Diplomacy.Extensions;
 
 using HarmonyLib.BUTR.Extensions;
@@ -100,7 +100,7 @@ namespace Diplomacy.CivilWar.Actions
                 }
             }
 
-            Events.Instance.OnKingdomBannerChanged(kingdom);
+            DiplomacyEvents.Instance.OnKingdomBannerChanged(kingdom);
         }
 
         public static void Apply(Kingdom kingdom, bool isRebelKingdom = false)

@@ -2,7 +2,7 @@
 using Bannerlord.UIExtenderEx.ViewModels;
 
 using Diplomacy.Actions;
-using Diplomacy.Event;
+using Diplomacy.Events;
 using Diplomacy.GauntletInterfaces;
 
 using JetBrains.Annotations;
@@ -23,14 +23,16 @@ namespace Diplomacy.ViewModelMixin
 
         private bool _canGrantFiefToClan;
         private readonly GrantFiefInterface _grantFiefInterface;
+        private readonly DonateGoldInterface _donateGoldInterface;
         private HintViewModel? _grantFiefHint;
         private readonly PropertyChangedWithValueEventHandler _eventHandler;
 
         public KingdomClanVMMixin(KingdomClanVM vm) : base(vm)
         {
-            Events.FiefGranted.AddNonSerializedListener(this, RefreshCanGrantFief);
+            DiplomacyEvents.FiefGranted.AddNonSerializedListener(this, RefreshCanGrantFief);
 
             _grantFiefInterface = new GrantFiefInterface();
+            _donateGoldInterface = new DonateGoldInterface();
             GrantFiefActionName = new TextObject("{=LpoyhORp}Grant Fief").ToString();
             GrantFiefExplanationText = new TextObject("{=98hwXUTp}Grant fiefs to clans in your kingdom").ToString();
 
@@ -48,7 +50,7 @@ namespace Diplomacy.ViewModelMixin
         public override void OnFinalize()
         {
             base.OnFinalize();
-            Events.RemoveListeners(this);
+            DiplomacyEvents.RemoveListeners(this);
             ViewModel!.PropertyChangedWithValue -= _eventHandler;
         }
 
@@ -78,7 +80,7 @@ namespace Diplomacy.ViewModelMixin
 
         [DataSourceMethod]
         [UsedImplicitly]
-        public void DonateGold() => new DonateGoldInterface().ShowInterface(ScreenManager.TopScreen, ViewModel!.CurrentSelectedClan.Clan);
+        public void DonateGold() => _donateGoldInterface.ShowInterface(ScreenManager.TopScreen, ViewModel!.CurrentSelectedClan.Clan);
 
         [DataSourceProperty]
         public string GrantFiefActionName { get; }

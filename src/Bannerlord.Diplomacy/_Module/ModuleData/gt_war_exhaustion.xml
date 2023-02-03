@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+  <strings>
+    <!--  
+    <string id="" text="" />
+    -->
+    <string id="str_war_exhaustion_daily.0" text="{=Toa6V7RL}{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% per day for {VALUE} full {?VALUE.PLURAL_FORM}days{?}day{\?}" />
+    <string id="str_war_exhaustion_daily.1" text="{=wMVdLssJ}{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% per day for {VALUE} full {?VALUE.PLURAL_FORM}days{?}day{\?} while being fiefless" />
+
+    <string id="str_war_exhaustion_casualty.0" text="{=0nTpub9S}{START_DATE} - {END_DATE}: {VALUE} {?VALUE.PLURAL_FORM}casualties{?}casualty{\?} of war" />
+    <string id="str_war_exhaustion_casualty.1" text="{=SeWNvf1N}{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}casualties{?}casualty{\?} in battle between {FACTION_PARTY} and {OTHER_FACTION_PARTY}" />
+    <string id="str_war_exhaustion_casualty.2" text="{=9V6S05X3}{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}casualties{?}casualty{\?} in battle for {SETTLEMENT} fought between {FACTION_PARTY} and {OTHER_FACTION_PARTY}" />
+
+    <string id="str_war_exhaustion_caravan_raid" text="{=vhBKtne1}{DATE_STR}: {RAIDED_CARAVAN} was raided by {OTHER_FACTION_PARTY}" />
+
+    <string id="str_war_exhaustion_raid.0" text="{=Hnxf9Ox3}{DATE_STR}: {RAIDED_VILLAGE} was raided by {OTHER_FACTION_PARTY}" />
+    <string id="str_war_exhaustion_raid.1" text="{=SXhzqm2N}{DATE_STR}: {RAIDED_VILLAGE} was raided by {OTHER_FACTION_PARTY} (affected by diminishing returns)" />
+
+    <string id="str_war_exhaustion_siege.0" text="{=6cSuGG87}{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} castle{?}{\?} defended by {FACTION_PARTY} was taken by {OTHER_FACTION_PARTY}" />
+    <string id="str_war_exhaustion_siege.1" text="{=fuaTMWpt}{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} castle{?}{\?} defended by {FACTION_PARTY} was retaken by {OTHER_FACTION_PARTY} (affected by diminishing returns)" />
+
+    <string id="str_war_exhaustion_hero_imprisoned.0" text="{=yRvZ37cx}{DATE_STR}: {HERO} was taken prisoner by {OTHER_FACTION_PARTY}" />
+    <string id="str_war_exhaustion_hero_imprisoned.1" text="{=i2Moqprl}{DATE_STR}: {HERO} was taken prisoner by {OTHER_FACTION_PARTY} (affected by diminishing returns)" />
+
+    <string id="str_war_exhaustion_hero_perished.0" text="{=QkSVPgDF}{DATE_STR}: {HERO} has died of natural causes{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="str_war_exhaustion_hero_perished.1" text="{=S0lkYB5P}{DATE_STR}: {HERO} was assassinated by {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="str_war_exhaustion_hero_perished.2" text="{=f6OIFaSj}{DATE_STR}: {HERO} died in childbirth{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="str_war_exhaustion_hero_perished.3" text="{=PmOPed8Y}{DATE_STR}: {HERO} died of old age{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="str_war_exhaustion_hero_perished.4" text="{=Pp6wYS5m}{DATE_STR}: {HERO} died in battle with {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="str_war_exhaustion_hero_perished.5" text="{=QvGjUrmL}{DATE_STR}: {HERO} died of war-wounds after a battle with {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="str_war_exhaustion_hero_perished.6" text="{=5tBkM1O4}{DATE_STR}: {HERO} was executed by {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="str_war_exhaustion_hero_perished.7" text="{=moeUCyaq}{DATE_STR}: {HERO} went missing during the battle with {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+
+    <string id="str_war_exhaustion_occupied.0" text="{=VB1xpuMA}{DATE_STR}: {FACTION} has been completely occupied by {OTHER_FACTION}" />
+    <string id="str_war_exhaustion_occupied.1" text="{=X9wHA6q3}{DATE_STR}: {FACTION} has been completely occupied by {OTHER_FACTION} (affected by diminishing returns)" />
+
+    <string id="str_war_exhaustion_divine.0" text="{=9vOZJpPu}{DATE_STR}: {FACTION}'s war exhaustion was miraculously reduced (some say it was divine intervention)" />
+    <string id="str_war_exhaustion_divine.1" text="{=S5tDXkgK}{DATE_STR}: There are rumors that some mysterious force tried to influence {FACTION}'s war efforts, but nothing seems to have changed" />
+    <string id="str_war_exhaustion_divine.2" text="{=fJE6Y9mB}{DATE_STR}: The people of {FACTION} suddenly lost their will to fight (some say it was divine intervention)" />
+  </strings>

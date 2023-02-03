@@ -5,21 +5,17 @@ namespace Diplomacy.Costs
 {
     class HybridCost : DiplomacyCost
     {
-        readonly List<DiplomacyCost> _diplomacyCosts;
+        public InfluenceCost InfluenceCost { get; init; }
+        public GoldCost GoldCost { get; init; }
+        public List<KingdomWalletCost> KingdomWalletCosts { get; init; }
 
-        public InfluenceCost InfluenceCost { get; }
-        public GoldCost GoldCost { get; }
-
-        public HybridCost(InfluenceCost influenceCost, GoldCost goldCost) : base(0f)
+        public HybridCost(InfluenceCost influenceCost, GoldCost goldCost) : this(influenceCost, goldCost, new List<KingdomWalletCost>()) { }
+        public HybridCost(InfluenceCost influenceCost, GoldCost goldCost, KingdomWalletCost kingdomWalletCost) : this(influenceCost, goldCost, new List<KingdomWalletCost>() { kingdomWalletCost }) { }
+        public HybridCost(InfluenceCost influenceCost, GoldCost goldCost, List<KingdomWalletCost> kingdomWalletCosts) : base(new(kingdomWalletCosts) { influenceCost, goldCost })
         {
             InfluenceCost = influenceCost;
             GoldCost = goldCost;
-            _diplomacyCosts = new List<DiplomacyCost> { InfluenceCost, GoldCost };
-        }
-
-        public override void ApplyCost()
-        {
-            _diplomacyCosts.ForEach(x => x.ApplyCost());
+            KingdomWalletCosts = kingdomWalletCosts;
         }
 
         public override bool CanPayCost()
