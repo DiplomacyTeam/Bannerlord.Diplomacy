@@ -141,7 +141,7 @@ namespace Diplomacy.ViewModelMixin
                 DiplomaticActionHelpText = new TextObject(_TDiplomaticActionHelpText, new()
                 {
                     ["ENEMY_LEADER"] = _faction2.Leader.Name,
-                    ["WAR_REPARATIONS_AND_TRIBUTE"] = new TextObject(_TPayments, new() 
+                    ["WAR_REPARATIONS_AND_TRIBUTE"] = new TextObject(_TPayments, new()
                     {
                         ["REPARATIONS_PAY"] = _reparations.Any(r => r.PayingKingdom == _faction1 && r.Value > 0) ? 1 : 0,
                         ["REPARATIONS_GET"] = _reparations.Any(r => r.PayingKingdom == _faction2 && r.Value > 0) ? 1 : 0,

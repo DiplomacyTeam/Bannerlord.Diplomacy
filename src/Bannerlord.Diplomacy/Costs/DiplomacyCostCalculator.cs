@@ -40,7 +40,7 @@ namespace Diplomacy.Costs
             var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdomMakingPeace.Leader.Clan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
                 return new InfluenceCost(clanPayingInfluence, 0f);
-            
+
             //Making peace is free for critically exhausted factions that not yet lost
             if (Settings.Instance!.EnableWarExhaustion && WarExhaustionManager.Instance.HasCriticalWarExhaustion(kingdomMakingPeace, otherKingdom, checkMaxWarExhaustion: true))
                 return new InfluenceCost(clanPayingInfluence, 0f);
@@ -60,7 +60,7 @@ namespace Diplomacy.Costs
             goldCost = 10 * (goldCost / 10);
 
             //This is a cost of organization process and thus has no addressee
-            return new GoldCost(giver, goldCost); 
+            return new GoldCost(giver, goldCost);
         }
 
         private static KingdomWalletCost DetermineReparationsForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts)
@@ -167,7 +167,7 @@ namespace Diplomacy.Costs
 
         public static GoldCost DetermineCostForSendingMessenger()
         {
-            return new (Hero.MainHero, Settings.Instance!.SendMessengerGoldCost);
+            return new(Hero.MainHero, Settings.Instance!.SendMessengerGoldCost);
         }
 
         private static int GetKingdomTierCount(Kingdom kingdom)

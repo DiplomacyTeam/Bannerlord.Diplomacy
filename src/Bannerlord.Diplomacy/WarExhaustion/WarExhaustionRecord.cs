@@ -77,7 +77,7 @@ namespace Diplomacy.WarExhaustion
         public static WarExhaustionRecord operator +(WarExhaustionRecord a) => a;
         public static WarExhaustionRecord operator -(WarExhaustionRecord a) => new(-a.Faction1Value, -a.Faction2Value, a.VictoriousFaction, a.QuestState);
         public static WarExhaustionRecord operator +(WarExhaustionRecord a, WarExhaustionRecord b) =>
-            new(a.Faction1Value + b.Faction1Value, a.Faction2Value + b.Faction2Value, GetAppropriateVictoriousFaction(a.VictoriousFaction, b.VictoriousFaction), GetAppropriateQuestState(a.QuestState,b.QuestState));
+            new(a.Faction1Value + b.Faction1Value, a.Faction2Value + b.Faction2Value, GetAppropriateVictoriousFaction(a.VictoriousFaction, b.VictoriousFaction), GetAppropriateQuestState(a.QuestState, b.QuestState));
         public static WarExhaustionRecord operator -(WarExhaustionRecord a, WarExhaustionRecord b) => a + (-b);
         public static WarExhaustionRecord operator *(WarExhaustionRecord a, WarExhaustionRecord b) =>
             new(a.Faction1Value * b.Faction1Value, a.Faction2Value * b.Faction2Value, GetAppropriateVictoriousFaction(a.VictoriousFaction, b.VictoriousFaction), GetAppropriateQuestState(a.QuestState, b.QuestState));

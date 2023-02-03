@@ -1,6 +1,6 @@
 ﻿namespace Diplomacy.WarExhaustion
 {
-    public enum WarExhaustionType: byte
+    public enum WarExhaustionType : byte
     {
         Casualty = 0,
         CaravanRaid = 1,

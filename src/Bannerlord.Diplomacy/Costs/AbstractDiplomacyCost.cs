@@ -1,6 +1,6 @@
 ﻿namespace Diplomacy.Costs
 {
-    public abstract class AbstractDiplomacyCost: IDiplomacyCost
+    public abstract class AbstractDiplomacyCost : IDiplomacyCost
     {
         public float Value { get; init; }
 

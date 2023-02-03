@@ -43,7 +43,7 @@ namespace Diplomacy.Helpers
             }
             if (valueForOtherKingdom > -5000 && valueForOtherKingdom < 5000)
                 valueForOtherKingdom = 0;
-            
+
             if (Settings.Instance!.EnableWarExhaustion)
             {
                 var warResult = Instance.GetWarResult(kingdomInQuestion, otherKingdom);

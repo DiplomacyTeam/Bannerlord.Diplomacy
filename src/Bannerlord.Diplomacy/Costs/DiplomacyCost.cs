@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Diplomacy.Costs
 {
-    public class DiplomacyCost: IDiplomacyCost
+    public class DiplomacyCost : IDiplomacyCost
     {
         protected readonly List<IDiplomacyCost> _diplomacyCosts;
 
