@@ -9,7 +9,7 @@ namespace Diplomacy.CivilWar.Actions
 {
     public class ConsolidateKingdomsAction
     {
-        private static void Apply(Kingdom rebelKingdom, Kingdom parentKingdom)
+        internal static void Apply(Kingdom rebelKingdom, Kingdom parentKingdom)
         {
             var rebelKingdomClans = rebelKingdom.Clans.Where(c => !c.IsEliminated).ToList();
 

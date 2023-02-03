@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using Diplomacy.Extensions;
+
+using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
@@ -27,6 +29,9 @@ namespace Diplomacy.Helpers
                     return currentItemsUnresolvedDecision.DailyTributeToBePaid;
                 }
             }
+
+            if (kingdomInQuestion.IsRebelKingdomOf(otherKingdom) || otherKingdom.IsRebelKingdomOf(kingdomInQuestion))
+                return 0;
 
             var peaceBarterable = new PeaceBarterable(kingdomInQuestion.Leader, kingdomInQuestion, otherKingdom, CampaignTime.Years(1f));
             var valueForOtherKingdom = -peaceBarterable.GetValueForFaction(otherKingdom);

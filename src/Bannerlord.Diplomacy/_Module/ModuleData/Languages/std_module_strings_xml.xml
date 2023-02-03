@@ -28,7 +28,7 @@
     <string id="hPra5uwZ" text="The messenger either does not understand or does not like your joke and refuses the task." />
 
     <string id="vhsHDMil" text="{HERO_NAME} is dead. " />
-    <string id="CusN2JMb" text="{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\\?} {DETENTION_PLACE}. " />
+    <string id="CusN2JMb" text="{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\?} {DETENTION_PLACE}. " />
     <string id="1BISlFYx" text="{HERO_NAME} is fugitive and doesn't want to be found. " />
     <string id="ze8KJ1oL" text="{HERO_NAME} has just been released from custody and is not yet ready to make appointments. " />
     <string id="N5T6IXWJ" text="{HERO_NAME} is traveling incognito. " />
@@ -76,8 +76,8 @@
     <string id="Dirltd6Z" text="Alliances are disabled." />
 
     <string id="Q8ItogIP" text="Propose directly to {ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}" />
-    <string id="BC7823G2" text="{?REPARATIONS_PAY}, paying {REPARATIONS} war reparations{?TRIBUTE_PAY} and {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, but receiving {TRIBUTE} tribute/day.{?}{\\?}{\\?}{?}{?REPARATIONS_GET}, receiving {REPARATIONS} war reparations{?TRIBUTE_PAY}, but paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET} and {TRIBUTE} tribute/day.{?}{\\?}{\\?}{?}{?TRIBUTE_PAY}, paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, receiving {TRIBUTE} tribute/day.{?}.{\\?}{\\?}{\\?}{\\?}" />
-    <string id="9CvcPwJA" text="{?FIEFS_ANY} You may have to return some of the captured fiefs back!{?}{\\?}" />
+    <string id="BC7823G2" text="{?REPARATIONS_PAY}, paying {REPARATIONS} war reparations{?TRIBUTE_PAY} and {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, but receiving {TRIBUTE} tribute/day.{?}{\?}{\?}{?}{?REPARATIONS_GET}, receiving {REPARATIONS} war reparations{?TRIBUTE_PAY}, but paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET} and {TRIBUTE} tribute/day.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, receiving {TRIBUTE} tribute/day.{?}.{\?}{\?}{\?}{\?}" />
+    <string id="9CvcPwJA" text="{?FIEFS_ANY} You may have to return some of the captured fiefs back!{?}{\?}" />
 
     <!--Millions and thousands-->
     <string id="6xcW68Tw" text="{VALUE}M" />

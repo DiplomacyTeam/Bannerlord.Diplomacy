@@ -88,7 +88,6 @@ namespace Diplomacy.PatchTools
 #endif
             new DefaultClanPoliticsModelPatch(),
             new DiplomaticBartersBehaviorPatch(),
-            new EncyclopediaDataPatch(),
             new GameMenusCallbacksPatch(),
             new KingdomDecisionProposalBehaviorPatch(),
             new SupportKingdomQuestPatch(),

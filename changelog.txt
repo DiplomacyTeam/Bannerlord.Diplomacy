@@ -5,6 +5,7 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
 * Diplomacy events should now be ready to be a part of the public API, if we ever have one.
 * Changed some setting hints to make them clearer.
 * Fixed excessive UI overlap when repeatedly pressing the Factions button in the Encyclopedia.
+* Better compatibility with other Encyclopedia mods for Faction page.
 ----------------------------------------- Console commands ----------------------------------------<Remove this before releasing!>
 * Diplomacy console commands should no longer cause crashes when executed from the main menu.
 * Added diplomacy.form_non_aggression_pact console command.
@@ -23,7 +24,9 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
 --------------------------------------------- Factions --------------------------------------------<Remove this before releasing!>
 * Fixed a bug preventing faction to consolidate when its demands are fulfilled.
 * Fixed a bug where eliminated clans were not removed from factions.
+* Fixed several crashes related to factions and Civil Wars.
 * Made some overall stability improvements.
+* Added a checkup on game load to fix the most common issues with current factions and civil wars from older saves.
 ------------------------------------------- Peacemaking -------------------------------------------<Remove this before releasing!>
 * Making peace without an election, whether it be from Kingdom Management or due to War Exhaustion, now imposes a tribute as usual.
 * Making peace while on Critical War Exhaustion may result in war reparations being paid, if the other side is winning the War Exhaustion race.

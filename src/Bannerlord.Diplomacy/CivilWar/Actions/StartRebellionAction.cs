@@ -43,7 +43,10 @@ namespace Diplomacy.CivilWar.Actions
                 rebelFaction.ParentKingdom.Culture,
                 rebelFaction.SponsorClan);
 
-            var kingdom = KingdomExtensions.AllActiveKingdoms.First(x => !x.IsEliminated && x.RulingClan == rebelFaction.SponsorClan);
+            var kingdom = Kingdom.All.FirstOrDefault(x => !x.IsEliminated && x.RulingClan == rebelFaction.SponsorClan);
+            if (kingdom is null)
+                return;
+
             rebelFaction.StartRebellion(kingdom);
 
             ChangeKingdomBannerAction.Apply(rebelFaction.RebelKingdom!, true);

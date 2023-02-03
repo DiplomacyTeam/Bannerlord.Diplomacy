@@ -1,4 +1,6 @@
-﻿using Diplomacy.WarExhaustion;
+﻿using Diplomacy.CivilWar.Factions;
+using Diplomacy.Extensions;
+using Diplomacy.WarExhaustion;
 
 using System;
 using System.Linq;
@@ -72,6 +74,8 @@ namespace Diplomacy.Costs
 
             //No reparations from kingdoms that are about to be destroyed
             if (!(kingdomMakingPeace.Fiefs.Count > 0) && !FactionManager.GetEnemyKingdoms(kingdomMakingPeace).Any(k => k != otherKingdom && !k.IsEliminated))
+                return new(giver, receiver, reparationsCost);
+            if (kingdomMakingPeace.IsRebelKingdomOf(otherKingdom) || (otherKingdom.IsRebelKingdomOf(kingdomMakingPeace) && kingdomMakingPeace.GetRebelFactions().Any(x => x.RebelKingdom == otherKingdom && x is not SecessionFaction)))
                 return new(giver, receiver, reparationsCost);
 
             var kingdomMakingPeaceWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(kingdomMakingPeace, otherKingdom);

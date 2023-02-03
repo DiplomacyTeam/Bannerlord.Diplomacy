@@ -18,7 +18,7 @@ namespace Diplomacy.Patches
         {
             var conversationBehaviorType = Type.GetType("SandBox.CampaignBehaviors.LordConversationsCampaignBehavior, SandBox, Version=1.0.0.0, Culture=neutral")!;
             return new Patch[]
-                    {
+            {
             new Postfix(nameof(PreventOtherActionsConversation), conversationBehaviorType, "conversation_lord_request_mission_ask_on_condition"),
             new Postfix(nameof(PreventDiplomaticActionsConversation), conversationBehaviorType, "conversation_player_wants_to_make_peace_on_condition"),
             new Postfix(nameof(PreventDiplomaticActionsConversation), conversationBehaviorType, "conversation_player_want_to_join_faction_as_mercenary_or_vassal_on_condition"),
@@ -30,8 +30,8 @@ namespace Diplomacy.Patches
 #else
             new Postfix(nameof(PreventHostileActionsMenu), typeof(VillageHostileActionCampaignBehavior), "game_menu_village_hostile_action_on_condition"),
 #endif
-                        new Prefix(nameof(HandleThroneAbdication), typeof(KingdomManager), "AbdicateTheThrone"),
-                    };
+            new Prefix(nameof(HandleThroneAbdication), typeof(KingdomManager), "AbdicateTheThrone"),
+            };
         }
 
         private static void PreventHostileActionsConversation(ref bool __result)
@@ -97,9 +97,9 @@ namespace Diplomacy.Patches
                 kingdom.GetRebelFactions().First().EnforceSuccess();
             }
 
-            if (kingdom.Clans.Count > 1 && kingdom.HasRebellion() && kingdom.GetRebelFactions().First() is AbdicationFaction)
+            if (kingdom.Clans.Count > 1 && kingdom.HasRebellion() && kingdom.GetRebelFactions().FirstOrDefault() is AbdicationFaction abdicationFaction)
             {
-                kingdom.GetRebelFactions().First().EnforceSuccess();
+                abdicationFaction.EnforceSuccess();
             }
         }
     }
