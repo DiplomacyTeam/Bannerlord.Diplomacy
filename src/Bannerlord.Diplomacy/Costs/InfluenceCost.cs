@@ -1,11 +1,15 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
 namespace Diplomacy.Costs
 {
-    class InfluenceCost : DiplomacyCost
+    public sealed class InfluenceCost : AbstractDiplomacyCost
     {
         private readonly Clan _clan;
+
+        public Clan Clan => _clan;
 
         public InfluenceCost(Clan clan, float value) : base(value)
         {
@@ -14,7 +18,7 @@ namespace Diplomacy.Costs
 
         public override void ApplyCost()
         {
-            _clan.Influence = MBMath.ClampFloat(_clan.Influence - Value, 0f, float.MaxValue);
+            _clan.Influence = MBMath.ClampFloat(_clan.Influence - Math.Max(Value, 0f), 0f, float.MaxValue);
         }
 
         public override bool CanPayCost()

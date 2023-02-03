@@ -34,13 +34,13 @@ namespace Diplomacy.CivilWar.Actions
         }
 
         /// <summary>
-        /// Determines the set of reasons that the given faction cannot be joined by the clan. As the reasons are not currently used
-        /// in the UI, currently supplying empty TextObjects for the reasons.
+        /// Determines the set of reasons that the given faction cannot be joined by the clan.
         /// </summary>
         /// <param name="clan"></param>
         /// <param name="rebelFaction"></param>
         /// <returns>
-        /// Set of reasons for which the faction cannot be joined
+        /// Set of reasons for which the faction cannot be joined. As the reasons are not currently used
+        /// in the UI, currently supplying empty TextObjects.
         /// </returns>
         public static IEnumerable<TextObject> CanApply(Clan clan, RebelFaction rebelFaction)
         {
@@ -88,6 +88,12 @@ namespace Diplomacy.CivilWar.Actions
 
             // can't join a faction when member of a secession faction
             if (clan.Kingdom.GetRebelFactions().Any(x => x.Clans.Contains(clan) && x.RebelDemandType == RebelDemandType.Secession))
+            {
+                yield return TextObject.Empty;
+            }
+
+            // can't join a faction when eliminated
+            if (clan.IsEliminated)
             {
                 yield return TextObject.Empty;
             }

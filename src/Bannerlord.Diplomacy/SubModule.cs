@@ -1,10 +1,13 @@
 ﻿using Bannerlord.ButterLib.Common.Extensions;
+
 using Bannerlord.UIExtenderEx;
+using Bannerlord.UIExtenderEx.ResourceManager;
 
 using Diplomacy.CampaignBehaviors;
-using Diplomacy.Event;
+using Diplomacy.Events;
 using Diplomacy.Models;
 using Diplomacy.PatchTools;
+using Diplomacy.Widgets;
 
 using Microsoft.Extensions.Logging;
 
@@ -28,6 +31,7 @@ namespace Diplomacy
         public static readonly string DisplayName = Name;
         public static readonly string MainHarmonyDomain = "bannerlord." + Name.ToLower();
         public static readonly string CampaignHarmonyDomain = MainHarmonyDomain + ".campaign";
+        public static readonly string WidgetHarmonyDomain = MainHarmonyDomain + ".widgets";
 
         internal static readonly Color StdTextColor = Color.FromUint(0x00F16D26); // Orange
 
@@ -51,6 +55,8 @@ namespace Diplomacy
             Log.LogInformation($"Loading {Name} {Version}...");
 
             PatchManager.ApplyMainPatches(MainHarmonyDomain);
+
+            WidgetFactoryManager.Register(typeof(CriticalThresholdTextWidget));
         }
 
         protected override void OnSubModuleUnloaded()
@@ -80,7 +86,7 @@ namespace Diplomacy
             {
                 PatchManager.ApplyCampaignPatches(CampaignHarmonyDomain);
 
-                Events.Instance = new Events();
+                DiplomacyEvents.Instance = new DiplomacyEvents();
                 var gameStarter = (CampaignGameStarter) gameStarterObject;
 
                 gameStarter.AddBehavior(new DiplomaticAgreementBehavior());
@@ -128,7 +134,6 @@ namespace Diplomacy
             if (game.GameType is Campaign)
             {
                 //PatchManager.RemoveCampaignPatches();// Not sure we should do this...
-
                 Log.LogDebug("Campaign session ended.");
             }
         }

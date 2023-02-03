@@ -11,7 +11,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace.Conditions
 
         protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject? textObject, bool forcePlayerCharacterCosts = false)
         {
-            var hasEnoughInfluence = DiplomacyCostCalculator.DetermineCostForMakingPeace(kingdom, otherKingdom, forcePlayerCharacterCosts).InfluenceCost.CanPayCost();
+            var hasEnoughInfluence = DiplomacyCostCalculator.DetermineInfluenceCostForMakingPeace(kingdom, otherKingdom, forcePlayerCharacterCosts).CanPayCost();
             if (!hasEnoughInfluence)
             {
                 textObject = FailedConditionText;

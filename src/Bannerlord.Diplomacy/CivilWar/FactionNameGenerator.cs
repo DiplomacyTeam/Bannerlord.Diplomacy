@@ -288,7 +288,7 @@ namespace Diplomacy.CivilWar
         public static TextObject GenerateKingdomName(RebelFaction rebelFaction)
         {
             string? kingdomTitle;
-            var culture = rebelFaction.Clans.Select(x => x.Culture.StringId).GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key;
+            var culture = rebelFaction.Clans.Where(x => !x.IsEliminated).Select(x => x.Culture.StringId).GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key;
             CultureToKingdomTitles.TryGetValue(culture, out var cultureTitles);
             if (cultureTitles is not null && cultureTitles.Any() && MBRandom.RandomFloat < 0.5)
             {

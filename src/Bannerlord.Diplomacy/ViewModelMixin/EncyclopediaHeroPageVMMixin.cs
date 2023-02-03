@@ -3,7 +3,7 @@ using Bannerlord.UIExtenderEx.ViewModels;
 
 using Diplomacy.Actions;
 using Diplomacy.Costs;
-using Diplomacy.Event;
+using Diplomacy.Events;
 using Diplomacy.GauntletInterfaces;
 using Diplomacy.Messengers;
 
@@ -23,7 +23,7 @@ namespace Diplomacy.ViewModelMixin
         private bool _canGrantFief;
         private HintViewModel? _sendMessengerHint;
         private readonly Hero _hero;
-        private readonly DiplomacyCost _sendMessengerCost;
+        private readonly GoldCost _sendMessengerCost;
         private readonly GrantFiefInterface _grantFiefInterface;
 
         private static readonly TextObject _TSendMessengerText = new("{=cXfcwzPp}Send Messenger");
@@ -62,7 +62,7 @@ namespace Diplomacy.ViewModelMixin
         [DataSourceMethod]
         public void SendMessenger()
         {
-            Events.Instance.OnMessengerSent(_hero);
+            DiplomacyEvents.Instance.OnMessengerSent(_hero);
             OnRefresh();
         }
 
