@@ -1,7 +1,7 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
 
-using Diplomacy.Event;
+using Diplomacy.Events;
 
 using JetBrains.Annotations;
 
@@ -17,7 +17,7 @@ namespace Diplomacy.ViewModelMixin
     {
         public PartyNameplateVMMixin(PartyNameplateVM vm) : base(vm)
         {
-            Events.KingdomBannerChanged.AddNonSerializedListener(this, KingdomBannerChanged);
+            DiplomacyEvents.KingdomBannerChanged.AddNonSerializedListener(this, KingdomBannerChanged);
         }
 
         private void KingdomBannerChanged(Kingdom obj)
@@ -27,7 +27,7 @@ namespace Diplomacy.ViewModelMixin
 
         public override void OnFinalize()
         {
-            Events.RemoveListeners(this);
+            DiplomacyEvents.RemoveListeners(this);
         }
     }
 }

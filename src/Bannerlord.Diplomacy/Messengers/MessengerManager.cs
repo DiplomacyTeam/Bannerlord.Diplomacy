@@ -1,4 +1,5 @@
 ﻿using Diplomacy.Costs;
+using Diplomacy.Helpers;
 
 using HarmonyLib.BUTR.Extensions;
 
@@ -49,13 +50,13 @@ namespace Diplomacy.Messengers
 
         internal MessengerManager()
         {
-            _messengers = new List<Messenger>();
-            Messengers = new MBReadOnlyList<Messenger>(_messengers);
+            _messengers = new();
+            Messengers = new(_messengers);
         }
 
         public void OnEndMission()
         {
-            _messengers.Remove(_activeMessenger!);
+            RemoveMessenger(_activeMessenger!);
             _activeMessenger = null;
 
             _currentMission!.RemoveListener(this);
@@ -83,11 +84,53 @@ namespace Diplomacy.Messengers
                     string.Empty,
                     delegate { },
                     null));
-
-            _messengers.Add(new Messenger(targetHero, CampaignTime.Now));
+            AddMessenger(targetHero);
         }
 
-        public void MessengerArrived()
+        private void AddMessenger(Hero targetHero)
+        {
+            _messengers.Add(new Messenger(targetHero, CampaignTime.Now));
+            Messengers = new(_messengers);
+        }
+
+        internal void CheckForAccidents()
+        {
+            if (!Settings.Instance!.EnableMessengerAccidents)
+                return;
+
+            foreach (var messenger in Messengers.Where(m => !m.Arrived).ToList())
+            {
+                if (MessengerHasAccident(messenger))
+                    break;
+            }
+        }
+
+        private bool MessengerHasAccident(Messenger messenger)
+        {
+            var accidentHappened = MBRandom.RandomFloat < 0.005f;
+            if (accidentHappened)
+            {
+                //FIXME: Need different random events
+                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=nYrezEOX}Messenger killed").ToString(),
+                    new TextObject("{=A5lug0JY}Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!", new() { ["HERO_NAME"] = messenger.TargetHero.Name })
+                        .ToString(),
+                    true,
+                    false,
+                    GameTexts.FindText("str_ok").ToString(),
+                    null,
+                    delegate { RemoveMessenger(messenger); },
+                    null));
+            }
+            return accidentHappened;
+        }
+
+        private void RemoveMessenger(Messenger messenger)
+        {
+            _messengers.Remove(messenger);
+            Messengers = new(_messengers);
+        }
+
+        public void UpdateMessengerPositions()
         {
             SyncMessengerHourlySpeed();
             foreach (var messenger in Messengers.ToList())
@@ -144,7 +187,7 @@ namespace Diplomacy.Messengers
                     false,
                     GameTexts.FindText("str_ok").ToString(),
                     null,
-                    delegate { _messengers.Remove(messenger); },
+                    delegate { RemoveMessenger(messenger); },
                     null));
                 return false;
             }
@@ -161,13 +204,13 @@ namespace Diplomacy.Messengers
                             BribeGuardsAction.Apply(messenger.TargetHero.CurrentSettlement, bribeValue);
                         StartDialogue(messenger.TargetHero, messenger);
                     },
-                    () => { _messengers.Remove(messenger); }), true);
+                    () => { RemoveMessenger(messenger); }), true);
                 return true;
             }
 
             if (messenger.TargetHero.IsDead)
             {
-                _messengers.Remove(messenger);
+                RemoveMessenger(messenger);
             }
 
             return false;
@@ -182,7 +225,7 @@ namespace Diplomacy.Messengers
 
         internal void Sync()
         {
-            Messengers = new MBReadOnlyList<Messenger>(_messengers);
+            Messengers = new(_messengers);
         }
 
         public void StartDialogue(Hero targetHero, Messenger messenger)
@@ -247,7 +290,7 @@ namespace Diplomacy.Messengers
                 if (requiresBribing)
                 {
                     var model = (Campaign.Current.Models.BribeCalculationModel as DefaultBribeCalculationModel);
-                    additionalExpenses = new(Hero.MainHero, null, deGetBribeInternal!(model ?? new DefaultBribeCalculationModel(), targetHero.CurrentSettlement!));
+                    additionalExpenses = new(Hero.MainHero, deGetBribeInternal!(model ?? new DefaultBribeCalculationModel(), targetHero.CurrentSettlement!));
                 }
             }
 
@@ -265,7 +308,7 @@ namespace Diplomacy.Messengers
                 bribeTextObject.SetTextVariable("NEW_LINE", Environment.NewLine);
                 bribeTextObject.SetTextVariable("IS_FEMALE", Hero.MainHero.IsFemale ? 1 : 0);
                 bribeTextObject.SetTextVariable("GOLD_COST", (int) additionalExpenses.Value);
-                bribeTextObject.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+                bribeTextObject.SetTextVariable("GOLD_ICON", StringConstants.GoldIcon);
                 bribeTextObject.SetTextVariable("CAN_AFFORD", additionalExpenses.CanPayCost() ? 1 : 0);
             }
             else
@@ -293,7 +336,7 @@ namespace Diplomacy.Messengers
             return textObject;
         }
 
-        public void SendMessengerWithCost(Hero targetHero, DiplomacyCost diplomacyCost)
+        public void SendMessengerWithCost(Hero targetHero, GoldCost diplomacyCost)
         {
             diplomacyCost.ApplyCost();
             SendMessenger(targetHero);
@@ -307,6 +350,18 @@ namespace Diplomacy.Messengers
 
         public static bool IsTargetHeroAvailable(Hero targetHero, out TextObject exception)
         {
+            if (targetHero.IsHumanPlayerCharacter)
+            {
+                exception = new("{=hPra5uwZ}The messenger either does not understand or does not like your joke and refuses the task.");
+                return false;
+            }
+
+            if (Settings.Instance!.EnableMessengerRestictions && !HeroIsKnownToPlayer(targetHero))
+            {
+                exception = new("{=1mlXBnSs}You know too little of {HERO_NAME} to point them out for a messenger.", new() { ["HERO_NAME"] = targetHero.Name });
+                return false;
+            }
+
             var available = targetHero.IsActive || targetHero.IsWanderer && targetHero.HeroState == Hero.CharacterStates.NotSpawned;
             if (!available)
             {
@@ -316,14 +371,21 @@ namespace Diplomacy.Messengers
                 return false;
             }
 
-            if (targetHero.IsHumanPlayerCharacter)
-            {
-                exception = new("{=hPra5uwZ}The messenger either does not understand or does not like your joke and refuses the task.");
-                return false;
-            }
-
             exception = TextObject.Empty;
             return true;
+        }
+
+        private static bool HeroIsKnownToPlayer(Hero hero)
+        {
+#if v100 || v101 || v102 || v103
+            if (hero.HasMet || (hero.Clan != null && hero.Clan == Clan.PlayerClan))
+                return true;
+            if (hero.MapFaction is Kingdom heroKingdom && (heroKingdom.Leader == hero || (Clan.PlayerClan.MapFaction is Kingdom playerKingdom && playerKingdom == heroKingdom && hero.Clan is Clan heroClan && heroClan.Tier >= 4 && hero == heroClan.Leader)))
+                return true;
+            return false;
+#else
+            return Campaign.Current.Models.InformationRestrictionModel.DoesPlayerKnowDetailsOf(hero);
+#endif
         }
 
         private static TextObject GetUnavailabilityReason(Hero targetHero)
@@ -356,13 +418,13 @@ namespace Diplomacy.Messengers
             return IsTargetHeroAvailable(targetHero) && targetHero.PartyBelongedTo?.MapEvent == null;
         }
 
-        public static bool CanSendMessengerWithCost(Hero targetHero, DiplomacyCost diplomacyCost)
+        public static bool CanSendMessengerWithCost(Hero targetHero, GoldCost diplomacyCost)
         {
             var canPayCost = diplomacyCost.CanPayCost();
             return canPayCost && IsTargetHeroAvailable(targetHero);
         }
 
-        public static bool CanSendMessengerWithCost(Hero targetHero, DiplomacyCost diplomacyCost, out TextObject exception)
+        public static bool CanSendMessengerWithCost(Hero targetHero, GoldCost diplomacyCost, out TextObject exception)
         {
             var canPayCost = diplomacyCost.CanPayCost();
             if (!canPayCost)

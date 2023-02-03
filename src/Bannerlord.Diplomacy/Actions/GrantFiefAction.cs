@@ -1,5 +1,5 @@
 ﻿using Diplomacy.Character;
-using Diplomacy.Event;
+using Diplomacy.Events;
 using Diplomacy.Extensions;
 
 using System;
@@ -37,7 +37,7 @@ namespace Diplomacy.Actions
             // gain generosity when granting fief
             PlayerCharacterTraitEventExperience.FiefGranted.Apply();
 
-            Events.Instance.OnFiefGranted(settlement.Town);
+            DiplomacyEvents.Instance.OnFiefGranted(settlement.Town);
         }
 
         private static bool ShouldNegativeRelationBeApplied(Clan clan, Clan grantedClan, int grantedClanFiefCount, float grantedClanProsperity)

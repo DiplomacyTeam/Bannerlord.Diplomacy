@@ -1,18 +1,17 @@
 ﻿using Diplomacy.CivilWar.Factions;
 
-using System.Collections.Generic;
+using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.Settlements;
 
 namespace Diplomacy.CivilWar.Actions
 {
     public class ConsolidateKingdomsAction
     {
-        private static void Apply(Kingdom rebelKingdom, Kingdom parentKingdom)
+        internal static void Apply(Kingdom rebelKingdom, Kingdom parentKingdom)
         {
-            var rebelKingdomClans = new List<Clan>(rebelKingdom.Clans);
+            var rebelKingdomClans = rebelKingdom.Clans.Where(c => !c.IsEliminated).ToList();
 
             foreach (var clan in rebelKingdomClans)
             {
@@ -42,7 +41,7 @@ namespace Diplomacy.CivilWar.Actions
                     continue;
 
                 var originalOwner = rebelFaction.OriginalFiefOwners[fief];
-                if (currentOwner != originalOwner && originalOwner.Kingdom == rebelFaction.ParentKingdom)
+                if (!originalOwner.IsEliminated && currentOwner != originalOwner && originalOwner.Kingdom == rebelFaction.ParentKingdom)
                 {
                     ChangeOwnerOfSettlementAction.ApplyByDefault(originalOwner.Leader, fief.Settlement);
                 }

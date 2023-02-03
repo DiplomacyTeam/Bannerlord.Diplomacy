@@ -6,7 +6,6 @@
   <Parameters>
     <Parameter Name="HintDataSource" DefaultValue="HintDataSource" />
     <Parameter Name="Symbol" DefaultValue="?" />
-    <Parameter Name="YOffset" DefaultValue="0" />
     <Parameter Name="FontSize" DefaultValue="30" />
     <Parameter Name="IsEnabled" DefaultValue="true" />
     <Parameter Name="Command.Click" DefaultValue="" />
@@ -17,7 +16,7 @@
         <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Diplomacy.Icon.Circle" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" IsEnabled="*IsEnabled" Command.Click="*Command.Click">
           <Children>
             <HintWidget DataSource="*HintDataSource" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
-            <TextWidget Brush="Diplomacy.Faction.HelpButton" Brush.FontSize="*FontSize" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" Text="*Symbol" PositionYOffset="*YOffset" />
+            <TextWidget Brush="Diplomacy.Faction.HelpButton" Brush.FontSize="*FontSize" HorizontalAlignment="Center" VerticalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" Text="*Symbol" />
           </Children>
         </ButtonWidget>
         <HintWidget IsEnabled="false" DataSource="*HintDataSource" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />

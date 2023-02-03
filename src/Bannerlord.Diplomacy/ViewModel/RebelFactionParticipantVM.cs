@@ -1,5 +1,6 @@
 ﻿using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
+using Diplomacy.Helpers;
 
 using JetBrains.Annotations;
 
@@ -17,7 +18,6 @@ namespace Diplomacy.ViewModel
 {
     public class RebelFactionParticipantVM : EncyclopediaFactionVM
     {
-        private static readonly TextObject _TPlus = new("{=eTw2aNV5}+");
         private static readonly TextObject _TRequiredScore = new("{=XIBUWDlT}Required Score");
         private static readonly TextObject _TCurrentScore = new("{=5r6fsHgm}Current Score");
         private static readonly TextObject _TClanText = GameTexts.FindText("str_clan");
@@ -40,16 +40,12 @@ namespace Diplomacy.ViewModel
             };
 
             foreach (var (name, number) in explainedNumber.GetLines())
-                list.Add(new TooltipProperty(name, PlusPrefixed(number), 0));
+                list.Add(new TooltipProperty(name, StringHelper.GetPlusPrefixed(number), 0));
 
             list.Add(new TooltipProperty(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
             list.Add(new TooltipProperty(_TRequiredScore.ToString(), $"{RebelFactionScoringModel.RequiredScore:0.##}", 0, false,
                 TooltipProperty.TooltipPropertyFlags.RundownResult));
             Hint = new BasicTooltipViewModel(() => list);
-        }
-        private static string PlusPrefixed(float value)
-        {
-            return $"{(value >= 0.005f ? _TPlus.ToString() : string.Empty)}{value:0.##}";
         }
 
         [UsedImplicitly]

@@ -1,4 +1,4 @@
-﻿using Diplomacy.Event;
+﻿using Diplomacy.Events;
 using Diplomacy.PatchTools;
 
 using System.Collections.Generic;
@@ -18,6 +18,6 @@ namespace Diplomacy.Patches
             };
         }
 
-        private static void menu_settlement_taken_on_init_Postfix() => Events.Instance.OnPlayerSettlementTaken(Settlement.CurrentSettlement);
+        private static void menu_settlement_taken_on_init_Postfix() => DiplomacyEvents.Instance.OnPlayerSettlementTaken(Settlement.CurrentSettlement);
     }
 }

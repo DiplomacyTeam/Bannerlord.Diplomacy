@@ -53,6 +53,7 @@ namespace Diplomacy.CivilWar.Factions
 
         public void DestroyFactionBecauseDemandSatisfied()
         {
+            ConsolidateKingdomsAction.Apply(this);
             RebelFactionManager.DestroyRebelFaction(this);
 
             var strVars = new Dictionary<string, object> { { "PARENT_KINGDOM", ParentKingdom.Name }, { "REBELS", Name } };
