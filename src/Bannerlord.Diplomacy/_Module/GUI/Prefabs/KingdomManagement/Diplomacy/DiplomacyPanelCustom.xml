@@ -345,7 +345,7 @@
                       </Children>
                     </ListPanel>
 
-                    <KingdomDiplomacyPanelTabControlWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" OverviewButton="OverviewButton" OverviewPanel="..\ScrollContainer\ScrollPanel\StatsListRect\InnerPanel\OverviewTab" StatsButton="StatsButton" StatsPanel="..\ScrollContainer\ScrollPanel\StatsListRect\InnerPanel\StatsTab" MarginRight="42">
+                    <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" OverviewButton="OverviewButton" OverviewPanel="..\ScrollContainer\ScrollPanel\StatsListRect\InnerPanel\OverviewTab" StatsButton="StatsButton" StatsPanel="..\ScrollContainer\ScrollPanel\StatsListRect\InnerPanel\StatsTab" MarginRight="42">
                       <Children>
                         <!--Overview Tab-->
                         <ButtonWidget Id="OverviewButton" MarginLeft="5" MarginRight="255" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="227" SuggestedHeight="40" Brush="ButtonBrush2" Command.Click="ExecuteShowOverview" UpdateChildrenStates="true">
@@ -361,7 +361,7 @@
                           </Children>
                         </ButtonWidget>
                       </Children>
-                    </KingdomDiplomacyPanelTabControlWidget>
+                    </Widget>
 
                     <Widget Id="ScrollContainer" HeightSizePolicy="Fixed" SuggestedHeight="550" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true">
                       <Children>
@@ -434,26 +434,6 @@
 
                   </Children>
                 </Widget>
-
-                <!--Faction 2 Other Wars-->
-                <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="105" HorizontalAlignment="Right" VerticalAlignment="Top" MarginRight="110" MarginTop="122" StackLayout.LayoutMethod="VerticalBottomToTop" IsVisible="@IsFaction2OtherWarsVisible">
-                  <Children>
-                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="36" SuggestedHeight="36" HorizontalAlignment="Center" PositionXOffset="-2" Sprite="SPKingdom\Diplomacy\diplomacy_war_icon" IsEnabled="false"/>
-                    <GridWidget DataSource="{Faction2OtherWars}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="5" DefaultCellWidth="35" DefaultCellHeight="42" ColumnCount="3" LayoutImp.HorizontalLayoutMethod="Center">
-                      <ItemTemplate>
-                        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
-                          <Children>
-                            <Widget DataSource="{Hint}" DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
-                              <Children>
-                                <MaskedTextureWidget DataSource="{..\Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="29" SuggestedHeight="37" HorizontalAlignment="Right" VerticalAlignment="Top" Brush="Kingdom.OtherWars.Faction.Small.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.15" />
-                              </Children>
-                            </Widget>
-                          </Children>
-                        </Widget>
-                      </ItemTemplate>
-                    </GridWidget>
-                  </Children>
-                </ListPanel>
 
               </Children>
             </Widget>

@@ -2,7 +2,7 @@
 
 namespace Diplomacy.DiplomaticAction.Alliance
 {
-    class AllianceEvent
+    public readonly struct AllianceEvent
     {
         public AllianceEvent(Kingdom kingdom, Kingdom otherKingdom)
         {

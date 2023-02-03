@@ -1,6 +1,7 @@
 <p align="center">
 	<img src="https://tokei.rs/b1/github/DiplomacyTeam/Bannerlord.Diplomacy?category=code" alt="Lines of Code"/>
 	<a href="https://www.codefactor.io/repository/github/diplomacyteam/bannerlord.diplomacy"><img src="https://www.codefactor.io/repository/github/diplomacyteam/bannerlord.diplomacy/badge" alt="CodeFactor"/></a>
+	<a title="Crowdin" target="_blank" href="https://crowdin.com/project/bannerlorddiplomacy"><img src="https://badges.crowdin.net/bannerlorddiplomacy/localized.svg"></a>
 	</br>
 	<a href="https://www.nexusmods.com/mountandblade2bannerlord/mods/832" alt="NexusMods Bannerlord.Diplomacy">
 	<img src="https://img.shields.io/badge/NexusMods-Bannerlord.Diplomacy-yellow.svg" /></a>

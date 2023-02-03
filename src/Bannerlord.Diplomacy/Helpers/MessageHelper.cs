@@ -5,15 +5,15 @@ using System.Text;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
-namespace Diplomacy
+namespace Diplomacy.Helpers
 {
-    class MessageHelper
+    internal static class MessageHelper
     {
         public static void SendFailedActionMessage(string action, List<string> exceptions)
         {
             var sb = new StringBuilder();
             sb.Append(action);
-            sb.Append(exceptions.First());
+            if (exceptions.Any()) sb.Append(exceptions.First());
 
             InformationManager.DisplayMessage(new InformationMessage(sb.ToString()));
         }
@@ -22,7 +22,7 @@ namespace Diplomacy
         {
             var sb = new StringBuilder();
             sb.Append(action);
-            sb.Append(exceptions.First());
+            if (exceptions.Any()) sb.Append(exceptions.First());
 
             InformationManager.DisplayMessage(new InformationMessage(sb.ToString()));
         }

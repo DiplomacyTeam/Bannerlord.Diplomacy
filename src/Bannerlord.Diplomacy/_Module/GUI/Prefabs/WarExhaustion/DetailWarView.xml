@@ -20,7 +20,7 @@
         <BrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop" Brush="Frame1Canvas">
           <Children>
 
-            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="650" SuggestedHeight="500" Brush="Frame1.Border" IsEnabled="true">
+            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="650" SuggestedHeight="@ReportHeight" Brush="Frame1.Border" IsEnabled="true">
               <Children>
                 <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true">
                   <Children>
@@ -47,7 +47,8 @@
                         <ListPanel HorizontalAlignment="Left" MarginTop="10" MarginBottom="5" MarginLeft="5" MarginRight="20" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" DoNotPassEventsToChildren="true">
                           <Children>
                             <TextWidget VerticalAlignment="Bottom" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="ArmyManagement.Army.Tuple.Name" Brush.TextHorizontalAlignment="Center" Text="@WarExhaustionLabel"/>
-                            <TextWidget VerticalAlignment="Bottom" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="ArmyManagement.Army.Tuple.Name" Brush.TextHorizontalAlignment="Center" Text="@PlayerWarExhaustion"/>
+                            <CriticalThresholdTextWidget IsCritical="@PlayerWarExhaustionIsCritical" VerticalAlignment="Bottom" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Map.WarExhaustionReport.Text" Brush.TextHorizontalAlignment="Center" Text="@PlayerWarExhaustion" />
+                            <HintWidget DataSource="{PlayerCriticaExhaustionlHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
                           </Children>
                         </ListPanel>
 
@@ -56,14 +57,13 @@
                             <Relationship VerticalAlignment="Top" DataSource="{Kingdom}"/>
                             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
-                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" VerticalAlignment="Top" PositionYOffset="7" Brush="Diplomacy.Icon.WarIcon" />
+                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="7" Brush="Diplomacy.Icon.WarIcon" />
                                 <HintWidget DataSource="{RateHelpHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginTop="10" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="true">
                                   <Children>
                                     <TextWidget DataSource="{..}" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Diplomacy.Faction.HelpButton"  Text="@WarExhaustionRate" />
                                   </Children>
                                 </HintWidget>
                               </Children>
-
                             </ListPanel>
 
                             <Relationship VerticalAlignment="Top" DataSource="{OpponentKingdom}"/>
@@ -73,12 +73,18 @@
                         <ListPanel HorizontalAlignment="Right" MarginTop="10" MarginBottom="5" MarginLeft="20" MarginRight="5" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" DoNotPassEventsToChildren="true">
                           <Children>
                             <TextWidget VerticalAlignment="Bottom" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="ArmyManagement.Army.Tuple.Name" Brush.TextHorizontalAlignment="Center" Text="@WarExhaustionLabel"/>
-                            <TextWidget VerticalAlignment="Bottom" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="ArmyManagement.Army.Tuple.Name" Brush.TextHorizontalAlignment="Center" Text="@OpponentWarExhaustion"/>
+                            <CriticalThresholdTextWidget IsCritical="@OpponentWarExhaustionIsCritical" VerticalAlignment="Bottom" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Map.WarExhaustionReport.Text" Brush.TextHorizontalAlignment="Center" Text="@OpponentWarExhaustion" />
+                            <HintWidget DataSource="{OpponentCriticaExhaustionlHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
                           </Children>
                         </ListPanel>
                       </Children>
                     </ListPanel>
                     <TextWidget VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Info.Text" Text="@StartDate" />
+                    <AutoHideTextWidget VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Diplomacy.Faction.HelpButton" Text="@ActiveQuestWarning">
+                      <Children>
+                        <HintWidget DataSource="{ActiveQuestHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                      </Children>
+                    </AutoHideTextWidget>
 
                     <Widget WidthSizePolicy = "StretchToParent" HeightSizePolicy = "Fixed" SuggestedHeight="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Sprite="GradientDivider_9" AlphaFactor="0.4" MarginLeft="10" MarginRight="10" MarginTop="10" MarginBottom="10"/>
                     <TextWidget HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Encyclopedia.SubPage.Info.Text" Text="@WarExhaustionReportLabel"/>
@@ -89,7 +95,11 @@
                           <ItemTemplate>
                             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
                               <Children>
-                                <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="100" HeightSizePolicy="CoverChildren" Brush="Info.Text" Brush.TextHorizontalAlignment="Center" Text="@WarExhaustionValueFaction1"/>
+                                <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="100" HeightSizePolicy="CoverChildren" Brush="Info.Text" Brush.TextHorizontalAlignment="Center" Text="@WarExhaustionValueFaction1">
+                                  <Children>
+                                    <HintWidget DataSource="{Faction1ValueHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                                  </Children>
+                                </TextWidget>
                               </Children>
                             </ListPanel>
                           </ItemTemplate>
@@ -107,7 +117,11 @@
                           <ItemTemplate>
                             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
                               <Children>
-                                <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="100" HeightSizePolicy="CoverChildren" Brush="Info.Text" Brush.TextHorizontalAlignment="Center" Text="@WarExhaustionValueFaction2"/>
+                                <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="100" HeightSizePolicy="CoverChildren" Brush="Info.Text" Brush.TextHorizontalAlignment="Center" Text="@WarExhaustionValueFaction2">
+                                  <Children>
+                                    <HintWidget DataSource="{Faction2ValueHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                                  </Children>
+                                </TextWidget>
                               </Children>
                             </ListPanel>
                           </ItemTemplate>
@@ -147,7 +161,7 @@
           </Children>
         </BrushWidget>
         <!--Close Popup Button-->
-        <ButtonWidget Id="ClosePopupWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Popup.CloseButton.Width" SuggestedHeight="!Popup.CloseButton.Height" HorizontalAlignment="Center" VerticalAlignment="Center" PositionXOffset="325" PositionYOffset="-250" Brush="Popup.CloseButton" Command.Click="OnComplete"/>
+        <ButtonWidget Id="ClosePopupWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Popup.CloseButton.Width" SuggestedHeight="!Popup.CloseButton.Height" HorizontalAlignment="Center" VerticalAlignment="Center" PositionXOffset="325" PositionYOffset="@CloseButtonYOffset" Brush="Popup.CloseButton" Command.Click="OnComplete"/>
       </Children>
     </Widget>
   </Window>

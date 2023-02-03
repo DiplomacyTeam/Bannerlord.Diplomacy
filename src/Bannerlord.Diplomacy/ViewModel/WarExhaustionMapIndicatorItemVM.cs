@@ -1,4 +1,5 @@
 ﻿using Diplomacy.GauntletInterfaces;
+using Diplomacy.WarExhaustion;
 
 using JetBrains.Annotations;
 
@@ -56,8 +57,8 @@ namespace Diplomacy.ViewModel
         {
             PlayerWarExhaustion = (int) WarExhaustionManager.Instance.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
             OpponentWarExhaustion = (int) WarExhaustionManager.Instance.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
-            IsCriticalFaction1 = WarExhaustionManager.Instance.IsCriticalWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
-            IsCriticalFaction2 = WarExhaustionManager.Instance.IsCriticalWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
+            IsCriticalFaction1 = WarExhaustionManager.Instance.HasCriticalWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
+            IsCriticalFaction2 = WarExhaustionManager.Instance.HasCriticalWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
         }
 
         [UsedImplicitly]
