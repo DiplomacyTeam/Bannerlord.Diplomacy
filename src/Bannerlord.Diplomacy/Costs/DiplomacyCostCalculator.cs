@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Diplomacy.CivilWar.Factions;
+using Diplomacy.Extensions;
+using Diplomacy.WarExhaustion;
+
+using System;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
@@ -12,7 +16,7 @@ namespace Diplomacy.Costs
         private static float PeaceFactor => 20.0f;
         private static float WarFactor => 10.0f;
 
-        public static DiplomacyCost DetermineCostForDeclaringWar(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
+        public static InfluenceCost DetermineCostForDeclaringWar(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
         {
             var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
@@ -20,40 +24,109 @@ namespace Diplomacy.Costs
             if (!Settings.Instance!.ScalingInfluenceCosts)
                 return new InfluenceCost(clanPayingInfluence, Settings.Instance!.DeclareWarInfluenceCost);
 
-            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * WarFactor);
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactorForInfluence(kingdom) * WarFactor);
         }
 
-        public static HybridCost DetermineCostForMakingPeace(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
+        public static HybridCost DetermineCostForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
             return new(
-                DetermineInfluenceCostForMakingPeace(kingdom, forcePlayerCharacterCosts),
-                DetermineGoldCostForMakingPeace(kingdom, otherKingdom, forcePlayerCharacterCosts));
+                DetermineInfluenceCostForMakingPeace(kingdomMakingPeace, otherKingdom, forcePlayerCharacterCosts),
+                DetermineGoldCostForMakingPeace(kingdomMakingPeace, otherKingdom, forcePlayerCharacterCosts),
+                DetermineReparationsForMakingPeace(kingdomMakingPeace, otherKingdom, forcePlayerCharacterCosts));
         }
 
-        private static InfluenceCost DetermineInfluenceCostForMakingPeace(Kingdom kingdom, bool forcePlayerCharacterCosts)
+        internal static InfluenceCost DetermineInfluenceCostForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts)
         {
-            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
-            InfluenceCost influenceCost;
+            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdomMakingPeace.Leader.Clan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
-            {
-                influenceCost = new InfluenceCost(clanPayingInfluence, 0f);
-            }
-            else if (!Settings.Instance!.ScalingInfluenceCosts)
-            {
-                influenceCost = new InfluenceCost(clanPayingInfluence, Settings.Instance!.MakePeaceInfluenceCost);
-            }
-            else
-            {
-                influenceCost = new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * PeaceFactor);
-            }
+                return new InfluenceCost(clanPayingInfluence, 0f);
+            
+            //Making peace is free for critically exhausted factions that not yet lost
+            if (Settings.Instance!.EnableWarExhaustion && WarExhaustionManager.Instance.HasCriticalWarExhaustion(kingdomMakingPeace, otherKingdom, checkMaxWarExhaustion: true))
+                return new InfluenceCost(clanPayingInfluence, 0f);
 
-            return influenceCost;
+            if (!Settings.Instance!.ScalingInfluenceCosts)
+                return new InfluenceCost(clanPayingInfluence, Settings.Instance!.MakePeaceInfluenceCost);
+
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactorForInfluence(kingdomMakingPeace) * PeaceFactor);
         }
 
-        private static float GetKingdomScalingFactor(Kingdom kingdom)
+        internal static GoldCost DetermineGoldCostForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
-            return (float) Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingInfluenceCostMultiplier);
+            var giver = forcePlayerCharacterCosts ? Hero.MainHero : kingdomMakingPeace.Leader;
+
+            var baseGoldCost = 500;
+            int goldCost = Math.Min(baseGoldCost, kingdomMakingPeace.Leader.Gold);
+            goldCost = 10 * (goldCost / 10);
+
+            //This is a cost of organization process and thus has no addressee
+            return new GoldCost(giver, goldCost); 
         }
+
+        private static KingdomWalletCost DetermineReparationsForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts)
+        {
+            var giver = kingdomMakingPeace;
+            var receiver = otherKingdom;
+            var reparationsCost = 0;
+
+            if (!Settings.Instance!.EnableWarExhaustion)
+                return new(giver, receiver, reparationsCost);
+
+            //No reparations from kingdoms that are about to be destroyed
+            if (!(kingdomMakingPeace.Fiefs.Count > 0) && !FactionManager.GetEnemyKingdoms(kingdomMakingPeace).Any(k => k != otherKingdom && !k.IsEliminated))
+                return new(giver, receiver, reparationsCost);
+            if (kingdomMakingPeace.IsRebelKingdomOf(otherKingdom) || (otherKingdom.IsRebelKingdomOf(kingdomMakingPeace) && kingdomMakingPeace.GetRebelFactions().Any(x => x.RebelKingdom == otherKingdom && x is not SecessionFaction)))
+                return new(giver, receiver, reparationsCost);
+
+            var kingdomMakingPeaceWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(kingdomMakingPeace, otherKingdom);
+            var otherKingdomWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(otherKingdom, kingdomMakingPeace);
+
+            if (kingdomMakingPeaceWarExhaustion > otherKingdomWarExhaustion && WarExhaustionManager.IsCriticalWarExhaustion(kingdomMakingPeaceWarExhaustion))
+            {
+                reparationsCost = CalculateReparations(kingdomMakingPeace, otherKingdom, kingdomMakingPeaceWarExhaustion, otherKingdomWarExhaustion);
+            }
+            else if (otherKingdomWarExhaustion > kingdomMakingPeaceWarExhaustion && WarExhaustionManager.IsCriticalWarExhaustion(otherKingdomWarExhaustion))
+            {
+                GetReparationsFromOtherKingdom(kingdomMakingPeace, otherKingdom, out giver, out receiver, out reparationsCost, kingdomMakingPeaceWarExhaustion, otherKingdomWarExhaustion);
+            }
+            else if (kingdomMakingPeaceWarExhaustion == otherKingdomWarExhaustion)
+            {
+                var otherKingdomLost = WarExhaustionManager.Instance.GetWarResult(otherKingdom, kingdomMakingPeace) == WarExhaustionManager.WarResult.Loss;
+                if (otherKingdomLost)
+                {
+                    GetReparationsFromOtherKingdom(kingdomMakingPeace, otherKingdom, out giver, out receiver, out reparationsCost, kingdomMakingPeaceWarExhaustion, otherKingdomWarExhaustion, otherKingdomLost);
+                }
+                else
+                {
+                    var kingdomMakingPeaceLost = WarExhaustionManager.Instance.GetWarResult(kingdomMakingPeace, otherKingdom) == WarExhaustionManager.WarResult.Loss;
+                    if (kingdomMakingPeaceLost)
+                        reparationsCost = CalculateReparations(kingdomMakingPeace, otherKingdom, kingdomMakingPeaceWarExhaustion, otherKingdomWarExhaustion, kingdomMakingPeaceLost);
+                }
+            }
+            reparationsCost = 100 * (reparationsCost / 100);
+
+            return new(giver, receiver, reparationsCost);
+
+            static int CalculateReparations(Kingdom kingdomPayingReparations, Kingdom otherKingdom, float payingKingdomWarExhaustion, float otherKingdomWarExhaustion, bool? payerLostWar = null)
+            {
+                var lossReparations = (payerLostWar ?? WarExhaustionManager.Instance.GetWarResult(kingdomPayingReparations, otherKingdom) == WarExhaustionManager.WarResult.Loss) ? Settings.Instance!.DefeatedGoldCost : 0;
+                var warExhaustionReparations = otherKingdomWarExhaustion * ((payingKingdomWarExhaustion - otherKingdomWarExhaustion) * (WarExhaustionManager.IsCriticalWarExhaustion(otherKingdomWarExhaustion) ? 0.25f : 0.5f));
+                return (int) ((lossReparations + warExhaustionReparations) * GetKingdomScalingFactorForReparations(kingdomPayingReparations));
+            }
+
+            static void GetReparationsFromOtherKingdom(Kingdom kingdomMakingPeace, Kingdom otherKingdom, out Kingdom giver, out Kingdom receiver, out int reparationsCost, float kingdomMakingPeaceWarExhaustion, float otherKingdomWarExhaustion, bool? otherKingdomLost = null)
+            {
+                giver = otherKingdom;
+                receiver = kingdomMakingPeace;
+                reparationsCost = CalculateReparations(otherKingdom, kingdomMakingPeace, otherKingdomWarExhaustion, kingdomMakingPeaceWarExhaustion, otherKingdomLost);
+            }
+        }
+
+        private static float GetKingdomScalingFactorForInfluence(Kingdom kingdom) => (float) Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingInfluenceCostMultiplier);
+
+        private static float GetKingdomScalingFactorForGold(Kingdom kingdom) => Settings.Instance!.ScalingGoldCosts ? (float) Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingGoldCostMultiplier) : 100f;
+
+        private static float GetKingdomScalingFactorForReparations(Kingdom kingdom) => Settings.Instance!.ScalingGoldCosts ? (float) Math.Floor(GetKingdomTierCount(kingdom) * Settings.Instance!.ScalingWarReparationsGoldCostMultiplier) : 1000f;
 
         public static HybridCost DetermineCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
@@ -70,7 +143,7 @@ namespace Diplomacy.Costs
             if (!Settings.Instance!.ScalingInfluenceCosts)
                 return new InfluenceCost(clanPayingInfluence, Settings.Instance!.MakePeaceInfluenceCost);
 
-            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom));
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactorForInfluence(kingdom));
         }
 
         private static GoldCost DetermineGoldCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
@@ -81,9 +154,10 @@ namespace Diplomacy.Costs
 
             var baseGoldCost = 500;
             var goldCostFactor = 100;
-            var goldCost = (int) ((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * goldCostFactor) + baseGoldCost);
+            var goldCost = (int) ((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactorForGold(kingdom) * goldCostFactor) + baseGoldCost);
 
-            return new GoldCost(giver, otherKingdom.Leader, goldCost);
+            //This is a cost of organization process and thus has no addressee
+            return new GoldCost(giver, goldCost);
         }
 
         private static float GetKingdomWarLoad(Kingdom kingdom)
@@ -91,34 +165,9 @@ namespace Diplomacy.Costs
             return FactionManager.GetEnemyFactions(kingdom)?.Select(x => x.TotalStrength).Aggregate(0f, (result, item) => result + item) / kingdom.TotalStrength ?? 0f;
         }
 
-        public static DiplomacyCost DetermineCostForSendingMessenger()
+        public static GoldCost DetermineCostForSendingMessenger()
         {
-            return new GoldCost(Hero.MainHero, null, Settings.Instance!.SendMessengerGoldCost);
-        }
-
-        private static GoldCost DetermineGoldCostForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
-        {
-            var giver = forcePlayerCharacterCosts ? Hero.MainHero : kingdomMakingPeace.Leader;
-
-            int goldCost;
-            if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
-            {
-                goldCost = 0;
-            }
-            else
-            {
-                var warExhaustionMultiplier = 1f;
-                if (Settings.Instance!.EnableWarExhaustion)
-                {
-                    var kingdomMakingPeaceWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(kingdomMakingPeace, otherKingdom);
-                    var otherKingdomWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(otherKingdom, kingdomMakingPeace);
-                    var relativeWarExhaustion = (kingdomMakingPeaceWarExhaustion + 1f) / (otherKingdomWarExhaustion + 1f);
-                    warExhaustionMultiplier = MBMath.ClampFloat(relativeWarExhaustion, 0, ((1f / 20f) * kingdomMakingPeaceWarExhaustion) + 1f);
-                }
-                var baseGoldCost = 500;
-                goldCost = Math.Min((int) ((GetKingdomScalingFactor(kingdomMakingPeace) * Settings.Instance!.ScalingWarReparationsGoldCostMultiplier) * warExhaustionMultiplier) + baseGoldCost, kingdomMakingPeace.Leader.Gold / 2);
-            }
-            return new GoldCost(giver, otherKingdom.Leader, goldCost);
+            return new (Hero.MainHero, Settings.Instance!.SendMessengerGoldCost);
         }
 
         private static int GetKingdomTierCount(Kingdom kingdom)
@@ -126,9 +175,9 @@ namespace Diplomacy.Costs
             var tierTotal = 0;
             foreach (var clan in kingdom.Clans)
             {
-                tierTotal += clan.Tier;
+                tierTotal += clan.IsUnderMercenaryService ? clan.Tier / 3 : clan.Tier;
             }
-            return Math.Min(tierTotal, 20);
+            return MBMath.ClampInt(tierTotal, 5, 50);
         }
 
         public static HybridCost DetermineCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
@@ -146,7 +195,7 @@ namespace Diplomacy.Costs
             if (!Settings.Instance!.ScalingInfluenceCosts)
                 return new InfluenceCost(clanPayingInfluence, Settings.Instance!.MakePeaceInfluenceCost * 2.0f);
 
-            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactor(kingdom) * AllianceFactor);
+            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactorForInfluence(kingdom) * AllianceFactor);
         }
 
         private static GoldCost DetermineGoldCostForFormingAlliance(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
@@ -157,9 +206,10 @@ namespace Diplomacy.Costs
 
             var baseGoldCost = 500;
             var goldCostFactor = 100;
-            var goldCost = (int) ((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactor(kingdom) * AllianceFactor * goldCostFactor) + baseGoldCost);
+            var goldCost = (int) ((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactorForGold(kingdom) * AllianceFactor * goldCostFactor) + baseGoldCost);
 
-            return new GoldCost(giver, otherKingdom.Leader, goldCost);
+            //This is a cost of organization process and thus has no addressee
+            return new GoldCost(giver, goldCost);
         }
     }
 }

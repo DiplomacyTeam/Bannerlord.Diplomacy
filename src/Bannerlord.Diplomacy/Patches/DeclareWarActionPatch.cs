@@ -1,5 +1,6 @@
-﻿using Diplomacy.DiplomaticAction.WarPeace;
-using Diplomacy.Event;
+﻿#if v100 || v101 || v102 || v103
+using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.Events;
 using Diplomacy.PatchTools;
 
 using System;
@@ -24,11 +25,10 @@ namespace Diplomacy.Patches
         };
 
         private static void ApplyPostfix(IFaction faction1, IFaction faction2)
-            => Events.Instance.OnWarDeclared(new WarDeclaredEvent(faction1, faction2, false));
+            => DiplomacyEvents.Instance.OnWarDeclared(new WarDeclaredEvent(faction1, faction2, false));
 
         private static void ApplyDeclareWarOverProvocationPostfix(IFaction faction, IFaction provocatorFaction)
-            => Events.Instance.OnWarDeclared(new WarDeclaredEvent(faction, provocatorFaction, true));
-
-        // FIXME: LO-PRIO: There are two other types of Apply* methods; they should probably also fire the event.
+            => DiplomacyEvents.Instance.OnWarDeclared(new WarDeclaredEvent(faction, provocatorFaction, true));
     }
 }
+#endif

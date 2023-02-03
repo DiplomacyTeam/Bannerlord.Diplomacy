@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 
-namespace Diplomacy.Event
+namespace Diplomacy.Events
 {
-    internal sealed class Events
+    public sealed class DiplomacyEvents
     {
         private readonly MbEvent<AllianceEvent> _allianceBroken = new();
         private readonly MbEvent<AllianceEvent> _allianceFormed = new();
@@ -19,10 +19,12 @@ namespace Diplomacy.Event
         private readonly MbEvent<Hero> _messengerSent = new();
         private readonly MbEvent<Kingdom> _peaceProposalSent = new();
         private readonly MbEvent<Settlement> _playerSettlementTaken = new();
+#if v100 || v101 || v102 || v103
         private readonly MbEvent<WarDeclaredEvent> _warDeclared = new();
+#endif
         private readonly MbEvent<WarExhaustionEvent> _warExhaustionAdded = new();
 
-        public Events()
+        public DiplomacyEvents()
         {
             Instance = this;
             _listeners = new List<IMbEventBase>
@@ -33,13 +35,15 @@ namespace Diplomacy.Event
                 _messengerSent,
                 _peaceProposalSent,
                 _playerSettlementTaken,
+#if v100 || v101 || v102 || v103
                 _warDeclared,
+#endif
                 _kingdomBannerChanged,
                 _warExhaustionAdded
             };
         }
 
-        public static Events Instance { get; set; } = null!;
+        public static DiplomacyEvents Instance { get; set; } = null!;
 
         public static IMbEvent<AllianceEvent> AllianceFormed => Instance._allianceFormed;
 
@@ -53,7 +57,9 @@ namespace Diplomacy.Event
 
         public static IMbEvent<Settlement> PlayerSettlementTaken => Instance._playerSettlementTaken;
 
+#if v100 || v101 || v102 || v103
         public static IMbEvent<WarDeclaredEvent> WarDeclared => Instance._warDeclared;
+#endif
 
         public static IMbEvent<Kingdom> KingdomBannerChanged => Instance._kingdomBannerChanged;
 
@@ -89,10 +95,12 @@ namespace Diplomacy.Event
             Instance._playerSettlementTaken.Invoke(currentSettlement);
         }
 
+#if v100 || v101 || v102 || v103
         internal void OnWarDeclared(WarDeclaredEvent warDeclaredEvent)
         {
             Instance._warDeclared.Invoke(warDeclaredEvent);
         }
+#endif
 
         internal void OnKingdomBannerChanged(Kingdom kingdom)
         {

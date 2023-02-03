@@ -19,12 +19,6 @@ namespace Diplomacy.Views
         private WarExhaustionMapIndicatorVM _dataSource = null!;
         private GauntletLayer _layerAsGauntletLayer = null!;
 
-        protected override void OnMapScreenUpdate(float dt)
-        {
-            base.OnMapScreenUpdate(dt);
-            _dataSource.UpdateBanners();
-        }
-
         protected override void CreateLayout()
         {
             base.CreateLayout();

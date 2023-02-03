@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="English" />
+  </tags>
+  <strings>
+    <!--<string id="" text="" />-->
+    <string id="XmVTQ0bH" text="War Exhaustion" />
+
+    <string id="BXluvRnJ" text="Bitter Defeat"/>
+    <string id="0aZCy0at" text="Forced Peace" />
+
+    <string id="vLfbqXjq" text="Your armies and people are exhausted from the conflict with {ENEMY_KINGDOM} and have given up the fight. You must accept the terms of defeat and pay war reparations in the amount of {REPARATIONS}{GOLD_ICON}. These expenses will be distributed among all the clans of the kingdom.{?ADD_TRIBUTE}You also pledge to pay a daily tribute of {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}On top of that, you have to return {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} and {?}{\?}{FIEFS_TO_RETURN_LIST.END} back to {ENEMY_KINGDOM}.{NEW_LINE} {NEW_LINE}{?} {\?}The shame of defeat will cost you {INFLUENCE} influence."/>
+    <string id="ghZCj7hb" text="With your final stronghold falling to your enemies, you can no longer continue the fight with {ENEMY_KINGDOM}. You must accept the terms of defeat{?TO_BE_DESTROYED}. Without land or livelihood, your kingdom is no more.{?} and pay war reparations in the amount of {REPARATIONS}{GOLD_ICON}. These expenses will be distributed among all the clans of the kingdom. {?ADD_TRIBUTE}You also pledge to pay a daily tribute of {TRIBUTE}{GOLD_ICON}. {?}{\?}The shame of defeat will cost you {INFLUENCE} influence.{\?}" />
+    <string id="cKV5Jded" text="The armies and people of {KINGDOM.NAME} are exhausted from the conflict with {ENEMY_KINGDOM} and have given up the fight. {KINGDOM_LEADER.NAME} must accept the terms of defeat and pay war reparations in the amount of {REPARATIONS}{GOLD_ICON} (these expenses will be distributed among all the clans of the kingdom).{?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}She{?}He{\?} also pledges to pay a daily tribute of {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}On top of that, {KINGDOM_LEADER.NAME} has to return {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} and {?}{\?}{FIEFS_TO_RETURN_LIST.END} back to {ENEMY_KINGDOM}.{NEW_LINE} {NEW_LINE}{?} {\?}The shame of defeat will cost {?KINGDOM_LEADER.GENDER}her{?}him{\?} {INFLUENCE} influence." />
+    <string id="idAcjzXB" text="With your final stronghold falling to your enemies, you can no longer continue the fight with {ENEMY_KINGDOM}. {KINGDOM_LEADER.NAME} must accept the terms of defeat{?TO_BE_DESTROYED}Without land or livelihood, your kingdom is no more.{?} and pay war reparations in the amount of {REPARATIONS}{GOLD_ICON} (these expenses will be distributed among all the clans of the kingdom). {?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}She{?}He{\?} also pledges to pay a daily tribute of {TRIBUTE}{GOLD_ICON}. {?}{\?}The shame of defeat will cost {?KINGDOM_LEADER.GENDER}her{?}him{\?} {INFLUENCE} influence.{\?}" />
+    <string id="a3W5zKQr" text="The armies and people of both {KINGDOM.NAME} and {ENEMY_KINGDOM} are exhausted from the conflict and have given up the fight. There is no other choice but to make peace{?TO_BE_DESTROYED}, but without land or livelihood, {?IS_REBELLION}your rebellion is over{?}your kingdom is no more{\?}{?}{\?}." />
+
+    <string id="6eTtSKO4" text="In the light of recent events, it is clear that the rebellion called {REBEL_KINGDOM} has been successful and further resistance is futile. It's time to admit defeat{?TO_BE_DESTROYED}, even though without land or livelihood your kingdom would be no more{?} and give your divided, war-torn kingdom a chance to live in peace{\?}." />
+    <string id="2ptArJem" text="In the light of recent events, it is clear that your rebellion has failed. It's time to admit defeat and give the divided, war-weary {ORIGINAL_KINGDOM} a chance to reunite." />
+
+    <string id="HWiDa4R1" text="The armies and people of {KINGDOM.NAME} are exhausted from the conflict with {PLAYER_KINGDOM} and have given up the fight.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} is proposing a peace treaty and is willing to pay war reparations in the amount of {REPARATIONS}{GOLD_ICON}.{?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}She{?}He{\?} also pledges to pay a daily tribute of {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}On top of that, {KINGDOM_LEADER.NAME} has to return {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} and {?}{\?}{FIEFS_TO_RETURN_LIST.END} back to {PLAYER_KINGDOM}.{?}{\?}" />
+    <string id="t0ZS9maD" text="With their final stronghold falling, {KINGDOM.LINK} can no longer continue the fight with {PLAYER_KINGDOM}.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} proposes a peace treaty{?TO_BE_DESTROYED}, despite the fact that without land or livelihood, their kingdom would cease to exist.{?} and is willing to pay war reparations in the amount of {REPARATIONS}{GOLD_ICON}.{?ADD_TRIBUTE} {?KINGDOM_LEADER.GENDER}She{?}He{\?} also pledges to pay a daily tribute of {TRIBUTE}{GOLD_ICON}.{?}{\?}{\?}" />
+    <string id="ZrwszZww" text=" The armies and people of both {KINGDOM.NAME} and {PLAYER_KINGDOM} are exhausted from the conflict and have given up the fight. {NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} is proposing a peace treaty{?TO_BE_DESTROYED}, even though without land or livelihood, {?IS_REBELLION}their rebellion is practically over{?}their kingdom would be no more{\?}{?} without putting forward any conditions{\?}." />
+    <string id="q02T8cyI" text="In the light of recent events, it is clear that the rebellion called {REBEL_KINGDOM} has failed. Is it time to accept their pleas for peace and forgiveness, thus giving your divided, war-weary kingdom a chance to be reunited?" />
+    <string id="PC5GdgKA" text="In the light of recent events, it is clear that your rebellion against {ORIGINAL_KINGDOM.NAME} is a success - even {ORIGINAL_KINGDOM_LEADER.NAME} admitted it! Is it time to accept their plea for peace, thus achieveing your goals?" />
+    <string id="13G0c8RE" text="Given how badly your kingdom has been ravaged by the war, you have no choice but to accept the peace." />
+
+    <!-- Report -->
+    <string id="mCue7aFc" text="War Report" />
+    <string id="hfa8LLqD" text="{EXHAUSTED_FACTION} is critically depleted by war with {OTHER_FACTION}. Their ability to continue this war is at the limit, {?IS_CIVIL_WAR}which more and more confirms their understanding of the inevitability of making peace{?}making them more and more open to the possibility of peace{\?} as war exhaustion nears its maximum." />
+    <string id="k0Dnf6cU" text="Tied to an active quest!" />
+    <string id="xPHDtsC1" text="There is an active quest that prevents this war from ending prematurely. To ensure stability, war exhaustion will under no circumstances exceed {CRITICAL_THRESHOLD}% for either side." />
+    <string id="xoY6cYDK" text="Was tied to an active quest!" />
+    <string id="UvjMFpHs" text="There was an active quest that kept this war from ending prematurely. As a consequence, the breakdown figures in the report may not match the overall war exhaustion values." />
+    <string id="hAoIC2Iq" text="Date Started: {START_DATE}" />
+    <string id="qHrihV27" text="War Duration: {WAR_DURATION} days" />
+    <!-- Report breakdowns -->
+    <string id="IlFEeNkY" text="War Exhaustion Report" />
+    <string id="zYVH0xYa" text="Casualties" />
+    <string id="y7XY860U" text="Caravans Raided" />
+    <string id="elRjo1ab" text="Villages Raided" />
+    <string id="DrNBDhx3" text="Fiefs Lost" />
+    <string id="X1MIWYzy" text="Heroes Imprisoned" />
+    <string id="6FLtWxSp" text="Heroes Perished" />
+    <string id="sCRuliNO" text="Fully Occupied" />
+    <string id="XIPMI3gR" text="War Duration" />
+    <string id="FVyFJShW" text="Divine Interventions" />
+    <string id="1kGleqyk" text="Resulting war exhaustion" />
+    <string id="i5VSEDE3" text="{START_DATE} - {END_DATE}: {?COUNT.PLURAL_FORM}Total of {COUNT} previous entries{?}{COUNT} previous entry{\?}" />
+
+    <string id="fnPa5bas" text="garrisoned troops" />
+    <string id="rwFeQWky" text="A caravan of {KINGDOM_NAME}" />
+
+    <!-- Event records -->
+    <string id="Toa6V7RL" text="{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% per day for {VALUE} full {?VALUE.PLURAL_FORM}days{?}day{\?}" />
+    <string id="wMVdLssJ" text="{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% per day for {VALUE} full {?VALUE.PLURAL_FORM}days{?}day{\?} while being fiefless" />
+    <string id="0nTpub9S" text="{START_DATE} - {END_DATE}: {VALUE} {?VALUE.PLURAL_FORM}casualties{?}casualty{\?} of war" />
+    <string id="SeWNvf1N" text="{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}casualties{?}casualty{\?} in battle between {FACTION_PARTY} and {OTHER_FACTION_PARTY}" />
+    <string id="9V6S05X3" text="{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}casualties{?}casualty{\?} in battle for {SETTLEMENT} fought between {FACTION_PARTY} and {OTHER_FACTION_PARTY}" />
+    <string id="vhBKtne1" text="{DATE_STR}: {RAIDED_CARAVAN} was raided by {OTHER_FACTION_PARTY}" />
+    <string id="Hnxf9Ox3" text="{DATE_STR}: {RAIDED_VILLAGE} was raided by {OTHER_FACTION_PARTY}" />
+    <string id="SXhzqm2N" text="{DATE_STR}: {RAIDED_VILLAGE} was raided by {OTHER_FACTION_PARTY} (affected by diminishing returns)" />
+    <string id="6cSuGG87" text="{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} castle{?}{\?} defended by {FACTION_PARTY} was taken by {OTHER_FACTION_PARTY}" />
+    <string id="fuaTMWpt" text="{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} castle{?}{\?} defended by {FACTION_PARTY} was retaken by {OTHER_FACTION_PARTY} (affected by diminishing returns)" />
+    <string id="yRvZ37cx" text="{DATE_STR}: {HERO} was taken prisoner by {OTHER_FACTION_PARTY}" />
+    <string id="i2Moqprl" text="{DATE_STR}: {HERO} was taken prisoner by {OTHER_FACTION_PARTY} (affected by diminishing returns)" />
+    <string id="QkSVPgDF" text="{DATE_STR}: {HERO} has died of natural causes{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="S0lkYB5P" text="{DATE_STR}: {HERO} was assassinated by {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="f6OIFaSj" text="{DATE_STR}: {HERO} died in childbirth{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="PmOPed8Y" text="{DATE_STR}: {HERO} died of old age{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="Pp6wYS5m" text="{DATE_STR}: {HERO} died in battle with {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="QvGjUrmL" text="{DATE_STR}: {HERO} died of war-wounds after a battle with {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="5tBkM1O4" text="{DATE_STR}: {HERO} was executed by {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="moeUCyaq" text="{DATE_STR}: {HERO} went missing during the battle with {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (affected by diminishing returns){?}{\?}" />
+    <string id="VB1xpuMA" text="{DATE_STR}: {FACTION} has been completely occupied by {OTHER_FACTION}" />
+    <string id="X9wHA6q3" text="{DATE_STR}: {FACTION} has been completely occupied by {OTHER_FACTION} (affected by diminishing returns)" />
+    <string id="9vOZJpPu" text="{DATE_STR}: {FACTION}'s war exhaustion was miraculously reduced (some say it was divine intervention)" />
+    <string id="S5tDXkgK" text="{DATE_STR}: There are rumors that some mysterious force tried to influence {FACTION}'s war efforts, but nothing seems to have changed" />
+    <string id="fJE6Y9mB" text="{DATE_STR}: The people of {FACTION} suddenly lost their will to fight (some say it was divine intervention)" />
+
+    <!-- Settings -->
+    <string id="V542tneW" text="War Exhaustion" />
+    <string id="lSttctYC" text="Enable War Exhaustion" />
+    <string id="Cxyn9ROT" text="Enables the war exhaustion mechanic. Default value is enabled." />
+    <string id="Yc2YUIva" text="Enable Diminishing Returns" />
+    <string id="CaxxEEdC" text="Enables diminishing returns for some events when calculating war exhaustion. Default value is enabled." />
+    <string id="HPFINWrc" text="Individual War Exhaustion Rates" />
+    <string id="LFVkLcIp" text="Enables the individual war exhaustion rates for factions. If disabled, a single rate will be calculated for every war based on combined strength of the opposing factions. Default value is enabled." />
+    <string id="8TFQWL55" text="War Exhaustion Per Day" />
+    <string id="lgza5wDq" text="The amount of war exhaustion added per day a war is ongoing. Not affected by war exhaustion rate. Default value is 0.25%." />
+    <string id="PAmPVWgD" text="Fiefless Multiplier" />
+    <string id="SdjYeYM5" text="Multiplier for the amount of war exhaustion added per day for a faction with no fiefs compared to a faction with fiefs. Default value is 10." />
+    <string id="s6dNpM6M" text="War Exhaustion Per Casualty" />
+    <string id="NcJtGeM7" text="The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.02%." />
+    <string id="kr5zAufg" text="War Exhaustion Per Caravan Raid" />
+    <string id="PinVMCUE" text="The amount of war exhaustion added when a faction's caravan is raided. Default value is 3.0%." />
+    <string id="qFJ23KxQ" text="War Exhaustion Per Hero Imprisoned" />
+    <string id="wctCn9uO" text="The base amount of war exhaustion added when a faction's noble hero is imprisoned. Affected by the hero significance for the faction. Potentially subject to diminishing returns. Default value is 2.0%." />
+    <string id="4vTzbsXD" text="War Exhaustion Per Hero Perished" />
+    <string id="w80tUaVd" text="The base amount of war exhaustion added when a faction's noble hero is killed. Affected by the hero significance for the faction. Potentially subject to diminishing returns when multiple heroes of the same clan are killed. Default value is 5.0%." />
+    <string id="eWVGwf2m" text="War Exhaustion Per Raid" />
+    <string id="ufHDJt8H" text="The amount of war exhaustion added when a faction's village is raided. Potentially subject to diminishing returns. Default value is 3.0%." />
+    <string id="gGIaLKHk" text="War Exhaustion Per Siege" />
+    <string id="mCEa773h" text="The amount of war exhaustion added when a faction loses a city. Losing a castle adds half as much. Potentially subject to diminishing returns. Default value is 10.0%." />
+    <string id="JmUPtZdw" text="War Exhaustion When Occupied" />
+    <string id="541jGrpb" text="The amount of war exhaustion added when a faction's lost all fiefs. Not affected by war exhaustion rate. Potentially subject to diminishing returns. Default value is 15.0%." />
+    <string id="pPHLRIml" text="Maximum Entries In Breakdown Tooltip" />
+    <string id="YMf0mSqy" text="Maximum number of entries in any given breakdown tooltip in war exhaustion report. Set this to any value that is convenient for viewing. Default value is 35." />
+    <string id="F4iFH6un" text="Campaign Map Widget" />
+    <string id="zTvbZ8Br" text="Enables a dedicated war exhaustion widget for each ongoing war at the top of the campaign map screen. Default value is enabled." />
+    <string id="jI9NSxtz" text="Enable Player War Exhaustion Debug Messages" />
+    <string id="LYyNbQds" text="Enables debug messages for war exhaustion added to the player kingdom. Default value is disabled."/>
+
+  </strings>
+</base>

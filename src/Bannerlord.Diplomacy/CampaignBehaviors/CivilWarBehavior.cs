@@ -4,12 +4,15 @@ using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Extensions;
+using Diplomacy.WarExhaustion;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.Core;
 
@@ -26,6 +29,10 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ResolveCivilWar);
             CampaignEvents.KingdomDecisionConcluded.AddNonSerializedListener(this, NewKing);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
+            CampaignEvents.OnClanDestroyedEvent.AddNonSerializedListener(this, OnClanDesroyed);
+            CampaignEvents.KingdomDestroyedEvent.AddNonSerializedListener(this, OnKingdomDestroyed);
+
+            CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, OnGameLoadFinished);
         }
 
         public CivilWarBehavior()
@@ -35,8 +42,8 @@ namespace Diplomacy.CampaignBehaviors
 
         private void DailyTick()
         {
-            var expiredFactions = RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Where(x => x.DateStarted.ElapsedDaysUntilNow > Settings.Instance!.MaximumFactionDurationInDays);
-            foreach (var rebelFaction in expiredFactions.ToList())
+            var expiredFactions = RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Where(x => x.DateStarted.ElapsedDaysUntilNow > Settings.Instance!.MaximumFactionDurationInDays).Distinct().ToList();
+            foreach (var rebelFaction in expiredFactions)
             {
                 if (rebelFaction.AtWar)
                     continue;
@@ -69,7 +76,7 @@ namespace Diplomacy.CampaignBehaviors
             var kingdom = decision.Kingdom;
             var newKing = kingdom.Leader;
 
-            foreach (var rebelFaction in RebelFactionManager.GetRebelFaction(kingdom))
+            foreach (var rebelFaction in RebelFactionManager.GetRebelFaction(kingdom).ToList())
             {
                 if (rebelFaction is AbdicationFaction abdicationFaction)
                 {
@@ -79,28 +86,71 @@ namespace Diplomacy.CampaignBehaviors
             }
         }
 
-        private void ResolveCivilWar(IFaction loser, IFaction winner)
+#if v100 || v101 || v102 || v103
+        private void ResolveCivilWar(IFaction factionMakingPeace, IFaction otherFaction)
+#else
+        private void ResolveCivilWar(IFaction factionMakingPeace, IFaction otherFaction, MakePeaceAction.MakePeaceDetail makePeaceDetail)
+#endif
         {
-            if (loser is Kingdom kingdom1 && winner is Kingdom kingdom2)
+            if (factionMakingPeace is Kingdom kingdomMakingPeace && otherFaction is Kingdom otherKingdom)
             {
-                if (kingdom1.IsRebelKingdom() || kingdom2.IsRebelKingdom())
+                var kingdomMakingPeaceIsRebel = kingdomMakingPeace.IsRebelKingdomOf(otherKingdom);
+                if (kingdomMakingPeaceIsRebel || otherKingdom.IsRebelKingdomOf(kingdomMakingPeace))
                 {
-                    var rebelKingdom = kingdom1.IsRebelKingdom() ? kingdom1 : kingdom2;
-                    var parentKingdom = kingdom1.IsRebelKingdom() ? kingdom2 : kingdom1;
-                    var rebelFaction = RebelFactionManager.GetRebelFaction(parentKingdom).FirstOrDefault(x => x.RebelKingdom == rebelKingdom);
+                    var rebelKingdom = kingdomMakingPeaceIsRebel ? kingdomMakingPeace : otherKingdom;
+                    var parentKingdom = kingdomMakingPeaceIsRebel ? otherKingdom : kingdomMakingPeace;
+                    var rebelFaction = RebelFactionManager.GetRebelFaction(parentKingdom).First(x => x.RebelKingdom == rebelKingdom);
 
-                    if (rebelFaction is null)
-                        return;
-                    if (loser == rebelKingdom)
-                        rebelFaction.EnforceFailure();
+                    if (!Settings.Instance!.EnableWarExhaustion)
+                    {
+                        ResolveLoss(factionMakingPeace, rebelKingdom, rebelFaction);
+                    }
                     else
-                        rebelFaction.EnforceSuccess();
+                    {
+                        var warResult = WarExhaustionManager.Instance.GetWarResult(kingdomMakingPeace, otherKingdom);
+                        switch (warResult)
+                        {
+                            case WarExhaustionManager.WarResult.Tie when factionMakingPeace.Fiefs.Any():
+                            {
+                                var peaceBarterable = new PeaceBarterable(kingdomMakingPeace.Leader, kingdomMakingPeace, otherKingdom, CampaignTime.Years(1f));
+                                var valueForOtherKingdom = -peaceBarterable.GetValueForFaction(otherKingdom);
+                                foreach (Clan clan in otherKingdom.Clans)
+                                {
+                                    var valueForClan = -peaceBarterable.GetValueForFaction(clan);
+                                    if (valueForClan > valueForOtherKingdom)
+                                        valueForOtherKingdom = valueForClan;
+                                }
+                                if (valueForOtherKingdom > -5000 && valueForOtherKingdom < 5000)
+                                    valueForOtherKingdom = 0;
+
+                                if (valueForOtherKingdom < 0)
+                                    ResolveLoss(otherKingdom, rebelKingdom, rebelFaction);
+                                else
+                                    ResolveLoss(factionMakingPeace, rebelKingdom, rebelFaction);
+                                break;
+                            }
+                            case >= WarExhaustionManager.WarResult.PyrrhicVictory:
+                                ResolveLoss(otherKingdom, rebelKingdom, rebelFaction);
+                                break;
+                            default:
+                                ResolveLoss(factionMakingPeace, rebelKingdom, rebelFaction);
+                                break;
+                        }
+                    }
                 }
+            }
+
+            static void ResolveLoss(IFaction loser, Kingdom rebelKingdom, RebelFaction rebelFaction)
+            {
+                if (loser == rebelKingdom)
+                    rebelFaction.EnforceFailure();
+                else
+                    rebelFaction.EnforceSuccess();
             }
         }
         private void RemoveClanFromRebelFaction(Clan clan, Kingdom oldKingdom, Kingdom newKingdom)
         {
-            var rebelFactions = RebelFactionManager.GetRebelFaction(oldKingdom);
+            var rebelFactions = RebelFactionManager.GetRebelFaction(oldKingdom).ToList();
             foreach (var rf in rebelFactions)
             {
                 if (newKingdom != null)
@@ -115,7 +165,7 @@ namespace Diplomacy.CampaignBehaviors
         private void DailyTickClan(Clan clan)
         {
             // don't consider civil war if not in a kingdom or this clan is the kingdom leader
-            if (!clan.MapFaction.IsKingdomFaction || clan.MapFaction.Leader == clan.Leader || clan.IsMinorFaction || clan.IsUnderMercenaryService || clan.Leader.IsHumanPlayerCharacter || clan.Kingdom.IsRebelKingdom())
+            if (!clan.MapFaction.IsKingdomFaction || clan.MapFaction.Leader == clan.Leader || clan.IsMinorFaction || clan.IsUnderMercenaryService || clan.Leader.IsHumanPlayerCharacter || clan.Kingdom.IsRebelKingdom() || clan.IsEliminated)
                 return;
 
             var kingdom = (clan.MapFaction as Kingdom)!;
@@ -160,7 +210,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ConsiderLeavingRebelFaction(Clan clan)
         {
-            foreach (var faction in RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => x.Clans.Contains(clan) && clan != x.SponsorClan))
+            foreach (var faction in RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => x.Clans.Contains(clan) && clan != x.SponsorClan).ToList())
             {
                 if (!JoinFactionAction.ShouldApply(clan, faction))
                 {
@@ -172,7 +222,7 @@ namespace Diplomacy.CampaignBehaviors
         private void ConsiderJoiningRebelFaction(Clan clan)
         {
             var scores = new List<Tuple<RebelFaction, ExplainedNumber>>();
-            foreach (var faction in RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => !x.Clans.Contains(clan)))
+            foreach (var faction in RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => !x.Clans.Contains(clan)).ToList())
             {
                 scores.Add(new(faction, RebelFactionScoringModel.GetDemandScore(clan, faction)));
             }
@@ -205,6 +255,24 @@ namespace Diplomacy.CampaignBehaviors
                 CreateFactionAction.Apply(rebelFactionScore.Key);
             }
         }
+
+        private void OnClanDesroyed(Clan destroyedClan)
+        {
+            foreach (var faction in RebelFactionManager.GetRebelFaction(destroyedClan.Kingdom).Where(x => x.Clans.Contains(destroyedClan)).ToList())
+            {
+                LeaveFactionAction.Apply(destroyedClan, faction);
+            }
+        }
+
+        private void OnKingdomDestroyed(Kingdom destroyedKingdom)
+        {
+            foreach (var faction in RebelFactionManager.GetRebelFaction(destroyedKingdom).ToList())
+            {
+                RebelFactionManager.DestroyRebelFaction(faction, faction.AtWar);
+            }
+        }
+
+        private void OnGameLoadFinished() => _rebelFactionManager.OnAfterSaveLoaded();
 
         public override void SyncData(IDataStore dataStore)
         {

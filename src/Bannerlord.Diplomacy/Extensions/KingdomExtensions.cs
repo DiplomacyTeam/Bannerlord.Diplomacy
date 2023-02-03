@@ -12,28 +12,13 @@ namespace Diplomacy.Extensions
 {
     public static class KingdomExtensions
     {
-        public static MBReadOnlyList<Kingdom> AllActiveKingdoms
-        {
-            get
-            {
-                return new MBReadOnlyList<Kingdom>(Kingdom.All.Where((kingdom) => !kingdom.IsEliminated).ToList());
-            }
-        }
+        public static MBReadOnlyList<Kingdom> AllActiveKingdoms => new(Kingdom.All.Where(k => !k.IsEliminated).ToList());
 
-        public static float GetExpansionism(this Kingdom kingdom)
-        {
-            return ExpansionismManager.Instance!.GetExpansionism(kingdom);
-        }
+        public static float GetExpansionism(this Kingdom kingdom) => ExpansionismManager.Instance!.GetExpansionism(kingdom);
 
-        public static float GetExpansionismDiplomaticPenalty(this Kingdom kingdom)
-        {
-            return Math.Min(-(GetExpansionism(kingdom) - 50), 0f);
-        }
+        public static float GetExpansionismDiplomaticPenalty(this Kingdom kingdom) => Math.Min(-(GetExpansionism(kingdom) - 50), 0f);
 
-        public static float GetMinimumExpansionism(this Kingdom kingdom)
-        {
-            return ExpansionismManager.Instance!.GetMinimumExpansionism(kingdom);
-        }
+        public static float GetMinimumExpansionism(this Kingdom kingdom) => ExpansionismManager.Instance!.GetMinimumExpansionism(kingdom);
 
         public static bool IsAlliedWith(this IFaction faction1, IFaction faction2)
         {
@@ -68,16 +53,9 @@ namespace Diplomacy.Extensions
             }
         }
 
-        public static bool IsStrong(this Kingdom kingdom)
-        {
-            var medianStrength = GetMedianStrength();
-            return kingdom.TotalStrength > medianStrength;
-        }
+        public static bool IsStrong(this Kingdom kingdom) => kingdom.TotalStrength > GetMedianStrength();
 
-        public static float GetAllianceStrength(this Kingdom kingdom)
-        {
-            return kingdom.GetAlliedKingdoms().Select(curKingdom => curKingdom.TotalStrength).Sum() + kingdom.TotalStrength;
-        }
+        public static float GetAllianceStrength(this Kingdom kingdom) => kingdom.GetAlliedKingdoms().Select(curKingdom => curKingdom.TotalStrength).Sum() + kingdom.TotalStrength;
 
         private static float GetMedianStrength()
         {
@@ -97,19 +75,14 @@ namespace Diplomacy.Extensions
             return medianStrength;
         }
 
-        public static bool IsRebelKingdom(this Kingdom kingdom)
-        {
-            return RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Any(rf => kingdom == rf.RebelKingdom) || RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom);
-        }
+        public static bool IsRebelKingdom(this Kingdom kingdom) =>
+            RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Any(rf => kingdom == rf.RebelKingdom) || RebelFactionManager.Instance!.DeadRebelKingdoms.Contains(kingdom);
 
-        public static bool HasRebellion(this Kingdom kingdom)
-        {
-            return GetRebelFactions(kingdom).Any(x => x.AtWar);
-        }
+        public static bool IsRebelKingdomOf(this Kingdom kingdom, Kingdom parentKingdom) =>
+            RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Any(rf => kingdom == rf.RebelKingdom && parentKingdom == rf.ParentKingdom);
 
-        public static IEnumerable<RebelFaction> GetRebelFactions(this Kingdom kingdom)
-        {
-            return RebelFactionManager.GetRebelFaction(kingdom);
-        }
+        public static bool HasRebellion(this Kingdom kingdom) => GetRebelFactions(kingdom).Any(x => x.AtWar);
+
+        public static IEnumerable<RebelFaction> GetRebelFactions(this Kingdom kingdom) => RebelFactionManager.GetRebelFaction(kingdom);
     }
 }

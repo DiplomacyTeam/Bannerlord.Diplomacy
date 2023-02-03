@@ -16,11 +16,14 @@ namespace Diplomacy.ViewModelMixin
     [UsedImplicitly]
     internal sealed class KingdomManagementVMMixin : BaseViewModelMixin<KingdomManagementVM>
     {
+        private readonly RebelFactionsInterface _rebelFactionsInterface;
+
         [DataSourceProperty]
         public string FactionsLabel { get; set; }
 
         public KingdomManagementVMMixin(KingdomManagementVM vm) : base(vm)
         {
+            _rebelFactionsInterface = new RebelFactionsInterface();
             FactionsLabel = new TextObject("{=gypPPxUJ}Factions").ToString();
         }
 
@@ -33,7 +36,7 @@ namespace Diplomacy.ViewModelMixin
         [UsedImplicitly]
         public void ExecuteShowFactions()
         {
-            new RebelFactionsInterface().ShowInterface(ScreenManager.TopScreen, ViewModel!.Kingdom);
+            _rebelFactionsInterface.ShowInterface(ScreenManager.TopScreen, ViewModel!.Kingdom);
         }
     }
 }

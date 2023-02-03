@@ -18,12 +18,19 @@ namespace Diplomacy.CivilWar.Actions
 
         public static void Apply(RebelFaction rebelFaction)
         {
-            foreach (var rf in RebelFactionManager.GetRebelFaction(rebelFaction.ParentKingdom))
+            foreach (var rf in RebelFactionManager.GetRebelFaction(rebelFaction.ParentKingdom).ToList())
             {
                 if (rf == rebelFaction)
                     continue;
 
                 RebelFactionManager.DestroyRebelFaction(rf);
+            }
+
+            if (rebelFaction.SponsorClan.IsEliminated)
+            {
+                rebelFaction.RemoveClan(rebelFaction.SponsorClan);
+                if (RebelFactionManager.GetRebelFaction(rebelFaction.ParentKingdom).Any(x => x == rebelFaction))
+                    return;
             }
 
             var rebelKingdomName = _TRebelKingdomName.CopyTextObject()
@@ -36,20 +43,32 @@ namespace Diplomacy.CivilWar.Actions
                 rebelFaction.ParentKingdom.Culture,
                 rebelFaction.SponsorClan);
 
-            var kingdom = KingdomExtensions.AllActiveKingdoms.First(x => !x.IsEliminated && x.RulingClan == rebelFaction.SponsorClan);
+            var kingdom = Kingdom.All.FirstOrDefault(x => !x.IsEliminated && x.RulingClan == rebelFaction.SponsorClan);
+            if (kingdom is null)
+                return;
+
             rebelFaction.StartRebellion(kingdom);
 
             ChangeKingdomBannerAction.Apply(rebelFaction.RebelKingdom!, true);
 
             foreach (var clan in rebelFaction.Clans)
             {
+                if (clan.IsEliminated)
+                {
+                    rebelFaction.RemoveClan(clan);
+                    continue;
+                }
                 // make sure to retain influence
                 var influence = clan.Influence;
                 ChangeKingdomAction.ApplyByJoinToKingdom(clan, rebelFaction.RebelKingdom, false);
                 clan.Influence = influence;
             }
 
+#if v100 || v101 || v102 || v103
             DeclareWarAction.Apply(rebelFaction.RebelKingdom, rebelFaction.ParentKingdom);
+#else
+            DeclareWarAction.ApplyByKingdomCreation(rebelFaction.RebelKingdom, rebelFaction.ParentKingdom);
+#endif
 
             var strVars = new Dictionary<string, object>
             {
