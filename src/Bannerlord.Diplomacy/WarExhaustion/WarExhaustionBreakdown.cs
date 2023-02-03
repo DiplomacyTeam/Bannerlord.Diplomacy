@@ -141,7 +141,7 @@ namespace Diplomacy.WarExhaustion
 
             TextObject summaryTextObject = new(_TSummary, new() { ["START_DATE"] = minDate.ToString(), ["END_DATE"] = maxDate.ToString() });
             LocalizationHelper.SetNumericVariable(summaryTextObject, "COUNT", recordCount);
-            List <(TextObject EventDescription, float ExhaustionValue)> result = new() { (summaryTextObject, totalValue) };
+            List<(TextObject EventDescription, float ExhaustionValue)> result = new() { (summaryTextObject, totalValue) };
             result.AddRange(recordsToShow.Select(x => (x.EventDescription, x.ExhaustionValue)));
 
             return result;

@@ -114,7 +114,7 @@ namespace Diplomacy.CivilWar
             }
             //Celar factions of dead clans
             foreach (var faction in factionsToClean)
-            { 
+            {
                 foreach (var clan in faction.Clans)
                 {
                     if (clan.IsEliminated) faction.RemoveClan(clan);

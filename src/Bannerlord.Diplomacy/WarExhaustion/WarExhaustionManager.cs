@@ -186,7 +186,7 @@ namespace Diplomacy.WarExhaustion
             if (!IsValidCustomQuestState(kingdom1, kingdom2))
                 return false;
 
-            var currentStoryMode = StoryMode.StoryModeManager.Current;            
+            var currentStoryMode = StoryMode.StoryModeManager.Current;
             if (currentStoryMode == null)
             {
                 // not in story mode

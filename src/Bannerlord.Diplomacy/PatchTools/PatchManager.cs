@@ -57,7 +57,7 @@ namespace Diplomacy.PatchTools
                 patch.Remove(CampaignInstance.Harmony);
             }
 
-            CampaignInstance = null;        
+            CampaignInstance = null;
         }
 
         private PatchManager(string harmonyId, bool useMainPatches = true)

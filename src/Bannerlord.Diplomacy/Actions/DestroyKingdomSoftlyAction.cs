@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 
-using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 
 namespace Diplomacy.Actions
 {

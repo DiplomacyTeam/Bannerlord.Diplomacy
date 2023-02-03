@@ -90,7 +90,7 @@ namespace Diplomacy.WarExhaustion
             AddWarExhaustion(kingdoms, WarExhaustionType.Divine, warExhaustionToAdd, divineInterventionRecord);
         }
 
-        private void AddWarExhaustion(Kingdoms kingdoms, WarExhaustionType warExhaustionType, WarExhaustionRecord warExhaustionToAdd, WarExhaustionEventRecord? eventRecord =  null)
+        private void AddWarExhaustion(Kingdoms kingdoms, WarExhaustionType warExhaustionType, WarExhaustionRecord warExhaustionToAdd, WarExhaustionEventRecord? eventRecord = null)
         {
             var key = kingdoms.Key;
             if (key is null)
@@ -136,7 +136,7 @@ namespace Diplomacy.WarExhaustion
         {
             if (eventRecord is DailyRecord dailyRecord)
             {
-                var lastRecord =  currentRecords.OfType<DailyRecord>().OrderByDescending(r => r.EventDate).FirstOrDefault();
+                var lastRecord = currentRecords.OfType<DailyRecord>().OrderByDescending(r => r.EventDate).FirstOrDefault();
                 if (lastRecord != null && lastRecord.CanBeCompoundedWith(dailyRecord))
                     currentRecords[currentRecords.IndexOf(lastRecord)] = lastRecord.CompoundWith(dailyRecord);
                 else
@@ -341,8 +341,8 @@ namespace Diplomacy.WarExhaustion
         {
             float attackerSideWarExhaustion = 0f;
             float defenderSideWarExhaustion = Settings.Instance!.WarExhaustionWhenOccupied * GetDiminishingReturnsFactor<Kingdom, OccupiedRecord>(kingdoms, kingdoms.Kingdom2, out var yieldsDiminishingReturns);
-            var attackerSide= kingdoms.Kingdom1;
-            var defenderSide= kingdoms.Kingdom2;
+            var attackerSide = kingdoms.Kingdom1;
+            var defenderSide = kingdoms.Kingdom2;
             var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
 
             if (kingdoms.ReversedKeyOrder)
@@ -394,7 +394,7 @@ namespace Diplomacy.WarExhaustion
         }
 
         private static float GetDiminishingReturnsFactor(int numberOfPreviousOccurrences) => (float) (1 / Math.Pow(2, Math.Max(numberOfPreviousOccurrences, 0)));
-                
+
         public void UpdateDailyWarExhaustionForAllKingdoms()
         {
             List<string> listKeys = new();
@@ -496,7 +496,7 @@ namespace Diplomacy.WarExhaustion
             {
                 var daysElapsed = (int) warStartDate.ElapsedDaysUntilNow;
                 float warExhaustionPerDay = Settings.Instance!.WarExhaustionPerDay;
-                var totalDailyExhaustion = warExhaustionPerDay * daysElapsed;                
+                var totalDailyExhaustion = warExhaustionPerDay * daysElapsed;
                 eventRecs.Add(new DailyRecord(warStartDate, daysElapsed, totalDailyExhaustion, daysElapsed, totalDailyExhaustion));
                 return new(totalDailyExhaustion, totalDailyExhaustion, hasActiveQuest: hasActiveQuest);
             }

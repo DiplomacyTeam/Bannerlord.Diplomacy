@@ -30,7 +30,7 @@ namespace Diplomacy.WarExhaustion.EventRecords
         public SiegeRecord(CampaignTime eventDate, Settlement eventRelatedSettlement,
                            int faction1Value, float faction1ExhaustionValue,
                            int faction2Value, float faction2ExhaustionValue,
-                           TextObject faction1RelatedPartyName, TextObject faction2RelatedPartyName,                           
+                           TextObject faction1RelatedPartyName, TextObject faction2RelatedPartyName,
                            bool yieldsDiminishingReturns = false) : base(eventDate, faction1Value, faction1ExhaustionValue, faction2Value, faction2ExhaustionValue)
         {
             _eventRelatedSettlement = eventRelatedSettlement;

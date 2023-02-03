@@ -142,7 +142,7 @@ namespace Diplomacy.ViewModel
             OpponentKingdom = new DiplomacyFactionRelationshipVM(_opposingKingdom);
             Kingdom = new DiplomacyFactionRelationshipVM(Clan.PlayerClan.Kingdom);
             HelpHint = new HintViewModel(GameTexts.FindText("str_wardetail_help"));
-            WarExhaustionRate = Settings.Instance!.IndividualWarExhaustionRates ? $"{Instance.GetWarExhaustionRate(Clan.PlayerClan.Kingdom, _opposingKingdom):0%} / {Instance.GetWarExhaustionRate(_opposingKingdom, Clan.PlayerClan.Kingdom):0%}" 
+            WarExhaustionRate = Settings.Instance!.IndividualWarExhaustionRates ? $"{Instance.GetWarExhaustionRate(Clan.PlayerClan.Kingdom, _opposingKingdom):0%} / {Instance.GetWarExhaustionRate(_opposingKingdom, Clan.PlayerClan.Kingdom):0%}"
                                                                                 : $"{Instance.GetWarExhaustionRate(Clan.PlayerClan.Kingdom, _opposingKingdom):0%}";
             RateHelpHint = new HintViewModel(GameTexts.FindText("str_warexhaustionrate_help"));
             StatsLabel = GameTexts.FindText("str_stat").ToString();
