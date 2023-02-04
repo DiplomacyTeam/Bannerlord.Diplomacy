@@ -1,4 +1,5 @@
 ﻿using Diplomacy.Actions;
+using Diplomacy.Character;
 
 using JetBrains.Annotations;
 
@@ -7,6 +8,7 @@ using System.ComponentModel;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -80,7 +82,11 @@ namespace Diplomacy.ViewModel
             var relationValue = GetBaseRelationValueOfCurrentGoldCost();
 
             if (relationValue > 0)
+            {
                 ChangeRelationAction.ApplyPlayerRelation(_clan.Leader, relationValue);
+                PlayerCharacterTraitHelper.UpdateTrait(DefaultTraits.Generosity, MBMath.ClampInt(relationValue * 5, 0, 50));
+                PlayerCharacterTraitHelper.UpdateTrait(DefaultTraits.Calculating, MBMath.ClampInt(relationValue * GetCalculatingTraitFactor(), 0, 50));
+            }
 
             _onFinalize();
         }
@@ -116,5 +122,7 @@ namespace Diplomacy.ViewModel
             var adjustedRelation = Campaign.Current.Models.DiplomacyModel.GetRelationIncreaseFactor(Hero.MainHero, _clan.Leader, baseRelation);
             return (int) Math.Floor(adjustedRelation);
         }
+
+        private int GetCalculatingTraitFactor() => Math.Max(70 - (int) _clan.Leader.GetRelationWithPlayer(), 0) / 20 * (_clan.Tier / 2);
     }
 }

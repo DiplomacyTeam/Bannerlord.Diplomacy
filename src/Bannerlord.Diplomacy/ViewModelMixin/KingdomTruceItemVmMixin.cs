@@ -6,7 +6,9 @@ using Diplomacy.DiplomaticAction;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.Helpers;
 using Diplomacy.ViewModel;
+using Diplomacy.WarExhaustion;
 
 using JetBrains.Annotations;
 
@@ -38,7 +40,6 @@ namespace Diplomacy.ViewModelMixin
 
         private static readonly TextObject _TBreakAlliance = new("{=K4GraLTn}Break Alliance");
 
-        private static readonly TextObject _TPlus = new("{=eTw2aNV5}+");
         private static readonly TextObject _TRequiredScore = new("{=XIBUWDlT}Required Score");
         private static readonly TextObject _TCurrentScore = new("{=5r6fsHgm}Current Score");
 
@@ -215,18 +216,13 @@ namespace Diplomacy.ViewModelMixin
 
         private BasicTooltipViewModel UpdateDiplomacyTooltip(ExplainedNumber explainedNumber)
         {
-            static string PlusPrefixed(float value)
-            {
-                return $"{(value >= 0.005f ? _TPlus.ToString() : string.Empty)}{value:0.##}";
-            }
-
             var list = new List<TooltipProperty>
             {
                 new(_TCurrentScore.ToString(), $"{explainedNumber.ResultNumber:0.##}", 0, false, TooltipProperty.TooltipPropertyFlags.Title)
             };
 
             foreach (var (name, number) in explainedNumber.GetLines())
-                list.Add(new TooltipProperty(name, PlusPrefixed(number), 0));
+                list.Add(new TooltipProperty(name, StringHelper.GetPlusPrefixed(number), 0));
 
             list.Add(new TooltipProperty(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
             list.Add(new TooltipProperty(_TRequiredScore.ToString(), $"{AllianceScoringModel.Instance.ScoreThreshold:0.##}", 0, false,
@@ -246,7 +242,11 @@ namespace Diplomacy.ViewModelMixin
             else
             {
                 DiplomacyCostCalculator.DetermineCostForDeclaringWar(_faction1, true).ApplyCost();
+#if v100 || v101 || v102 || v103
                 DeclareWarAction.Apply(_faction1, _faction2);
+#else
+                DeclareWarAction.ApplyByKingdomDecision(_faction1, _faction2);
+#endif
             }
 
             OnRefresh();

@@ -3,10 +3,14 @@ using Bannerlord.UIExtenderEx.ViewModels;
 
 using Diplomacy.Costs;
 using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.Helpers;
 using Diplomacy.ViewModel;
+using Diplomacy.WarExhaustion;
 
 using JetBrains.Annotations;
 
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
@@ -25,12 +29,19 @@ namespace Diplomacy.ViewModelMixin
         private static readonly TextObject _TWars = new("{=y5tXjbLK}Wars");
         private static readonly TextObject _TNonAggressionPacts = new("{=noWHMN1W}Non-Aggression Pacts");
         private static readonly TextObject _TWarExhaustion = new("{=XmVTQ0bH}War Exhaustion");
+        private const string _TDiplomaticActionHelpText = "{=Q8ItogIP}Propose directly to {ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}";
+        private const string _TPayments = "{=BC7823G2}{?REPARATIONS_PAY}, paying {REPARATIONS} war reparations{?TRIBUTE_PAY} and {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, but receiving {TRIBUTE} tribute/day.{?}{\\?}{\\?}" +
+            "{?}{?REPARATIONS_GET}, receiving {REPARATIONS} war reparations{?TRIBUTE_PAY}, but paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET} and {TRIBUTE} tribute/day.{?}{\\?}{\\?}" +
+            "{?}{?TRIBUTE_PAY}, paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, receiving {TRIBUTE} tribute/day.{?}.{\\?}{\\?}{\\?}{\\?}";
+        private const string _TFiefs = "{=9CvcPwJA}{?FIEFS_ANY} You may have to return some of the captured fiefs back!{?}{\\?}";
+
         private readonly Kingdom _faction1;
         private readonly Kingdom _faction2;
-
+        private string? _diplomaticActionHelpText;
         private HintViewModel? _diplomaticActionHint;
         private int _goldCost;
         private bool _isOptionAvailable;
+        private readonly List<KingdomWalletCost> _reparations;
 
         [DataSourceProperty]
         public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
@@ -71,6 +82,9 @@ namespace Diplomacy.ViewModelMixin
         [DataSourceProperty]
         public HintViewModel? DiplomaticActionHint { get => _diplomaticActionHint; set => SetField(ref _diplomaticActionHint, value, nameof(DiplomaticActionHint)); }
 
+        [DataSourceProperty]
+        public string? DiplomaticActionHelpText { get => _diplomaticActionHelpText; set => SetField(ref _diplomaticActionHelpText, value, nameof(DiplomaticActionHelpText)); }
+
         public KingdomWarItemVMMixin(KingdomWarItemVM vm) : base(vm)
         {
             _faction1 = (Kingdom) ViewModel!.Faction1;
@@ -78,6 +92,7 @@ namespace Diplomacy.ViewModelMixin
             var costForMakingPeace = DiplomacyCostCalculator.DetermineCostForMakingPeace(_faction1, _faction2, true);
             InfluenceCost = (int) costForMakingPeace.InfluenceCost.Value;
             GoldCost = (int) costForMakingPeace.GoldCost.Value;
+            _reparations = costForMakingPeace.KingdomWalletCosts;
             ActionName = GameTexts.FindText("str_kingdom_propose_peace_action").ToString();
             AllianceText = _TAlliances.ToString();
             WarsText = _TWars.ToString();
@@ -112,14 +127,45 @@ namespace Diplomacy.ViewModelMixin
         [UsedImplicitly]
         public void ExecuteExecutiveAction()
         {
-            KingdomPeaceAction.ApplyPeace(_faction1, _faction2, true);
+            KingdomPeaceAction.ApplyPeace(_faction1, _faction2, forcePlayerCharacterCosts: true, skipPlayerPrompts: true);
         }
 
         private void UpdateActionAvailability()
         {
-            IsOptionAvailable = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!).IsEmpty();
-            var makePeaceException = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
+            var listOfExceptions = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!);
+            IsOptionAvailable = listOfExceptions.IsEmpty();
+            var makePeaceException = listOfExceptions.FirstOrDefault();
+            if (IsOptionAvailable)
+            {
+                var tributeValue = TributeHelper.GetDailyTribute(_faction1, _faction2);
+                DiplomaticActionHelpText = new TextObject(_TDiplomaticActionHelpText, new()
+                {
+                    ["ENEMY_LEADER"] = _faction2.Leader.Name,
+                    ["WAR_REPARATIONS_AND_TRIBUTE"] = new TextObject(_TPayments, new()
+                    {
+                        ["REPARATIONS_PAY"] = _reparations.Any(r => r.PayingKingdom == _faction1 && r.Value > 0) ? 1 : 0,
+                        ["REPARATIONS_GET"] = _reparations.Any(r => r.PayingKingdom == _faction2 && r.Value > 0) ? 1 : 0,
+                        ["REPARATIONS"] = GetReparationsText(_reparations.Sum(r => r.Value)),
+                        ["TRIBUTE_PAY"] = tributeValue > 0 ? 1 : 0,
+                        ["TRIBUTE_GET"] = tributeValue < 0 ? 1 : 0,
+                        ["TRIBUTE"] = Math.Abs(tributeValue),
+                    }),
+                    ["FIEFS_TO_RETURN"] = new TextObject(_TFiefs, new() { ["FIEFS_ANY"] = KingdomPeaceAction.GetFiefsSuitableToBeReturned(_faction1, _faction2).Any() ? 1 : 0 }),
+                }).ToString();
+            }
+            else
+                DiplomaticActionHelpText = string.Empty;
             DiplomaticActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
+        }
+
+        private static string GetReparationsText(float value)
+        {
+            return value switch
+            {
+                >= 1000000 => new TextObject("{=6xcW68Tw}{VALUE}M", new() { ["VALUE"] = (value / 1000000).ToString("F2") }).ToString(),
+                >= 1000 => new TextObject("{=oD4fZ2tY}{VALUE}K", new() { ["VALUE"] = (value / 1000).ToString("F1") }).ToString(),
+                _ => new TextObject().ToString()
+            };
         }
     }
 }

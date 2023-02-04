@@ -1,4 +1,4 @@
-﻿using Diplomacy.Event;
+﻿using Diplomacy.Events;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
@@ -16,10 +16,15 @@ namespace Diplomacy.ViewModel
         {
             _kingdomsAtWar = new MBBindingList<WarExhaustionMapIndicatorItemVM>();
             RefreshValues();
+#if v100 || v101 || v102 || v103
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, HandleStanceChange);
             CampaignEvents.MakePeace.AddNonSerializedListener(this, HandleStanceChange);
+#else
+            CampaignEvents.WarDeclared.AddNonSerializedListener(this, (arg1, arg2, _) => HandleStanceChange(arg1, arg2));
+            CampaignEvents.MakePeace.AddNonSerializedListener(this, (arg1, arg2, _) => HandleStanceChange(arg1, arg2));
+#endif
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, _, _, _, _) => HandleClanChangedKingdom(x));
-            Events.WarExhaustionAdded.AddNonSerializedListener(this, HandleWarExhaustionChange);
+            DiplomacyEvents.WarExhaustionAdded.AddNonSerializedListener(this, HandleWarExhaustionChange);
             Settings.Instance!.PropertyChanged += Settings_PropertyChanged;
         }
 
@@ -51,7 +56,7 @@ namespace Diplomacy.ViewModel
             CampaignEvents.WarDeclared.ClearListeners(this);
             CampaignEvents.MakePeace.ClearListeners(this);
             CampaignEvents.ClanChangedKingdom.ClearListeners(this);
-            Events.WarExhaustionAdded.ClearListeners(this);
+            DiplomacyEvents.WarExhaustionAdded.ClearListeners(this);
         }
 
         public void UpdateBanners()

@@ -1,7 +1,7 @@
 ﻿using Diplomacy.DiplomaticAction;
 using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
-using Diplomacy.Event;
+using Diplomacy.Events;
 using Diplomacy.Extensions;
 
 using Microsoft.Extensions.Logging;
@@ -29,7 +29,7 @@ namespace Diplomacy.CampaignBehaviors
         {
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, UpdateDiplomaticAgreements);
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, ConsiderDiplomaticAgreements);
-            Events.AllianceFormed.AddNonSerializedListener(this, ExpireNonAggressionPact);
+            DiplomacyEvents.AllianceFormed.AddNonSerializedListener(this, ExpireNonAggressionPact);
         }
 
         private void ConsiderDiplomaticAgreements(Clan clan)

@@ -1,0 +1,7 @@
+files:
+  - source: /src/Bannerlord.Diplomacy/_Module/ModuleData/Languages/*.xml
+    translation: /src/Bannerlord.Diplomacy/_Module/ModuleData/Languages/%two_letters_code%/%two_letters_code%_%original_file_name%
+    content_segmentation: 0
+    translatable_elements:
+      - '/base/tags/tag[@language],/base/strings/string[@text]'
+      - '/LanguageData[@id],/LanguageData[@name],/LanguageData[@subtitle_extension],/LanguageData[@supported_iso],/LanguageData/LanguageFile[@xml_path]'
