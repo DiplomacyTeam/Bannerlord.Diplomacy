@@ -376,7 +376,7 @@ namespace Diplomacy.WarExhaustion
         }
 
         private float GetDiminishingReturnsFactor<TObj, TRec>(Kingdoms kingdoms, TObj eventRelatedObject, out bool yieldsDiminishingReturns) where TObj : MBObjectBase where TRec : WarExhaustionEventRecord =>
-            GetDiminishingReturnsFactor<TObj, TRec>(eventRelatedObject, _warExhaustionEventRecords[kingdoms.Key!], out yieldsDiminishingReturns);
+            GetDiminishingReturnsFactor<TObj, TRec>(eventRelatedObject, _warExhaustionEventRecords.TryGetValue(kingdoms.Key!, out var currentRecords) ? currentRecords : new(), out yieldsDiminishingReturns);
 
         private static float GetDiminishingReturnsFactor<TObj, TRec>(TObj eventRelatedObject, List<WarExhaustionEventRecord> warExhaustionEventRecords, out bool yieldsDiminishingReturns) where TObj : MBObjectBase where TRec : WarExhaustionEventRecord
         {
