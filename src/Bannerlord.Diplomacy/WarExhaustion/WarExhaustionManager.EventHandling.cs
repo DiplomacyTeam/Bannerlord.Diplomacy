@@ -37,6 +37,15 @@ namespace Diplomacy.WarExhaustion
             AddWarExhaustion(kingdoms, WarExhaustionType.Casualty, warExhaustionToAdd, battleCasualtyRecord);
         }
 
+        public void AddCasualtyWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, int kingdom1Casualties, int kingdom2Casualties, TextObject? kingdom1PartyName = null, TextObject? kingdom2PartyName = null)
+        {
+            CreateKey(kingdom1, kingdom2, out var kingdoms);
+            if (kingdoms is null) return;
+
+            var warExhaustionToAdd = GetCasualtyWarExhaustionDelta(kingdoms, kingdom1Casualties, kingdom2Casualties, kingdom1PartyName, kingdom2PartyName, out var battleCasualtyRecord);
+            AddWarExhaustion(kingdoms, WarExhaustionType.Casualty, warExhaustionToAdd, battleCasualtyRecord);
+        }
+
 #if v100 || v101 || v102 || v103
         public void AddRaidWarExhaustion(Kingdoms kingdoms, MapEvent mapEvent)
         {
@@ -234,6 +243,27 @@ namespace Diplomacy.WarExhaustion
             {
                 battleCasualtyRecord = new(CampaignTime.Now, attackerSideCasualties, attackerSideWarExhaustion, defenderSideCasualties, defenderSideWarExhaustion, attackerSidePartyName, defenderSidePartyName, eventRelatedSettlement);
                 return new(attackerSideWarExhaustion, defenderSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+            }
+        }
+
+        private WarExhaustionRecord GetCasualtyWarExhaustionDelta(Kingdoms kingdoms, int kingdom1Casualties, int kingdom2Casualties, TextObject? kingdom1PartyName, TextObject? kingdom2PartyName, out BattleCasualtyRecord battleCasualtyRecord)
+        {
+            var warExhaustionPerCasualty = Settings.Instance!.WarExhaustionPerCasualty;
+            float kingdom1WarExhaustion = kingdom1Casualties * warExhaustionPerCasualty;
+            float kingdom2WarExhaustion = kingdom2Casualties * warExhaustionPerCasualty;
+
+            kingdom1PartyName ??= kingdoms.Kingdom1.Name;
+            kingdom2PartyName ??= kingdoms.Kingdom2.Name;
+            var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
+            if (kingdoms.ReversedKeyOrder)
+            {
+                battleCasualtyRecord = new(CampaignTime.Now, kingdom2Casualties, kingdom2WarExhaustion, kingdom1Casualties, kingdom1WarExhaustion, kingdom2PartyName, kingdom1PartyName, eventRelatedSettlement: null);
+                return new(kingdom2WarExhaustion, kingdom1WarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+            }
+            else
+            {
+                battleCasualtyRecord = new(CampaignTime.Now, kingdom1Casualties, kingdom1WarExhaustion, kingdom2Casualties, kingdom2WarExhaustion, kingdom1PartyName, kingdom2PartyName, eventRelatedSettlement: null);
+                return new(kingdom1WarExhaustion, kingdom2WarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
         }
 

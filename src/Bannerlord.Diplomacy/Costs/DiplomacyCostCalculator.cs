@@ -110,7 +110,7 @@ namespace Diplomacy.Costs
             static int CalculateReparations(Kingdom kingdomPayingReparations, Kingdom otherKingdom, float payingKingdomWarExhaustion, float otherKingdomWarExhaustion, bool? payerLostWar = null)
             {
                 var lossReparations = (payerLostWar ?? WarExhaustionManager.Instance.GetWarResult(kingdomPayingReparations, otherKingdom) == WarExhaustionManager.WarResult.Loss) ? Settings.Instance!.DefeatedGoldCost : 0;
-                var warExhaustionReparations = otherKingdomWarExhaustion * ((payingKingdomWarExhaustion - otherKingdomWarExhaustion) * (WarExhaustionManager.IsCriticalWarExhaustion(otherKingdomWarExhaustion) ? 0.25f : 0.5f));
+                var warExhaustionReparations = otherKingdomWarExhaustion * ((payingKingdomWarExhaustion - otherKingdomWarExhaustion) / (WarExhaustionManager.IsCriticalWarExhaustion(otherKingdomWarExhaustion) ? 8f : 4f));
                 return (int) ((lossReparations + warExhaustionReparations) * GetKingdomScalingFactorForReparations(kingdomPayingReparations));
             }
 

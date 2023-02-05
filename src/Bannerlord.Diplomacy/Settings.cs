@@ -9,8 +9,9 @@ namespace Diplomacy
     class Settings : AttributeGlobalSettings<Settings>
     {
         private const string HeadingKingdomDiplomacy = "{=sBw5Qzq3}Kingdom Diplomacy";
-        private const string HeadingInfluenceCosts = "{=SEViwYTl}Influence Costs";
-        private const string HeadingGoldCosts = "{=Ckd1Lsoa}Gold Costs";
+        private const string Costs = "{=ldLFTs92}Costs";
+        private const string HeadingGoldCosts = Costs + "/" + "{=Ckd1Lsoa}Gold Costs";
+        private const string HeadingInfluenceCosts = Costs + "/" + "{=SEViwYTl}Influence Costs";
         private const string HeadingWarExhaustion = "{=V542tneW}War Exhaustion";
         private const string HeadingInfluenceBalancing = "{=8ZPKToTq}Influence Balancing";
         private const string HeadingInfluenceDecay = HeadingInfluenceBalancing + "/" + "{=vzKRX2JA}Influence Decay";
@@ -27,7 +28,7 @@ namespace Diplomacy
 
         private bool _enableWarExhaustionCampaignMapWidget = true;
 
-        public override string Id => "DiplomacySettings_1";
+        public override string Id => "DiplomacySettings_v1.2";
         public override string DisplayName => new TextObject("{=MYz8nKqq}Diplomacy").ToString();
         public override string FolderName => "Diplomacy";
         public override string FormatType => "json2";
@@ -37,25 +38,25 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableFiefFirstRight { get; set; } = true;
 
-        [SettingPropertyInteger("{=ZRlNvsev}Minimum War Duration in Days", 0, 500, Order = 1, RequireRestart = false, HintText = "{=vuFT5ns8}The minimum duration (in days) that a war can last before proposing peace. Default value is 10.")]
+        [SettingPropertyInteger("{=ZRlNvsev}Minimum War Duration in Days", 0, 500, Order = 1, RequireRestart = false, HintText = "{=vuFT5ns8}The minimum duration (in days) that a war can last before proposing peace. Default value is 21 (quarter of a standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public int MinimumWarDurationInDays { get; set; } = 10;
+        public int MinimumWarDurationInDays { get; set; } = 21;
 
-        [SettingPropertyInteger("{=4MzQHMVj}Declare War Cooldown in Days", 0, 500, Order = 2, RequireRestart = false, HintText = "{=q2duqN8d}The minimum duration (in days) to declare war after making peace. Default value is 100.")]
+        [SettingPropertyInteger("{=4MzQHMVj}Declare War Cooldown in Days", 0, 500, Order = 2, RequireRestart = false, HintText = "{=q2duqN8d}The minimum duration (in days) before re-declaring war on the same kingdom after making peace. Default value is 21 (quarter of a standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public int DeclareWarCooldownInDays { get; set; } = 100;
+        public int DeclareWarCooldownInDays { get; set; } = 21;
 
         [SettingPropertyBool("{=2XC8QHkl}Enable Alliances", Order = 3, RequireRestart = false, HintText = "{=5YJBZx28}If disabled, this disables the ability to form alliances for both player and AI kingdoms. Default value is enabled.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableAlliances { get; set; } = true;
 
-        [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 4, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance can last. Default value is 10.")]
+        [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 4, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance will last before it can be broken. Default value is 42 (half of a standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public int MinimumAllianceDuration { get; set; } = 10;
+        public int MinimumAllianceDuration { get; set; } = 42;
 
-        [SettingPropertyInteger("{=V35hUfcc}Non-Aggression Pact Duration in Days", 0, 1000, Order = 5, RequireRestart = false, HintText = "{=KXLGZEPh}The duration (in days) that a non-aggression pact will last. Default value is 100.")]
+        [SettingPropertyInteger("{=V35hUfcc}Non-Aggression Pact Duration in Days", 0, 1000, Order = 5, RequireRestart = false, HintText = "{=KXLGZEPh}The duration (in days) that a non-aggression pact will last. Default value is 84 (one standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public int NonAggressionPactDuration { get; set; } = 100;
+        public int NonAggressionPactDuration { get; set; } = 84;
 
         [SettingPropertyInteger("{=G8BhBnRG}Non-Aggression Pact Tendency", -100, 100, Order = 6, RequireRestart = false, HintText = "{=907ER5u9}Score modifier affecting the tendency of kingdoms to form non-aggression pacts. Increasing the modifier makes non-aggression pacts more desirable to AI kingdoms. Default value is 0.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
@@ -184,9 +185,9 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingGoldCosts)]
         public float ScalingWarReparationsGoldCostMultiplier { get; set; } = 50;
 
-        [SettingPropertyInteger(displayName: "{=Cr6a5Jap}Defeated War Reparations Gold Cost", 0, 10000, Order = 12, RequireRestart = false, HintText = "{=NH4GNKva}The cost in gold for losing a war of attrition against another kingdom, measured in millions. The default value is 500.")]
+        [SettingPropertyInteger(displayName: "{=Cr6a5Jap}Defeated War Reparations Gold Cost", 0, 10000, Order = 12, RequireRestart = false, HintText = "{=NH4GNKva}The cost in gold for losing a war of attrition against another kingdom, measured in millions. The default value is 200.")]
         [SettingPropertyGroup(HeadingGoldCosts)]
-        public int DefeatedGoldCost { get; set; } = 500;
+        public int DefeatedGoldCost { get; set; } = 200;
 
         // Influence Costs
 
