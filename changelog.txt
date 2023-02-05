@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.2
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
+* Added a way to add casualties that are not related to map events.
+* Adjusted war reparations calculation and related setting defaults to be considerably more mild.
+* Adjusted default settings for Kingdom Diplomacy.
+* Gold and Influence costs are joined under a single Costs heading for better usability.
+* Made sure that the settings are reset to default when you first start the game after updating from previous versions of the mod.
+---------------------------------------------------------------------------------------------------
 Version: 1.2.1
 Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
 * Fixed rare crash that happened when War Exhaustion event precedes the war.

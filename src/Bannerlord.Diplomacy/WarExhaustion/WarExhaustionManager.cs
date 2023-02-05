@@ -144,7 +144,10 @@ namespace Diplomacy.WarExhaustion
 
         public static bool IsCriticalWarExhaustion(float warExhaustionValue, bool checkMaxWarExhaustion = false) => (warExhaustionValue / MaxWarExhaustion >= CriticalThresholdWarExhaustion) && (!checkMaxWarExhaustion || warExhaustionValue < MaxWarExhaustion);
 
-        private static bool KingdomsAreValid(Kingdom? kingdom1, Kingdom? kingdom2) => kingdom1 is not null && kingdom2 is not null && kingdom1.Id != default && kingdom2.Id != default && kingdom1.Id != kingdom2.Id;
+        private static bool KingdomsAreValid(Kingdom? kingdom1, Kingdom? kingdom2) =>
+            kingdom1 is not null && kingdom2 is not null  && !kingdom1.IsEliminated && !kingdom2.IsEliminated
+            && kingdom1.Id != default && kingdom2.Id != default
+            && kingdom1.Id != kingdom2.Id && kingdom1.IsAtWarWith(kingdom2);
 
         internal static string? CreateKey(Kingdom kingdom1, Kingdom kingdom2, out Kingdoms? kingdoms)
         {
