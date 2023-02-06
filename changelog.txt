@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.3
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
+* Fixed a bug where war exhaustion was not reseted when making peace and not initialized properly when declaring wars.
+* Fixed a crash that happened sometimes when sponsor clan was removed from a faction.
+---------------------------------------------------------------------------------------------------
 Version: 1.2.2
 Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
 * Added a way to add casualties that are not related to map events.
