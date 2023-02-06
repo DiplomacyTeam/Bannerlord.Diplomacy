@@ -9,7 +9,7 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar
 {
-    internal class FactionNameGenerator
+    internal static class FactionNameGenerator
     {
         private static Dictionary<string, List<TitleSelection>> CultureToKingdomTitles { get; } = new()
         {
@@ -320,10 +320,8 @@ namespace Diplomacy.CivilWar
             return kingdomTitle;
         }
 
-        public static TextObject GenerateFactionName(Clan sponsorClan)
-        {
-            return new TextObject(FactionNames.GetRandomElementInefficiently()).SetTextVariable("CLAN_NAME", sponsorClan.Name);
-        }
+        public static TextObject GenerateFactionName(Clan sponsorClan) => new TextObject(FactionNames.GetRandomElementInefficiently()).SetTextVariable("CLAN_NAME", sponsorClan.Name);
+
         private readonly struct TitleSelection
         {
             public TitleSelection(string name, float weight = 1f)

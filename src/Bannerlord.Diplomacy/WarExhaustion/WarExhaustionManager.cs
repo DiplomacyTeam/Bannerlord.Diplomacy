@@ -77,7 +77,7 @@ namespace Diplomacy.WarExhaustion
 
         public void ClearWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
-            var key = CreateKey(kingdom1, kingdom2, out _);
+            var key = CreateKey(kingdom1, kingdom2, out _, checkStates: false);
             if (key is not null)
             {
                 _warExhaustionScores.Remove(key);
@@ -88,7 +88,7 @@ namespace Diplomacy.WarExhaustion
 
         internal void RegisterWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
-            var key = CreateKey(kingdom1, kingdom2, out var kingdoms);
+            var key = CreateKey(kingdom1, kingdom2, out var kingdoms, checkStates: false);
             if (key is not null)
             {
                 _warExhaustionRates[key] = new(0f, 0f, hasActiveQuest: !IsValidQuestState(kingdom1, kingdom2));
@@ -144,14 +144,14 @@ namespace Diplomacy.WarExhaustion
 
         public static bool IsCriticalWarExhaustion(float warExhaustionValue, bool checkMaxWarExhaustion = false) => (warExhaustionValue / MaxWarExhaustion >= CriticalThresholdWarExhaustion) && (!checkMaxWarExhaustion || warExhaustionValue < MaxWarExhaustion);
 
-        private static bool KingdomsAreValid(Kingdom? kingdom1, Kingdom? kingdom2) =>
-            kingdom1 is not null && kingdom2 is not null  && !kingdom1.IsEliminated && !kingdom2.IsEliminated
-            && kingdom1.Id != default && kingdom2.Id != default
-            && kingdom1.Id != kingdom2.Id && kingdom1.IsAtWarWith(kingdom2);
+        private static bool KingdomsAreValid(Kingdom? kingdom1, Kingdom? kingdom2, bool checkStates) =>
+            kingdom1 is not null && kingdom2 is not null
+            && kingdom1.Id != default && kingdom2.Id != default && kingdom1.Id != kingdom2.Id
+            && (!checkStates || (!kingdom1.IsEliminated && !kingdom2.IsEliminated && kingdom1.IsAtWarWith(kingdom2)));
 
-        internal static string? CreateKey(Kingdom kingdom1, Kingdom kingdom2, out Kingdoms? kingdoms)
+        internal static string? CreateKey(Kingdom kingdom1, Kingdom kingdom2, out Kingdoms? kingdoms, bool checkStates = true)
         {
-            if (!KingdomsAreValid(kingdom1, kingdom2))
+            if (!KingdomsAreValid(kingdom1, kingdom2, checkStates))
             {
                 kingdoms = null;
                 return null;
