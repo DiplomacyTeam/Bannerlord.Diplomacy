@@ -149,8 +149,6 @@ namespace Diplomacy.WarExhaustion
             && kingdom1.Id != default && kingdom2.Id != default && kingdom1.Id != kingdom2.Id
             && (!checkStates || (!kingdom1.IsEliminated && !kingdom2.IsEliminated && kingdom1.IsAtWarWith(kingdom2)));
 
-
-
         internal static string? CreateKey(Kingdom kingdom1, Kingdom kingdom2, out Kingdoms? kingdoms, bool checkStates = true)
         {
             if (!KingdomsAreValid(kingdom1, kingdom2, checkStates))
