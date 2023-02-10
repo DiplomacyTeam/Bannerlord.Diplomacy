@@ -22,7 +22,8 @@ namespace Diplomacy.Events
 #if v100 || v101 || v102 || v103
         private readonly MbEvent<WarDeclaredEvent> _warDeclared = new();
 #endif
-        private readonly MbEvent<WarExhaustionEvent> _warExhaustionAdded = new();
+        private readonly MbEvent<WarExhaustionInitializedEvent> _warExhaustionInitialized = new();
+        private readonly MbEvent<WarExhaustionAddedEvent> _warExhaustionAdded = new();
 
         public DiplomacyEvents()
         {
@@ -39,6 +40,7 @@ namespace Diplomacy.Events
                 _warDeclared,
 #endif
                 _kingdomBannerChanged,
+                _warExhaustionInitialized,
                 _warExhaustionAdded
             };
         }
@@ -63,7 +65,9 @@ namespace Diplomacy.Events
 
         public static IMbEvent<Kingdom> KingdomBannerChanged => Instance._kingdomBannerChanged;
 
-        public static IMbEvent<WarExhaustionEvent> WarExhaustionAdded => Instance._warExhaustionAdded;
+        public static IMbEvent<WarExhaustionInitializedEvent> WarExhaustionInitialized => Instance._warExhaustionInitialized;
+
+        public static IMbEvent<WarExhaustionAddedEvent> WarExhaustionAdded => Instance._warExhaustionAdded;
 
         internal void OnMessengerSent(Hero hero)
         {
@@ -107,7 +111,12 @@ namespace Diplomacy.Events
             Instance._kingdomBannerChanged.Invoke(kingdom);
         }
 
-        internal void OnWarExhaustionAdded(WarExhaustionEvent warExhaustionEvent)
+        internal void OnWarExhaustionInitialized(WarExhaustionInitializedEvent warExhaustionEvent)
+        {
+            Instance._warExhaustionInitialized.Invoke(warExhaustionEvent);
+        }
+
+        internal void OnWarExhaustionAdded(WarExhaustionAddedEvent warExhaustionEvent)
         {
             Instance._warExhaustionAdded.Invoke(warExhaustionEvent);
         }

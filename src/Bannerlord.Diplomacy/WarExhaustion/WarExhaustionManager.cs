@@ -1,4 +1,5 @@
-﻿using Diplomacy.Helpers;
+﻿using Diplomacy.Events;
+using Diplomacy.Helpers;
 using Diplomacy.WarExhaustion.EventRecords;
 
 using System;
@@ -83,6 +84,7 @@ namespace Diplomacy.WarExhaustion
                 _warExhaustionScores.Remove(key);
                 _warExhaustionRates.Remove(key);
                 _warExhaustionEventRecords.Remove(key);
+                DiplomacyEvents.Instance.OnWarExhaustionInitialized(new WarExhaustionInitializedEvent(kingdom1, kingdom2));
             }
         }
 
@@ -94,6 +96,7 @@ namespace Diplomacy.WarExhaustion
                 _warExhaustionScores[key] = new(0f, 0f, hasActiveQuest: !IsValidQuestState(kingdom1, kingdom2));
                 RegisterWarExhaustionMultiplier(kingdoms!);
                 _warExhaustionEventRecords[key] = new();
+                DiplomacyEvents.Instance.OnWarExhaustionInitialized(new WarExhaustionInitializedEvent(kingdom1, kingdom2));
             }
         }
 
