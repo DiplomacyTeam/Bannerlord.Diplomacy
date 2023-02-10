@@ -105,22 +105,29 @@ namespace Diplomacy.CivilWar
 
         internal void OnAfterSaveLoaded()
         {
-            var factionsToClean = AllRebelFactions.Values.SelectMany(x => x).Where(x => x.Clans.Any(clan => clan.IsEliminated)).ToList();
-            var factionsToClear = factionsToClean.Where(x => x.Clans.Any(clan => !clan.IsEliminated)).ToList();
-            //Eliminate dead factions
-            foreach (var faction in factionsToClear)
+            //Remove factions of dead kingdoms
+            var keysToRemove = AllRebelFactions.Keys.Where(k => k.IsEliminated).ToList();
+            foreach (var keyToRemove in keysToRemove)
             {
-                DestroyRebelFaction(faction);
+                RebelFactions.Remove(keyToRemove);
             }
-            //Celar factions of dead clans
+            //Account for eliminated clans
+            var factionsToClean = AllRebelFactions.Values.SelectMany(x => x).Where(x => x.Clans.Any(clan => clan.IsEliminated)).ToList();
             foreach (var faction in factionsToClean)
             {
+                if (faction.Clans.All(clan => clan.IsEliminated))
+                {
+                    //Destroy dead factions
+                    DestroyRebelFaction(faction);
+                    continue;
+                }
                 foreach (var clan in faction.Clans)
                 {
+                    //Clear rest of the factions from dead clans
                     if (clan.IsEliminated) faction.RemoveClan(clan);
                 }
             }
-            //Fix factions that count as dead but not dead
+            //Fix factions that count as dead but not actually dead
             var kingdomsToReanimate = DeadRebelKingdoms.Where(k => !k.IsEliminated).ToList();
             foreach (var kingdom in kingdomsToReanimate)
             {

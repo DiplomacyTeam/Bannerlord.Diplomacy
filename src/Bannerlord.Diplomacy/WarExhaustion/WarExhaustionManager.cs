@@ -91,7 +91,7 @@ namespace Diplomacy.WarExhaustion
             var key = CreateKey(kingdom1, kingdom2, out var kingdoms, checkStates: false);
             if (key is not null)
             {
-                _warExhaustionRates[key] = new(0f, 0f, hasActiveQuest: !IsValidQuestState(kingdom1, kingdom2));
+                _warExhaustionScores[key] = new(0f, 0f, hasActiveQuest: !IsValidQuestState(kingdom1, kingdom2));
                 RegisterWarExhaustionMultiplier(kingdoms!);
                 _warExhaustionEventRecords[key] = new();
             }
