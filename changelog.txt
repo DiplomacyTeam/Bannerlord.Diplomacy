@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.5
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
+* Adjusted the calculation of war reparations to make it even more lenient.
+* Added an option to disable the elimination of fiefless kingdoms.
+---------------------------------------------------------------------------------------------------
 Version: 1.2.4
 Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
 * Fixed a crash after loading a save when attempting to fix any faulty factions.

@@ -38,33 +38,37 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableFiefFirstRight { get; set; } = true;
 
-        [SettingPropertyInteger("{=ZRlNvsev}Minimum War Duration in Days", 0, 500, Order = 1, RequireRestart = false, HintText = "{=vuFT5ns8}The minimum duration (in days) that a war can last before proposing peace. Default value is 21 (quarter of a standard game year).")]
+        [SettingPropertyBool("{=}Enable Fiefless Kingdom Elimination", Order = 10, RequireRestart = false, HintText = "{=}If enabled, kingdoms without any fiefs are destroyed when they are sign peace treaty ending the last ongoing war they participate in. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public bool EnableKingdomElimination { get; set; } = true;
+
+        [SettingPropertyInteger("{=ZRlNvsev}Minimum War Duration in Days", 0, 500, Order = 20, RequireRestart = false, HintText = "{=vuFT5ns8}The minimum duration (in days) that a war can last before proposing peace. Default value is 21 (quarter of a standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int MinimumWarDurationInDays { get; set; } = 21;
 
-        [SettingPropertyInteger("{=4MzQHMVj}Declare War Cooldown in Days", 0, 500, Order = 2, RequireRestart = false, HintText = "{=q2duqN8d}The minimum duration (in days) before re-declaring war on the same kingdom after making peace. Default value is 21 (quarter of a standard game year).")]
+        [SettingPropertyInteger("{=4MzQHMVj}Declare War Cooldown in Days", 0, 500, Order = 21, RequireRestart = false, HintText = "{=q2duqN8d}The minimum duration (in days) before re-declaring war on the same kingdom after making peace. Default value is 21 (quarter of a standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int DeclareWarCooldownInDays { get; set; } = 21;
 
-        [SettingPropertyBool("{=2XC8QHkl}Enable Alliances", Order = 3, RequireRestart = false, HintText = "{=5YJBZx28}If disabled, this disables the ability to form alliances for both player and AI kingdoms. Default value is enabled.")]
+        [SettingPropertyBool("{=2XC8QHkl}Enable Alliances", Order = 30, RequireRestart = false, HintText = "{=5YJBZx28}If disabled, this disables the ability to form alliances for both player and AI kingdoms. Default value is enabled.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableAlliances { get; set; } = true;
 
-        [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 4, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance will last before it can be broken. Default value is 42 (half of a standard game year).")]
+        [SettingPropertyInteger("{=5a829TiT}Alliance Tendency", -100, 100, Order = 31, RequireRestart = false, HintText = "{=7nSjs8UL}Score modifier affecting the tendency of kingdoms to form alliances. Increasing the modifier makes alliances more desirable to AI kingdoms. Default value is 0.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public int AllianceTendency { get; set; } = 0;
+
+        [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 32, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance will last before it can be broken. Default value is 42 (half of a standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int MinimumAllianceDuration { get; set; } = 42;
 
-        [SettingPropertyInteger("{=V35hUfcc}Non-Aggression Pact Duration in Days", 0, 1000, Order = 5, RequireRestart = false, HintText = "{=KXLGZEPh}The duration (in days) that a non-aggression pact will last. Default value is 84 (one standard game year).")]
+        [SettingPropertyInteger("{=V35hUfcc}Non-Aggression Pact Duration in Days", 0, 1000, Order = 50, RequireRestart = false, HintText = "{=KXLGZEPh}The duration (in days) that a non-aggression pact will last. Default value is 84 (one standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int NonAggressionPactDuration { get; set; } = 84;
 
-        [SettingPropertyInteger("{=G8BhBnRG}Non-Aggression Pact Tendency", -100, 100, Order = 6, RequireRestart = false, HintText = "{=907ER5u9}Score modifier affecting the tendency of kingdoms to form non-aggression pacts. Increasing the modifier makes non-aggression pacts more desirable to AI kingdoms. Default value is 0.")]
+        [SettingPropertyInteger("{=G8BhBnRG}Non-Aggression Pact Tendency", -100, 100, Order = 51, RequireRestart = false, HintText = "{=907ER5u9}Score modifier affecting the tendency of kingdoms to form non-aggression pacts. Increasing the modifier makes non-aggression pacts more desirable to AI kingdoms. Default value is 0.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int NonAggressionPactTendency { get; set; } = 0;
-
-        [SettingPropertyInteger("{=5a829TiT}Alliance Tendency", -100, 100, Order = 7, RequireRestart = false, HintText = "{=7nSjs8UL}Score modifier affecting the tendency of kingdoms to form alliances. Increasing the modifier makes alliances more desirable to AI kingdoms. Default value is 0.")]
-        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public int AllianceTendency { get; set; } = 0;
 
         [SettingPropertyBool(displayName: "{=6m1SspFW}Enable Player Kingdom Diplomacy Control", Order = 999, RequireRestart = false, HintText = "{=N5EouSSj}Gives the player full control over declaring war and making peace in the kingdom they belong to, even if they are just a vassal and not the leader of the kingdom. Default value is disabled.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]

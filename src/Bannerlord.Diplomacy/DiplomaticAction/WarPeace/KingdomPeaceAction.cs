@@ -51,7 +51,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 
         private const string _noChoice = "{=13G0c8RE}Given how badly your kingdom has been ravaged by the war, you have no choice but to accept the peace.";
 
-        private static void ApplyPeaceInternal(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, bool skipPlayerPrompts, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, bool shouldBeDestroyed)
+        private static void ApplyPeaceInternal(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, bool skipPlayerPrompts, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, EliminationStatus shouldBeDestroyed)
         {
             if (kingdomMakingPeace == Clan.PlayerClan.Kingdom && !skipPlayerPrompts)
             {
@@ -67,7 +67,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             }
         }
 
-        private static void NotifyPlayerOfPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, bool shouldBeDestroyed)
+        private static void NotifyPlayerOfPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, EliminationStatus shouldBeDestroyed)
         {
             GetNotificationInquiryTitleAndBody(kingdomMakingPeace, otherKingdom, isATie, diplomacyCost, dailyPeaceTributeToPay, fiefsToBeReturned, hasFiefsRemaining, shouldBeDestroyed, out var inquiryBody, out var inquiryTitle);
 
@@ -82,7 +82,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
                 null), true);
         }
 
-        private static void GetNotificationInquiryTitleAndBody(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, bool shouldBeDestroyed, out TextObject inquiryBody, out TextObject inquiryTitle)
+        private static void GetNotificationInquiryTitleAndBody(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, EliminationStatus shouldBeDestroyed, out TextObject inquiryBody, out TextObject inquiryTitle)
         {
             var rebelIsMakingPeace = kingdomMakingPeace.IsRebelKingdomOf(otherKingdom);
             var originalIsMakingPeace = otherKingdom.IsRebelKingdomOf(kingdomMakingPeace);
@@ -140,7 +140,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             }
         }
 
-        private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool shouldBeDestroyed)
+        private static void AcceptPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, EliminationStatus shouldBeDestroyed)
         {
             diplomacyCost.ApplyCost();
             DoReturnFiefs(kingdomMakingPeace, otherKingdom, fiefsToBeReturned);
@@ -174,7 +174,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             }
         }
 
-        private static void CreatePeaceInquiry(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, bool shouldBeDestroyed)
+        private static void CreatePeaceInquiry(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, EliminationStatus shouldBeDestroyed)
         {
 #if v100 || v101 || v102 || v103
             InformationManager.ShowInquiry(new InquiryData(
@@ -200,7 +200,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 #endif
         }
 
-        private static string GetPeaceInquiryText(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, bool shouldBeDestroyed)
+        private static string GetPeaceInquiryText(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, EliminationStatus shouldBeDestroyed)
         {
             var rebelIsMakingPeace = kingdomMakingPeace.IsRebelKingdomOf(otherKingdom);
             var originalIsMakingPeace = otherKingdom.IsRebelKingdomOf(kingdomMakingPeace);
@@ -276,9 +276,20 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             var isATie = WarExhaustionManager.Instance.GetWarResult(kingdomMakingPeace, otherKingdom) == WarExhaustionManager.WarResult.Tie;
             var fiefsToBeReturned = GetFiefsToBeReturned(kingdomMakingPeace, otherKingdom);
             var hasFiefsRemaining = kingdomMakingPeace.Fiefs.Count > 0;
-            var shouldBeDestroyed = !hasFiefsRemaining && !FactionManager.GetEnemyKingdoms(kingdomMakingPeace).Any(k => k != otherKingdom && !k.IsEliminated) && (!otherKingdom.IsRebelKingdomOf(kingdomMakingPeace) || !otherKingdom.Fiefs.Any());
+            var shouldBeDestroyed = ShouldKingdomsBeDestroyed(kingdomMakingPeace, otherKingdom, hasFiefsRemaining);
 
             ApplyPeaceInternal(kingdomMakingPeace, otherKingdom, isATie, skipPlayerPrompts, diplomacyCost, dailyPeaceTributeToPay, fiefsToBeReturned, hasFiefsRemaining, shouldBeDestroyed);
+        }
+
+        public static EliminationStatus ShouldKingdomsBeDestroyed(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool? hasFiefsRemaining = null)
+        {
+            return (true, true);
+            /*
+            return
+                Settings.Instance!.EnableKingdomElimination && !(hasFiefsRemaining ?? kingdomMakingPeace.Fiefs.Count > 0)
+                && !FactionManager.GetEnemyKingdoms(kingdomMakingPeace).Any(k => k != otherKingdom && !k.IsEliminated)
+                && (!otherKingdom.IsRebelKingdomOf(kingdomMakingPeace) || !otherKingdom.Fiefs.Any());
+            */
         }
 
         private static List<Town> GetFiefsToBeReturned(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
@@ -338,6 +349,46 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 
             var settlementsCaptured = eventRecords.OfType<SiegeRecord>().Where(sr => !sr.YieldsDiminishingReturns && kingdoms.ReversedKeyOrder ? sr.Faction1Effected : sr.Faction2Effected).Select(sr => sr.Settlement).Distinct().ToList();
             return kingdomMakingPeace.Fiefs.Where(f => settlementsCaptured.Contains(f.Settlement)).ToList();
+        }
+    }
+
+    internal struct EliminationStatus
+    {
+        public bool DestroyKingdomMakingPeace;
+        public bool DestroyOtherKingdom;
+
+        public EliminationStatus(bool destroyKingdomMakingPeace, bool destroyOtherKingdom)
+        {
+            DestroyKingdomMakingPeace = destroyKingdomMakingPeace;
+            DestroyOtherKingdom = destroyOtherKingdom;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is EliminationStatus other &&
+                   DestroyKingdomMakingPeace == other.DestroyKingdomMakingPeace &&
+                   DestroyOtherKingdom == other.DestroyOtherKingdom;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(DestroyKingdomMakingPeace, DestroyOtherKingdom);
+        }
+
+        public void Deconstruct(out bool destroyKingdomMakingPeace, out bool destroyOtherKingdom)
+        {
+            destroyKingdomMakingPeace = DestroyKingdomMakingPeace;
+            destroyOtherKingdom = DestroyOtherKingdom;
+        }
+
+        public static implicit operator (bool DestroyKingdomMakingPeace, bool DestroyOtherKingdom)(EliminationStatus value)
+        {
+            return (value.DestroyKingdomMakingPeace, value.DestroyOtherKingdom);
+        }
+
+        public static implicit operator EliminationStatus((bool DestroyKingdomMakingPeace, bool DestroyOtherKingdom) value)
+        {
+            return new EliminationStatus(value.DestroyKingdomMakingPeace, value.DestroyOtherKingdom);
         }
     }
 }
