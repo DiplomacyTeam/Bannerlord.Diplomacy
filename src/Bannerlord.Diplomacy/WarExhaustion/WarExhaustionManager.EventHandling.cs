@@ -174,7 +174,7 @@ namespace Diplomacy.WarExhaustion
             {
                 if (warExhaustionToAdd != 0f)
                 {
-                    DiplomacyEvents.Instance.OnWarExhaustionAdded(new WarExhaustionEvent(kingdom1, kingdom2, warExhaustionType, warExhaustionToAdd));
+                    DiplomacyEvents.Instance.OnWarExhaustionAdded(new WarExhaustionAddedEvent(kingdom1, kingdom2, warExhaustionType, warExhaustionToAdd));
                 }
             }
         }
