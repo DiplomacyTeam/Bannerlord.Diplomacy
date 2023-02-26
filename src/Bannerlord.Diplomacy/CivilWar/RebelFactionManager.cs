@@ -1,5 +1,7 @@
 ﻿using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
+using Diplomacy.Helpers;
+using Diplomacy.WarExhaustion;
 
 using JetBrains.Annotations;
 
@@ -103,6 +105,16 @@ namespace Diplomacy.CivilWar
             return AllRebelFactions.Values.SelectMany(x => x).FirstOrDefault(rf => rebelKingdom == rf.RebelKingdom);
         }
 
+        public static Kingdom GetCivilWarLoser(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
+        {
+            return (WarExhaustionManager.Instance?.GetWarResult(kingdomMakingPeace, otherKingdom) ?? WarExhaustionManager.WarResult.None) switch
+            {
+                WarExhaustionManager.WarResult.Tie when kingdomMakingPeace.Fiefs.Any() => TributeHelper.GetBaseValueForTrubute(kingdomMakingPeace, otherKingdom) < 0 ? otherKingdom : kingdomMakingPeace,
+                >= WarExhaustionManager.WarResult.PyrrhicVictory => otherKingdom,
+                _ => kingdomMakingPeace,
+            };
+        }
+
         internal void OnAfterSaveLoaded()
         {
             //Remove factions of dead kingdoms
@@ -121,7 +133,7 @@ namespace Diplomacy.CivilWar
                     DestroyRebelFaction(faction);
                     continue;
                 }
-                foreach (var clan in faction.Clans)
+                foreach (var clan in faction.Clans.ToList())
                 {
                     //Clear rest of the factions from dead clans
                     if (clan.IsEliminated) faction.RemoveClan(clan);

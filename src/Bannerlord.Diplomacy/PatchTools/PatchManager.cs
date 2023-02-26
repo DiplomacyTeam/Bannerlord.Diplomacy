@@ -95,6 +95,7 @@ namespace Diplomacy.PatchTools
             new DefaultEncyclopediaFactionPagePatch(),
             new KingdomManagementVMPatch(),
             new MBBannerEditorGauntletScreenPatch(),
+            new MakePeaceKingdomDecisionPatch()
         };
 
         // REGISTER ALL ACTIVE HARMONY PATCH CLASSES TO USE OnGameStart HERE:

@@ -25,6 +25,8 @@ namespace Diplomacy.CivilWar.Factions
 
         public override float MemberInfluenceOnFailure => -100f;
 
+        public override bool ConsolidateOnSuccess => true;
+
         protected override void ApplyDemand()
         {
             var strVars = new Dictionary<string, object>

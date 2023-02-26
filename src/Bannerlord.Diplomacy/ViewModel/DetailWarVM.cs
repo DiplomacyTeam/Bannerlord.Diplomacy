@@ -142,8 +142,8 @@ namespace Diplomacy.ViewModel
             OpponentKingdom = new DiplomacyFactionRelationshipVM(_opposingKingdom);
             Kingdom = new DiplomacyFactionRelationshipVM(Clan.PlayerClan.Kingdom);
             HelpHint = new HintViewModel(GameTexts.FindText("str_wardetail_help"));
-            WarExhaustionRate = Settings.Instance!.IndividualWarExhaustionRates ? $"{Instance.GetWarExhaustionRate(Clan.PlayerClan.Kingdom, _opposingKingdom):0%} / {Instance.GetWarExhaustionRate(_opposingKingdom, Clan.PlayerClan.Kingdom):0%}"
-                                                                                : $"{Instance.GetWarExhaustionRate(Clan.PlayerClan.Kingdom, _opposingKingdom):0%}";
+            WarExhaustionRate = Settings.Instance!.IndividualWarExhaustionRates ? $"{Instance!.GetWarExhaustionRate(Clan.PlayerClan.Kingdom, _opposingKingdom):0%} / {Instance.GetWarExhaustionRate(_opposingKingdom, Clan.PlayerClan.Kingdom):0%}"
+                                                                                : $"{Instance!.GetWarExhaustionRate(Clan.PlayerClan.Kingdom, _opposingKingdom):0%}";
             RateHelpHint = new HintViewModel(GameTexts.FindText("str_warexhaustionrate_help"));
             StatsLabel = GameTexts.FindText("str_stat").ToString();
             WarReportLabel = new TextObject("{=mCue7aFc}War Report").ToString();
@@ -163,16 +163,16 @@ namespace Diplomacy.ViewModel
             Faction1Visual = new ImageIdentifierVM(BannerCode.CreateFrom(playerKingdom.Banner), true);
             Faction2Visual = new ImageIdentifierVM(BannerCode.CreateFrom(_opposingKingdom.Banner), true);
 
-            PlayerWarExhaustion = $"{Instance.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom):F1}%";
-            OpponentWarExhaustion = $"{Instance.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom):F1}%";
+            PlayerWarExhaustion = $"{Instance!.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom):F1}%";
+            OpponentWarExhaustion = $"{Instance!.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom):F1}%";
 
-            PlayerWarExhaustionIsCritical = Instance.HasCriticalWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
-            OpponentWarExhaustionIsCritical = Instance.HasCriticalWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
+            PlayerWarExhaustionIsCritical = Instance!.HasCriticalWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom);
+            OpponentWarExhaustionIsCritical = Instance!.HasCriticalWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom);
 
             PlayerCriticaExhaustionlHint = GetCriticaExhaustionlHint(PlayerWarExhaustionIsCritical, Clan.PlayerClan.Kingdom, _opposingKingdom);
             OpponentCriticaExhaustionlHint = GetCriticaExhaustionlHint(OpponentWarExhaustionIsCritical, _opposingKingdom, Clan.PlayerClan.Kingdom);
 
-            var currentQuestState = Instance.GetWarExhaustionQuestState(Clan.PlayerClan.Kingdom, _opposingKingdom);
+            var currentQuestState = Instance!.GetWarExhaustionQuestState(Clan.PlayerClan.Kingdom, _opposingKingdom);
             int questStateWarningHeight;
             switch (currentQuestState)
             {

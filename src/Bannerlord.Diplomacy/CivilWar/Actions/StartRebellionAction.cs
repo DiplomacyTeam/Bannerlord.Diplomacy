@@ -51,7 +51,7 @@ namespace Diplomacy.CivilWar.Actions
 
             ChangeKingdomBannerAction.Apply(rebelFaction.RebelKingdom!, true);
 
-            foreach (var clan in rebelFaction.Clans)
+            foreach (var clan in rebelFaction.Clans.ToList())
             {
                 if (clan.IsEliminated)
                 {

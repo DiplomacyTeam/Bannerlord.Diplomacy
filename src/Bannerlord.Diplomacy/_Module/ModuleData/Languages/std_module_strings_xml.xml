@@ -160,22 +160,26 @@
     -->
 
     <string id="sBw5Qzq3" text="Kingdom Diplomacy" />
+    <string id="tis8Ddzn" text="Allow Player To Claim Player-Taken Settlements" />
+    <string id="TfxLCxcD" text="Gives the player the option to claim a settlement that they have taken rather than let it go to an election." />
+    <string id="8VKC3jtN" text="Enable Fiefless Kingdom Elimination" />
+    <string id="TlymwwPZ" text="If enabled, kingdoms without any fiefs are destroyed when they sign a peace treaty ending the last ongoing war they participate in. Default value is enabled." />
     <string id="ZRlNvsev" text="Minimum War Duration in Days" />
     <string id="vuFT5ns8" text="The minimum duration (in days) that a war can last before proposing peace. Default value is 21 (quarter of a standard game year)." />
     <string id="4MzQHMVj" text="Declare War Cooldown in Days" />
     <string id="q2duqN8d" text="The minimum duration (in days) before re-declaring war on the same kingdom after making peace. Default value is 21 (quarter of a standard game year)." />
-    <string id="6m1SspFW" text="Enable Player Kingdom Diplomacy Control" />
-    <string id="N5EouSSj" text="Gives the player full control over declaring war and making peace in the kingdom they belong to, even if they are just a vassal and not the leader of the kingdom. Default value is disabled." />
-    <string id="tis8Ddzn" text="Allow Player To Claim Player-Taken Settlements" />
-    <string id="TfxLCxcD" text="Gives the player the option to claim a settlement that they have taken rather than let it go to an election." />
+    <string id="2XC8QHkl" text="Enable Alliances" />
+    <string id="5YJBZx28" text="If disabled, this disables the ability to form alliances for both player and AI kingdoms. Default value is enabled." />
     <string id="H6XMjwpF" text="Minimum Alliance Duration in Days" />
     <string id="RrsWhIWi" text="The minimum duration (in days) that an alliance will last before it can be broken. Default value is 42 (half of a standard game year)." />
+    <string id="5a829TiT" text="Alliance Tendency" />
+    <string id="7nSjs8UL" text="Score modifier affecting the tendency of kingdoms to form alliances. Increasing the modifier makes alliances more desirable to AI kingdoms. Default value is 0." />
     <string id="V35hUfcc" text="Non-Aggression Pact Duration in Days"/>
     <string id="KXLGZEPh" text="The duration (in days) that a non-aggression pact will last. Default value is 84 (one standard game year)."/>
     <string id="G8BhBnRG" text="Non-Aggression Pact Tendency" />
     <string id="907ER5u9" text="Score modifier affecting the tendency of kingdoms to form non-aggression pacts. Increasing the modifier makes non-aggression pacts more desirable to AI kingdoms. Default value is 0." />
-    <string id="5a829TiT" text="Alliance Tendency" />
-    <string id="7nSjs8UL" text="Score modifier affecting the tendency of kingdoms to form alliances. Increasing the modifier makes alliances more desirable to AI kingdoms. Default value is 0." />
+    <string id="6m1SspFW" text="Enable Player Kingdom Diplomacy Control" />
+    <string id="N5EouSSj" text="Gives the player full control over declaring war and making peace in the kingdom they belong to, even if they are just a vassal and not the leader of the kingdom. Default value is disabled." />
     <string id="lhysZl9j" text="Action Tendency" />
 
     <string id="ldLFTs92" text="Costs" />      
@@ -187,7 +191,7 @@
     <string id="HFtZsD6v" text="Scaling War Reparations Gold Cost Multiplier" />
     <string id="MIhbrqbr" text="Multiplier for the scaling of war reparations gold costs. Default value is 50." />
     <string id="Cr6a5Jap" text="Defeated War Reparations Gold Cost" />
-    <string id="NH4GNKva" text="The cost in gold for losing a war of attrition against another kingdom, measured in millions. The default value is 200." />
+    <string id="NH4GNKva" text="The base cost in gold for losing a war of attrition against another kingdom. Affected by scaling and with scaling disabled will be multiplied by a thousand. The default value is 200." />
 
     <string id="SEViwYTl" text="Influence Costs" />
     <string id="WbOKuWbQ" text="Enable Influence Costs" />
@@ -212,9 +216,6 @@
     <string id="zkvCGLuK" text="The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3." />
     <string id="nMwWHj4h" text="Send Messenger Gold Cost" />
     <string id="ehMf7xvE" text="Gold cost for sending a messenger to another character. Default value is 100." />
-
-    <string id="2XC8QHkl" text="Enable Alliances" />
-    <string id="5YJBZx28" text="If disabled, this disables the ability to form alliances for both player and AI kingdoms. Default value is enabled." />
 
     <string id="OfEMJWiR" text="Relation" />
     <string id="6l9QNMrB" text="Grant Fief Postiive Relation Multiplier" />
