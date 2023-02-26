@@ -49,6 +49,8 @@ namespace Diplomacy.CivilWar.Factions
 
         public abstract RebelDemandType RebelDemandType { get; }
 
+        public abstract bool ConsolidateOnSuccess { get; }
+
         public float FactionStrength
         {
             get { return _participatingClans.Select(c => c.TotalStrength).Sum(); }

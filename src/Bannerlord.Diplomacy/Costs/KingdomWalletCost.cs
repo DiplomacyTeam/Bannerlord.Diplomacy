@@ -17,7 +17,7 @@ namespace Diplomacy.Costs
         public Kingdom? ReceivingKingdom => _receiver;
         public WalletType ReceiverWallet => _receiverWallet;
 
-        public KingdomWalletCost(Kingdom? payer, Kingdom? receiver, float value, WalletType payerWallet = WalletType.TributeWallet, WalletType receiverWallet = WalletType.BudgetWallet) : base(value)
+        public KingdomWalletCost(Kingdom? payer, Kingdom? receiver, float value, WalletType payerWallet = WalletType.ReparationsWallet, WalletType receiverWallet = WalletType.ReparationsWallet) : base(value)
         {
             _payer = payer;
             _payerWallet = payerWallet;

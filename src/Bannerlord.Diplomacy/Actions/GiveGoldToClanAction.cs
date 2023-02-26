@@ -1,5 +1,7 @@
 ﻿using Helpers;
 
+using System.Linq;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Library;
@@ -22,7 +24,7 @@ namespace Diplomacy.Actions
 
         private static void GiveGoldToClan(int gold, Clan clan)
         {
-            foreach ((var recipientHero, var amount) in MBMath.DistributeShares(gold, clan.Lords, CalculateShare))
+            foreach ((var recipientHero, var amount) in MBMath.DistributeShares(gold, clan.Lords.Where(l => l.IsAlive && l.IsCommander), CalculateShare))
             {
                 GiveGoldAction.ApplyBetweenCharacters(null, recipientHero, amount);
             }
@@ -30,7 +32,7 @@ namespace Diplomacy.Actions
 
         private static int CalculateShare(Hero member)
         {
-            return HeroHelper.CalculateTotalStrength(member) + (member == member.Clan?.Leader ? 100 : 10);
+            return HeroHelper.CalculateTotalStrength(member) + (member == member.Clan?.Leader ? 500 : 10);
         }
 
         public static void ApplyFromHeroToClan(Hero giverHero, Clan clan, int amount)

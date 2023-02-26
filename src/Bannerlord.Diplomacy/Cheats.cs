@@ -166,6 +166,9 @@ namespace Diplomacy
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
 
+            if (!Settings.Instance!.EnableWarExhaustion)
+                return "War exhaustion is disabled!";
+
             var isNumeric = int.TryParse(strings[2], out var targetWarExhaustion);
 
             if (!CampaignCheats.CheckParameters(strings, 3) || CampaignCheats.CheckHelp(strings) || !isNumeric)
@@ -199,7 +202,7 @@ namespace Diplomacy
             if (kingdom2 is null)
                 return "2nd kingdom ID not found: " + b2;
 
-            WarExhaustionManager.Instance.AddDivineWarExhaustion(kingdom1, kingdom2, targetWarExhaustion);
+            WarExhaustionManager.Instance!.AddDivineWarExhaustion(kingdom1, kingdom2, targetWarExhaustion);
             return "done!";
         }
 

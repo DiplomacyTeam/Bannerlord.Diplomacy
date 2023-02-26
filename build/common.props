@@ -2,14 +2,14 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.2.4</Version>
+        <Version>1.2.5</Version>
         <GameVersion>1.0.0</GameVersion>
     </PropertyGroup>
 
     <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
     <PropertyGroup>
         <!--BuildResources Version-->
-        <BuildResourcesVersion>1.0.1.89</BuildResourcesVersion>
+        <BuildResourcesVersion>1.0.1.92</BuildResourcesVersion>
         <!--Harmony Version-->
         <HarmonyVersion>2.2.2</HarmonyVersion>
         <!--ButterLib Version-->
@@ -19,13 +19,13 @@
         <!--UIExtenderEx Version-->
         <UIExtenderExVersion>2.6.0</UIExtenderExVersion>
         <!--BUTRShared Version-->
-        <BUTRSharedVersion>3.0.0.130</BUTRSharedVersion>
+        <BUTRSharedVersion>3.0.0.134</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->
         <BUTRModuleManagerVersion>5.0.198</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
         <BUTRModuleLoaderVersion>1.0.1.44</BUTRModuleLoaderVersion>
         <!--Harmony Extensions Version-->
-        <HarmonyExtensionsVersion>3.2.0.73</HarmonyExtensionsVersion>
+        <HarmonyExtensionsVersion>3.2.0.75</HarmonyExtensionsVersion>
     </PropertyGroup>
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>

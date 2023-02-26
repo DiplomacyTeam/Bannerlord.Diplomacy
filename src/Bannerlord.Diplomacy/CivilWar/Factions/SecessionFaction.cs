@@ -23,6 +23,8 @@ namespace Diplomacy.CivilWar.Factions
 
         public override float MemberInfluenceOnFailure => -100f;
 
+        public override bool ConsolidateOnSuccess => false;
+
         protected override void ApplyDemand()
         {
             var kingdomName = FactionNameGenerator.GenerateKingdomName(this);
