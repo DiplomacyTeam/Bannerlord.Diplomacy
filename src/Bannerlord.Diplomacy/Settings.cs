@@ -38,7 +38,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableFiefFirstRight { get; set; } = true;
 
-        [SettingPropertyBool("{=}Enable Fiefless Kingdom Elimination", Order = 10, RequireRestart = false, HintText = "{=}If enabled, kingdoms without any fiefs are destroyed when they are sign peace treaty ending the last ongoing war they participate in. Default value is enabled.")]
+        [SettingPropertyBool("{=8VKC3jtN}Enable Fiefless Kingdom Elimination", Order = 10, RequireRestart = false, HintText = "{=TlymwwPZ}If enabled, kingdoms without any fiefs are destroyed when they sign a peace treaty ending the last ongoing war they participate in. Default value is enabled.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableKingdomElimination { get; set; } = true;
 
@@ -106,6 +106,10 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public bool IndividualWarExhaustionRates { get; set; } = true;
 
+        [SettingPropertyBool("{=gW3eVr5E}Enable Fief Repatriation", Order = 3, RequireRestart = false, HintText = "{=KEi0UykN}If enabled, kingdoms may have to return some of their conquered fiefs back to the original owner if they lose the war substantially. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingWarExhaustion)]
+        public bool EnableFiefRepatriation { get; set; } = true;
+
         [SettingPropertyFloatingInteger("{=8TFQWL55}War Exhaustion Per Day", 0f, 5f, "0.00\\%", Order = 10, RequireRestart = false, HintText = "{=lgza5wDq}The amount of war exhaustion added per day a war is ongoing. Not affected by war exhaustion rate. Default value is 0.25%.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerDay { get; set; } = 0.25f;
@@ -118,13 +122,13 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerCasualty { get; set; } = 0.02f;
 
-        [SettingPropertyFloatingInteger("{=kr5zAufg}War Exhaustion Per Caravan Raid", 0f, 50f, "0.00\\%", Order = 25, RequireRestart = false, HintText = "{=PinVMCUE}The amount of war exhaustion added when a faction's caravan is raided. Default value is 3.0%.")]
+        [SettingPropertyFloatingInteger("{=kr5zAufg}War Exhaustion Per Caravan Raid", 0f, 50f, "0.00\\%", Order = 25, RequireRestart = false, HintText = "{=PinVMCUE}The amount of war exhaustion added when a faction's caravan is raided. Default value is 2.0%.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
-        public float WarExhaustionPerCaravanRaid { get; set; } = 3f;
+        public float WarExhaustionPerCaravanRaid { get; set; } = 2f;
 
-        [SettingPropertyFloatingInteger("{=qFJ23KxQ}War Exhaustion Per Hero Imprisoned", 0f, 50f, "0.00\\%", Order = 30, RequireRestart = false, HintText = "{=wctCn9uO}The base amount of war exhaustion added when a faction's noble hero is imprisoned. Affected by the hero significance for the faction. Potentially subject to diminishing returns. Default value is 2.0%.")]
+        [SettingPropertyFloatingInteger("{=qFJ23KxQ}War Exhaustion Per Hero Imprisoned", 0f, 50f, "0.00\\%", Order = 30, RequireRestart = false, HintText = "{=wctCn9uO}The base amount of war exhaustion added when a faction's noble hero is imprisoned. Affected by the hero significance for the faction. Potentially subject to diminishing returns. Default value is 1.0%.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
-        public float WarExhaustionPerImprisonment { get; set; } = 2f;
+        public float WarExhaustionPerImprisonment { get; set; } = 1f;
 
         [SettingPropertyFloatingInteger("{=4vTzbsXD}War Exhaustion Per Hero Perished", 0f, 50f, "0.00\\%", Order = 35, RequireRestart = false, HintText = "{=w80tUaVd}The base amount of war exhaustion added when a faction's noble hero is killed. Affected by the hero significance for the faction. Potentially subject to diminishing returns when multiple heroes of the same clan are killed. Default value is 5.0%.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
@@ -138,7 +142,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionPerSiege { get; set; } = 10f;
 
-        [SettingPropertyFloatingInteger("{=JmUPtZdw}War Exhaustion When Occupied", 0f, 50f, "0.00\\%", Order = 50, RequireRestart = false, HintText = "{=541jGrpb}The amount of war exhaustion added when a faction's lost all fiefs. Not affected by war exhaustion rate. Potentially subject to diminishing returns. Default value is 15.0%.")]
+        [SettingPropertyFloatingInteger("{=JmUPtZdw}War Exhaustion When Occupied", 0f, 50f, "0.00\\%", Order = 50, RequireRestart = false, HintText = "{=541jGrpb}The amount of war exhaustion added when a faction loses all of its fiefs. Not affected by war exhaustion rate. Potentially subject to diminishing returns. Default value is 15.0%.")]
         [SettingPropertyGroup(HeadingWarExhaustion)]
         public float WarExhaustionWhenOccupied { get; set; } = 15f;
 
@@ -189,7 +193,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingGoldCosts)]
         public float ScalingWarReparationsGoldCostMultiplier { get; set; } = 50;
 
-        [SettingPropertyInteger(displayName: "{=Cr6a5Jap}Defeated War Reparations Gold Cost", 0, 10000, Order = 12, RequireRestart = false, HintText = "{=NH4GNKva}The cost in gold for losing a war of attrition against another kingdom, measured in millions. The default value is 200.")]
+        [SettingPropertyInteger(displayName: "{=Cr6a5Jap}Defeated War Reparations Gold Cost", 0, 10000, Order = 12, RequireRestart = false, HintText = "{=NH4GNKva}The base cost in gold for losing a war of attrition against another kingdom. Affected by scaling and with scaling disabled will be multiplied by a thousand. The default value is 200.")]
         [SettingPropertyGroup(HeadingGoldCosts)]
         public int DefeatedGoldCost { get; set; } = 200;
 

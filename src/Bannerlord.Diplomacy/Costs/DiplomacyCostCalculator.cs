@@ -1,4 +1,5 @@
 ﻿using Diplomacy.CivilWar.Factions;
+using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Extensions;
 using Diplomacy.WarExhaustion;
 
@@ -42,7 +43,7 @@ namespace Diplomacy.Costs
                 return new InfluenceCost(clanPayingInfluence, 0f);
 
             //Making peace is free for critically exhausted factions that not yet lost
-            if (Settings.Instance!.EnableWarExhaustion && WarExhaustionManager.Instance.HasCriticalWarExhaustion(kingdomMakingPeace, otherKingdom, checkMaxWarExhaustion: true))
+            if (Settings.Instance!.EnableWarExhaustion && WarExhaustionManager.Instance!.HasCriticalWarExhaustion(kingdomMakingPeace, otherKingdom, checkMaxWarExhaustion: true))
                 return new InfluenceCost(clanPayingInfluence, 0f);
 
             if (!Settings.Instance!.ScalingInfluenceCosts)
@@ -72,14 +73,15 @@ namespace Diplomacy.Costs
             if (!Settings.Instance!.EnableWarExhaustion)
                 return new(giver, receiver, reparationsCost);
 
-            //No reparations from kingdoms that are about to be destroyed
-            if (Settings.Instance!.EnableKingdomElimination && kingdomMakingPeace.Fiefs.Count == 0 && !FactionManager.GetEnemyKingdoms(kingdomMakingPeace).Any(k => k != otherKingdom && !k.IsEliminated))
+            //No reparations between kingdoms that are about to be destroyed
+            var shouldBeDestroyed = KingdomPeaceAction.ShouldKingdomsBeDestroyed(kingdomMakingPeace, otherKingdom);
+            if (shouldBeDestroyed.KingdomMakingPeace || shouldBeDestroyed.OtherKingdom)
                 return new(giver, receiver, reparationsCost);
             if (kingdomMakingPeace.IsRebelKingdomOf(otherKingdom) || (otherKingdom.IsRebelKingdomOf(kingdomMakingPeace) && kingdomMakingPeace.GetRebelFactions().Any(x => x.RebelKingdom == otherKingdom && x is not SecessionFaction)))
                 return new(giver, receiver, reparationsCost);
 
-            var kingdomMakingPeaceWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(kingdomMakingPeace, otherKingdom);
-            var otherKingdomWarExhaustion = WarExhaustionManager.Instance.GetWarExhaustion(otherKingdom, kingdomMakingPeace);
+            var kingdomMakingPeaceWarExhaustion = WarExhaustionManager.Instance!.GetWarExhaustion(kingdomMakingPeace, otherKingdom);
+            var otherKingdomWarExhaustion = WarExhaustionManager.Instance!.GetWarExhaustion(otherKingdom, kingdomMakingPeace);
 
             if (kingdomMakingPeaceWarExhaustion > otherKingdomWarExhaustion && WarExhaustionManager.IsCriticalWarExhaustion(kingdomMakingPeaceWarExhaustion))
             {
@@ -91,14 +93,14 @@ namespace Diplomacy.Costs
             }
             else if (kingdomMakingPeaceWarExhaustion == otherKingdomWarExhaustion)
             {
-                var otherKingdomLost = WarExhaustionManager.Instance.GetWarResult(otherKingdom, kingdomMakingPeace) == WarExhaustionManager.WarResult.Loss;
+                var otherKingdomLost = WarExhaustionManager.Instance!.GetWarResult(otherKingdom, kingdomMakingPeace) == WarExhaustionManager.WarResult.Loss;
                 if (otherKingdomLost)
                 {
                     GetReparationsFromOtherKingdom(kingdomMakingPeace, otherKingdom, out giver, out receiver, out reparationsCost, kingdomMakingPeaceWarExhaustion, otherKingdomWarExhaustion, otherKingdomLost);
                 }
                 else
                 {
-                    var kingdomMakingPeaceLost = WarExhaustionManager.Instance.GetWarResult(kingdomMakingPeace, otherKingdom) == WarExhaustionManager.WarResult.Loss;
+                    var kingdomMakingPeaceLost = WarExhaustionManager.Instance!.GetWarResult(kingdomMakingPeace, otherKingdom) == WarExhaustionManager.WarResult.Loss;
                     if (kingdomMakingPeaceLost)
                         reparationsCost = CalculateReparations(kingdomMakingPeace, otherKingdom, kingdomMakingPeaceWarExhaustion, otherKingdomWarExhaustion, kingdomMakingPeaceLost);
                 }
@@ -109,8 +111,8 @@ namespace Diplomacy.Costs
 
             static int CalculateReparations(Kingdom kingdomPayingReparations, Kingdom otherKingdom, float payingKingdomWarExhaustion, float otherKingdomWarExhaustion, bool? payerLostWar = null)
             {
-                var lossReparations = (payerLostWar ?? WarExhaustionManager.Instance.GetWarResult(kingdomPayingReparations, otherKingdom) == WarExhaustionManager.WarResult.Loss) ? Settings.Instance!.DefeatedGoldCost : 0;
-                var warExhaustionReparations = otherKingdomWarExhaustion * ((payingKingdomWarExhaustion - otherKingdomWarExhaustion) / (WarExhaustionManager.IsCriticalWarExhaustion(otherKingdomWarExhaustion) ? 20f : 10f));
+                var lossReparations = (payerLostWar ?? WarExhaustionManager.Instance!.GetWarResult(kingdomPayingReparations, otherKingdom) == WarExhaustionManager.WarResult.Loss) ? Settings.Instance!.DefeatedGoldCost : 0;
+                var warExhaustionReparations = otherKingdomWarExhaustion * ((payingKingdomWarExhaustion - otherKingdomWarExhaustion) / (WarExhaustionManager.IsCriticalWarExhaustion(otherKingdomWarExhaustion) ? 10f : 5f));
                 return (int) ((lossReparations + warExhaustionReparations) * GetKingdomScalingFactorForReparations(kingdomPayingReparations));
             }
 

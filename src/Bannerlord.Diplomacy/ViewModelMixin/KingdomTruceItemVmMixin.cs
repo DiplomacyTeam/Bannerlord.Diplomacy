@@ -164,8 +164,8 @@ namespace Diplomacy.ViewModelMixin
                     ViewModel!.Stats.RemoveAt(1);
 
                 ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM(
-                    (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction1, _faction2),
-                    (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction2, _faction1),
+                    (int) WarExhaustionManager.Instance!.GetWarExhaustion(_faction1, _faction2),
+                    (int) WarExhaustionManager.Instance!.GetWarExhaustion(_faction2, _faction1),
                     _TWarExhaustion,
                     Color.FromUint(_faction1.Color).ToString(),
                     Color.FromUint(_faction2.Color).ToString(),

@@ -1,8 +1,19 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.5
 Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
+* Fixed a crash on making peace when War Exhaustion is disabled.
+* Fixed a crash after loading a save when attempting to fix any faulty factions (again).
+* Fixed a bug due to which kingdoms were sometimes not destroyed when they should have been.
+* Fixed a bug due to which War Exhaustion breakdowns were sometimes showing wrong values (unaffected by rates).
+* Making peace should now use all of the mod's enabled mechanics, no matter what interface option was used for it.
 * Adjusted the calculation of war reparations to make it even more lenient.
+* Adjusted the way war reparations are gathered by the paying kingdom to make it less stressful.
+* Adjusted the way war reparations are distributed among the winning faction.
+* Adjusted the calculation and default values for some of the War Exhaustion entries.
+* Adjusted War Exhaustion rates calculation.
+* Adjusted descriptions of some settings for clarity.
 * Added an option to disable the elimination of fiefless kingdoms.
+* Added an option to disable fief repatriation after losing a war.
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.4
 Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0

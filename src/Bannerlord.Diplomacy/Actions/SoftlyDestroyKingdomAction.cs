@@ -5,7 +5,7 @@ using TaleWorlds.CampaignSystem.Actions;
 
 namespace Diplomacy.Actions
 {
-    public static class DestroyKingdomSoftlyAction
+    public static class SoftlyDestroyKingdomAction
     {
         public static void Apply(Kingdom kingdomToDestroy)
         {

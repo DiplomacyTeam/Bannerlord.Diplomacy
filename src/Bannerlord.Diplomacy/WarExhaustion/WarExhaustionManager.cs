@@ -35,13 +35,13 @@ namespace Diplomacy.WarExhaustion
         [SaveableField(3)]
         private Dictionary<string, List<WarExhaustionEventRecord>> _warExhaustionEventRecords;
 
-        public static WarExhaustionManager Instance { get; private set; } = default!;
+        public static WarExhaustionManager? Instance { get; private set; } = default;
 
         internal const float MaxWarExhaustion = 100f;
         internal const float MinWarExhaustion = 0f;
         internal const float CriticalThresholdWarExhaustion = 0.75f;
 
-        private const float BaseKingdomStrengthForExhaustionRate = 2000f;
+        private const float BaseKingdomStrengthForExhaustionRate = 4000f;
         private const float MinExhaustionRate = 0.25f;
         private const float MaxExhaustionRate = 1.0f;
 
@@ -67,6 +67,16 @@ namespace Diplomacy.WarExhaustion
             return key is not null && _warExhaustionRates.TryGetValue(key, out var warExhaustionRec)
                 ? (kingdoms!.ReversedKeyOrder ? warExhaustionRec.Faction2Value : warExhaustionRec.Faction1Value)
                 : 1f;
+        }
+
+        private WarExhaustionRecord GetWarExhaustionRates(Kingdoms kingdoms)
+        {
+            if (!_warExhaustionRates.TryGetValue(kingdoms.Key!, out var warExhaustionRate))
+            {
+                RegisterWarExhaustionMultiplier(kingdoms);
+                warExhaustionRate = _warExhaustionRates[kingdoms.Key!];
+            }
+            return warExhaustionRate;
         }
 
         public ActiveQuestState GetWarExhaustionQuestState(Kingdom kingdom1, Kingdom kingdom2)
@@ -102,17 +112,17 @@ namespace Diplomacy.WarExhaustion
             var key = kingdoms.Key;
             if (key is not null)
             {
-                GetWarExhaustionMultiplier(kingdoms, out var multiplier1, out var multiplier2);
+                CalculateWarExhaustionMultiplier(kingdoms, out var multiplier1, out var multiplier2);
                 _warExhaustionRates[key] = new(multiplier1, multiplier2, considerRangeLimits: false);
             }
         }
 
-        private static void GetWarExhaustionMultiplier(Kingdoms kingdoms, out float multiplier1, out float multiplier2)
+        private static void CalculateWarExhaustionMultiplier(Kingdoms kingdoms, out float multiplier1, out float multiplier2)
         {
             if (Settings.Instance!.IndividualWarExhaustionRates)
             {
-                var kingdom1multiplier = MBMath.ClampFloat(BaseKingdomStrengthForExhaustionRate / kingdoms.Kingdom1.TotalStrength, MinExhaustionRate, MaxExhaustionRate);
-                var kingdom2multiplier = MBMath.ClampFloat(BaseKingdomStrengthForExhaustionRate / kingdoms.Kingdom2.TotalStrength, MinExhaustionRate, MaxExhaustionRate);
+                var kingdom1multiplier = MBMath.ClampFloat(CalculateMultiplier(kingdoms.Kingdom1.TotalStrength), MinExhaustionRate, MaxExhaustionRate);
+                var kingdom2multiplier = MBMath.ClampFloat(CalculateMultiplier(kingdoms.Kingdom2.TotalStrength), MinExhaustionRate, MaxExhaustionRate);
                 if (kingdoms.ReversedKeyOrder)
                 {
                     multiplier1 = kingdom2multiplier;
@@ -127,9 +137,11 @@ namespace Diplomacy.WarExhaustion
             else
             {
                 var average = (kingdoms.Kingdom1.TotalStrength + kingdoms.Kingdom2.TotalStrength) / 2;
-                multiplier1 = MBMath.ClampFloat(BaseKingdomStrengthForExhaustionRate / average, MinExhaustionRate, MaxExhaustionRate);
+                multiplier1 = MBMath.ClampFloat(CalculateMultiplier(average), MinExhaustionRate, MaxExhaustionRate);
                 multiplier2 = multiplier1;
             }
+
+            static float CalculateMultiplier(float strength) => 1 - 0.25f * (Math.Max(strength / BaseKingdomStrengthForExhaustionRate, 1) - 1);
         }
 
         public List<WarExhaustionEventRecord> GetWarExhaustionEventRecords(Kingdom kingdom1, Kingdom kingdom2, out Kingdoms? kingdoms)
