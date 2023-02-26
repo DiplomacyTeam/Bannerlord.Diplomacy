@@ -9,7 +9,7 @@
     <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
     <PropertyGroup>
         <!--BuildResources Version-->
-        <BuildResourcesVersion>1.0.1.89</BuildResourcesVersion>
+        <BuildResourcesVersion>1.0.1.92</BuildResourcesVersion>
         <!--Harmony Version-->
         <HarmonyVersion>2.2.2</HarmonyVersion>
         <!--ButterLib Version-->
