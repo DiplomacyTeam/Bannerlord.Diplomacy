@@ -19,7 +19,7 @@ namespace Diplomacy.Patches
         {
             if (__instance.FactionToMakePeaceWith is not Kingdom kingdomToMakePeaceWith)
                 return true;
-            
+
             if (!____applyResults || !((MakePeaceKingdomDecision.MakePeaceDecisionOutcome) chosenOutcome).ShouldPeaceBeDeclared)
                 return false;
 
