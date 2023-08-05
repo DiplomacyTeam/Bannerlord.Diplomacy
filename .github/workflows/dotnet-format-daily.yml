@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Code Formatting
-        uses: butr/actions-code-format-setup@v1.5
+        uses: butr/actions-code-format-setup@v1.7
         with:
           workspace: "src/Bannerlord.Diplomacy.sln"
           github-token: ${{ secrets.GITHUB_TOKEN }}
