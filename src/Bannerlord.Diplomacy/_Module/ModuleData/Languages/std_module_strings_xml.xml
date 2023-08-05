@@ -164,6 +164,8 @@
     <string id="TfxLCxcD" text="Gives the player the option to claim a settlement that they have taken rather than let it go to an election." />
     <string id="8VKC3jtN" text="Enable Fiefless Kingdom Elimination" />
     <string id="TlymwwPZ" text="If enabled, kingdoms without any fiefs are destroyed when they sign a peace treaty ending the last ongoing war they participate in. Default value is enabled." />
+    <string id="w8Hi9jJf" text="Delay Fiefless Kingdom Elimination" />
+    <string id="GDctI4Kd" text="If enabled, kingdoms without any fiefs will only be destroyed when they sign a peace treaty ending the last ongoing war they are involved in, not immediately after they lose their last fief. Default value is enabled." />      
     <string id="ZRlNvsev" text="Minimum War Duration in Days" />
     <string id="vuFT5ns8" text="The minimum duration (in days) that a war can last before proposing peace. Default value is 21 (quarter of a standard game year)." />
     <string id="4MzQHMVj" text="Declare War Cooldown in Days" />

@@ -129,7 +129,7 @@ namespace Diplomacy.CivilWar.Factions
 
         public void AddClan(Clan clan)
         {
-            if (!_participatingClans.Contains(clan))
+            if (clan != null && !_participatingClans.Contains(clan))
                 _participatingClans.Add(clan);
         }
 

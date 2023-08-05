@@ -56,7 +56,10 @@ namespace Diplomacy.CivilWar.Scoring
 
         protected override Tuple<TextObject, float> GetRelationshipScoreWithTarget(Clan clan, RebelFaction rebelFaction)
         {
-            var mercyMultiplier = 1 - (clan.Leader.GetTraitLevel(DefaultTraits.Mercy) * 0.25f);
+            if (clan?.Leader is null)
+                new Tuple<TextObject, float>(_TRelationsFactionTarget, 0);
+
+            var mercyMultiplier = 1 - (clan!.Leader!.GetTraitLevel(DefaultTraits.Mercy) * 0.25f);
             var relationshipWithRuler = clan.GetRelationWithClan(clan.Kingdom.RulingClan);
             var relationshipWithRulerAdj = relationshipWithRuler <= 0 ? relationshipWithRuler * mercyMultiplier : relationshipWithRuler;
 

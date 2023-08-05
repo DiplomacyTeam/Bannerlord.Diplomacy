@@ -16,7 +16,11 @@ namespace Diplomacy.Patches
     {
         protected override IEnumerable<Patch> Prepare()
         {
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115
             var conversationBehaviorType = Type.GetType("SandBox.CampaignBehaviors.LordConversationsCampaignBehavior, SandBox, Version=1.0.0.0, Culture=neutral")!;
+#else
+            var conversationBehaviorType = Type.GetType("TaleWorlds.CampaignSystem.CampaignBehaviors.LordConversationsCampaignBehavior, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")!;
+#endif
             return new Patch[]
             {
             new Postfix(nameof(PreventOtherActionsConversation), conversationBehaviorType, "conversation_lord_request_mission_ask_on_condition"),

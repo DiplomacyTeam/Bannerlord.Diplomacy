@@ -2,6 +2,7 @@
 
 using Microsoft.Extensions.Logging;
 
+using System;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
@@ -38,7 +39,19 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ClearWarExhaustion);
 
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, OnGameLoadFinished);
+
+#if v120 || v121 || v122 || v123
+            CampaignEvents.CanKingdomBeDiscontinuedEvent.AddNonSerializedListener(this, CanKingdomBeDiscontinued);
+#endif
         }
+
+#if v120 || v121 || v122 || v123
+        private void CanKingdomBeDiscontinued(Kingdom kingdom, ref bool result)
+        {
+            if (Settings.Instance!.EnableKingdomElimination)
+                result = false; //TODO: Probably should move on to vanila kingdom dispatching when making peace
+        }
+#endif
 
 #if v100 || v101 || v102 || v103
         private void ClearWarExhaustion(IFaction faction1, IFaction faction2)
