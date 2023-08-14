@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <AssemblyName>$(ModuleName).$(GameVersion)</AssemblyName>
@@ -26,7 +26,7 @@
       <PackageReference Include="Bannerlord.ModuleManager.Source" Version="$(BUTRModuleManagerVersion)" />
         <PackageReference Include="Bannerlord.ButterLib" Version="$(ButterLibVersion)" IncludeAssets="compile" />
         <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" IncludeAssets="compile" />
-        <PackageReference Include="ColorMinePortable" Version="2.0.1" />
+        <PackageReference Include="ColorMinePortable" Version="2.0.4" />
         <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" IncludeAssets="compile" />
         <PackageReference Include="Bannerlord.UIExtenderEx" Version="$(UIExtenderExVersion)" IncludeAssets="compile" />
         <!-- Microsoft.CSharp is used for its source-only 'dynamic' implementation. -->
