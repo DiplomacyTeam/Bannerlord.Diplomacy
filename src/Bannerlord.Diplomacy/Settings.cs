@@ -38,7 +38,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableFiefFirstRight { get; set; } = true;
 
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
         [SettingPropertyBool("{=8VKC3jtN}Enable Fiefless Kingdom Elimination", Order = 10, RequireRestart = false, HintText = "{=TlymwwPZ}If enabled, kingdoms without any fiefs are destroyed when they sign a peace treaty ending the last ongoing war they participate in. Default value is enabled.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableKingdomElimination { get; set; } = true;
