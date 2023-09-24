@@ -66,7 +66,7 @@ namespace Diplomacy.CivilWar.Actions
 
                 if (clanKingdom == kingdom)
                 {
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
                     var visuals = mobileParty.Party!.Visuals;
                     if (visuals != null)
                     {
@@ -80,7 +80,7 @@ namespace Diplomacy.CivilWar.Actions
 
             foreach (var settlement in kingdom.Settlements)
             {
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
                 var visuals = settlement.Party.Visuals;
                 if (visuals != null)
                 {
@@ -95,7 +95,7 @@ namespace Diplomacy.CivilWar.Actions
                     var party = settlement.Village.VillagerPartyComponent.MobileParty.Party;
                     if (party != null)
                     {
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
                         party.Visuals.SetMapIconAsDirty();
 #else
                         party.SetVisualAsDirty();
@@ -107,7 +107,7 @@ namespace Diplomacy.CivilWar.Actions
                     var party = settlement.Town.GarrisonParty.Party;
                     if (party != null)
                     {
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
                         party.Visuals.SetMapIconAsDirty();
 #else
                         party.SetVisualAsDirty();

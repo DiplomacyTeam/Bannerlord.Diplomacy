@@ -30,7 +30,7 @@ namespace Diplomacy.ViewModel
             }
             else if (settlement.IsCastle)
             {
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
                 Prosperity = (int) Math.Round(settlement.Prosperity);
 #else
                 Prosperity = (int) Math.Round(settlement.Town.Prosperity);
