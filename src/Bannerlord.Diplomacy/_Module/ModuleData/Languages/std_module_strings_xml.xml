@@ -62,7 +62,7 @@
     <string id="DrnXprup" text="You have been at war too recently to consider an alliance. It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
     <string id="KHJyWj9H" text="Cannot be in an alliance." />
     <string id="UQZmdLzc" text="Cannot be at war." />
-    <string id="PdN5g5ub" text="Alliance Formed" />
+    <string id="qIa19an4" text="Alliance Formed" />
     <string id="3pbwc8sh" text="Alliance Proposal"/>
     <string id="QbOqatd7" text="{KINGDOM} is proposing an alliance with {PLAYER_KINGDOM}." />
 
@@ -101,7 +101,7 @@
     <string id="gyLjlpJB" text="{KINGDOM} is proposing a non-aggression pact with {PLAYER_KINGDOM}."/>
 
     <string id="9pY0NQrk" text="Form Pact"/>
-    <string id="9zlQNtlX" text="Form a non-aggression pact lasting {PACT_DURATION_DAYS} days."/>
+    <string id="9zlQNtlX" text="Form a non-aggression pact lasting {DAYS} days."/>
 
     <string id="1occw3EF" text="Stats"/>
     <string id="OvbY5qxL" text="Overview"/>
@@ -136,6 +136,7 @@
     <string id="qbLPBlIv" text="Calradia grows wary of the inexorable expansion of the {EXPANSIONIST_KINGDOM}. A coalition led by the {COALITION_KINGDOM} has been formed to fight them!"/>
 
     <string id="vB3RrMNf" text="The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}." />
+    <string id="PdN5g5ub" text="{KINGDOM} has formed an alliance with {OTHER_KINGDOM}!">
     <string id="5r6fsHgm" text="Current Score"/>
     <string id="XIBUWDlT" text="Required Score"/>
 
