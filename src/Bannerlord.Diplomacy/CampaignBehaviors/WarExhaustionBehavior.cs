@@ -169,7 +169,7 @@ namespace Diplomacy.CampaignBehaviors
                     return;
             }
 
-            _warExhaustionManager.AddHeroPerishedWarExhaustion(kingdoms, victim, killer.PartyBelongedTo.Name ?? effector!.Name, detail);
+            _warExhaustionManager.AddHeroPerishedWarExhaustion(kingdoms, victim, killer.PartyBelongedTo?.Name ?? effector!.Name, detail);
         }
 
 
