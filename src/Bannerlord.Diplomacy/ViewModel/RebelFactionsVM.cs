@@ -139,7 +139,7 @@ namespace Diplomacy.ViewModel
                 inquiryElements,
                 true,
                 1,
-#if v120 || v121 || v122 || v123 || v124 || v125
+#if v120 || v121 || v122 || v123 || v124 || v125 || v126 || v127 || v128
                 1,
 #endif
                 GameTexts.FindText("str_ok").ToString(),

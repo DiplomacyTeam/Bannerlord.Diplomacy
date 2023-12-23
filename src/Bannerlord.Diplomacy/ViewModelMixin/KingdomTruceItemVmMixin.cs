@@ -36,7 +36,7 @@ namespace Diplomacy.ViewModelMixin
         private static readonly TextObject _TPacts = new(StringConstants.NonAggressionPacts);
 
         private static readonly TextObject _TNapHelpText = new("{=9zlQNtlX}Form a non-aggression pact lasting {DAYS} days.");
-        private static readonly TextObject _TWarExhaustion = new("{=XmV_TQ0bH}War Exhaustion");
+        private static readonly TextObject _TWarExhaustion = new("{=XmVTQ0bH}War Exhaustion");
 
         private static readonly TextObject _TBreakAlliance = new("{=K4GraLTn}Break Alliance");
 
