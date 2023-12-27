@@ -68,6 +68,10 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int MinimumAllianceDuration { get; set; } = 42;
 
+        [SettingPropertyBool("{=xXKKRp99}Leader Clan Family Marriage Affects Alliance", Order = 33, RequireRestart = false, HintText = "{=BGS6mUID}If active, will grant a bonus to alliance tendency when leader clans have a family marriage between them. Default value is active.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public bool LeaderClanMarriageAffectsAlliance { get; set; } = true;
+
         [SettingPropertyInteger("{=V35hUfcc}Non-Aggression Pact Duration in Days", 0, 1000, Order = 50, RequireRestart = false, HintText = "{=KXLGZEPh}The duration (in days) that a non-aggression pact will last. Default value is 84 (one standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int NonAggressionPactDuration { get; set; } = 84;

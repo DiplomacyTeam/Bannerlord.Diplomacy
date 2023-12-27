@@ -126,6 +126,7 @@
     <string id="cmOSpfyW" text="Alliance with {ALLIED_KINGDOM}"/>
     <string id="RqQ4oqvl"  text="War with {ENEMY_KINGDOM}"/>
     <string id="t6YhBLj7" text="Non-Aggression Pact with {KINGDOM}" />
+    <string id="BjkwaNot" text="Marriage with leading clan of {KINGDOM}" />
 
     <string id="M4SGjzQP" text="This faction is not interested in forming a non-aggression pact with you."/>
 
@@ -195,7 +196,10 @@
     <string id="aH6rpjt6" text="The relation value of kingdom leaders after which kingdoms will not start wars with each other. Default value is 30." />
     <string id="jwNKk8P7" text="No Wars When Married" />
     <string id="xcMzKH48" text="If active, kingdom leader clans that have a marriage between each other will not start wars. Default value is active." />
-
+    <string id="xcMzKH48" text="If active, kingdom leader clans that have a marriage between each other will not start wars. Default value is active." />
+    <string id="xXKKRp99" text="Leader Clan Family Marriage Affects Alliance" />
+    <string id="BGS6mUID" text="If active, will grant a bonus to alliance tendency when leader clans have a family marriage between them. Default value is active." />
+      
     <string id="ldLFTs92" text="Costs" />      
     <string id="Ckd1Lsoa" text="Gold Costs" />
     <string id="t4hNAoD7" text="Enable Scaling Gold Costs" />
