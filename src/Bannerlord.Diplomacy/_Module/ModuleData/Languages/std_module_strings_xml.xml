@@ -14,9 +14,12 @@
 
     <string id="v0cDMIcl" text="Cannot declare war on this kingdom. " />
     <string id="Pqk3WuGz" text="Cannot make peace with this kingdom. " />
+    <string id="9aaZ8Ed4" text="Cannot declare war, kingdom leaders are friends." />
+    <string id="Zimavbgw" text="Cannot declare war, kingdom leaders personal relations are excellent." />
+    <string id="pXD8Uf2e" text="Cannot declare war, kingdom leader clans have close family marriages." />
+      
     <string id="zv12jjyW" text="Messenger Sent" />
     <string id="uy86VZX2" text="Messenger Arrived" />
-
 
     <string id="JmgAuONd" text="Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
     <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}" />
@@ -136,7 +139,7 @@
     <string id="qbLPBlIv" text="Calradia grows wary of the inexorable expansion of the {EXPANSIONIST_KINGDOM}. A coalition led by the {COALITION_KINGDOM} has been formed to fight them!"/>
 
     <string id="vB3RrMNf" text="The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}." />
-    <string id="PdN5g5ub" text="{KINGDOM} has formed an alliance with {OTHER_KINGDOM}!">
+    <string id="PdN5g5ub" text="{KINGDOM} has formed an alliance with {OTHER_KINGDOM}!" />
     <string id="5r6fsHgm" text="Current Score"/>
     <string id="XIBUWDlT" text="Required Score"/>
 
@@ -184,6 +187,14 @@
     <string id="6m1SspFW" text="Enable Player Kingdom Diplomacy Control" />
     <string id="N5EouSSj" text="Gives the player full control over declaring war and making peace in the kingdom they belong to, even if they are just a vassal and not the leader of the kingdom. Default value is disabled." />
     <string id="lhysZl9j" text="Action Tendency" />
+    <string id="dRyU9E7Z" text="No Wars Between Friends" />
+    <string id="XyXJSTKr" text="If active, kingdom leaders that are friends will not start wars with each other. Default value is enabled." />
+    <string id="pWoKQ6HO" text="No Wars If Good Relations" />
+    <string id="bOuGhbPt" text="If active, wars between leaders of kingdoms will not be allowed if relations are above war start relations. Default value is enabled." />
+    <string id="x0Aoiomr" text="No Wars Good Relations Threshold" />
+    <string id="aH6rpjt6" text="The relation value of kingdom leaders after which kingdoms will not start wars with each other. Default value is 30." />
+    <string id="jwNKk8P7" text="No Wars When Married" />
+    <string id="xcMzKH48" text="If active, kingdom leader clans that have a marriage between each other will not start wars. Default value is active." />
 
     <string id="ldLFTs92" text="Costs" />      
     <string id="Ckd1Lsoa" text="Gold Costs" />
@@ -244,7 +255,6 @@
     <string id="e5fHDXgl" text="Corruption" />
     <string id="KWAH0S4h" text="Enable Corruption" />
     <string id="trgnZ0pn" text="Enables corruption, which gradually decays a clan's influence each day when holding too many fiefs. Default value is enabled."/>
-
 
     <string id="ZqQaUIil" text="Expansionism"/>
     <string id="2raR1ZHv" text="Coalitions"/>
