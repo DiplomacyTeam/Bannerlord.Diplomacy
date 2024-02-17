@@ -76,9 +76,9 @@ jobs:
         echo "::set-output name=mod_description::$desc"
 
     - name: Upload bannerlord folder
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: Bannerlord.Diplomacy
+        name: Bannerlord.Diplomacy-${{ steps.changelog.outputs.mod_version }}
         path: ./bannerlord/
 
 ###########################
@@ -86,7 +86,7 @@ jobs:
 ###########################
   publish-on-nexusmods:
     needs: ["build-module"]
-    uses: BUTR/workflows/.github/workflows/release-nexusmods.yml@c380eee4855024ed3cd0f7358b20bf6ff1bc041d
+    uses: BUTR/workflows/.github/workflows/release-nexusmods.yml@master
     with:
       nexusmods_game_id: mountandblade2bannerlord
       nexusmods_mod_id: 832
@@ -103,7 +103,7 @@ jobs:
 ###########################
   publish-on-steam:
     needs: ["build-module"]
-    uses: BUTR/workflows/.github/workflows/release-steam.yml@c380eee4855024ed3cd0f7358b20bf6ff1bc041d
+    uses: BUTR/workflows/.github/workflows/release-steam.yml@master
     with:
       workshop_id: 2881380744
       mod_id: Bannerlord.Diplomacy
@@ -119,7 +119,7 @@ jobs:
 ###########################
   publish-on-github:
     needs: ["build-module"]
-    uses: BUTR/workflows/.github/workflows/release-github.yml@c380eee4855024ed3cd0f7358b20bf6ff1bc041d
+    uses: BUTR/workflows/.github/workflows/release-github.yml@master
     with:
       mod_id: Bannerlord.Diplomacy
       mod_version: ${{ needs.build-module.outputs.mod_version }}
