@@ -2,24 +2,24 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.2.10</Version>
+        <Version>1.2.11</Version>
         <GameVersion>1.0.0</GameVersion>
     </PropertyGroup>
 
     <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
     <PropertyGroup>
         <!--BuildResources Version-->
-        <BuildResourcesVersion>1.1.0.102</BuildResourcesVersion>
+        <BuildResourcesVersion>1.1.0.104</BuildResourcesVersion>
         <!--Harmony Version-->
         <HarmonyVersion>2.2.2</HarmonyVersion>
         <!--ButterLib Version-->
-        <ButterLibVersion>2.8.11</ButterLibVersion>
+        <ButterLibVersion>2.8.16</ButterLibVersion>
         <!--MCM Version-->
-        <MCMVersion>5.9.1</MCMVersion>
+        <MCMVersion>5.9.2</MCMVersion>
         <!--UIExtenderEx Version-->
-        <UIExtenderExVersion>2.8.0</UIExtenderExVersion>
+        <UIExtenderExVersion>2.11.0</UIExtenderExVersion>
         <!--BUTRShared Version-->
-        <BUTRSharedVersion>3.0.0.137</BUTRSharedVersion>
+        <BUTRSharedVersion>3.0.0.138</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->
         <BUTRModuleManagerVersion>5.0.209</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
