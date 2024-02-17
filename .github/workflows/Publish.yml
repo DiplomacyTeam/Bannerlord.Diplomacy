@@ -103,7 +103,7 @@ jobs:
 ###########################
   publish-on-steam:
     needs: ["build-module"]
-    uses: BUTR/workflows/.github/workflows/release-steam.yml@master
+    uses: BUTR/workflows/.github/workflows/release-steam.yml@c380eee
     with:
       workshop_id: 2881380744
       mod_id: Bannerlord.Diplomacy
@@ -119,7 +119,7 @@ jobs:
 ###########################
   publish-on-github:
     needs: ["build-module"]
-    uses: BUTR/workflows/.github/workflows/release-github.yml@master
+    uses: BUTR/workflows/.github/workflows/release-github.yml@c380eee
     with:
       mod_id: Bannerlord.Diplomacy
       mod_version: ${{ needs.build-module.outputs.mod_version }}
