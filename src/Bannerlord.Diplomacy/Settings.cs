@@ -68,6 +68,10 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int MinimumAllianceDuration { get; set; } = 42;
 
+        [SettingPropertyBool("{=xXKKRp99}Leader Clan Family Marriage Affects Alliance", Order = 33, RequireRestart = false, HintText = "{=BGS6mUID}If active, will grant a bonus to alliance tendency when leader clans have a family marriage between them. Default value is active.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public bool LeaderClanMarriageAffectsAlliance { get; set; } = true;
+
         [SettingPropertyInteger("{=V35hUfcc}Non-Aggression Pact Duration in Days", 0, 1000, Order = 50, RequireRestart = false, HintText = "{=KXLGZEPh}The duration (in days) that a non-aggression pact will last. Default value is 84 (one standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int NonAggressionPactDuration { get; set; } = 84;
@@ -80,6 +84,22 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool PlayerDiplomacyControl { get; set; } = false;
 
+        [SettingPropertyBool(displayName: "{=dRyU9E7Z}No Wars Between Friends", Order = 1001, RequireRestart = false, HintText = "{=XyXJSTKr}If active, kingdom leaders that are friends will not start wars with each other. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public bool NoWarBetweenFriends { get; set; } = true;
+
+        [SettingPropertyBool(displayName: "{=pWoKQ6HO}No Wars If Good Relations", Order = 1002, RequireRestart = false, HintText = "{=bOuGhbPt}If active, wars between leaders of kingdoms will not be allowed if relations are above war start relations. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public bool NoWarOnGoodRelations { get; set; } = true;
+
+        [SettingPropertyInteger("{=x0Aoiomr}No Wars Good Relations Threshold", 0, 100, Order = 1003, RequireRestart = false, HintText = "{=aH6rpjt6}The relation value of kingdom leaders after which kingdoms will not start wars with each other. Default value is 30.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public int NoWarOnGoodRelationsThreshold { get; set; } = 30;
+
+        [SettingPropertyInteger("{=jwNKk8P7}No Wars When Married", 0, 100, Order = 1004, RequireRestart = false, HintText = "{=xcMzKH48}If active, kingdom leader clans that have a marriage between each other will not start wars. Default value is active.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public bool NoWarWhenMarriedLeaderClans { get; set; } = true;
+		
         // Messengers
 
         [SettingPropertyBool("{=nwTyegdV}Enable Messengers Accidents", Order = 0, RequireRestart = false, HintText = "{=T7yybpw3}If enabled, adds a small chance of failure for messengers. The longer the journey, the higher the chance of an accident on the road. Default value is enabled.")]

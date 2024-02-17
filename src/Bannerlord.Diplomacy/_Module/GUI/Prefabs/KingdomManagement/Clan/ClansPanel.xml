@@ -149,7 +149,7 @@
                     <TextWidget DataSource="{CurrentSelectedClan}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="Kingdom.ParagraphSmall.Text" Text="@TierText" ClipContents="false"/>
 
                     <!--Banner-->
-                    <MaskedTextureWidget DataSource="{CurrentSelectedClan\Banner_9}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="107" SuggestedHeight="128" MarginTop="5" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Kingdom.TornBanner.Big" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="1.6" />
+                    <MaskedTextureWidget DataSource="{CurrentSelectedClan\Banner_9}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="107" SuggestedHeight="128" MarginTop="5" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Kingdom.TornBanner.Big" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode"  />
 
                     <ListPanel UpdateChildrenStates="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight" >
                       <Children>
@@ -187,7 +187,7 @@
                                                          <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="55" SuggestedHeight="55" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="frame_small_9" />
                                                       </Children>
                                                     </ImageIdentifierWidget>-->
-                                                <MaskedTextureWidget DataSource="{ClanBanner_9}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Banner.Width.Scaled" SuggestedHeight="!Banner.Height.Scaled" HorizontalAlignment="Right" VerticalAlignment="Top" Brush="Flat.Tuple.Banner.Small.Hero" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.2" />
+                                                <MaskedTextureWidget DataSource="{ClanBanner_9}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Banner.Width.Scaled" SuggestedHeight="!Banner.Height.Scaled" HorizontalAlignment="Right" VerticalAlignment="Top" Brush="Flat.Tuple.Banner.Small.Hero" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true"  />
                                                 <ImageIdentifierWidget DataSource="{ImageIdentifier}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="85" SuggestedHeight="61" PositionYOffset="-1" HorizontalAlignment="Center" VerticalAlignment="Center" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsEnabled="false" />
                                                 <HintWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
                                                 <RichTextWidget WidthSizePolicy = "StretchToParent" HeightSizePolicy = "CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Kingdom.ParagraphSmall.Text" Brush.FontSize="16" PositionYOffset="65" Text="@NameText" ClipContents="false"/>

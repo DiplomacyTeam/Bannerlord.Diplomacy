@@ -47,7 +47,11 @@ namespace Diplomacy
             base.OnSubModuleLoad();
             Instance = this;
 
+#if v129
+            var extender = UIExtender.Create(Name);
+#else
             var extender = new UIExtender(Name);
+#endif
             extender.Register(typeof(SubModule).Assembly);
             extender.Enable();
 
