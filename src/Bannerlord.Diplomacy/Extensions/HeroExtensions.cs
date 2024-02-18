@@ -14,8 +14,8 @@ namespace Diplomacy.Extensions
             var zeroMinTraitLevel = hero.GetTraitLevel(trait) + Math.Abs(trait.MinValue);
             return zeroMinTraitLevel / zeroMinMaxTraitLevel;
         }
-		
-		public static IEnumerable<Hero> AllRelatedHeroes(this Hero inHero, bool includeExSpouses = false)
+
+        public static IEnumerable<Hero> AllRelatedHeroes(this Hero inHero, bool includeExSpouses = false)
         {
             if (inHero.Father != null)
             {

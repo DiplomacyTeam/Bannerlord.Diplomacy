@@ -58,8 +58,8 @@ namespace Diplomacy.Extensions
                 return default;
             }
         }
-		
-		public static bool HasMarriedClanLeaderRelation(this Clan clan, Clan other)
+
+        public static bool HasMarriedClanLeaderRelation(this Clan clan, Clan other)
         {
             // if any relatives are alive and married to other clan => "related by marriage"
             return clan.Leader.Spouse?.AllRelatedHeroes().Any(ownSpouseFamMember => ownSpouseFamMember.Clan == other) ?? false
