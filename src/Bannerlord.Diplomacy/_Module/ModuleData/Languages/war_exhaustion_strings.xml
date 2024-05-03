@@ -87,6 +87,8 @@
     <string id="CaxxEEdC" text="Enables diminishing returns for some events when calculating war exhaustion. Default value is enabled." />
     <string id="HPFINWrc" text="Individual War Exhaustion Rates" />
     <string id="LFVkLcIp" text="Enables the individual war exhaustion rates for factions. If disabled, a single rate will be calculated for every war based on combined strength of the opposing factions. Default value is enabled." />
+    <string id="gW3eVr5E" text="Enable Fief Repatriation" />
+    <string id="KEi0UykN" text="If enabled, kingdoms may have to return some of their conquered fiefs back to the original owner if they lose the war substantially. Default value is enabled." />
     <string id="8TFQWL55" text="War Exhaustion Per Day" />
     <string id="lgza5wDq" text="The amount of war exhaustion added per day a war is ongoing. Not affected by war exhaustion rate. Default value is 0.25%." />
     <string id="PAmPVWgD" text="Fiefless Multiplier" />
@@ -94,9 +96,9 @@
     <string id="s6dNpM6M" text="War Exhaustion Per Casualty" />
     <string id="NcJtGeM7" text="The amount of war exhaustion added when a faction has a battle casualty. Default value is 0.02%." />
     <string id="kr5zAufg" text="War Exhaustion Per Caravan Raid" />
-    <string id="PinVMCUE" text="The amount of war exhaustion added when a faction's caravan is raided. Default value is 3.0%." />
+    <string id="PinVMCUE" text="The amount of war exhaustion added when a faction's caravan is raided. Default value is 2.0%." />
     <string id="qFJ23KxQ" text="War Exhaustion Per Hero Imprisoned" />
-    <string id="wctCn9uO" text="The base amount of war exhaustion added when a faction's noble hero is imprisoned. Affected by the hero significance for the faction. Potentially subject to diminishing returns. Default value is 2.0%." />
+    <string id="wctCn9uO" text="The base amount of war exhaustion added when a faction's noble hero is imprisoned. Affected by the hero significance for the faction. Potentially subject to diminishing returns. Default value is 1.0%." />
     <string id="4vTzbsXD" text="War Exhaustion Per Hero Perished" />
     <string id="w80tUaVd" text="The base amount of war exhaustion added when a faction's noble hero is killed. Affected by the hero significance for the faction. Potentially subject to diminishing returns when multiple heroes of the same clan are killed. Default value is 5.0%." />
     <string id="eWVGwf2m" text="War Exhaustion Per Raid" />
@@ -104,7 +106,7 @@
     <string id="gGIaLKHk" text="War Exhaustion Per Siege" />
     <string id="mCEa773h" text="The amount of war exhaustion added when a faction loses a city. Losing a castle adds half as much. Potentially subject to diminishing returns. Default value is 10.0%." />
     <string id="JmUPtZdw" text="War Exhaustion When Occupied" />
-    <string id="541jGrpb" text="The amount of war exhaustion added when a faction's lost all fiefs. Not affected by war exhaustion rate. Potentially subject to diminishing returns. Default value is 15.0%." />
+    <string id="541jGrpb" text="The amount of war exhaustion added when a faction loses all of its fiefs. Not affected by war exhaustion rate. Potentially subject to diminishing returns. Default value is 15.0%." />
     <string id="pPHLRIml" text="Maximum Entries In Breakdown Tooltip" />
     <string id="YMf0mSqy" text="Maximum number of entries in any given breakdown tooltip in war exhaustion report. Set this to any value that is convenient for viewing. Default value is 35." />
     <string id="F4iFH6un" text="Campaign Map Widget" />
