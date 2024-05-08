@@ -22,7 +22,7 @@ jobs:
       mod_description: ${{ steps.changelog.outputs.mod_description }}
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@master
