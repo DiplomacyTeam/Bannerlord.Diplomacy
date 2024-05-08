@@ -99,7 +99,7 @@ namespace Diplomacy
         [SettingPropertyInteger("{=jwNKk8P7}No Wars When Married", 0, 100, Order = 1004, RequireRestart = false, HintText = "{=xcMzKH48}If active, kingdom leader clans that have a marriage between each other will not start wars. Default value is active.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool NoWarWhenMarriedLeaderClans { get; set; } = true;
-		
+
         // Messengers
 
         [SettingPropertyBool("{=nwTyegdV}Enable Messengers Accidents", Order = 0, RequireRestart = false, HintText = "{=T7yybpw3}If enabled, adds a small chance of failure for messengers. The longer the journey, the higher the chance of an accident on the road. Default value is enabled.")]

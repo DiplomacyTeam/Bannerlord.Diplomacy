@@ -1,5 +1,4 @@
 ﻿using Bannerlord.ButterLib.Common.Extensions;
-
 using Bannerlord.UIExtenderEx;
 using Bannerlord.UIExtenderEx.ResourceManager;
 
@@ -19,8 +18,8 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 
 namespace Diplomacy
 {
