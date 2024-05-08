@@ -11,17 +11,17 @@
         <!--BuildResources Version-->
         <BuildResourcesVersion>1.1.0.104</BuildResourcesVersion>
         <!--Harmony Version-->
-        <HarmonyVersion>2.2.2</HarmonyVersion>
+        <HarmonyVersion>2.3.3</HarmonyVersion>
         <!--ButterLib Version-->
-        <ButterLibVersion>2.8.16</ButterLibVersion>
+        <ButterLibVersion>2.9.7</ButterLibVersion>
         <!--MCM Version-->
         <MCMVersion>5.9.2</MCMVersion>
         <!--UIExtenderEx Version-->
         <UIExtenderExVersion>2.11.0</UIExtenderExVersion>
         <!--BUTRShared Version-->
-        <BUTRSharedVersion>3.0.0.138</BUTRSharedVersion>
+        <BUTRSharedVersion>3.0.0.139</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->
-        <BUTRModuleManagerVersion>5.0.214</BUTRModuleManagerVersion>
+        <BUTRModuleManagerVersion>5.0.222</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
         <BUTRModuleLoaderVersion>1.0.1.44</BUTRModuleLoaderVersion>
         <!--Harmony Extensions Version-->
