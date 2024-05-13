@@ -10,7 +10,7 @@
 
     <!-- Aserai Titles -->
     <string id="iLMqCvmk" text="{CLAN_NAME}゠スルタン国"/>
-    <string id="EnpnMNRH" text="CLAN_NAME}゠アミール国"/>
+    <string id="EnpnMNRH" text="{CLAN_NAME}゠アミール国"/>
     <string id="uzd9mxIC" text="バヌ゠{CLAN_NAME}"/>
     <string id="NTFz3B56" text="{CLAN_NAME}゠シャリーフ領"/>
 
