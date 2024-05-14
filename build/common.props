@@ -39,7 +39,7 @@
         <Authors>Diplomacy Team</Authors>
         <Product>Diplomacy Library mod for Bannerlord</Product>
         <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-        <Copyright>Copyright © 2020-2022 Diplomacy Team</Copyright>
+        <Copyright>Copyright © 2020-2024 Diplomacy Team</Copyright>
         <Description>Diplomacy system overhaul for Mount &amp; Blade II: Bannerlord</Description>
     </PropertyGroup>
 

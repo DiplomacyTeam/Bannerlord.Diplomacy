@@ -60,12 +60,13 @@ namespace Diplomacy.CampaignBehaviors
                 foreach (var kingdom in KingdomExtensions.AllActiveKingdoms.Where(x => (x.IsRebelKingdom() || x.HasRebellion()) && x.Fiefs.IsEmpty()).ToList())
                 {
                     var rebelFaction = RebelFactionManager.GetRebelFactionForRebelKingdom(kingdom) ?? kingdom.GetRebelFactions().FirstOrDefault();
+                    if (rebelFaction is null)
+                    {
+                        continue;
+                    }
 
                     var otherKingdom = kingdom.IsRebelKingdom() ? rebelFaction.ParentKingdom : rebelFaction.RebelKingdom!;
-                    if (rebelFaction != null)
-                    {
-                        KingdomPeaceAction.ApplyPeace(kingdom, otherKingdom);
-                    }
+                    KingdomPeaceAction.ApplyPeace(kingdom, otherKingdom);
                 }
             }
         }

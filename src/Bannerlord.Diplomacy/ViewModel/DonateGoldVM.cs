@@ -91,7 +91,7 @@ namespace Diplomacy.ViewModel
             _onFinalize();
         }
 
-        private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void HandlePropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(IntValue))
                 Refresh();

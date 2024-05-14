@@ -25,9 +25,9 @@ namespace Diplomacy
 {
     public sealed class SubModule : MBSubModuleBase
     {
-        public static readonly string Version = $"v{typeof(SubModule).Assembly.GetName().Version.ToString(3)}";
+        public static readonly string Version = $"v{typeof(SubModule).Assembly.GetName().Version!.ToString(3)}";
 
-        public static readonly string Name = typeof(SubModule).Namespace;
+        public static readonly string Name = typeof(SubModule).Namespace!;
         public static readonly string DisplayName = new TextObject($"{{=MYz8nKqq}}{Name}").ToString();
         public static readonly string MainHarmonyDomain = "bannerlord." + Name.ToLower();
         public static readonly string CampaignHarmonyDomain = MainHarmonyDomain + ".campaign";

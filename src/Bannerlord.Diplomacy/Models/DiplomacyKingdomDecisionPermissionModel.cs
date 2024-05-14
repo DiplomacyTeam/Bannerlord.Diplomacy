@@ -34,7 +34,7 @@ namespace Diplomacy.Models
                 var listExceptions = DeclareWarConditions.Instance.CanApplyExceptions(kingdom1, kingdom2, bypassCosts: true);
                 if (listExceptions is not null && listExceptions.Any())
                 {
-                    reason = listExceptions.FirstOrDefault();
+                    reason = listExceptions.FirstOrDefault() ?? TextObject.Empty;
                     isWarDecisionAllowed = false;
                 }
             }
@@ -58,7 +58,7 @@ namespace Diplomacy.Models
                 var listExceptions = MakePeaceConditions.Instance.CanApplyExceptions(kingdom1, kingdom2, bypassCosts: true);
                 if (listExceptions is not null && listExceptions.Any())
                 {
-                    reason = listExceptions.FirstOrDefault();
+                    reason = listExceptions.FirstOrDefault() ?? TextObject.Empty;
                     isPeaceDecisionAllowed = false;
                 }
             }
