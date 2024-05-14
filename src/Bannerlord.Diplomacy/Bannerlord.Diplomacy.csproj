@@ -1,8 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <TargetFrameworks>net472;net6</TargetFrameworks>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <Platforms>x64</Platforms>
+        <BuildForWindows>false</BuildForWindows>
+        <BuildForWindowsStore>false</BuildForWindowsStore>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(TargetFramework) == 'net472'">
+        <BuildForWindows>true</BuildForWindows>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(TargetFramework) == 'net6'">
+        <BuildForWindowsStore>true</BuildForWindowsStore>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    </PropertyGroup>
+    
+    <PropertyGroup>
         <AssemblyName>$(ModuleName).$(GameVersion)</AssemblyName>
-        <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
+        <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release;Debug;Release</Configurations>
     </PropertyGroup>
 
     <!-- STABLE, BETA, and e.g., e157 / e158 Constants Defined in Code -->

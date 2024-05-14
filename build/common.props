@@ -2,7 +2,7 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.2.11</Version>
+        <Version>1.2.12</Version>
         <GameVersion>1.0.0</GameVersion>
     </PropertyGroup>
 
@@ -27,11 +27,8 @@
         <!--Harmony Extensions Version-->
         <HarmonyExtensionsVersion>3.2.0.77</HarmonyExtensionsVersion>
     </PropertyGroup>
+    
     <PropertyGroup>
-        <TargetFramework>net472</TargetFramework>
-        <Platforms>x64</Platforms>
-        <LangVersion>9.0</LangVersion>
-        <Nullable>enable</Nullable>
         <ModuleId>Bannerlord.Diplomacy</ModuleId>
         <ModuleName>$(ModuleId)</ModuleName>
         <DisplayName>Diplomacy</DisplayName>
