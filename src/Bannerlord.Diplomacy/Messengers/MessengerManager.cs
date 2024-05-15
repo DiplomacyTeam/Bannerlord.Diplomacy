@@ -344,7 +344,7 @@ namespace Diplomacy.Messengers
 
         public static bool IsTargetHeroAvailable(Hero targetHero)
         {
-            var available = targetHero.IsActive || targetHero.IsWanderer && targetHero.HeroState == Hero.CharacterStates.NotSpawned;
+            var available = targetHero.IsActive || (targetHero.IsWanderer && targetHero.HeroState == Hero.CharacterStates.NotSpawned);
             return available && !targetHero.IsHumanPlayerCharacter;
         }
 
@@ -362,7 +362,7 @@ namespace Diplomacy.Messengers
                 return false;
             }
 
-            var available = targetHero.IsActive || targetHero.IsWanderer && targetHero.HeroState == Hero.CharacterStates.NotSpawned;
+            var available = targetHero.IsActive || (targetHero.IsWanderer && targetHero.HeroState == Hero.CharacterStates.NotSpawned);
             if (!available)
             {
                 exception = new("{=bLR91Eob}{REASON}The messenger won't be able to reach the addressee.");

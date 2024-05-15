@@ -138,7 +138,7 @@ namespace Diplomacy.CivilWar.Factions
             if (_participatingClans.Contains(clan))
             {
                 var remainingClanList = _participatingClans.Where(x => x != clan && !x.IsEliminated).ToList();
-                if (!remainingClanList.Any())
+                if (remainingClanList.Count <= 0)
                 {
                     RebelFactionManager.DestroyRebelFaction(this);
                     return;

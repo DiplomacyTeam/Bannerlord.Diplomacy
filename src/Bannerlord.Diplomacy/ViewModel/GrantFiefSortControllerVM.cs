@@ -188,7 +188,6 @@ namespace Diplomacy.ViewModel
             {
                 if (_isAcending)
                 {
-
                     return Comparer<string?>.Default.Compare(x?.Settlement.Name.ToString(), y?.Settlement.Name.ToString());
                 }
                 return Comparer<string?>.Default.Compare(y?.Settlement.Name.ToString(), x?.Settlement.Name.ToString());
@@ -201,7 +200,6 @@ namespace Diplomacy.ViewModel
             {
                 if (_isAcending)
                 {
-
                     return Comparer<string?>.Default.Compare(x?.Settlement.OwnerClan?.Name.ToString(), y?.Settlement.OwnerClan?.Name.ToString());
                 }
                 return Comparer<string?>.Default.Compare(y?.Settlement.OwnerClan?.Name.ToString(), x?.Settlement.OwnerClan?.Name.ToString());

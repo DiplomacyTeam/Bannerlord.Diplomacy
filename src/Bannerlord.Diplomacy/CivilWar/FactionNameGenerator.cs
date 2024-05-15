@@ -290,7 +290,7 @@ namespace Diplomacy.CivilWar
             string? kingdomTitle;
             var culture = rebelFaction.Clans.Where(x => !x.IsEliminated).Select(x => x.Culture.StringId).GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key;
             CultureToKingdomTitles.TryGetValue(culture, out var cultureTitles);
-            if (cultureTitles is not null && cultureTitles.Any() && MBRandom.RandomFloat < 0.5)
+            if (cultureTitles is not null && cultureTitles.Count > 0 && MBRandom.RandomFloat < 0.5)
             {
                 kingdomTitle = ResolveTitle(cultureTitles);
             }
@@ -299,7 +299,7 @@ namespace Diplomacy.CivilWar
                 kingdomTitle = ResolveTitle(CommonKingdomTitles);
             }
 
-            var kingdomName = CultureToKingdomNames.TryGetValue(culture, out var value) && value.Any() ? new TextObject(value.GetRandomElement()) : rebelFaction.SponsorClan.Name;
+            var kingdomName = CultureToKingdomNames.TryGetValue(culture, out var value) && value.Count > 0 ? new TextObject(value.GetRandomElement()) : rebelFaction.SponsorClan.Name;
 
             return new TextObject(kingdomTitle, new Dictionary<string, object> { { "CLAN_NAME", kingdomName } });
         }

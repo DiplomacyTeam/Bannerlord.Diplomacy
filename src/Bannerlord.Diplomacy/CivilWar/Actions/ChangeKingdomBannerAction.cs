@@ -153,7 +153,7 @@ namespace Diplomacy.CivilWar.Actions
                     .Where(x => !currentSigilColors.Contains(x))
                     .ToList();
 
-                if (colors.Any())
+                if (colors.Count > 0)
                     selectedColor = colors.GetRandomElementInefficiently();
             }
 

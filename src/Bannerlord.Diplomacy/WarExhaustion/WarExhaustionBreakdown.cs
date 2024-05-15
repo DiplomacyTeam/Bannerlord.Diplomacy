@@ -75,7 +75,7 @@ namespace Diplomacy.WarExhaustion
         private static void GetBreakdownByEventType(WarExhaustionType warExhaustionType, List<WarExhaustionBreakdown> result, List<WarExhaustionEventRecord> warExhaustionEventRecords, bool reversedKeyOrder, bool useValue = false, bool addIfEmpty = true)
         {
             var eventRecords = warExhaustionEventRecords.Where(r => r.WarExhaustionType == warExhaustionType).OrderBy(r => r.EventDate).ToList();
-            if (!eventRecords.Any() && !addIfEmpty)
+            if (eventRecords.Count <= 0 && !addIfEmpty)
                 return;
 
             int valueFaction1 = 0, valueFaction2 = 0;
@@ -127,7 +127,7 @@ namespace Diplomacy.WarExhaustion
             var recordsToShow = originalList.OrderByDescending(rec => rec.EventDate).Take(Settings.Instance!.MaxShownBreakdownEntries).OrderBy(rec => rec.EventDate).ToList();
             var recordsToSummarize = originalList.Except(recordsToShow).OrderBy(rec => rec.EventDate).ToList();
 
-            if (!recordsToSummarize.Any())
+            if (recordsToSummarize.Count <= 0)
                 return recordsToShow.Select(x => (x.EventDescription, x.ExhaustionValue)).ToList();
 
             CampaignTime minDate = CampaignTime.Never, maxDate = CampaignTime.Zero; float totalValue = 0f; int recordCount = 0;

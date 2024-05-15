@@ -172,7 +172,6 @@ namespace Diplomacy.CampaignBehaviors
             _warExhaustionManager.AddHeroPerishedWarExhaustion(kingdoms, victim, killer.PartyBelongedTo?.Name ?? effector!.Name, detail);
         }
 
-
         private static bool VerifyEventSides(PartyBase attackerSideLeaderParty, PartyBase defenderSideLeaderParty, out Kingdom? attacker, out Kingdom? defender)
         {
             if ((attackerSideLeaderParty.IsMobile && (attackerSideLeaderParty.MobileParty?.IsBandit ?? false)) || (defenderSideLeaderParty.IsMobile && (defenderSideLeaderParty.MobileParty?.IsBandit ?? false))
@@ -195,7 +194,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private static bool VerifyEventSides(PartyBase effectorSideParty, Hero effectedSideHero, out Kingdom? effector, out Kingdom? effected)
         {
-            if (effectorSideParty.IsMobile && (effectorSideParty.MobileParty?.IsBandit ?? false)
+            if ((effectorSideParty.IsMobile && (effectorSideParty.MobileParty?.IsBandit ?? false))
                 || effectorSideParty.MapFaction == null || effectorSideParty.MapFaction.IsBanditFaction
                 || effectedSideHero.MapFaction == null || effectedSideHero.MapFaction.IsBanditFaction
                 || effectorSideParty.MapFaction is not Kingdom effectorKingdom || effectedSideHero.MapFaction is not Kingdom effectedKingdom

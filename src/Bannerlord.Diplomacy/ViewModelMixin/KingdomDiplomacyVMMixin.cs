@@ -27,9 +27,7 @@ namespace Diplomacy.ViewModelMixin
         private static readonly TextObject _TOverview = new("{=OvbY5qxL}Overview");
         private static readonly TextObject _TDiplomacy = new("{=Q2vXbwvC}Diplomacy");
 
-
         private string _numOfPlayerAlliancesText = null!;
-
 
         private MBBindingList<KingdomTruceItemVM> _playerAlliances;
         private bool _showOverview;

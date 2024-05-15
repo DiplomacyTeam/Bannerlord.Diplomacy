@@ -69,7 +69,7 @@ namespace Diplomacy.ViewModel
             };
 
             var list = new List<TooltipProperty>();
-            if (factionEventRecords is not null && factionEventRecords.Any())
+            if (factionEventRecords is not null && factionEventRecords.Count > 0)
             {
                 list.Add(new TooltipProperty(Text, factionValue > 0 ? factionValue.ToString() : string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
                 foreach (var (eventDescription, exhaustionValue) in factionEventRecords)
