@@ -114,8 +114,8 @@ namespace Diplomacy.ViewModelMixin
                     ViewModel!.Stats.RemoveAt(1);
 
                 ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM(
-                    (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction1, _faction2),
-                    (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction2, _faction1),
+                    (int) WarExhaustionManager.Instance!.GetWarExhaustion(_faction1, _faction2),
+                    (int) WarExhaustionManager.Instance!.GetWarExhaustion(_faction2, _faction1),
                     _TWarExhaustion,
                     Color.FromUint(_faction1.Color).ToString(),
                     Color.FromUint(_faction2.Color).ToString(),
@@ -141,7 +141,7 @@ namespace Diplomacy.ViewModelMixin
                 DiplomaticActionHelpText = new TextObject(_TDiplomaticActionHelpText, new()
                 {
                     ["ENEMY_LEADER"] = _faction2.Leader.Name,
-                    ["WAR_REPARATIONS_AND_TRIBUTE"] = new TextObject(_TPayments, new() 
+                    ["WAR_REPARATIONS_AND_TRIBUTE"] = new TextObject(_TPayments, new()
                     {
                         ["REPARATIONS_PAY"] = _reparations.Any(r => r.PayingKingdom == _faction1 && r.Value > 0) ? 1 : 0,
                         ["REPARATIONS_GET"] = _reparations.Any(r => r.PayingKingdom == _faction2 && r.Value > 0) ? 1 : 0,
@@ -150,7 +150,7 @@ namespace Diplomacy.ViewModelMixin
                         ["TRIBUTE_GET"] = tributeValue < 0 ? 1 : 0,
                         ["TRIBUTE"] = Math.Abs(tributeValue),
                     }),
-                    ["FIEFS_TO_RETURN"] = new TextObject(_TFiefs, new() { ["FIEFS_ANY"] = KingdomPeaceAction.GetFiefsSuitableToBeReturned(_faction1, _faction2).Any() ? 1 : 0 }),
+                    ["FIEFS_TO_RETURN"] = new TextObject(_TFiefs, new() { ["FIEFS_ANY"] = KingdomPeaceAction.GetFiefsSuitableToBeReturned(_faction1, _faction2).Count > 0 ? 1 : 0 }),
                 }).ToString();
             }
             else

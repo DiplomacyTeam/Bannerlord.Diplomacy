@@ -1,5 +1,7 @@
 ﻿using Diplomacy.Events;
 
+using System;
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
@@ -16,14 +18,12 @@ namespace Diplomacy.ViewModel
         {
             _kingdomsAtWar = new MBBindingList<WarExhaustionMapIndicatorItemVM>();
             RefreshValues();
-#if v100 || v101 || v102 || v103
-            CampaignEvents.WarDeclared.AddNonSerializedListener(this, HandleStanceChange);
-            CampaignEvents.MakePeace.AddNonSerializedListener(this, HandleStanceChange);
-#else
-            CampaignEvents.WarDeclared.AddNonSerializedListener(this, (arg1, arg2, _) => HandleStanceChange(arg1, arg2));
-            CampaignEvents.MakePeace.AddNonSerializedListener(this, (arg1, arg2, _) => HandleStanceChange(arg1, arg2));
-#endif
+            DiplomacyEvents.WarExhaustionInitialized.AddNonSerializedListener(this, HandleStanceChange);
+#if v124 || v125 || v126 || v127 || v128 || v129
+            CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this, (x, _, _, _, _) => HandleClanChangedKingdom(x));
+#elif v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116 || v120 || v121 || v122 || v123
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, _, _, _, _) => HandleClanChangedKingdom(x));
+#endif
             DiplomacyEvents.WarExhaustionAdded.AddNonSerializedListener(this, HandleWarExhaustionChange);
             Settings.Instance!.PropertyChanged += Settings_PropertyChanged;
         }
@@ -33,7 +33,7 @@ namespace Diplomacy.ViewModel
             if (Clan.PlayerClan == clan) RefreshValues();
         }
 
-        private void HandleWarExhaustionChange(WarExhaustionEvent warExhaustionEvent)
+        private void HandleWarExhaustionChange(WarExhaustionAddedEvent warExhaustionEvent)
         {
             var playerKingdom = Clan.PlayerClan.Kingdom;
             if (warExhaustionEvent.Kingdom == playerKingdom || warExhaustionEvent.OtherKingdom == playerKingdom)
@@ -41,21 +41,22 @@ namespace Diplomacy.ViewModel
                     item.UpdateWarExhaustion();
         }
 
-        private void HandleStanceChange(IFaction arg1, IFaction arg2)
+        private void HandleStanceChange(WarExhaustionInitializedEvent warExhaustionEvent)
         {
-            if (Clan.PlayerClan.MapFaction is Kingdom playerKingdom
-                && arg1 is Kingdom kingdom1
-                && arg2 is Kingdom kingdom2
-                && (kingdom1 == playerKingdom || kingdom2 == playerKingdom))
+            if (Clan.PlayerClan.MapFaction is Kingdom playerKingdom && (warExhaustionEvent.Kingdom == playerKingdom || warExhaustionEvent.OtherKingdom == playerKingdom))
                 RefreshValues();
         }
 
         public override void OnFinalize()
         {
             base.OnFinalize();
-            CampaignEvents.WarDeclared.ClearListeners(this);
-            CampaignEvents.MakePeace.ClearListeners(this);
+
+#if v124 || v125 || v126 || v127 || v128 || v129
+            CampaignEvents.OnClanChangedKingdomEvent.ClearListeners(this);
+#elif v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116 || v120 || v121 || v122 || v123
             CampaignEvents.ClanChangedKingdom.ClearListeners(this);
+#endif
+            DiplomacyEvents.WarExhaustionInitialized.ClearListeners(this);
             DiplomacyEvents.WarExhaustionAdded.ClearListeners(this);
         }
 

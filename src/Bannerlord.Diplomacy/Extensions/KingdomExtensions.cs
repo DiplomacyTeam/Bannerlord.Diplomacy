@@ -83,6 +83,27 @@ namespace Diplomacy.Extensions
 
         public static bool HasRebellion(this Kingdom kingdom) => GetRebelFactions(kingdom).Any(x => x.AtWar);
 
+        public static bool WillBeConsolidatedWith(this Kingdom kingdom, Kingdom otherKingdom, Kingdom losingKingdom)
+        {
+            if (kingdom.IsRebelKingdomOf(otherKingdom))
+            {
+                return ShouldConsolidate(kingdom, otherKingdom, losingKingdom);
+            }
+            else if (otherKingdom.IsRebelKingdomOf(kingdom))
+            {
+                return ShouldConsolidate(otherKingdom, kingdom, losingKingdom);
+            }
+            else
+            {
+                return false;
+            }
+
+            static bool ShouldConsolidate(Kingdom rebelKingdom, Kingdom parentKingdom, Kingdom losingKingdom)
+            {
+                return rebelKingdom == losingKingdom || parentKingdom.GetRebelFactions().Any(x => x.RebelKingdom == rebelKingdom && x.ConsolidateOnSuccess);
+            }
+        }
+
         public static IEnumerable<RebelFaction> GetRebelFactions(this Kingdom kingdom) => RebelFactionManager.GetRebelFaction(kingdom);
     }
 }

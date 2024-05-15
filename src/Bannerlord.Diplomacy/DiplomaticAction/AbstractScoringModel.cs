@@ -19,7 +19,7 @@ namespace Diplomacy.DiplomaticAction
 
         protected AbstractScoringModel(IDiplomacyScores scores) => Scores = scores;
 
-        public virtual ExplainedNumber GetScore(Kingdom otherKingdom, Kingdom ourKingdom, bool includeDesc = false)
+        public virtual ExplainedNumber GetScore(Kingdom ourKingdom, Kingdom otherKingdom, bool includeDesc = false)
         {
             var explainedNum = new ExplainedNumber(Scores.Base, includeDesc);
 
@@ -31,6 +31,11 @@ namespace Diplomacy.DiplomaticAction
 
             if (!ourKingdom.IsStrong())
                 explainedNum.Add(Scores.BelowMedianStrength, _TWeakKingdom);
+
+            // Marriage score
+
+            if (Settings.Instance!.LeaderClanMarriageAffectsAlliance && ourKingdom.RulingClan.HasMarriedClanLeaderRelation(otherKingdom.RulingClan))
+                explainedNum.Add(Scores.LeaderClanMarriage, CreateTextWithKingdom(SMarriageWithLeaderClan, otherKingdom));
 
             // Common Enemies
 
@@ -129,6 +134,8 @@ namespace Diplomacy.DiplomaticAction
             public int Relationship { get; }
 
             public int Tendency { get; }
+
+            public int LeaderClanMarriage { get; }
         }
 
         private static readonly TextObject _TWeakKingdom = new("{=q5qphBwi}Weak Kingdom");
@@ -139,6 +146,7 @@ namespace Diplomacy.DiplomaticAction
         private const string SWarWithKingdom = "{=RqQ4oqvl}War with {KINGDOM}";
         private const string SAllianceWithKingdom = "{=cmOSpfyW}Alliance with {KINGDOM}";
         private const string SPactWithKingdom = "{=t6YhBLj7}Non-Aggression Pact with {KINGDOM}";
+        private const string SMarriageWithLeaderClan = "{=BjkwaNot}Marriage with leading clan of {KINGDOM}";
 
         private const string SCommonEnemy = SWarWithKingdom;
         private const string SAlliedToEnemy = SAllianceWithKingdom;

@@ -2,6 +2,7 @@
 
 using Microsoft.Extensions.Logging;
 
+using System;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
@@ -38,7 +39,19 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ClearWarExhaustion);
 
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, OnGameLoadFinished);
+
+#if v120 || v121 || v122 || v123
+            CampaignEvents.CanKingdomBeDiscontinuedEvent.AddNonSerializedListener(this, CanKingdomBeDiscontinued);
+#endif
         }
+
+#if v120 || v121 || v122 || v123
+        private void CanKingdomBeDiscontinued(Kingdom kingdom, ref bool result)
+        {
+            if (Settings.Instance!.EnableKingdomElimination)
+                result = false; //TODO: Probably should move on to vanila kingdom dispatching when making peace
+        }
+#endif
 
 #if v100 || v101 || v102 || v103
         private void ClearWarExhaustion(IFaction faction1, IFaction faction2)
@@ -156,9 +169,8 @@ namespace Diplomacy.CampaignBehaviors
                     return;
             }
 
-            _warExhaustionManager.AddHeroPerishedWarExhaustion(kingdoms, victim, killer.PartyBelongedTo.Name ?? effector!.Name, detail);
+            _warExhaustionManager.AddHeroPerishedWarExhaustion(kingdoms, victim, killer.PartyBelongedTo?.Name ?? effector!.Name, detail);
         }
-
 
         private static bool VerifyEventSides(PartyBase attackerSideLeaderParty, PartyBase defenderSideLeaderParty, out Kingdom? attacker, out Kingdom? defender)
         {
@@ -182,7 +194,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private static bool VerifyEventSides(PartyBase effectorSideParty, Hero effectedSideHero, out Kingdom? effector, out Kingdom? effected)
         {
-            if (effectorSideParty.IsMobile && (effectorSideParty.MobileParty?.IsBandit ?? false)
+            if ((effectorSideParty.IsMobile && (effectorSideParty.MobileParty?.IsBandit ?? false))
                 || effectorSideParty.MapFaction == null || effectorSideParty.MapFaction.IsBanditFaction
                 || effectedSideHero.MapFaction == null || effectedSideHero.MapFaction.IsBanditFaction
                 || effectorSideParty.MapFaction is not Kingdom effectorKingdom || effectedSideHero.MapFaction is not Kingdom effectedKingdom

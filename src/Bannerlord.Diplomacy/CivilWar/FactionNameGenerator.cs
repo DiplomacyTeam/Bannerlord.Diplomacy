@@ -9,7 +9,7 @@ using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar
 {
-    internal class FactionNameGenerator
+    internal static class FactionNameGenerator
     {
         private static Dictionary<string, List<TitleSelection>> CultureToKingdomTitles { get; } = new()
         {
@@ -290,7 +290,7 @@ namespace Diplomacy.CivilWar
             string? kingdomTitle;
             var culture = rebelFaction.Clans.Where(x => !x.IsEliminated).Select(x => x.Culture.StringId).GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key;
             CultureToKingdomTitles.TryGetValue(culture, out var cultureTitles);
-            if (cultureTitles is not null && cultureTitles.Any() && MBRandom.RandomFloat < 0.5)
+            if (cultureTitles is not null && cultureTitles.Count > 0 && MBRandom.RandomFloat < 0.5)
             {
                 kingdomTitle = ResolveTitle(cultureTitles);
             }
@@ -299,7 +299,7 @@ namespace Diplomacy.CivilWar
                 kingdomTitle = ResolveTitle(CommonKingdomTitles);
             }
 
-            var kingdomName = CultureToKingdomNames.TryGetValue(culture, out var value) && value.Any() ? new TextObject(value.GetRandomElement()) : rebelFaction.SponsorClan.Name;
+            var kingdomName = CultureToKingdomNames.TryGetValue(culture, out var value) && value.Count > 0 ? new TextObject(value.GetRandomElement()) : rebelFaction.SponsorClan.Name;
 
             return new TextObject(kingdomTitle, new Dictionary<string, object> { { "CLAN_NAME", kingdomName } });
         }
@@ -320,10 +320,8 @@ namespace Diplomacy.CivilWar
             return kingdomTitle;
         }
 
-        public static TextObject GenerateFactionName(Clan sponsorClan)
-        {
-            return new TextObject(FactionNames.GetRandomElementInefficiently()).SetTextVariable("CLAN_NAME", sponsorClan.Name);
-        }
+        public static TextObject GenerateFactionName(Clan sponsorClan) => new TextObject(FactionNames.GetRandomElementInefficiently()).SetTextVariable("CLAN_NAME", sponsorClan.Name);
+
         private readonly struct TitleSelection
         {
             public TitleSelection(string name, float weight = 1f)

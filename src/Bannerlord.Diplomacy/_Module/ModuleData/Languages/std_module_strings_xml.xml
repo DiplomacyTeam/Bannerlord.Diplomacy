@@ -14,9 +14,12 @@
 
     <string id="v0cDMIcl" text="Cannot declare war on this kingdom. " />
     <string id="Pqk3WuGz" text="Cannot make peace with this kingdom. " />
+    <string id="9aaZ8Ed4" text="Cannot declare war, kingdom leaders are friends." />
+    <string id="Zimavbgw" text="Cannot declare war, kingdom leaders personal relations are excellent." />
+    <string id="pXD8Uf2e" text="Cannot declare war, kingdom leader clans have close family marriages." />
+      
     <string id="zv12jjyW" text="Messenger Sent" />
     <string id="uy86VZX2" text="Messenger Arrived" />
-
 
     <string id="JmgAuONd" text="Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
     <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}" />
@@ -62,7 +65,7 @@
     <string id="DrnXprup" text="You have been at war too recently to consider an alliance. It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
     <string id="KHJyWj9H" text="Cannot be in an alliance." />
     <string id="UQZmdLzc" text="Cannot be at war." />
-    <string id="PdN5g5ub" text="Alliance Formed" />
+    <string id="qIa19an4" text="Alliance Formed" />
     <string id="3pbwc8sh" text="Alliance Proposal"/>
     <string id="QbOqatd7" text="{KINGDOM} is proposing an alliance with {PLAYER_KINGDOM}." />
 
@@ -101,7 +104,7 @@
     <string id="gyLjlpJB" text="{KINGDOM} is proposing a non-aggression pact with {PLAYER_KINGDOM}."/>
 
     <string id="9pY0NQrk" text="Form Pact"/>
-    <string id="9zlQNtlX" text="Form a non-aggression pact lasting {PACT_DURATION_DAYS} days."/>
+    <string id="9zlQNtlX" text="Form a non-aggression pact lasting {DAYS} days."/>
 
     <string id="1occw3EF" text="Stats"/>
     <string id="OvbY5qxL" text="Overview"/>
@@ -123,6 +126,7 @@
     <string id="cmOSpfyW" text="Alliance with {ALLIED_KINGDOM}"/>
     <string id="RqQ4oqvl"  text="War with {ENEMY_KINGDOM}"/>
     <string id="t6YhBLj7" text="Non-Aggression Pact with {KINGDOM}" />
+    <string id="BjkwaNot" text="Marriage with leading clan of {KINGDOM}" />
 
     <string id="M4SGjzQP" text="This faction is not interested in forming a non-aggression pact with you."/>
 
@@ -136,6 +140,7 @@
     <string id="qbLPBlIv" text="Calradia grows wary of the inexorable expansion of the {EXPANSIONIST_KINGDOM}. A coalition led by the {COALITION_KINGDOM} has been formed to fight them!"/>
 
     <string id="vB3RrMNf" text="The {KINGDOM} has formed a non-aggression pact with the {OTHER_KINGDOM}." />
+    <string id="PdN5g5ub" text="{KINGDOM} has formed an alliance with {OTHER_KINGDOM}!" />
     <string id="5r6fsHgm" text="Current Score"/>
     <string id="XIBUWDlT" text="Required Score"/>
 
@@ -160,34 +165,60 @@
     -->
 
     <string id="sBw5Qzq3" text="Kingdom Diplomacy" />
-    <string id="ZRlNvsev" text="Minimum War Duration in Days" />
-    <string id="vuFT5ns8" text="The minimum duration (in days) that a war can last before proposing peace. Default value is 10." />
-    <string id="4MzQHMVj" text="Declare War Cooldown in Days" />
-    <string id="q2duqN8d" text="The minimum duration (in days) to declare war after making peace. Default value is 100." />
-    <string id="6m1SspFW" text="Enable Player Kingdom Diplomacy Control" />
-    <string id="N5EouSSj" text="Gives the player full control over declaring war and making peace in the kingdom they belong to, even if they are just a vassal and not the leader of the kingdom. Default value is disabled." />
     <string id="tis8Ddzn" text="Allow Player To Claim Player-Taken Settlements" />
     <string id="TfxLCxcD" text="Gives the player the option to claim a settlement that they have taken rather than let it go to an election." />
+    <string id="8VKC3jtN" text="Enable Fiefless Kingdom Elimination" />
+    <string id="TlymwwPZ" text="If enabled, kingdoms without any fiefs are destroyed when they sign a peace treaty ending the last ongoing war they participate in. Default value is enabled." />
+    <string id="w8Hi9jJf" text="Delay Fiefless Kingdom Elimination" />
+    <string id="GDctI4Kd" text="If enabled, kingdoms without any fiefs will only be destroyed when they sign a peace treaty ending the last ongoing war they are involved in, not immediately after they lose their last fief. Default value is enabled." />      
+    <string id="ZRlNvsev" text="Minimum War Duration in Days" />
+    <string id="vuFT5ns8" text="The minimum duration (in days) that a war can last before proposing peace. Default value is 21 (quarter of a standard game year)." />
+    <string id="4MzQHMVj" text="Declare War Cooldown in Days" />
+    <string id="q2duqN8d" text="The minimum duration (in days) before re-declaring war on the same kingdom after making peace. Default value is 21 (quarter of a standard game year)." />
+    <string id="2XC8QHkl" text="Enable Alliances" />
+    <string id="5YJBZx28" text="If disabled, this disables the ability to form alliances for both player and AI kingdoms. Default value is enabled." />
     <string id="H6XMjwpF" text="Minimum Alliance Duration in Days" />
-    <string id="RrsWhIWi" text="The minimum duration (in days) that an alliance can last. Default value is 10." />
-    <string id="V35hUfcc" text="Non-Aggression Pact Duration in Days"/>
-    <string id="KXLGZEPh" text="The duration (in days) that a non-aggression pact will last. Default value is 100."/>
-    <string id="G8BhBnRG" text="Non-Aggression Pact Tendency" />
-    <string id="907ER5u9" text="Score modifier affecting the tendency of kingdoms to form non-aggression pacts. Increasing the modifier makes non-aggression pacts more desirable to AI kingdoms. Default value is 0." />
+    <string id="RrsWhIWi" text="The minimum duration (in days) that an alliance will last before it can be broken. Default value is 42 (half of a standard game year)." />
     <string id="5a829TiT" text="Alliance Tendency" />
     <string id="7nSjs8UL" text="Score modifier affecting the tendency of kingdoms to form alliances. Increasing the modifier makes alliances more desirable to AI kingdoms. Default value is 0." />
+    <string id="V35hUfcc" text="Non-Aggression Pact Duration in Days"/>
+    <string id="KXLGZEPh" text="The duration (in days) that a non-aggression pact will last. Default value is 84 (one standard game year)."/>
+    <string id="G8BhBnRG" text="Non-Aggression Pact Tendency" />
+    <string id="907ER5u9" text="Score modifier affecting the tendency of kingdoms to form non-aggression pacts. Increasing the modifier makes non-aggression pacts more desirable to AI kingdoms. Default value is 0." />
+    <string id="6m1SspFW" text="Enable Player Kingdom Diplomacy Control" />
+    <string id="N5EouSSj" text="Gives the player full control over declaring war and making peace in the kingdom they belong to, even if they are just a vassal and not the leader of the kingdom. Default value is disabled." />
     <string id="lhysZl9j" text="Action Tendency" />
+    <string id="dRyU9E7Z" text="No Wars Between Friends" />
+    <string id="XyXJSTKr" text="If active, kingdom leaders that are friends will not start wars with each other. Default value is enabled." />
+    <string id="pWoKQ6HO" text="No Wars If Good Relations" />
+    <string id="bOuGhbPt" text="If active, wars between leaders of kingdoms will not be allowed if relations are above war start relations. Default value is enabled." />
+    <string id="x0Aoiomr" text="No Wars Good Relations Threshold" />
+    <string id="aH6rpjt6" text="The relation value of kingdom leaders after which kingdoms will not start wars with each other. Default value is 30." />
+    <string id="jwNKk8P7" text="No Wars When Married" />
+    <string id="xcMzKH48" text="If active, kingdom leader clans that have a marriage between each other will not start wars. Default value is active." />
+    <string id="xcMzKH48" text="If active, kingdom leader clans that have a marriage between each other will not start wars. Default value is active." />
+    <string id="xXKKRp99" text="Leader Clan Family Marriage Affects Alliance" />
+    <string id="BGS6mUID" text="If active, will grant a bonus to alliance tendency when leader clans have a family marriage between them. Default value is active." />
+      
+    <string id="ldLFTs92" text="Costs" />      
+    <string id="Ckd1Lsoa" text="Gold Costs" />
+    <string id="t4hNAoD7" text="Enable Scaling Gold Costs" />
+    <string id="5MMIDE5A" text="If enabled, this will scale gold costs of diplomatic actions and war reparations based on your kingdom size. Otherwise, the generic multipliers of 100 for diplomatic actions and 1000 for war reparations will apply. The default value is enabled." />
+    <string id="vD270X6H" text="Scaling Gold Cost Multiplier" />
+    <string id="Gd52NzBP" text="Multiplier for the scaling gold costs. Default value is 5." />
+    <string id="HFtZsD6v" text="Scaling War Reparations Gold Cost Multiplier" />
+    <string id="MIhbrqbr" text="Multiplier for the scaling of war reparations gold costs. Default value is 50." />
+    <string id="Cr6a5Jap" text="Defeated War Reparations Gold Cost" />
+    <string id="NH4GNKva" text="The base cost in gold for losing a war of attrition against another kingdom. Affected by scaling and with scaling disabled will be multiplied by a thousand. The default value is 200." />
 
     <string id="SEViwYTl" text="Influence Costs" />
     <string id="WbOKuWbQ" text="Enable Influence Costs" />
     <string id="K2vLGalN" text="If disabled, this removes influence costs for war and peace declaration actions. Default value is enabled." />
-
     <string id="9PlT57Nl" text="Influence Costs/Scaling" />
     <string id="P1g6Ht1e" text="Enable Scaling Influence Costs" />
     <string id="xfVFBxfj" text="If enabled, this will scale influence costs based on your kingdom size. Otherwise, flat influence costs are used. Default value is enabled." />
     <string id="TvAYJv5Q" text="Scaling Influence Cost Multiplier" />
     <string id="AQ5gRYN6" text="Multiplier for the scaling influence costs. Default value is 5." />
-
     <string id="BazjeCZw" text="Influence Costs/Flat" />
     <string id="OnTeAgin" text="Flat Declare War Influence Cost" />
     <string id="O5XvybTI" text="Influence cost for declaring war on another kingdom. Default value is 500." />
@@ -203,19 +234,6 @@
     <string id="zkvCGLuK" text="The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3." />
     <string id="nMwWHj4h" text="Send Messenger Gold Cost" />
     <string id="ehMf7xvE" text="Gold cost for sending a messenger to another character. Default value is 100." />
-
-    <string id="Ckd1Lsoa" text="Gold Costs" />
-    <string id="t4hNAoD7" text="Enable Scaling Gold Costs" />
-    <string id="5MMIDE5A" text="If enabled, this will scale gold costs of diplomatic actions and war reparations based on your kingdom size. Otherwise, the generic multipliers of 100 for diplomatic actions and 1000 for war reparations will apply. The default value is enabled." />
-    <string id="vD270X6H" text="Scaling Gold Cost Multiplier" />
-    <string id="Gd52NzBP" text="Multiplier for the scaling gold costs. Default value is 5." />
-    <string id="HFtZsD6v" text="Scaling War Reparations Gold Cost Multiplier" />
-    <string id="MIhbrqbr" text="Multiplier for the scaling of war reparations gold costs. Default value is 50." />
-    <string id="Cr6a5Jap" text="Defeated War Reparations Gold Cost" />
-    <string id="NH4GNKva" text="The cost in gold for losing a war of attrition against another kingdom, measured in millions. The default value is 500." />
-
-    <string id="2XC8QHkl" text="Enable Alliances" />
-    <string id="5YJBZx28" text="If disabled, this disables the ability to form alliances for both player and AI kingdoms. Default value is enabled." />
 
     <string id="OfEMJWiR" text="Relation" />
     <string id="6l9QNMrB" text="Grant Fief Postiive Relation Multiplier" />
@@ -241,7 +259,6 @@
     <string id="e5fHDXgl" text="Corruption" />
     <string id="KWAH0S4h" text="Enable Corruption" />
     <string id="trgnZ0pn" text="Enables corruption, which gradually decays a clan's influence each day when holding too many fiefs. Default value is enabled."/>
-
 
     <string id="ZqQaUIil" text="Expansionism"/>
     <string id="2raR1ZHv" text="Coalitions"/>

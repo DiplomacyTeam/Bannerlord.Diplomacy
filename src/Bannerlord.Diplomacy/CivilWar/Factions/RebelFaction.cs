@@ -22,10 +22,12 @@ namespace Diplomacy.CivilWar.Factions
         [SaveableProperty(1)]
         public Clan SponsorClan { get; private set; }
 
-        [SaveableField(2)][UsedImplicitly]
+        [SaveableField(2)]
+        [UsedImplicitly]
         private List<Clan> _participatingClans;
 
-        [SaveableProperty(3)][UsedImplicitly]
+        [SaveableProperty(3)]
+        [UsedImplicitly]
         public Kingdom ParentKingdom { get; private set; }
 
         [SaveableProperty(4)]
@@ -34,16 +36,20 @@ namespace Diplomacy.CivilWar.Factions
         [SaveableProperty(5)]
         public bool AtWar { get; set; }
 
-        [SaveableProperty(6)][UsedImplicitly]
+        [SaveableProperty(6)]
+        [UsedImplicitly]
         public CampaignTime DateStarted { get; private set; }
 
         [SaveableProperty(7)]
         public TextObject Name { get; private set; }
 
-        [SaveableProperty(8)][UsedImplicitly]
+        [SaveableProperty(8)]
+        [UsedImplicitly]
         public Dictionary<Town, Clan> OriginalFiefOwners { get; private set; }
 
         public abstract RebelDemandType RebelDemandType { get; }
+
+        public abstract bool ConsolidateOnSuccess { get; }
 
         public float FactionStrength
         {
@@ -123,7 +129,7 @@ namespace Diplomacy.CivilWar.Factions
 
         public void AddClan(Clan clan)
         {
-            if (!_participatingClans.Contains(clan))
+            if (clan != null && !_participatingClans.Contains(clan))
                 _participatingClans.Add(clan);
         }
 
@@ -131,7 +137,8 @@ namespace Diplomacy.CivilWar.Factions
         {
             if (_participatingClans.Contains(clan))
             {
-                if (_participatingClans.Where(x => !x.IsEliminated).ToList().Count == 1)
+                var remainingClanList = _participatingClans.Where(x => x != clan && !x.IsEliminated).ToList();
+                if (remainingClanList.Count <= 0)
                 {
                     RebelFactionManager.DestroyRebelFaction(this);
                     return;
@@ -139,7 +146,7 @@ namespace Diplomacy.CivilWar.Factions
 
                 if (clan == SponsorClan)
                 {
-                    SponsorClan = _participatingClans.Where(x => x != clan && !x.IsEliminated).GetRandomElementInefficiently();
+                    SponsorClan = remainingClanList.GetRandomElementInefficiently();
                     Name = FactionNameGenerator.GenerateFactionName(SponsorClan);
                 }
 

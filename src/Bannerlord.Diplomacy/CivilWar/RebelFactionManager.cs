@@ -1,5 +1,7 @@
 ﻿using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
+using Diplomacy.Helpers;
+using Diplomacy.WarExhaustion;
 
 using JetBrains.Annotations;
 
@@ -103,24 +105,41 @@ namespace Diplomacy.CivilWar
             return AllRebelFactions.Values.SelectMany(x => x).FirstOrDefault(rf => rebelKingdom == rf.RebelKingdom);
         }
 
+        public static Kingdom GetCivilWarLoser(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
+        {
+            return (WarExhaustionManager.Instance?.GetWarResult(kingdomMakingPeace, otherKingdom) ?? WarExhaustionManager.WarResult.None) switch
+            {
+                WarExhaustionManager.WarResult.Tie when kingdomMakingPeace.Fiefs.Count > 0 => TributeHelper.GetBaseValueForTrubute(kingdomMakingPeace, otherKingdom) < 0 ? otherKingdom : kingdomMakingPeace,
+                >= WarExhaustionManager.WarResult.PyrrhicVictory => otherKingdom,
+                _ => kingdomMakingPeace,
+            };
+        }
+
         internal void OnAfterSaveLoaded()
         {
-            var factionsToClean = AllRebelFactions.Values.SelectMany(x => x).Where(x => x.Clans.Any(clan => clan.IsEliminated)).ToList();
-            var factionsToClear = factionsToClean.Where(x => x.Clans.Any(clan => !clan.IsEliminated)).ToList();
-            //Eliminate dead factions
-            foreach (var faction in factionsToClear)
+            //Remove factions of dead kingdoms
+            var keysToRemove = AllRebelFactions.Keys.Where(k => k.IsEliminated).ToList();
+            foreach (var keyToRemove in keysToRemove)
             {
-                DestroyRebelFaction(faction);
+                RebelFactions.Remove(keyToRemove);
             }
-            //Celar factions of dead clans
+            //Account for eliminated clans
+            var factionsToClean = AllRebelFactions.Values.SelectMany(x => x).Where(x => x.Clans.Any(clan => clan.IsEliminated)).ToList();
             foreach (var faction in factionsToClean)
-            { 
-                foreach (var clan in faction.Clans)
+            {
+                if (faction.Clans.All(clan => clan.IsEliminated))
                 {
+                    //Destroy dead factions
+                    DestroyRebelFaction(faction);
+                    continue;
+                }
+                foreach (var clan in faction.Clans.ToList())
+                {
+                    //Clear rest of the factions from dead clans
                     if (clan.IsEliminated) faction.RemoveClan(clan);
                 }
             }
-            //Fix factions that count as dead but not dead
+            //Fix factions that count as dead but not actually dead
             var kingdomsToReanimate = DeadRebelKingdoms.Where(k => !k.IsEliminated).ToList();
             foreach (var kingdom in kingdomsToReanimate)
             {

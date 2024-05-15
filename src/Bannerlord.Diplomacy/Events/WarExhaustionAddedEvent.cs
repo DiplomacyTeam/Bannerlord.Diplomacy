@@ -4,9 +4,9 @@ using TaleWorlds.CampaignSystem;
 
 namespace Diplomacy.Events
 {
-    public readonly struct WarExhaustionEvent
+    public readonly struct WarExhaustionAddedEvent
     {
-        public WarExhaustionEvent(Kingdom kingdom, Kingdom otherKingdom, WarExhaustionType warExhaustionType, float warExhaustionToAdd)
+        public WarExhaustionAddedEvent(Kingdom kingdom, Kingdom otherKingdom, WarExhaustionType warExhaustionType, float warExhaustionToAdd)
         {
             Kingdom = kingdom;
             OtherKingdom = otherKingdom;

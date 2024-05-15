@@ -57,7 +57,7 @@ namespace Diplomacy.PatchTools
                 patch.Remove(CampaignInstance.Harmony);
             }
 
-            CampaignInstance = null;        
+            CampaignInstance = null;
         }
 
         private PatchManager(string harmonyId, bool useMainPatches = true)
@@ -95,6 +95,7 @@ namespace Diplomacy.PatchTools
             new DefaultEncyclopediaFactionPagePatch(),
             new KingdomManagementVMPatch(),
             new MBBannerEditorGauntletScreenPatch(),
+            new MakePeaceKingdomDecisionPatch()
         };
 
         // REGISTER ALL ACTIVE HARMONY PATCH CLASSES TO USE OnGameStart HERE:

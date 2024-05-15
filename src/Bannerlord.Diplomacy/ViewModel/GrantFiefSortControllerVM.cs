@@ -177,77 +177,77 @@ namespace Diplomacy.ViewModel
                 _isAcending = isAcending;
             }
 
-            public abstract int Compare(GrantFiefItemVM x, GrantFiefItemVM y);
+            public abstract int Compare(GrantFiefItemVM? x, GrantFiefItemVM? y);
 
             protected bool _isAcending;
         }
 
         private class ItemNameComparer : ItemComparerBase
         {
-            public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
+            public override int Compare(GrantFiefItemVM? x, GrantFiefItemVM? y)
             {
                 if (_isAcending)
                 {
-                    return y.Settlement.Name.ToString().CompareTo(x.Settlement.Name.ToString()) * -1;
+                    return Comparer<string?>.Default.Compare(x?.Settlement.Name.ToString(), y?.Settlement.Name.ToString());
                 }
-                return y.Settlement.Name.ToString().CompareTo(x.Settlement.Name.ToString());
+                return Comparer<string?>.Default.Compare(y?.Settlement.Name.ToString(), x?.Settlement.Name.ToString());
             }
         }
 
         private class ItemClanComparer : ItemComparerBase
         {
-            public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
+            public override int Compare(GrantFiefItemVM? x, GrantFiefItemVM? y)
             {
                 if (_isAcending)
                 {
-                    return y.Settlement.OwnerClan.Name.ToString().CompareTo(x.Settlement.OwnerClan.Name.ToString()) * -1;
+                    return Comparer<string?>.Default.Compare(x?.Settlement.OwnerClan?.Name.ToString(), y?.Settlement.OwnerClan?.Name.ToString());
                 }
-                return y.Settlement.OwnerClan.Name.ToString().CompareTo(x.Settlement.OwnerClan.Name.ToString());
+                return Comparer<string?>.Default.Compare(y?.Settlement.OwnerClan?.Name.ToString(), x?.Settlement.OwnerClan?.Name.ToString());
             }
         }
 
         private class ItemTypeComparer : ItemComparerBase
         {
-            public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
+            public override int Compare(GrantFiefItemVM? x, GrantFiefItemVM? y)
             {
                 if (_isAcending)
                 {
-                    return x.Settlement.IsCastle.CompareTo(y.Settlement.IsCastle);
+                    return Comparer<bool?>.Default.Compare(x?.Settlement.IsCastle, y?.Settlement.IsCastle);
                 }
-                return x.Settlement.IsCastle.CompareTo(y.Settlement.IsCastle) * -1;
+                return Comparer<bool?>.Default.Compare(y?.Settlement.IsCastle, x?.Settlement.IsCastle);
             }
         }
 
         private class ItemProsperityComparer : ItemComparerBase
         {
-            public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
+            public override int Compare(GrantFiefItemVM? x, GrantFiefItemVM? y)
             {
                 if (_isAcending)
                 {
-                    return y.Prosperity.CompareTo(x.Prosperity) * -1;
+                    return Comparer<int?>.Default.Compare(x?.Prosperity, y?.Prosperity);
                 }
-                return y.Prosperity.CompareTo(x.Prosperity);
+                return Comparer<int?>.Default.Compare(y?.Prosperity, x?.Prosperity);
             }
         }
 
         private class ItemRelationComparer : ItemComparerBase
         {
-            public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
+            public override int Compare(GrantFiefItemVM? x, GrantFiefItemVM? y)
             {
                 if (_isAcending)
                 {
-                    return y.RelationBonus.CompareTo(x.RelationBonus) * -1;
+                    return Comparer<string?>.Default.Compare(x?.RelationBonus, y?.RelationBonus);
                 }
-                return y.RelationBonus.CompareTo(x.RelationBonus);
+                return Comparer<string?>.Default.Compare(y?.RelationBonus, x?.RelationBonus);
             }
         }
 
         private class ItemFoodComparer : ItemComparerBase
         {
-            public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
+            public override int Compare(GrantFiefItemVM? x, GrantFiefItemVM? y)
             {
-                var num = y.Settlement.Town?.FoodStocks ?? 0f;
-                var value = x.Settlement.Town?.FoodStocks ?? 0f;
+                var num = y?.Settlement.Town?.FoodStocks ?? 0f;
+                var value = x?.Settlement.Town?.FoodStocks ?? 0f;
                 if (_isAcending)
                 {
                     return num.CompareTo(value) * -1;
@@ -256,27 +256,15 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        private class ItemGarrisonComparer : ItemComparerBase
-        {
-            public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
-            {
-                if (_isAcending)
-                {
-                    return y.Garrison.CompareTo(x.Garrison) * -1;
-                }
-                return y.Garrison.CompareTo(x.Garrison);
-            }
-        }
-
         private class ItemDefendersComparer : ItemComparerBase
         {
-            public override int Compare(GrantFiefItemVM x, GrantFiefItemVM y)
+            public override int Compare(GrantFiefItemVM? x, GrantFiefItemVM? y)
             {
                 if (_isAcending)
                 {
-                    return y.Garrison.CompareTo(x.Garrison) * -1;
+                    return Comparer<int?>.Default.Compare(x?.Garrison, y?.Garrison);
                 }
-                return y.Garrison.CompareTo(x.Garrison);
+                return Comparer<int?>.Default.Compare(y?.Garrison, x?.Garrison);
             }
         }
     }

@@ -36,7 +36,7 @@ namespace Diplomacy.ViewModelMixin
         private static readonly TextObject _TPacts = new(StringConstants.NonAggressionPacts);
 
         private static readonly TextObject _TNapHelpText = new("{=9zlQNtlX}Form a non-aggression pact lasting {DAYS} days.");
-        private static readonly TextObject _TWarExhaustion = new("{=XmV_TQ0bH}War Exhaustion");
+        private static readonly TextObject _TWarExhaustion = new("{=XmVTQ0bH}War Exhaustion");
 
         private static readonly TextObject _TBreakAlliance = new("{=K4GraLTn}Break Alliance");
 
@@ -164,8 +164,8 @@ namespace Diplomacy.ViewModelMixin
                     ViewModel!.Stats.RemoveAt(1);
 
                 ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM(
-                    (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction1, _faction2),
-                    (int) WarExhaustionManager.Instance.GetWarExhaustion(_faction2, _faction1),
+                    (int) WarExhaustionManager.Instance!.GetWarExhaustion(_faction1, _faction2),
+                    (int) WarExhaustionManager.Instance!.GetWarExhaustion(_faction2, _faction1),
                     _TWarExhaustion,
                     Color.FromUint(_faction1.Color).ToString(),
                     Color.FromUint(_faction2.Color).ToString(),

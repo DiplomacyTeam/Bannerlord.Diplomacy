@@ -1,4 +1,79 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.12
+Game Versions: v1.0.x, v1.1.x, v1.2.x
+* Added Xbox support
+* Restored version support
+---------------------------------------------------------------------------------------------------
+Version: 1.2.11
+Game Versions: v1.1.1,v1.1.2,v1.1.3,v1.1.4,v1.1.5,v1.1.6,v1.2.0,v1.2.1,v1.2.2,v1.2.3,v1.2.4,v1.2.5,v1.2.6,v1.2.7,v1.2.8,1.2.9
+* Add support for v1.2.9
+* UI fixes (Rogue-Demon-King)
+* Alliance tendency bonus on leader clan marriages (eg3r)
+* Relation based war declaration (eg3r)
+---------------------------------------------------------------------------------------------------
+Version: 1.2.10
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0,v1.1.1,v1.1.2,v1.1.3,v1.1.4,v1.1.5,v1.1.6,v1.2.0,v1.2.1,v1.2.2,v1.2.3,v1.2.4,v1.2.5,v1.2.6,v1.2.7,v1.2.8
+* Add support for v1.2.6,v1.2.7,v1.2.8
+* Localization issues (Gedevan-Aleksizde)
+* Hero without party crash (arunasradv)
+---------------------------------------------------------------------------------------------------
+Version: 1.2.9
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0,v1.1.1,v1.1.2,v1.1.3,v1.1.4,v1.1.5,v1.1.6,v1.2.0,v1.2.1,v1.2.2,v1.2.3,v1.2.4,v1.2.5
+* Add support for v1.2.5
+---------------------------------------------------------------------------------------------------
+Version: 1.2.8
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0,v1.1.1,v1.1.2,v1.1.3,v1.1.4,v1.1.5,v1.1.6,v1.2.0,v1.2.1,v1.2.2,v1.2.3,v1.2.4
+* Add support for v1.2.4
+---------------------------------------------------------------------------------------------------
+Version: 1.2.7
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0,v1.1.1,v1.1.2,v1.1.3,v1.1.4,v1.1.5,v1.1.6,v1.2.0,v1.2.1,v1.2.2,v1.2.3
+* Add support for v1.1.6
+---------------------------------------------------------------------------------------------------
+Version: 1.2.6
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0,v1.1.1,v1.1.2,v1.1.3,v1.1.4,v1.1.5,v1.2.0,v1.2.1,v1.2.2,v1.2.3
+* Adapted for latest game versions.
+* Reworked Diplomacy Kingdom Elimination option description and implementation for v1.2.X game versions.
+---------------------------------------------------------------------------------------------------
+Version: 1.2.5
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
+* Fixed a crash on making peace when War Exhaustion is disabled.
+* Fixed a crash after loading a save when attempting to fix any faulty factions (again).
+* Fixed a bug due to which kingdoms were sometimes not destroyed when they should have been.
+* Fixed a bug due to which War Exhaustion breakdowns were sometimes showing wrong values (unaffected by rates).
+* Making peace should now use all of the mod's enabled mechanics, no matter what interface option was used for it.
+* Adjusted the calculation of war reparations to make it even more lenient.
+* Adjusted the way war reparations are gathered by the paying kingdom to make it less stressful.
+* Adjusted the way war reparations are distributed among the winning faction.
+* Adjusted the calculation and default values for some of the War Exhaustion entries.
+* Adjusted War Exhaustion rates calculation.
+* Adjusted descriptions of some settings for clarity.
+* Added an option to disable the elimination of fiefless kingdoms.
+* Added an option to disable fief repatriation after losing a war.
+---------------------------------------------------------------------------------------------------
+Version: 1.2.4
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
+* Fixed a crash after loading a save when attempting to fix any faulty factions.
+* Fixed a bug due to which the factions checkup did not always work as intended.
+* Fixed a bug where war exhaustion was still not initialized properly when declaring a war.
+* Fixed a bug due to which NAPs and Alliances were evaluated for the wrong side of the agreement.
+---------------------------------------------------------------------------------------------------
+Version: 1.2.3
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
+* Fixed a bug where war exhaustion was not reseted when making peace and not initialized properly when declaring wars.
+* Fixed a crash that happened sometimes when sponsor clan was removed from a faction.
+---------------------------------------------------------------------------------------------------
+Version: 1.2.2
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
+* Added a way to add casualties that are not related to map events.
+* Adjusted war reparations calculation and related setting defaults to be considerably more mild.
+* Adjusted default settings for Kingdom Diplomacy.
+* Gold and Influence costs are joined under a single Costs heading for better usability.
+* Made sure that the settings are reset to default when you first start the game after updating from previous versions of the mod.
+---------------------------------------------------------------------------------------------------
+Version: 1.2.1
+Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
+* Fixed rare crash that happened when War Exhaustion event precedes the war.
+---------------------------------------------------------------------------------------------------
 Version: 1.2.0
 Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
 * Adapted for v1.1.0
@@ -6,38 +81,31 @@ Game Versions: v1.0.0,v1.0.1,v1.0.2,v1.0.3,v1.1.0
 * Changed some setting hints to make them clearer.
 * Fixed excessive UI overlap when repeatedly pressing the Factions button in the Encyclopedia.
 * Better compatibility with other Encyclopedia mods for Faction page.
------------------------------------------ Console commands ----------------------------------------<Remove this before releasing!>
 * Diplomacy console commands should no longer cause crashes when executed from the main menu.
 * Added diplomacy.form_non_aggression_pact console command.
 * Added diplomacy.break_non_aggression_pact console command.
 * Added diplomacy.legitimize_rebel_kingdom console command to help fix broken civil wars.
 * Fixed diplomacy.set_war_exhaustion console command.
------------------------------------------ Diplomacy Costs -----------------------------------------<Remove this before releasing!>
 * Fixed some cost calculations using wrong settings.
 * Added Kingdom Wallet costs. They are used to pay war reparations and other interstate payments.
 * Diplomatic actions now include up to 3 different costs: a gold cost (usually representing organizational expenses and benefiting no one), an influence cost, and a kingdom wallet cost (used for interstate payments when required).
 * Added settings for proper calculating of gold and kingdom wallet costs.
 * Adjusted kingdom scaling factor calculation for kingdoms with mercenary clans.
 * Adjusted kingdom scaling factor calculation to be more notable for larger kingdoms.
-------------------------------------------- Donate Gold -------------------------------------------<Remove this before releasing!>
 * Donating gold to a clan now affects character traits.
---------------------------------------------- Factions --------------------------------------------<Remove this before releasing!>
 * Fixed a bug preventing faction to consolidate when its demands are fulfilled.
 * Fixed a bug where eliminated clans were not removed from factions.
 * Fixed several crashes related to factions and Civil Wars.
 * Made some overall stability improvements.
 * Added a checkup on game load to fix the most common issues with current factions and civil wars from older saves.
--------------------------------------------- Messengers -------------------------------------------<Remove this before releasing!>
 * Fixed a bug due to which messengers did not move if the game was not saved and reloaded after sending the messenger.
 * Resticted sending messengers only to the people you personally met or at least likely to know of, in order to keep intended game pace.
 * Added a chance of messengers not reaching their target (road accidents).
 * Added new mod settings to regulate new changes to messengers.
-------------------------------------------- Peacemaking -------------------------------------------<Remove this before releasing!>
 * Making peace without an election, whether it be from Kingdom Management or due to War Exhaustion, now imposes a tribute as usual.
 * Making peace while on Critical War Exhaustion may result in war reparations being paid, if the other side is winning the War Exhaustion race.
 * Losing a war due to War Exhaustion may result in some or even all of the territories captured by the defeated side being returned to the victor.
 * A faction without fiefs is now destroyed if it loses the last ongoing war due to War Exhaustion.
------------------------------------------- War Exhaustion -----------------------------------------<Remove this before releasing!>
 * Fixed an issue where War Exhaustion report showed incorrect breakdown numbers if Exhaustion gain settings were changed during the war.
 * Added War Exhaustion numbers to the campaign map indicator.
 * Optimized the performance of the War Exhaustion map indicator.

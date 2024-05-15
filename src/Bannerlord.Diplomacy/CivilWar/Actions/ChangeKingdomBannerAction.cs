@@ -66,28 +66,40 @@ namespace Diplomacy.CivilWar.Actions
 
                 if (clanKingdom == kingdom)
                 {
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
                     var visuals = mobileParty.Party!.Visuals;
                     if (visuals != null)
                     {
                         visuals.SetMapIconAsDirty();
                     }
+#else
+                    mobileParty.Party!.SetVisualAsDirty();
+#endif
                 }
             }
 
             foreach (var settlement in kingdom.Settlements)
             {
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
                 var visuals = settlement.Party.Visuals;
                 if (visuals != null)
                 {
                     visuals.SetMapIconAsDirty();
                 }
+#else
+                settlement.Party?.SetVisualAsDirty();
+#endif
 
                 if (settlement.IsVillage && settlement.Village.VillagerPartyComponent != null)
                 {
                     var party = settlement.Village.VillagerPartyComponent.MobileParty.Party;
                     if (party != null)
                     {
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
                         party.Visuals.SetMapIconAsDirty();
+#else
+                        party.SetVisualAsDirty();
+#endif
                     }
                 }
                 else if ((settlement.IsCastle || settlement.IsTown) && settlement.Town.GarrisonParty != null)
@@ -95,7 +107,11 @@ namespace Diplomacy.CivilWar.Actions
                     var party = settlement.Town.GarrisonParty.Party;
                     if (party != null)
                     {
+#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
                         party.Visuals.SetMapIconAsDirty();
+#else
+                        party.SetVisualAsDirty();
+#endif
                     }
                 }
             }
@@ -137,7 +153,7 @@ namespace Diplomacy.CivilWar.Actions
                     .Where(x => !currentSigilColors.Contains(x))
                     .ToList();
 
-                if (colors.Any())
+                if (colors.Count > 0)
                     selectedColor = colors.GetRandomElementInefficiently();
             }
 

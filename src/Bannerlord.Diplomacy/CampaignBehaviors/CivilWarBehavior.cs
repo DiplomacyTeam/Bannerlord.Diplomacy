@@ -25,7 +25,11 @@ namespace Diplomacy.CampaignBehaviors
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, DailyTickClan);
+#if v124 || v125 || v126 || v127 || v128 || v129
+            CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this, (x, y, z, _, _) => RemoveClanFromRebelFaction(x, y, z));
+#elif v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116 || v120 || v121 || v122 || v123
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, y, z, _, _) => RemoveClanFromRebelFaction(x, y, z));
+#endif
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ResolveCivilWar);
             CampaignEvents.KingdomDecisionConcluded.AddNonSerializedListener(this, NewKing);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
@@ -56,12 +60,13 @@ namespace Diplomacy.CampaignBehaviors
                 foreach (var kingdom in KingdomExtensions.AllActiveKingdoms.Where(x => (x.IsRebelKingdom() || x.HasRebellion()) && x.Fiefs.IsEmpty()).ToList())
                 {
                     var rebelFaction = RebelFactionManager.GetRebelFactionForRebelKingdom(kingdom) ?? kingdom.GetRebelFactions().FirstOrDefault();
+                    if (rebelFaction is null)
+                    {
+                        continue;
+                    }
 
                     var otherKingdom = kingdom.IsRebelKingdom() ? rebelFaction.ParentKingdom : rebelFaction.RebelKingdom!;
-                    if (rebelFaction != null)
-                    {
-                        KingdomPeaceAction.ApplyPeace(kingdom, otherKingdom);
-                    }
+                    KingdomPeaceAction.ApplyPeace(kingdom, otherKingdom);
                 }
             }
         }
@@ -92,6 +97,7 @@ namespace Diplomacy.CampaignBehaviors
         private void ResolveCivilWar(IFaction factionMakingPeace, IFaction otherFaction, MakePeaceAction.MakePeaceDetail makePeaceDetail)
 #endif
         {
+            //Need to check if this runs before or after WarExhaustionBehavior
             if (factionMakingPeace is Kingdom kingdomMakingPeace && otherFaction is Kingdom otherKingdom)
             {
                 var kingdomMakingPeaceIsRebel = kingdomMakingPeace.IsRebelKingdomOf(otherKingdom);
@@ -100,43 +106,8 @@ namespace Diplomacy.CampaignBehaviors
                     var rebelKingdom = kingdomMakingPeaceIsRebel ? kingdomMakingPeace : otherKingdom;
                     var parentKingdom = kingdomMakingPeaceIsRebel ? otherKingdom : kingdomMakingPeace;
                     var rebelFaction = RebelFactionManager.GetRebelFaction(parentKingdom).First(x => x.RebelKingdom == rebelKingdom);
-
-                    if (!Settings.Instance!.EnableWarExhaustion)
-                    {
-                        ResolveLoss(factionMakingPeace, rebelKingdom, rebelFaction);
-                    }
-                    else
-                    {
-                        var warResult = WarExhaustionManager.Instance.GetWarResult(kingdomMakingPeace, otherKingdom);
-                        switch (warResult)
-                        {
-                            case WarExhaustionManager.WarResult.Tie when factionMakingPeace.Fiefs.Any():
-                            {
-                                var peaceBarterable = new PeaceBarterable(kingdomMakingPeace.Leader, kingdomMakingPeace, otherKingdom, CampaignTime.Years(1f));
-                                var valueForOtherKingdom = -peaceBarterable.GetValueForFaction(otherKingdom);
-                                foreach (Clan clan in otherKingdom.Clans)
-                                {
-                                    var valueForClan = -peaceBarterable.GetValueForFaction(clan);
-                                    if (valueForClan > valueForOtherKingdom)
-                                        valueForOtherKingdom = valueForClan;
-                                }
-                                if (valueForOtherKingdom > -5000 && valueForOtherKingdom < 5000)
-                                    valueForOtherKingdom = 0;
-
-                                if (valueForOtherKingdom < 0)
-                                    ResolveLoss(otherKingdom, rebelKingdom, rebelFaction);
-                                else
-                                    ResolveLoss(factionMakingPeace, rebelKingdom, rebelFaction);
-                                break;
-                            }
-                            case >= WarExhaustionManager.WarResult.PyrrhicVictory:
-                                ResolveLoss(otherKingdom, rebelKingdom, rebelFaction);
-                                break;
-                            default:
-                                ResolveLoss(factionMakingPeace, rebelKingdom, rebelFaction);
-                                break;
-                        }
-                    }
+                    var loserKingdom = RebelFactionManager.GetCivilWarLoser(kingdomMakingPeace, otherKingdom);
+                    ResolveLoss(loserKingdom, rebelKingdom, rebelFaction);
                 }
             }
 
@@ -148,6 +119,7 @@ namespace Diplomacy.CampaignBehaviors
                     rebelFaction.EnforceSuccess();
             }
         }
+
         private void RemoveClanFromRebelFaction(Clan clan, Kingdom oldKingdom, Kingdom newKingdom)
         {
             var rebelFactions = RebelFactionManager.GetRebelFaction(oldKingdom).ToList();

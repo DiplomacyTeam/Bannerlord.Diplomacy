@@ -82,7 +82,7 @@ namespace Diplomacy.ViewModel
             var relationValue = GetBaseRelationValueOfCurrentGoldCost();
 
             if (relationValue > 0)
-            { 
+            {
                 ChangeRelationAction.ApplyPlayerRelation(_clan.Leader, relationValue);
                 PlayerCharacterTraitHelper.UpdateTrait(DefaultTraits.Generosity, MBMath.ClampInt(relationValue * 5, 0, 50));
                 PlayerCharacterTraitHelper.UpdateTrait(DefaultTraits.Calculating, MBMath.ClampInt(relationValue * GetCalculatingTraitFactor(), 0, 50));
@@ -91,7 +91,7 @@ namespace Diplomacy.ViewModel
             _onFinalize();
         }
 
-        private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void HandlePropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(IntValue))
                 Refresh();

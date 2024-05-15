@@ -21,7 +21,10 @@
             public int Tendency => Settings.Instance!.AllianceTendency;
 
             public int NonAggressionPactWithEnemy => -1000;
+
             public int NonAggressionPactWithNeutral => -10;
+
+            public int LeaderClanMarriage => 50;
         }
     }
 }

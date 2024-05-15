@@ -37,6 +37,15 @@ namespace Diplomacy.WarExhaustion
             AddWarExhaustion(kingdoms, WarExhaustionType.Casualty, warExhaustionToAdd, battleCasualtyRecord);
         }
 
+        public void AddCasualtyWarExhaustion(Kingdom kingdom1, Kingdom kingdom2, int kingdom1Casualties, int kingdom2Casualties, TextObject? kingdom1PartyName = null, TextObject? kingdom2PartyName = null)
+        {
+            CreateKey(kingdom1, kingdom2, out var kingdoms);
+            if (kingdoms is null) return;
+
+            var warExhaustionToAdd = GetCasualtyWarExhaustionDelta(kingdoms, kingdom1Casualties, kingdom2Casualties, kingdom1PartyName, kingdom2PartyName, out var battleCasualtyRecord);
+            AddWarExhaustion(kingdoms, WarExhaustionType.Casualty, warExhaustionToAdd, battleCasualtyRecord);
+        }
+
 #if v100 || v101 || v102 || v103
         public void AddRaidWarExhaustion(Kingdoms kingdoms, MapEvent mapEvent)
         {
@@ -90,22 +99,16 @@ namespace Diplomacy.WarExhaustion
             AddWarExhaustion(kingdoms, WarExhaustionType.Divine, warExhaustionToAdd, divineInterventionRecord);
         }
 
-        private void AddWarExhaustion(Kingdoms kingdoms, WarExhaustionType warExhaustionType, WarExhaustionRecord warExhaustionToAdd, WarExhaustionEventRecord? eventRecord =  null)
+        private void AddWarExhaustion(Kingdoms kingdoms, WarExhaustionType warExhaustionType, WarExhaustionRecord warExhaustionToAdd, WarExhaustionEventRecord? eventRecord = null)
         {
             var key = kingdoms.Key;
             if (key is null)
                 return;
-            var weightedWarExhaustionDelta = warExhaustionType switch
-            {
-                WarExhaustionType.Daily => warExhaustionToAdd,
-                WarExhaustionType.Occupied => warExhaustionToAdd,
-                WarExhaustionType.Divine => warExhaustionToAdd,
-                _ => GetWeightedWarExhaustionDelta(kingdoms, warExhaustionToAdd, key),
-            };
+
             if (_warExhaustionScores.TryGetValue(key, out var currentValue))
-                _warExhaustionScores[key] = currentValue + weightedWarExhaustionDelta;
+                _warExhaustionScores[key] = currentValue + warExhaustionToAdd;
             else
-                _warExhaustionScores[key] = weightedWarExhaustionDelta;
+                _warExhaustionScores[key] = warExhaustionToAdd;
 
             //Divine intervention can override the victor
             var newValue = _warExhaustionScores[key];
@@ -125,7 +128,7 @@ namespace Diplomacy.WarExhaustion
             if (Settings.Instance!.EnableWarExhaustionDebugMessages && (kingdoms.Kingdom1 == Hero.MainHero.MapFaction || kingdoms.Kingdom2 == Hero.MainHero.MapFaction))
             {
                 var information =
-                    $"Added {weightedWarExhaustionDelta} {Enum.GetName(typeof(WarExhaustionType), warExhaustionType)} war exhaustion to {kingdoms.Kingdom1.Name}'s war with {kingdoms.Kingdom2.Name}";
+                    $"Added {warExhaustionToAdd} {Enum.GetName(typeof(WarExhaustionType), warExhaustionType)} war exhaustion to {kingdoms.Kingdom1.Name}'s war with {kingdoms.Kingdom2.Name}";
                 InformationManager.DisplayMessage(new InformationMessage(information, Color.FromUint(4282569842U)));
             }
 
@@ -136,7 +139,7 @@ namespace Diplomacy.WarExhaustion
         {
             if (eventRecord is DailyRecord dailyRecord)
             {
-                var lastRecord =  currentRecords.OfType<DailyRecord>().OrderByDescending(r => r.EventDate).FirstOrDefault();
+                var lastRecord = currentRecords.OfType<DailyRecord>().OrderByDescending(r => r.EventDate).FirstOrDefault();
                 if (lastRecord != null && lastRecord.CanBeCompoundedWith(dailyRecord))
                     currentRecords[currentRecords.IndexOf(lastRecord)] = lastRecord.CompoundWith(dailyRecord);
                 else
@@ -165,19 +168,9 @@ namespace Diplomacy.WarExhaustion
             {
                 if (warExhaustionToAdd != 0f)
                 {
-                    DiplomacyEvents.Instance.OnWarExhaustionAdded(new WarExhaustionEvent(kingdom1, kingdom2, warExhaustionType, warExhaustionToAdd));
+                    DiplomacyEvents.Instance.OnWarExhaustionAdded(new WarExhaustionAddedEvent(kingdom1, kingdom2, warExhaustionType, warExhaustionToAdd));
                 }
             }
-        }
-
-        private WarExhaustionRecord GetWeightedWarExhaustionDelta(Kingdoms kingdoms, WarExhaustionRecord warExhaustionToAdd, string key)
-        {
-            if (!_warExhaustionRates.TryGetValue(key, out var warExhaustionRate))
-            {
-                RegisterWarExhaustionMultiplier(kingdoms);
-                warExhaustionRate = _warExhaustionRates[key];
-            }
-            return warExhaustionRate * warExhaustionToAdd;
         }
 
         private WarExhaustionRecord GetDailyWarExhaustionDelta(Kingdoms kingdoms, CampaignTime warStartDate, out DailyRecord dailyRecord)
@@ -195,8 +188,8 @@ namespace Diplomacy.WarExhaustion
             GetWarExhaustionPerDay(out var warExhaustionPerDay, out var warExhaustionPerDayOccupied);
             var faction1 = kingdoms.ReversedKeyOrder ? kingdoms.Kingdom2 : kingdoms.Kingdom1;
             var faction2 = kingdoms.ReversedKeyOrder ? kingdoms.Kingdom1 : kingdoms.Kingdom2;
-            var faction1IsOccupied = !faction1.Fiefs.Any();
-            var faction2IsOccupied = !faction2.Fiefs.Any();
+            var faction1IsOccupied = faction1.Fiefs.Count <= 0;
+            var faction2IsOccupied = faction2.Fiefs.Count <= 0;
             var faction1WarExhaustion = faction1IsOccupied ? warExhaustionPerDayOccupied : warExhaustionPerDay;
             var faction2WarExhaustion = faction2IsOccupied ? warExhaustionPerDayOccupied : warExhaustionPerDay;
             var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
@@ -211,7 +204,7 @@ namespace Diplomacy.WarExhaustion
             warExhaustionPerDayOccupied = Math.Max(warExhaustionPerDay * Settings.Instance!.FieflessWarExhaustionMultiplier, 1f);
         }
 
-        private static WarExhaustionRecord GetCasualtyWarExhaustionDelta(Kingdoms kingdoms, MapEvent mapEvent, out BattleCasualtyRecord battleCasualtyRecord)
+        private WarExhaustionRecord GetCasualtyWarExhaustionDelta(Kingdoms kingdoms, MapEvent mapEvent, out BattleCasualtyRecord battleCasualtyRecord)
         {
             int attackerSideCasualties = mapEvent.AttackerSide.Casualties;
             int defenderSideCasualties = mapEvent.DefenderSide.Casualties;
@@ -225,15 +218,39 @@ namespace Diplomacy.WarExhaustion
             var eventRelatedSettlement = mapEvent.MapEventSettlement;
             var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
 
+            var rates = GetWarExhaustionRates(kingdoms);
             if (kingdoms.ReversedKeyOrder)
             {
-                battleCasualtyRecord = new(CampaignTime.Now, defenderSideCasualties, defenderSideWarExhaustion, attackerSideCasualties, attackerSideWarExhaustion, defenderSidePartyName, attackerSidePartyName, eventRelatedSettlement);
-                return new(defenderSideWarExhaustion, attackerSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                battleCasualtyRecord = new(CampaignTime.Now, defenderSideCasualties, defenderSideWarExhaustion * rates.Faction1Value, attackerSideCasualties, attackerSideWarExhaustion * rates.Faction2Value, defenderSidePartyName, attackerSidePartyName, eventRelatedSettlement);
+                return new(defenderSideWarExhaustion * rates.Faction1Value, attackerSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
             else
             {
-                battleCasualtyRecord = new(CampaignTime.Now, attackerSideCasualties, attackerSideWarExhaustion, defenderSideCasualties, defenderSideWarExhaustion, attackerSidePartyName, defenderSidePartyName, eventRelatedSettlement);
-                return new(attackerSideWarExhaustion, defenderSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                battleCasualtyRecord = new(CampaignTime.Now, attackerSideCasualties, attackerSideWarExhaustion * rates.Faction1Value, defenderSideCasualties, defenderSideWarExhaustion * rates.Faction2Value, attackerSidePartyName, defenderSidePartyName, eventRelatedSettlement);
+                return new(attackerSideWarExhaustion * rates.Faction1Value, defenderSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+            }
+        }
+
+        private WarExhaustionRecord GetCasualtyWarExhaustionDelta(Kingdoms kingdoms, int kingdom1Casualties, int kingdom2Casualties, TextObject? kingdom1PartyName, TextObject? kingdom2PartyName, out BattleCasualtyRecord battleCasualtyRecord)
+        {
+            var warExhaustionPerCasualty = Settings.Instance!.WarExhaustionPerCasualty;
+            float kingdom1WarExhaustion = kingdom1Casualties * warExhaustionPerCasualty;
+            float kingdom2WarExhaustion = kingdom2Casualties * warExhaustionPerCasualty;
+
+            kingdom1PartyName ??= kingdoms.Kingdom1.Name;
+            kingdom2PartyName ??= kingdoms.Kingdom2.Name;
+            var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
+
+            var rates = GetWarExhaustionRates(kingdoms);
+            if (kingdoms.ReversedKeyOrder)
+            {
+                battleCasualtyRecord = new(CampaignTime.Now, kingdom2Casualties, kingdom2WarExhaustion * rates.Faction1Value, kingdom1Casualties, kingdom1WarExhaustion * rates.Faction2Value, kingdom2PartyName, kingdom1PartyName, eventRelatedSettlement: null);
+                return new(kingdom2WarExhaustion * rates.Faction1Value, kingdom1WarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+            }
+            else
+            {
+                battleCasualtyRecord = new(CampaignTime.Now, kingdom1Casualties, kingdom1WarExhaustion * rates.Faction1Value, kingdom2Casualties, kingdom2WarExhaustion * rates.Faction2Value, kingdom1PartyName, kingdom2PartyName, eventRelatedSettlement: null);
+                return new(kingdom1WarExhaustion * rates.Faction1Value, kingdom2WarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
         }
 
@@ -243,15 +260,16 @@ namespace Diplomacy.WarExhaustion
             float defenderSideWarExhaustion = Settings.Instance!.WarExhaustionPerRaid * GetDiminishingReturnsFactor<Village, RaidRecord>(kingdoms, raidedVillage, out var yieldsDiminishingReturns);
             var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
 
+            var rates = GetWarExhaustionRates(kingdoms);
             if (kingdoms.ReversedKeyOrder)
             {
-                raidRecord = new(CampaignTime.Now, raidedVillage, 1, defenderSideWarExhaustion, 0, attackerSideWarExhaustion, raidingPartyName, yieldsDiminishingReturns);
-                return new(defenderSideWarExhaustion, attackerSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                raidRecord = new(CampaignTime.Now, raidedVillage, 1, defenderSideWarExhaustion * rates.Faction1Value, 0, attackerSideWarExhaustion * rates.Faction2Value, raidingPartyName, yieldsDiminishingReturns);
+                return new(defenderSideWarExhaustion * rates.Faction1Value, attackerSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
             else
             {
-                raidRecord = new(CampaignTime.Now, raidedVillage, 0, attackerSideWarExhaustion, 1, defenderSideWarExhaustion, raidingPartyName, yieldsDiminishingReturns);
-                return new(attackerSideWarExhaustion, defenderSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                raidRecord = new(CampaignTime.Now, raidedVillage, 0, attackerSideWarExhaustion * rates.Faction1Value, 1, defenderSideWarExhaustion * rates.Faction2Value, raidingPartyName, yieldsDiminishingReturns);
+                return new(attackerSideWarExhaustion * rates.Faction1Value, defenderSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
         }
 
@@ -266,15 +284,16 @@ namespace Diplomacy.WarExhaustion
             TextObject attackerSidePartyName = mapEvent.AttackerSide.LeaderParty?.Name ?? kingdoms.Kingdom1.Name;
             TextObject defenderSidePartyName = mapEvent.DefenderSide.LeaderParty?.Name ?? new("{=fnPa5bas}garrisoned troops");
 
+            var rates = GetWarExhaustionRates(kingdoms);
             if (kingdoms.ReversedKeyOrder)
             {
-                siegeRecord = new(CampaignTime.Now, eventRelatedSettlement, 1, defenderSideWarExhaustion, 0, attackerSideWarExhaustion, defenderSidePartyName, attackerSidePartyName, yieldsDiminishingReturns);
-                return new(defenderSideWarExhaustion, attackerSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                siegeRecord = new(CampaignTime.Now, eventRelatedSettlement, 1, defenderSideWarExhaustion * rates.Faction1Value, 0, attackerSideWarExhaustion * rates.Faction2Value, defenderSidePartyName, attackerSidePartyName, yieldsDiminishingReturns);
+                return new(defenderSideWarExhaustion * rates.Faction1Value, attackerSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
             else
             {
-                siegeRecord = new(CampaignTime.Now, eventRelatedSettlement, 0, attackerSideWarExhaustion, 1, defenderSideWarExhaustion, attackerSidePartyName, defenderSidePartyName, yieldsDiminishingReturns);
-                return new(attackerSideWarExhaustion, defenderSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                siegeRecord = new(CampaignTime.Now, eventRelatedSettlement, 0, attackerSideWarExhaustion * rates.Faction1Value, 1, defenderSideWarExhaustion * rates.Faction2Value, attackerSidePartyName, defenderSidePartyName, yieldsDiminishingReturns);
+                return new(attackerSideWarExhaustion * rates.Faction1Value, defenderSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
         }
 
@@ -285,15 +304,16 @@ namespace Diplomacy.WarExhaustion
             float defenderSideWarExhaustion = Settings.Instance!.WarExhaustionPerImprisonment * importanceFactor * GetDiminishingReturnsFactor<Hero, HeroImprisonedRecord>(kingdoms, hero, out var yieldsDiminishingReturns);
             var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
 
+            var rates = GetWarExhaustionRates(kingdoms);
             if (kingdoms.ReversedKeyOrder)
             {
-                heroImprisonedRecord = new(CampaignTime.Now, hero, 1, defenderSideWarExhaustion, 0, attackerSideWarExhaustion, otherPartyName, yieldsDiminishingReturns);
-                return new(defenderSideWarExhaustion, attackerSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                heroImprisonedRecord = new(CampaignTime.Now, hero, 1, defenderSideWarExhaustion * rates.Faction1Value, 0, attackerSideWarExhaustion * rates.Faction2Value, otherPartyName, yieldsDiminishingReturns);
+                return new(defenderSideWarExhaustion * rates.Faction1Value, attackerSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
             else
             {
-                heroImprisonedRecord = new(CampaignTime.Now, hero, 0, attackerSideWarExhaustion, 1, defenderSideWarExhaustion, otherPartyName, yieldsDiminishingReturns);
-                return new(attackerSideWarExhaustion, defenderSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                heroImprisonedRecord = new(CampaignTime.Now, hero, 0, attackerSideWarExhaustion * rates.Faction1Value, 1, defenderSideWarExhaustion * rates.Faction2Value, otherPartyName, yieldsDiminishingReturns);
+                return new(attackerSideWarExhaustion * rates.Faction1Value, defenderSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
         }
 
@@ -304,15 +324,16 @@ namespace Diplomacy.WarExhaustion
             float defenderSideWarExhaustion = Settings.Instance!.WarExhaustionPerDeath * importanceFactor * GetDiminishingReturnsFactor<Hero, HeroPerishedRecord>(kingdoms, hero, out var yieldsDiminishingReturns);
             var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
 
+            var rates = GetWarExhaustionRates(kingdoms);
             if (kingdoms.ReversedKeyOrder)
             {
-                heroPerishedRecord = new(CampaignTime.Now, hero, 1, defenderSideWarExhaustion, 0, attackerSideWarExhaustion, otherPartyName, deathDetail, yieldsDiminishingReturns);
-                return new(defenderSideWarExhaustion, attackerSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                heroPerishedRecord = new(CampaignTime.Now, hero, 1, defenderSideWarExhaustion * rates.Faction1Value, 0, attackerSideWarExhaustion * rates.Faction2Value, otherPartyName, deathDetail, yieldsDiminishingReturns);
+                return new(defenderSideWarExhaustion * rates.Faction1Value, attackerSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
             else
             {
-                heroPerishedRecord = new(CampaignTime.Now, hero, 0, attackerSideWarExhaustion, 1, defenderSideWarExhaustion, otherPartyName, deathDetail, yieldsDiminishingReturns);
-                return new(attackerSideWarExhaustion, defenderSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                heroPerishedRecord = new(CampaignTime.Now, hero, 0, attackerSideWarExhaustion * rates.Faction1Value, 1, defenderSideWarExhaustion * rates.Faction2Value, otherPartyName, deathDetail, yieldsDiminishingReturns);
+                return new(attackerSideWarExhaustion * rates.Faction1Value, defenderSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
         }
 
@@ -325,15 +346,16 @@ namespace Diplomacy.WarExhaustion
             TextObject winningSidePartyName = winningSide.LeaderParty?.Name ?? kingdoms.Kingdom1.Name;
             TextObject loosingSidePartyName = cp.Name ?? new("{=rwFeQWky}A caravan of {KINGDOM_NAME}", new() { ["KINGDOM_NAME"] = kingdoms.Kingdom2.Name });
 
+            var rates = GetWarExhaustionRates(kingdoms);
             if (kingdoms.ReversedKeyOrder)
             {
-                caravanRaidRecord = new(CampaignTime.Now, 1, loosingSideWarExhaustion, 0, winningSideWarExhaustion, loosingSidePartyName, winningSidePartyName);
-                return new(loosingSideWarExhaustion, winningSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                caravanRaidRecord = new(CampaignTime.Now, 1, loosingSideWarExhaustion * rates.Faction1Value, 0, winningSideWarExhaustion * rates.Faction2Value, loosingSidePartyName, winningSidePartyName);
+                return new(loosingSideWarExhaustion * rates.Faction1Value, winningSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
             else
             {
-                caravanRaidRecord = new(CampaignTime.Now, 0, winningSideWarExhaustion, 1, loosingSideWarExhaustion, winningSidePartyName, loosingSidePartyName);
-                return new(winningSideWarExhaustion, loosingSideWarExhaustion, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
+                caravanRaidRecord = new(CampaignTime.Now, 0, winningSideWarExhaustion * rates.Faction1Value, 1, loosingSideWarExhaustion * rates.Faction2Value, winningSidePartyName, loosingSidePartyName);
+                return new(winningSideWarExhaustion * rates.Faction1Value, loosingSideWarExhaustion * rates.Faction2Value, hasActiveQuest: hasActiveQuest, considerRangeLimits: false);
             }
         }
 
@@ -341,8 +363,8 @@ namespace Diplomacy.WarExhaustion
         {
             float attackerSideWarExhaustion = 0f;
             float defenderSideWarExhaustion = Settings.Instance!.WarExhaustionWhenOccupied * GetDiminishingReturnsFactor<Kingdom, OccupiedRecord>(kingdoms, kingdoms.Kingdom2, out var yieldsDiminishingReturns);
-            var attackerSide= kingdoms.Kingdom1;
-            var defenderSide= kingdoms.Kingdom2;
+            var attackerSide = kingdoms.Kingdom1;
+            var defenderSide = kingdoms.Kingdom2;
             var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
 
             if (kingdoms.ReversedKeyOrder)
@@ -376,7 +398,7 @@ namespace Diplomacy.WarExhaustion
         }
 
         private float GetDiminishingReturnsFactor<TObj, TRec>(Kingdoms kingdoms, TObj eventRelatedObject, out bool yieldsDiminishingReturns) where TObj : MBObjectBase where TRec : WarExhaustionEventRecord =>
-            GetDiminishingReturnsFactor<TObj, TRec>(eventRelatedObject, _warExhaustionEventRecords[kingdoms.Key!], out yieldsDiminishingReturns);
+            GetDiminishingReturnsFactor<TObj, TRec>(eventRelatedObject, _warExhaustionEventRecords.TryGetValue(kingdoms.Key!, out var currentRecords) ? currentRecords : new(), out yieldsDiminishingReturns);
 
         private static float GetDiminishingReturnsFactor<TObj, TRec>(TObj eventRelatedObject, List<WarExhaustionEventRecord> warExhaustionEventRecords, out bool yieldsDiminishingReturns) where TObj : MBObjectBase where TRec : WarExhaustionEventRecord
         {
@@ -394,7 +416,7 @@ namespace Diplomacy.WarExhaustion
         }
 
         private static float GetDiminishingReturnsFactor(int numberOfPreviousOccurrences) => (float) (1 / Math.Pow(2, Math.Max(numberOfPreviousOccurrences, 0)));
-                
+
         public void UpdateDailyWarExhaustionForAllKingdoms()
         {
             List<string> listKeys = new();
@@ -424,9 +446,9 @@ namespace Diplomacy.WarExhaustion
                     if (hero.IsFactionLeader)
                         return ImportanceEnum.MatterOfLifeAndDeath;
                     if (faction.Leader.Clan is Clan factionLeaderClan && factionLeaderClan == clan)
-                        return ImportanceEnum.ExtremelyImportant;
+                        return hero.IsNoncombatant ? ImportanceEnum.Important : ImportanceEnum.ExtremelyImportant;
 
-                    int inportance = Math.Min(clan.Tier, 6) - (clan.IsUnderMercenaryService ? 5 : 3) + (hero.IsCommander ? 1 : 0) + (clan.Leader == hero ? 3 : 0) - (hero.IsLord ? 0 : 3);
+                    int inportance = Math.Min(clan.Tier, 6) - (clan.IsUnderMercenaryService ? 5 : 3) + (hero.IsCommander ? 1 : 0) + (clan.Leader == hero ? 3 : 0) - (hero.IsLord ? 0 : 3) - (hero.IsNoncombatant ? 3 : 0);
                     return (ImportanceEnum) MBMath.ClampInt(inportance, 1, (int) ImportanceEnum.ExtremelyImportant);
                 }
 
@@ -467,7 +489,7 @@ namespace Diplomacy.WarExhaustion
                         var enemyKingdomLastOccupationDate = GetLastOccupationDate(enemyKingdom, out var enemyKingdomLastOccupatorFaction);
                         var stance = kingdom.GetStanceWith(enemyKingdom);
                         CampaignTime warStartDate = stance.WarStartDate;
-                        GetWarExhaustionMultiplier(kingdoms, out var multiplier1, out var multiplier2);
+                        CalculateWarExhaustionMultiplier(kingdoms, out var multiplier1, out var multiplier2);
                         var eventRecs = new List<WarExhaustionEventRecord>();
                         var hasActiveQuest = !IsValidQuestState(kingdom, enemyKingdom);
 
@@ -496,7 +518,7 @@ namespace Diplomacy.WarExhaustion
             {
                 var daysElapsed = (int) warStartDate.ElapsedDaysUntilNow;
                 float warExhaustionPerDay = Settings.Instance!.WarExhaustionPerDay;
-                var totalDailyExhaustion = warExhaustionPerDay * daysElapsed;                
+                var totalDailyExhaustion = warExhaustionPerDay * daysElapsed;
                 eventRecs.Add(new DailyRecord(warStartDate, daysElapsed, totalDailyExhaustion, daysElapsed, totalDailyExhaustion));
                 return new(totalDailyExhaustion, totalDailyExhaustion, hasActiveQuest: hasActiveQuest);
             }
@@ -686,7 +708,7 @@ namespace Diplomacy.WarExhaustion
 
         private CampaignTime GetLastOccupationDate(Kingdom kingdom, out IFaction? effector)
         {
-            if (!kingdom.Fiefs.Any())
+            if (kingdom.Fiefs.Count <= 0)
             {
                 for (int index = Campaign.Current.LogEntryHistory.GameActionLogs.Count - 1; index >= 0; --index)
                 {

@@ -19,7 +19,7 @@ namespace Diplomacy.WarExhaustion.EventRecords
         public TextObject OtherPartyName => _otherPartyName;
         public bool YieldsDiminishingReturns => _yieldsDiminishingReturns;
 
-        protected HeroRelatedRecord(CampaignTime eventDate, Hero hero, int faction1Value, float faction1ExhaustionValue, int faction2Value, float faction2ExhaustionValue, TextObject otherPartyName, bool yieldsDiminishingReturns = false) 
+        protected HeroRelatedRecord(CampaignTime eventDate, Hero hero, int faction1Value, float faction1ExhaustionValue, int faction2Value, float faction2ExhaustionValue, TextObject otherPartyName, bool yieldsDiminishingReturns = false)
             : base(eventDate, faction1Value, faction1ExhaustionValue, faction2Value, faction2ExhaustionValue)
         {
             _hero = hero;

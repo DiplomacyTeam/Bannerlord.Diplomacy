@@ -46,7 +46,7 @@ namespace Diplomacy.WarExhaustion.EventRecords
 
         protected static TextObject? FindTextWithVariation(string textToFind)
         {
-            int variationSeparatorIdx = textToFind.LastIndexOf(".");
+            int variationSeparatorIdx = textToFind.LastIndexOf('.');
             if (variationSeparatorIdx > 0)
             {
                 var id = textToFind.Substring(0, variationSeparatorIdx);

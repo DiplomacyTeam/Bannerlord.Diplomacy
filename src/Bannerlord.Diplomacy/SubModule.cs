@@ -1,5 +1,4 @@
 ﻿using Bannerlord.ButterLib.Common.Extensions;
-
 using Bannerlord.UIExtenderEx;
 using Bannerlord.UIExtenderEx.ResourceManager;
 
@@ -19,16 +18,17 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 
 namespace Diplomacy
 {
     public sealed class SubModule : MBSubModuleBase
     {
-        public static readonly string Version = $"v{typeof(SubModule).Assembly.GetName().Version.ToString(3)}";
+        public static readonly string Version = $"v{typeof(SubModule).Assembly.GetName().Version!.ToString(3)}";
 
-        public static readonly string Name = typeof(SubModule).Namespace;
-        public static readonly string DisplayName = Name;
+        public static readonly string Name = typeof(SubModule).Namespace!;
+        public static readonly string DisplayName = new TextObject($"{{=MYz8nKqq}}{Name}").ToString();
         public static readonly string MainHarmonyDomain = "bannerlord." + Name.ToLower();
         public static readonly string CampaignHarmonyDomain = MainHarmonyDomain + ".campaign";
         public static readonly string WidgetHarmonyDomain = MainHarmonyDomain + ".widgets";
@@ -46,7 +46,7 @@ namespace Diplomacy
             base.OnSubModuleLoad();
             Instance = this;
 
-            var extender = new UIExtender(Name);
+            var extender = UIExtender.Create(Name);
             extender.Register(typeof(SubModule).Assembly);
             extender.Enable();
 
@@ -74,7 +74,7 @@ namespace Diplomacy
                 _hasLoaded = true;
                 Log.LogInformation($"Loaded {Name} {Version}!");
 
-                InformationManager.DisplayMessage(new InformationMessage($"Loaded {DisplayName}", StdTextColor));
+                InformationManager.DisplayMessage(new InformationMessage(new TextObject($"{{=hPERH3u4}}Loaded {{NAME}}").SetTextVariable("NAME", DisplayName).ToString(), StdTextColor));
             }
         }
 
