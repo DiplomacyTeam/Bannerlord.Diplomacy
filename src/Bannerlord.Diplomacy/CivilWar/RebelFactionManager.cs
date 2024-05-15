@@ -109,7 +109,7 @@ namespace Diplomacy.CivilWar
         {
             return (WarExhaustionManager.Instance?.GetWarResult(kingdomMakingPeace, otherKingdom) ?? WarExhaustionManager.WarResult.None) switch
             {
-                WarExhaustionManager.WarResult.Tie when kingdomMakingPeace.Fiefs.Any() => TributeHelper.GetBaseValueForTrubute(kingdomMakingPeace, otherKingdom) < 0 ? otherKingdom : kingdomMakingPeace,
+                WarExhaustionManager.WarResult.Tie when kingdomMakingPeace.Fiefs.Count > 0 => TributeHelper.GetBaseValueForTrubute(kingdomMakingPeace, otherKingdom) < 0 ? otherKingdom : kingdomMakingPeace,
                 >= WarExhaustionManager.WarResult.PyrrhicVictory => otherKingdom,
                 _ => kingdomMakingPeace,
             };

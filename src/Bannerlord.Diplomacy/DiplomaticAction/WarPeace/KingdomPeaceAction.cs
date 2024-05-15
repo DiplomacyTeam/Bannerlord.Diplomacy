@@ -89,7 +89,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             var rebelIsMakingPeace = kingdomMakingPeace.IsRebelKingdomOf(otherKingdom);
             var originalIsMakingPeace = otherKingdom.IsRebelKingdomOf(kingdomMakingPeace);
 
-            if (!isATie && rebelIsMakingPeace || originalIsMakingPeace)
+            if ((!isATie && rebelIsMakingPeace) || originalIsMakingPeace)
             {
                 var strRebelArgs = new Dictionary<string, object>
                 {
@@ -104,7 +104,6 @@ namespace Diplomacy.DiplomaticAction.WarPeace
                 inquiryBody = new(rebelIsMakingPeace ? _rebellionDefeated : _defeatedByRebellion, strRebelArgs);
                 return;
             }
-
 
             var strArgs = new Dictionary<string, object>
             {
@@ -208,7 +207,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             var rebelIsMakingPeace = kingdomMakingPeace.IsRebelKingdomOf(otherKingdom);
             var originalIsMakingPeace = otherKingdom.IsRebelKingdomOf(kingdomMakingPeace);
 
-            if (!isATie && rebelIsMakingPeace || originalIsMakingPeace)
+            if ((!isATie && rebelIsMakingPeace) || originalIsMakingPeace)
             {
                 var strRebelArgs = new Dictionary<string, object>
                 {
@@ -336,7 +335,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             if (!Settings.Instance!.EnableWarExhaustion || !Settings.Instance!.EnableFiefRepatriation || !WarExhaustionManager.Instance!.HasMaxWarExhaustion(kingdomMakingPeace, otherKingdom))
                 return false;
 
-            if (!kingdomMakingPeace.Fiefs.Any())
+            if (kingdomMakingPeace.Fiefs.Count <= 0)
                 return false;
 
             if (kingdomMakingPeace.IsRebelKingdomOf(otherKingdom) || (otherKingdom.IsRebelKingdomOf(kingdomMakingPeace) && kingdomMakingPeace.GetRebelFactions().Any(x => x.RebelKingdom == otherKingdom && x is not SecessionFaction)))

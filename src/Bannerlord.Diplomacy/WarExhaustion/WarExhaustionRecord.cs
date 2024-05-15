@@ -71,7 +71,7 @@ namespace Diplomacy.WarExhaustion
         private static ActiveQuestState GetAppropriateQuestState(ActiveQuestState a, ActiveQuestState b) => (a > ActiveQuestState.None) ? Max(b, ActiveQuestState.HadActiveQuest) : b;
 
         public override string ToString() => string.Format("({0},{1})", Faction1Value.ToString("F2"), Faction2Value.ToString("F2"));
-        public override bool Equals(object obj) => obj is WarExhaustionRecord warExhaustionRecord && Equals(warExhaustionRecord);
+        public override bool Equals(object? obj) => obj is WarExhaustionRecord warExhaustionRecord && Equals(warExhaustionRecord);
         public bool Equals(WarExhaustionRecord warExhaustionRecord) => Faction1Value == warExhaustionRecord.Faction1Value && Faction2Value == warExhaustionRecord.Faction2Value;
         public override int GetHashCode() => Faction1Value.GetHashCode() ^ Faction2Value.GetHashCode();
         public static WarExhaustionRecord operator +(WarExhaustionRecord a) => a;

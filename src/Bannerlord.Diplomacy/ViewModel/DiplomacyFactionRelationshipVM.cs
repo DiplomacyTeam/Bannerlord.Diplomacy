@@ -24,7 +24,7 @@ namespace Diplomacy.ViewModel
         [UsedImplicitly]
         private void ExecuteLink() => Campaign.Current.EncyclopediaManager.GoToLink(Faction.EncyclopediaLink);
 
-        public override bool Equals(object obj) => obj is DiplomacyFactionRelationshipVM vm && Equals(vm);
+        public override bool Equals(object? obj) => obj is DiplomacyFactionRelationshipVM vm && Equals(vm);
 
         public bool Equals(DiplomacyFactionRelationshipVM vm) => EqualityComparer<IFaction>.Default.Equals(Faction, vm.Faction);
 

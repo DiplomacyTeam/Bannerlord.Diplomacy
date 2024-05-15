@@ -1,8 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <TargetFrameworks>net472;net6</TargetFrameworks>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <Platforms>x64</Platforms>
+        <BuildForWindows>false</BuildForWindows>
+        <BuildForWindowsStore>false</BuildForWindowsStore>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(TargetFramework) == 'net472'">
+        <BuildForWindows>true</BuildForWindows>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(TargetFramework) == 'net6'">
+        <BuildForWindowsStore>true</BuildForWindowsStore>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    </PropertyGroup>
+    
+    <PropertyGroup>
         <AssemblyName>$(ModuleName).$(GameVersion)</AssemblyName>
-        <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
+        <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release;Debug;Release</Configurations>
     </PropertyGroup>
 
     <!-- STABLE, BETA, and e.g., e157 / e158 Constants Defined in Code -->
@@ -26,7 +44,7 @@
       <PackageReference Include="Bannerlord.ModuleManager.Source" Version="$(BUTRModuleManagerVersion)" />
         <PackageReference Include="Bannerlord.ButterLib" Version="$(ButterLibVersion)" IncludeAssets="compile" />
         <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" IncludeAssets="compile" />
-        <PackageReference Include="ColorMinePortable" Version="2.0.1" />
+        <PackageReference Include="ColorMinePortable" Version="2.0.4" />
         <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" IncludeAssets="compile" />
         <PackageReference Include="Bannerlord.UIExtenderEx" Version="$(UIExtenderExVersion)" IncludeAssets="compile" />
         <!-- Microsoft.CSharp is used for its source-only 'dynamic' implementation. -->

@@ -2,7 +2,7 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.2.11</Version>
+        <Version>1.2.12</Version>
         <GameVersion>1.0.0</GameVersion>
     </PropertyGroup>
 
@@ -11,27 +11,24 @@
         <!--BuildResources Version-->
         <BuildResourcesVersion>1.1.0.104</BuildResourcesVersion>
         <!--Harmony Version-->
-        <HarmonyVersion>2.2.2</HarmonyVersion>
+        <HarmonyVersion>2.3.3</HarmonyVersion>
         <!--ButterLib Version-->
-        <ButterLibVersion>2.8.16</ButterLibVersion>
+        <ButterLibVersion>2.9.7</ButterLibVersion>
         <!--MCM Version-->
         <MCMVersion>5.9.2</MCMVersion>
         <!--UIExtenderEx Version-->
         <UIExtenderExVersion>2.11.0</UIExtenderExVersion>
         <!--BUTRShared Version-->
-        <BUTRSharedVersion>3.0.0.138</BUTRSharedVersion>
+        <BUTRSharedVersion>3.0.0.139</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->
-        <BUTRModuleManagerVersion>5.0.209</BUTRModuleManagerVersion>
+        <BUTRModuleManagerVersion>5.0.222</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
         <BUTRModuleLoaderVersion>1.0.1.44</BUTRModuleLoaderVersion>
         <!--Harmony Extensions Version-->
         <HarmonyExtensionsVersion>3.2.0.77</HarmonyExtensionsVersion>
     </PropertyGroup>
+    
     <PropertyGroup>
-        <TargetFramework>net472</TargetFramework>
-        <Platforms>x64</Platforms>
-        <LangVersion>9.0</LangVersion>
-        <Nullable>enable</Nullable>
         <ModuleId>Bannerlord.Diplomacy</ModuleId>
         <ModuleName>$(ModuleId)</ModuleName>
         <DisplayName>Diplomacy</DisplayName>
@@ -42,7 +39,7 @@
         <Authors>Diplomacy Team</Authors>
         <Product>Diplomacy Library mod for Bannerlord</Product>
         <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-        <Copyright>Copyright © 2020-2022 Diplomacy Team</Copyright>
+        <Copyright>Copyright © 2020-2024 Diplomacy Team</Copyright>
         <Description>Diplomacy system overhaul for Mount &amp; Blade II: Bannerlord</Description>
     </PropertyGroup>
 

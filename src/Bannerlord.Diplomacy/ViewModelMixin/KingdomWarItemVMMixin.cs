@@ -150,7 +150,7 @@ namespace Diplomacy.ViewModelMixin
                         ["TRIBUTE_GET"] = tributeValue < 0 ? 1 : 0,
                         ["TRIBUTE"] = Math.Abs(tributeValue),
                     }),
-                    ["FIEFS_TO_RETURN"] = new TextObject(_TFiefs, new() { ["FIEFS_ANY"] = KingdomPeaceAction.GetFiefsSuitableToBeReturned(_faction1, _faction2).Any() ? 1 : 0 }),
+                    ["FIEFS_TO_RETURN"] = new TextObject(_TFiefs, new() { ["FIEFS_ANY"] = KingdomPeaceAction.GetFiefsSuitableToBeReturned(_faction1, _faction2).Count > 0 ? 1 : 0 }),
                 }).ToString();
             }
             else

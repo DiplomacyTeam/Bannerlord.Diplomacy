@@ -35,6 +35,5 @@ namespace Diplomacy.ViewModelMixin
         [PrefabExtensionXmlDocument]
         [UsedImplicitly]
         public XmlDocument GetPrefabExtension() => _document;
-
     }
 }

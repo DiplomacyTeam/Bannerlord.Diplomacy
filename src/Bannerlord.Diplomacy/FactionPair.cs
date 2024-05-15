@@ -40,7 +40,7 @@ namespace Diplomacy
             _hashCode = other._hashCode;
         }
 
-        public override bool Equals(object obj) => obj is FactionPair p && Equals(p);
+        public override bool Equals(object? obj) => obj is FactionPair p && Equals(p);
 
         public bool Equals(FactionPair p) => Faction1 == p.Faction1 && Faction2 == p.Faction2;
 

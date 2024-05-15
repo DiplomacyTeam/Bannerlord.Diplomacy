@@ -188,8 +188,8 @@ namespace Diplomacy.WarExhaustion
             GetWarExhaustionPerDay(out var warExhaustionPerDay, out var warExhaustionPerDayOccupied);
             var faction1 = kingdoms.ReversedKeyOrder ? kingdoms.Kingdom2 : kingdoms.Kingdom1;
             var faction2 = kingdoms.ReversedKeyOrder ? kingdoms.Kingdom1 : kingdoms.Kingdom2;
-            var faction1IsOccupied = !faction1.Fiefs.Any();
-            var faction2IsOccupied = !faction2.Fiefs.Any();
+            var faction1IsOccupied = faction1.Fiefs.Count <= 0;
+            var faction2IsOccupied = faction2.Fiefs.Count <= 0;
             var faction1WarExhaustion = faction1IsOccupied ? warExhaustionPerDayOccupied : warExhaustionPerDay;
             var faction2WarExhaustion = faction2IsOccupied ? warExhaustionPerDayOccupied : warExhaustionPerDay;
             var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
@@ -708,7 +708,7 @@ namespace Diplomacy.WarExhaustion
 
         private CampaignTime GetLastOccupationDate(Kingdom kingdom, out IFaction? effector)
         {
-            if (!kingdom.Fiefs.Any())
+            if (kingdom.Fiefs.Count <= 0)
             {
                 for (int index = Campaign.Current.LogEntryHistory.GameActionLogs.Count - 1; index >= 0; --index)
                 {

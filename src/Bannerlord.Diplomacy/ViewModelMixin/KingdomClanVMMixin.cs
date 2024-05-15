@@ -20,7 +20,6 @@ namespace Diplomacy.ViewModelMixin
     [UsedImplicitly]
     internal sealed class KingdomClanVMMixin : BaseViewModelMixin<KingdomClanVM>
     {
-
         private bool _canGrantFiefToClan;
         private readonly GrantFiefInterface _grantFiefInterface;
         private readonly DonateGoldInterface _donateGoldInterface;
@@ -45,7 +44,6 @@ namespace Diplomacy.ViewModelMixin
 
             RefreshCanGrantFief();
         }
-
 
         public override void OnFinalize()
         {

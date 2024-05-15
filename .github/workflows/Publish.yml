@@ -22,7 +22,7 @@ jobs:
       mod_description: ${{ steps.changelog.outputs.mod_description }}
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@master
@@ -31,15 +31,26 @@ jobs:
 
     - name: Build Diplomacy Module
       run: |
-        $impl = $PWD.Path + '/bannerlord-implementations';
         $path = $PWD.Path + '/bannerlord';
-        $final = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/';
+
+        $implFX = $PWD.Path + '/bannerlord-implementationsFX';
+        $implCore = $PWD.Path + '/bannerlord-implementationsCore';
+
+        $finalFX = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/';
+        $finalCore = $path + '/Modules/Bannerlord.Diplomacy/bin/Gaming.Desktop.x64_Shipping_Client/';
+
         $proj = 'src/Bannerlord.Diplomacy/Bannerlord.Diplomacy.csproj';
-        $pdll = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/Bannerlord.Diplomacy*.dll';
-        $ppdb = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/Bannerlord.Diplomacy*.pdb';
+
+        $pdllFX = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/Bannerlord.Diplomacy*.dll';
+        $ppdbFX = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/Bannerlord.Diplomacy*.pdb';
+        $pdllCore = $path + '/Modules/Bannerlord.Diplomacy/bin/Gaming.Desktop.x64_Shipping_Client/Bannerlord.Diplomacy*.dll';
+        $ppdbCore = $path + '/Modules/Bannerlord.Diplomacy/bin/Gaming.Desktop.x64_Shipping_Client/Bannerlord.Diplomacy*.pdb';
+
         # The folders are required to be created before executing the script
-        New-Item -ItemType directory -Force -Path $impl;
         New-Item -ItemType directory -Force -Path $path;
+        New-Item -ItemType directory -Force -Path $implFX;
+        New-Item -ItemType directory -Force -Path $implCore;
+
         [string[]]$gameversions = Get-Content -Path supported-game-versions.txt;
         # Process all implementations
         For ($i = 0; $i -le $gameversions.Length - 1; $i++)
@@ -51,15 +62,22 @@ jobs:
             echo "Start building for gameversion = $gameversion"
             dotnet clean $proj --configuration Release;
             dotnet build $proj --configuration Release -p:OverrideGameVersion=$gameversion -p:GameFolder="$path" -p:ConstGameVersionWithPrefix="$constgameversion";
+
             # Copy Implementations to the Implementations folder
-            Copy-Item $pdll $impl/;
-            Copy-Item $ppdb $impl/;
+            Copy-Item $pdllFX $implFX/;
+            Copy-Item $ppdbFX $implFX/;
+            Copy-Item $pdllCore $implCore/;
+            Copy-Item $ppdbCore $implCore/;
+
             echo "::endgroup::"
         }
         # Copy Implementations to the Module
-        Copy-Item $impl/* $final;
+        Copy-Item $implFX/* $finalFX;
+        Copy-Item $implCore/* $finalCore;
+
         # Delete Implementations folder
-        Remove-Item -Recurse $impl;
+        Remove-Item -Recurse $implFX;
+        Remove-Item -Recurse $implCore;
       shell: pwsh
 
     - name: Install and Run ChangelogParser
