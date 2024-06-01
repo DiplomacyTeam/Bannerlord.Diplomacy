@@ -27,7 +27,7 @@
     
     <string id="BPcKHP0D" text="反乱勢力の指導者であるため、あなたの影響力+{INFLUENCE}{INFLUENCE_ICON}"/>
     <string id="UoMvwnTb" text="反乱勢力の指導者であるため、{INFLUENCE}{INFLUENCE_ICON}を失った。"/>
-    <string id="QiX6m5cp" text="反乱勢力に属しているため、影響力-{NFLUENCE}{INFLUENCE_ICON}"/>
+    <string id="QiX6m5cp" text="反乱勢力に属しているため、影響力-{INFLUENCE}{INFLUENCE_ICON}"/>
     <string id="yrz8GMUb" text="反乱勢力に属しているため、{INFLUENCE}{INFLUENCE_ICON}を失った。"/>
 
     <string id="SNLviWvc" text="守旧派の指導者であるため、{INFLUENCE}{INFLUENCE_ICON}を失った。"/>
