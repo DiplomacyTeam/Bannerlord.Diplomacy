@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Português (BR)"/>
+  </tags>
+  <strings>
+    <string id="bAkTqxmf" text="Uma facção é um grupo de clãs em um reino com um objetivo comum. Se uma facção ganhar apoio suficiente, eles começarão uma guerra civil. Se os rebeldes vencerem a guerra, sua demanda será mantida. Se os legalistas vencerem, os clãs rebeldes retornarão ao reino. Clãs vitoriosos ganharão influência e relações com seus companheiros vitoriosos. Os clãs derrotados perderão influência. Os clãs podem iniciar uma facção gastando influência."/>
+	
+	<string id="XXUwW6TM" text="Exaustão de Guerra rastreia quão perto um reino está para se render. Depois que a exaustão da guerra atingir 100%, o reino se rendeu. As casualidades, os feudos, as aldeias que são atacadas e a duração da guerra contribuem para o esgotamento da guerra. Quando um reino perde seu último feudo, não pode mais sustentar seu esforço de guerra de forma eficaz, o que não só aumenta imediatamente o seu actual esgotamento da guerra, mas também aumenta drasticamente a quantidade diária de exaustão de guerra que recebe - até que o reino se renda, ou recupere pelo menos um feudo."/>
+	
+	<string id="dh2NE8Of" text="A taxa de exaustão da guerra é a taxa na qual a exaustão da guerra se acumula na guerra. A exaustão da guerra se acumula mais lentamente em guerras entre reinos maiores."/>
+  </strings>
+</base>

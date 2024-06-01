@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Polski"/>
+  </tags>
+  <strings>
+    <string id="bAkTqxmf" text="Frakcja to grupa klanów w królestwie o wspólnym celu. Jeśli frakcja uzyska wystarczające poparcie, rozpocznie wojnę domową. Jeśli rebelianci wygrają wojnę, ich żądanie zostanie spełnione. Jeśli wygrają lojaliści, klany rebelianckie powrócą do królestwa. Zwycięskie klany zyskają wpływy i poprawę relacji z innymi zwycięskimi klanami. Natomiast pokonane klany stracą swoje wpływy. Klany mogą założyć frakcję poprzez wydatkowanie wpływów."/>
+	
+	<string id="XXUwW6TM" text="Wyczerpanie wojenne pokazuje, jak bliskie jest poddanie się królestwa. Gdy wyczerpanie wojenne osiągnie 100%, królestwo się podda. Straty, utracone lenna, napadnięte wioski i czas trwania wojny przyczyniają się do wyczerpania wojennego. Kiedy królestwo traci swoje ostatnie lenno, nie jest już w stanie skutecznie wspierać działań wojennych, co nie tylko natychmiast zwiększa jego obecne wyczerpanie wojenne, ale także drastycznie zwiększa dzienną ilość wyczerpania wojennego, jakie otrzymuje – dopóki królestwo nie podda się lub nie odzyska co najmniej jednego lenna."/>
+	
+	<string id="dh2NE8Of" text="Wskaźnik wyczerpania wojennego to tempo, w jakim wyczerpanie wojenne kumuluje się podczas wojny. Wyczerpanie wojenne kumuluje się wolniej w wojnach pomiędzy większymi królestwami."/>
+  </strings>
+</base>
