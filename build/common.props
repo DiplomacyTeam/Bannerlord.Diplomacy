@@ -13,13 +13,13 @@
         <!--Harmony Version-->
         <HarmonyVersion>2.3.3</HarmonyVersion>
         <!--ButterLib Version-->
-        <ButterLibVersion>2.9.7</ButterLibVersion>
+        <ButterLibVersion>2.9.9</ButterLibVersion>
         <!--MCM Version-->
-        <MCMVersion>5.9.2</MCMVersion>
+        <MCMVersion>5.10.1</MCMVersion>
         <!--UIExtenderEx Version-->
         <UIExtenderExVersion>2.11.0</UIExtenderExVersion>
         <!--BUTRShared Version-->
-        <BUTRSharedVersion>3.0.0.139</BUTRSharedVersion>
+        <BUTRSharedVersion>3.0.0.142</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->
         <BUTRModuleManagerVersion>5.0.222</BUTRModuleManagerVersion>
         <!--ModuleLoader Version-->
