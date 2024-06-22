@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="日本語"/>
+  </tags>
+  <strings>
+    <string id="MYz8nKqq" text="Diplomacy"/>
+    <string id="hPERH3u4" text="Diplomacyを読み込み中"/>
+
+    <string id="TS1iV2pO" text="影響力が足りない!"/>
+    <string id="XQFxDr11" text="進行中のクエストのため実行できない!"/>
+    <string id="ONNcmltF" text="この戦争は始まったばかりだ! 停戦するには{REQUIRED_DAYS}日の経過が必要で、現在{ELAPSED_DAYS}日だ。"/>
+    <string id="GuPOCNNZ" text="まだ休戦が締結されたばかりだ! 破棄するには{REQUIRED_DAYS}日の経過が必要で、現在は{ELAPSED_DAYS}日だ。"/>
+
+    <string id="v0cDMIcl" text="この国に対して宣戦布告できない"/>
+    <string id="Pqk3WuGz" text="国と和平を結べない"/>
+    <string id="9aaZ8Ed4" text="国の指導者が互いに友好関係にあるため宣戦布告できない"/>
+    <string id="Zimavbgw" text="国の指導者が互いに極めて良好な関係にあるため、宣戦布告できない"/>
+    <string id="pXD8Uf2e" text="国の指導者が婚姻関係を結んでいるため、宣戦布告できない"/>
+      
+    <string id="zv12jjyW" text="使者の派遣"/>
+    <string id="uy86VZX2" text="使者の到着"/>
+
+    <string id="JmgAuONd" text="なんということか。使者が{HERO_NAME}へ向かう道中でグルーに襲撃され食べられちゃった!"/>
+    <string id="YnRmSele" text="{FACTION1_NAME}の使者が{ADDRESSEE_TEXT}に到着した。{BRIBE_TEXT}"/>
+    <string id="qNWMZP0z" text="{FACTION1_NAME}からの使者は{TRAVEL_TIME}日以内に{ADDRESSEE_TEXT}のもとへ到着するだろう。"/>
+    <string id="nYrezEOX" text="使者が殺害された"/>
+    <string id="A5lug0JY" text="{HERO NAME}のもとへ向かった使者が街道強盗の待ち伏せを受け殺されてしまった!"/>
+    <string id="vGyBQeEk" text="{?HAS_FACTION}{FACTION2_NAME}の{?}{\\?}{HERO_NAME}"/>
+    <string id="sQxAljGF" text="{NEW_LINE}{NEW_LINE}不運にも使者は面会を拒否された。しかし衛兵の買収を試せる。{GOLD_COST}{GOLD_ICON}{?CAN_AFFORD}を渡した。{?}ほど渡す必要がありそうだが、今は所持金が足りなかった。{\\?}"/>
+
+    <string id="bLR91Eob" text="{REASON}使者は辿り着けないだろう。"/>
+    <string id="hPra5uwZ" text="冗談だということが分からなかったのか、あるいは面白くなかったのか、使者は仕事を拒否した。"/>
+    <string id="1mlXBnSs" text="{HERO_NAME}のことを詳しく知らないため、使者を送れない。"/>
+
+    <string id="vhsHDMil" text="{HERO_NAME}は死亡している。"/>
+    <string id="CusN2JMb" text="{HERO_NAME}は{DETENTION_PLACE}{?IS_MOBILE}によって{?}で{\\?}捕縛されている。"/>
+    <string id="1BISlFYx" text="{HERO_NAME}は逃亡中で、今は居場所を知られたくない。"/>
+    <string id="ze8KJ1oL" text="{HERO_NAME}は解放されたばかりだ。まだ帰還できていない。"/>
+    <string id="N5T6IXWJ" text="{HERO_NAME}は行方をくらませている。"/>
+    <string id="3lknR86H" text="{HERO_NAME}には公的な会談に出席する経験がなさすぎる。"/>
+
+    <string id="BkGSVccZ" text="停戦の提案"/>
+    <string id="3fTqLwkC" text="受諾"/>
+    <string id="dRoMejb0" text="拒否"/>
+
+    <string id="cXfcwzPp" text="使者を送る"/>
+
+    <string id="N06wk0dB" text="占領した集落"/>
+    <string id="Zy0yjTha" text="{SETTLEMENT_NAME}を占領した者には先取権がある。自分の領地として主張しようか?"/>
+
+    <string id="IWZ91JVk" text="資金が足りない!"/>
+
+    <string id="LpoyhORp" text="領地を与える"/>
+    <string id="h3b1S5Wq" text="{CLAN_NAME}に領地を与える"/>
+    <string id="jznJfkfU" text="与えられた領地"/>
+    <string id="cXbgaPSm" text="{SETTLEMENT_NAME}が{CLAN_NAME}に与えられた"/>
+
+    <string id="FqeN0fmR" text="自分自身のクランに領地を与えることはできません。"/>
+    <string id="zdSYUnZQ" text="あなたはこの国の君主ではない。"/>
+    <string id="D61vzEC7" text="与えられる領地を持っていない。"/>
+    <string id="98hwXUTp" text="自国のクランに領地を付与する"/>
+    <string id="Q7jRqnez" text="傭兵クランに領地を与えることはできない。"/>
+
+    <string id="DrnXprup" text="まだ戦争は終わったばかりだ。同盟の提案には{REQUIRED_DAYS}日の経過が必要で、現在{ELAPSED_DAYS}日だ。"/>
+    <string id="KHJyWj9H" text="同盟を締結できない。"/>
+    <string id="UQZmdLzc" text="開戦できない。"/>
+    <string id="qIa19an4" text="同盟の締結"/>
+    <string id="3pbwc8sh" text="同盟の提案"/>
+    <string id="QbOqatd7" text="{KINGDOM}は{PLAYER_KINGDOM}に同盟を提案している。"/>
+
+    <string id="384jX28Q" text="{KINGDOM}が{PLAYER_KINGDOM}との同盟を破棄"/>
+    <string id="D1ZQKZr1" text="同盟決裂"/>
+
+    <string id="0WPWbx70" text="同盟の締結"/>
+    <string id="K4GraLTn" text="同盟の破棄"/>
+
+    <string id="VvTTrRpl" text="この派閥はあなたとの同盟に興味がない。"/>
+    <string id="wst0lArp" text="この同盟は締結されたばかりだ!破棄には{REQUIRED_DAYS}日の経過が必要で、現在{ELAPSED_DAYS}日だ。"/>
+
+    <string id="KqfNSsBE" text="同盟国"/>
+    <string id="Dirltd6Z" text="同盟は無効だ"/>
+
+    <string id="Q8ItogIP" text="{ENEMY_LEADER}に対し、「{WAR_REPARATIONS_AND_TRIBUTE}」という内容を直接提案する。{FIEFS_TO_RETURN}"/>
+    <string id="BC7823G2" text="、{?REPARATIONS_PAY}賠償金{REPARATIONS}{GOLD_ICON}を支払{?TRIBUTE_PAY}い、さらに毎日、{TRIBUTE}の献上金を支払う。{?}{?TRIBUTE_GET}うが、毎日、{TRIBUTE}の献上金を受け取る。{?}う。{\?}{\?}{?}{?REPARATIONS_GET}{REPARATIONS}の賠償金を受け取{?TRIBUTE_PAY}るが、毎日、{TRIBUTE}の献上金を支払う。{?}{?TRIBUTE_GET}り、毎日、{TRIBUTE}の献上金を受け取る。{?}る。{\?}{\?}{?}{?TRIBUTE_PAY}毎日、{TRIBUTE}の献上金を支払う。{?}{?TRIBUTE_GET}毎日、{TRIBUTE}献上金を受け取る。{?}。{\?}{\?}{\?}{\?}"/>
+    <string id="9CvcPwJA" text="{?FIEFS_ANY}あなたは占領した領地を返還しなければならない!{?}{\?}"/>
+
+    <!--Millions and thousands-->
+    <string id="6xcW68Tw" text="{VALUE}M"/>
+    <string id="oD4fZ2tY" text="{VALUE}K"/>
+
+    <string id="XlL50Ha9" text="プレイヤーが攻城戦をしている間は停戦ができない。"/>
+
+    <string id="bCOCjOQM" text="好感"/>
+    <string id="RxawrCjg" text="付与による好感度上昇"/>
+
+    <string id="fXcEtO29" text="有効な非戦協定を締結できない。"/>
+
+    <string id="zpNalMeA" text="同盟"/>
+    <string id="y5tXjbLK" text="戦争"/>
+    <string id="noWHMN1W" text="不戦協定"/>
+
+    <string id="yj4XFa5T" text="不戦協定の提案"/>
+    <string id="gyLjlpJB" text="{KINGDOM}が{PLAYER_KINGDOM}との不戦協定を提案"/>
+
+    <string id="9pY0NQrk" text="協定の締結"/>
+    <string id="9zlQNtlX" text="{DAYS}日間の不戦協定を締結する。"/>
+
+    <string id="1occw3EF" text="統計情報"/>
+    <string id="OvbY5qxL" text="概観"/>
+
+    <string id="UDC8eW7s" text="{ALLIED_KINGDOM}が、{ENEMY_KINGDOM}と戦争中の{KINGDOM}に加勢"/>
+
+    <string id="pdI7Tjtj" text="不戦協定の失効"/>
+    <string id="uWY09LJb" text="{KINGDOM}・{OTHER_KINGDOM}間の不戦協定の期間が満了"/>
+
+    <string id="dUCOV7km" text="広すぎる領地による汚職"/>
+    <string id="koTNaZUX" text="影響力が大きすぎることによる減衰"/>
+    <string id="uZc8Hg01" text="最大影響力低下"/>
+
+    <string id="kMjfN2fB" text="使者の派遣をやめる"/>
+
+    <string id="q5qphBwi" text="弱小国"/>
+    <string id="sygtLRqA" text="好感度"/>
+
+    <string id="cmOSpfyW" text="{ALLIED_KINGDOM}との同盟"/>
+    <string id="RqQ4oqvl" text="{ENEMY_KINGDOM}との戦争"/>
+    <string id="t6YhBLj7" text="{KINGDOM}との不戦協定"/>
+    <string id="BjkwaNot" text="{KINGDOM}の君主のクランと婚姻する"/>
+
+    <string id="M4SGjzQP" text="この派閥はあなたと不戦協定を結ぶことに興味がない。"/>
+
+    <string id="Gzq6VHPt" text="資金を贈る"/>
+    <string id="N7goPgiq" text="王位簒奪"/>
+    <string id="WVe7QwhW" text="王位を簒奪する{NEW_LINE}クランの支持: {SUPPORTING_TIERS}/{OPPOSING_TIERS}"/>
+
+    <string id="CxdpR6w4" text="拡張主義"/>
+
+    <string id="ARNRwPrY" text="連合の締結"/>
+    <string id="qbLPBlIv" text="カルラディアは{EXPANSIONIST_KINGDOM}の際限ない対外拡張政策に疲弊している。{COALITION_KINGDOM}の主導により、反{EXPANSIONIST_KINGDOM}連合が形成された!"/>
+
+    <string id="vB3RrMNf" text="{KINGDOM}が{OTHER_KINGDOM}と不戦協定を締結"/>
+    <string id="PdN5g5ub" text="{KINGDOM}が{OTHER_KINGDOM}と同盟を締結"/>
+    <string id="5r6fsHgm" text="現在のスコア"/>
+    <string id="XIBUWDlT" text="要求スコア"/>
+
+    <string id="5znwaUVC" text="残り日数: {DAYS_LEFT}"/>
+
+    <string id="Euy6Mwcq" text="この行動を解放するにはメインクエストをさらに進行する必要がある。Modオプションでメインストーリー保護を無効にできる。"/>
+    <string id="fQxiCdBA" text="メインストーリー"/>
+    <string id="3wXqST66" text="王位の簒奪により、あなたはメインストーリーの{STANCE}路線を選んだことになる。"/>
+    <string id="yAFwbD9B" text="団結中"/>
+    <string id="IGJVx5XI" text="崩壊中"/>
+
+    <string id="lQAaLeSy" text="この行動を実行する権限がない。"/>
+
+    <string id="7QvXkcxH" text="自国のクランに資金を寄付する"/>
+    <string id="e7uxH1jc" text="必要資金: {GOLD_COST}"/>
+    <string id="4lG3JG2e" text="好感+{RELATION_GAIN}"/>
+
+    <string id="Q2vXbwvC" text="外交"/>
+    
+    <!--
+    ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
+    -->
+
+    <string id="sBw5Qzq3" text="国の外交"/>
+    <string id="tis8Ddzn" text="プレイヤーが自分で占領した領地の権利の主張を許可"/>
+    <string id="TfxLCxcD" text="プレイヤーが占領した集落の所有権の投票をする前に、自身で所有を主張する選択肢を追加します。"/>
+    <string id="8VKC3jtN" text="領地のない国の滅亡を有効"/>
+    <string id="TlymwwPZ" text="有効にすると、領地のない国は進行中の最後の戦争の和平に同意した時点で滅亡します。デフォルトは「有効」です。"/>
+    <string id="w8Hi9jJf" text="領地のない国の滅亡処理の遅延"/>
+    <string id="GDctI4Kd" text="有効にすると、領地を持たない王国は、領地を失った時点ではなく、残された進行中の戦争の最後の和平に調印した時点で消滅します。デフォルトは「有効」です。"/>      
+    <string id="ZRlNvsev" text="戦争の最小持続日数"/>
+    <string id="vuFT5ns8" text="開戦してから停戦可能になるまでの最低日数です。デフォルトは「10」です。"/>
+    <string id="4MzQHMVj" text="宣戦布告までのクールダウン日数"/>
+    <string id="q2duqN8d" text="宣戦布告後に停戦可能になる最低日数です。デフォルトは「21」です。ゲーム内時間の四半期と同じです。"/>
+    <string id="2XC8QHkl" text="同盟を有効化"/>
+    <string id="5YJBZx28" text="無効にすると、プレイヤー国家もAIの国家も同盟の締結ができなくなります。デフォルトは「有効」です"/>
+    <string id="H6XMjwpF" text="同盟の最小持続日数"/>
+    <string id="RrsWhIWi" text="同盟の持続する最低日数です。デフォルトは「42」です。ゲーム内の半年と同じです。"/>
+    <string id="5a829TiT" text="同盟の傾向"/>
+    <string id="7nSjs8UL" text="国家が同盟を結成する傾向のスコアの補正値です。補正値が大きいと、AIの国家がより同盟締結を好むようになります。デフォルトは「0」です。"/>
+    <string id="V35hUfcc" text="不戦協定の持続日数"/>
+    <string id="KXLGZEPh" text="不戦協定が持続する最低日数です。デフォルトは「84」です。ゲーム内の1年と同じ日数です。"/>
+    <string id="G8BhBnRG" text="不戦協定の傾向"/>
+    <string id="907ER5u9" text="国が不戦協定を締結する傾向のスコアの補正値です。補正値が大きいとAIの国家はより不戦協定を望むようになります。デフォルトは「0」です。"/>
+    <string id="6m1SspFW" text="プレイヤーの国の外交コントロール"/>
+    <string id="N5EouSSj" text="プレイヤーに国家の宣戦布告と停戦の完全な決定権を与えます。デフォルトでは「無効」です。"/>
+    <string id="lhysZl9j" text="行動の傾向"/>
+    <string id="dRyU9E7Z" text="友人同士で戦争しない"/>
+    <string id="XyXJSTKr" text="有効にすると、国の指導者が互いに友人の関係である時に開戦しなくなります。デフォルトは「有効」です。"/>
+    <string id="pWoKQ6HO" text="友好な相手と開戦しない"/>
+    <string id="bOuGhbPt" text="有効にすると、開戦しなくなる好感度のしきい値を超える君主どうしでの開戦が発生しなくなります。デフォルトは「有効」です。"/>
+    <string id="x0Aoiomr" text="開戦しなくなる好感度のしきい値"/>
+    <string id="aH6rpjt6" text="国の指導者間の好感度がこの値を超えると、開戦しなくなくなります。デフォルトは「30」です。"/>
+    <string id="jwNKk8P7" text="婚姻関係なら開戦しない"/>
+    <string id="xcMzKH48" text="有効にすると、君主のクラン間で婚姻関係を結んでいる国どうしで開戦しなくなります。デフォルトは「有効」です。"/>
+    <string id="xcMzKH48" text="君主クランの婚姻関係が同盟に影響する"/>
+    <string id="xXKKRp99" text="君主クランの婚姻関係が同盟に影響する"/>
+    <string id="BGS6mUID" text="有効にすると、君主のクランと互いに婚姻関係がある場合に、同盟成立の可能性が上昇します。デフォルトは「有効」です。"/>
+      
+    <string id="ldLFTs92" text="費用"/>      
+    <string id="Ckd1Lsoa" text="必要資金"/>
+    <string id="t4hNAoD7" text="必要資金の倍率を有効"/>
+    <string id="5MMIDE5A" text="有効にすると、外交行動と戦争賠償金に必要な金銭費用が国の規模に応じて調整されます。無効にした場合は、外交行動に対して100、賠償金に対して1000の倍率が一律で適用されます。デフォルトは「有効」です。"/>
+    <string id="vD270X6H" text="資金倍率の調整"/>
+    <string id="Gd52NzBP" text="必要資金の倍率です。デフォルトは5です。"/>
+    <string id="HFtZsD6v" text="戦争賠償金の倍率"/>
+    <string id="MIhbrqbr" text="必要な戦争賠償金の倍率です。デフォルトは「50」です。"/>
+    <string id="Cr6a5Jap" text="敗戦時の賠償金"/>
+    <string id="NH4GNKva" text="敗戦時に、相手国に戦争の消耗に対して支払う基本費用です。調整の対象であり、調整を無効にした場合は1000倍されます。デフォルトは「200」です。"/>
+
+    <string id="SEViwYTl" text="影響力消費"/>
+    <string id="WbOKuWbQ" text="影響力消費を有効"/>
+    <string id="K2vLGalN" text="無効にすると、停戦宣言の費用がなくなります。デフォルトでは「有効」です。"/>
+    <string id="9PlT57Nl" text="影響力消費量と調整"/>
+    <string id="P1g6Ht1e" text="影響力消費の倍率を有効"/>
+    <string id="xfVFBxfj" text="有効にすると、国家の規模に応じて影響力に倍率補正が発生します。無効にすると、規模に関わらず一定です。デフォルトは「有効」です。"/>
+    <string id="TvAYJv5Q" text="影響力消費の倍率"/>
+    <string id="AQ5gRYN6" text="消費影響力の倍率です。デフォルトは「5」です。"/>
+    <string id="BazjeCZw" text="影響力消費量/定数"/>
+    <string id="OnTeAgin" text="宣戦布告の影響力消費の定数"/>
+    <string id="O5XvybTI" text="他国への宣戦布告に必要な影響力です。デフォルトは「500」です。"/>
+    <string id="iNsXQD2q" text="停戦の影響力消費"/>
+    <string id="WB5zdvdT" text="他国と和平を結ぶ際の影響力消費です。デフォルトは「500」です。"/>
+
+    <string id="nueOs6m9" text="使者"/>
+    <string id="nwTyegdV" text="使者の事故を有効"/>
+    <string id="T7yybpw3" text="有効にすると、僅かな確率で使者を送るのに失敗します。道のりが長いほど、道中で事故にあう確率が上昇します。デフォルトでは「有効」です。"/>
+    <string id="ysYCYvwT" text="使者の制限"/>
+    <string id="5O87pSL3" text="有効にすると、過去に合ったことがあるか既に知っている人物にしか使者を送れなくなります。無効にした場合、その所在を知っているかどうかに関わらず使者を送ることが出来ます。デフォルトは「有効」です。"/>
+    <string id="nnXi6MmH" text="使者の移動日数"/>
+    <string id="zkvCGLuK" text="使者が目的地に到達するまでの最大日数です。使者の移動速度に直接影響します。デフォルトは「3」です。"/>
+    <string id="nMwWHj4h" text="使者の費用"/>
+    <string id="ehMf7xvE" text="他のキャラクターへ使者を送るのに必要な資金です。デフォルトは「100」です。"/>
+
+    <string id="OfEMJWiR" text="好感度"/>
+    <string id="6l9QNMrB" text="領地を与えた際の好感上昇係数"/>
+    <string id="FQaghHo7" text="領地を与えた時の好感度上昇の倍率です。デフォルトは「1」です。"/>
+    <string id="9qKclHq3" text="領地付与の好感ペナルティ"/>
+    <string id="fgc8Dvg0" text="領地が他のクランに与えられた際に評価される好感ペナルティ値です。デフォルトは「-2」です。"/>
+
+    <string id="8ZPKToTq" text="影響力の均衡"/>
+    <string id="4jlYRUdZ" text="影響力の均衡の有効化"/>
+    <string id="tOMN9DQD" text="影響力の減衰と汚職を有効にできます。併用するmodによっては互換性のために無効にする必要があります。"/>
+
+    <string id="vzKRX2JA" text="影響力の減衰"/>
+    <string id="szYr4OTG" text="影響力の減衰を有効"/>
+    <string id="rKS9z4Sz" text="1日ごとに影響力の減衰が発生します。デフォルトは「有効」です。"/>
+
+    <string id="pVE1yNlm" text="影響力の減衰のしきい値"/>
+    <string id="MnLk08uW" text="減衰の発生しない影響力の大きさです。デフォルトは「1000」です。"/>
+    <string id="WTeM4Rba" text="1日ごとの最大影響力低下"/>
+    <string id="CGixJ6ng" text="1日ごとに失われる影響力の最大値です。デフォルトは「20」です。"/>
+    <string id="yob5ZHtz" text="1日ごとの影響力減衰のパーセンテージ"/>
+    <string id="IYFl4kJx" text="1日ごとの影響力減衰のパーセンテージです。デフォルトは「2.0」です。"/>
+
+    <string id="e5fHDXgl" text="汚職"/>
+    <string id="KWAH0S4h" text="汚職を有効"/>
+    <string id="trgnZ0pn" text="多く領地を持ちすぎた時にクランの影響力を減衰させる汚職が発生します。デフォルトは「有効」です。"/>
+
+    <string id="ZqQaUIil" text="拡張主義"/>
+    <string id="2raR1ZHv" text="連合"/>
+    <string id="Pr4dcRKm" text="領地の最小拡張主義値"/>
+    <string id="9qcAWjI7" text="1つあたりの領地がもたらす拡張主義値の最小値です。デフォルトは「3」です。"/>
+    <string id="MnhMW8iq" text="攻城戦の拡張主義値"/>
+    <string id="lCbie62E" text="攻城戦に成功するごとに追加される拡張主義値です。デフォルトは「20」です。"/>
+    <string id="mEXGC0h3" text="1日ごとの拡張主義値減衰"/>
+    <string id="kgPeQvqE" text="1日ごとの拡張主義値の減衰量です。デフォルトは「1」です。"/>
+    <string id="ZIf1tRII" text="連合を有効"/>
+    <string id="8v8q0OGu" text="強大化した対外拡張路線の勢力に対して、他の勢力同士が結託して反攻するようになります。デフォルトでは「有効」です。"/>
+    <string id="1kSd88X5" text="拡張主義のしきい値"/>
+    <string id="EUnASoee" text="拡張主義勢力に対して他勢力が反攻連合を結成する値です。デフォルトは「100」です。"/>
+    <string id="zwbL9BHe" text="毎日の連合発生の可能性"/>
+    <string id="9ugCWA3v" text="拡張主義勢力に対する反攻連合の変化率のしきい値です。デフォルトは「5」です。"/>
+
+    <string id="lsyl0VSX" text="ストーリーラインの保護"/>
+    <string id="EVrErrTR" text="有効にすると、メインストーリーを保護します。&quot;Just Let Me Play&quot; のようなmodを使用している場合は無効にしてください。デフォルトは「有効」です。"/>
+
+    <string id="f6n2UAEC" text="開発中の機能"/>
+    <string id="HSoZfvXH" text="王位簒奪を有効"/>
+    <string id="ZIAo4er4" text="有効にするとプレイヤーが王位を簒奪できるようになります。この機能はゲームバランスを変えてしまうため、変更を予定しており推奨できません。デフォルトは「無効」です。"/>
+  </strings>
+</base>
