@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		..\.github\workflows\dotnet-format-daily.yml = ..\.github\workflows\dotnet-format-daily.yml
 		..\.github\workflows\Publish.yml = ..\.github\workflows\Publish.yml
 		..\.github\workflows\TestBuild.yml = ..\.github\workflows\TestBuild.yml
+		..\.github\workflows\verify-nexusmods-credentials.yml = ..\.github\workflows\verify-nexusmods-credentials.yml
 	EndProjectSection
 EndProject
 Global

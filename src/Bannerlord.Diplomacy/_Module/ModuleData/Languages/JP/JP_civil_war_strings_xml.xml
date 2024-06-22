@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="日本語"/>
+  </tags>
+  <strings>
+    <string id="0WVHMfN8" text="反乱勢力は瓦解した"/>
+    <string id="BVNGIAMM" text="{PARENT_KINGDOM}は自国を荒廃させた対立打倒した。{PLAYER_PARTICIPATION}"/>
+    <string id="x5ThZR5A" text="新たな国が打ち立てられた"/>
+    <string id="nRxyMIEE" text="{PARENT_KINGDOM}は内乱で破れ、国の統一を保てなくなった。{KINGDOM}は併合された。{PLAYER_PARTICIPATION}"/>
+    <string id="1OQGJkqb" text="対立派閥の発生"/>
+    <string id="pqjZ6wck" text="{KINGDOM}に対立派閥が現れた。現在は{CLAN_NAME}に率いられている。{DEMAND}"/>
+    <string id="ZAfNviVS" text="分離独立"/>
+    <string id="wUspUo1y" text="廃位"/>
+    <string id="LF19GulH" text="王国を解体する。この勢力の構成員は新たな王国を建てる。Tier 4以上のクランだけが勢力の後継者となれる。"/>
+    <string id="GK1seKeJ" text="君主を廃位する。投票により国の新たな指導者が決定される。"/>
+    <string id="brEXAKDb" text="反乱勢力は国から自領の独立を要求している。"/>
+    <string id="8A6JPMWp" text="対立派閥は{LEADER}の退位を要求している。"/>
+    <string id="ChzQncc0" text="対立勢力"/>
+    <string id="WUAv0u4U" text="支持を集めてい"/>
+    <string id="fw0k1KFl" text="要求: {DEMAND_NAME}"/>
+    <string id="FajeZClv" text="{REBELS} (反{KINGDOM})"/>
+    <string id="nAvLFv5Q" text="内乱勃発"/>
+    <string id="2PpZkBOB" text="{KINGDOM}で内乱が勃発した。{REBEL_KINGDOM}は{CLAN_NAME}に率いられている。{DEMAND}"/>
+    <string id="o0HIAHqg" text="反乱中の王国を相手に外交行動はできない。"/>
+    <string id="GKSaZESx" text="新たな君主の選出しその目的を終えたため、{PARENT_KINGDOM}の{REBELS}は解散した。"/>
+    
+    <string id="BPcKHP0D" text="反乱勢力の指導者であるため、あなたの影響力+{INFLUENCE}{INFLUENCE_ICON}"/>
+    <string id="UoMvwnTb" text="反乱勢力の指導者であるため、{INFLUENCE}{INFLUENCE_ICON}を失った。"/>
+    <string id="QiX6m5cp" text="反乱勢力に属しているため、影響力-{INFLUENCE}{INFLUENCE_ICON}"/>
+    <string id="yrz8GMUb" text="反乱勢力に属しているため、{INFLUENCE}{INFLUENCE_ICON}を失った。"/>
+
+    <string id="SNLviWvc" text="守旧派の指導者であるため、{INFLUENCE}{INFLUENCE_ICON}を失った。"/>
+    <string id="2I1X5fAC" text="守旧派の指導者であるため、影響力+{INFLUENCE}{INFLUENCE_ICON}"/>
+    <string id="4FfA8RL4" text="守旧派に属しているため、影響力-{INFLUENCE}{INFLUENCE_ICON}"/>
+    <string id="uUu7DEDU" text="守旧派に属しているため、{INFLUENCE}{INFLUENCE_ICON}を獲得した。"/>
+    
+    <string id="f66sNaiz" text="反乱勢力に参加できない"/>
+
+    <string id="DZ6dpEn3" text="派閥に参加する"/>
+    <string id="uTCw0WiH" text="派閥を脱退する"/>
+    <string id="1OUDq7Ul" text="勢力均衡"/>
+    <string id="5q7TvMGL" text="反乱を起こす"/>
+    <string id="Ysrttgis" text="開始日: {CAMPAIGN_TIME}"/>
+    <string id="o3w3jNzZ" text="要求: {DEMAND_NAME}"/>
+    <string id="hbPiVQVK" text="状態: {STATUS}"/>
+    <string id="TvSHYACm" text="強さ: {STRENGTH}"/>
+    <string id="dlANhHUd" text="派閥"/>
+    <string id="hBSo0Ziq" text="派閥を結成する"/>
+    <string id="2PglxF8k" text="派閥の要求を選択"/>
+    <string id="gypPPxUJ" text="派閥"/>
+    <string id="aWWzFITw" text="廃位者"/>
+    <string id="2Pv3DsVm" text="{PARENT_KINGDOM}は{REBELS}との内乱で崩壊した。{LEADER}は王位を退いた。{PLAYER_PARTICIPATION}"/>
+    <string id="GkhKppOk" text="十分な領地がない"/>
+    <string id="Jc1mCVuY" text="気質: 計算高い"/>
+    <string id="cjbVV7E3" text="クランのTierが低すぎる"/>
+    <string id="Vp9EcnuC" text="派閥の傾向"/>
+    <string id="dr1OCcmL" text="君主との関係"/>
+    <string id="mouJZAAy" text="指導者との関係"/>
+    <string id="FtX4LPXF" text="国家の規模"/>
+    <string id="VFwDRHc7" text="参加者"/>
+    <string id="IYO5TNTg" text="統治の権利"/>
+    <string id="YLUocN5e" text="指導者には統治する権利がある"/>
+    <string id="qAcR4Yee" text="派閥内の友好的なクラン"/>
+    <string id="1AZK0UVJ" text="支配者には支配権がない"/>
+
+    <string id="ovgs58sT" text="反乱中に派閥を立ち上げることはできない。"/>
+    <string id="VbpiW2bd" text="反乱直後には派閥を立ち上げられない。"/>
+    <string id="JDk8ustS" text="傭兵は派閥を立ち上げられない。"/>
+    <string id="quo5erz6" text="君主は派閥を立ち上げられない。"/>
+    <string id="luvsD6Zn" text="反乱国家で派閥を作ることはできない。"/>
+    <string id="iXMeCmj0" text="クランTierが4以上でなければならない。"/>
+    <string id="Xu3rnEEa" text="{KINGDOM_NAME}の派閥を立ち上げるには{KINGDOM_NAME}に参加しなければならない。"/>
+    <string id="DxJH7ciY" text="廃位を望む派閥は1つの国に1つだけ存在できる。"/>
+    <string id="zTZWwJfN" text="2つの派閥を率いることはできない。"/>
+    
+    <!-- <string id="" text="" /> -->
+
+    <string id="EYB5Uggd" text="指導者は{TRAIT}"/>
+    <string id="E00ywbqb" text="君主は{TRAIT}"/>
+
+    <string id="GeevRiNR" text="{LABEL}{newline}{newline}{REASON}"/>
+    <string id="ALSuNVzE" text="{EXCEPTION}{newline} {newline}{DEMAND_HINT}"/>
+
+    <!-- Settings -->
+    <string id="eDZeFUTH" text="内乱"/>
+    <string id="VB97zQeJ" text="反乱の最小間隔日数"/>
+    <string id="5cUqaLk4" text="内乱後に新しい対立派閥が立ち上がるまでに必要な最大日数です。デフォルトは「240」です。"/>
+    <string id="UdadyqpN" text="1日ごとの対立派閥の発生確率"/>
+    <string id="yznXCi1d" text="クランが自身の支持する対立派閥に加入するかどうかの、1日ごとの確率です。デフォルトは「100%」です"/>
+    <string id="r312b3Of" text="1日ごとの対立派閥への参加確率"/>
+    <string id="06oPGRj0" text="派閥が内乱を起こすための十分な支持を得られるかどうかの、1日ごとの確率です。デフォルトは「100%」です。"/>
+    <string id="lIbUuQB1" text="1日ごとの内乱の発生確率"/>
+    <string id="zr10ZS3L" text="派閥が内乱を起こすための十分な支持を得られるかどうかの、1日ごとの確率です。デフォルトは「50%」です。"/>
+    <string id="VNILqmoY" text="派閥の最大持続日数"/>
+    <string id="rNJIvaSm" text="派閥が内乱に参戦しないでいる日数の最大値です。デフォルトは「120」です。"/>
+    <string id="6kNmdLxZ" text="派閥結成の影響力消費"/>
+    <string id="EwbXg3va" text="新しい派閥の結成に必要な影響力です。デフォルトは「100」です。"/>
+    <string id="7wK0mmw1" text="派閥の傾向"/>
+    <string id="aqvIdG7w" text="クランが派閥に参加する傾向を表すスコアに影響する補正値です。補正値を上げるほど派閥への参加が増加します。デフォルトは「0」です。"/>
+    
+  </strings>
+</base>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Polski"/>
+  </tags>
+  <strings>
+    <string id="0WVHMfN8" text="Rebelia upada"/>
+    <string id="BVNGIAMM" text="Królestwo {PARENT_KINGDOM} stłumiło rebelię pustoszącą ich ziemie.{PLAYER_PARTICIPATION}"/>
+    <string id="x5ThZR5A" text="Powstaje nowe królestwo"/>
+    <string id="nRxyMIEE" text="Królestwo {PARENT_KINGDOM} przegrało wojnę domową i nie zdołało utrzymać jedności królestwa. Powstaje {KINGDOM}. {PLAYER_PARTICIPATION}"/>
+    <string id="1OQGJkqb" text="Powstaje frakcja rebeliantów"/>
+    <string id="pqjZ6wck" text="W królestwie {KINGDOM} powstała frakcja rebeliantów. Przewodzi nimi klan {CLAN_NAME}. {DEMAND}"/>
+    <string id="ZAfNviVS" text="Secesja"/>
+    <string id="wUspUo1y" text="Abdykacja"/>
+    <string id="LF19GulH" text="Odłącz się od królestwa. Członkowie tej frakcji utworzą nowe królestwo. Tylko klany poziomu 4 lub wyższego mogą założyć frakcję secesyjną."/>
+    <string id="GK1seKeJ" text="Zmuś przywódcę królestwa do ustąpienia z tronu. Wybory wyłonią nowego władcę."/>
+    <string id="brEXAKDb" text="Rebelianci domagają się odłączenia ich ziem od królestwa."/>
+    <string id="8A6JPMWp" text="Rebelianci domagają się, aby {LEADER} zrzekł się tronu."/>
+    <string id="ChzQncc0" text="Rebelia"/>
+    <string id="WUAv0u4U" text="Zbieranie poparcia"/>
+    <string id="fw0k1KFl" text="Żądanie: {DEMAND_NAME}"/>
+    <string id="FajeZClv" text="{REBELS} (Rebelianci {KINGDOM})"/>
+    <string id="nAvLFv5Q" text="Wybucha wojna domowa"/>
+    <string id="2PpZkBOB" text="W królestwie {KINGDOM} wybucha wojna domowa. Klan {CLAN_NAME} przewodzi frakcji {REBEL_KINGDOM}. {DEMAND}"/>
+    <string id="o0HIAHqg" text="Królestwa rebelianckie nie mogą być celem działań dyplomatycznych."/>
+    <string id="GKSaZESx" text="Wraz z wyborem nowego monarchy i osiągnięciem celu, {REBELS} z {PARENT_KINGDOM} zostaje rozwiązany."/>
+    
+    <string id="BPcKHP0D" text="Jako przywódca rebelii, zyskujesz {INFLUENCE} wpływów."/>
+    <string id="UoMvwnTb" text="Jako przywódca rebelii, tracisz {INFLUENCE} wpływów."/>
+    <string id="QiX6m5cp" text="Jako członek rebelii, zyskujesz {INFLUENCE} wpływów."/>
+    <string id="yrz8GMUb" text="Jako członek rebelii, tracisz {INFLUENCE} wpływów."/>
+
+    <string id="SNLviWvc" text="Jako przywódca lojalistów, tracisz {INFLUENCE} wpływów."/>
+    <string id="2I1X5fAC" text="Jako przywódca lojalistów, zyskujesz {INFLUENCE} wpływów."/>
+    <string id="4FfA8RL4" text="Jako członek lojalistów, tracisz {INFLUENCE} wpływów."/>
+    <string id="uUu7DEDU" text="Jako członek lojalistów, zyskujesz {INFLUENCE} wpływów."/>
+    
+    <string id="f66sNaiz" text="Nie możesz być częścią rebelii"/>
+
+    <string id="DZ6dpEn3" text="Dołącz do frakcji"/>
+    <string id="uTCw0WiH" text="Opuść frakcję"/>
+    <string id="1OUDq7Ul" text="Równowaga sił"/>
+    <string id="5q7TvMGL" text="Wznieć rebelię"/>
+    <string id="Ysrttgis" text="Data wybuchu: {CAMPAIGN_TIME}"/>
+    <string id="o3w3jNzZ" text="Żądanie: {DEMAND_NAME}"/>
+    <string id="hbPiVQVK" text="Status: {STATUS}"/>
+    <string id="TvSHYACm" text="Siła: {STRENGTH}"/>
+    <string id="dlANhHUd" text="Frakcje"/>
+    <string id="hBSo0Ziq" text="Utwórz frakcję"/>
+    <string id="2PglxF8k" text="Wybierz żądanie frakcji"/>
+    <string id="gypPPxUJ" text="Frakcje"/>
+    <string id="aWWzFITw" text="Monarcha abdykuje"/>
+    <string id="2Pv3DsVm" text="Królestwo {PARENT_KINGDOM} przegrało wojnę domową z {REBELS}. {LEADER} zrzeknie się tronu. {PLAYER_PARTICIPATION}"/>
+    <string id="GkhKppOk" text="Zbyt mało lenn"/>
+    <string id="Jc1mCVuY" text="Cecha: Wyrachowany"/>
+    <string id="cjbVV7E3" text="Zbyt niski poziom klanu"/>
+    <string id="Vp9EcnuC" text="Tendencja frakcji"/>
+    <string id="dr1OCcmL" text="Relacje z władcą"/>
+    <string id="mouJZAAy" text="Relacje z przywódcą frakcji"/>
+    <string id="FtX4LPXF" text="Rozmiar królestwa"/>
+    <string id="VFwDRHc7" text="Uczestnicy"/>
+    <string id="IYO5TNTg" text="Prawo do rządzenia"/>
+    <string id="YLUocN5e" text="Przywódca ma prawo do rządzenia"/>
+    <string id="qAcR4Yee" text="Przyjazne klany we frakcji"/>
+    <string id="1AZK0UVJ" text="Władca nie ma prawa do rządzenia"/>
+
+    <string id="ovgs58sT" text="Nie można utworzyć frakcji w czasie rebelii."/>
+    <string id="VbpiW2bd" text="Nie można utworzyć frakcji tak szybko po wojnie domowej."/>
+    <string id="JDk8ustS" text="Najemnicy nie mogą tworzyć frakcji."/>
+    <string id="quo5erz6" text="Władcy nie mogą tworzyć frakcji."/>
+    <string id="luvsD6Zn" text="Nie można utworzyć frakcji w rebelianckim królestwie."/>
+    <string id="iXMeCmj0" text="Klan musi mieć poziom 4 lub wyższy."/>
+    <string id="Xu3rnEEa" text="Musi być częścią królestwa {KINGDOM_NAME} aby utworzyć frakcję {KINGDOM_NAME}."/>
+    <string id="DxJH7ciY" text="Królestwo może mieć tylko jedną frakcję żądającą abdykacji."/>
+    <string id="zTZWwJfN" text="Nie można przewodzić dwóm frakcjom."/>
+    
+    <!-- <string id="" text="" /> -->
+
+    <string id="EYB5Uggd" text="Przywódcą jest {TRAIT}"/>
+    <string id="E00ywbqb" text="Władcą jest {TRAIT}"/>
+
+    <string id="GeevRiNR" text="{LABEL}{newline} {newline}{REASON}"/>
+    <string id="ALSuNVzE" text="{EXCEPTION}{newline} {newline}{DEMAND_HINT}"/>
+
+    <!-- Settings -->
+    <string id="eDZeFUTH" text="Wojny domowe"/>
+    <string id="VB97zQeJ" text="Minimalna liczba dni między wojnami domowymi"/>
+    <string id="5cUqaLk4" text="Wymagany minimalny czas przerwy między wojną domową, a wybuchem nowej rebelii w królestwie. Domyślna wartość to 240."/>
+    <string id="UdadyqpN" text="Codzienna szansa na wybuch rebelii"/>
+    <string id="yznXCi1d" text="Codzienna szansa na to, aby utworzyć frakcję rebeliancką. Domyślna wartość to 100%."/>
+    <string id="r312b3Of" text="Codzienna szansa na dołączenie do rebelii"/>
+    <string id="06oPGRj0" text="Codzienna szansa na to, aby klan dołączył do frakcji rebelianckiej, której postulaty popiera. Domyślna wartość to 100%."/>
+    <string id="lIbUuQB1" text="Codzienna szansa na wybuch wojny domowej"/>
+    <string id="zr10ZS3L" text="Codzienna szansa na to, aby frakcja z wystarczającą ilością poparcia wszczęła wojnę domową. Domyślna wartość to 50%."/>
+    <string id="VNILqmoY" text="Maksymalny czas trwania frakcji w dniach"/>
+    <string id="rNJIvaSm" text="Maksymalna liczba dni, jaką frakcja może przetrwać bez wszczynania wojny domowej. Domyślna wartość to 120."/>
+    <string id="6kNmdLxZ" text="Koszt wpływów utworzenia frakcji"/>
+    <string id="EwbXg3va" text="Koszt wpływów, aby utworzyć frakcję. Domyślna wartość to 100."/>
+    <string id="7wK0mmw1" text="Tendencja frakcji"/>
+    <string id="aqvIdG7w" text="Modyfikator wpływający na tendencję klanów do tworzenia i dołączania do frakcji. Zwiększenie tego wskaźnika zwiększy chęć uczestnictwa klanów. Domyślna wartość to 0."/>
+    
+  </strings>
+</base>
