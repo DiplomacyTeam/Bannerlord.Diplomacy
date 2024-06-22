@@ -114,7 +114,7 @@ jobs:
       artifact_name: Bannerlord.Diplomacy
     secrets:
       NEXUSMODS_APIKEY: ${{ secrets.NEXUSMODS_APIKEY }}
-      NEXUSMODS_COOKIES: ${{ secrets.NEXUSMODS_COOKIES }}
+      NEXUSMODS_SESSION_COOKIE: ${{ secrets.NEXUSMODS_SESSION_COOKIE }}
 
 ###########################
 #          STEAM          #
