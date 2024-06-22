@@ -2,7 +2,7 @@
 Version: 1.2.13
 Game Versions: v1.0.x, v1.1.x, v1.2.x
 * Adapted for v1.2.10.
-* Updated translations from Ccrowdin.
+* Updated translations from Crowdin.
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.12
 Game Versions: v1.0.x, v1.1.x, v1.2.x
