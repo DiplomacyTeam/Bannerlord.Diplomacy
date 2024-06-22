@@ -19,7 +19,7 @@ namespace Diplomacy.ViewModel
             _kingdomsAtWar = new MBBindingList<WarExhaustionMapIndicatorItemVM>();
             RefreshValues();
             DiplomacyEvents.WarExhaustionInitialized.AddNonSerializedListener(this, HandleStanceChange);
-#if v124 || v125 || v126 || v127 || v128 || v129
+#if v124 || v125 || v126 || v127 || v128 || v129 || v1210
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this, (x, _, _, _, _) => HandleClanChangedKingdom(x));
 #elif v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116 || v120 || v121 || v122 || v123
             CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, _, _, _, _) => HandleClanChangedKingdom(x));
@@ -51,7 +51,7 @@ namespace Diplomacy.ViewModel
         {
             base.OnFinalize();
 
-#if v124 || v125 || v126 || v127 || v128 || v129
+#if v124 || v125 || v126 || v127 || v128 || v129 || v1210
             CampaignEvents.OnClanChangedKingdomEvent.ClearListeners(this);
 #elif v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116 || v120 || v121 || v122 || v123
             CampaignEvents.ClanChangedKingdom.ClearListeners(this);
