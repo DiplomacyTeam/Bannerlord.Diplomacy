@@ -7,7 +7,7 @@
     <string id="MYz8nKqq" text="Diplomacy"/>
     <string id="hPERH3u4" text="Diplomacy Carregado"/>
 
-    <string id="TS1iV2pO" text="Influência insuficiente"/>
+    <string id="TS1iV2pO" text="Influência insuficiente!"/>
     <string id="XQFxDr11" text="Há uma missão ativa impedindo isso!"/>
     <string id="ONNcmltF" text="Esta guerra não durou tempo suficiente para considerar a paz! Passaram-se apenas {ELAPSED_DAYS} dias dos {REQUIRED_DAYS} dias necessários."/>
     <string id="GuPOCNNZ" text="A trégua foi concluída recentemente para considerar quebrá-la agora! Passaram-se apenas {ELAPSED_DAYS} dias dos {REQUIRED_DAYS} dias necessários."/>
@@ -109,7 +109,7 @@
     <string id="1occw3EF" text="Estatísticas"/>
     <string id="OvbY5qxL" text="Visão Geral"/>
 
-    <string id="UDC8eW7s" text="{ALLIED_KINGDOM} está se juntando a seu aliado, {KINGDOM}na guerra contra {ENEMY_KINGDOM}."/>
+    <string id="UDC8eW7s" text="{ALLIED_KINGDOM} está se juntando a seu aliado, {KINGDOM} na guerra contra {ENEMY_KINGDOM}."/>
 
     <string id="pdI7Tjtj" text="Pacto de Não Agressão Expirado"/>
     <string id="uWY09LJb" text="O pacto de não agressão entre {KINGDOM} e {OTHER_KINGDOM} expirou."/>
