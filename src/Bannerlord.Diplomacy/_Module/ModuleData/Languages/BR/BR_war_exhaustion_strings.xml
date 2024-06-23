@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Português (BR)"/>
+  </tags>
+  <strings>
+    <!--<string id="" text="" />-->
+    <string id="XmVTQ0bH" text="Exaustão de Guerra"/>
+
+    <string id="BXluvRnJ" text="Derrota amarga"/>
+    <string id="0aZCy0at" text="Paz forçada"/>
+
+    <string id="vLfbqXjq" text="Seus exércitos e pessoas estão exaustos do conflito com {ENEMY_KINGDOM} e desistiram da luta. Você deve aceitar os termos da derrota e pagar reparações de guerra no valor de {REPARATIONS}{GOLD_ICON}. Essas despesas serão distribuídas entre todos os clãs do reino.{?ADD_TRIBUTE}Você também se compromete a pagar um tributo diário de {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Além disso, você deve retornar {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} e {?}{\?}{FIEFS_TO_RETURN_LIST.END} de volta para {ENEMY_KINGDOM}.{NEW_LINE} {NEW_LINE}{?} {\?}A vergonha da derrota custará {INFLUENCE} influência."/>
+    <string id="ghZCj7hb" text="Com sua fortaleza final caindo para seus inimigos, você não pode mais continuar a luta com {ENEMY_KINGDOM}. Você deve aceitar os termos de derrota{?TO_BE_DESTROYED}. Sem terra ou meios de subsistência, seu reino não existe mais.{?} e pague reparações de guerra no valor de {REPARATIONS}{GOLD_ICON}. Essas despesas serão distribuídas entre todos os clãs do reino. {?ADD_TRIBUTE}Você também se compromete a pagar um tributo diário de {TRIBUTE}{GOLD_ICON}. {?}{\?}A vergonha da derrota custará {INFLUENCE} influência.{\?}"/>
+    <string id="cKV5Jded" text="Os exércitos e o povo de {KINGDOM.NAME} estão exaustos do conflito com {ENEMY_KINGDOM} e desistiram de lutar. {KINGDOM_LEADER.NAME} deve aceitar os termos da derrota e pagar reparações de guerra no valor de {REPARATIONS}{GOLD_ICON} (essas despesas serão distribuídas entre todos os clãs do reino).{?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER} Ela{?}Ele{\?} também promete pagar um tributo diário de {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Além disso, {KINGDOM_LEADER .NAME} deve retornar {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} e {?}{\?}{FIEFS_TO_RETURN_LIST.END} de volta para {ENEMY_KINGDOM}.{NEW_LINE} {NEW_LINE}{?} {\?}O a vergonha da derrota custará {?KINGDOM_LEADER.GENDER}ela{?}a ele{\?} influência de {INFLUENCE}."/>
+    <string id="idAcjzXB" text="Com sua fortaleza final caindo para seus inimigos, você não pode mais continuar a luta com {ENEMY_KINGDOM}. {KINGDOM_LEADER.NAME} deve aceitar os termos da derrota{?TO_BE_DESTROYED}Sem terra ou meios de subsistência, seu reino não existe mais.{?} e pagar reparações de guerra no valor de {REPARATIONS}{GOLD_ICON} (essas despesas serão distribuídas entre todos os clãs do reino). {?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Ela{?}Ele{\?} também promete pagar um tributo diário de {TRIBUTE}{GOLD_ICON}. {?}{\?}A vergonha da derrota custará {?KINGDOM_LEADER.GENDER}ela{?}a ele{\?} influência de {INFLUENCE}.{\?}"/>
+    <string id="a3W5zKQr" text="Os exércitos e as pessoas de {KINGDOM.NAME} e {ENEMY_KINGDOM} estão exaustos do conflito e desistiram da luta. Não há outra escolha a não ser fazer as pazes{?TO_BE_DESTROYED}, mas sem terra ou sustento, {?IS_REBELLION}sua rebelião acabou{?}seu reino não existe mais{\?}{?}{\?}."/>
+
+    <string id="6eTtSKO4" text="À luz dos eventos recentes, fica claro que a rebelião chamada {REBEL_KINGDOM} foi bem-sucedida e mais resistência é inútil. É hora de admitir a derrota{?TO_BE_DESTROYED}, mesmo que sem terra ou meios de subsistência seu reino não existiria mais{?} e dar ao seu reino dividido e devastado pela guerra uma chance de viver em paz{\?}."/>
+    <string id="2ptArJem" text="À luz dos acontecimentos recentes, fica claro que sua rebelião falhou. É hora de admitir a derrota e dar ao {ORIGINAL_KINGDOM} dividido e cansado da guerra uma chance de se reunir."/>
+
+    <string id="HWiDa4R1" text="Os exércitos e o povo de {KINGDOM.NAME} estão exaustos do conflito com {PLAYER_KINGDOM} e desistiram da luta.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} está propondo um tratado de paz e está disposto a pagar reparações de guerra em o valor de {REPARATIONS}{GOLD_ICON}.{?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Ela{?}Ele{\?} também se compromete a pagar um tributo diário de {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Além disso, {KINGDOM_LEADER.NAME} deve retornar {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} e {?}{\?}{FIEFS_TO_RETURN_LIST.END} de volta para {PLAYER_KINGDOM}.{?}{\?}"/>
+    <string id="t0ZS9maD" text="Com sua fortaleza final caindo, {KINGDOM.LINK} não pode mais continuar a luta com {PLAYER_KINGDOM}.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} propõe um tratado de paz{?TO_BE_DESTROYED}, apesar do fato de que sem terra ou meios de subsistência, seu reino deixaria de existir.{?} e está disposto a pagar reparações de guerra no valor de {REPARATIONS}{GOLD_ICON}.{?ADD_TRIBUTE} {?KINGDOM_LEADER.GENDER}Ela{?}Ele{\?} também promete pagar um tributo diário de {TRIBUTE}{GOLD_ICON}.{?}{\?}{\?}"/>
+    <string id="ZrwszZww" text=" Os exércitos e as pessoas de {KINGDOM.NAME} e {PLAYER_KINGDOM} estão exaustos do conflito e desistiram da luta. {NEW_LINE}{NEW_LINE}{KINGDOM_LEADER.NAME} está propondo um tratado de paz{?TO_BE_DESTROYED}, embora sem terra ou meios de subsistência, {?IS_REBELLION}sua rebelião está praticamente acabada{?}seu reino não existiria mais{\?} {?} sem impor quaisquer condições{\?}."/>
+    <string id="q02T8cyI" text="À luz dos acontecimentos recentes, fica claro que a rebelião chamada {REBEL_KINGDOM} falhou. É hora de aceitar seus pedidos de paz e perdão, dando assim ao seu reino dividido e cansado da guerra uma chance de se reunir?"/>
+    <string id="PC5GdgKA" text="À luz dos acontecimentos recentes, está claro que sua rebelião contra {ORIGINAL_KINGDOM.NAME} é um sucesso - até mesmo {ORIGINAL_KINGDOM_LEADER.NAME} admitiu isso! É hora de aceitar seu pedido de paz, alcançando assim seus objetivos?"/>
+    <string id="13G0c8RE" text="Dado o quanto seu reino foi devastado pela guerra, você não tem escolha a não ser aceitar a paz."/>
+
+    <!-- Report -->
+    <string id="mCue7aFc" text="Relatório de Guerra"/>
+    <string id="hfa8LLqD" text="{EXHAUSTED_FACTION} está gravemente esgotado pela guerra com {OTHER_FACTION}. Sua capacidade de continuar esta guerra está no limite, {?IS_CIVIL_WAR}o que confirma cada vez mais sua compreensão da inevitabilidade de fazer a paz{?}tornando-os cada vez mais abertos à possibilidade de paz{\?} à medida que a guerra se aproxima do esgotamento seu máximo."/>
+    <string id="k0Dnf6cU" text="Preso a uma missão ativa!"/>
+    <string id="xPHDtsC1" text="Há uma busca ativa que impede que esta guerra termine prematuramente. Para garantir a estabilidade, o esgotamento da guerra em nenhuma circunstância excederá {CRITICAL_THRESHOLD}% para qualquer um dos lados."/>
+    <string id="xoY6cYDK" text="Estava vinculado a uma missão ativa!"/>
+    <string id="UvjMFpHs" text="Houve uma busca ativa que impediu que esta guerra terminasse prematuramente. Como consequência, os números de detalhamento no relatório podem não corresponder aos valores gerais de exaustão de guerra."/>
+    <string id="hAoIC2Iq" text="Data de Inicio: {START_DATE}"/>
+    <string id="qHrihV27" text="Duração da Guerra: {WAR_DURATION} dias"/>
+    <!-- Report breakdowns -->
+    <string id="IlFEeNkY" text="Relatório de Exaustão de Guerra"/>
+    <string id="zYVH0xYa" text="Vítimas"/>
+    <string id="y7XY860U" text="Caravanas Interceptadas"/>
+    <string id="elRjo1ab" text="Aldeias Invadidas"/>
+    <string id="DrNBDhx3" text="Feudos Perdidos"/>
+    <string id="X1MIWYzy" text="Heróis Presos"/>
+    <string id="6FLtWxSp" text="Heróis Perdidos"/>
+    <string id="sCRuliNO" text="Totalmente ocupado"/>
+    <string id="XIPMI3gR" text="Duração da Guerra"/>
+    <string id="FVyFJShW" text="Intervenções divinas"/>
+    <string id="1kGleqyk" text="Exaustão de guerra resultante"/>
+    <string id="i5VSEDE3" text="{START_DATE} - {END_DATE}: {?COUNT.PLURAL_FORM}Total de {COUNT} entradas anteriores{?}{COUNT} entradas anteriores{\?}"/>
+
+    <string id="fnPa5bas" text="tropas guarnecidas"/>
+    <string id="rwFeQWky" text="Uma caravana de {KINGDOM_NAME}"/>
+
+    <!-- Event records -->
+    <string id="Toa6V7RL" text="{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% por dia durante {VALUE} {?VALUE.PLURAL_FORM}dias{?}dia{\?}"/>
+    <string id="wMVdLssJ" text="{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% por dia durante {VALUE} {?VALUE.PLURAL_FORM}dias{?}dia{\?} enquanto estiver sem feudos"/>
+    <string id="0nTpub9S" text="{START_DATE} - {END_DATE}: {VALUE} {?VALUE.PLURAL_FORM}baixas{?}vítimas{\?} de guerra"/>
+    <string id="SeWNvf1N" text="{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}baixas {?} vítima {?} na batalha entre {FACTION_PARTY} e {OTHER_FACTION_PARTY}"/>
+    <string id="9V6S05X3" text="{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}baixas {?} vítima {?} na batalha por {SETTLEMENT} lutou entre {FACTION_PARTY} e {OTHER_FACTION_PARTY}"/>
+    <string id="vhBKtne1" text="{DATE_STR}: {RAIDED_CARAVAN} foi saqueada por {OTHER_FACTION_PARTY}"/>
+    <string id="Hnxf9Ox3" text="{DATE_STR}: {RAIDED_VILLAGE} foi invadido por {OTHER_FACTION_PARTY}"/>
+    <string id="SXhzqm2N" text="{DATE_STR}: {RAIDED_VILLAGE} foi invadida por {OTHER_FACTION_PARTY} (afetada por retornos decrescentes)"/>
+    <string id="6cSuGG87" text="{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} castelo{?}{\?} defendido por {FACTION_PARTY} foi tomado por {OTHER_FACTION_PARTY}"/>
+    <string id="fuaTMWpt" text="{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} castelo{?}{\?} defendido por {FACTION_PARTY} foi retomado por {OTHER_FACTION_PARTY} (afetado por retornos decrescentes)"/>
+    <string id="yRvZ37cx" text="{DATE_STR}: {HERO} foi feito prisioneiro por {OTHER_FACTION_PARTY}"/>
+    <string id="i2Moqprl" text="{DATE_STR}: {HERO} foi feito prisioneiro por {OTHER_FACTION_PARTY} (afetado por retornos decrescentes)"/>
+    <string id="QkSVPgDF" text="{DATE_STR}: {HERO} morreu de causas naturais{?YIELDS_DIMINISHING_RETURNS} (afetado por retornos decrescentes){?}{\?}"/>
+    <string id="S0lkYB5P" text="{DATE_STR}: {HERO} foi assassinado por {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (afetado por retornos decrescentes){?}{\?}"/>
+    <string id="f6OIFaSj" text="{DATE_STR}: {HERO} morreu no parto{?YIELDS_DIMINISHING_RETURNS} (afetado por retornos decrescentes){?}{\?}"/>
+    <string id="PmOPed8Y" text="{DATE_STR}: {HERO} morreu de velhice{?YIELDS_DIMINISHING_RETURNS} (afetado por retornos decrescentes){?}{\?}"/>
+    <string id="Pp6wYS5m" text="{DATE_STR}: {HERO} morreu em batalha com {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (afetado por retornos decrescentes){?}{\?}"/>
+    <string id="QvGjUrmL" text="{DATE_STR}: {HERO} morreu de ferimentos de guerra após uma batalha com {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (afetado por retornos decrescentes){?}{\?}"/>
+    <string id="5tBkM1O4" text="{DATE_STR}: {HERO} foi executado por {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (afetado por retornos decrescentes){?}{\?}"/>
+    <string id="moeUCyaq" text="{DATE_STR}: {HERO} desapareceu durante a batalha com {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (afetado por retornos decrescentes){?}{\?}"/>
+    <string id="VB1xpuMA" text="{DATE_STR}: {FACTION} foi totalmente ocupado por {OTHER_FACTION}"/>
+    <string id="X9wHA6q3" text="{DATE_STR}: {FACTION} foi completamente ocupado por {OTHER_FACTION} (afetado por retornos decrescentes)"/>
+    <string id="9vOZJpPu" text="{DATE_STR}: A exaustão de guerra de {FACTION} foi milagrosamente reduzida (alguns dizem que foi intervenção divina)"/>
+    <string id="S5tDXkgK" text="{DATE_STR}: Há rumores de que alguma força misteriosa tentou influenciar os esforços de guerra de {FACTION}, mas nada parece ter mudado"/>
+    <string id="fJE6Y9mB" text="{DATE_STR}: O povo de {FACTION} de repente perdeu a vontade de lutar (alguns dizem que foi intervenção divina)"/>
+
+    <!-- Settings -->
+    <string id="V542tneW" text="Exaustão de Guerra"/>
+    <string id="lSttctYC" text="Ativar Exaustão de Guerra"/>
+    <string id="Cxyn9ROT" text="Ativa a mecânica de exaustão de guerra. O valor padrão está ativado."/>
+    <string id="Yc2YUIva" text="Ativar retornos decrescentes"/>
+    <string id="CaxxEEdC" text="Permite retornos decrescentes para alguns eventos ao calcular a exaustão da guerra. O valor padrão está ativado."/>
+    <string id="HPFINWrc" text="Taxas individuais de exaustão de guerra"/>
+    <string id="LFVkLcIp" text="Habilita as taxas de exaustão de guerra individuais para facções. Se desativado, uma única taxa será calculada para cada guerra com base na força combinada das facções opostas. O valor padrão está ativado."/>
+    <string id="gW3eVr5E" text="Habilitar Repatriação de Feudo"/>
+    <string id="KEi0UykN" text="Se ativado, os reinos podem ter que devolver alguns de seus feudos conquistados de volta ao proprietário original se eles perderem a guerra substancialmente. Valor padrão está habilitado."/>
+    <string id="8TFQWL55" text="Exaustão de guerra por dia"/>
+    <string id="lgza5wDq" text="A quantidade de exaustão de guerra adicionada por dia em que uma guerra está em andamento. Não é afetado pela taxa de exaustão de guerra. O valor padrão é 0,25%."/>
+    <string id="PAmPVWgD" text="Multiplicador feudo menores"/>
+    <string id="SdjYeYM5" text="Multiplicador para a quantidade de exaustão de guerra adicionada por dia para uma facção sem feudos em comparação com uma facção com feudos. O valor padrão é 10."/>
+    <string id="s6dNpM6M" text="Exaustão de Guerra por Baixa"/>
+    <string id="NcJtGeM7" text="A quantidade de exaustão de guerra adicionada quando uma facção tem uma baixa de batalha. O valor padrão é 0,02%."/>
+    <string id="kr5zAufg" text="Exaustão de guerra por invasão de caravana"/>
+    <string id="PinVMCUE" text="A quantidade de exaustão de guerra adicionada quando a caravana de uma facção é invadida. O valor padrão é 3,0%."/>
+    <string id="qFJ23KxQ" text="Exaustão de guerra por herói aprisionado"/>
+    <string id="wctCn9uO" text="A quantidade básica de exaustão de guerra adicionada quando o nobre herói de uma facção é aprisionado. Afetado pelo significado do herói para a facção. Potencialmente sujeito a retornos decrescentes. O valor padrão é 2,0%."/>
+    <string id="4vTzbsXD" text="Exaustão de Guerra por Herói Perdido"/>
+    <string id="w80tUaVd" text="A quantidade básica de exaustão de guerra adicionada quando o nobre herói de uma facção é morto. Afetado pelo significado do herói para a facção. Potencialmente sujeito a retornos decrescentes quando vários heróis do mesmo clã são mortos. O valor padrão é 5,0%."/>
+    <string id="eWVGwf2m" text="Exaustão de guerra por invasão"/>
+    <string id="ufHDJt8H" text="A quantidade de exaustão de guerra adicionada quando a vila de uma facção é invadida. Potencialmente sujeito a retornos decrescentes. O valor padrão é 3,0%."/>
+    <string id="gGIaLKHk" text="Exaustão de guerra por cerco"/>
+    <string id="mCEa773h" text="A quantidade de exaustão de guerra adicionada quando uma facção perde uma cidade. Perder um castelo adiciona metade disso. Potencialmente sujeito a retornos decrescentes. O valor padrão é 10,0%."/>
+    <string id="JmUPtZdw" text="Exaustão de guerra quando ocupado"/>
+    <string id="541jGrpb" text="A quantidade de exaustão de guerra adicionada quando uma facção perde todos os seus feudos. Não é afetado pela taxa de exaustão de guerra. Potencialmente sujeito a retornos decrescentes. O valor padrão é 15,0%."/>
+    <string id="pPHLRIml" text="Máximo de entradas na dica de ferramenta de detalhamento"/>
+    <string id="YMf0mSqy" text="Número máximo de entradas em qualquer dica de ferramenta de detalhamento no relatório de exaustão de guerra. Defina isso para qualquer valor que seja conveniente para visualização. O valor padrão é 35."/>
+    <string id="F4iFH6un" text="Widget de mapa de campanha"/>
+    <string id="zTvbZ8Br" text="Ativa um widget de exaustão de guerra dedicado para cada guerra em andamento na parte superior da tela do mapa da campanha. O valor padrão está ativado."/>
+    <string id="jI9NSxtz" text="Ativar mensagens de depuração de exaustão de guerra do jogador"/>
+    <string id="LYyNbQds" text="Habilita mensagens de depuração para exaustão de guerra adicionadas ao reino do jogador. O valor padrão está desabilitado."/>
+
+  </strings>
+</base>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Português (BR)"/>
+  </tags>
+  <strings>
+    <string id="0WVHMfN8" text="Uma rebelião desmorona"/>
+    <string id="BVNGIAMM" text="{PARENT_KINGDOM} esmagou a rebelião devastando seu reino. {PLAYER_PARTICIPATION}"/>
+    <string id="x5ThZR5A" text="Surge um novo reino"/>
+    <string id="nRxyMIEE" text="{PARENT_KINGDOM} perdeu sua guerra civil e não conseguiu manter seu reino unido. o {KINGDOM} emergiu. {PLAYER_PARTICIPATION}"/>
+    <string id="1OQGJkqb" text="Surge uma facção rebelde"/>
+    <string id="pqjZ6wck" text="Uma facção rebelde surgiu em {KINGDOM}. Eles são liderados por clã {CLAN_NAME}. {DEMAND}"/>
+    <string id="ZAfNviVS" text="Secessão"/>
+    <string id="wUspUo1y" text="Abdicação"/>
+    <string id="LF19GulH" text="Retirar-se do reino. Os membros desta facção formarão um novo reino. Apenas clãs de Nível 4 ou superior podem iniciar uma facção de secessão."/>
+    <string id="GK1seKeJ" text="Forçar o líder do reino a renunciar. Uma eleição decidirá o novo líder do reino."/>
+    <string id="brEXAKDb" text="Os rebeldes exigem que suas terras sejam separadas do reino."/>
+    <string id="8A6JPMWp" text="Os rebeldes exigem que {LEADER} abdica de seu trono."/>
+    <string id="ChzQncc0" text="Rebelião"/>
+    <string id="WUAv0u4U" text="Reunindo suporte"/>
+    <string id="fw0k1KFl" text="Demanda: {DEMAND_NAME}"/>
+    <string id="FajeZClv" text="{REBELS} ({KINGDOM} rebeldes)"/>
+    <string id="nAvLFv5Q" text="A Guerra Civil Começa"/>
+    <string id="2PpZkBOB" text="Uma guerra civil eclodiu em {KINGDOM}. o {REBEL_KINGDOM} são liderados por clã {CLAN_NAME}. {DEMAND}"/>
+    <string id="o0HIAHqg" text="Os reinos rebeldes não podem ser alvo de ações diplomáticas."/>
+    <string id="GKSaZESx" text="Com a eleição de um novo monarca e seu objetivo concluído, o {REBELS} Do {PARENT_KINGDOM} Dissolve."/>
+    
+    <string id="BPcKHP0D" text="Como líder da rebelião, você ganhou {INFLUENCE} Influência."/>
+    <string id="UoMvwnTb" text="Como líder da rebelião, você perdeu {INFLUENCE} Influência."/>
+    <string id="QiX6m5cp" text="Como um membro da rebelião, você ganhou {INFLUENCE} Influência."/>
+    <string id="yrz8GMUb" text="Como membro da rebelião, você perdeu {INFLUENCE} Influência."/>
+
+    <string id="SNLviWvc" text="Como líder dos legalistas, você perdeu {INFLUENCE} Influência."/>
+    <string id="2I1X5fAC" text="Como líder dos legalistas, você ganhou {INFLUENCE} Influência."/>
+    <string id="4FfA8RL4" text="Como membro dos legalistas, você perdeu {INFLUENCE} Influência."/>
+    <string id="uUu7DEDU" text="Como membro dos legalistas, você ganhou {INFLUENCE} Influência."/>
+    
+    <string id="f66sNaiz" text="Você não pode fazer parte de uma rebelião"/>
+
+    <string id="DZ6dpEn3" text="Junte-se à facção"/>
+    <string id="uTCw0WiH" text="Sair da facção"/>
+    <string id="1OUDq7Ul" text="Equilíbrio de poder"/>
+    <string id="5q7TvMGL" text="Iniciar rebelião"/>
+    <string id="Ysrttgis" text="Data de início: {CAMPAIGN_TIME}"/>
+    <string id="o3w3jNzZ" text="Demanda: {DEMAND_NAME}"/>
+    <string id="hbPiVQVK" text="Status: {STATUS}"/>
+    <string id="TvSHYACm" text="Força: {STRENGTH}"/>
+    <string id="dlANhHUd" text="Facções"/>
+    <string id="hBSo0Ziq" text="Criar Facção"/>
+    <string id="2PglxF8k" text="Escolha a Demanda da Facção"/>
+    <string id="gypPPxUJ" text="Facções"/>
+    <string id="aWWzFITw" text="Um monarca abdica"/>
+    <string id="2Pv3DsVm" text="{PARENT_KINGDOM} perdeu sua guerra civil para o {REBELS}. {LEADER} abdicará do trono. {PLAYER_PARTICIPATION}"/>
+    <string id="GkhKppOk" text="Feudos insuficientes"/>
+    <string id="Jc1mCVuY" text="Característica: Calculando"/>
+    <string id="cjbVV7E3" text="Nível do clã muito baixo"/>
+    <string id="Vp9EcnuC" text="Tendência da Facção"/>
+    <string id="dr1OCcmL" text="Relações com o governante"/>
+    <string id="mouJZAAy" text="Relações com o Líder"/>
+    <string id="FtX4LPXF" text="Tamanho do Reino"/>
+    <string id="VFwDRHc7" text="Participantes"/>
+    <string id="IYO5TNTg" text="Direito de governar"/>
+    <string id="YLUocN5e" text="O líder tem o direito de governar"/>
+    <string id="qAcR4Yee" text="Clãs amigáveis ​​em facção"/>
+    <string id="1AZK0UVJ" text="O governante não tem o direito de governar"/>
+
+    <string id="ovgs58sT" text="Não é possível iniciar uma facção durante uma rebelião ativa."/>
+    <string id="VbpiW2bd" text="Não é possível iniciar uma facção tão cedo depois de uma guerra civil."/>
+    <string id="JDk8ustS" text="Mercenários não podem criar facções."/>
+    <string id="quo5erz6" text="Os governantes não podem criar facções."/>
+    <string id="luvsD6Zn" text="Não é possível criar uma facção em um reino rebelde."/>
+    <string id="iXMeCmj0" text="Deve ser Clan Tier 4 ou superior."/>
+    <string id="Xu3rnEEa" text="Deve fazer parte {KINGDOM_NAME} para criar um {KINGDOM_NAME} Facção."/>
+    <string id="DxJH7ciY" text="Um reino só pode ter uma facção de abdicação."/>
+    <string id="zTZWwJfN" text="Você não pode liderar duas facções."/>
+    
+    <!-- <string id="" text="" /> -->
+
+    <string id="EYB5Uggd" text="Líder é {TRAIT}"/>
+    <string id="E00ywbqb" text="Governante é {TRAIT}"/>
+
+    <string id="GeevRiNR" text="{LABEL}{newline} {newline}{REASON}"/>
+    <string id="ALSuNVzE" text="{EXCEPTION}{newline} {newline}{DEMAND_HINT}"/>
+
+    <!-- Settings -->
+    <string id="eDZeFUTH" text="Guerra Civil"/>
+    <string id="VB97zQeJ" text="Tempo mínimo entre guerras civis em dias"/>
+    <string id="5cUqaLk4" text="A quantidade mínima de tempo necessária entre uma guerra civil e quando novas facções rebeldes podem surgir em um reino. O valor padrão é 240."/>
+    <string id="UdadyqpN" text="Chance Diária de Começar a Facção Rebelde"/>
+    <string id="yznXCi1d" text="A chance diária de um clã iniciar uma facção rebelde. O valor padrão é 100%."/>
+    <string id="r312b3Of" text="Chance diária de se juntar à facção rebelde"/>
+    <string id="06oPGRj0" text="A chance diária de um clã se juntar a uma facção rebelde que eles apoiariam. O valor padrão é 100%."/>
+    <string id="lIbUuQB1" text="Chance Diária de Começar a Guerra Civil"/>
+    <string id="zr10ZS3L" text="A chance diária de uma facção com apoio suficiente para iniciar uma guerra civil. O valor padrão é 50%."/>
+    <string id="VNILqmoY" text="Duração máxima da facção em dias"/>
+    <string id="rNJIvaSm" text="A quantidade máxima de tempo que uma facção pode durar sem entrar em uma guerra civil. O valor padrão é 120."/>
+    <string id="6kNmdLxZ" text="Custo de Influência de Criação de Facção"/>
+    <string id="EwbXg3va" text="O custo de influência de iniciar uma facção. O valor padrão é 100."/>
+    <string id="7wK0mmw1" text="Tendência de Facção"/>
+    <string id="aqvIdG7w" text="Modificador de pontuação que afeta a tendência dos clãs de criar ou se juntar a facções. Aumentar o modificador aumenta a participação da facção. O valor padrão é 0."/>
+    
+  </strings>
+</base>
