@@ -82,7 +82,7 @@
     <string id="Dirltd6Z" text="As alianças estão desabilitadas."/>
 
     <string id="Q8ItogIP" text="Propor diretamente a {ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}"/>
-    <string id="BC7823G2" text="{?REPARATIONS_PAY}, pagando {REPARATIONS} reparações de guerra{?TRIBUTE_PAY} e {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, mas recebendo tributo {TRIBUTE} / dia. ?}{\?}{\?}{?}{?REPARATIONS_GET}, recebendo reparações de guerra {REPARATIONS} {?TRIBUTE_PAY}, mas pagando {TRIBUTE} tributo/dia. ?}{?TRIBUTE_GET} e {TRIBUTE} tributo/day.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, pagando {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, recebendo {TRIBUTE} tributte/day.{?}.{\?}{\?}{\?}"/>
+    <string id="BC7823G2" text="{?REPARATIONS_PAY}, pagando {REPARATIONS} reparações de guerra{?TRIBUTE_PAY} e {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, mas recebendo tributo {TRIBUTE}/dia.{?}{\?}{\?}{?}{?REPARATIONS_GET}, recebendo reparações de guerra {REPARATIONS} {?TRIBUTE_PAY}, mas pagando {TRIBUTE} tributo/dia.{?}{?TRIBUTE_GET} e {TRIBUTE} tributo/dia.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, pagando {TRIBUTE} tributo/dia.{?}{?TRIBUTE_GET}, recebendo {TRIBUTE} tributo/dia.{?}.{\?}{\?}{\?}"/>
     <string id="9CvcPwJA" text="{?FIEFS_ANY} Talvez você precise devolver alguns dos feudos capturados!{?}{\?}"/>
 
     <!--Millions and thousands-->
