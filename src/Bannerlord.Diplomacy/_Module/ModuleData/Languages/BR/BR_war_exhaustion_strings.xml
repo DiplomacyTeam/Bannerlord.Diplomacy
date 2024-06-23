@@ -20,7 +20,7 @@
     <string id="2ptArJem" text="À luz dos acontecimentos recentes, fica claro que sua rebelião falhou. É hora de admitir a derrota e dar ao {ORIGINAL_KINGDOM} dividido e cansado da guerra uma chance de se reunir."/>
 
     <string id="HWiDa4R1" text="Os exércitos e o povo de {KINGDOM.NAME} estão exaustos do conflito com {PLAYER_KINGDOM} e desistiram da luta.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} está propondo um tratado de paz e está disposto a pagar reparações de guerra em o valor de {REPARATIONS}{GOLD_ICON}.{?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Ela{?}Ele{\?} também se compromete a pagar um tributo diário de {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Além disso, {KINGDOM_LEADER.NAME} deve retornar {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} e {?}{\?}{FIEFS_TO_RETURN_LIST.END} de volta para {PLAYER_KINGDOM}.{?}{\?}"/>
-    <string id="t0ZS9maD" text="Com sua fortaleza final caindo, {KINGDOM.LINK} não pode mais continuar a luta com {PLAYER_KINGDOM}.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} propõe um tratado de paz{?TO_BE_DESTROYED}, apesar do fato de que sem terra ou meios de subsistência , seu reino deixaria de existir.{?} e está disposto a pagar reparações de guerra no valor de {REPARATIONS}{GOLD_ICON}.{?ADD_TRIBUTE} {?KINGDOM_LEADER.GENDER}Ela{?}Ele{\?} também promete pagar um tributo diário de {TRIBUTE}{GOLD_ICON}.{?}{\?}{\?}"/>
+    <string id="t0ZS9maD" text="Com sua fortaleza final caindo, {KINGDOM.LINK} não pode mais continuar a luta com {PLAYER_KINGDOM}.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} propõe um tratado de paz{?TO_BE_DESTROYED}, apesar do fato de que sem terra ou meios de subsistência, seu reino deixaria de existir.{?} e está disposto a pagar reparações de guerra no valor de {REPARATIONS}{GOLD_ICON}.{?ADD_TRIBUTE} {?KINGDOM_LEADER.GENDER}Ela{?}Ele{\?} também promete pagar um tributo diário de {TRIBUTE}{GOLD_ICON}.{?}{\?}{\?}"/>
     <string id="ZrwszZww" text=" Os exércitos e as pessoas de {KINGDOM.NAME} e {PLAYER_KINGDOM} estão exaustos do conflito e desistiram da luta. {NEW_LINE}{NEW_LINE}{KINGDOM_LEADER.NAME} está propondo um tratado de paz{?TO_BE_DESTROYED}, embora sem terra ou meios de subsistência, {?IS_REBELLION}sua rebelião está praticamente acabada{?}seu reino não existiria mais{\?} {?} sem impor quaisquer condições{\?}."/>
     <string id="q02T8cyI" text="À luz dos acontecimentos recentes, fica claro que a rebelião chamada {REBEL_KINGDOM} falhou. É hora de aceitar seus pedidos de paz e perdão, dando assim ao seu reino dividido e cansado da guerra uma chance de se reunir?"/>
     <string id="PC5GdgKA" text="À luz dos acontecimentos recentes, está claro que sua rebelião contra {ORIGINAL_KINGDOM.NAME} é um sucesso - até mesmo {ORIGINAL_KINGDOM_LEADER.NAME} admitiu isso! É hora de aceitar seu pedido de paz, alcançando assim seus objetivos?"/>
@@ -49,7 +49,7 @@
     <string id="1kGleqyk" text="Exaustão de guerra resultante"/>
     <string id="i5VSEDE3" text="{START_DATE} - {END_DATE}: {?COUNT.PLURAL_FORM}Total de {COUNT} entradas anteriores{?}{COUNT} entradas anteriores{\?}"/>
 
-    <string id="fnPa5bas" text="Tropas guarnecidas"/>
+    <string id="fnPa5bas" text="tropas guarnecidas"/>
     <string id="rwFeQWky" text="Uma caravana de {KINGDOM_NAME}"/>
 
     <!-- Event records -->
