@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="简体中文"/>
+  </tags>
+  <strings>
+    <string id="0WVHMfN8" text="一场叛乱被平定"/>
+    <string id="BVNGIAMM" text="{PARENT_KINGDOM} 击溃了国度内肆虐的叛军。{PLAYER_PARTICIPATION}"/>
+    <string id="x5ThZR5A" text="一个新的王国兴起了"/>
+    <string id="nRxyMIEE" text="{PARENT_KINGDOM} 输掉了内战，未能让王国保持统一。{KINGDOM} 兴起了。 {PLAYER_PARTICIPATION}"/>
+    <string id="1OQGJkqb" text="一个叛军派系兴起了"/>
+    <string id="pqjZ6wck" text="{KINGDOM} 出现了一个叛军派系，由{CLAN_NAME} 家族领导。{DEMAND}"/>
+    <string id="ZAfNviVS" text="分离"/>
+    <string id="wUspUo1y" text="退位"/>
+    <string id="LF19GulH" text="从王国撤出，这个派别的成员将组成一个新的王国。只有4级或4级以上的部族才能开始一个分离派别。"/>
+    <string id="GK1seKeJ" text="强迫君主退位，选举的新领导人"/>
+    <string id="brEXAKDb" text="叛军要求反叛领地从王国独立"/>
+    <string id="8A6JPMWp" text="叛军要求 {LEADER} 退位。"/>
+    <string id="ChzQncc0" text="叛乱！"/>
+    <string id="WUAv0u4U" text="获得了支持"/>
+    <string id="fw0k1KFl" text="要求：{DEMAND_NAME}"/>
+    <string id="FajeZClv" text="{REBELS} ({KINGDOM} 叛乱)"/>
+    <string id="nAvLFv5Q" text="内战爆发"/>
+    <string id="2PpZkBOB" text="{KINGDOM} 爆发内战，{REBEL_KINGDOM} 由{CLAN_NAME} 领导。{DEMAND}"/>
+    <string id="o0HIAHqg" text="我们不能对叛乱王国采取外交行动。"/>
+    <string id="GKSaZESx" text="随着新君主的选举完成其目标，{PARENT_KINGDOM} 的 {REBELS} 解散了。"/>
+    
+    <string id="BPcKHP0D" text="作为叛党的领导者，你获得了 {INFLUENCE} 影响力。"/>
+    <string id="UoMvwnTb" text="作为叛党的领导者，你失去了 {INFLUENCE} 影响力。"/>
+    <string id="QiX6m5cp" text="作为叛党的成员，你获得了 {INFLUENCE} 影响力。"/>
+    <string id="yrz8GMUb" text="作为叛党的成员，你失去了 {INFLUENCE} 影响力。"/>
+
+    <string id="SNLviWvc" text="作为效忠党的领导者，你失去了 {INFLUENCE} 影响力。"/>
+    <string id="2I1X5fAC" text="作为效忠党的领导者，你获得了 {INFLUENCE} 影响力。"/>
+    <string id="4FfA8RL4" text="作为效忠党的成员，你失去了 {INFLUENCE} 影响力。"/>
+    <string id="uUu7DEDU" text="作为效忠党的成员，你获得了 {INFLUENCE} 影响力。"/>
+    
+    <string id="f66sNaiz" text="不能加入叛乱势力"/>
+
+    <string id="DZ6dpEn3" text="加入派系"/>
+    <string id="uTCw0WiH" text="离开派系"/>
+    <string id="1OUDq7Ul" text="权力平衡"/>
+    <string id="5q7TvMGL" text="发起叛乱"/>
+    <string id="Ysrttgis" text="开始日期：{CAMPAIGN_TIME}"/>
+    <string id="o3w3jNzZ" text="要求：{DEMAND_NAME}"/>
+    <string id="hbPiVQVK" text="状态：{STATUS}"/>
+    <string id="TvSHYACm" text="力量：{STRENGTH}"/>
+    <string id="dlANhHUd" text="派系"/>
+    <string id="hBSo0Ziq" text="创建派系"/>
+    <string id="2PglxF8k" text="选择阵营需求"/>
+    <string id="gypPPxUJ" text="派系"/>
+    <string id="aWWzFITw" text="君主退位"/>
+    <string id="2Pv3DsVm" text="{PARENT_KINGDOM} 输掉了内战，{REBELS} 胜利。{LEADER} 将退位。{PLAYER_PARTICIPATION}"/>
+    <string id="GkhKppOk" text="封地数量不足"/>
+    <string id="Jc1mCVuY" text="特质：精于算计"/>
+    <string id="cjbVV7E3" text="部族等级过低"/>
+    <string id="Vp9EcnuC" text="派系倾向"/>
+    <string id="dr1OCcmL" text="与君主的关系"/>
+    <string id="mouJZAAy" text="与党魁的关系"/>
+    <string id="FtX4LPXF" text="王国规模"/>
+    <string id="VFwDRHc7" text="参与者"/>
+    <string id="IYO5TNTg" text="统治权"/>
+    <string id="YLUocN5e" text="领导者拥有的统治权"/>
+    <string id="qAcR4Yee" text="派系中的友好部族"/>
+    <string id="1AZK0UVJ" text="统治者没有统治权"/>
+
+    <string id="ovgs58sT" text="不能在叛乱期间建立派系."/>
+    <string id="VbpiW2bd" text="不能在内战结束后立即创建派系。"/>
+    <string id="JDk8ustS" text="雇佣兵不能创建派系。"/>
+    <string id="quo5erz6" text="君主不能创建派系。"/>
+    <string id="luvsD6Zn" text="不能在叛军王国创建派系。"/>
+    <string id="iXMeCmj0" text="必须是4级或以上的部族。"/>
+    <string id="Xu3rnEEa" text="必须是{KINGDOM_NAME} 的一部分才能创建{KINGDOM_NAME} 派系。"/>
+    <string id="DxJH7ciY" text="一个王国只能有一个退位派系。"/>
+    <string id="zTZWwJfN" text="你不能领导两个派系。"/>
+    
+    <!-- <string id="" text="" /> -->
+
+    <string id="EYB5Uggd" text="领导者是{TRAIT}"/>
+    <string id="E00ywbqb" text="统治者是{TRAIT}"/>
+
+    <string id="GeevRiNR" text="{LABEL}{newline} {newline}{REASON}"/>
+    <string id="ALSuNVzE" text="{EXCEPTION}{newline} {newline}{DEMAND_HINT}"/>
+
+    <!-- Settings -->
+    <string id="eDZeFUTH" text="内战"/>
+    <string id="VB97zQeJ" text="内战之间的最短时间（天数）"/>
+    <string id="5cUqaLk4" text="内战结束后新叛军派系能兴起所需的最短时间。默认值为240天。"/>
+    <string id="UdadyqpN" text="叛军派系组建几率（每天）"/>
+    <string id="yznXCi1d" text="支持某叛军派系的家族，加入该派系的几率（每日）。默认值为100%。"/>
+    <string id="r312b3Of" text="加入反叛阵营的几率（每天）"/>
+    <string id="06oPGRj0" text="一个部族加入他们支持的反叛派系概率（每天）。默认值是100%。"/>
+    <string id="lIbUuQB1" text="内战爆发的每日几率"/>
+    <string id="zr10ZS3L" text="支持足够多的派系引发内战的几率（每天）。默认值为50%。"/>
+    <string id="VNILqmoY" text="最长阵营持续时间（天）"/>
+    <string id="rNJIvaSm" text="一个派系在不引发内战的情况下能持续的最长时间。默认值为120天。"/>
+    <string id="6kNmdLxZ" text="创建派系所需的影响力"/>
+    <string id="EwbXg3va" text="创建派系所需的影响力。默认值为100。"/>
+    <string id="7wK0mmw1" text="派系倾向"/>
+    <string id="aqvIdG7w" text="这是影响家族创建或加入派系倾向修正值，越高派系参与度就越高。默认值为“0”。"/>
+    
+  </strings>
+</base>
