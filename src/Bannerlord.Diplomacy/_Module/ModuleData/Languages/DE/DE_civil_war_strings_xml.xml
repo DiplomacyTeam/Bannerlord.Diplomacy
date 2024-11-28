@@ -46,7 +46,7 @@
     <string id="hbPiVQVK" text="Status: {STATUS}"/>
     <string id="TvSHYACm" text="Stärke: {STRENGTH}"/>
     <string id="dlANhHUd" text="Fraktionen"/>
-    <string id="hBSo0Ziq" text="Fraktion erstellen"/>
+    <string id="hBSo0Ziq" text="Fraktion gründen"/>
     <string id="2PglxF8k" text="Fraktionsforderung wählen"/>
     <string id="gypPPxUJ" text="Fraktionen"/>
     <string id="aWWzFITw" text="Ein Monarch dankt ab"/>
@@ -66,11 +66,11 @@
 
     <string id="ovgs58sT" text="Während einer aktiven Rebellion kann keine Fraktion gegründet werden."/>
     <string id="VbpiW2bd" text="Eine Fraktion kann nicht so bald nach einem Bürgerkrieg gegründet werden."/>
-    <string id="JDk8ustS" text="Söldner können keine Fraktionen erstellen."/>
-    <string id="quo5erz6" text="Herrscher können keine Fraktionen erstellen."/>
+    <string id="JDk8ustS" text="Söldner können keine Fraktionen gründen."/>
+    <string id="quo5erz6" text="Herrscher können keine Fraktionen gründen."/>
     <string id="luvsD6Zn" text="Es kann keine Fraktion in einem Rebellenkönigreich gegründet werden."/>
     <string id="iXMeCmj0" text="Muss Clanrang 4 oder höher sein."/>
-    <string id="Xu3rnEEa" text="Muss ein Teil von {KINGDOM_NAME} sein, um eine {KINGDOM_NAME} Fraktion zu erstellen."/>
+    <string id="Xu3rnEEa" text="Muss ein Teil von {KINGDOM_NAME} sein, um eine {KINGDOM_NAME} Fraktion zu gründen."/>
     <string id="DxJH7ciY" text="Ein Königreich kann nur eine Abdankungsfraktion haben."/>
     <string id="zTZWwJfN" text="Du kannst nicht zwei Fraktionen anführen."/>
     
@@ -86,7 +86,7 @@
     <string id="eDZeFUTH" text="Bürgerkriege"/>
     <string id="VB97zQeJ" text="Mindestzeit zwischen Bürgerkriegen in Tagen"/>
     <string id="5cUqaLk4" text="Die minimale Zeitspanne zwischen einem Bürgerkrieg und dem Zeitpunkt, an dem neue Rebellenfraktionen in einem Reich entstehen können. Standard ist 240."/>
-    <string id="UdadyqpN" text="Tägliche Wahrscheinlichkeit, eine Rebellenfraktion zu erstellen"/>
+    <string id="UdadyqpN" text="Tägliche Wahrscheinlichkeit, eine Rebellenfraktion zu gründen"/>
     <string id="yznXCi1d" text="Die tägliche Wahrscheinlichkeit, dass ein Clan eine Rebellenfraktion gründet. Standard ist 100%."/>
     <string id="r312b3Of" text="Tägliche Wahrscheinlichkeit, einer Rebellenfraktion beizutreten"/>
     <string id="06oPGRj0" text="Die tägliche Wahrscheinlichkeit, dass ein Clan einer Rebellenfraktion beitritt, die er unterstützen würde. Standard ist 100%."/>
@@ -95,9 +95,9 @@
     <string id="VNILqmoY" text="Maximale Fraktionsdauer in Tagen"/>
     <string id="rNJIvaSm" text="Die maximale Zeitspanne, die eine Fraktion überleben kann, ohne in einen Bürgerkrieg zu geraten. Standard ist 120."/>
     <string id="6kNmdLxZ" text="Einflusskosten für Fraktionserstellung"/>
-    <string id="EwbXg3va" text="Die Einflusskosten um eine Fraktion zu erstellen. Standard ist 100."/>
+    <string id="EwbXg3va" text="Die Einflusskosten um eine Fraktion zu gründen. Standard ist 100."/>
     <string id="7wK0mmw1" text="Fraktionstendenz"/>
-    <string id="aqvIdG7w" text="Punktemodifikator, der die Tendenz von Clans beeinflusst, Fraktionen zu erstellen oder beizutreten. Eine Erhöhung des Modifikators erhöht die Beteiligung an Fraktionen. Standard ist 0."/>
+    <string id="aqvIdG7w" text="Punktemodifikator, der die Tendenz von Clans beeinflusst, Fraktionen zu gründen oder beizutreten. Eine Erhöhung des Modifikators erhöht die Beteiligung an Fraktionen. Standard ist 0."/>
     
   </strings>
 </base>
