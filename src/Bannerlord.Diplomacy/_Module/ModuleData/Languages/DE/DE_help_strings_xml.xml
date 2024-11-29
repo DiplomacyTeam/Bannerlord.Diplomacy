@@ -6,8 +6,8 @@
   <strings>
     <string id="bAkTqxmf" text="Eine Fraktion ist eine Gruppe von Clans innerhalb eines Königreichs, die ein gemeinsames Ziel verfolgen. Wenn eine Fraktion genügend Unterstützung erhält, wird sie einen Bürgerkrieg beginnen. Gewinnen die Rebellen den Krieg, wird ihre Forderung durchgesetzt. Gewinnen hingegen die Loyalisten, kehren die rebellischen Clans ins Königreich zurück. Die siegreichen Clans gewinnen an Einfluss und verbessern ihre Beziehungen miteinander. Besiegte Clans verlieren Einfluss. Clans können eine Fraktion gründen, indem sie Einfluss ausgeben."/>
 	
-	<string id="XXUwW6TM" text="Kriegserschöpfung zeigt an, wie nah ein Königreich an der Kapitulation ist. Erreicht sie 100%, wird das Königreich kapitulieren. Verluste, verlorene Lehen, geplünderte Dörfer und die Dauer des Krieges tragen dazu bei. Wenn ein Königreich sein letztes Lehen verliert, kann es seine Kriegsanstrengungen nicht mehr effektiv aufrechterhalten. Dies führt nicht nur zu einem sofortigen Anstieg des Wertes, sondern erhöht auch drastisch dessen tägliche Zunahme bis das Königreich entweder kapituliert oder mindestens ein Lehen zurückerobert."/>
+	<string id="XXUwW6TM" text="Kriegsmüdigkeit zeigt an, wie nah ein Königreich an der Kapitulation ist. Erreicht sie 100%, wird das Königreich kapitulieren. Verluste, verlorene Lehen, geplünderte Dörfer und die Dauer des Krieges tragen dazu bei. Wenn ein Königreich sein letztes Lehen verliert, kann es seine Kriegsanstrengungen nicht mehr effektiv aufrechterhalten. Dies führt nicht nur zu einem sofortigen Anstieg des Wertes, sondern erhöht auch drastisch dessen tägliche Zunahme bis das Königreich entweder kapituliert oder mindestens ein Lehen zurückerobert."/>
 	
-	<string id="dh2NE8Of" text="Die Kriegserschöpfungsrate ist die Geschwindigkeit, mit der sich die Kriegserschöpfung während eines Krieges ansammelt. In Kriegen zwischen größeren Königreichen steigt sie langsamer an."/>
+	<string id="dh2NE8Of" text="Die Kriegsmüdigkeitsrate ist die Geschwindigkeit, mit der sich die Kriegsmüdigkeit während eines Krieges ansammelt. In Kriegen zwischen größeren Königreichen steigt sie langsamer an."/>
   </strings>
 </base>
