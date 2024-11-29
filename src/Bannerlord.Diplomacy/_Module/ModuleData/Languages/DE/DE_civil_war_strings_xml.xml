@@ -13,7 +13,7 @@
     <string id="ZAfNviVS" text="Abspaltung"/>
     <string id="wUspUo1y" text="Abdankung"/>
     <string id="LF19GulH" text="Abspaltung vom Königreich. Mitglieder dieser Fraktion werden ein neues Königreich gründen. Nur Clans der Stufe 4 oder höher können eine Abspaltungsfraktion erstellen."/>
-    <string id="GK1seKeJ" text="Zwinge den Anführer des Königreichs zum Rücktritt. Eine Wahl wird den neuen Anführer des Königreichs bestimmen."/>
+    <string id="GK1seKeJ" text="Zwingt den Anführer des Königreichs zum Rücktritt. Eine Wahl wird den neuen Anführer des Königreichs bestimmen."/>
     <string id="brEXAKDb" text="Die Rebellen fordern, dass ihre Ländereien unabhängig werden dürfen."/>
     <string id="8A6JPMWp" text="Die Rebellen fordern, dass {LEADER} auf den Thron verzichtet."/>
     <string id="ChzQncc0" text="Rebellion"/>
@@ -35,7 +35,7 @@
     <string id="4FfA8RL4" text="Als Mitglied der Loyalisten hast du {INFLUENCE} Einfluss verloren."/>
     <string id="uUu7DEDU" text="Als Mitglied der Loyalisten hast du {INFLUENCE} Einfluss erhalten."/>
     
-    <string id="f66sNaiz" text="Du kannst nicht Teil einer Rebellion sein"/>
+    <string id="f66sNaiz" text="Ihr könnt nicht Teil einer Rebellion sein"/>
 
     <string id="DZ6dpEn3" text="Fraktion beitreten"/>
     <string id="uTCw0WiH" text="Fraktion verlassen"/>
