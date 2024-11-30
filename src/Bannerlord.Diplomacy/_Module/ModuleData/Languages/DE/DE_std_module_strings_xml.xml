@@ -140,7 +140,7 @@
     <string id="qbLPBlIv" text="Calradia wird misstrauisch gegenüber der unaufhaltsamen Expansion von {EXPANSIONIST_KINGDOM}. Eine Koalition unter der Führung von {COALITION_KINGDOM} wurde gebildet, um dagegen anzukämpfen!"/>
 
     <string id="vB3RrMNf" text="{KINGDOM} hat einen Nichtangriffspakt {OTHER_KINGDOM} mit geschlossen."/>
-    <string id="PdN5g5ub" text="{KINGDOM} hat ein Bündnis mit {OTHER_KINGDOM} geschlossen!"/>
+    <string id="PdN5g5ub" text="{KINGDOM} hat ein Bündnis mit {OTHER_KINGDOM} gebildet!"/>
     <string id="5r6fsHgm" text="Aktueller Stand"/>
     <string id="XIBUWDlT" text="Benötigter Stand"/>
 
