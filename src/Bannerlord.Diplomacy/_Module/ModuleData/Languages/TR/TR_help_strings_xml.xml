@@ -4,9 +4,9 @@
     <tag language="Türkçe"/>
   </tags>
   <strings>
-    <string id="bAkTqxmf" text="Bir grup, bir krallıkta ortak bir hedefe sahip olan klanların birleşimidir. Eğer bir grup yeterli desteği alırsa, iç savaş başlatırlar. Eğer isyancılar savaşı kazanırsa, talepleri kabul edilir. Sadık yandaşlar kazanırsa, isyancı klanlar krallığa geri döner. Galip klanlar, diğer kazanan klanlarla nüfuz ve ilişkilerini arttırırlar. Klanlar nüfuz harcayarak bir grup kurabilirler."/>
+    <string id="bAkTqxmf" text="Bir grup, bir krallıkta ortak bir hedefe sahip olan klanların birleşimidir. Eğer bir grup yeterli desteği alırsa, iç savaş başlatır. Eğer isyancılar savaşı kazanırsa, talepleri kabul edilir. Sadık yandaşlar kazanırsa, isyancı klanlar krallığa geri döner. Galip klanlar, diğer kazanan klanlarla nüfuz ve ilişkilerini arttırırlar. Klanlar nüfuz harcayarak bir grup kurabilirler."/>
 	
-	<string id="XXUwW6TM" text="Savaş yorgunluğu bir krallığın teslim olmaya ne kadar yakın olduğunu gösterir. Savaş yorgunluğu %100 olduğunda, krallık teslim olur. Zayiatlar, kaybedilen topraklar, yağmalanan köyler ve savaşın süresi savaş yorgunluğunu etkiler. Bir krallık son toprağını kaybettiğinde, seferberliğini etkin olarak devam ettiremez. Bu durum krallık teslim olana kadar ya da en az bir toprak parçası geri alana kadar sadece olan savaş yorgunluğunu hemen arttırmakla kalmaz aynı zamanda aldığı günlük savaş yorgunluğu miktarını da büyük oranda arttırır."/>
+	<string id="XXUwW6TM" text="Savaş yorgunluğu bir krallığın teslim olmaya ne kadar yakın olduğunu gösterir. Savaş yorgunluğu %100 olduğunda, krallık teslim olur. Zayiatlar, kaybedilen topraklar, yağmalanan köyler ve savaşın süresi, savaş yorgunluğunu etkiler. Bir krallık son toprağını kaybettiğinde, seferberliğini etkin olarak devam ettiremez. Bu durum, krallık teslim olana kadar ya da en az bir toprak parçası geri alana kadar sadece olan savaş yorgunluğunu hemen arttırmakla kalmaz aynı zamanda aldığı günlük savaş yorgunluğu miktarını da büyük oranda arttırır."/>
 	
 	<string id="dh2NE8Of" text="Savaş yorgunluğu oranı, savaş sırasında savaş yorgunluğunun biriktiği orandır. Büyük krallıklar arasındaki savaşlarda savaş yorgunluğu daha yavaş birikir."/>
   </strings>
