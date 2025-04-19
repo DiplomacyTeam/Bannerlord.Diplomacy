@@ -32,6 +32,8 @@ namespace Diplomacy.Messengers
         private static float MessengerHourlySpeedMin = 2f;
         private static float MessengerHourlySpeed = 5f;
 
+        private static int CachedMessengerTravelTime = 0;
+
         private static readonly List<MissionMode> AllowedMissionModes = new() { MissionMode.Conversation, MissionMode.Barter };
 
         private static readonly TextObject _TMessengerSent = new("{=zv12jjyW}Messenger Sent");
@@ -50,7 +52,6 @@ namespace Diplomacy.Messengers
         private Vec2 _position2D = Vec2.Invalid;
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
-        private int _cachedMessengerTravelTime;
 
         private delegate int GetBribeInternalDelegate(DefaultBribeCalculationModel instance, Settlement settlement);
         private static readonly GetBribeInternalDelegate? deGetBribeInternal = AccessTools2.GetDelegate<GetBribeInternalDelegate>(typeof(DefaultBribeCalculationModel), "GetBribeInternal");
@@ -154,13 +155,29 @@ namespace Diplomacy.Messengers
             }
         }
 
-        private void SyncMessengerHourlySpeed(bool forceRecalculation = false)
+        public static int GetHourToArrive(Hero hero)
         {
-            if (!forceRecalculation && _cachedMessengerTravelTime == Settings.Instance!.MessengerTravelTime)
+            SyncMessengerHourlySpeed();
+            var targetHeroLocationPoint = hero.GetMapPoint();
+            var messengerLocation = Hero.MainHero.GetMapPoint();
+            if (targetHeroLocationPoint is null || messengerLocation is null)
+                return 0;
+            var targetHeroLocation = targetHeroLocationPoint.Position2D;
+            var distanceToGo = targetHeroLocation - messengerLocation.Position2D;
+
+            var distance = distanceToGo.Length;
+            var hoursToArrive = distance / MessengerHourlySpeed;
+            var fullHoursToArrive = (int) Math.Round(hoursToArrive);
+            return fullHoursToArrive;
+        }
+
+        private static void SyncMessengerHourlySpeed(bool forceRecalculation = false)
+        {
+            if (!forceRecalculation && CachedMessengerTravelTime == Settings.Instance!.MessengerTravelTime)
                 return;
 
             MessengerHourlySpeed = Math.Max(Campaign.MapDiagonal / (CampaignTime.HoursInDay * Math.Max(Settings.Instance!.MessengerTravelTime, 0.5f) * 1.5f), MessengerHourlySpeedMin);
-            _cachedMessengerTravelTime = Settings.Instance!.MessengerTravelTime;
+            CachedMessengerTravelTime = Settings.Instance!.MessengerTravelTime;
         }
 
         private static void UpdateMessengerPosition(Messenger messenger)

@@ -33,7 +33,7 @@ namespace Diplomacy.ViewModelMixin
         {
             _grantFiefInterface = new GrantFiefInterface();
             _hero = (vm.Obj as Hero)!;
-            _sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger();
+            _sendMessengerCost = DiplomacyCostCalculator.DetermineCostForSendingMessenger(_hero);
             SendMessengerCost = (int) _sendMessengerCost.Value;
             SendMessengerActionName = _TSendMessengerText.ToString();
             GrantFiefActionName = _TGrantFiefText.ToString();
