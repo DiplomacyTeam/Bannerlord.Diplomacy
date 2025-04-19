@@ -36,6 +36,17 @@ namespace Diplomacy.Messengers
 
         private static readonly TextObject _TMessengerSent = new("{=zv12jjyW}Messenger Sent");
 
+        private static readonly List<string> Accidents = new()
+        {
+            "{=A5lug0JY}Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!",
+            "{=1rYSIMfX}Your messenger was ambushed and eaten by a Grue while trying to reach {HERO NAME}!",
+            "{=J2T97gNx}Your messenger lost his way and is now wandering the world aimlessly.",
+            "{=hOOW2DMD}Your messenger found a treasure map and is now looking for the treasure, instead of delivering the message.",
+            "{=hc52yW8O}Your messenger forgot the message, you will have to send him again.",
+            "{=2rJDoi7N}Your messenger drank too much and is now sleeping it off.",
+            "{=VKqC9dl0}Your messenger take the money and run away."
+        };
+
         private Vec2 _position2D = Vec2.Invalid;
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
@@ -110,9 +121,9 @@ namespace Diplomacy.Messengers
             var accidentHappened = MBRandom.RandomFloat < 0.005f;
             if (accidentHappened)
             {
-                //FIXME: Need different random events
+                string accidentText = Accidents[MBRandom.RandomInt(0, Accidents.Count - 1)].ToString();
                 InformationManager.ShowInquiry(new InquiryData(new TextObject("{=nYrezEOX}Messenger killed").ToString(),
-                    new TextObject("{=A5lug0JY}Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!", new() { ["HERO_NAME"] = messenger.TargetHero.Name })
+                    new TextObject(accidentText, new() { ["HERO_NAME"] = messenger.TargetHero.Name })
                         .ToString(),
                     true,
                     false,
