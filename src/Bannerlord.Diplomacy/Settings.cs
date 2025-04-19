@@ -118,7 +118,7 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingMessengers)]
         public int SendMessengerMinimumGoldCost { get; set; } = 75;
 
-        [SettingPropertyInteger("{=Hkv9Peqa}Send Messenger Gold Cost Per Hour", 0, 1000, Order = 12, RequireRestart = false, HintText = "{=ckYA36t8}Gold cost for each hour that messenger will take to arrive to another character. Default value is 1.")]
+        [SettingPropertyInteger("{=Hkv9Peqa}Send Messenger Gold Cost Per Hour", 0, 100, Order = 12, RequireRestart = false, HintText = "{=ckYA36t8}Gold cost for each hour that messenger will take to arrive to another character. Default value is 1.")]
         [SettingPropertyGroup(HeadingMessengers)]
         public int SendMessengerGoldHourlyCost { get; set; } = 1;
 

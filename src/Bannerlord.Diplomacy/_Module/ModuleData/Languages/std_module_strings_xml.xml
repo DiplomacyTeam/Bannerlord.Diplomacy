@@ -23,7 +23,11 @@
 
     <string id="JmgAuONd" text="Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
     <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}" />
+    <string id="C7XPJZAM" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within less than an hour." />
+    <string id="k5i2F6UD" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} day." />
     <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days." />
+    <string id="G2NMbFDb" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hour." />
+    <string id="gfZgMSYD" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hours." />
     <string id="nYrezEOX" text="Messenger killed" />
     <string id="A5lug0JY" text="Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!" />
     <string id="1rYSIMfX" text="Your messenger was ambushed and eaten by a Grue while trying to reach {HERO NAME}!" />

@@ -89,7 +89,7 @@ namespace Diplomacy.Messengers
                     GetMessengerSentText(Hero.MainHero.MapFaction,
                         targetHero.MapFaction,
                         targetHero,
-                        Settings.Instance!.MessengerTravelTime).ToString(),
+                        GetHourToArrive(targetHero)).ToString(),
                     true,
                     false,
                     GameTexts.FindText("str_ok").ToString(),
@@ -349,9 +349,43 @@ namespace Diplomacy.Messengers
             return textObject;
         }
 
-        private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, Hero targetHero, int travelDays)
+        private static TextObject GetTimeToArriveText(int travelHours)
         {
-            TextObject textObject = new("{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days.");
+            TextObject textObject;
+            if (travelHours < 1)
+            {
+                textObject = new("{=C7XPJZAM}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within less than an hour.");
+            }
+            else if (travelHours < 2)
+            {
+                textObject = new("{=G2NMbFDb}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hour.");
+                textObject.SetTextVariable("TRAVEL_TIME", travelHours);
+            }
+            else if (travelHours < 24)
+            {
+                textObject = new("{=gfZgMSYD}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hours.");
+                textObject.SetTextVariable("TRAVEL_TIME", travelHours);
+            }
+            else
+            {
+                var days = travelHours / 24;
+                if (days < 2)
+                {
+                    textObject = new("{=k5i2F6UD}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} day.");
+                    textObject.SetTextVariable("TRAVEL_TIME", days);
+                }
+                else
+                {
+                    textObject = new("{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days.");
+                    textObject.SetTextVariable("TRAVEL_TIME", days);
+                }
+            }
+            return textObject;
+        }
+        private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, Hero targetHero, int travelHours)
+        {
+            TextObject textObject = GetTimeToArriveText(travelHours);
+            
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             TextObject addressee = new("{=vGyBQeEk}{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\\?}", new()
             {
@@ -360,7 +394,6 @@ namespace Diplomacy.Messengers
                 ["FACTION2_NAME"] = faction2?.Name ?? TextObject.Empty
             });
             textObject.SetTextVariable("ADDRESSEE_TEXT", addressee.ToString());
-            textObject.SetTextVariable("TRAVEL_TIME", travelDays);
             return textObject;
         }
 
