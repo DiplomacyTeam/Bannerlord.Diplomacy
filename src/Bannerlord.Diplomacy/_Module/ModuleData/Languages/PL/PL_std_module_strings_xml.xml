@@ -165,12 +165,12 @@
     -->
 
     <string id="sBw5Qzq3" text="Dyplomacja królestwa"/>
-    <string id="tis8Ddzn" text="Pozwól graczowi jako pierwszemu na nabycie osad zdobytych przez niego"/>
+    <string id="tis8Ddzn" text="Gracz ma pierwszeństwo do osady"/>
     <string id="TfxLCxcD" text="Daje graczowi możliwość nabycia osady jako pierwszemu zamiast poddania jej wyborom."/>
     <string id="8VKC3jtN" text="Włącz eliminację królestw bez lenna"/>
     <string id="TlymwwPZ" text="Jeśli włączone, królestwa bez żadnych lenn są niszczone, gdy podpisują traktat pokojowy kończący ostatnią trwającą wojnę, w której biorą udział. Domyślnie opcja jest włączona."/>
     <string id="w8Hi9jJf" text="Opóźnij eliminację królestw bez lenna"/>
-    <string id="GDctI4Kd" text="Jeśli włączone, królestwa bez żadnych lenn zostaną zniszczone dopiero wtedy, gdy podpiszą traktat pokojowy kończący ostatnią trwającą wojnę, w której są biorą udział, a nie natychmiast po utracie ostatniego lenna. Domyślnie opcja jest włączona."/>      
+    <string id="GDctI4Kd" text="Jeśli włączone, królestwa bez żadnych lenn zostaną zniszczone dopiero wtedy, gdy podpiszą traktat pokojowy kończący ostatnią trwającą wojnę, w której biorą udział, a nie natychmiast po utracie ostatniego lenna. Domyślnie opcja jest włączona."/>      
     <string id="ZRlNvsev" text="Minimalny czas trwania wojny w dniach"/>
     <string id="vuFT5ns8" text="Minimalny czas trwania wojny (w dniach), po którym można zaproponować pokój. Domyślna wartość to 21 dni (ćwierć standardowego roku gry)."/>
     <string id="4MzQHMVj" text="Czas odnowienia do wypowiedzenia wojny w dniach"/>
@@ -180,11 +180,11 @@
     <string id="H6XMjwpF" text="Minimalny czas trwania sojuszu w dniach"/>
     <string id="RrsWhIWi" text="Minimalny czas trwania sojuszu (w dniach), zanim będzie można go zerwać. Domyślna wartość to 42 dni (połowa standardowego roku gry)."/>
     <string id="5a829TiT" text="Tendencja do sojuszy"/>
-    <string id="7nSjs8UL" text="Modyfikator punktacji wpływający na skłonność królestw do zawierania sojuszy. Zwiększenie modyfikatora sprawia, że sojusze stają się bardziej pożądane dla królestw sterowanych przez sztuczną inteligencję. Domyślna wartość to 0."/>
+    <string id="7nSjs8UL" text="Modyfikator wpływający na skłonność królestw do zawierania sojuszy. Zwiększenie modyfikatora sprawia, że sojusze stają się bardziej pożądane dla królestw sterowanych przez sztuczną inteligencję. Domyślna wartość to 0."/>
     <string id="V35hUfcc" text="Czas trwania paktu o nieagresji w dniach"/>
     <string id="KXLGZEPh" text="Czas trwania (w dniach) paktu o nieagresji. Domyślna wartość to 84 dni (jeden standardowy rok gry)."/>
     <string id="G8BhBnRG" text="Tendencja do paktów o nieagresji"/>
-    <string id="907ER5u9" text="Modyfikator punktacji wpływający na skłonność królestw do zawierania paktów o nieagresji. Zwiększenie modyfikatora sprawia, że pakt o nieagresji staje się bardziej pożądany dla królestw sterowanych przez sztuczną inteligencję. Domyślna wartość to 0."/>
+    <string id="907ER5u9" text="Modyfikator wpływający na skłonność królestw do zawierania paktów o nieagresji. Zwiększenie modyfikatora sprawia, że pakt o nieagresji staje się bardziej pożądany dla królestw sterowanych przez sztuczną inteligencję. Domyślna wartość to 0."/>
     <string id="6m1SspFW" text="Włącz kontrolę dyplomacji dla królestwa gracza"/>
     <string id="N5EouSSj" text="Daje graczowi pełną kontrolę nad wypowiadaniem wojny i zawieraniem pokoju w królestwie, do którego należy, nawet jeśli jest tylko wasalem, a nie przywódcą królestwa. Domyślnie opcja jest wyłączona."/>
     <string id="lhysZl9j" text="Tendencja do działania"/>
@@ -195,10 +195,10 @@
     <string id="x0Aoiomr" text="Próg braku wojen przy dobrych relacjach"/>
     <string id="aH6rpjt6" text="Wartość relacji przywódców królestw, po której królestwa nie będą rozpoczynać wojen między sobą. Domyślna wartość to 30."/>
     <string id="jwNKk8P7" text="Brak wojen po zawarciu małżeństwa"/>
-    <string id="xcMzKH48" text="Jeśli aktywne, klany przywódców królestwa, które zawarły między sobą małżeństwa, nie będą rozpoczynać wojen. Domyślnie opcja jest włączona."/>
-    <string id="xcMzKH48" text="Jeśli aktywne, klany przywódców królestwa, które zawarły między sobą małżeństwa, nie będą rozpoczynać wojen. Domyślnie opcja jest włączona."/>
+    <string id="xcMzKH48" text="Jeśli opcja jest włączona, klany przywódców królestw, które zawarły między sobą małżeństwa, nie będą rozpoczynać wojen. Domyślnie opcja jest włączona."/>
+    <string id="xcMzKH48" text="Jeśli opcja jest włączona, klany przywódców królestw, które zawarły między sobą małżeństwa, nie będą rozpoczynać wojen. Domyślnie opcja jest włączona."/>
     <string id="xXKKRp99" text="Małżenstwo rodzinne przywódcy klanu ma wpływ na sojusz"/>
-    <string id="BGS6mUID" text="Jeśli aktywne, przyzna bonus do tendencji zawierania sojuszu, gdy przywódcy klanów zawarli małżeństwo rodzinne między sobą. Domyślnie opcja jest włączona."/>
+    <string id="BGS6mUID" text="Jeśli opcja jest włączona, przyzna bonus do tendencji zawierania sojuszu, gdy przywódcy klanów zawarli małżeństwo rodzinne między sobą. Domyślnie opcja jest włączona."/>
       
     <string id="ldLFTs92" text="Koszty"/>      
     <string id="Ckd1Lsoa" text="Koszty w złocie"/>
