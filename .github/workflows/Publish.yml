@@ -94,7 +94,7 @@ jobs:
         echo "::set-output name=mod_description::$desc"
 
     - name: Upload bannerlord folder
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: Bannerlord.Diplomacy-${{ steps.changelog.outputs.mod_version }}
         path: ./bannerlord/
