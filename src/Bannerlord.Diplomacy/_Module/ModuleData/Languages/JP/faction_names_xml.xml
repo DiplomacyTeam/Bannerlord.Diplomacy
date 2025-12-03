@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="日本語"/>
+  </tags>
+  <strings>
+    <!-- Faction Titles -->
+    <string id="MXAsjFdI" text="{CLAN_NAME}の結託"/>
+    <string id="LUzfk4tb" text="{CLAN_NAME}連盟"/>
+
+    <!-- Aserai Titles -->
+    <string id="iLMqCvmk" text="{CLAN_NAME}゠スルタン国"/>
+    <string id="EnpnMNRH" text="{CLAN_NAME}゠アミール国"/>
+    <string id="uzd9mxIC" text="バヌ゠{CLAN_NAME}"/>
+    <string id="NTFz3B56" text="{CLAN_NAME}゠シャリーフ領"/>
+
+    <!-- Battania Titles -->
+    <string id="kaU24WXu" text="{CLAN_NAME}の合同"/>
+
+    <!-- Khuzait Titles -->
+    <string id="mEHufuep" text="{CLAN_NAME}の可汗国"/>
+    <string id="DTBaowBi" text="{CLAN_NAME}゠可汗国"/>
+    <string id="pRgQF4WY" text="{CLAN_NAME}朝"/>
+
+    <!-- Sturgia Titles -->
+    <string id="z5VPFrfh" text="{CLAN_NAME}のヤール領"/>
+
+    <!-- Vlandia Titles -->
+    <string id="A4zT7H5g" text="{CLAN_NAME}の大公領"/>
+
+
+    <!-- Generic Titles -->
+    <string id="kToqhmHh" text="{CLAN_NAME}の大公国"/>
+    <string id="WjB3SM1f" text="{CLAN_NAME}の王国"/>
+    <string id="E63n30UM" text="{CLAN_NAME}帝国"/>
+    <string id="lSQeaVfw" text="{CLAN_NAME}の帝国"/>
+
+
+
+    <!-- Aserai -->
+    <string id="j3bEr6n5" text="アフメッラド"/>
+    <string id="QBJk3ymm" text="バリイェ"/>
+    <string id="qWmWT0xA" text="ドゥルクバ"/>
+    <string id="X75ITMUL" text="シャリズ"/>
+    <string id="K7udl5FQ" text="バルダク"/>
+    <string id="OGwXFmDB" text="カラフ"/>
+    <string id="I7c8WNxV" text="ドゥルリン"/>
+    <string id="M4UquaBO" text="ジャメイェド"/>
+    <string id="NndCJIzP" text="サマッラ"/>
+    <string id="tDQzTgry" text="シャルワ"/>
+    <string id="FSWiNAyj" text="テランマ"/>
+    <string id="PEd8JgL2" text="ウェイアー"/>
+    <string id="ma2FmIjQ" text="アアブ"/>
+    <string id="1lNXlUvm" text="アイン゠アスアディ"/>
+    <string id="i8y3UunL" text="デヒッバイン"/>
+    <string id="uOld11Db" text="フィシャラ"/>
+    <string id="FZQG8HZ0" text="ハッバ"/>
+    <string id="cD8ZseSp" text="ハワハ"/>
+    <string id="rvsefzHq" text="イクバイル"/>
+    <string id="OOGTpFKw" text="マウィティ"/>
+    <string id="wSlwO5jG" text="マジグ"/>
+    <string id="TU4Itb6v" text="ミジャイェト"/>
+    <string id="SmIIc4YA" text="ミット゠ヌン"/>
+    <string id="mAT6Zajm" text="カリユト"/>
+    <string id="7C8DXcNT" text="ルシュディ"/>
+    <string id="T9VemCVx" text="セフテム"/>
+    <string id="zTJ3Oaki" text="シバル゠ズムル"/>
+    <string id="seBpcqnW" text="タムヌーフ"/>
+    <string id="U6enpew6" text="タジュナト"/>
+    <string id="AB8kd1kQ" text="ティリムサル"/>
+    <string id="Ug4D9NN0" text="ウニリヤ"/>
+    <string id="lsMTtqa4" text="ウズガ"/>
+
+    <!-- Battania -->
+    <string id="qAuhdK0v" text="クロヴィア"/>
+    <string id="o1ORogYL" text="ハシア"/>
+    <string id="rfgjbrvw" text="ウヴェアギア"/>
+    <string id="STzd8avo" text="テオレス"/>
+    <string id="22NuLUbK" text="アキアネ"/>
+    <string id="AFlVSUFu" text="ロラスティエン"/>
+    <string id="AIKEX745" text="フライナク"/>
+    <string id="RJczxlW4" text="ドルカルド"/>
+    <string id="wGO3G6yy" text="ウィニスティル"/>
+    <string id="q7wUF854" text="ウラダル"/>
+    <string id="aAZMAMx6" text="ドゥネッリケ"/>
+    <string id="qe9NrPHL" text="バルトリンタム"/>
+    <string id="x67QSESS" text="ラニイリク"/>
+    <string id="YzLeuoSR" text="イマエアンネル"/>
+    <string id="OoVKShKC" text="ビルケナン"/>
+
+    <!-- Khuzait -->
+    <string id="59uhOyuZ" text="クナイト"/>
+    <string id="KKgoCDJZ" text="エヴルハ"/>
+    <string id="Z141AJ5X" text="ブラン"/>
+    <string id="wOrNq16t" text="ハルマル"/>
+    <string id="HtX8KdgW" text="イカムル"/>
+    <string id="zpmMniuA" text="ナルラ"/>
+    <string id="xDWNd4sN" text="トゥルガ"/>
+    <string id="DLfwRFh1" text="アスガン"/>
+    <string id="UxASxuob" text="ディスタル"/>
+    <string id="4stgAKam" text="マラユルグ"/>
+    <string id="04dkhDAi" text="スンゲッチェ"/>
+    <string id="ZOIt9Lb6" text="トゥルブク"/>
+    <string id="MzHLDXdO" text="ウフン"/>
+    <string id="XjbYmG6p" text="ウヌザク"/>
+    <string id="vY8f12Qd" text="アダ゠クルン"/>
+    <string id="Blar1tNW" text="アマシュケ"/>
+    <string id="k3pz8N53" text="ブーラバン"/>
+    <string id="K7WMsExR" text="ブルグル"/>
+    <string id="6xB2dREA" text="ダシュビガ"/>
+    <string id="cEL50k9K" text="ディリフ゠アバン"/>
+    <string id="AJyY3SwF" text="ドゥガン"/>
+    <string id="54CFY7Y7" text="ディストゥリル"/>
+    <string id="XExpkOg8" text="ケデルケ"/>
+    <string id="sp4R5ttP" text="ペシュミ"/>
+    <string id="OSSt9yPb" text="タシュ゠クルン"/>
+    <string id="uAySGYSA" text="ティスミッル"/>
+    <string id="0Ex3esLT" text="トゥルブク"/>
+    <string id="7h6VTRli" text="ウフン"/>
+    <string id="n0GNLDVS" text="ザグシュ"/>
+
+    <!-- Sturgia -->
+    <string id="78HmDOmh" text="トラガラ"/>
+    <string id="2gxRtC4M" text="ティール"/>
+    <string id="1QRisNZ8" text="ウェルチェグ"/>
+    <string id="mciKWCXz" text="アルブルク"/>
+    <string id="wquHRX1a" text="チャルベク"/>
+    <string id="uOnd5NOi" text="クリン"/>
+    <string id="eb1lTxcg" text="フルス"/>
+    <string id="Dvs5IlpE" text="イェルベギ"/>
+    <string id="C0Lxqtaa" text="クヌダッル"/>
+    <string id="LwGSxemg" text="テフルログ"/>
+    <string id="QniO32gk" text="アルデレン"/>
+    <string id="SPWVORXL" text="アムベアン"/>
+    <string id="ggpOsqyQ" text="ブイリン"/>
+    <string id="HVMKm9TL" text="フェアリチェン"/>
+    <string id="vAsQx5yo" text="フェナダ"/>
+    <string id="XUmidhIJ" text="ギシム"/>
+    <string id="IkMHxdfH" text="ハエン"/>
+    <string id="nGAYbe0Z" text="ヤイェク"/>
+    <string id="i3QpFo60" text="イェルベギ"/>
+    <string id="cckFsFjh" text="クルム"/>
+    <string id="0sU6mK84" text="クウィン"/>
+    <string id="5hFwgLgJ" text="メキン"/>
+    <string id="aMbbajXx" text="オダサン"/>
+    <string id="SeEJ2zuw" text="リズィ"/>
+    <string id="MLvw1Pxt" text="ルヴァル"/>
+    <string id="IrIFkrHZ" text="ウディニアド"/>
+    <string id="LHE0xjg1" text="ヴェイェイェグ"/>
+
+    <!-- Vlandia -->
+    <string id="FD8sniLW" text="エケナド"/>
+    <string id="8NkMfWHn" text="ラエディア"/>
+    <string id="piyHeKyM" text="ディリム"/>
+    <string id="8Y3wgpLi" text="プラヴェン"/>
+    <string id="yQlAJYuA" text="スノ"/>
+    <string id="HUUOh35g" text="ウクスカル"/>
+    <string id="e7h8mCpf" text="デルコイス"/>
+    <string id="V9wYAqHZ" text="ハリンゴト"/>
+    <string id="5CVj9I06" text="ケレルダン"/>
+    <string id="uLOFze6g" text="レインディ"/>
+    <string id="QQA4T9vg" text="リンディヤル"/>
+    <string id="xpLcu6bR" text="リーベレト"/>
+    <string id="I0FOtfwt" text="セヌズグダ"/>
+    <string id="BKyLwpjT" text="テヴェリン"/>
+    <string id="t1flBIrH" text="ティルバウ"/>
+    <string id="udQOxzOj" text="ヴィンコール"/>
+    <string id="JNVa1azk" text="アメレ"/>
+    <string id="rFJC0mXH" text="アズガド"/>
+    <string id="1zlQk8RB" text="バランリ"/>
+    <string id="V5T0fzsG" text="ブルグレン"/>
+    <string id="bVjU79Tn" text="チデ"/>
+    <string id="dFxvU13H" text="エルベール"/>
+    <string id="7kLsltIf" text="エーレルダー"/>
+    <string id="XJJ3nxkF" text="エミリン"/>
+    <string id="9fgZRhiC" text="ギシム"/>
+    <string id="WPnVGzk8" text="イビラン"/>
+    <string id="WKyofVcP" text="イインダー"/>
+    <string id="lz5Xr4F1" text="ネメジャ"/>
+    <string id="ZkXPCZUE" text="ノマル"/>
+    <string id="9jAc6grT" text="ルドゥナ"/>
+    <string id="94L2s8cH" text="ルルンス"/>
+    <string id="kX4NIQxU" text="リーベレト"/>
+    <string id="h2SaSr4e" text="タザメシュ"/>
+    <string id="SZLdfWI9" text="タフルベル"/>
+    <string id="GiWgcvib" text="トスダール"/>
+    <string id="BzUpDzL0" text="ツィブティン"/>
+    <string id="qDzxntWH" text="ウシュクル"/>
+    <string id="6OPt8ox0" text="ヴェイダル"/>
+    <string id="nZqhwdTJ" text="ヤリベ"/>
+    <string id="8xTh5udH" text="ヤラガール"/>
+
+
+    <!-- Empire -->
+    <string id="LGqYPQQD" text="ラモンノス"/>
+    <string id="KJPW3yb4" text="ナスス"/>
+    <string id="OyLkibYo" text="ティラマホス"/>
+    <string id="gNbGiI9p" text="イアセッソス"/>
+    <string id="ty1393cd" text="ザクリオス"/>
+    <string id="xJPv0Tzj" text="サミッソス"/>
+    <string id="AiHcQH4G" text="トロッセ"/>
+    <string id="VuShnNy1" text="オルムパレ"/>
+    <string id="WLGUwy9g" text="ディオスコニア"/>
+    <string id="XQzaMWsl" text="ザンクラカ"/>
+    <string id="s5p2LcPn" text="リッサダ"/>
+    <string id="htjATdi1" text="アルティロス"/>
+    <string id="1cBpuRVl" text="ヴァシリ"/>
+    <string id="YC1VI5Vs" text="カメスティアス"/>
+    <string id="6dTpjXIG" text="エロステナ"/>
+    <string id="pzHthnN3" text="カマラザ"/>
+    <string id="ITwLbhNa" text="ピドニッピア"/>
+    <string id="qnRyyhx6" text="アブドカエア"/>
+    <string id="cIGCqXYr" text="アイタネス"/>
+    <string id="G375MfCN" text="テルメドン"/>
+    <string id="I4LbIJpd" text="ビザマホス"/>
+    <string id="6QtcERL6" text="アッサポリス"/>
+    <string id="eYehtDrU" text="クノッサフォス"/>
+    <string id="ax8cYBtr" text="エピディクロン"/>
+    <string id="V3K7oVtB" text="ソラストロ"/>
+    <string id="KYas1WAV" text="ピセルナ"/>
+    <string id="opwrHv6z" text="コルコニア"/>
+    <string id="zPkDoxkU" text="ケルコス"/>
+    <string id="mpnSLYUt" text="アッシコン"/>
+    <string id="PiblnoTV" text="ゴウラナフォス"/>
+  </strings>
+</base>
