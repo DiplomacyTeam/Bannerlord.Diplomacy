@@ -53,10 +53,10 @@ namespace Diplomacy.CivilWar.Factions
 
         public float FactionStrength
         {
-            get { return _participatingClans.Select(c => c.TotalStrength).Sum(); }
+            get { return _participatingClans.Select(c => c.CurrentTotalStrength).Sum(); }
         }
 
-        public float LoyalistStrength => ParentKingdom.TotalStrength - FactionStrength;
+        public float LoyalistStrength => ParentKingdom.CurrentTotalStrength - FactionStrength;
 
         public float RequiredStrengthRatio
         {
@@ -70,7 +70,7 @@ namespace Diplomacy.CivilWar.Factions
             }
         }
 
-        public float StrengthRatio => FactionStrength / ParentKingdom.TotalStrength;
+        public float StrengthRatio => FactionStrength / ParentKingdom.CurrentTotalStrength;
 
         public bool HasCriticalSupport => StrengthRatio >= RequiredStrengthRatio;
 
@@ -96,7 +96,7 @@ namespace Diplomacy.CivilWar.Factions
                             ParentKingdom.Leader.Name);
                         break;
                     default:
-                        desc = new TextObject();
+                        desc = TextObject.GetEmpty();
                         break;
                 }
 
@@ -271,7 +271,7 @@ namespace Diplomacy.CivilWar.Factions
                     : new TextObject("{=uUu7DEDU}As a member of the loyalists, you gained {INFLUENCE} influence.").SetTextVariable("INFLUENCE",
                         Math.Abs(MemberInfluenceOnSuccess));
             else
-                text = TextObject.Empty;
+                text = TextObject.GetEmpty();
             return text;
         }
     }

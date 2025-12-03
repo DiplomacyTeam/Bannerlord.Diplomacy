@@ -38,15 +38,9 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableFiefFirstRight { get; set; } = true;
 
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
-        [SettingPropertyBool("{=8VKC3jtN}Enable Fiefless Kingdom Elimination", Order = 10, RequireRestart = false, HintText = "{=TlymwwPZ}If enabled, kingdoms without any fiefs are destroyed when they sign a peace treaty ending the last ongoing war they participate in. Default value is enabled.")]
-        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
-        public bool EnableKingdomElimination { get; set; } = true;
-#else
         [SettingPropertyBool("{=w8Hi9jJf}Delay Fiefless Kingdom Elimination", Order = 10, RequireRestart = false, HintText = "{=GDctI4Kd}If enabled, kingdoms without any fiefs will only be destroyed when they sign a peace treaty ending the last ongoing war they are involved in, not immediately after they lose their last fief. Default value is enabled.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool EnableKingdomElimination { get; set; } = true;
-#endif
 
         [SettingPropertyInteger("{=ZRlNvsev}Minimum War Duration in Days", 0, 500, Order = 20, RequireRestart = false, HintText = "{=vuFT5ns8}The minimum duration (in days) that a war can last before proposing peace. Default value is 21 (quarter of a standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]

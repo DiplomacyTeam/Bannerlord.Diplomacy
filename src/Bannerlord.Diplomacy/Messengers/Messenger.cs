@@ -12,7 +12,7 @@ namespace Diplomacy.Messengers
 
         [SaveableProperty(2)][UsedImplicitly] public Hero TargetHero { get; private set; }
 
-        [SaveableProperty(3)] public Vec2 CurrentPosition { get; set; }
+        [SaveableProperty(3)] public CampaignVec2 CurrentPosition { get; set; }
 
         [SaveableProperty(4)] public bool Arrived { get; set; }
 
@@ -20,7 +20,7 @@ namespace Diplomacy.Messengers
         {
             TargetHero = targetHero;
             DispatchTime = dispatchTime;
-            CurrentPosition = Hero.MainHero.GetMapPoint().Position2D;
+            CurrentPosition = Hero.MainHero.GetMapPoint().Position;
             Arrived = false;
         }
     }

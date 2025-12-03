@@ -67,7 +67,7 @@ namespace Diplomacy.CivilWar.Actions
         {
             if (clan.Kingdom == null)
             {
-                yield return TextObject.Empty;
+                yield return TextObject.GetEmpty();
             }
 
             if (clan.Kingdom!.IsRebelKingdom())
@@ -111,7 +111,7 @@ namespace Diplomacy.CivilWar.Actions
                 // players can exceed the max
                 if (rebelFactions.Count >= 3 && clan != Clan.PlayerClan)
                 {
-                    yield return TextObject.Empty;
+                    yield return TextObject.GetEmpty();
                 }
 
                 // only one abdication faction allowed

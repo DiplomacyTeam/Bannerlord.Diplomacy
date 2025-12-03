@@ -13,7 +13,7 @@ namespace Diplomacy.DiplomaticAction.GenericConditions
         {
             textObject = null;
 
-            var alreadyInAlliance = FactionManager.IsAlliedWithFaction(kingdom, otherKingdom);
+            var alreadyInAlliance = kingdom.IsAllyWith(otherKingdom);
 
             if (alreadyInAlliance)
                 textObject = new TextObject(StringConstants.InAlliance);

@@ -19,7 +19,7 @@ namespace Diplomacy.ViewModel
 
         public DetailWarStatsVM(Kingdom kingdom)
         {
-            TotalStrength = Convert.ToInt32(Math.Round(kingdom.TotalStrength));
+            TotalStrength = Convert.ToInt32(Math.Round(kingdom.CurrentTotalStrength));
             Fiefs = kingdom.Fiefs.Count;
             TotalStrengthLabel = GameTexts.FindText("str_total_strength").ToString();
             FiefsLabel = GameTexts.FindText("str_fiefs").ToString();

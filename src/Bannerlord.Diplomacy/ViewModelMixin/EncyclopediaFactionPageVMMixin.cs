@@ -4,8 +4,6 @@ using Bannerlord.UIExtenderEx.ViewModels;
 using Diplomacy.DiplomaticAction;
 using Diplomacy.GauntletInterfaces;
 
-using JetBrains.Annotations;
-
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
@@ -64,16 +62,18 @@ namespace Diplomacy.ViewModelMixin
             _allies = new();
             _nonAggressionPacts = new();
 
-            var clanPages = Campaign.Current.EncyclopediaManager.GetPageOf(typeof(Clan));
-
-            foreach (var f in Campaign.Current.Factions.Where(f => f != _faction).OrderBy(f => !f.IsKingdomFaction).ThenBy(f => f.Name.ToString()))
-                if (clanPages.IsValidEncyclopediaItem(f) && FactionManager.IsAlliedWithFaction(_faction, f))
-                    _allies.Add(new EncyclopediaFactionVM(f));
-
             if (_faction.IsKingdomFaction)
-                foreach (var f in Kingdom.All.Cast<IFaction>().Where(f => f != _faction).OrderBy(f => f.Name.ToString()))
-                    if (clanPages.IsValidEncyclopediaItem(f) && DiplomaticAgreementManager.HasNonAggressionPact((Kingdom) _faction, (Kingdom) f, out _))
-                        _nonAggressionPacts.Add(new EncyclopediaFactionVM(f));
+            {
+                var kingdomPages = Campaign.Current.EncyclopediaManager.GetPageOf(typeof(Kingdom));
+                foreach (var otherKingdom in Kingdom.All.Where(f => f != _faction).OrderBy(f => f.Name.ToString()))
+                {
+                    if (kingdomPages.IsValidEncyclopediaItem(otherKingdom) && otherKingdom.IsAllyWith((Kingdom) _faction))
+                        _allies.Add(new EncyclopediaFactionVM(otherKingdom));
+
+                    if (kingdomPages.IsValidEncyclopediaItem(otherKingdom) && DiplomaticAgreementManager.HasNonAggressionPact((Kingdom) _faction, (Kingdom) otherKingdom, out _))
+                        _nonAggressionPacts.Add(new EncyclopediaFactionVM(otherKingdom));
+                }
+            }
         }
 
         [DataSourceMethod]

@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection.ImageIdentifiers;
 using TaleWorlds.Library;
 using TaleWorlds.ScreenSystem;
 
@@ -16,8 +17,8 @@ namespace Diplomacy.ViewModel
         private bool _isCriticalFaction1;
         private bool _isCriticalFaction2;
         private int _playerWarExhaustion, _opponentWarExhaustion;
-        private ImageIdentifierVM _faction1Visual = null!;
-        private ImageIdentifierVM _faction2Visual = null!;
+        private BannerImageIdentifierVM _faction1Visual = null!;
+        private BannerImageIdentifierVM _faction2Visual = null!;
 
         [DataSourceProperty]
         public int OpponentWarExhaustion { get => _opponentWarExhaustion; set => SetField(ref _opponentWarExhaustion, value, nameof(OpponentWarExhaustion)); }
@@ -26,10 +27,10 @@ namespace Diplomacy.ViewModel
         public int PlayerWarExhaustion { get => _playerWarExhaustion; set => SetField(ref _playerWarExhaustion, value, nameof(PlayerWarExhaustion)); }
 
         [DataSourceProperty]
-        public ImageIdentifierVM Faction1Visual { get => _faction1Visual; set => SetField(ref _faction1Visual, value, nameof(Faction1Visual)); }
+        public BannerImageIdentifierVM Faction1Visual { get => _faction1Visual; set => SetField(ref _faction1Visual, value, nameof(Faction1Visual)); }
 
         [DataSourceProperty]
-        public ImageIdentifierVM Faction2Visual { get => _faction2Visual; set => SetField(ref _faction2Visual, value, nameof(Faction2Visual)); }
+        public BannerImageIdentifierVM Faction2Visual { get => _faction2Visual; set => SetField(ref _faction2Visual, value, nameof(Faction2Visual)); }
 
         [DataSourceProperty]
         public bool IsCriticalFaction1 { get => _isCriticalFaction1; set => SetField(ref _isCriticalFaction1, value, nameof(IsCriticalFaction1)); }
@@ -49,8 +50,8 @@ namespace Diplomacy.ViewModel
             var playerKingdom = Clan.PlayerClan.Kingdom;
 
             UpdateWarExhaustion();
-            Faction1Visual = new ImageIdentifierVM(BannerCode.CreateFrom(playerKingdom.Banner), true);
-            Faction2Visual = new ImageIdentifierVM(BannerCode.CreateFrom(_opposingKingdom.Banner), true);
+            Faction1Visual = new BannerImageIdentifierVM(playerKingdom.Banner, true);
+            Faction2Visual = new BannerImageIdentifierVM(_opposingKingdom.Banner, true);
         }
 
         public void UpdateWarExhaustion()

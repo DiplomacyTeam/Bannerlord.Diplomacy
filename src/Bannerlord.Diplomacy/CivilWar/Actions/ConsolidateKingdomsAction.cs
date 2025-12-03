@@ -17,7 +17,7 @@ namespace Diplomacy.CivilWar.Actions
             {
                 // make sure to retain influence
                 var influence = clan.Influence;
-                ChangeKingdomAction.ApplyByJoinToKingdom(clan, parentKingdom, false);
+                ChangeKingdomAction.ApplyByJoinToKingdom(clan, parentKingdom, showNotification: false);
                 clan.Influence = influence;
             }
 

@@ -47,55 +47,55 @@ namespace Diplomacy.CivilWar.Actions
             // can only join a faction of a kingdom that they're in
             if (rebelFaction.ParentKingdom != clan.Kingdom)
             {
-                yield return TextObject.Empty;
+                yield return TextObject.GetEmpty();
             }
 
             // rebel kingdom members can't join factions
             if (clan.Kingdom.IsRebelKingdom())
             {
-                yield return TextObject.Empty;
+                yield return TextObject.GetEmpty();
             }
 
             // ruling clan can't join factions
             if (clan == clan.Kingdom.RulingClan)
             {
-                yield return TextObject.Empty;
+                yield return TextObject.GetEmpty();
             }
 
             // mercenaries can't join factions
             if (clan.IsUnderMercenaryService)
             {
-                yield return TextObject.Empty;
+                yield return TextObject.GetEmpty();
             }
 
             // can't join a faction during an active rebellion
             if (rebelFaction.AtWar)
             {
-                yield return TextObject.Empty;
+                yield return TextObject.GetEmpty();
             }
 
             // faction sponsors can't join another faction 
             if (clan.Kingdom.GetRebelFactions().Any(x => x.SponsorClan == clan))
             {
-                yield return TextObject.Empty;
+                yield return TextObject.GetEmpty();
             }
 
             // can't join a faction you're already a member of
             if (rebelFaction.Clans.Contains(clan))
             {
-                yield return TextObject.Empty;
+                yield return TextObject.GetEmpty();
             }
 
             // can't join a faction when member of a secession faction
             if (clan.Kingdom.GetRebelFactions().Any(x => x.Clans.Contains(clan) && x.RebelDemandType == RebelDemandType.Secession))
             {
-                yield return TextObject.Empty;
+                yield return TextObject.GetEmpty();
             }
 
             // can't join a faction when eliminated
             if (clan.IsEliminated)
             {
-                yield return TextObject.Empty;
+                yield return TextObject.GetEmpty();
             }
         }
     }

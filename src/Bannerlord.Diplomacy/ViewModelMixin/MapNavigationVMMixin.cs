@@ -1,11 +1,9 @@
-﻿using Bannerlord.UIExtenderEx.Attributes;
+﻿/* TODO: fix
+using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
-
-using Diplomacy.Extensions;
 
 using JetBrains.Annotations;
 
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
 using TaleWorlds.Localization;
 
@@ -29,3 +27,4 @@ namespace Diplomacy.ViewModelMixin
         }
     }
 }
+*/

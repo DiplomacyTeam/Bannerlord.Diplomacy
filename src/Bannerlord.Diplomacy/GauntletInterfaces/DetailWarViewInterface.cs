@@ -22,11 +22,11 @@ namespace Diplomacy.GauntletInterfaces
 
             var spriteData = UIResourceManager.SpriteData;
             var resourceContext = UIResourceManager.ResourceContext;
-            var resourceDepot = UIResourceManager.UIResourceDepot;
+            var resourceDepot = UIResourceManager.ResourceDepot;
             spriteData.SpriteCategories["ui_encyclopedia"].Load(resourceContext, resourceDepot);
             spriteData.SpriteCategories["ui_kingdom"].Load(resourceContext, resourceDepot);
 
-            _layer = new GauntletLayer(209);
+            _layer = new GauntletLayer("WarDetailLayer", 209);
             _layer.InputRestrictions.SetInputRestrictions();
             _layer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory"));
             _layer.IsFocusLayer = true;

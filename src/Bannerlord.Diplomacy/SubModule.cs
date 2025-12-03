@@ -99,7 +99,6 @@ namespace Diplomacy
                 if (Settings.Instance!.EnableFiefFirstRight)
                     gameStarter.AddBehavior(new KeepFiefAfterSiegeBehavior());
 
-                gameStarter.AddBehavior(new AllianceBehavior());
                 gameStarter.AddBehavior(new MaintainInfluenceBehavior());
                 gameStarter.AddBehavior(new ExpansionismBehavior());
                 gameStarter.AddBehavior(new CivilWarBehavior());

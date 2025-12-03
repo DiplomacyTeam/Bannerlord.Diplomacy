@@ -20,47 +20,12 @@ namespace Diplomacy.Extensions
 
         public static float GetMinimumExpansionism(this Kingdom kingdom) => ExpansionismManager.Instance!.GetMinimumExpansionism(kingdom);
 
-        public static bool IsAlliedWith(this IFaction faction1, IFaction faction2)
-        {
-            if (faction1 == faction2)
-            {
-                return false;
-            }
-            var stanceLink = faction1.GetStanceWith(faction2);
-            return stanceLink.IsAllied;
-        }
-
-        public static IEnumerable<Kingdom> GetAlliedKingdoms(this Kingdom kingdom)
-        {
-            foreach (var stanceLink in kingdom.Stances)
-            {
-                if (stanceLink.IsAllied)
-                {
-                    IFaction? alliedFaction = null;
-                    if (stanceLink.Faction1 == kingdom)
-                    {
-                        alliedFaction = stanceLink.Faction2;
-                    }
-                    else if (stanceLink.Faction2 == kingdom)
-                    {
-                        alliedFaction = stanceLink.Faction1;
-                    }
-                    if (alliedFaction is not null && alliedFaction.IsKingdomFaction)
-                    {
-                        yield return (alliedFaction as Kingdom)!;
-                    }
-                }
-            }
-        }
-
-        public static bool IsStrong(this Kingdom kingdom) => kingdom.TotalStrength > GetMedianStrength();
-
-        public static float GetAllianceStrength(this Kingdom kingdom) => kingdom.GetAlliedKingdoms().Select(curKingdom => curKingdom.TotalStrength).Sum() + kingdom.TotalStrength;
+        public static bool IsStrong(this Kingdom kingdom) => kingdom.CurrentTotalStrength > GetMedianStrength();
 
         private static float GetMedianStrength()
         {
             float medianStrength;
-            var kingdomStrengths = AllActiveKingdoms.Select(curKingdom => curKingdom.TotalStrength).OrderBy(a => a).ToArray();
+            var kingdomStrengths = AllActiveKingdoms.Select(curKingdom => curKingdom.CurrentTotalStrength).OrderBy(a => a).ToArray();
 
             var halfIndex = kingdomStrengths.Length / 2;
 
@@ -105,5 +70,7 @@ namespace Diplomacy.Extensions
         }
 
         public static IEnumerable<RebelFaction> GetRebelFactions(this Kingdom kingdom) => RebelFactionManager.GetRebelFaction(kingdom);
+
+        public static IEnumerable<Kingdom> GetEnemyKingdoms(this Kingdom kingdom) => AllActiveKingdoms.Where(x => x.IsAtWarWith(kingdom) || x.IsAtConstantWarWith(kingdom));
     }
 }

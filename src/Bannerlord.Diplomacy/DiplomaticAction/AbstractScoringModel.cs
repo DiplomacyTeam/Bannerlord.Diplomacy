@@ -39,7 +39,7 @@ namespace Diplomacy.DiplomaticAction
 
             // Common Enemies
 
-            var commonEnemies = FactionManager.GetEnemyKingdoms(ourKingdom).Intersect(FactionManager.GetEnemyKingdoms(otherKingdom));
+            var commonEnemies = ourKingdom.GetEnemyKingdoms().Intersect(otherKingdom.GetEnemyKingdoms());
 
             foreach (var commonEnemy in commonEnemies)
                 explainedNum.Add(Scores.HasCommonEnemy, CreateTextWithKingdom(SCommonEnemy, commonEnemy));
@@ -49,8 +49,8 @@ namespace Diplomacy.DiplomaticAction
             var alliedEnemies = KingdomExtensions.AllActiveKingdoms
                 .Where(k => k != ourKingdom
                          && k != otherKingdom
-                         && FactionManager.IsAlliedWithFaction(otherKingdom, k)
-                         && FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
+                         && k.IsAllyWith(otherKingdom)
+                         && (k.IsAtWarWith(ourKingdom) || k.IsAtConstantWarWith(ourKingdom)));
 
             foreach (var alliedEnemy in alliedEnemies)
                 explainedNum.Add(Scores.ExistingAllianceWithEnemy, CreateTextWithKingdom(SAlliedToEnemy, alliedEnemy));
@@ -60,8 +60,8 @@ namespace Diplomacy.DiplomaticAction
             var alliedNeutrals = KingdomExtensions.AllActiveKingdoms
                 .Where(k => k != ourKingdom
                          && k != otherKingdom
-                         && FactionManager.IsAlliedWithFaction(otherKingdom, k)
-                         && !FactionManager.IsAtWarAgainstFaction(ourKingdom, k));
+                         && k.IsAllyWith(otherKingdom)
+                         && !(k.IsAtWarWith(ourKingdom) || k.IsAtConstantWarWith(ourKingdom)));
 
             // FIXME: alliedNeutrals also includes common allies as it's coded... Should they be scored differently? Probable answer: YES!
 

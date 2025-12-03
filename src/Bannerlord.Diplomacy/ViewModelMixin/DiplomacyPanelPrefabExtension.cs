@@ -1,4 +1,5 @@
-﻿using Bannerlord.BUTR.Shared.Helpers;
+﻿/*
+using Bannerlord.BUTR.Shared.Helpers;
 
 using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.Prefabs2;
@@ -37,3 +38,4 @@ namespace Diplomacy.ViewModelMixin
         public XmlDocument GetPrefabExtension() => _document;
     }
 }
+*/

@@ -25,11 +25,7 @@ namespace Diplomacy.CampaignBehaviors
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, DailyTickClan);
-#if v124 || v125 || v126 || v127 || v128 || v129 || v1210
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this, (x, y, z, _, _) => RemoveClanFromRebelFaction(x, y, z));
-#elif v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116 || v120 || v121 || v122 || v123
-            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, y, z, _, _) => RemoveClanFromRebelFaction(x, y, z));
-#endif
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ResolveCivilWar);
             CampaignEvents.KingdomDecisionConcluded.AddNonSerializedListener(this, NewKing);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
@@ -91,11 +87,7 @@ namespace Diplomacy.CampaignBehaviors
             }
         }
 
-#if v100 || v101 || v102 || v103
-        private void ResolveCivilWar(IFaction factionMakingPeace, IFaction otherFaction)
-#else
         private void ResolveCivilWar(IFaction factionMakingPeace, IFaction otherFaction, MakePeaceAction.MakePeaceDetail makePeaceDetail)
-#endif
         {
             //Need to check if this runs before or after WarExhaustionBehavior
             if (factionMakingPeace is Kingdom kingdomMakingPeace && otherFaction is Kingdom otherKingdom)

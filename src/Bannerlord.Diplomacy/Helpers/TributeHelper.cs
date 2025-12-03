@@ -18,7 +18,7 @@ namespace Diplomacy.Helpers
             if (!atWar)
             {
                 var stance = kingdomInQuestion.GetStanceWith(otherKingdom);
-                return stance?.GetDailyTributePaid(kingdomInQuestion) ?? 0;
+                return stance?.GetDailyTributeToPay(kingdomInQuestion) ?? 0;
             }
 
             if (kingdomInQuestion == Clan.PlayerClan.Kingdom)
@@ -42,20 +42,23 @@ namespace Diplomacy.Helpers
                 //Neither kingdom should get any tribute when there's a tie or PyrrhicVictory
                 if (Min(warResult, warResultForOtherKingdom) != WarResult.None && Max(warResult, warResultForOtherKingdom) <= WarResult.PyrrhicVictory)
                 {
-                    valueForOtherKingdom = 0;
+                    return 0;
                 }
                 //Loosing kingdom should not receive tribute from the winner
                 if (valueForOtherKingdom < 0 && warResult == WarResult.Loss && warResultForOtherKingdom > WarResult.PyrrhicVictory)
                 {
-                    valueForOtherKingdom = 0;
+                    return 0;
                 }
                 //...and winning kingdom should not pay a tribute to the loser
                 if (valueForOtherKingdom > 0 && warResult > WarResult.PyrrhicVictory && warResultForOtherKingdom == WarResult.Loss)
                 {
-                    valueForOtherKingdom = 0;
+                    return 0;
                 }
             }
-            var dailyPeaceTributeToPay = Campaign.Current.Models.DiplomacyModel.GetDailyTributeForValue(valueForOtherKingdom);
+
+            var dailyPeaceTributeToPay = valueForOtherKingdom < 0
+                    ? Campaign.Current.Models.DiplomacyModel.GetDailyTributeToPay(otherKingdom.RulingClan, kingdomInQuestion.RulingClan, out _)
+                    : Campaign.Current.Models.DiplomacyModel.GetDailyTributeToPay(kingdomInQuestion.RulingClan, otherKingdom.RulingClan, out _);
             return 10 * (dailyPeaceTributeToPay / 10);
         }
 

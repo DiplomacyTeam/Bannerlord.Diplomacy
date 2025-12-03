@@ -49,7 +49,7 @@ namespace Diplomacy.Messengers
             "{=VKqC9dl0}Your messenger take the money and run away."
         };
 
-        private Vec2 _position2D = Vec2.Invalid;
+        private CampaignVec2 _position = CampaignVec2.Invalid;
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
 
@@ -162,8 +162,8 @@ namespace Diplomacy.Messengers
             var messengerLocation = Hero.MainHero.GetMapPoint();
             if (targetHeroLocationPoint is null || messengerLocation is null)
                 return 0;
-            var targetHeroLocation = targetHeroLocationPoint.Position2D;
-            var distanceToGo = targetHeroLocation - messengerLocation.Position2D;
+            var targetHeroLocation = targetHeroLocationPoint.Position;
+            var distanceToGo = targetHeroLocation - messengerLocation.Position;
 
             var distance = distanceToGo.Length;
             var hoursToArrive = distance / MessengerHourlySpeed;
@@ -190,16 +190,16 @@ namespace Diplomacy.Messengers
 
             var targetHeroLocationPoint = messenger.TargetHero.GetMapPoint();
 
-            if (messenger.CurrentPosition.Equals(default(Vec2)) || targetHeroLocationPoint is null)
+            if (messenger.CurrentPosition.Equals(default(CampaignVec2)) || targetHeroLocationPoint is null)
                 return;
 
-            var targetHeroLocation = targetHeroLocationPoint.Position2D;
+            var targetHeroLocation = targetHeroLocationPoint.Position;
             var distanceToGo = targetHeroLocation - messenger.CurrentPosition;
 
             if (distanceToGo.Length <= MessengerHourlySpeed)
                 messenger.Arrived = true;
             else
-                messenger.CurrentPosition += distanceToGo.Normalized() * MessengerHourlySpeed;
+                messenger.CurrentPosition += CampaignVec2.Normalized(distanceToGo) * MessengerHourlySpeed;
         }
 
         private bool MessengerArrived(Messenger messenger)
@@ -279,7 +279,7 @@ namespace Diplomacy.Messengers
 
             if (targetSettlement != null)
             {
-                _position2D = new(Hero.MainHero.GetMapPoint().Position2D);
+                _position = Hero.MainHero.GetMapPoint().Position;
 
                 PlayerEncounter.EnterSettlement();
 
@@ -292,7 +292,7 @@ namespace Diplomacy.Messengers
             }
             else
             {
-                _position2D = Vec2.Invalid;
+                _position = CampaignVec2.Invalid;
 
                 var specialScene = "";
                 var sceneLevels = "";
@@ -327,7 +327,7 @@ namespace Diplomacy.Messengers
             {
                 ["HERO_NAME"] = targetHero.Name,
                 ["HAS_FACTION"] = new TextObject(faction2 != null ? 1 : 0),
-                ["FACTION2_NAME"] = faction2?.Name ?? TextObject.Empty
+                ["FACTION2_NAME"] = faction2?.Name ?? TextObject.GetEmpty()
             });
             TextObject bribeTextObject;
             if (requiresBribing && additionalExpenses?.Value > 0)
@@ -340,7 +340,7 @@ namespace Diplomacy.Messengers
                 bribeTextObject.SetTextVariable("CAN_AFFORD", additionalExpenses.CanPayCost() ? 1 : 0);
             }
             else
-                bribeTextObject = TextObject.Empty;
+                bribeTextObject = TextObject.GetEmpty();
 
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             textObject.SetTextVariable("ADDRESSEE_TEXT", addressee.ToString());
@@ -391,7 +391,7 @@ namespace Diplomacy.Messengers
             {
                 ["HERO_NAME"] = targetHero.Name,
                 ["HAS_FACTION"] = new TextObject(faction2 != null ? 1 : 0),
-                ["FACTION2_NAME"] = faction2?.Name ?? TextObject.Empty
+                ["FACTION2_NAME"] = faction2?.Name ?? TextObject.GetEmpty()
             });
             textObject.SetTextVariable("ADDRESSEE_TEXT", addressee.ToString());
             return textObject;
@@ -432,21 +432,13 @@ namespace Diplomacy.Messengers
                 return false;
             }
 
-            exception = TextObject.Empty;
+            exception = TextObject.GetEmpty();
             return true;
         }
 
         private static bool HeroIsKnownToPlayer(Hero hero)
         {
-#if v100 || v101 || v102 || v103
-            if (hero.HasMet || (hero.Clan != null && hero.Clan == Clan.PlayerClan))
-                return true;
-            if (hero.MapFaction is Kingdom heroKingdom && (heroKingdom.Leader == hero || (Clan.PlayerClan.MapFaction is Kingdom playerKingdom && playerKingdom == heroKingdom && hero.Clan is Clan heroClan && heroClan.Tier >= 4 && hero == heroClan.Leader)))
-                return true;
-            return false;
-#else
             return Campaign.Current.Models.InformationRestrictionModel.DoesPlayerKnowDetailsOf(hero);
-#endif
         }
 
         private static TextObject GetUnavailabilityReason(Hero targetHero)
@@ -459,7 +451,7 @@ namespace Diplomacy.Messengers
                 {
                     ["HERO_NAME"] = targetHero.Name,
                     ["IS_MOBILE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? 0 : 1,
-                    ["DETENTION_PLACE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? targetHero.PartyBelongedToAsPrisoner.Settlement.Name : ((targetHero.PartyBelongedToAsPrisoner.LeaderHero?.Name ?? targetHero.PartyBelongedToAsPrisoner.Name) ?? TextObject.Empty)
+                    ["DETENTION_PLACE"] = targetHero.PartyBelongedToAsPrisoner.IsSettlement ? targetHero.PartyBelongedToAsPrisoner.Settlement.Name : ((targetHero.PartyBelongedToAsPrisoner.LeaderHero?.Name ?? targetHero.PartyBelongedToAsPrisoner.Name) ?? TextObject.GetEmpty())
                 });
             else if (targetHero.IsFugitive)
                 reason = new("{=1BISlFYx}{HERO_NAME} is fugitive and doesn't want to be found. ", new() { ["HERO_NAME"] = targetHero.Name });
@@ -470,7 +462,7 @@ namespace Diplomacy.Messengers
             else if (targetHero.IsChild)
                 reason = new("{=3lknR86H}{HERO_NAME} is too inexperienced to participate in formal meetings. ", new() { ["HERO_NAME"] = targetHero.Name });
             else
-                reason = TextObject.Empty;
+                reason = TextObject.GetEmpty();
             return reason;
         }
 
@@ -501,11 +493,11 @@ namespace Diplomacy.Messengers
         {
             PlayerEncounter.Finish();
 
-            if (_position2D.IsValid)
+            if (_position.IsValid())
             {
-                MobileParty.MainParty.Position2D = _position2D;
+                MobileParty.MainParty.Position = _position;
             }
-            _position2D = Vec2.Invalid;
+            _position = CampaignVec2.Invalid;
 
             RemoveThisFromListeners();
         }
@@ -540,5 +532,7 @@ namespace Diplomacy.Messengers
         public void OnResetMission() { }
 
         public void OnInitialDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan) { }
+
+        public void OnDeploymentPlanMade(Team team, bool isFirstPlan) { }
     }
 }

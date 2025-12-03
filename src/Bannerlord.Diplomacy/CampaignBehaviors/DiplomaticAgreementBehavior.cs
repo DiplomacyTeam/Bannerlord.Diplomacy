@@ -1,7 +1,5 @@
 ﻿using Diplomacy.DiplomaticAction;
-using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
-using Diplomacy.Events;
 using Diplomacy.Extensions;
 
 using Microsoft.Extensions.Logging;
@@ -29,7 +27,7 @@ namespace Diplomacy.CampaignBehaviors
         {
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, UpdateDiplomaticAgreements);
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, ConsiderDiplomaticAgreements);
-            DiplomacyEvents.AllianceFormed.AddNonSerializedListener(this, ExpireNonAggressionPact);
+            CampaignEvents.OnAllianceStartedEvent.AddNonSerializedListener(this, ExpireNonAggressionPact);
         }
 
         private void ConsiderDiplomaticAgreements(Clan clan)
@@ -70,9 +68,9 @@ namespace Diplomacy.CampaignBehaviors
             .ForEach(x => x.TryExpireNotification());
         }
 
-        private void ExpireNonAggressionPact(AllianceEvent obj)
+        private void ExpireNonAggressionPact(Kingdom kingdom1, Kingdom kingdom2)
         {
-            if (DiplomaticAgreementManager.HasNonAggressionPact(obj.Kingdom, obj.OtherKingdom, out var pactAgreement))
+            if (DiplomaticAgreementManager.HasNonAggressionPact(kingdom1, kingdom2, out var pactAgreement))
                 pactAgreement!.Expire();
         }
 
