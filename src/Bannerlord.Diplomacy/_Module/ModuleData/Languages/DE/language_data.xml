@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData id="Deutsch">
+ <LanguageFile xml_path="DE/civil_war_strings_xml.xml"/>
+ <LanguageFile xml_path="DE/faction_names_xml.xml"/>
+ <LanguageFile xml_path="DE/help_strings_xml.xml"/>
+ <LanguageFile xml_path="DE/std_module_strings_xml.xml"/>
+ <LanguageFile xml_path="DE/war_exhaustion_strings.xml"/>
+</LanguageData>
