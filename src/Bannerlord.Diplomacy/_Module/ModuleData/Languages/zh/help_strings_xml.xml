@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Chinese Simplified"/>
+  </tags>
+  <strings>
+    <string id="bAkTqxmf" text="一个派别是一个具有共同目标的宗族。 如果一个派别得到足够的支持，他们就会开始内战，如果反叛分子赢得战争，他们的要求就会得到维持。 如果效忠者获胜，反叛部族将返回王国，维多利亚部族将获得影响力并与他们的胜利者建立关系。 被击败的部族将会失去影响力，部族可能会因为产生影响而开始一个派别。"/>
+	
+	<string id="XXUwW6TM" text="战争精疲力竭追踪一个王国将如何投降。一旦战争耗尽达到100%，王国将投降。 伤亡、失去纤维、村庄被搜查以及战争持续时间都促成了战争的耗尽。 当一个王国失去其最后的纤维时，它不再能够有效地维持其战争努力，这不仅立即增加了它目前的战争耗尽， 但同时也大幅度增加它每天收到的战争耗尽量——直到王国交出或收回至少一张纤维为止。"/>
+	
+	<string id="dh2NE8Of" text="战争耗竭率是战争耗尽累积的速度，在大国之间的战争中，耗尽的战争累积得更慢。"/>
+  </strings>
+</base>
