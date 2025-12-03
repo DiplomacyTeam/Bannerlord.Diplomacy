@@ -23,9 +23,19 @@
 
     <string id="JmgAuONd" text="Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
     <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}" />
+    <string id="C7XPJZAM" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within less than an hour." />
+    <string id="k5i2F6UD" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} day." />
     <string id="qNWMZP0z" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days." />
+    <string id="G2NMbFDb" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hour." />
+    <string id="gfZgMSYD" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hours." />
     <string id="nYrezEOX" text="Messenger killed" />
     <string id="A5lug0JY" text="Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!" />
+    <string id="1rYSIMfX" text="Your messenger was ambushed and eaten by a Grue while trying to reach {HERO NAME}!" />
+    <string id="J2T97gNx" text="Your messenger lost his way and is now wandering the world aimlessly." />
+    <string id="hOOW2DMD" text="Your messenger found a treasure map and is now looking for the treasure, instead of delivering the message." />
+    <string id="hc52yW8O" text="Your messenger forgot the message, you will have to send him again." />
+    <string id="2rJDoi7N" text="Your messenger drank too much and is now sleeping it off." />
+    <string id="VKqC9dl0" text="Your messenger took the money and ran away." />
     <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\?}" />
     <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Unfortunately, the messenger is denied access to the keep, but can try to bribe the guards. It would cost {?IS_FEMALE}her{?}him{\?} {GOLD_COST}{GOLD_ICON} and you will have to cover the expenses{?CAN_AFFORD}.{?}, which you can't afford at the moment.{\?}" />
 
@@ -234,6 +244,10 @@
     <string id="zkvCGLuK" text="The maximum amount of time (in days) it could take the messenger to reach the addressee. Directly affects the travelling speed of the messengers. The default value is 3." />
     <string id="nMwWHj4h" text="Send Messenger Gold Cost" />
     <string id="ehMf7xvE" text="Gold cost for sending a messenger to another character. Default value is 100." />
+    <string id="YolJlw95" text="Send Messenger Minimum Gold Cost" />
+    <string id="P5NWxY6F" text="Minimum Gold cost for sending a messenger to another character. Default value is 75." />
+    <string id="Hkv9Peqa" text="Send Messenger Gold Cost Per Hour" />
+    <string id="ckYA36t8" text="Gold cost for each hour that messenger will take to arrive to another character. Default value is 1." />
 
     <string id="OfEMJWiR" text="Relation" />
     <string id="6l9QNMrB" text="Grant Fief Postiive Relation Multiplier" />

@@ -32,14 +32,26 @@ namespace Diplomacy.Messengers
         private static float MessengerHourlySpeedMin = 2f;
         private static float MessengerHourlySpeed = 5f;
 
+        private static int CachedMessengerTravelTime = 0;
+
         private static readonly List<MissionMode> AllowedMissionModes = new() { MissionMode.Conversation, MissionMode.Barter };
 
         private static readonly TextObject _TMessengerSent = new("{=zv12jjyW}Messenger Sent");
 
+        private static readonly List<string> Accidents = new()
+        {
+            "{=A5lug0JY}Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!",
+            "{=1rYSIMfX}Your messenger was ambushed and eaten by a Grue while trying to reach {HERO NAME}!",
+            "{=J2T97gNx}Your messenger lost his way and is now wandering the world aimlessly.",
+            "{=hOOW2DMD}Your messenger found a treasure map and is now looking for the treasure, instead of delivering the message.",
+            "{=hc52yW8O}Your messenger forgot the message, you will have to send him again.",
+            "{=2rJDoi7N}Your messenger drank too much and is now sleeping it off.",
+            "{=VKqC9dl0}Your messenger take the money and run away."
+        };
+
         private Vec2 _position2D = Vec2.Invalid;
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
-        private int _cachedMessengerTravelTime;
 
         private delegate int GetBribeInternalDelegate(DefaultBribeCalculationModel instance, Settlement settlement);
         private static readonly GetBribeInternalDelegate? deGetBribeInternal = AccessTools2.GetDelegate<GetBribeInternalDelegate>(typeof(DefaultBribeCalculationModel), "GetBribeInternal");
@@ -77,7 +89,7 @@ namespace Diplomacy.Messengers
                     GetMessengerSentText(Hero.MainHero.MapFaction,
                         targetHero.MapFaction,
                         targetHero,
-                        Settings.Instance!.MessengerTravelTime).ToString(),
+                        GetHourToArrive(targetHero)).ToString(),
                     true,
                     false,
                     GameTexts.FindText("str_ok").ToString(),
@@ -110,9 +122,9 @@ namespace Diplomacy.Messengers
             var accidentHappened = MBRandom.RandomFloat < 0.005f;
             if (accidentHappened)
             {
-                //FIXME: Need different random events
+                string accidentText = Accidents[MBRandom.RandomInt(0, Accidents.Count - 1)].ToString();
                 InformationManager.ShowInquiry(new InquiryData(new TextObject("{=nYrezEOX}Messenger killed").ToString(),
-                    new TextObject("{=A5lug0JY}Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!", new() { ["HERO_NAME"] = messenger.TargetHero.Name })
+                    new TextObject(accidentText, new() { ["HERO_NAME"] = messenger.TargetHero.Name })
                         .ToString(),
                     true,
                     false,
@@ -143,13 +155,29 @@ namespace Diplomacy.Messengers
             }
         }
 
-        private void SyncMessengerHourlySpeed(bool forceRecalculation = false)
+        public static int GetHourToArrive(Hero hero)
         {
-            if (!forceRecalculation && _cachedMessengerTravelTime == Settings.Instance!.MessengerTravelTime)
+            SyncMessengerHourlySpeed();
+            var targetHeroLocationPoint = hero.GetMapPoint();
+            var messengerLocation = Hero.MainHero.GetMapPoint();
+            if (targetHeroLocationPoint is null || messengerLocation is null)
+                return 0;
+            var targetHeroLocation = targetHeroLocationPoint.Position2D;
+            var distanceToGo = targetHeroLocation - messengerLocation.Position2D;
+
+            var distance = distanceToGo.Length;
+            var hoursToArrive = distance / MessengerHourlySpeed;
+            var fullHoursToArrive = (int) Math.Round(hoursToArrive);
+            return fullHoursToArrive;
+        }
+
+        private static void SyncMessengerHourlySpeed(bool forceRecalculation = false)
+        {
+            if (!forceRecalculation && CachedMessengerTravelTime == Settings.Instance!.MessengerTravelTime)
                 return;
 
             MessengerHourlySpeed = Math.Max(Campaign.MapDiagonal / (CampaignTime.HoursInDay * Math.Max(Settings.Instance!.MessengerTravelTime, 0.5f) * 1.5f), MessengerHourlySpeedMin);
-            _cachedMessengerTravelTime = Settings.Instance!.MessengerTravelTime;
+            CachedMessengerTravelTime = Settings.Instance!.MessengerTravelTime;
         }
 
         private static void UpdateMessengerPosition(Messenger messenger)
@@ -321,9 +349,43 @@ namespace Diplomacy.Messengers
             return textObject;
         }
 
-        private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, Hero targetHero, int travelDays)
+        private static TextObject GetTimeToArriveText(int travelHours)
         {
-            TextObject textObject = new("{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days.");
+            TextObject textObject;
+            if (travelHours < 1)
+            {
+                textObject = new("{=C7XPJZAM}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within less than an hour.");
+            }
+            else if (travelHours < 2)
+            {
+                textObject = new("{=G2NMbFDb}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hour.");
+                textObject.SetTextVariable("TRAVEL_TIME", travelHours);
+            }
+            else if (travelHours < 24)
+            {
+                textObject = new("{=gfZgMSYD}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hours.");
+                textObject.SetTextVariable("TRAVEL_TIME", travelHours);
+            }
+            else
+            {
+                var days = travelHours / 24;
+                if (days < 2)
+                {
+                    textObject = new("{=k5i2F6UD}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} day.");
+                    textObject.SetTextVariable("TRAVEL_TIME", days);
+                }
+                else
+                {
+                    textObject = new("{=qNWMZP0z}The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} days.");
+                    textObject.SetTextVariable("TRAVEL_TIME", days);
+                }
+            }
+            return textObject;
+        }
+        private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, Hero targetHero, int travelHours)
+        {
+            TextObject textObject = GetTimeToArriveText(travelHours);
+            
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             TextObject addressee = new("{=vGyBQeEk}{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\\?}", new()
             {
@@ -332,7 +394,6 @@ namespace Diplomacy.Messengers
                 ["FACTION2_NAME"] = faction2?.Name ?? TextObject.Empty
             });
             textObject.SetTextVariable("ADDRESSEE_TEXT", addressee.ToString());
-            textObject.SetTextVariable("TRAVEL_TIME", travelDays);
             return textObject;
         }
 

@@ -114,9 +114,13 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingMessengers)]
         public int MessengerTravelTime { get; set; } = 3;
 
-        [SettingPropertyInteger("{=nMwWHj4h}Send Messenger Gold Cost", 0, 10000, Order = 11, RequireRestart = false, HintText = "{=ehMf7xvE}Gold cost for sending a messenger to another character. Default value is 100.")]
+        [SettingPropertyInteger("{=YolJlw95}Send Messenger Minimum Gold Cost", 0, 10000, Order = 11, RequireRestart = false, HintText = "{=P5NWxY6F}Minimum Gold cost for sending a messenger to another character. Default value is 75.")]
         [SettingPropertyGroup(HeadingMessengers)]
-        public int SendMessengerGoldCost { get; set; } = 100;
+        public int SendMessengerMinimumGoldCost { get; set; } = 75;
+
+        [SettingPropertyInteger("{=Hkv9Peqa}Send Messenger Gold Cost Per Hour", 0, 100, Order = 12, RequireRestart = false, HintText = "{=ckYA36t8}Gold cost for each hour that messenger will take to arrive to another character. Default value is 1.")]
+        [SettingPropertyGroup(HeadingMessengers)]
+        public int SendMessengerGoldHourlyCost { get; set; } = 1;
 
         // War Exhaustion
 
