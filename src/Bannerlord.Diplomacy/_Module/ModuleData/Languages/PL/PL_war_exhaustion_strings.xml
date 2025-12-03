@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Polski"/>
+  </tags>
+  <strings>
+    <!--<string id="" text="" />-->
+    <string id="XmVTQ0bH" text="Wyczerpanie wojenne"/>
+
+    <string id="BXluvRnJ" text="Gorzka porażka"/>
+    <string id="0aZCy0at" text="Wymuszony pokój"/>
+
+    <string id="vLfbqXjq" text="Twoja armia i poddani są wyczerpani z powodu konfliktu z {ENEMY_KINGDOM} i zrezygnowali z dalszej walki. Musisz zaakceptować warunki porażki i zapłacić reparacje wojenne w kwocie {REPARATIONS}{GOLD_ICON}. Wydatki te zostaną rozdzielone pomiędzy wszystkie klany królestwa.{?ADD_TRIBUTE}Zobowiązałeś się również do zapłaty dziennego trybutu w wysokości {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST. NY}{NEW_LINE} {NEW_LINE}Ponadto musisz zwrócić {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST. S_PLURAL} i {?}{\?}{FIEFS_TO_RETURN_LIST.END} z powrotem do {ENEMY_KINGDOM}.{NEW_LINE} {NEW_LINE}{?} {\?}Wstyd z porażki będzie Cię kosztować {INFLUENCE} wpływów."/>
+    <string id="ghZCj7hb" text="Wraz z upadkiem i zajęciem twojej ostatniej twierdzy przez wrogów, nie możesz kontynuować walki z {ENEMY_KINGDOM}. Musisz zaakceptować warunki porażki{?TO_BE_DESTROYED}. Bez ziemi i źródła utrzymania twoje królestwo przestaje istnieć.{?} Musisz także wypłacić reparacje wojenne w wysokości {REPARATIONS}{GOLD_ICON}. Wydatki te zostaną rozdzielone pomiędzy wszystkie klany królestwa. {?ADD_TRIBUTE}Zobowiązałeś się również zapłacić dzienny trybut w kwocie {TRIBUTE}{GOLD_ICON}. {?}{\?}Wstyd z porażki będzie Cię kosztować {INFLUENCE} wpływów.{\?}"/>
+    <string id="cKV5Jded" text="Armia i poddani {KINGDOM.NAME} są wyczerpani z powodu konfliktu z {ENEMY_KINGDOM} i zrezygnowali z dalszej walki. {KINGDOM_LEADER.NAME} musi zaakceptować warunki porażki i zapłacić reparacje wojenne w wysokości {REPARATIONS}{GOLD_ICON} (wydatki te zostaną rozdzielone pomiędzy wszystkie klany królestwa).{?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Władczyni{?}Władca{\?} zobowiązał/a się także zapłacić dzienny trybut w kwocie {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Ponadto, {KINGDOM_LEADER.NAME} musi zwrócić {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} i {?}{\?}{FIEFS_TO_RETURN_LIST.END} z powrotem do {ENEMY_KINGDOM}.{NEW_LINE} {NEW_LINE}{?} {\?}Wstyd z porażki będzie kosztować {?KINGDOM_LEADER.GENDER}ją{?}go{\?} {INFLUENCE} wpływów."/>
+    <string id="idAcjzXB" text="Wraz z upadkiem i zajęciem ostatniej twierdzy przez wrogów, nie możesz kontynuować walki z {ENEMY_KINGDOM}. {KINGDOM_LEADER.NAME} musi zaakceptować warunki porażki{?TO_BE_DESTROYED}. Bez ziemi i źródła utrzymania królestwo przestaje istnieć.{?} Należy także wypłacić reparacje wojenne w wysokości {REPARATIONS}{GOLD_ICON} (wydatki te zostaną rozdzielone pomiędzy wszystkie klany królestwa). {?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Władczyni{?}Władca{\?} zobowiązał/a się także zapłacić dzienny trybut w kwocie {TRIBUTE}{GOLD_ICON}. {?}{\?}Wstyd z porażki będzie kosztować {?KINGDOM_LEADER.GENDER}ją{?}go{\?} {INFLUENCE} wpływów.{\?}"/>
+    <string id="a3W5zKQr" text="Wojsko i poddani zarówno {KINGDOM.NAME}, jak i {ENEMY_KINGDOM} są wyczerpani z powodu konfliktu i zrezygnowali z dalszej walki. Nie ma innego wyboru, jak tylko zawrzeć pokój{?TO_BE_DESTROYED}, ale bez ziemi czy źródła utrzymania, {?IS_REBELLION}twoja rebelia upadła{?}twoje królestwo przestało istnieć{\?}{?}{\?}."/>
+
+    <string id="6eTtSKO4" text="W świetle niedawnych wydarzeń jasne jest, że rebelia o nazwie {REBEL_KINGDOM} zakończyła się sukcesem, a dalszy opór jest becelowy. Nadszedł czas, aby przyznać się do porażki{?TO_BE_DESTROYED}, nawet jeśli bez ziemi lub źródła utrzymania twoje królestwo przestałoby istnieć{?} i dać swojemu podzielonemu, rozdartemu wojną królestwu szansę żyć w pokoju{\?}."/>
+    <string id="2ptArJem" text="W świetle ostatnich wydarzeń oczywiste jest, że wasza rebelia zakończyła się klęską. Nadszedł czas, aby przyznać się do porażki i dać podzielonemu, umęczonego wojną {ORIGINAL_KINGDOM} szansę na ponowne zjednoczenie."/>
+
+    <string id="HWiDa4R1" text="Armia i poddani {KINGDOM.NAME} są wyczerpani z powodu konfliktu z {PLAYER_KINGDOM} i rezygnują z dalszej walki.{NEW_LINE}{NEW_LINE}{KINGDOM_LEADER.NAME} proponuje zawarcie traktatu pokojowego i jest skłonny zapłacić reparacje wojenne w wysokości {REPARATIONS}{GOLD_ICON}.{?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Władczyni{?}Władca{\?} zobowiązał/a się także zapłacić dzienny trybut w kwocie {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Ponadto, {KINGDOM_LEADER.NAME} zwróci {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} i {?}{\?}{FIEFS_TO_RETURN_LIST.END} z powrotem do {PLAYER_KINGDOM}.{?}{\?}"/>
+    <string id="t0ZS9maD" text="Wraz z upadkiem ostatniej twierdzy, {KINGDOM.LINK} nie może kontynuować walki z {PLAYER_KINGDOM}.{NEW_LINE}{NEW_LINE}{KINGDOM_LEADER.NAME} proponuje zawarcie traktatu pokojowego{?TO_BE_DESTROYED}, mimo że bez ziemi i źródła utrzymania ich królestwo przestanie istnieć.{?} Ich królestwo zapłaci również reparacje wojenne w wysokości {REPARATIONS}{GOLD_ICON}.{?ADD_TRIBUTE} Ich {?KINGDOM_LEADER.GENDER}Władczyni{?}Władca{\?} zobowiązał/a się także zapłacić dzienny trybut w kwocie {TRIBUTE}{GOLD_ICON}.{?}{\?}{\?}"/>
+    <string id="ZrwszZww" text=" Wojsko i poddani zarówno {KINGDOM.NAME} jak i {PLAYER_KINGDOM} są wyczerpani z powodu konfliktu i zrezygnowali z dalszej walki. {NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} proponuje zawarcie traktatu pokojowego{?TO_BE_DESTROYED}, mimo że bez ziemi i źródła utrzymania, {?IS_REBELLION}ich rebelia praktycznie upadnie{?}ich królestwo przestanie istnieć{\?}{?} bez stawiania jakichkolwiek warunków{\?}."/>
+    <string id="q02T8cyI" text="W świetle ostatnich wydarzeń jasne jest, że rebelia o nazwie {REBEL_KINGDOM} zakończyła się klęską. Być może nadszedł czas, aby przyjąć ich prośbę o pokój i przebaczenie, dając w ten sposób szansę na zjednoczenie podzielonego, umęczonego wojną królestwa?"/>
+    <string id="PC5GdgKA" text="W świetle ostatnich wydarzeń, jasne jest, że twoja rebelia przeciwko {ORIGINAL_KINGDOM.NAME} zakończyła się sukcesem - nawet {ORIGINAL_KINGDOM_LEADER.NAME} to przyznał! Być może już czas przyjąć ich prośbę o pokój i przypieczętować w ten sposób zrealizowane przez siebie cele?"/>
+    <string id="13G0c8RE" text="Biorąc pod uwagę, jak bardzo twoje królestwo zostało zniszczone przez wojnę, nie masz innego wyboru, jak tylko zaakceptować pokój."/>
+
+    <!-- Report -->
+    <string id="mCue7aFc" text="Raport wojenny"/>
+    <string id="hfa8LLqD" text="{EXHAUSTED_FACTION} jest krytycznie wyczerpane wojną z {OTHER_FACTION}. Ich zdolność do kontynuowania tej wojny jest na granicy, {?IS_CIVIL_WAR}co coraz bardziej potwierdza ich świadomość nieuchronności zawarcia pokoju{?}co sprawia, że stają się coraz bardziej otwarci na możliwość pokoju{\?} w miarę zbliżania się wyczerpania wojennego do maksimum."/>
+    <string id="k0Dnf6cU" text="Powiązany z aktywnym zadaniem!"/>
+    <string id="xPHDtsC1" text="Istnieje aktywne zadanie, które zapobiega przedwczesnemu zakończeniu tej wojny. Aby zapewnić stabilność, wyczerpanie wojenne w żadnym wypadku nie przekroczy {CRITICAL_THRESHOLD}% po obu stronach."/>
+    <string id="xoY6cYDK" text="Był związany z aktywnym zadaniem!"/>
+    <string id="UvjMFpHs" text="Istniało aktywne zadanie, które powstrzymało tę wojnę przed przedwczesnym zakończeniem. W rezultacie dane liczbowe w raporcie mogą nie odpowiadać ogólnym wartościom wyczerpania wojennego."/>
+    <string id="hAoIC2Iq" text="Data rozpoczęcia: {START_DATE}"/>
+    <string id="qHrihV27" text="Czas trwania wojny: {WAR_DURATION} dni"/>
+    <!-- Report breakdowns -->
+    <string id="IlFEeNkY" text="Raport wyczerpania wojennego"/>
+    <string id="zYVH0xYa" text="Ofiary"/>
+    <string id="y7XY860U" text="Napadnięte karawany"/>
+    <string id="elRjo1ab" text="Najechane wioski"/>
+    <string id="DrNBDhx3" text="Utracone lenna"/>
+    <string id="X1MIWYzy" text="Uwięzieni lordowie"/>
+    <string id="6FLtWxSp" text="Zabici lordowie"/>
+    <string id="sCRuliNO" text="W pełni okupowane"/>
+    <string id="XIPMI3gR" text="Czas trwania wojny"/>
+    <string id="FVyFJShW" text="Boskie interwencje"/>
+    <string id="1kGleqyk" text="Wynikające z tego wyczerpanie wojenne"/>
+    <string id="i5VSEDE3" text="{START_DATE} - {END_DATE}: {?COUNT.PLURAL_FORM}Łącznie {COUNT} poprzednich wpisów{?}{COUNT} poprzedni wpis{\?}"/>
+
+    <string id="fnPa5bas" text="stacjonujące jednostki"/>
+    <string id="rwFeQWky" text="Karawana {KINGDOM_NAME}"/>
+
+    <!-- Event records -->
+    <string id="Toa6V7RL" text="{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% dziennie przez {VALUE} pełny/e {?VALUE.PLURAL_FORM}dni{?}dzień{\?}"/>
+    <string id="wMVdLssJ" text="{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% dziennie przez {VALUE} pełny/e {?VALUE.PLURAL_FORM}dni{?}dzień{\?}, będąc bez lenna"/>
+    <string id="0nTpub9S" text="{START_DATE} - {END_DATE}: {VALUE} {?VALUE.PLURAL_FORM}ofiar wojny{?}ofiara wojny{\?}"/>
+    <string id="SeWNvf1N" text="{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}ofiar{?}ofiara{\?} w bitwie między {FACTION_PARTY} a {OTHER_FACTION_PARTY}"/>
+    <string id="9V6S05X3" text="{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}ofiar{?}ofiara{\?} w bitwie o {SETTLEMENT} stoczonej między {FACTION_PARTY} a {OTHER_FACTION_PARTY}"/>
+    <string id="vhBKtne1" text="{DATE_STR}: {RAIDED_CARAVAN} została napadnięta przez {OTHER_FACTION_PARTY}"/>
+    <string id="Hnxf9Ox3" text="{DATE_STR}: {RAIDED_VILLAGE} została napadnięta przez {OTHER_FACTION_PARTY}"/>
+    <string id="SXhzqm2N" text="{DATE_STR}: {RAIDED_VILLAGE} została napadnięta przez {OTHER_FACTION_PARTY} (pod wpływem malejących zysków)"/>
+    <string id="6cSuGG87" text="{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} – zamek{?}{\?}, broniony przez {FACTION_PARTY}, został zdobyty przez {OTHER_FACTION_PARTY}"/>
+    <string id="fuaTMWpt" text="{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} – zamek{?}{\?}, broniony przez {FACTION_PARTY}, został odbity przez {OTHER_FACTION_PARTY} (pod wpływem malejących zysków)"/>
+    <string id="yRvZ37cx" text="{DATE_STR}: {HERO} został(a) wzięty(a) do niewoli przez {OTHER_FACTION_PARTY}"/>
+    <string id="i2Moqprl" text="{DATE_STR}: {HERO} został(a) wzięty(a) do niewoli przez {OTHER_FACTION_PARTY} (pod wpływem malejących zysków)"/>
+    <string id="QkSVPgDF" text="{DATE_STR}: {HERO} zmarł(a) z przyczyn naturalnych{?YIELDS_DIMINISHING_RETURNS} (pod wpływem malejących zysków){?}{\?}"/>
+    <string id="S0lkYB5P" text="{DATE_STR}: {HERO} został/a zamordowany/a przez {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (pod wpływem malejących zysków){?}{\?}"/>
+    <string id="f6OIFaSj" text="{DATE_STR}: {HERO} zmarł(a) podczas porodu{?YIELDS_DIMINISHING_RETURNS} (pod wpływem malejących zysków){?}{\?}"/>
+    <string id="PmOPed8Y" text="{DATE_STR}: {HERO} zmarł(a) ze starości{?YIELDS_DIMINISHING_RETURNS} (pod wpływem malejących zysków){?}{\?}"/>
+    <string id="Pp6wYS5m" text="{DATE_STR}: {HERO} zginął(a) w bitwie z {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (pod wpływem malejących zysków){?}{\?}"/>
+    <string id="QvGjUrmL" text="{DATE_STR}: {HERO} zmarł(a) na skutek ran wojennych po bitwie z {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (pod wpływem malejących zysków){?}{\?}"/>
+    <string id="5tBkM1O4" text="{DATE_STR}: {HERO} został(a) stracony(a) przez {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (pod wpływem malejących zysków){?}{\?}"/>
+    <string id="moeUCyaq" text="{DATE_STR}: {HERO} zaginął(a) podczas bitwy z {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (pod wpływem malejących zysków){?}{\?}"/>
+    <string id="VB1xpuMA" text="{DATE_STR}: {FACTION} został całkowicie zajęty przez {OTHER_FACTION}"/>
+    <string id="X9wHA6q3" text="{DATE_STR}: {FACTION} został całkowicie zajęty przez {OTHER_FACTION} (pod wpływem malejących zysków)"/>
+    <string id="9vOZJpPu" text="{DATE_STR}: Wyczerpanie wojenne {FACTION} zostało cudownie zmniejszone (niektórzy mówią, że to boska interwencja)"/>
+    <string id="S5tDXkgK" text="{DATE_STR}: Krążą plotki, że jakaś tajemnicza siła próbowała wpłynąć na wysiłki wojenne {FACTION}, ale nic się nie zmieniło"/>
+    <string id="fJE6Y9mB" text="{DATE_STR}: Ludzie {FACTION} nagle stracili wolę do walki (niektórzy mówią, że to boska interwencja)"/>
+
+    <!-- Settings -->
+    <string id="V542tneW" text="Wyczerpanie wojenne"/>
+    <string id="lSttctYC" text="Włącz wyczerpanie wojenne"/>
+    <string id="Cxyn9ROT" text="Włącza mechanizm wyczerpania wojennego. Domyślnie opcja jest włączona."/>
+    <string id="Yc2YUIva" text="Włącz malejące zyski"/>
+    <string id="CaxxEEdC" text="Włącza mechanikę malejących zysków dla niektórych wydarzeń przy obliczaniu wyczerpania wojennego. Domyślnie opcja jest włączona."/>
+    <string id="HPFINWrc" text="Indywidualne wskaźniki wyczerpania wojennego"/>
+    <string id="LFVkLcIp" text="Włącza indywidualne wskaźniki wyczerpania wojennego dla frakcji. Jeśli opcja jest wyłączona, dla każdej wojny obliczany będzie jeden wspólny wskaźnik oparty na łącznej sile przeciwnych frakcji. Domyślnie opcja jest włączona."/>
+    <string id="gW3eVr5E" text="Włącz repatriację lenn"/>
+    <string id="KEi0UykN" text="Jeśli ta opcja jest włączona, królestwa mogą zostać zmuszone do zwrócenia części zdobytych lenn ich pierwotnym właścicielom w przypadku znacznej porażki w wojnie. Domyślnie opcja jest włączona."/>
+    <string id="8TFQWL55" text="Dzienny przyrost wyczerpania wojennego"/>
+    <string id="lgza5wDq" text="Ilość wyczerpania wojennego dodawana każdego dnia trwania wojny. Nie jest zależna od wskaźnika wyczerpania wojennego. Domyślna wartość to 0.25%."/>
+    <string id="PAmPVWgD" text="Mnożnik bezlenności"/>
+    <string id="SdjYeYM5" text="Mnożnik określający, ile wyczerpania wojennego dziennie otrzymuje frakcja pozbawiona lenn w porównaniu do frakcji posiadającej lenna. Domyślna wartość to 10."/>
+    <string id="s6dNpM6M" text="Wyczerpanie wojenne za poległych"/>
+    <string id="NcJtGeM7" text="Ilość wyczerpania wojennego dodawana, gdy frakcja ponosi straty w bitwie. Domyślna wartość to 0.02%."/>
+    <string id="kr5zAufg" text="Wyczerpanie wojenne za napad na karawanę"/>
+    <string id="PinVMCUE" text="Ilość wyczerpania wojennego dodawana, gdy karawana frakcji zostanie napadnięta. Domyślna wartość to 2.0%."/>
+    <string id="qFJ23KxQ" text="Wyczerpanie wojenne za pojmanego lorda"/>
+    <string id="wctCn9uO" text="Bazowa ilość wyczerpania wojennego dodawana, gdy szlachetny lord frakcji zostaje uwięziony. Wartość zależy od znaczenia lorda dla frakcji. Może podlegać mechanice malejących zysków. Domyślna wartość to 1.0%."/>
+    <string id="4vTzbsXD" text="Wyczerpanie wojenne za śmierć lorda"/>
+    <string id="w80tUaVd" text="Bazowa ilość wyczerpania wojennego dodawana, gdy szlachetny lord frakcji zostaje zabity. Wartość zależy od znaczenia lorda dla frakcji. Może podlegać mechanice malejących zysków, gdy ginie wielu lordów z tego samego klanu. Domyślna wartość to 5.0%."/>
+    <string id="eWVGwf2m" text="Wyczerpanie wojenne za najazd"/>
+    <string id="ufHDJt8H" text="Ilość wyczerpania wojennego dodawana, gdy wieś frakcji zostaje splądrowana. Może podlegać mechanice malejących zysków. Domyślna wartość to 3.0%."/>
+    <string id="gGIaLKHk" text="Wyczerpanie wojenne za oblężenie"/>
+    <string id="mCEa773h" text="Ilość wyczerpania wojennego dodawana, gdy frakcja traci miasto. Utrata zamku dodaje połowę tej wartości. Może podlegać mechanice malejących zysków. Domyślna wartość to 10.0%."/>
+    <string id="JmUPtZdw" text="Wyczerpanie wojenne przy okupacji"/>
+    <string id="541jGrpb" text="Ilość wyczerpania wojennego dodawana, gdy frakcja traci wszystkie swoje lenna. Nie jest zależna od wskaźnika wyczerpania wojennego. Może podlegać mechanice malejących zysków. Domyślna wartość to 15.0%."/>
+    <string id="pPHLRIml" text="Maksymalna liczba wpisów w podpowiedzi"/>
+    <string id="YMf0mSqy" text="Maksymalna liczba wpisów wyświetlanych w podpowiedzi w raporcie wyczerpania wojennego. Ustaw tę wartość według własnych preferencji dla wygody przeglądania. Domyślna wartość to 35."/>
+    <string id="F4iFH6un" text="Widżet mapy kampanii"/>
+    <string id="zTvbZ8Br" text="Włącza dedykowany widżet wyczerpania wojennego dla każdej trwającej wojny, wyświetlany u góry ekranu mapy kampanii. Domyślnie opcja jest włączona."/>
+    <string id="jI9NSxtz" text="Włącz debugowanie wyczerpania wojennego gracza"/>
+    <string id="LYyNbQds" text="Włącza wyświetlanie komunikatów debugujących dotyczących wyczerpania wojennego dodawanego do królestwa gracza. Domyślnie opcja jest wyłączona."/>
+
+  </strings>
+</base>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Deutsch"/>
+  </tags>
+  <strings>
+    <string id="MYz8nKqq" text="Diplomacy"/>
+    <string id="hPERH3u4" text="Diplomacy geladen"/>
+
+    <string id="TS1iV2pO" text="Nicht genug Einfluss!"/>
+    <string id="XQFxDr11" text="Es gibt eine aktive Quest, die das verhindert!"/>
+    <string id="ONNcmltF" text="Dieser Krieg dauert noch nicht lange genug, um Frieden in Betracht zu ziehen! Es sind erst {ELAPSED_DAYS} Tage von den erforderlichen {REQUIRED_DAYS} Tagen vergangen."/>
+    <string id="GuPOCNNZ" text="Der Waffenstillstand wurde erst vor Kurzem geschlossen und kann noch nicht gebrochen werden! Es sind erst {ELAPSED_DAYS} von {REQUIRED_DAYS} Tagen vergangen."/>
+
+    <string id="v0cDMIcl" text="Kriegserklärung gegen dieses Königreich nicht möglich. "/>
+    <string id="Pqk3WuGz" text="Frieden mit diesem Königreich schließen nicht möglich. "/>
+    <string id="9aaZ8Ed4" text="Krieg kann nicht erklärt werden, Anführer des Königreichs sind Freunde."/>
+    <string id="Zimavbgw" text="Kriegserklärung nicht möglich, persönliche Verhältnisse der Anführer des Königreichs sind ausgezeichnet."/>
+    <string id="pXD8Uf2e" text="Kriegserklärung nicht möglich, führende Clans des Königreichs haben nahe familiäre Ehen."/>
+      
+    <string id="zv12jjyW" text="Bote gesendet"/>
+    <string id="uy86VZX2" text="Bote angekommen"/>
+
+    <string id="JmgAuONd" text="Oh nein. Der Bote wurde überfallen und von einem Grue gefressen, während er versuchte {HERO_NAME} zu erreichen!"/>
+    <string id="YnRmSele" text="Der Bote von {FACTION1_NAME} ist bei {ADDRESSEE_TEXT}angekommen.{BRIBE_TEXT}"/>
+    <string id="qNWMZP0z" text="Der Bote von {FACTION1_NAME} wird bei {ADDRESSEE_TEXT} innerhalb von {TRAVEL_TIME} Tagen ankommen."/>
+    <string id="nYrezEOX" text="Bote getötet"/>
+    <string id="A5lug0JY" text="Euer Bote wurde von den Wegelagerern überfallen und getötet, als er versuchte {HERO NAME} zu erreichen!"/>
+    <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} von {FACTION2_NAME}{?}{\?}"/>
+    <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Leider wird dem Boten der Zugang zur Festung verwehrt, er kann aber versuchen die Wachen zu bestechen. Es würde {?IS_FEMALE}ihr{?}ihm{\?} {GOLD_COST}{GOLD_ICON} kosten und Ihr müsstet die Ausgaben decken{?CAN_AFFORD}.{?}, welche Ihr Euch im Moment nicht leisten könnt.{\?}"/>
+
+    <string id="bLR91Eob" text="{REASON}Der Bote kann den Empfänger nicht erreichen."/>
+    <string id="hPra5uwZ" text="Der Bote versteht oder mag Euren Witz nicht und lehnt die Aufgabe ab."/>
+    <string id="1mlXBnSs" text="Ihr wisst zu wenig über {HERO_NAME}, um einen Boten zu senden."/>
+
+    <string id="vhsHDMil" text="{HERO_NAME} ist tot. "/>
+    <string id="CusN2JMb" text="{HERO_NAME} ist gefangen {?IS_MOBILE}von{?}in{\?} {DETENTION_PLACE}. "/>
+    <string id="1BISlFYx" text="{HERO_NAME} ist flüchtig und will nicht gefunden werden. "/>
+    <string id="ze8KJ1oL" text="{HERO_NAME} wurde erst aus der Gefangenschaft befreit und ist noch nicht bereit für Treffen. "/>
+    <string id="N5T6IXWJ" text="{HERO_NAME} reist verdeckt. "/>
+    <string id="3lknR86H" text="{HERO_NAME} ist zu unerfahren, um an formellen Treffen teilzunehmen. "/>
+
+    <string id="BkGSVccZ" text="Friedensangebot"/>
+    <string id="3fTqLwkC" text="Annehmen"/>
+    <string id="dRoMejb0" text="Ablehnen"/>
+
+    <string id="cXfcwzPp" text="Bote senden"/>
+
+    <string id="N06wk0dB" text="Lehen eingenommen"/>
+    <string id="Zy0yjTha" text="Als Eroberer von {SETTLEMENT_NAME} habt Ihr das Vorrecht. Möchtet Ihr dieses Lehen für Euch beanspruchen?"/>
+
+    <string id="IWZ91JVk" text="Nicht genug Gold!"/>
+
+    <string id="LpoyhORp" text="Lehen geben"/>
+    <string id="h3b1S5Wq" text="Lehen an {CLAN_NAME} geben"/>
+    <string id="jznJfkfU" text="Lehen übergeben"/>
+    <string id="cXbgaPSm" text="{SETTLEMENT_NAME} wurde an {CLAN_NAME} übergeben."/>
+
+    <string id="FqeN0fmR" text="Ihr könnt Eurem Clan keine Lehen geben."/>
+    <string id="zdSYUnZQ" text="Ihr seid nicht der Anführer Eures Königreichs."/>
+    <string id="D61vzEC7" text="Ihr habt keine Lehen zu vergeben."/>
+    <string id="98hwXUTp" text="Gebt Lehen an Clans Eures Königreichs"/>
+    <string id="Q7jRqnez" text="Ihr könnt Lehen nicht an Söldnerclans vergeben."/>
+
+    <string id="DrnXprup" text="Der Krieg ist noch nicht lange genug vorbei, um an eine Allianz zu denken. Es sind erst {ELAPSED_DAYS} Tage von den erforderlichen {REQUIRED_DAYS} Tagen vergangen."/>
+    <string id="KHJyWj9H" text="Kann nicht in einer Allianz sein."/>
+    <string id="UQZmdLzc" text="Kann nicht im Krieg sein."/>
+    <string id="qIa19an4" text="Bündnis gebildet"/>
+    <string id="3pbwc8sh" text="Bündnisvorschlag"/>
+    <string id="QbOqatd7" text="{KINGDOM} schlägt ein Bündnis mit {PLAYER_KINGDOM} vor."/>
+
+    <string id="384jX28Q" text="{KINGDOM} bricht das Bündnis mit {PLAYER_KINGDOM}."/>
+    <string id="D1ZQKZr1" text="Bündnis gebrochen"/>
+
+    <string id="0WPWbx70" text="Bündnis bilden"/>
+    <string id="K4GraLTn" text="Bündnis brechen"/>
+
+    <string id="VvTTrRpl" text="Diese Fraktion ist nicht daran interessiert, ein Bündnis zu bilden."/>
+    <string id="wst0lArp" text="Das Bündnis besteht noch nicht lange genug, um einen Bruch in Betracht zu ziehen! Es sind erst {ELAPSED_DAYS} Tage von den erforderlichen {REQUIRED_DAYS} Tagen vergangen."/>
+
+    <string id="KqfNSsBE" text="Verbündete"/>
+    <string id="Dirltd6Z" text="Bündnisse sind deaktiviert."/>
+
+    <string id="Q8ItogIP" text="Direkt vorschlagen bei {ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}"/>
+    <string id="BC7823G2" text="{?REPARATIONS_PAY}, zahlt {REPARATIONS} Kriegsreparationen{?TRIBUTE_PAY} und {TRIBUTE} Tribut/Tag.{?}{?TRIBUTE_GET}, erhält {TRIBUTE} Tribut/Tag.{?}{\?}{\?}{\?}{?REPARATIONS_GET}, erhält {REPARATIONS} Kriegsreparationen{?TRIBUTE_PAY}, zahlt {TRIBUTE} Tribut/Tag.{?}{?TRIBUTE_GET} und {TRIBUTE} Tribut/Tag.{?}{\?}{\?}{\?}{?TRIBUTE_PAY}, zahlt {TRIBUTE} Tribut/Tag.{?}{?TRIBUTE_GET}, erhält {TRIBUTE} Tribut/Tag.{?}.{\?}{\?}{\?}{\?}"/>
+    <string id="9CvcPwJA" text="{?FIEFS_ANY} Möglicherweise müsst Ihr einige der eingenommenen Lehen zurückgeben!{?}{\?}"/>
+
+    <!--Millions and thousands-->
+    <string id="6xcW68Tw" text="{VALUE}Mio."/>
+    <string id="oD4fZ2tY" text="{VALUE}Tsd."/>
+
+    <string id="XlL50Ha9" text="Frieden kann nicht während einer aktiven Spieler-Belagerung geschlossen werden."/>
+
+    <string id="bCOCjOQM" text="Verh."/>
+    <string id="RxawrCjg" text="Verhältniszuwachs bei Empfänger"/>
+
+    <string id="fXcEtO29" text="Kann keinen aktiven Nichtangriffspakt haben."/>
+
+    <string id="zpNalMeA" text="Bündnisse"/>
+    <string id="y5tXjbLK" text="Kriege"/>
+    <string id="noWHMN1W" text="Nichtangriffspakte"/>
+
+    <string id="yj4XFa5T" text="Vorschlag eines Nichtangriffspakts"/>
+    <string id="gyLjlpJB" text="{KINGDOM} schlägt einen Nichtangriffspakt mit {PLAYER_KINGDOM} vor."/>
+
+    <string id="9pY0NQrk" text="Pakt schließen"/>
+    <string id="9zlQNtlX" text="Einen Nichtangriffspakt für {DAYS} Tage schließen."/>
+
+    <string id="1occw3EF" text="Stat."/>
+    <string id="OvbY5qxL" text="Übersicht"/>
+
+    <string id="UDC8eW7s" text="{ALLIED_KINGDOM} schließt sich seinem Verbündeten {KINGDOM} im Krieg gegen {ENEMY_KINGDOM} an."/>
+
+    <string id="pdI7Tjtj" text="Nichtangriffspakt abgelaufen"/>
+    <string id="uWY09LJb" text="Der Nichtangriffspakt zwischen {KINGDOM} und {OTHER_KINGDOM} ist abgelaufen."/>
+
+    <string id="dUCOV7km" text="Korruption (zu viele Lehen)"/>
+    <string id="koTNaZUX" text="Einflussverlust (zu viel Einfluss)"/>
+    <string id="uZc8Hg01" text="Maximaler Einflussverlust"/>
+
+    <string id="kMjfN2fB" text="Abbrechen"/>
+
+    <string id="q5qphBwi" text="Schwache Fraktion"/>
+    <string id="sygtLRqA" text="Verhältnis"/>
+
+    <string id="cmOSpfyW" text="Bündnis mit {ALLIED_KINGDOM}"/>
+    <string id="RqQ4oqvl" text="Krieg mit {ENEMY_KINGDOM}"/>
+    <string id="t6YhBLj7" text="Nichtangriffspakt mit {KINGDOM}"/>
+    <string id="BjkwaNot" text="Ehe mit führendem Clan von {KINGDOM}"/>
+
+    <string id="M4SGjzQP" text="Diese Fraktion ist nicht daran interessiert ein Bündnis zu bilden."/>
+
+    <string id="Gzq6VHPt" text="Gold spenden"/>
+    <string id="N7goPgiq" text="Thron ergreifen"/>
+    <string id="WVe7QwhW" text="Ergreift den Thron dieses Königreichs\nUnterstützung: {SUPPORTING_TIERS} / {OPPOSING_TIERS}"/>
+
+    <string id="CxdpR6w4" text="Expansionismus"/>
+
+    <string id="ARNRwPrY" text="Koalition gebildet"/>
+    <string id="qbLPBlIv" text="Calradia wird misstrauisch gegenüber der unaufhaltsamen Expansion von {EXPANSIONIST_KINGDOM}. Eine Koalition unter der Führung von {COALITION_KINGDOM} wurde gebildet, um dagegen anzukämpfen!"/>
+
+    <string id="vB3RrMNf" text="{KINGDOM} hat einen Nichtangriffspakt {OTHER_KINGDOM} mit geschlossen."/>
+    <string id="PdN5g5ub" text="{KINGDOM} hat ein Bündnis mit {OTHER_KINGDOM} gebildet!"/>
+    <string id="5r6fsHgm" text="Aktueller Stand"/>
+    <string id="XIBUWDlT" text="Benötigter Stand"/>
+
+    <string id="5znwaUVC" text="Verbleibende Tage: {DAYS_LEFT}"/>
+
+    <string id="Euy6Mwcq" text="Ihr müsst mit der Hauptgeschichte fortfahren, um diese Aktion freizuschalten. Ihr könnt den Hauptgeschichtsschutz in den Mod-Optionen deaktivieren."/>
+    <string id="fQxiCdBA" text="Hauptgeschichte"/>
+    <string id="3wXqST66" text="Indem Ihr diesen Thron ergreift, verpflichtet Ihr Euch das Imperium in der Hauptgeschichte zu {STANCE}."/>
+    <string id="yAFwbD9B" text="vereinen"/>
+    <string id="IGJVx5XI" text="zerstören"/>
+
+    <string id="lQAaLeSy" text="Ihr habt nicht die Befugnis, diese Aktion durchzuführen."/>
+
+    <string id="7QvXkcxH" text="Spendet Gold an Clans Eures Königreichs"/>
+    <string id="e7uxH1jc" text="Goldkosten: {GOLD_COST}"/>
+    <string id="4lG3JG2e" text="Verhältnisgewinn: {RELATION_GAIN}+"/>
+
+    <string id="Q2vXbwvC" text="Diplomatie"/>
+    
+    <!--
+    ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
+    -->
+
+    <string id="sBw5Qzq3" text="Königreichsdiplomatie"/>
+    <string id="tis8Ddzn" text="Spieler erlauben, selbst eroberte Lehen zu beanspruchen"/>
+    <string id="TfxLCxcD" text="Gibt dem Spieler die Möglichkeit, ein Lehen zu beanspruchen, welches er eingenommen hat, anstatt dass darüber abgestimmt wird."/>
+    <string id="8VKC3jtN" text="Eliminierung von Königreichen ohne Lehen aktivieren"/>
+    <string id="TlymwwPZ" text="Wenn aktiviert, werden Königreiche ohne Lehen zerstört, wenn sie einen Friedensvertrag unterzeichnen, der den letzten andauernden Krieg, an dem sie teilnehmen, beendet. Standard ist aktiviert."/>
+    <string id="w8Hi9jJf" text="Verzögere Eliminierung von Königreichen ohne Lehen"/>
+    <string id="GDctI4Kd" text="Wenn aktiviert, werden Königreiche ohne Lehen nur zerstört, wenn sie einen Friedensvertrag unterzeichnen, der den letzten andauernden Krieg beendet, an dem sie beteiligt sind und nicht sofort, nachdem sie ihr letztes Lehen verloren haben. Standard ist aktiviert."/>      
+    <string id="ZRlNvsev" text="Minimale Kriegsdauer in Tagen"/>
+    <string id="vuFT5ns8" text="Die Mindestdauer (in Tagen), die ein Krieg andauert, bevor Frieden vorgeschlagen werden kann. Standard ist 21 (ein Viertel eines Standardspieljahres)."/>
+    <string id="4MzQHMVj" text="Kriegsabklingzeit in Tagen"/>
+    <string id="q2duqN8d" text="Die Mindestdauer (in Tagen), bevor einem Königreich nach Friedensschluss erneut der Krieg erklärt werden kann. Standard ist 21 (ein Viertel eines Standardspieljahres)."/>
+    <string id="2XC8QHkl" text="Bündnisse aktivieren"/>
+    <string id="5YJBZx28" text="Wenn deaktiviert, können Spieler und KI-Königreiche keine Bündnisse schließen. Standard ist aktiviert."/>
+    <string id="H6XMjwpF" text="Minimale Bündnisdauer in Tagen"/>
+    <string id="RrsWhIWi" text="Die Mindestdauer (in Tagen), die ein Bündnis andauert, bevor es gebrochen werden kann. Der Standardwert beträgt 42 (die Hälfte eines Standardspieljahres)."/>
+    <string id="5a829TiT" text="Bündnistendenz"/>
+    <string id="7nSjs8UL" text="Modifikator, der die Tendenz von Königreichen beeinflusst, Bündnisse zu schließen. Die Erhöhung des Modifikators macht Bündnisse für KI-Königreiche begehrenswerter. Standard ist 0."/>
+    <string id="V35hUfcc" text="Dauer von Nichtangriffspakten in Tagen"/>
+    <string id="KXLGZEPh" text="Die Dauer (in Tagen), die ein Nichtangriffspakt andauert. Standard ist 84 (ein Standardspieljahr)."/>
+    <string id="G8BhBnRG" text="Nichtangriffspakttendenz"/>
+    <string id="907ER5u9" text="Modifikator, der die Tendenz von Königreichen beeinflusst, Nichtangriffspakte zu schließen. Die Erhöhung des Modifikators macht Nichtangriffspakte für KI-Königreiche begehrenswerter. Standard ist 0."/>
+    <string id="6m1SspFW" text="Diplomatiekontrolle über Spielerkönigreich aktivieren"/>
+    <string id="N5EouSSj" text="Gibt dem Spieler die volle Kontrolle über die Erklärung von Krieg und dem Schluss von Frieden in dem Königreich, dem er angehört, auch wenn er nur ein Vasall und nicht der Anführer des Königreichs ist. Standard ist deaktiviert."/>
+    <string id="lhysZl9j" text="Aktionstendenz"/>
+    <string id="dRyU9E7Z" text="Keine Kriege zwischen Freunden"/>
+    <string id="XyXJSTKr" text="Wenn aktiv, werden Anführer von Königreichen, die befreundet sind, keine Kriege miteinander beginnen. Standard ist aktiviert."/>
+    <string id="pWoKQ6HO" text="Keine Kriege bei guten Beziehungen"/>
+    <string id="bOuGhbPt" text="Wenn aktiv, werden Kriege zwischen Anführern von Königreichen nicht erlaubt, wenn Verhältnisse oberhalb der Kriegsbeginnsverhältnisse liegen. Standard ist aktiviert."/>
+    <string id="x0Aoiomr" text="Kriegsbeginnsverhältnisgrenzwert"/>
+    <string id="aH6rpjt6" text="Der Verhältniswert, ab welchem Königreiche keine Kriege miteinander beginnen. Standard ist 30."/>
+    <string id="jwNKk8P7" text="Keine Kriege bei Verheiratung"/>
+    <string id="xcMzKH48" text="Wenn aktiv, werden führende Clans des Königreichs, die eine Ehe untereinander haben, keine Kriege beginnen. Standard ist aktiv."/>
+    <string id="xcMzKH48" text="Wenn aktiv, werden führende Clans des Königreichs, die eine Ehe untereinander haben, keine Kriege beginnen. Standard ist aktiv."/>
+    <string id="xXKKRp99" text="Ehe zu Anführerclan beeinflusst Bündnis"/>
+    <string id="BGS6mUID" text="Wenn aktiv, wird ein Bonus auf die Bündnistendenz gewährt, wenn Anführerclans untereinander verheiratet sind. Standard ist aktiv."/>
+      
+    <string id="ldLFTs92" text="Kosten"/>      
+    <string id="Ckd1Lsoa" text="Goldkosten"/>
+    <string id="t4hNAoD7" text="Skalierung von Goldkosten aktivieren"/>
+    <string id="5MMIDE5A" text="Wenn aktiviert, wird dies die Goldkosten für diplomatische Handlungen und Kriegsreparationen, basierend auf der Größe des eigenen Königreichs, erhöhen. Andernfalls gelten die generischen Multiplikatoren von 100 für diplomatische Aktionen und 1000 für Kriegsreparationen. Standard ist aktiviert."/>
+    <string id="vD270X6H" text="Goldkostenskalierungsmultiplikator"/>
+    <string id="Gd52NzBP" text="Multiplikator für die Skalierung von Goldkosten. Standard ist 5."/>
+    <string id="HFtZsD6v" text="Kriegsreparationsgoldkostenskalierungsmultiplikator"/>
+    <string id="MIhbrqbr" text="Multiplikator für die Skalierung der Goldkosten von Kriegsreparationen. Standard ist 50."/>
+    <string id="Cr6a5Jap" text="Kriegsreparationsgoldkosten bei Niederlage"/>
+    <string id="NH4GNKva" text="Die Basiskosten in Gold für den Verlust eines Kriegs gegen ein anderes Königreich. Betroffen von Skalierung. Bei deaktivierter Skalierung wird mit 1000 multipliziert. Standard ist 200."/>
+
+    <string id="SEViwYTl" text="Einflusskosten"/>
+    <string id="WbOKuWbQ" text="Einflusskosten aktivieren"/>
+    <string id="K2vLGalN" text="Wenn deaktiviert, entfallen die Einflusskosten für Krieg- und Friedenserklärungen. Standard ist aktiviert."/>
+    <string id="9PlT57Nl" text="Einflusskosten(-skalierung)"/>
+    <string id="P1g6Ht1e" text="Skalierung von Einflusskosten aktivieren"/>
+    <string id="xfVFBxfj" text="Wenn aktiviert, werden die Kosten basierend auf der Größe des eigenen Königreiches skaliert. Andernfalls werden feste Einflusskosten verwendet. Standard ist aktiviert."/>
+    <string id="TvAYJv5Q" text="Einflusskostenskalierungsmultiplikator"/>
+    <string id="AQ5gRYN6" text="Multiplikator für die Skalierung von Einflusskosten. Standard ist 5."/>
+    <string id="BazjeCZw" text="Einflusskosten (Festwert)"/>
+    <string id="OnTeAgin" text="Feste Einflusskosten für Kriegserklärung"/>
+    <string id="O5XvybTI" text="Einflusskosten für die Kriegserklärung gegen ein anderes Königreich. Standard ist 500."/>
+    <string id="iNsXQD2q" text="Feste Einflusskosten für Friedensschluss"/>
+    <string id="WB5zdvdT" text="Einflusskosten, um Frieden mit einem anderen Königreich zu schließen. Standard ist 500."/>
+
+    <string id="nueOs6m9" text="Boten"/>
+    <string id="nwTyegdV" text="Botenunfälle aktivieren"/>
+    <string id="T7yybpw3" text="Wenn aktiviert, existiert eine kleine Chance, dass Boten verunglücken können. Je länger die Reise, desto höher ist die Wahrscheinlichkeit eines Unfalls. Standard ist aktiviert."/>
+    <string id="ysYCYvwT" text="Botenversand einschränken"/>
+    <string id="5O87pSL3" text="Wenn aktiviert, können Boten nur an Personen gesendet werden, welche dem Spieler bekannt sind. Andernfalls kann an jede Person ein Bote gesendet werden. Standard ist aktiviert."/>
+    <string id="nnXi6MmH" text="Botenreisezeit in Tagen"/>
+    <string id="zkvCGLuK" text="Die maximale Zeit (in Tagen), die ein Bote benötigt, um den Empfänger zu erreichen. Beeinflusst die Reisegeschwindigkeit der Boten. Standard ist 3."/>
+    <string id="nMwWHj4h" text="Botengoldkosten"/>
+    <string id="ehMf7xvE" text="Goldkosten für das Senden eines Boten an einen anderen Charakter. Standard ist 100."/>
+
+    <string id="OfEMJWiR" text="Verhältnis"/>
+    <string id="6l9QNMrB" text="Lehenvergabeverhältniszuwachsmultiplikator"/>
+    <string id="FQaghHo7" text="Multiplikator für den Verhältniszuwachs bei der Vergabe von Lehen. Standard ist 1."/>
+    <string id="9qKclHq3" text="Lehenvergabeverhältnisverlustmultipliaktor"/>
+    <string id="fgc8Dvg0" text="Multiplikator für den Verhältnisverlust bei der Vergabe von Lehen an einen anderen Clan. Standard ist -2."/>
+
+    <string id="8ZPKToTq" text="Einflussausgleich"/>
+    <string id="4jlYRUdZ" text="Einflussausgleich aktivieren"/>
+    <string id="tOMN9DQD" text="Kontrolliert, ob die Berechnung von Einflussverlust und Korruption aktiv ist. Muss möglicherweise aus Modkompatibilitätszwecken deaktiviert werden."/>
+
+    <string id="vzKRX2JA" text="Einflussverlust"/>
+    <string id="szYr4OTG" text="Einflussverlust aktivieren"/>
+    <string id="rKS9z4Sz" text="Aktiviert den Einflussverlust, der regelmäßig Einfluss verfallen lässt. Der Standardwert ist aktiviert."/>
+
+    <string id="pVE1yNlm" text="Einflussverlustgrenzwert"/>
+    <string id="MnLk08uW" text="Die vom Einflussverlust ausgenommene Anzahl von Einfluss. Standard ist 1000."/>
+    <string id="WTeM4Rba" text="Maximaler Einflussverlust pro Tag"/>
+    <string id="CGixJ6ng" text="Der maximal täglich mögliche Einflussverlust. Standard ist 20."/>
+    <string id="yob5ZHtz" text="Einflussverlust pro Tag in Prozent"/>
+    <string id="IYFl4kJx" text="Der Prozentsatz an Einfluss, der pro Tag verloren geht. Standard ist 2,0%."/>
+
+    <string id="e5fHDXgl" text="Korruption"/>
+    <string id="KWAH0S4h" text="Korruption aktivieren"/>
+    <string id="trgnZ0pn" text="Aktiviert Korruption, die jeden Tag den Einfluss eines Clans verringert, wenn er zu viele Lehen hat. Standard ist aktiviert."/>
+
+    <string id="ZqQaUIil" text="Expansionismus"/>
+    <string id="2raR1ZHv" text="Koalitionen"/>
+    <string id="Pr4dcRKm" text="Minimaler Expansionismus pro Lehen"/>
+    <string id="9qcAWjI7" text="Die minimale Menge an Expansionismus, die ein Lehen hinzufügt. Standard ist 3."/>
+    <string id="MnhMW8iq" text="Expansionismus pro Belagerung"/>
+    <string id="lCbie62E" text="Hinzugefügter Expansionismus pro erfolgreicher Belagerung. Der Standard ist 20."/>
+    <string id="mEXGC0h3" text="Expansionismusabnahme pro Tag"/>
+    <string id="kgPeQvqE" text="Die Menge an Expansionismus, die jeden Tag abgezogen wird. Standard ist 1."/>
+    <string id="ZIf1tRII" text="Koalitionen aktivieren"/>
+    <string id="8v8q0OGu" text="Aktiviert Koalitionen, die es Fraktionen erlauben, sich gegen eine starke, expansionistische Fraktion zu verbünden. Standard ist aktiviert."/>
+    <string id="1kSd88X5" text="Expansionismusgrenzwert"/>
+    <string id="EUnASoee" text="Die Menge an Expansionismus, die eine Fraktion benötigt, bevor eine Koalition gegen sie gebildet wird. Standard ist 100."/>
+    <string id="zwbL9BHe" text="Koalitionsbildungschance pro Tag in Prozent"/>
+    <string id="9ugCWA3v" text="Die prozentuale Wahrscheinlichkeit für die Entstehung einer Koalition gegen eine Fraktion über dem Expansionismusgrenzwert. Standard ist 5."/>
+
+    <string id="lsyl0VSX" text="Hauptgeschichtsschutz"/>
+    <string id="EVrErrTR" text="Wenn aktiviert, hindert das den Spieler daran, die Hauptgeschichte zu unterbrechen. Deaktivieren, wenn Mods wie &quot;Just Let Me Play&quot; benutzt werden. Standard ist aktiviert."/>
+
+    <string id="f6n2UAEC" text="Unfertige Funktionen"/>
+    <string id="HSoZfvXH" text="Thronergreifungsfunktion aktivieren"/>
+    <string id="ZIAo4er4" text="Wenn aktiviert, erhält der Spieler die Möglichkeit, den Thron eines Königreichs zu ergreifen. Diese Funktion ist unausgewogen und wartet auf eine Überarbeitung, weshalb sie nicht empfohlen wird. Der Standardwert ist deaktiviert."/>
+  </strings>
+</base>

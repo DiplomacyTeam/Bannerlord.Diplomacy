@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Deutsch"/>
+  </tags>
+  <strings>
+    <string id="0WVHMfN8" text="Eine Rebellion zerbricht"/>
+    <string id="BVNGIAMM" text="{PARENT_KINGDOM} hat die Rebellion zerschlagen, welche sein Königreich verwüstet. {PLAYER_PARTICIPATION}"/>
+    <string id="x5ThZR5A" text="Ein neues Königreich entsteht"/>
+    <string id="nRxyMIEE" text="{PARENT_KINGDOM} hat den Bürgerkrieg verloren und konnte sein Königreich nicht zusammenhalten. {KINGDOM} ist entstanden. {PLAYER_PARTICIPATION}"/>
+    <string id="1OQGJkqb" text="Eine Rebellenfraktion entsteht"/>
+    <string id="pqjZ6wck" text="Eine Rebellenfraktion ist in {KINGDOM} entstanden. Sie wird von Clan {CLAN_NAME} angeführt. {DEMAND}"/>
+    <string id="ZAfNviVS" text="Abspaltung"/>
+    <string id="wUspUo1y" text="Abdankung"/>
+    <string id="LF19GulH" text="Abspaltung vom Königreich. Mitglieder dieser Fraktion werden ein neues Königreich gründen. Nur Clans der Stufe 4 oder höher können eine Abspaltungsfraktion erstellen."/>
+    <string id="GK1seKeJ" text="Zwingt den Anführer des Königreichs zum Rücktritt. Eine Wahl wird den neuen Anführer des Königreichs bestimmen."/>
+    <string id="brEXAKDb" text="Die Rebellen fordern, dass ihre Ländereien unabhängig werden dürfen."/>
+    <string id="8A6JPMWp" text="Die Rebellen fordern, dass {LEADER} auf den Thron verzichtet."/>
+    <string id="ChzQncc0" text="Rebellion"/>
+    <string id="WUAv0u4U" text="Sammelt Unterstützung"/>
+    <string id="fw0k1KFl" text="Forderung: {DEMAND_NAME}"/>
+    <string id="FajeZClv" text="{REBELS} ({KINGDOM} Rebellen)"/>
+    <string id="nAvLFv5Q" text="Bürgerkrieg bricht aus"/>
+    <string id="2PpZkBOB" text="In {KINGDOM} ist ein Bürgerkrieg ausgebrochen. Die {REBEL_KINGDOM} werden von Clan {CLAN_NAME} angeführt. {DEMAND}"/>
+    <string id="o0HIAHqg" text="Diplomatische Handlungen sind bei Rebellenkönigreichen nicht möglich."/>
+    <string id="GKSaZESx" text="Mit der Wahl eines neuen Monarchen und der Erfüllung ihres Ziels, lösen sich {REBELS} von {PARENT_KINGDOM} auf."/>
+    
+    <string id="BPcKHP0D" text="Als Anführer der Rebellion hast du {INFLUENCE} Einfluss erhalten."/>
+    <string id="UoMvwnTb" text="Als Anführer der Rebellion hast du {INFLUENCE} Einfluss verloren."/>
+    <string id="QiX6m5cp" text="Als Mitglied der Rebellion hast du {INFLUENCE} Einfluss erhalten."/>
+    <string id="yrz8GMUb" text="Als Mitglied der Rebellion hast du {INFLUENCE} Einfluss verloren."/>
+
+    <string id="SNLviWvc" text="Als Anführer der Loyalisten hast du {INFLUENCE} Einfluss verloren."/>
+    <string id="2I1X5fAC" text="Als Anführer der Loyalisten hast du {INFLUENCE} Einfluss erhalten."/>
+    <string id="4FfA8RL4" text="Als Mitglied der Loyalisten hast du {INFLUENCE} Einfluss verloren."/>
+    <string id="uUu7DEDU" text="Als Mitglied der Loyalisten hast du {INFLUENCE} Einfluss erhalten."/>
+    
+    <string id="f66sNaiz" text="Ihr könnt nicht Teil einer Rebellion sein"/>
+
+    <string id="DZ6dpEn3" text="Fraktion beitreten"/>
+    <string id="uTCw0WiH" text="Fraktion verlassen"/>
+    <string id="1OUDq7Ul" text="Machtverhältnis"/>
+    <string id="5q7TvMGL" text="Rebellion starten"/>
+    <string id="Ysrttgis" text="Anfangsdatum: {CAMPAIGN_TIME}"/>
+    <string id="o3w3jNzZ" text="Forderung: {DEMAND_NAME}"/>
+    <string id="hbPiVQVK" text="Status: {STATUS}"/>
+    <string id="TvSHYACm" text="Stärke: {STRENGTH}"/>
+    <string id="dlANhHUd" text="Fraktionen"/>
+    <string id="hBSo0Ziq" text="Fraktion gründen"/>
+    <string id="2PglxF8k" text="Fraktionsforderung wählen"/>
+    <string id="gypPPxUJ" text="Fraktionen"/>
+    <string id="aWWzFITw" text="Ein Monarch dankt ab"/>
+    <string id="2Pv3DsVm" text="{PARENT_KINGDOM} hat den Bürgerkrieg gegen die {REBELS} verloren. {LEADER} wird auf den Thron verzichten. {PLAYER_PARTICIPATION}"/>
+    <string id="GkhKppOk" text="Nicht genug Lehen"/>
+    <string id="Jc1mCVuY" text="Merkmal: Abgebrühtheit"/>
+    <string id="cjbVV7E3" text="Clanrang zu niedrig"/>
+    <string id="Vp9EcnuC" text="Fraktionstendenz"/>
+    <string id="dr1OCcmL" text="Beziehung zum Herrscher"/>
+    <string id="mouJZAAy" text="Beziehung zum Anführer"/>
+    <string id="FtX4LPXF" text="Größe des Königreichs"/>
+    <string id="VFwDRHc7" text="Teilnehmer"/>
+    <string id="IYO5TNTg" text="Recht zu regieren"/>
+    <string id="YLUocN5e" text="Anführer hat das Recht zu regieren"/>
+    <string id="qAcR4Yee" text="Freundliche Clans in Fraktion"/>
+    <string id="1AZK0UVJ" text="Anführer hat kein Recht zu regieren"/>
+
+    <string id="ovgs58sT" text="Während einer aktiven Rebellion kann keine Fraktion gegründet werden."/>
+    <string id="VbpiW2bd" text="Eine Fraktion kann nicht so bald nach einem Bürgerkrieg gegründet werden."/>
+    <string id="JDk8ustS" text="Söldner können keine Fraktionen gründen."/>
+    <string id="quo5erz6" text="Herrscher können keine Fraktionen gründen."/>
+    <string id="luvsD6Zn" text="Es kann keine Fraktion in einem Rebellenkönigreich gegründet werden."/>
+    <string id="iXMeCmj0" text="Muss Clanrang 4 oder höher sein."/>
+    <string id="Xu3rnEEa" text="Muss ein Teil von {KINGDOM_NAME} sein, um eine {KINGDOM_NAME} Fraktion zu gründen."/>
+    <string id="DxJH7ciY" text="Ein Königreich kann nur eine Abdankungsfraktion haben."/>
+    <string id="zTZWwJfN" text="Du kannst nicht zwei Fraktionen anführen."/>
+    
+    <!-- <string id="" text="" /> -->
+
+    <string id="EYB5Uggd" text="Der Anführer ist {TRAIT}"/>
+    <string id="E00ywbqb" text="Der Herrscher ist {TRAIT}"/>
+
+    <string id="GeevRiNR" text="{LABEL}{newline} {newline}{REASON}"/>
+    <string id="ALSuNVzE" text="{EXCEPTION}{newline} {newline}{DEMAND_HINT}"/>
+
+    <!-- Settings -->
+    <string id="eDZeFUTH" text="Bürgerkriege"/>
+    <string id="VB97zQeJ" text="Mindestzeit zwischen Bürgerkriegen in Tagen"/>
+    <string id="5cUqaLk4" text="Die minimale Zeitspanne zwischen einem Bürgerkrieg und dem Zeitpunkt, an dem neue Rebellenfraktionen in einem Reich entstehen können. Standard ist 240."/>
+    <string id="UdadyqpN" text="Tägliche Wahrscheinlichkeit, eine Rebellenfraktion zu gründen"/>
+    <string id="yznXCi1d" text="Die tägliche Wahrscheinlichkeit, dass ein Clan eine Rebellenfraktion gründet. Standard ist 100%."/>
+    <string id="r312b3Of" text="Tägliche Wahrscheinlichkeit, einer Rebellenfraktion beizutreten"/>
+    <string id="06oPGRj0" text="Die tägliche Wahrscheinlichkeit, dass ein Clan einer Rebellenfraktion beitritt, die er unterstützen würde. Standard ist 100%."/>
+    <string id="lIbUuQB1" text="Die tägliche Wahrscheinlichkeit, einen Bürgerkrieg auszulösen"/>
+    <string id="zr10ZS3L" text="Die tägliche Wahrscheinlichkeit, dass eine Fraktion mit ausreichender Unterstützung einen Bürgerkrieg beginnt. Standard ist 50%."/>
+    <string id="VNILqmoY" text="Maximale Fraktionsdauer in Tagen"/>
+    <string id="rNJIvaSm" text="Die maximale Zeitspanne, die eine Fraktion überleben kann, ohne in einen Bürgerkrieg zu geraten. Standard ist 120."/>
+    <string id="6kNmdLxZ" text="Einflusskosten für Fraktionserstellung"/>
+    <string id="EwbXg3va" text="Die Einflusskosten um eine Fraktion zu gründen. Standard ist 100."/>
+    <string id="7wK0mmw1" text="Fraktionstendenz"/>
+    <string id="aqvIdG7w" text="Punktemodifikator, der die Tendenz von Clans beeinflusst, Fraktionen zu gründen oder beizutreten. Eine Erhöhung des Modifikators erhöht die Beteiligung an Fraktionen. Standard ist 0."/>
+    
+  </strings>
+</base>

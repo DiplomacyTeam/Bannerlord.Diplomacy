@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Deutsch"/>
+  </tags>
+  <strings>
+    <!--<string id="" text="" />-->
+    <string id="XmVTQ0bH" text="Kriegserschöpfung"/>
+
+    <string id="BXluvRnJ" text="Bittere Niederlage"/>
+    <string id="0aZCy0at" text="Erzwungener Frieden"/>
+
+    <string id="vLfbqXjq" text="Eure Armeen und Euer Volk sind vom Konflikt mit {ENEMY_KINGDOM} erschöpft und haben den Kampf aufgegeben. Ihr müsst die Bedingungen der Niederlage akzeptieren und Kriegsreparationen in Höhe von {REPARATIONS}{GOLD_ICON} zahlen. Diese Ausgaben werden unter allen Clans des Königreichs aufgeteilt. {?ADD_TRIBUTE}Zusätzlich verpflichtet Ihr Euch, einen täglichen Tribut von {TRIBUTE}{GOLD_ICON} zu entrichten.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Darüber hinaus müsst Ihr {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} und {?}{\?}{FIEFS_TO_RETURN_LIST.END} an {ENEMY_KINGDOM} zurückgeben.{NEW_LINE} {NEW_LINE}{?} {\?}Die Schande der Niederlage wird Euch {INFLUENCE} Einfluss kosten."/>
+    <string id="ghZCj7hb" text="Mit dem Fall Eurer letzten Festung an eure Feinde könnt Ihr den Kampf gegen {ENEMY_KINGDOM} nicht länger fortsetzen. Ihr müsst die Bedingungen der Niederlage akzeptieren{?TO_BE_DESTROYED}. Ohne Land und Lebensgrundlage existiert Euer Königreich nicht mehr.{?} und Kriegsreparationen in Höhe von {REPARATIONS}{GOLD_ICON} zahlen. Diese Ausgaben werden unter allen Clans des Königreichs aufgeteilt. {?ADD_TRIBUTE}Zusätzlich verpflichtet Ihr Euch, einen täglichen Tribut von {TRIBUTE}{GOLD_ICON} zu entrichten.{?}{\?}Die Schande der Niederlage wird Euch {INFLUENCE} Einfluss kosten.{\?}"/>
+    <string id="cKV5Jded" text="Die Armeen und das Volk von {KINGDOM.NAME} sind vom Konflikt mit {ENEMY_KINGDOM} erschöpft und haben den Kampf aufgegeben. {KINGDOM_LEADER.NAME} muss die Bedingungen der Niederlage akzeptieren und Kriegsreparationen in Höhe von {REPARATIONS}{GOLD_ICON} zahlen (diese Ausgaben werden unter allen Clans des Königreichs aufgeteilt). {?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Sie{?}Er{\?} verpflichtet sich außerdem, einen täglichen Tribut von {TRIBUTE}{GOLD_ICON} zu entrichten.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Darüber hinaus muss {KINGDOM_LEADER.NAME} {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} und {?}{\?}{FIEFS_TO_RETURN_LIST.END} an {ENEMY_KINGDOM} zurückgeben.{NEW_LINE} {NEW_LINE}{?} {\?}Die Schande der Niederlage wird {?KINGDOM_LEADER.GENDER}sie{?}ihn{\?} {INFLUENCE} Einfluss kosten."/>
+    <string id="idAcjzXB" text="Mit dem Fall Eurer letzten Festung an Eure Feinde könnt Ihr den Kampf gegen {ENEMY_KINGDOM} nicht länger fortsetzen. {KINGDOM_LEADER.NAME} muss die Bedingungen der Niederlage akzeptieren{?TO_BE_DESTROYED}. Ohne Land oder Lebensgrundlage existiert Euer Königreich nicht mehr.{?} Es müssen Kriegsreparationen in Höhe von {REPARATIONS}{GOLD_ICON} gezahlt werden (diese Ausgaben werden unter allen Clans des Königreichs aufgeteilt). {?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Sie{?}Er{\?} verpflichtet sich außerdem, einen täglichen Tribut von {TRIBUTE}{GOLD_ICON} zu entrichten.{?}{\?} Die Schande der Niederlage wird {?KINGDOM_LEADER.GENDER}sie{?}ihn{\?} {INFLUENCE} Einfluss kosten.{\?}"/>
+    <string id="a3W5zKQr" text="Die Armeen und das Volk von {KINGDOM.NAME} und {ENEMY_KINGDOM} sind vom Konflikt erschöpft und haben den Kampf aufgegeben. Es bleibt keine andere Wahl, als Frieden zu schließen{?TO_BE_DESTROYED}, aber ohne Land oder Lebensgrundlage {?IS_REBELLION}ist Eure Rebellion beendet{?}existiert Euer Königreich nicht mehr{\?}{?}{\?}."/>
+
+    <string id="6eTtSKO4" text="Angesichts der jüngsten Ereignisse ist klar, dass die Rebellion namens {REBEL_KINGDOM} erfolgreich war und weiterer Widerstand zwecklos ist. Es ist Zeit, die Niederlage einzugestehen{?TO_BE_DESTROYED}, auch wenn Euer Königreich ohne Land oder Lebensgrundlage nicht mehr existieren würde{?} und Eurem geteilten, vom Krieg zerrissenen Königreich die Chance auf Frieden zu geben{\?}."/>
+    <string id="2ptArJem" text="Angesichts der jüngsten Ereignisse ist klar, dass Eure Rebellion gescheitert ist. Es ist Zeit, die Niederlage einzugestehen und dem geteilten, kriegsmüden {ORIGINAL_KINGDOM} die Chance zu geben, sich wieder zu vereinen."/>
+
+    <string id="HWiDa4R1" text="Die Armeen und das Volk von {KINGDOM.NAME} sind vom Konflikt mit {PLAYER_KINGDOM} erschöpft und haben den Kampf aufgegeben.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} schlägt einen Friedensvertrag vor und ist bereit, Kriegsreparationen in Höhe von {REPARATIONS}{GOLD_ICON} zu zahlen.{?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Sie{?}Er{\?} verpflichtet sich außerdem, einen täglichen Tribut von {TRIBUTE}{GOLD_ICON} zu entrichten.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Darüber hinaus muss {KINGDOM_LEADER.NAME} {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} und {?}{\?}{FIEFS_TO_RETURN_LIST.END} an {PLAYER_KINGDOM} zurückgeben.{?}{\?}"/>
+    <string id="t0ZS9maD" text="Mit dem Fall ihrer letzten Festung kann {KINGDOM.LINK} den Kampf gegen {PLAYER_KINGDOM} nicht länger fortsetzen.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} schlägt einen Friedensvertrag vor{?TO_BE_DESTROYED}, obwohl das Königreich ohne Land oder Lebensgrundlage nicht mehr existieren würde.{?} und ist bereit, Kriegsreparationen in Höhe von {REPARATIONS}{GOLD_ICON} zu zahlen.{?ADD_TRIBUTE} {?KINGDOM_LEADER.GENDER}Sie{?}Er{\?} verpflichtet sich außerdem, einen täglichen Tribut von {TRIBUTE}{GOLD_ICON} zu entrichten.{?}{\?}{\?}"/>
+    <string id="ZrwszZww" text=" Die Armeen und das Volk sowohl von {KINGDOM.NAME} als auch von {PLAYER_KINGDOM} sind vom Konflikt erschöpft und haben den Kampf aufgegeben.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} schlägt einen Friedensvertrag vor{?TO_BE_DESTROYED}, obwohl ohne Land oder Lebensgrundlage {?IS_REBELLION}ihre Rebellion praktisch beendet ist{?}ihr Königreich nicht mehr existieren würde{\?}{?} ohne Bedingungen zu stellen{\?}."/>
+    <string id="q02T8cyI" text="Angesichts der jüngsten Ereignisse ist klar, dass die Rebellion namens {REBEL_KINGDOM} gescheitert ist. Ist es an der Zeit, ihre Bitten um Frieden und Vergebung anzunehmen und eurem geteilten, kriegsmüden Königreich die Chance zu geben, sich wieder zu vereinen?"/>
+    <string id="PC5GdgKA" text="Angesichts der jüngsten Ereignisse ist klar, dass Eure Rebellion gegen {ORIGINAL_KINGDOM.NAME} erfolgreich ist – sogar {ORIGINAL_KINGDOM_LEADER.NAME} hat es eingestanden! Ist es an der Zeit, ihr Friedensangebot anzunehmen und Eure Ziele zu erreichen?"/>
+    <string id="13G0c8RE" text="Angesichts der Verwüstungen, die der Krieg in Eurem Königreich angerichtet hat, bleibt Euch keine andere Wahl, als den Frieden zu akzeptieren."/>
+
+    <!-- Report -->
+    <string id="mCue7aFc" text="Kriegsbericht"/>
+    <string id="hfa8LLqD" text="{EXHAUSTED_FACTION} ist durch den Krieg mit {OTHER_FACTION} kritisch geschwächt. Ihre Fähigkeit, den Krieg fortzusetzen, ist am Limit, {?IS_CIVIL_WAR}was ihre Einsicht in die Unvermeidlichkeit eines Friedensschlusses immer mehr bestätigt{?}was sie immer offener für die Möglichkeit eines Friedens macht{\?}, da die Kriegsmüdigkeit ihr Maximum erreicht."/>
+    <string id="k0Dnf6cU" text="An eine aktive Quest gebunden!"/>
+    <string id="xPHDtsC1" text="Es gibt eine aktive Quest, die verhindert, dass dieser Krieg vorzeitig endet. Um Stabilität zu gewährleisten, wird die Kriegsmüdigkeit unter keinen Umständen {CRITICAL_THRESHOLD}% für eine der beiden Seiten überschreiten."/>
+    <string id="xoY6cYDK" text="War an eine aktive Quest gebunden!"/>
+    <string id="UvjMFpHs" text="Es gab eine aktive Quest, die verhinderte, dass dieser Krieg vorzeitig endete. Daher können die Angaben im Bericht von den Gesamtwerten der Kriegsmüdigkeit abweichen."/>
+    <string id="hAoIC2Iq" text="Anfangsdatum: {START_DATE}"/>
+    <string id="qHrihV27" text="Kriegsdauer: {WAR_DURATION} Tage"/>
+    <!-- Report breakdowns -->
+    <string id="IlFEeNkY" text="Kriegserschöpfungsbericht"/>
+    <string id="zYVH0xYa" text="Verluste"/>
+    <string id="y7XY860U" text="Karawanen überfallen"/>
+    <string id="elRjo1ab" text="Dörfer überfallen"/>
+    <string id="DrNBDhx3" text="Lehen verloren"/>
+    <string id="X1MIWYzy" text="Helden gefangen"/>
+    <string id="6FLtWxSp" text="Helden gestorben"/>
+    <string id="sCRuliNO" text="Voll belegt"/>
+    <string id="XIPMI3gR" text="Kriegsdauer"/>
+    <string id="FVyFJShW" text="Göttliche Interventionen"/>
+    <string id="1kGleqyk" text="Resultierende Kriegserschöpfung"/>
+    <string id="i5VSEDE3" text="{START_DATE} - {END_DATE}: {?COUNT.PLURAL_FORM}Insgesamt {COUNT} frühere Einträge{?}{COUNT} früherer Eintrag{\?}"/>
+
+    <string id="fnPa5bas" text="stationierte Truppen"/>
+    <string id="rwFeQWky" text="Eine Karawane von {KINGDOM_NAME}"/>
+
+    <!-- Event records -->
+    <string id="Toa6V7RL" text="{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% pro Tag über {VALUE} {?VALUE.PLURAL_FORM}volle Tage{?}vollen Tag{\?}"/>
+    <string id="wMVdLssJ" text="{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% pro Tag über {VALUE} {?VALUE.PLURAL_FORM}volle Tage{?}vollen Tag{\?}, während kein Lehen vorhanden war"/>
+    <string id="0nTpub9S" text="{START_DATE} - {END_DATE}: {VALUE} {?VALUE.PLURAL_FORM}Verluste{?}Verlust{\?} im Krieg"/>
+    <string id="SeWNvf1N" text="{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}Verluste{?}Verlust{\?} in einer Schlacht zwischen {FACTION_PARTY} und {OTHER_FACTION_PARTY}"/>
+    <string id="9V6S05X3" text="{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}Verluste{?}Verlust{\?} in der Schlacht um {SETTLEMENT} zwischen {FACTION_PARTY} und {OTHER_FACTION_PARTY}"/>
+    <string id="vhBKtne1" text="{DATE_STR}: {RAIDED_CARAVAN} wurde von {OTHER_FACTION_PARTY} überfallen"/>
+    <string id="Hnxf9Ox3" text="{DATE_STR}: {RAIDED_VILLAGE} wurde von {OTHER_FACTION_PARTY} überfallen"/>
+    <string id="SXhzqm2N" text="{DATE_STR}: {RAIDED_VILLAGE} wurde von {OTHER_FACTION_PARTY} überfallen (betroffen von sinkenden Erträgen)"/>
+    <string id="6cSuGG87" text="{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} Burg{?}{\?}, verteidigt von {FACTION_PARTY}, wurde von {OTHER_FACTION_PARTY} eingenommen"/>
+    <string id="fuaTMWpt" text="{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} Burg{?}{\?}, verteidigt von {FACTION_PARTY}, wurde von {OTHER_FACTION_PARTY} zurückerobert (betroffen von sinkenden Erträgen)"/>
+    <string id="yRvZ37cx" text="{DATE_STR}: {HERO} wurde von {OTHER_FACTION_PARTY} gefangen genommen"/>
+    <string id="i2Moqprl" text="{DATE_STR}: {HERO} wurde von {OTHER_FACTION_PARTY} gefangen genommen (betroffen von sinkenden Erträgen)"/>
+    <string id="QkSVPgDF" text="{DATE_STR}: {HERO} ist eines natürlichen Todes gestorben{?YIELDS_DIMINISHING_RETURNS} (betroffen von sinkenden Erträgen){?}{\?}"/>
+    <string id="S0lkYB5P" text="{DATE_STR}: {HERO} wurde von {OTHER_FACTION_PARTY} ermordet{?YIELDS_DIMINISHING_RETURNS} (betroffen von sinkenden Erträgen){?}{\?}"/>
+    <string id="f6OIFaSj" text="{DATE_STR}: {HERO} ist im Kindbett gestorben{?YIELDS_DIMINISHING_RETURNS} (betroffen von sinkenden Erträgen){?}{\?}"/>
+    <string id="PmOPed8Y" text="{DATE_STR}: {HERO} ist an Altersschwäche gestorben{?YIELDS_DIMINISHING_RETURNS} (betroffen von sinkenden Erträgen){?}{\?}"/>
+    <string id="Pp6wYS5m" text="{DATE_STR}: {HERO} starb in einer Schlacht mit {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (betroffen von sinkenden Erträgen){?}{\?}"/>
+    <string id="QvGjUrmL" text="{DATE_STR}: {HERO} erlag seinen Kriegsverletzungen nach einer Schlacht mit {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (betroffen von sinkenden Erträgen){?}{\?}"/>
+    <string id="5tBkM1O4" text="{DATE_STR}: {HERO} wurde von {OTHER_FACTION_PARTY} hingerichtet{?YIELDS_DIMINISHING_RETURNS} (betroffen von sinkenden Erträgen){?}{\?}"/>
+    <string id="moeUCyaq" text="{DATE_STR}: {HERO} wurde während der Schlacht mit {OTHER_FACTION_PARTY} vermisst{?YIELDS_DIMINISHING_RETURNS} (betroffen von sinkenden Erträgen){?}{\?}"/>
+    <string id="VB1xpuMA" text="{DATE_STR}: {FACTION} wurde vollständig von {OTHER_FACTION} besetzt"/>
+    <string id="X9wHA6q3" text="{DATE_STR}: {FACTION} wurde vollständig von {OTHER_FACTION} besetzt (betroffen von sinkenden Erträgen)"/>
+    <string id="9vOZJpPu" text="{DATE_STR}: {FACTION}s Kriegsmüdigkeit wurde auf wundersame Weise verringert (manche sagen es war göttliche Intervention)."/>
+    <string id="S5tDXkgK" text="{DATE_STR}: Es gibt Gerüchte, dass eine mysteriöse Kraft versucht habe, die Kriegsanstrengungen von {FACTION} zu beeinflussen, aber nichts scheint sich geändert zu haben"/>
+    <string id="fJE6Y9mB" text="{DATE_STR}: Das Volk von {FACTION} verlor plötzlich seinen Kampfeswillen (manche sagen es war göttliche Intervention)"/>
+
+    <!-- Settings -->
+    <string id="V542tneW" text="Kriegsmüdigkeit"/>
+    <string id="lSttctYC" text="Kriegsmüdigkeit aktivieren"/>
+    <string id="Cxyn9ROT" text="Aktiviert die Kriegsmüdigkeitsmechanik. Standard ist aktiviert."/>
+    <string id="Yc2YUIva" text="Sinkende Erträge aktivieren"/>
+    <string id="CaxxEEdC" text="Aktiviert sinkende Erträge für einige Ereignisse bei der Berechnung der Kriegsmüdigkeit. Standard ist aktiviert."/>
+    <string id="HPFINWrc" text="Individuelle Kriegsmüdigkeitsraten"/>
+    <string id="LFVkLcIp" text="Aktiviert die individuellen Kriegsmüdigkeitsraten für Fraktionen. Wenn deaktiviert, wird eine einzelne Rate für jeden Krieg basierend auf der kombinierten Stärke der gegnerischen Fraktionen berechnet. Standard ist aktiviert."/>
+    <string id="gW3eVr5E" text="Aktiviere Lehen-Rückgabe"/>
+    <string id="KEi0UykN" text="Falls aktiviert, müssen Königreiche unter Umständen einige ihrer eroberten Lehen an den ursprünglichen Besitzer zurückgeben, wenn sie den Krieg erheblich verlieren. Standard ist aktiviert."/>
+    <string id="8TFQWL55" text="Kriegsmüdigkeit pro Tag"/>
+    <string id="lgza5wDq" text="Die Menge an hinzugefügter Kriegserschöpfung pro Tag im Krieg. Nicht von der Kriegsmüdigkeitsrate betroffen. Standard ist 0,25%."/>
+    <string id="PAmPVWgD" text="Lehenlosigkeitsmultiplikator"/>
+    <string id="SdjYeYM5" text="Multiplikator für die Menge an hinzugefügter Kriegsmüdigkeit pro Tag für eine Fraktion ohne Lehen im Vergleich zu einer Fraktion mit Lehen. Standard ist 10."/>
+    <string id="s6dNpM6M" text="Kriegsmüdigkeit pro Verlust"/>
+    <string id="NcJtGeM7" text="Die Menge an hinzugefügter Kriegsmüdigkeit, wenn eine Fraktion einen Verlust im Kampf erleidet. Standard ist 0,02%."/>
+    <string id="kr5zAufg" text="Kriegsmüdigkeit pro Karawanenüberfall"/>
+    <string id="PinVMCUE" text="Die Menge an hinzugefügter Kriegsmüdigkeit, wenn eine Karawane einer Fraktion überfallen wird. Standard ist 2,0%."/>
+    <string id="qFJ23KxQ" text="Kriegsmüdigkeit pro gefangenem Held"/>
+    <string id="wctCn9uO" text="Die Grundmenge an hinzugefügter Kriegsmüdigkeit, wenn ein Held einer Fraktion gefangen genommen wird. Von der Bedeutung des Helden für die Fraktion betroffen. Potenziell abhängig von abnehmenden Erträgen. Standard ist 1,0%."/>
+    <string id="4vTzbsXD" text="Kriegsmüdigkeit pro verstorbenem Held"/>
+    <string id="w80tUaVd" text="Die Grundmenge an hinzugefügter Kriegsmüdigkeit, wenn ein Held einer Fraktion getötet wird. Von der Bedeutung des Helden für die Fraktion betroffen. Potenziell abhängig von sinkenden Erträgen, wenn mehrere Helden des gleichen Clans getötet werden. Standard ist 5,0%."/>
+    <string id="eWVGwf2m" text="Kriegsmüdigkeit pro Überfall"/>
+    <string id="ufHDJt8H" text="Die Menge an hinzugefügter Kriegsmüdigkeit, wenn ein Dorf einer Fraktion überfallen wird. Potenziell abhängig von sinkenden Erträgen. Standard ist 3,0%."/>
+    <string id="gGIaLKHk" text="Kriegsmüdigkeit pro Belagerung"/>
+    <string id="mCEa773h" text="Die Menge an hinzugefügter Kriegsmüdigkeit, wenn eine Fraktion eine Stadt verliert. Potenziell abhängig von sinkenden Erträgen. Der Verlust einer Burg erhöht sich um die Hälfte. Standard ist 10,0%."/>
+    <string id="JmUPtZdw" text="Kriegsmüdigkeit bei Besetzung"/>
+    <string id="541jGrpb" text="Die Menge an hinzugefügter Kriegsmüdigkeit, wenn eine Fraktion alle ihre Lehen verliert. Potenziell abhängig von sinkenden Erträgen. Wird nicht von der Kriegsmüdigkeitsrate beeinflusst. Standard ist 15,0%."/>
+    <string id="pPHLRIml" text="Maximale Einträge in Tooltipp"/>
+    <string id="YMf0mSqy" text="Maximale Anzahl von Einträgen in Tooltipps für die Aufschlüsselung im Kriegsmüdigkeitsbericht. Setze dies auf einen Wert, der praktisch für die Ansicht ist. Standard ist 35."/>
+    <string id="F4iFH6un" text="Widget für Kampagnenkarte"/>
+    <string id="zTvbZ8Br" text="Aktiviert ein dediziertes Kriegsmüdigkeits-Widget für jeden laufenden Krieg am oberen Rand der Kampagnenkarte. Standard ist aktiviert."/>
+    <string id="jI9NSxtz" text="Aktiviere Debug-Meldungen über Spieler-Kriegsmüdigkeit"/>
+    <string id="LYyNbQds" text="Aktiviert Debug-Meldungen für Kriegsmüdigkeit, die dem Königreich des Spielers hinzugefügt wird. Standard ist deaktiviert."/>
+
+  </strings>
+</base>
