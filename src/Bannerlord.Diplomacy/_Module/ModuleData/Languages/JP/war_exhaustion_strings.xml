@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="厭戦率"/>
+  </tags>
+  <strings>
+    <!--<string id="" text="" />-->
+    <string id="XmVTQ0bH" text="厭戦率"/>
+
+    <string id="BXluvRnJ" text="苦々しい敗北"/>
+    <string id="0aZCy0at" text="強制和平"/>
+
+    <string id="vLfbqXjq" text="あなたの兵士と民は{ENEMY_KINGDOM}との争いに疲弊し戦いを諦めつつある。敗北を認め、賠償金{REPARATIONS}{GOLD_ICON}を支払わなければならない。この支払いは、国に属する全てのクランで分担される。{?ADD_TRIBUTE}あなた自身はさらに、毎日{TRIBUTE}{GOLD_ICON}を納めばならない。{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE}加えて、{FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL}と{?}{\?}{FIEFS_TO_RETURN_LIST.END}を{ENEMY_KINGDOM}へ返還しなければならない。{NEW_LINE}{?}{\?}敗戦の恥辱によって、あなたは{INFLUENCE}{INFLUENCE_ICON}を失った。"/>
+    <string id="ghZCj7hb" text="最後の拠点が敵の手に落ちたため、もはや{ENEMY_KINGDOM}との戦争を継続できない。敗北を認める文書に調印{?TO_BE_DESTROYED}しなければならない。土地と生計の手段がないため、あなたの国は存続できない。{?}し、賠償金{REPARATIONS}{GOLD_ICON}を支払う必要がある。この支払いは、国に属する全てのクランで分担される。{?ADD_TRIBUTE}あなた自身はさらに、毎日{TRIBUTE}{GOLD_ICON}を納めばならない。{?}{\?}敗戦の恥辱によって、あなたは{INFLUENCE}{INFLUENCE_ICON}を失った。{\?}"/>
+    <string id="cKV5Jded" text="{KINGDOM.NAME}の軍と民は{ENEMY_KINGDOM}との争いに疲弊し、戦いを諦めた。{KINGDOM_LEADER.NAME}は敗戦条項を受け入れ、賠償金{REPARATIONS}{GOLD_ICON}を支払わなければならない。支払いは国の全てのクランで分担される。{?ADD_TRIBUTE}さらに、{KINGDOM_LEADER.NAME}は毎日、献上金{TRIBUTE}{GOLD_ICON}支払う。{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE}{NEW_LINE}加えて、{KINGDOM_LEADER.NAME}は{FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL}・{?}{\?}{FIEFS_TO_RETURN_LIST.END}を{ENEMY_KINGDOM}へ返還しなければならない。{NEW_LINE}{NEW_LINE}{?}{\?}敗戦の恥辱によって、{KINGDOM_LEADER.NAME}は{INFLUENCE}{INFLUENCE_ICON}を失った。"/>
+    <string id="idAcjzXB" text="あなたの最後の拠点が陥落し、もはや{ENEMY_KINGDOM}との戦いを続けることができなくなった。{KINGDOM_LEADER.NAME}は敗戦条項を受け入れなければならない。{?TO_BE_DESTROYED}土地と生計の手段がなければ、あなたの王国は存続できない。{?}賠償金{REPARATIONS}{GOLD_ICON}を支払わなければならない。支払いは国の全てのクランが分担する。{?ADD_TRIBUTE}{KINGDOM_LEADER.NAME}はさらに毎日、献上金{TRIBUTE}{GOLD_ICON}を支払う。{?}{\?}敗戦の恥辱によって、あなたは{INFLUENCE}{INFLUENCE_ICON}を失った。{\?}"/>
+    <string id="a3W5zKQr" text="{KINGDOM.NAME}と{ENEMY_KINGDOM}両国の民と軍隊は対立に疲弊し、戦いを諦めた。和平を結ぶ以外の選択がない{?TO_BE_DESTROYED}が、土地と生計の手段がないため、{?IS_REBELLION}あなたの反乱は終わった{?}あなたの王国は存続できない{\?}{?}{\?}。"/>
+
+    <string id="6eTtSKO4" text="最近の出来事を踏まえれば、{REBEL_KINGDOM}と呼ばれる反乱軍の成功は明白であり、これ以上の抵抗は無益だ。{?TO_BE_DESTROYED}土地と生計の手段がなければあなたの王国は存続できないが{?}{\?}敗北を認めるときだ。{?TO_BE_DESTROYED}{?}戦争で荒廃したあなたの国に、安らぐ機会を与えよう。{\?}"/>
+    <string id="2ptArJem" text="最近の出来事を踏まえれば、あなたの反乱が失敗であることは明白だ。敗北を認め、分裂し荒廃した{ORIGINAL_KINGDOM}を再統合する機会を与えるべきだ。"/>
+
+    <string id="HWiDa4R1" text="{KINGDOM.NAME}の軍と民は{PLAYER_KINGDOM}との争いに疲弊し、戦いを諦めた。{NEW_LINE}{KINGDOM_LEADER.NAME}は和平条約を提案し、賠償金{REPARATIONS}{GOLD_ICON}を申し出ている。{?ADD_TRIBUTE}さらに、{KINGDOM_LEADER.NAME}は毎日、献上金{TRIBUTE}{GOLD_ICON}を支払う。{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE}加えて、{KINGDOM_LEADER.NAME}は{FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL}・{?}{\?}{FIEFS_TO_RETURN_LIST.END}を{PLAYER_KINGDOM}へ返還する。{?}{\?}"/>
+    <string id="t0ZS9maD" text="最後の拠点が陥落し、{KINGDOM.LINK}はもはや{PLAYER_KINGDOM}との戦いを続けることができなくなった。{?TO_BE_DESTROYED}土地と生計の手段がなければ、国が存続できなくなるが、{?}{\?}{KINGDOM_LEADER.NAME}は和平条約を提案し{?TO_BE_DESTROYED}た。{?}、賠償金{REPARATIONS}{GOLD_ICON}を支払{?ADD_TRIBUTE}い、さらに毎日、献上金{TRIBUTE}{GOLD_ICON}を支払うとした。{?}うとした。{\?}{\?}"/>
+    <string id="ZrwszZww" text="{KINGDOM.NAME}の軍と民は{PLAYER_KINGDOM}との争いに疲弊し、戦いを諦めた。{NEW_LINE}{KINGDOM_LEADER.NAME}は、{?TO_BE_DESTROYED}土地も生計の手段も失ってしまったが、{?}無条件での{\\?}和平条約を提案した。{?TO_BE_DESTROYED}{?IS_REBELLION}事実上、彼らの反乱は終わった。{?}彼らの国はもはや存続できない。{\?}{?}{\?}"/>
+    <string id="q02T8cyI" text="最近の出来事を踏まえれば、{REBEL_KINGDOM}と呼ばれる反乱が失敗したことは明白だ。彼らの和平と許しの嘆願を聞き入れ、分裂し疲弊した国土を再統合する時ではないだろうか?"/>
+    <string id="PC5GdgKA" text="最近の出来事を踏まえれば、{ORIGINAL_KINGDOM.NAME}に対するあなたの反乱が成功したことは明白であり、{ORIGINAL_KINGDOM_LEADER.NAME}もそれを認めた!彼らの和平の嘆願を聞き入れ、目的を達成する時ではないだろうか?"/>
+    <string id="13G0c8RE" text="戦争による自国の惨状を知ったあなたには、和平を受け入れる以外の選択がない。"/>
+
+    <!-- Report -->
+    <string id="mCue7aFc" text="戦況報告"/>
+    <string id="hfa8LLqD" text="{EXHAUSTED_FACTION}は{OTHER_FACTION}との戦いで取り返しのつかないほど疲弊した。厭戦気分が頂点に達している彼らの継戦能力は限界であり、{?IS_CIVIL_WAR}和平交渉を避けられないということを一層裏付けることとなった{?}より和平へ向けて歩み寄らせることとなろう{\?}。"/>
+    <string id="k0Dnf6cU" text="進行中のクエストに関連している!"/>
+    <string id="xPHDtsC1" text="この戦争を早期に集結させる妨げになっているクエストが進行中です。動作の安定のため、どのような状況でも両陣営の厭戦感が{CRITICAL_THRESHOLD}%を越えることはありません。"/>
+    <string id="xoY6cYDK" text="進行中のクエストと関連していた!"/>
+    <string id="UvjMFpHs" text="戦争の早期終結を妨げるクエストが存在した。そのため、報告に表示される数値は厭戦感の合計値と一致しないことがある。"/>
+    <string id="hAoIC2Iq" text="開始日: {START_DATE}"/>
+    <string id="qHrihV27" text="戦争期間: {WAR_DURATION}日"/>
+    <!-- Report breakdowns -->
+    <string id="IlFEeNkY" text="厭戦率の報告"/>
+    <string id="zYVH0xYa" text="犠牲者"/>
+    <string id="y7XY860U" text="隊商への襲撃"/>
+    <string id="elRjo1ab" text="村への略奪"/>
+    <string id="DrNBDhx3" text="領地の喪失"/>
+    <string id="X1MIWYzy" text="捕虜にされたヒーロー"/>
+    <string id="6FLtWxSp" text="ヒーローの死亡"/>
+    <string id="sCRuliNO" text="完全占領"/>
+    <string id="XIPMI3gR" text="戦争の長期化"/>
+    <string id="FVyFJShW" text="神の手"/>
+    <string id="1kGleqyk" text="発生した厭戦感"/>
+    <string id="i5VSEDE3" text="{START_DATE}-{END_DATE}: {?COUNT.PLURAL_FORM}過去累計{COUNT}{?}過去{COUNT}{\?}"/>
+
+    <string id="fnPa5bas" text="守備隊の兵士数"/>
+    <string id="rwFeQWky" text="{KINGDOM_NAME}の隊商"/>
+
+    <!-- Event records -->
+    <string id="Toa6V7RL" text="{START_DATE}-{END_DATE}: {VALUE}日間で毎日{PER_DAY_VALUE}%"/>
+    <string id="wMVdLssJ" text="{START_DATE}-{END_DATE}: {VALUE}日間、領地を失っているため毎日{PER_DAY_VALUE}%"/>
+    <string id="0nTpub9S" text="{START_DATE} - {END_DATE}: {VALUE}名の被害"/>
+    <string id="SeWNvf1N" text="{DATE_STR}: {FACTION_PARTY}・{OTHER_FACTION_PARTY}間の戦闘による{VALUE}名の被害"/>
+    <string id="9V6S05X3" text="{DATE_STR}: {SETTLEMENT}をめぐる、{FACTION_PARTY}・{OTHER_FACTION_PARTY}間の戦闘での{VALUE}名の被害"/>
+    <string id="vhBKtne1" text="{DATE_STR}: {RAIDED_CARAVAN}への{OTHER_FACTION_PARTY}による襲撃"/>
+    <string id="Hnxf9Ox3" text="{DATE_STR}: {RAIDED_VILLAGE}への{OTHER_FACTION_PARTY}による略奪"/>
+    <string id="SXhzqm2N" text="{DATE_STR}: {RAIDED_VILLAGE}への{OTHER_FACTION_PARTY}による略奪 (効果逓減の影響)"/>
+    <string id="6cSuGG87" text="{DATE_STR}: {FACTION_PARTY}の{SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE}{?}{\\?}が{OTHER_FACTION_PARTY}による占領"/>
+    <string id="fuaTMWpt" text="{DATE_STR}: {FACTION_PARTY}の防衛する{SETTLEMENT.NAME}の{OTHER_FACTION_PARTY}による奪還 (効果逓減の影響)"/>
+    <string id="yRvZ37cx" text="{DATE_STR}: {OTHER_FACTION_PARTY}による{HERO}の捕縛"/>
+    <string id="i2Moqprl" text="{DATE_STR}: {OTHER_FACTION_PARTY}による{HERO}の捕縛 (効果逓減の影響)"/>
+    <string id="QkSVPgDF" text="{DATE_STR}: {HERO}の自然死{?YIELDS_DIMINISHING_RETURNS} (効果逓減の影響){?}{\?}"/>
+    <string id="S0lkYB5P" text="{DATE_STR}: {HERO}の{OTHER_FACTION_PARTY}の手による暗殺{?YIELDS_DIMINISHING_RETURNS} (効果逓減の影響){?}{\?}"/>
+    <string id="f6OIFaSj" text="{DATE_STR}: {HERO}の出産時の死亡{?YIELDS_DIMINISHING_RETURNS} (効果逓減の影響){?}{\?}"/>
+    <string id="PmOPed8Y" text="{DATE_STR}: {HERO}の老衰による死亡{?YIELDS_DIMINISHING_RETURNS} (効果逓減の影響){?}{\?}"/>
+    <string id="Pp6wYS5m" text="{DATE_STR}: {OTHER_FACTION_PARTY}との戦闘での{HERO}の死亡{?YIELDS_DIMINISHING_RETURNS} (効果逓減の影響){?}{\?}"/>
+    <string id="QvGjUrmL" text="{HERO}の{OTHER_FACTION_PARTY}との戦いで受けた傷が原因による死亡{?YIELDS_DIMINISHING_RETURNS} (効果逓減の影響){?}{\?}"/>
+    <string id="5tBkM1O4" text="{DATE_STR}: {OTHER_FACTION_PARTY}の{HERO}による処刑{?YIELDS_DIMINISHING_RETURNS} (効果逓減の影響){?}{\?}"/>
+    <string id="moeUCyaq" text="{DATE_STR}: {OTHER_FACTION_PARTY}との戦闘中の{HERO}の行方不明{?YIELDS_DIMINISHING_RETURNS} (効果逓減の影響){?}{\?}"/>
+    <string id="VB1xpuMA" text="{DATE_STR}: {OTHER_FACTION}による{FACTION}の完全占領"/>
+    <string id="X9wHA6q3" text="{DATE_STR}: {OTHER_FACTION}による{FACTION}の完全占領 (効果逓減の影響)"/>
+    <string id="9vOZJpPu" text="{DATE_STR}: {FACTION}の厭戦気分の奇跡的な減少、神の手の介入と噂するものもいるようだ"/>
+    <string id="S5tDXkgK" text="{DATE_STR}: 神秘の力が{FACTION}を戦争へと衝き動かそうとしているという噂がある、だがこの流れを変えられるものはないようだ"/>
+    <string id="fJE6Y9mB" text="{DATE_STR}: {FACTION}による民の急な戦意の喪失、神の手の介入と噂する者もいるようだ"/>
+
+    <!-- Settings -->
+    <string id="V542tneW" text="厭戦感"/>
+    <string id="lSttctYC" text="厭戦感の有効"/>
+    <string id="Cxyn9ROT" text="無効にすると、厭戦感の影響がなくなります。デフォルトでは「有効」です。"/>
+    <string id="Yc2YUIva" text="効果の逓減の有効"/>
+    <string id="CaxxEEdC" text="厭戦感の計算時に、効果を逓減させます。デフォルトでは「有効」です。"/>
+    <string id="HPFINWrc" text="個人の厭戦率"/>
+    <string id="LFVkLcIp" text="派閥単位の厭戦率を有効にします。無効にすると、全ての戦争で対立派閥の権勢を合成した値に基づいた単一の値で厭戦率が計算されます。デフォルトは「有効」です。"/>
+    <string id="gW3eVr5E" text="領地の補償を有効"/>
+    <string id="KEi0UykN" text="有効にすると、最終的に敗北した国は占領した領土を相手に返還しなければならなくなります。デフォルトは「有効」です。"/>
+    <string id="8TFQWL55" text="1日ごとの厭戦感"/>
+    <string id="lgza5wDq" text="戦争中の1日ごとに加算される厭戦感の量です。デフォルトでは「0.25%」です。"/>
+    <string id="PAmPVWgD" text="領地なしの倍率"/>
+    <string id="SdjYeYM5" text="1日ごとに、領地を持たない派閥が領地を持つ派閥に対して持つ厭戦感の倍率です。デフォルトは「10」です。"/>
+    <string id="s6dNpM6M" text="戦争の犠牲による厭戦感"/>
+    <string id="NcJtGeM7" text="戦闘での犠牲者が派閥に与える厭戦感です。デフォルトは「0.02%」です。"/>
+    <string id="kr5zAufg" text="隊商襲撃による厭戦感"/>
+    <string id="PinVMCUE" text="派閥の隊商が略奪された際に加算される厭戦感の量です。デフォルトは「2.0%」です。"/>
+    <string id="qFJ23KxQ" text="ヒーローの捕囚による厭戦感"/>
+    <string id="wctCn9uO" text="派閥の貴族のヒーローが捕虜にされた際に加算される厭戦感の基本量です。その人物の派閥に対する存在感によって変動します。効果の逓減の対象です。デフォルトは「1.0%」です。"/>
+    <string id="4vTzbsXD" text="ヒーローの戦死による厭戦"/>
+    <string id="w80tUaVd" text="派閥の貴族のヒーローが殺された際に加算される厭戦感の基本量です。その人物の派閥に対する存在感によって変動します。同じクランのヒーローが一度に複数殺された時は、効果の逓減の対象です。デフォルトは「5.0%」です。"/>
+    <string id="eWVGwf2m" text="略奪による厭戦感"/>
+    <string id="ufHDJt8H" text="派閥の村が略奪された時に加算される厭戦感の量です。効果の逓減の対象です。デフォルトは「3.0%」です。"/>
+    <string id="gGIaLKHk" text="包囲戦による厭戦感"/>
+    <string id="mCEa773h" text="都市を失ったときに派閥に加算される厭戦感の量です。効果の逓減の対象です。デフォルトでは「10.0」です。"/>
+    <string id="JmUPtZdw" text="占領による厭戦感"/>
+    <string id="541jGrpb" text="派閥が領地を全て失った時に加算される厭戦感の量です。厭戦率の影響を受けません。効果の逓減の対象です。デフォルトは「15.0%」です。"/>
+    <string id="pPHLRIml" text="ツールチップの最大表示数"/>
+    <string id="YMf0mSqy" text="厭戦感報告のツールチップで表示される項目の最大数です。閲覧する際に便利だと感じる値を入力してください。デフォルトは「35」です。"/>
+    <string id="F4iFH6un" text="キャンペーンマップのウィジェット"/>
+    <string id="zTvbZ8Br" text="キャンペーンマップ画面上部に交戦中の各勢力との厭戦感を表示するウィジェットを配置します。デフォルトは「有効」です。"/>
+    <string id="jI9NSxtz" text="プレイヤーの厭戦感デバッグメッセージを有効"/>
+    <string id="LYyNbQds" text="プレイヤーの国家に関する厭戦感のデバッグメッセージを表示します。デフォルトは「無効」です。"/>
+
+  </strings>
+</base>
