@@ -5,7 +5,7 @@ Game Versions: v1.0.x, v1.1.x, v1.2.x, v1.3.x
 * Removed modified alliance implementation in favor of the vanilla one.
 * Removed most of the Diplomacy tab changes as they need to be reworked to fit the new interface.
 * Updated translations from Crowdin.
-* Known issues: Custom gauntlets don't work, so there's no effect on clicking "Factions" tab and no "War Exhaustion" widget. Something changed in how the game handles layers, and I don't know how to fix it yet.
+* Known issues: Custom gauntlets do not work, so there is no effect on clicking Factions tab and no War Exhaustion widget. Something changed in how the game handles layers, and I dont know how to fix it yet.
 * If you can help, a pull request would be greatly appreciated!
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.13
