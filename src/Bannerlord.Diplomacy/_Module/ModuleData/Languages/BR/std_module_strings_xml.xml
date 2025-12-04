@@ -279,21 +279,21 @@
     <string id="Pr4dcRKm" text="Recursos Não Finalizados"/>
     <string id="9qcAWjI7" text="Ativar recurso Usurp do Trono"/>
     <string id="MnhMW8iq" text="Quando ativado, isto permite que o jogador usurpe o trono de um reino. Este recurso está desequilibrado e está pendente de um retrabalho e, portanto, não recomendado. Valor padrão é falso."/>
-    <string id="lCbie62E" text="Expansionismo adicionado por cerco bem-sucedido. O valor padrão é 20."/>
+    <string id="lCbie62E" text="Expansionismo adicionado por cerco bem-sucedido. Valor padrão é 20."/>
     <string id="mEXGC0h3" text="Decaimento de Expansionismo por Dia"/>
-    <string id="kgPeQvqE" text="A quantidade de expansionismo que decai a cada dia. O valor padrão é 1."/>
-    <string id="ZIf1tRII" text="Ativar Coalizões"/>
-    <string id="8v8q0OGu" text="Ativa coalizões, que permitem que facções se unam contra uma facção forte e expansionista. O valor padrão é ativado."/>
+    <string id="kgPeQvqE" text="A quantidade de expansionismo que decai a cada dia. Valor padrão é 1."/>
+    <string id="ZIf1tRII" text="Habilitar Coalizões"/>
+    <string id="8v8q0OGu" text="Habilita coalizões, que permitem que facções se unam contra uma facção forte e expansionista. Valor padrão é habilitado."/>
     <string id="1kSd88X5" text="Limite de Expansionismo"/>
-    <string id="EUnASoee" text="A quantidade de expansionismo que uma facção precisa atingir antes que uma coalizão seja formada contra ela. O valor padrão é 100."/>
+    <string id="EUnASoee" text="A quantidade de expansionismo que uma facção requer antes que uma coalizão seja formada contra ela. Valor padrão é 100."/>
     <string id="zwbL9BHe" text="Porcentagem de Chance de Coalizão por Dia"/>
-    <string id="9ugCWA3v" text="A porcentagem de chance de uma coalizão se formar contra uma facção acima do limite de expansionismo. O valor padrão é 5."/>
+    <string id="9ugCWA3v" text="A porcentagem de chance de uma coalizão se formar contra uma facção acima do limite de expansionismo. Valor padrão é 5."/>
 
-    <string id="lsyl0VSX" text="Proteção da História Principal"/>
-    <string id="EVrErrTR" text="Quando ativado, impede que o jogador quebre a história principal. Desative ao usar mods como &quot;Apenas Me Deixe Jogar&quot;. O valor padrão é ativado."/>
+    <string id="lsyl0VSX" text="Proteção da Linha de História"/>
+    <string id="EVrErrTR" text="Quando habilitado, impede o jogador de quebrar a linha de história principal. Desabilite ao usar mods como &quot;Just Let Me Play&quot;. Valor padrão é habilitado."/>
 
     <string id="f6n2UAEC" text="Recursos Inacabados"/>
-    <string id="HSoZfvXH" text="Ativar Recurso de Usurpar o Trono"/>
-    <string id="ZIAo4er4" text="Quando ativado, permite que o jogador usurpe o trono de um reino. Este recurso não é balanceado e está aguardando reformulação, portanto não é recomendado. O valor padrão é falso."/>
+    <string id="HSoZfvXH" text="Habilitar Recurso de Usurpar Trono"/>
+    <string id="ZIAo4er4" text="Quando habilitado, isso permite que o jogador usurpe o trono de um reino. Este recurso está desequilibrado e está pendente de uma reformulação, portanto não é recomendado. Valor padrão é falso."/>
   </strings>
 </base>
