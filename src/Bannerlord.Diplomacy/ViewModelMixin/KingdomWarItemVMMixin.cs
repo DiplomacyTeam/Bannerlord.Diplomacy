@@ -164,7 +164,7 @@ namespace Diplomacy.ViewModelMixin
             {
                 >= 1000000 => new TextObject("{=6xcW68Tw}{VALUE}M", new() { ["VALUE"] = (value / 1000000).ToString("F2") }).ToString(),
                 >= 1000 => new TextObject("{=oD4fZ2tY}{VALUE}K", new() { ["VALUE"] = (value / 1000).ToString("F1") }).ToString(),
-                _ =>  TextObject.GetEmpty().ToString()
+                _ => TextObject.GetEmpty().ToString()
             };
         }
     }

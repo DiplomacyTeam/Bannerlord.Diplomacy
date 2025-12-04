@@ -22,10 +22,10 @@ namespace Diplomacy.Views
         protected override void CreateLayout()
         {
             base.CreateLayout();
-            _dataSource = new WarExhaustionMapIndicatorVM();        
+            _dataSource = new WarExhaustionMapIndicatorVM();
             _layerAsGauntletLayer = new GauntletLayer("WarExhaustionMapIndicatorLayer", 100);
             _layerAsGauntletLayer!.LoadMovie("WarExhaustionMapIndicator", _dataSource);
-            Layer = _layerAsGauntletLayer;            
+            Layer = _layerAsGauntletLayer;
             Layer.InputRestrictions.SetInputRestrictions(false, InputUsageMask.MouseButtons | InputUsageMask.Keyboardkeys);
             MapScreen.AddLayer(Layer);
         }
