@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
   <tags>
-    <tag language="Chinese Simplified"/>
+    <tag language="简体中文"/>
   </tags>
   <strings>
     <string id="bAkTqxmf" text="一个派别是一个具有共同目标的宗族。 如果一个派别得到足够的支持，他们就会开始内战，如果反叛分子赢得战争，他们的要求就会得到维持。 如果效忠者获胜，反叛部族将返回王国，维多利亚部族将获得影响力并与他们的胜利者建立关系。 被击败的部族将会失去影响力，部族可能会因为产生影响而开始一个派别。"/>

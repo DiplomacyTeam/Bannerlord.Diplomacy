@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
   <tags>
-    <tag language="Chinese Simplified"/>
+    <tag language="简体中文"/>
   </tags>
   <strings>
     <string id="MYz8nKqq" text="外交"/>

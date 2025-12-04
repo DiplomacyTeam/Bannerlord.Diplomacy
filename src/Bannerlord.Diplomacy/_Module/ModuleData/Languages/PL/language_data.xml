@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguageData.xsd" id="Polski" name="Polski" subtitle_extension="pl" supported_iso="pl,pol,pl-pl" under_development="false">
+    <LanguageFile xml_path="PL/civil_war_strings_xml.xml"/>
+    <LanguageFile xml_path="PL/faction_names_xml.xml"/>
+    <LanguageFile xml_path="PL/help_strings_xml.xml"/>
+    <LanguageFile xml_path="PL/std_module_strings_xml.xml"/>
+    <LanguageFile xml_path="PL/war_exhaustion_strings.xml"/>
+</LanguageData>
