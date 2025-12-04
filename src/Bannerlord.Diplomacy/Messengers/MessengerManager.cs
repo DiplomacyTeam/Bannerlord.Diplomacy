@@ -385,7 +385,7 @@ namespace Diplomacy.Messengers
         private TextObject GetMessengerSentText(IFaction faction1, IFaction faction2, Hero targetHero, int travelHours)
         {
             TextObject textObject = GetTimeToArriveText(travelHours);
-            
+
             textObject.SetTextVariable("FACTION1_NAME", faction1.Name.ToString());
             TextObject addressee = new("{=vGyBQeEk}{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\\?}", new()
             {
