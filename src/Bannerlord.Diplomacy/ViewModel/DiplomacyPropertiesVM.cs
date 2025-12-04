@@ -2,7 +2,6 @@
 using Diplomacy.Extensions;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
@@ -53,22 +52,22 @@ namespace Diplomacy.ViewModel
             Faction1Pacts.Clear();
             Faction2Pacts.Clear();
 
-            AddWarRelationships(Faction1.Stances);
-            AddWarRelationships(Faction2.Stances);
+            AddWarRelationships(Faction1);
+            AddWarRelationships(Faction2);
 
-            foreach (var kingdom in KingdomExtensions.AllActiveKingdoms)
+            foreach (var otherKingdom in KingdomExtensions.AllActiveKingdoms)
             {
-                if (FactionManager.IsAlliedWithFaction(kingdom, Faction1) && kingdom != Faction1)
-                    Faction1Allies.Add(new DiplomacyFactionRelationshipVM(kingdom, CreateAllianceHint(kingdom, (Faction1 as Kingdom)!)));
+                if (Faction1.IsKingdomFaction && Faction1 is Kingdom faction1Kingdom && otherKingdom.IsAllyWith(faction1Kingdom) && otherKingdom != faction1Kingdom)
+                    Faction1Allies.Add(new DiplomacyFactionRelationshipVM(otherKingdom, BreakAllianceHint(otherKingdom, faction1Kingdom)));
 
-                if (FactionManager.IsAlliedWithFaction(kingdom, Faction2) && kingdom != Faction2)
-                    Faction2Allies.Add(new DiplomacyFactionRelationshipVM(kingdom, CreateAllianceHint(kingdom, (Faction2 as Kingdom)!)));
+                if (Faction2.IsKingdomFaction && Faction2 is Kingdom faction2Kingdom && otherKingdom.IsAllyWith(faction2Kingdom) && otherKingdom != faction2Kingdom)
+                    Faction2Allies.Add(new DiplomacyFactionRelationshipVM(otherKingdom, BreakAllianceHint(otherKingdom, faction2Kingdom)));
 
-                AddNonAggressionPactRelationships(kingdom, Faction1, Faction1Pacts);
-                AddNonAggressionPactRelationships(kingdom, Faction2, Faction2Pacts);
+                AddNonAggressionPactRelationships(otherKingdom, Faction1, Faction1Pacts);
+                AddNonAggressionPactRelationships(otherKingdom, Faction2, Faction2Pacts);
             }
         }
-        private HintViewModel CreateAllianceHint(Kingdom kingdom1, Kingdom kingdom2)
+        private HintViewModel BreakAllianceHint(Kingdom kingdom1, Kingdom kingdom2)
         {
             TextObject textObject;
             if (CooldownManager.HasBreakAllianceCooldown(kingdom1, kingdom2, out var elapsedDaysUntilNow))
@@ -79,7 +78,7 @@ namespace Diplomacy.ViewModel
             }
             else
             {
-                textObject = TextObject.Empty;
+                textObject = TextObject.GetEmpty();
             }
 
             return new HintViewModel(textObject);
@@ -95,29 +94,23 @@ namespace Diplomacy.ViewModel
             }
         }
 
-        private void AddWarRelationships(IEnumerable<StanceLink> stances)
+        private void AddWarRelationships(IFaction faction)
         {
-            foreach (var stance in from x in stances
-                                   where x.IsAtWar
-                                   select x into w
-                                   orderby w.Faction1.Name.ToString() + w.Faction2.Name.ToString()
-                                   select w)
+            foreach (var otherFaction in faction.FactionsAtWarWith)
             {
-                var (f1, f2) = (stance.Faction1, stance.Faction2);
-
-                if (f1 is Kingdom && f2 is Kingdom && !f1.IsMinorFaction && !f2.IsMinorFaction && !f1.IsBanditFaction && !f2.IsBanditFaction)
+                if (faction is Kingdom && otherFaction is Kingdom && !faction.IsMinorFaction && !otherFaction.IsMinorFaction && !faction.IsBanditFaction && !otherFaction.IsBanditFaction)
                 {
-                    var isFaction1War = f1 == Faction1 || f2 == Faction1;
-                    var isFaction2War = f1 == Faction2 || f2 == Faction2;
+                    var isFaction1War = faction == Faction1 || otherFaction == Faction1;
+                    var isFaction2War = faction == Faction2 || otherFaction == Faction2;
 
                     if (isFaction1War && isFaction2War && Faction1Wars.Any(war => war.Faction == Faction2))
                         continue; // Make sure we only add the shared war once
 
                     if (isFaction1War)
-                        Faction1Wars.Add(new DiplomacyFactionRelationshipVM(f1 == Faction1 ? f2 : f1));
+                        Faction1Wars.Add(new DiplomacyFactionRelationshipVM(faction == Faction1 ? otherFaction : faction));
 
                     if (isFaction2War)
-                        Faction2Wars.Add(new DiplomacyFactionRelationshipVM(f1 == Faction2 ? f2 : f1));
+                        Faction2Wars.Add(new DiplomacyFactionRelationshipVM(faction == Faction2 ? otherFaction : faction));
                 }
             }
         }

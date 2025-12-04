@@ -145,7 +145,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
         {
             diplomacyCost.ApplyCost();
             DoReturnFiefs(kingdomMakingPeace, otherKingdom, fiefsToBeReturned);
-            MakePeaceAction.Apply(kingdomMakingPeace, otherKingdom, dailyPeaceTributeToPay);
+            MakePeaceAction.ApplyByKingdomDecision(kingdomMakingPeace, otherKingdom, dailyPeaceTributeToPay, CampaignTime.DaysInYear * 5);
             if (shouldBeDestroyed.KingdomMakingPeace) SoftlyDestroyKingdomAction.Apply(kingdomMakingPeace);
             if (shouldBeDestroyed.OtherKingdom) SoftlyDestroyKingdomAction.Apply(otherKingdom);
 
@@ -178,17 +178,6 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 
         private static void CreatePeaceInquiry(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, EliminationOnPeace shouldBeDestroyed)
         {
-#if v100 || v101 || v102 || v103
-            InformationManager.ShowInquiry(new InquiryData(
-                new TextObject("{=BkGSVccZ}Peace Proposal").ToString(),
-                GetPeaceInquiryText(kingdomMakingPeace, otherKingdom, isATie, diplomacyCost, dailyPeaceTributeToPay, fiefsToBeReturned, hasFiefsRemaining, shouldBeDestroyed),
-                true,
-                IsDeclineAvailable(kingdomMakingPeace, otherKingdom),
-                new TextObject("{=3fTqLwkC}Accept").ToString(),
-                new TextObject("{=dRoMejb0}Decline").ToString(),
-                () => AcceptPeace(kingdomMakingPeace, otherKingdom, diplomacyCost, dailyPeaceTributeToPay, fiefsToBeReturned, shouldBeDestroyed),
-                () => DiplomacyEvents.Instance.OnPeaceProposalSent(kingdomMakingPeace)), true);
-#else
             InformationManager.ShowInquiry(new InquiryData(
                 new TextObject("{=BkGSVccZ}Peace Proposal").ToString(),
                 GetPeaceInquiryText(kingdomMakingPeace, otherKingdom, isATie, diplomacyCost, dailyPeaceTributeToPay, fiefsToBeReturned, hasFiefsRemaining, shouldBeDestroyed),
@@ -199,7 +188,6 @@ namespace Diplomacy.DiplomaticAction.WarPeace
                 () => AcceptPeace(kingdomMakingPeace, otherKingdom, diplomacyCost, dailyPeaceTributeToPay, fiefsToBeReturned, shouldBeDestroyed),
                 () => DiplomacyEvents.Instance.OnPeaceProposalSent(kingdomMakingPeace),
                 isNegativeOptionEnabled: () => IsDeclineAvailable(kingdomMakingPeace, otherKingdom)), true);
-#endif
         }
 
         private static string GetPeaceInquiryText(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool isATie, HybridCost diplomacyCost, int dailyPeaceTributeToPay, List<Town> fiefsToBeReturned, bool hasFiefsRemaining, EliminationOnPeace shouldBeDestroyed)
@@ -219,11 +207,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 
                 TextObject rebelInquiryBody = new(rebelIsMakingPeace ? _peaceProposalFromRebels : _peaceProposalFromOriginalKingdom, strRebelArgs);
                 LocalizationHelper.SetEntityProperties(rebelInquiryBody, "ORIGINAL_KINGDOM", rebelIsMakingPeace ? otherKingdom : kingdomMakingPeace, addLeaderInfo: true);
-#if v100 || v101 || v102 || v103
-                return rebelInquiryBody.ToString() + (!IsDeclineAvailable(kingdomMakingPeace, otherKingdom) ? $"\n \n{new TextObject(_noChoice)}" : string.Empty);
-#else
                 return rebelInquiryBody.ToString();
-#endif
             }
 
             var strArgs = new Dictionary<string, object>
@@ -242,24 +226,9 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             if (!isATie && hasFiefsRemaining)
                 LocalizationHelper.SetListVariable(inquiryBody, "FIEFS_TO_RETURN_LIST", fiefsToBeReturned.Select(f => f.Name.ToString()).ToList());
 
-#if v100 || v101 || v102 || v103
-            return inquiryBody.ToString() + (!IsDeclineAvailable(kingdomMakingPeace, otherKingdom) ? $"\n \n{new TextObject(_noChoice)}" : string.Empty);
-#else
             return inquiryBody.ToString();
-#endif
         }
 
-#if v100 || v101 || v102 || v103
-        private static bool IsDeclineAvailable(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
-        {
-            var warResultForOtherKingdom = WarExhaustionManager.Instance?.GetWarResult(otherKingdom, kingdomMakingPeace) ?? WarExhaustionManager.WarResult.None;
-            return warResultForOtherKingdom switch
-            {
-                > WarExhaustionManager.WarResult.None and <= WarExhaustionManager.WarResult.PyrrhicVictory => false,
-                _ => true
-            };
-        }
-#else
         private static (bool, string) IsDeclineAvailable(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
         {
             var warResultForOtherKingdom = WarExhaustionManager.Instance?.GetWarResult(otherKingdom, kingdomMakingPeace) ?? WarExhaustionManager.WarResult.None;
@@ -269,7 +238,6 @@ namespace Diplomacy.DiplomaticAction.WarPeace
                 _ => (true, string.Empty)
             };
         }
-#endif
 
         public static void ApplyPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, int? dailyTribute = null, bool forcePlayerCharacterCosts = false, bool skipPlayerPrompts = false)
         {
@@ -296,7 +264,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
 
         private static bool ShouldKingdomBeDestroyed(Kingdom kingdomInQuestion, Kingdom otherKingdom, Kingdom loserKingdom) =>
             Settings.Instance!.EnableKingdomElimination && kingdomInQuestion.Fiefs.Count <= 0
-            && !FactionManager.GetEnemyKingdoms(kingdomInQuestion).Any(k => k != otherKingdom && !k.IsEliminated)
+            && kingdomInQuestion.GetEnemyKingdoms().Any(k => k != otherKingdom)
             && (!kingdomInQuestion.WillBeConsolidatedWith(otherKingdom, loserKingdom) || otherKingdom.Fiefs.Count <= 0);
 
         private static List<Town> GetFiefsToBeReturned(Kingdom kingdomMakingPeace, Kingdom otherKingdom)

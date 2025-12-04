@@ -37,7 +37,7 @@ namespace Diplomacy.CivilWar.Scoring
         {
             // only one abdication faction
             if (RebelFactionManager.GetRebelFaction(clan.Kingdom).Any(x => x.RebelDemandType == RebelDemandType.Abdication && x.SponsorClan != clan))
-                yield return new Tuple<TextObject, float>(new TextObject(), -999);
+                yield return new Tuple<TextObject, float>(TextObject.GetEmpty(), -999);
         }
 
         protected override IEnumerable<Tuple<TextObject, float>> GetMemberOnlyScore(Clan clan, RebelFaction rebelFaction)

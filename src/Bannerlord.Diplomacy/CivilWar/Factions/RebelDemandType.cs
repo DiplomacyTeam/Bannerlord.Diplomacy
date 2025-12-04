@@ -22,7 +22,7 @@ namespace Diplomacy.CivilWar.Factions
                     name = new TextObject("{=wUspUo1y}Abdication").ToString();
                     break;
                 default:
-                    name = TextObject.Empty.ToString();
+                    name = TextObject.GetEmpty().ToString();
                     break;
             }
 
@@ -44,7 +44,7 @@ namespace Diplomacy.CivilWar.Factions
                         "{=GK1seKeJ}Force the leader of the kingdom to step down. An election will decide the new leader of the kingdom.").ToString();
                     break;
                 default:
-                    hint = new TextObject().ToString();
+                    hint = TextObject.GetEmpty().ToString();
                     break;
             }
 

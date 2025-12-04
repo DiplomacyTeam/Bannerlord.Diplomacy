@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Português (BR)"/>
+  </tags>
+  <strings>
+    <string id="MYz8nKqq" text="Diplomacy"/>
+    <string id="hPERH3u4" text="Diplomacy Carregado"/>
+
+    <string id="TS1iV2pO" text="Influência insuficiente!"/>
+    <string id="XQFxDr11" text="Há uma missão ativa impedindo isso!"/>
+    <string id="ONNcmltF" text="Esta guerra não durou tempo suficiente para considerar a paz! Passaram-se apenas {ELAPSED_DAYS} dias dos {REQUIRED_DAYS} dias necessários."/>
+    <string id="GuPOCNNZ" text="A trégua foi concluída recentemente para considerar quebrá-la agora! Passaram-se apenas {ELAPSED_DAYS} dias dos {REQUIRED_DAYS} dias necessários."/>
+
+    <string id="v0cDMIcl" text="Não pode declarar guerra neste reino. "/>
+    <string id="Pqk3WuGz" text="Não é possível fazer paz com este reino. "/>
+    <string id="9aaZ8Ed4" text="Não é possível declarar guerra, líderes do reino são amigos."/>
+    <string id="Zimavbgw" text="Não é possível declarar guerra, as relações pessoais dos líderes do reino são excelentes."/>
+    <string id="pXD8Uf2e" text="Não é possível declarar guerra, os clãs líderes do reino têm casamentos familiares próximos."/>
+      
+    <string id="zv12jjyW" text="Mensageiro enviado"/>
+    <string id="uy86VZX2" text="Mensageiro chegou"/>
+
+    <string id="JmgAuONd" text="Ah não. O mensageiro foi emboscado e comido por um Grue enquanto tentava alcançar {HERO_NAME}!"/>
+    <string id="YnRmSele" text="O mensageiro de {FACTION1_NAME} chegou ao {ADDRESSEE_TEXT}.{BRIBE_TEXT}"/>
+    <string id="qNWMZP0z" text="O mensageiro de {FACTION1_NAME} chegará a {ADDRESSEE_TEXT} em {TRAVEL_TIME} dias."/>
+    <string id="nYrezEOX" text="Mensageiro foi morto"/>
+    <string id="A5lug0JY" text="O seu mensageiro foi emboscado e morto por bandidos enquanto tentava chegar em {HERO NAME}!"/>
+    <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} de {FACTION2_NAME}{?}{\?}"/>
+    <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Infelizmente, o mensageiro não tem acesso à fortaleza, mas pode tentar subornar os guardas. Isso custaria {?IS_FEMALE}a{?}ele{\?} {GOLD_COST}{GOLD_ICON} e você teria que cobrir as despesas{?CAN_AFFORD}.{?}, que você não pode pagar no momento.{ \?}"/>
+
+    <string id="bLR91Eob" text="{REASON}O mensageiro não será capaz de alcançar o endereço."/>
+    <string id="hPra5uwZ" text="O mensageiro não entende ou não gosta da sua piada e recusa a tarefa."/>
+    <string id="1mlXBnSs" text="Você sabe muito pouco de {HERO_NAME} para apontá-lo para um mensageiro."/>
+
+    <string id="vhsHDMil" text="{HERO_NAME} está morto. "/>
+    <string id="CusN2JMb" text="{HERO_NAME} está aprisionado {?IS_MOBILE}Por{?}em{\?} {DETENTION_PLACE}. "/>
+    <string id="1BISlFYx" text="{HERO_NAME} está fugitivo e não quer ser encontrado. "/>
+    <string id="ze8KJ1oL" text="{HERO_NAME} acabou de ser liberado da custódia e ainda não está pronto para fazer compromissos. "/>
+    <string id="N5T6IXWJ" text="{HERO_NAME} está viajando em estado anônimo. "/>
+    <string id="3lknR86H" text="{HERO_NAME} é muito inexperiente para participar de reuniões formais. "/>
+
+    <string id="BkGSVccZ" text="Proposta de paz"/>
+    <string id="3fTqLwkC" text="Aceitar"/>
+    <string id="dRoMejb0" text="Recusar"/>
+
+    <string id="cXfcwzPp" text="Enviar Mensagem"/>
+
+    <string id="N06wk0dB" text="Assentamento Capturado"/>
+    <string id="Zy0yjTha" text="Como capturador de {SETTLEMENT_NAME}, você tem direito de preferência. Você gostaria de reivindicar este feudo?"/>
+
+    <string id="IWZ91JVk" text="Ouro insuficiente!"/>
+
+    <string id="LpoyhORp" text="Conceder feudo"/>
+    <string id="h3b1S5Wq" text="Conceder feudo a {CLAN_NAME}"/>
+    <string id="jznJfkfU" text="Feudo Concedido"/>
+    <string id="cXbgaPSm" text="{SETTLEMENT_NAME} foi concedido a {CLAN_NAME}."/>
+
+    <string id="FqeN0fmR" text="Você não pode conceder feudos ao seu próprio clã."/>
+    <string id="zdSYUnZQ" text="Você não é o líder do seu reino."/>
+    <string id="D61vzEC7" text="Você não tem nenhum feudo para conceder."/>
+    <string id="98hwXUTp" text="Conceda feudos aos clãs do seu reino"/>
+    <string id="Q7jRqnez" text="Você não pode conceder feudos a clãs mercenários."/>
+
+    <string id="DrnXprup" text="Você esteve em guerra recentemente demais para considerar uma aliança. Passaram-se apenas {ELAPSED_DAYS} dias dos {REQUIRED_DAYS} dias necessários."/>
+    <string id="KHJyWj9H" text="Não pode estar em uma aliança."/>
+    <string id="UQZmdLzc" text="Não pode estar em guerra."/>
+    <string id="qIa19an4" text="Aliança Formada"/>
+    <string id="3pbwc8sh" text="Proposta de Aliança"/>
+    <string id="QbOqatd7" text="{KINGDOM} está propondo uma aliança com {PLAYER_KINGDOM}."/>
+
+    <string id="384jX28Q" text="{KINGDOM} está quebrando a aliança com {PLAYER_KINGDOM}."/>
+    <string id="D1ZQKZr1" text="Aliança Rompida"/>
+
+    <string id="0WPWbx70" text="Formar Aliança"/>
+    <string id="K4GraLTn" text="Romper Aliança"/>
+
+    <string id="VvTTrRpl" text="Esta facção não está interessada em formar uma aliança com você."/>
+    <string id="wst0lArp" text="Esta aliança não foi por tempo suficiente para considerar a possibilidade de quebrá-la! Ela foi a {ELAPSED_DAYS} dias de um tempo necessário de {REQUIRED_DAYS} dias."/>
+
+    <string id="KqfNSsBE" text="Aliados"/>
+    <string id="Dirltd6Z" text="As alianças estão desabilitadas."/>
+
+    <string id="Q8ItogIP" text="Propor diretamente a {ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}"/>
+    <string id="BC7823G2" text="{?REPARATIONS_PAY}, pagando {REPARATIONS} reparações de guerra{?TRIBUTE_PAY} e {TRIBUTE} tributo/dia.{?}{?TRIBUTE_GET}, mas recebendo {TRIBUTE} tributo/dia.{?}{\?}{\?}{?}{?REPARATIONS_GET}, recebendo {REPARATIONS} reparações de guerra{?TRIBUTE_PAY}, mas pagando {TRIBUTE} tributo/dia.{?}{?TRIBUTE_GET} e {TRIBUTE} tributo/dia.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, pagando {TRIBUTE} tributo/dia.{?}{?TRIBUTE_GET}, recebendo {TRIBUTE} tributo/dia.{?}.{\?}{\?}{\?}{\?}"/>
+    <string id="9CvcPwJA" text="{?FIEFS_ANY} Talvez você precise devolver alguns dos feudos capturados!{?}{\?}"/>
+
+    <!--Millions and thousands-->
+    <string id="6xcW68Tw" text="{VALUE}M"/>
+    <string id="oD4fZ2tY" text="{VALUE}K"/>
+
+    <string id="XlL50Ha9" text="Não é possível fazer paz com um reino durante um cerco de jogador ativo."/>
+
+    <string id="bCOCjOQM" text="Relação."/>
+    <string id="RxawrCjg" text="Ganho de Relação com Garantia"/>
+
+    <string id="fXcEtO29" text="Não pode ter um pacto ativo de não-agressão."/>
+
+    <string id="zpNalMeA" text="Alianças"/>
+    <string id="y5tXjbLK" text="Guerras"/>
+    <string id="noWHMN1W" text="Pactos de não-agressão"/>
+
+    <string id="yj4XFa5T" text="Proposta do Pacto de Não Agressão"/>
+    <string id="gyLjlpJB" text="{KINGDOM} está propondo um pacto de não agressão com {PLAYER_KINGDOM}."/>
+
+    <string id="9pY0NQrk" text="Forma Pacto"/>
+    <string id="9zlQNtlX" text="Forme um pacto de não agressão com duração de {DAYS} dias."/>
+
+    <string id="1occw3EF" text="Estatísticas"/>
+    <string id="OvbY5qxL" text="Visão Geral"/>
+
+    <string id="UDC8eW7s" text="{ALLIED_KINGDOM} está se juntando a seu aliado, {KINGDOM} na guerra contra {ENEMY_KINGDOM}."/>
+
+    <string id="pdI7Tjtj" text="Pacto de Não Agressão Expirado"/>
+    <string id="uWY09LJb" text="O pacto de não agressão entre {KINGDOM} e {OTHER_KINGDOM} expirou."/>
+
+    <string id="dUCOV7km" text="Corrupção (muitos feudos)"/>
+    <string id="koTNaZUX" text="Decadência da influência (muita influência)"/>
+    <string id="uZc8Hg01" text="Perda máxima de influência"/>
+
+    <string id="kMjfN2fB" text="Cancelar mensageiro"/>
+
+    <string id="q5qphBwi" text="Facção Fraca"/>
+    <string id="sygtLRqA" text="Relação"/>
+
+    <string id="cmOSpfyW" text="Aliança com {ALLIED_KINGDOM}"/>
+    <string id="RqQ4oqvl" text="Guerra com {ENEMY_KINGDOM}"/>
+    <string id="t6YhBLj7" text="Pacto de não-agressão com {KINGDOM}"/>
+    <string id="BjkwaNot" text="Casamento com um clã líder de {KINGDOM}"/>
+
+    <string id="M4SGjzQP" text="Esta facção não está interessada em formar um pacto de não agressão com você."/>
+
+    <string id="Gzq6VHPt" text="Doar ouro"/>
+    <string id="N7goPgiq" text="Usurpar Trono"/>
+    <string id="WVe7QwhW" text="Usurpar o trono deste reino\nApoio do Clã: {SUPPORTING_TIERS} / {OPPOSING_TIERS}"/>
+
+    <string id="CxdpR6w4" text="Expansionismo"/>
+
+    <string id="ARNRwPrY" text="Coalizão formada"/>
+    <string id="qbLPBlIv" text="Calradia fica cada vez mais cauteloso com a expansão inexorável do {EXPANSIONIST_KINGDOM}. Uma coalizão liderada por {COALITION_KINGDOM} foi formada para combatê-los!"/>
+
+    <string id="vB3RrMNf" text="O {KINGDOM} formou um pacto de não agressão com o {OTHER_KINGDOM}."/>
+    <string id="PdN5g5ub" text="{KINGDOM} formou uma aliança com {OTHER_KINGDOM}!"/>
+    <string id="5r6fsHgm" text="Pontuação Atual"/>
+    <string id="XIBUWDlT" text="Pontuação requerida"/>
+
+    <string id="5znwaUVC" text="Dias restantes: {DAYS_LEFT}"/>
+
+    <string id="Euy6Mwcq" text="Você deve progredir ainda mais na missão principal para desbloquear esta ação. Você pode desabilitar a proteção de linha de histórias nas opções de mods."/>
+    <string id="fQxiCdBA" text="História Principal"/>
+    <string id="3wXqST66" text="Ao usurpar este trono, você está se comprometendo com {STANCE} o império na linha principal da história."/>
+    <string id="yAFwbD9B" text="unificar"/>
+    <string id="IGJVx5XI" text="Eliminação"/>
+
+    <string id="lQAaLeSy" text="Você não tem autoridade para executar essa ação."/>
+
+    <string id="7QvXkcxH" text="Doe ouro para clãs no seu reino"/>
+    <string id="e7uxH1jc" text="Custo de Ouro: {GOLD_COST}"/>
+    <string id="4lG3JG2e" text="Ganho de Relação: {RELATION_GAIN}+"/>
+
+    <string id="Q2vXbwvC" text="Diplomacy"/>
+    
+    <!--
+    ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
+    -->
+
+    <string id="sBw5Qzq3" text="Diplomacia do Reino"/>
+    <string id="tis8Ddzn" text="Permitir que o jogador reivindique feudos capturados pelo jogador"/>
+    <string id="TfxLCxcD" text="Dá ao jogador a opção de reivindicar um feudo que ele tomou em vez de o deixar ir para uma eleição."/>
+    <string id="8VKC3jtN" text="Ativar a eliminação de Reino sem feudos"/>
+    <string id="TlymwwPZ" text="Se ativado, reinos sem feudos são destruídos quando assinam um tratado de paz que termina a última guerra em andamento em que eles participam. Valor padrão está habilitado."/>
+    <string id="w8Hi9jJf" text="Atrasar a eliminação do Reino sem feudos"/>
+    <string id="GDctI4Kd" text="Se ativado, os reinos sem feudos só serão destruídos quando assinarem um tratado de paz que termine a última guerra em que estão envolvidos, não imediatamente após perderem seu último feudo. Valor padrão está habilitado."/>      
+    <string id="ZRlNvsev" text="Duração máxima da facção em dias"/>
+    <string id="vuFT5ns8" text="Duração mínima (em dias) que uma guerra pode durar antes de propor a paz. O valor padrão é 21 (trimestre de ano de jogo)."/>
+    <string id="4MzQHMVj" text="Declarar resfriamento de guerra em dias"/>
+    <string id="q2duqN8d" text="Duração mínima (em dias) que uma guerra pode durar antes de propor a paz. O valor padrão é 21 (trimestre de ano de jogo)."/>
+    <string id="2XC8QHkl" text="Habilitar Alianças"/>
+    <string id="5YJBZx28" text="Se desativado, isto desabilita a habilidade de formar alianças para ambos os reinos de jogador e AI. Valor padrão está ativado."/>
+    <string id="H6XMjwpF" text="Duração máxima da facção em dias"/>
+    <string id="RrsWhIWi" text="Duração mínima (em dias) que uma guerra pode durar antes de propor a paz. O valor padrão é 42 (trimestre de ano de jogo)."/>
+    <string id="5a829TiT" text="Tendência da Aliança"/>
+    <string id="7nSjs8UL" text="Modificador de pontos afetando a tendência dos reinos de formarem alianças. Aumentando o modificador torna as alianças mais desejáveis para os reinos AI. O valor padrão é 0."/>
+    <string id="V35hUfcc" text="Duração do Pacto de Não Agressão em Dias"/>
+    <string id="KXLGZEPh" text="A duração (em dias) em que um pacto de não-agressão durará. O valor padrão é 84 (um ano padrão de jogo)."/>
+    <string id="G8BhBnRG" text="Tendência do Pacto de Não Agressão"/>
+    <string id="907ER5u9" text="Modificador de pontos afetando a tendência dos reinos de formarem alianças. Aumentando o modificador torna as alianças mais desejáveis para os reinos AI. O valor padrão é 0."/>
+    <string id="6m1SspFW" text="Ativar Controle de Diplomacia do Reino de Jogador"/>
+    <string id="N5EouSSj" text="Dá ao jogador total controle sobre declarar guerra e fazer a paz no reino ao qual eles pertencem, mesmo que sejam apenas um vassalo e não o líder do reino. Valor padrão desabilitado."/>
+    <string id="lhysZl9j" text="Tendência de ação"/>
+    <string id="dRyU9E7Z" text="Sem guerras entre amigos"/>
+    <string id="XyXJSTKr" text="Se ativo, líderes do reino que são amigos não vão começar guerras uns com os outros. O valor padrão é ativado."/>
+    <string id="pWoKQ6HO" text="Não há guerras se houver boas relações"/>
+    <string id="bOuGhbPt" text="Se ativo, guerras entre líderes de reinos não serão permitidas se relações estão acima das relações de início de guerra. Valor padrão é ativado."/>
+    <string id="x0Aoiomr" text="Limite de relações no Guerras Boas Relações"/>
+    <string id="aH6rpjt6" text="O valor de relação dos líderes do reino após o qual os reinos não começarão guerras um com o outro. O valor padrão é 30."/>
+    <string id="jwNKk8P7" text="Sem Guerras Quando Casados"/>
+    <string id="xcMzKH48" text="Se ativo, clãs de líder do reino que tenham casamento entre si não iniciarão as guerras. Valor padrão está ativo."/>
+    <string id="xcMzKH48" text="Se ativo, clãs de líder do reino que tenham casamento entre si não iniciarão as guerras. Valor padrão está ativo."/>
+    <string id="xXKKRp99" text="O casamento da família do clã líder afeta a aliança"/>
+    <string id="BGS6mUID" text="Se ativo, concederá um bônus de tendência à aliança quando clãs líder tiverem um casamento familiar entre eles. Valor padrão está ativo."/>
+      
+    <string id="ldLFTs92" text="Custos"/>      
+    <string id="Ckd1Lsoa" text="Custos de Ouro"/>
+    <string id="t4hNAoD7" text="Ativar custos de escala de ouro"/>
+    <string id="5MMIDE5A" text="Se ativado, isso irá dimensionar os custos de ouro das ações diplomáticas e reparações de guerra com base no tamanho do seu reino. Caso contrário, serão aplicados os multiplicadores genéricos de 100 para ações diplomáticas e 1000 para reparações de guerra. O valor padrão está ativado."/>
+    <string id="vD270X6H" text="Multiplicador de Custo de Ouro"/>
+    <string id="Gd52NzBP" text="Multiplicador para o custo de escala de ouro. O valor padrão é 5."/>
+    <string id="HFtZsD6v" text="Multiplicador de Custo de Reparações de Guerra"/>
+    <string id="MIhbrqbr" text="Multiplicador para a escala de reparações de guerra custos de ouro. O valor padrão é 50."/>
+    <string id="Cr6a5Jap" text="Custo de Ouro para Reparações de Guerra Derrotadas"/>
+    <string id="NH4GNKva" text="O custo base em ouro por perder uma guerra de desgaste contra outro reino. Afetado pelo dimensionamento e com o dimensionamento desativado será multiplicado por milhares. O valor padrão é 200."/>
+
+    <string id="SEViwYTl" text="Custos de influência"/>
+    <string id="WbOKuWbQ" text="Habilitar custos de influência"/>
+    <string id="K2vLGalN" text="Se desativado, isto remove os custos de influência para ações de guerra e declaração de paz. O valor padrão é habilitado."/>
+    <string id="9PlT57Nl" text="Custos de força/escala"/>
+    <string id="P1g6Ht1e" text="Habilite o custos de escala da influência"/>
+    <string id="xfVFBxfj" text="Se ativado, isto irá aumentar os custos de influência com base no tamanho do seu reino. Caso contrário, os custos de influência plana são usados. O valor padrão é ativado."/>
+    <string id="TvAYJv5Q" text="Multiplicador de Custo da Influência"/>
+    <string id="AQ5gRYN6" text="Multiplicador para o custo de escala da influência. Valor padrão é 5."/>
+    <string id="BazjeCZw" text="Custos de influência/fixos"/>
+    <string id="OnTeAgin" text="Custo fixo de influência de declaração de guerra"/>
+    <string id="O5XvybTI" text="Custo de influência para declarar guerra em outro reino. O valor padrão é 500."/>
+    <string id="iNsXQD2q" text="Custo fixo de influência para fazer Paz"/>
+    <string id="WB5zdvdT" text="Custo de influência para fazer a paz com outro reino. O valor padrão é 500."/>
+
+    <string id="nueOs6m9" text="Mensageiros"/>
+    <string id="nwTyegdV" text="Habilitar acidentes de mensageiros"/>
+    <string id="T7yybpw3" text="Se habilitado, adiciona uma pequena chance de falha para mensageiros. Quanto maior a jornada, maior a chance de um acidente na estrada. Valor de padrão é habilitado."/>
+    <string id="ysYCYvwT" text="Restringir envio de Mensageiros"/>
+    <string id="5O87pSL3" text="Se habilitado, você só pode enviar um mensageiro para pessoas que conheça ou pelo menos é provável que conheça. Caso contrário, você pode enviar um mensageiro para uma pessoa, independentemente do seu conhecimento de endereço. O valor padrão está ativado."/>
+    <string id="nnXi6MmH" text="Tempo de viagem do mensageiros em dias"/>
+    <string id="zkvCGLuK" text="O tempo máximo (em dias) que poderia levar o mensageiro para alcançar o endereço. Afeta diretamente a velocidade de viagem dos mensageiros. O valor padrão é 3."/>
+    <string id="nMwWHj4h" text="Custo de Ouro para Enviar Mensageiro"/>
+    <string id="ehMf7xvE" text="Custo em ouro para enviar um mensageiro para outro personagem. O valor padrão é 100."/>
+
+    <string id="OfEMJWiR" text="Relação"/>
+    <string id="6l9QNMrB" text="Multiplicador de relação positiva ao conceder feudos"/>
+    <string id="FQaghHo7" text="Multiplicador de ganho de relação ao conceder feudos. O valor padrão é 1."/>
+    <string id="9qKclHq3" text="Penalidade de relação ao conceder feudos"/>
+    <string id="fgc8Dvg0" text="A penalização de relação avaliada ao conceder um feudo para outro clã. O valor padrão é -2."/>
+
+    <string id="8ZPKToTq" text="Balanço de Influência"/>
+    <string id="4jlYRUdZ" text="Habilitar Balanço de Influência"/>
+    <string id="tOMN9DQD" text="Controla se os cálculos de Influence Decay e Corrupção estão ativos. Pode precisar ser desativado para a compatibilidade de mods."/>
+
+    <string id="vzKRX2JA" text="Decadência de influência"/>
+    <string id="szYr4OTG" text="Habilitar Decadência da Influência"/>
+    <string id="rKS9z4Sz" text="Permite a deterioração da influência, que decai gradualmente influencia cada dia. O valor padrão é habilitado."/>
+
+    <string id="pVE1yNlm" text="Limite de Decadência Influência"/>
+    <string id="MnLk08uW" text="A quantidade de influência isenta do decaimento da influência. O valor padrão é 1000."/>
+    <string id="WTeM4Rba" text="Perda máxima de influência por dia"/>
+    <string id="CGixJ6ng" text="O valor máximo da perda diária de influência. O valor padrão é 20."/>
+    <string id="yob5ZHtz" text="Porcentagem de redução de influência por dia"/>
+    <string id="IYFl4kJx" text="A porcentagem de influência que se decai por dia. O valor padrão é 2,0."/>
+
+    <string id="e5fHDXgl" text="Corrupção"/>
+    <string id="KWAH0S4h" text="Habilitar Corrupção"/>
+    <string id="trgnZ0pn" text="Permite a corrupção, que gradualmente decai a influência de um clã a cada dia quando mantém muitos feudos. O valor padrão é ativado."/>
+
+    <string id="ZqQaUIil" text="Expansionismo"/>
+    <string id="2raR1ZHv" text="Coalizão"/>
+    <string id="Pr4dcRKm" text="Expansionismo Mínimo por Feudo"/>
+    <string id="9qcAWjI7" text="A quantidade mínima de expansionismo que um feudo contribui. O valor padrão é 3."/>
+    <string id="MnhMW8iq" text="Expansionismo por cerco"/>
+    <string id="lCbie62E" text="Expanionismo adicionado por cerco de sucesso. O valor padrão é 20."/>
+    <string id="mEXGC0h3" text="Expansionismo Decaído por Dia"/>
+    <string id="kgPeQvqE" text="A quantidade de expansionismo que se decai a cada dia. O valor padrão é 1."/>
+    <string id="ZIf1tRII" text="Habilitar coalizões"/>
+    <string id="8v8q0OGu" text="Permite coalizões que permitem que facções se juntem contra uma facção forte e expansionista. O valor padrão está ativado."/>
+    <string id="1kSd88X5" text="Limite de Expansionismo"/>
+    <string id="EUnASoee" text="A quantidade de expansionismo que uma facção requer antes de uma coligação ser formada contra ela. Valor padrão é 100."/>
+    <string id="zwbL9BHe" text="Porcentagem de chance de coalizão por dia"/>
+    <string id="9ugCWA3v" text="A porcentagem de mudança de uma coalizão contra uma facção sobre o limiar de expansionismo. O valor padrão é 5."/>
+
+    <string id="lsyl0VSX" text="Proteção do Storyline"/>
+    <string id="EVrErrTR" text="Quando ativado, impede o jogador de quebrar a linha principal da história. Desative quando usar mods como &quot;Basta me jogar&quot;. O valor padrão está habilitado."/>
+
+    <string id="f6n2UAEC" text="Recursos Não Finalizados"/>
+    <string id="HSoZfvXH" text="Ativar recurso Usurp do Trono"/>
+    <string id="ZIAo4er4" text="Quando ativado, isto permite que o jogador usurpe o trono de um reino. Este recurso está desequilibrado e está pendente de um retrabalho e, portanto, não recomendado. Valor padrão é falso."/>
+  </strings>
+</base>

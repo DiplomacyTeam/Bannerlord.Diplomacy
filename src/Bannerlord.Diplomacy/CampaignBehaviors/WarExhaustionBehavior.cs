@@ -39,25 +39,9 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ClearWarExhaustion);
 
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, OnGameLoadFinished);
-
-#if v120 || v121 || v122 || v123
-            CampaignEvents.CanKingdomBeDiscontinuedEvent.AddNonSerializedListener(this, CanKingdomBeDiscontinued);
-#endif
         }
 
-#if v120 || v121 || v122 || v123
-        private void CanKingdomBeDiscontinued(Kingdom kingdom, ref bool result)
-        {
-            if (Settings.Instance!.EnableKingdomElimination)
-                result = false; //TODO: Probably should move on to vanila kingdom dispatching when making peace
-        }
-#endif
-
-#if v100 || v101 || v102 || v103
-        private void ClearWarExhaustion(IFaction faction1, IFaction faction2)
-#else
         private void ClearWarExhaustion(IFaction faction1, IFaction faction2, MakePeaceAction.MakePeaceDetail makePeaceDetail)
-#endif
         {
             if (faction1 is Kingdom kingdom1 && faction2 is Kingdom kingdom2)
             {
@@ -65,11 +49,7 @@ namespace Diplomacy.CampaignBehaviors
             }
         }
 
-#if v100 || v101 || v102 || v103
-        private void RegisterWarExhaustion(IFaction faction1, IFaction faction2)
-#else
         private void RegisterWarExhaustion(IFaction faction1, IFaction faction2, DeclareWarAction.DeclareWarDetail declareWarDetail)
-#endif
         {
             if (faction1 is Kingdom kingdom1 && faction2 is Kingdom kingdom2)
             {
@@ -77,17 +57,6 @@ namespace Diplomacy.CampaignBehaviors
             }
         }
 
-#if v100 || v101 || v102 || v103
-        private void OnRaidCompleted(BattleSideEnum battleSide, MapEvent mapEvent)
-        {
-            if (battleSide != BattleSideEnum.Attacker || !VerifyEventSides(mapEvent.AttackerSide.LeaderParty, mapEvent.DefenderSide.LeaderParty, out var attacker, out var defender))
-                return;
-
-            CreateKey(attacker!, defender!, out var kingdoms);
-            if (kingdoms is not null)
-                _warExhaustionManager.AddRaidWarExhaustion(kingdoms, mapEvent);
-        }
-#else
         private void OnRaidCompleted(BattleSideEnum battleSide, RaidEventComponent raidEventComponent)
         {
             if (battleSide != BattleSideEnum.Attacker || !VerifyEventSides(raidEventComponent.AttackerSide.LeaderParty, raidEventComponent.DefenderSide.LeaderParty, out var attacker, out var defender))
@@ -97,7 +66,6 @@ namespace Diplomacy.CampaignBehaviors
             if (kingdoms is not null)
                 _warExhaustionManager.AddRaidWarExhaustion(kingdoms, raidEventComponent);
         }
-#endif
 
         private void OnMapEventEnded(MapEvent mapEvent)
         {

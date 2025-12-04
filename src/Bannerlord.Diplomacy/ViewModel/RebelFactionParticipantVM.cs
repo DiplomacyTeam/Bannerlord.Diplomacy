@@ -34,7 +34,7 @@ namespace Diplomacy.ViewModel
             List<TooltipProperty> list = new()
             {
                 new TooltipProperty(_TClanText.ToString(), clan.Name.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title),
-                new TooltipProperty(new TextObject("{=TvSHYACm}Strength").ToString(), Convert.ToString((int) Math.Round(clan.TotalStrength)), 0),
+                new TooltipProperty(new TextObject("{=TvSHYACm}Strength").ToString(), Convert.ToString((int) Math.Round(clan.CurrentTotalStrength)), 0),
                 new TooltipProperty(_TCurrentScore.ToString(), $"{explainedNumber.ResultNumber:0.##}", 0, false,
                     TooltipProperty.TooltipPropertyFlags.Title)
             };

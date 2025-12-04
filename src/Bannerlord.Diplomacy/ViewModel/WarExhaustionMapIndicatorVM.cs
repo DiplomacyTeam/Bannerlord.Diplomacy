@@ -1,6 +1,7 @@
 ﻿using Diplomacy.Events;
+using Diplomacy.Extensions;
 
-using System;
+using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
@@ -19,11 +20,7 @@ namespace Diplomacy.ViewModel
             _kingdomsAtWar = new MBBindingList<WarExhaustionMapIndicatorItemVM>();
             RefreshValues();
             DiplomacyEvents.WarExhaustionInitialized.AddNonSerializedListener(this, HandleStanceChange);
-#if v124 || v125 || v126 || v127 || v128 || v129 || v1210
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this, (x, _, _, _, _) => HandleClanChangedKingdom(x));
-#elif v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116 || v120 || v121 || v122 || v123
-            CampaignEvents.ClanChangedKingdom.AddNonSerializedListener(this, (x, _, _, _, _) => HandleClanChangedKingdom(x));
-#endif
             DiplomacyEvents.WarExhaustionAdded.AddNonSerializedListener(this, HandleWarExhaustionChange);
             Settings.Instance!.PropertyChanged += Settings_PropertyChanged;
         }
@@ -51,11 +48,7 @@ namespace Diplomacy.ViewModel
         {
             base.OnFinalize();
 
-#if v124 || v125 || v126 || v127 || v128 || v129 || v1210
             CampaignEvents.OnClanChangedKingdomEvent.ClearListeners(this);
-#elif v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116 || v120 || v121 || v122 || v123
-            CampaignEvents.ClanChangedKingdom.ClearListeners(this);
-#endif
             DiplomacyEvents.WarExhaustionInitialized.ClearListeners(this);
             DiplomacyEvents.WarExhaustionAdded.ClearListeners(this);
         }
@@ -75,7 +68,7 @@ namespace Diplomacy.ViewModel
                 return;
 
             if (Clan.PlayerClan.MapFaction is Kingdom playerKingdom)
-                foreach (var enemyKingdom in FactionManager.GetEnemyKingdoms(playerKingdom))
+                foreach (var enemyKingdom in KingdomExtensions.AllActiveKingdoms.Where(x => x.IsAtWarWith(playerKingdom) || x.IsAtConstantWarWith(playerKingdom)))
                     KingdomsAtWar.Add(new WarExhaustionMapIndicatorItemVM(enemyKingdom));
         }
 

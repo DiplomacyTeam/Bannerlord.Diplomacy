@@ -33,8 +33,8 @@ namespace Diplomacy.Patches
         {
             if (____clan.MapFaction is not Kingdom kingdom || kingdom.RulingClan != ____clan) return true;
 
-            var primaryColor = ____bannerEditorLayer.DataSource.BannerVM.GetPrimaryColor();
-            var sigilColor = ____bannerEditorLayer.DataSource.BannerVM.GetSigilColor();
+            var primaryColor = ____bannerEditorLayer.DataSource.BannerVM.Banner.GetPrimaryColor();
+            var sigilColor = ____bannerEditorLayer.DataSource.BannerVM.Banner.GetSecondaryColor();
 
             ChangeKingdomBannerAction.Apply(kingdom, primaryColor, sigilColor);
             Game.Current.GameStateManager.PopState();

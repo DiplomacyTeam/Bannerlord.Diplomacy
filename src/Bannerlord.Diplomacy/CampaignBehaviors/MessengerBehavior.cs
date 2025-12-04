@@ -34,7 +34,7 @@ namespace Diplomacy.CampaignBehaviors
         }
 
         private void OnMessengerSent(Hero hero)
-            => _messengerManager.SendMessengerWithCost(hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger());
+            => _messengerManager.SendMessengerWithCost(hero, DiplomacyCostCalculator.DetermineCostForSendingMessenger(hero));
 
         public void OnHourlyTick() => _messengerManager.UpdateMessengerPositions();
 

@@ -124,8 +124,8 @@ namespace Diplomacy.WarExhaustion
         {
             if (Settings.Instance!.IndividualWarExhaustionRates)
             {
-                var kingdom1multiplier = MBMath.ClampFloat(CalculateMultiplier(kingdoms.Kingdom1.TotalStrength), MinExhaustionRate, MaxExhaustionRate);
-                var kingdom2multiplier = MBMath.ClampFloat(CalculateMultiplier(kingdoms.Kingdom2.TotalStrength), MinExhaustionRate, MaxExhaustionRate);
+                var kingdom1multiplier = MBMath.ClampFloat(CalculateMultiplier(kingdoms.Kingdom1.CurrentTotalStrength), MinExhaustionRate, MaxExhaustionRate);
+                var kingdom2multiplier = MBMath.ClampFloat(CalculateMultiplier(kingdoms.Kingdom2.CurrentTotalStrength), MinExhaustionRate, MaxExhaustionRate);
                 if (kingdoms.ReversedKeyOrder)
                 {
                     multiplier1 = kingdom2multiplier;
@@ -139,7 +139,7 @@ namespace Diplomacy.WarExhaustion
             }
             else
             {
-                var average = (kingdoms.Kingdom1.TotalStrength + kingdoms.Kingdom2.TotalStrength) / 2;
+                var average = (kingdoms.Kingdom1.CurrentTotalStrength + kingdoms.Kingdom2.CurrentTotalStrength) / 2;
                 multiplier1 = MBMath.ClampFloat(CalculateMultiplier(average), MinExhaustionRate, MaxExhaustionRate);
                 multiplier2 = multiplier1;
             }

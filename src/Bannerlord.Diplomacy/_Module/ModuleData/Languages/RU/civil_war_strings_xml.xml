@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Русский"/>
+  </tags>
+  <strings>
+    <string id="0WVHMfN8" text="Восстание подавлено"/>
+    <string id="BVNGIAMM" text="{PARENT_KINGDOM} разгромил восстание, разрушившее их королевство. {PLAYER_PARTICIPATION}"/>
+    <string id="x5ThZR5A" text="Возникает новое Королевство"/>
+    <string id="nRxyMIEE" text="{PARENT_KINGDOM} потерпело поражение в гражданской войне и не смогло сохранить единство своих земель. Возникло {KINGDOM}. {PLAYER_PARTICIPATION}"/>
+    <string id="1OQGJkqb" text="Появилась группа бунтовщиков"/>
+    <string id="pqjZ6wck" text="В {KINGDOM} возникла группа бунтовщиков под руководством {CLAN_NAME}. {DEMAND}"/>
+    <string id="ZAfNviVS" text="Независимость"/>
+    <string id="wUspUo1y" text="Отречение"/>
+    <string id="LF19GulH" text="Выйти из состава королевства. Члены этой фракции образуют новое королевство. Только кланы 4-го уровня и выше могут основать фракцию отделения."/>
+    <string id="GK1seKeJ" text="Заставьте лидера королевства уйти в отставку. На выборах будет выбран новый лидер королевства."/>
+    <string id="brEXAKDb" text="Повстанцы требуют, чтобы их землям было позволено отделиться от королевства."/>
+    <string id="8A6JPMWp" text="Повстанцы требуют чтобы {LEADER} отрёкся от престола."/>
+    <string id="ChzQncc0" text="Восстание"/>
+    <string id="WUAv0u4U" text="Сбор поддержки"/>
+    <string id="fw0k1KFl" text="Требуется: {DEMAND_NAME}"/>
+    <string id="FajeZClv" text="{REBELS} ({KINGDOM} восстание)"/>
+    <string id="nAvLFv5Q" text="Гражданская война разгорается"/>
+    <string id="2PpZkBOB" text="В {KINGDOM} началась гражданская война. {REBEL_KINGDOM} возглавляет клан {CLAN_NAME}. {DEMAND}"/>
+    <string id="o0HIAHqg" text="Мятежные королевства не могут быть объектом дипломатических действий."/>
+    <string id="GKSaZESx" text="После избрания нового монарха и достижения поставленной цели {REBELS} {PARENT_KINGDOM} распускается."/>
+    
+    <string id="BPcKHP0D" text="Как лидер восстания, вы получили {INFLUENCE} влияния."/>
+    <string id="UoMvwnTb" text="Как лидер восстания, вы потеряли {INFLUENCE} влияния."/>
+    <string id="QiX6m5cp" text="Будучи членом восстания, вы получили {INFLUENCE} влияния."/>
+    <string id="yrz8GMUb" text="Будучи участником восстания, вы потеряли влияние {INFLUENCE}."/>
+
+    <string id="SNLviWvc" text="Как лидер лоялистов, вы потеряли {INFLUENCE} влияния."/>
+    <string id="2I1X5fAC" text="Как лидер лоялистов, вы получили {INFLUENCE} влияния."/>
+    <string id="4FfA8RL4" text="Будучи членом лоялистов, вы потеряли {INFLUENCE} влияния."/>
+    <string id="uUu7DEDU" text="Как член лоялистов, вы получили {INFLUENCE} влияния."/>
+    
+    <string id="f66sNaiz" text="Вы не можете быть частью восстания"/>
+
+    <string id="DZ6dpEn3" text="Вступить во фракцию"/>
+    <string id="uTCw0WiH" text="Покинуть фракцию"/>
+    <string id="1OUDq7Ul" text="Баланс сил"/>
+    <string id="5q7TvMGL" text="Начать восстание"/>
+    <string id="Ysrttgis" text="Дата начала: {CAMPAIGN_TIME}"/>
+    <string id="o3w3jNzZ" text="Требовать: {DEMAND_NAME}"/>
+    <string id="hbPiVQVK" text="Статус: {STATUS}"/>
+    <string id="TvSHYACm" text="Сила: {STRENGTH}"/>
+    <string id="dlANhHUd" text="Фракций"/>
+    <string id="hBSo0Ziq" text="Создать фракцию"/>
+    <string id="2PglxF8k" text="Выберите требование фракции"/>
+    <string id="gypPPxUJ" text="Фракции"/>
+    <string id="aWWzFITw" text="Монарх отрекается от престола"/>
+    <string id="2Pv3DsVm" text="{PARENT_KINGDOM} проиграл гражданскую войну {REBELS}. {LEADER} отрекается от престола. {PLAYER_PARTICIPATION}"/>
+    <string id="GkhKppOk" text="Недостаточно Появлений"/>
+    <string id="Jc1mCVuY" text="Черта: Вычисление"/>
+    <string id="cjbVV7E3" text="Слишком низкий уровень клана"/>
+    <string id="Vp9EcnuC" text="Склонность к фракциям"/>
+    <string id="dr1OCcmL" text="Отношения с правителем"/>
+    <string id="mouJZAAy" text="Отношения с лидером"/>
+    <string id="FtX4LPXF" text="Размер королевства"/>
+    <string id="VFwDRHc7" text="Участники"/>
+    <string id="IYO5TNTg" text="Право править"/>
+    <string id="YLUocN5e" text="Лидер имеет право править"/>
+    <string id="qAcR4Yee" text="Дружественные кланы во фракции"/>
+    <string id="1AZK0UVJ" text="Правитель не имеет права править"/>
+
+    <string id="ovgs58sT" text="Невозможно создать фракцию во время активного восстания."/>
+    <string id="VbpiW2bd" text="Нельзя создавать фракцию так скоро после гражданской войны."/>
+    <string id="JDk8ustS" text="Наемники не могут создавать фракции."/>
+    <string id="quo5erz6" text="Правители не могут создавать фракции."/>
+    <string id="luvsD6Zn" text="Невозможно создать фракцию в мятежном королевстве."/>
+    <string id="iXMeCmj0" text="Должен быть клан уровня 4 или выше."/>
+    <string id="Xu3rnEEa" text="Чтобы создать фракцию {KINGDOM_NAME}, необходимо быть частью {KINGDOM_NAME}."/>
+    <string id="DxJH7ciY" text="В королевстве может быть только одна фракция отречения."/>
+    <string id="zTZWwJfN" text="Вы не можете возглавлять две фракции."/>
+    
+    <!-- <string id="" text="" /> -->
+
+    <string id="EYB5Uggd" text="Лидер - {TRAIT}"/>
+    <string id="E00ywbqb" text="Правитель - {TRAIT}"/>
+
+    <string id="GeevRiNR" text="{LABEL}{newline} {newline}{REASON}"/>
+    <string id="ALSuNVzE" text="{EXCEPTION}{newline} {newline}{DEMAND_HINT}"/>
+
+    <!-- Settings -->
+    <string id="eDZeFUTH" text="Гражданские войны"/>
+    <string id="VB97zQeJ" text="Минимальное Время Между Гражданскими Войнами В Днях"/>
+    <string id="5cUqaLk4" text="Минимальное количество времени, требуемое между гражданской войной и при появлении новых повстанческих группировок в королевстве. Значение по умолчанию — 240."/>
+    <string id="UdadyqpN" text="Ежедневный шанс появления группы бунтовщиков"/>
+    <string id="yznXCi1d" text="Ежедневный шанс для клана создать повстанческую фракцию. Значение по умолчанию — 100%."/>
+    <string id="r312b3Of" text="Ежедневный шанс присоединиться к повстанческой фракции"/>
+    <string id="06oPGRj0" text="Ежедневный шанс для клана присоединиться к повстанческой фракции, которую он будет поддерживать. Значение по умолчанию — 100%."/>
+    <string id="lIbUuQB1" text="Ежедневный шанс начала гражданской войны"/>
+    <string id="zr10ZS3L" text="Ежедневный шанс для фракции с достаточной поддержкой начать гражданскую войну. Значение по умолчанию — 50%."/>
+    <string id="VNILqmoY" text="Максимальная продолжительность фракции в днях"/>
+    <string id="rNJIvaSm" text="Максимальное время, в течение которого фракция может существовать без участия в гражданской войне. Значение по умолчанию — 120."/>
+    <string id="6kNmdLxZ" text="Стоимость влияния на создание фракции"/>
+    <string id="EwbXg3va" text="Стоимость влияния на создание фракции. Значение по умолчанию — 100."/>
+    <string id="7wK0mmw1" text="Склонность к фракциям"/>
+    <string id="aqvIdG7w" text="Модификатор очков, влияющий на склонность кланов создавать или вступать во фракции. Увеличение модификатора повышает участие во фракциях. Значение по умолчанию равно 0."/>
+    
+  </strings>
+</base>

@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection.ImageIdentifiers;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 
@@ -16,7 +16,7 @@ namespace Diplomacy.ViewModel
         public DiplomacyFactionRelationshipVM(IFaction faction, HintViewModel? hint = null)
         {
             Faction = faction;
-            _imageIdentifier = new ImageIdentifierVM(BannerCode.CreateFrom(faction.Banner), true);
+            _imageIdentifier = new BannerImageIdentifierVM(faction.Banner, true);
             _nameText = Faction.Name.ToString();
             _hint = hint ?? new HintViewModel();
         }
@@ -35,12 +35,12 @@ namespace Diplomacy.ViewModel
 
         [DataSourceProperty]
         // TODO: FIXME: Property named below was "Banner" -- interpreted as bug, but check functionality switching between ImageIdentifiers
-        public ImageIdentifierVM ImageIdentifier { get => _imageIdentifier; set => SetField(ref _imageIdentifier, value, nameof(ImageIdentifier)); }
+        public BannerImageIdentifierVM ImageIdentifier { get => _imageIdentifier; set => SetField(ref _imageIdentifier, value, nameof(ImageIdentifier)); }
 
         [DataSourceProperty]
         public HintViewModel Hint { get => _hint; set => SetField(ref _hint, value, nameof(Hint)); }
 
-        private ImageIdentifierVM _imageIdentifier;
+        private BannerImageIdentifierVM _imageIdentifier;
         private string _nameText;
         private HintViewModel _hint;
     }

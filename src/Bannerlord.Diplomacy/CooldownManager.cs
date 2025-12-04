@@ -73,7 +73,7 @@ namespace Diplomacy
         public static CampaignTime GetLastWarTimeBetweenFactions(IFaction faction1, IFaction faction2)
         {
             var stanceLink = faction1.GetStanceWith(faction2);
-            if ((stanceLink?.IsNeutral ?? false) || (stanceLink?.IsAllied ?? false))
+            if (stanceLink?.IsNeutral ?? false)
             {
                 return stanceLink.PeaceDeclarationDate;
             }

@@ -49,7 +49,7 @@ namespace Diplomacy.ViewModel
                 WarExhaustionType.Occupied => new TextObject("{=sCRuliNO}Fully Occupied").ToString(),
                 WarExhaustionType.Daily => new TextObject("{=XIPMI3gR}War Duration").ToString(),
                 WarExhaustionType.Divine => new TextObject("{=FVyFJShW}Divine Interventions").ToString(),
-                _ => TextObject.Empty.ToString(),
+                _ => TextObject.GetEmpty().ToString(),
             };
             ValueFaction1 = breakdown.ValueFaction1;
             ValueFaction2 = breakdown.ValueFaction2;

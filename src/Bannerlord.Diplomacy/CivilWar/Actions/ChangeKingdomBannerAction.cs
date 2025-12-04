@@ -66,40 +66,20 @@ namespace Diplomacy.CivilWar.Actions
 
                 if (clanKingdom == kingdom)
                 {
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
-                    var visuals = mobileParty.Party!.Visuals;
-                    if (visuals != null)
-                    {
-                        visuals.SetMapIconAsDirty();
-                    }
-#else
                     mobileParty.Party!.SetVisualAsDirty();
-#endif
                 }
             }
 
             foreach (var settlement in kingdom.Settlements)
             {
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
-                var visuals = settlement.Party.Visuals;
-                if (visuals != null)
-                {
-                    visuals.SetMapIconAsDirty();
-                }
-#else
                 settlement.Party?.SetVisualAsDirty();
-#endif
 
                 if (settlement.IsVillage && settlement.Village.VillagerPartyComponent != null)
                 {
                     var party = settlement.Village.VillagerPartyComponent.MobileParty.Party;
                     if (party != null)
                     {
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
-                        party.Visuals.SetMapIconAsDirty();
-#else
                         party.SetVisualAsDirty();
-#endif
                     }
                 }
                 else if ((settlement.IsCastle || settlement.IsTown) && settlement.Town.GarrisonParty != null)
@@ -107,11 +87,7 @@ namespace Diplomacy.CivilWar.Actions
                     var party = settlement.Town.GarrisonParty.Party;
                     if (party != null)
                     {
-#if v100 || v101 || v102 || v103 || v110 || v111 || v112 || v113 || v114 || v115 || v116
-                        party.Visuals.SetMapIconAsDirty();
-#else
                         party.SetVisualAsDirty();
-#endif
                     }
                 }
             }
@@ -133,7 +109,7 @@ namespace Diplomacy.CivilWar.Actions
             {
                 // choose random unused color from the palette
                 var currentBackgroundColors = KingdomExtensions.AllActiveKingdoms.Where(x => !x.IsEliminated).Select(x => GetPrimaryBannerColor?.Invoke(x)).ToList();
-                backgroundColor = BannerManager.ColorPalette.Where(x => !currentBackgroundColors.Contains(x.Value.Color)).GetRandomElementInefficiently().Value.Color;
+                backgroundColor = BannerManager.Instance.ReadOnlyColorPalette.Where(x => !currentBackgroundColors.Contains(x.Value.Color)).GetRandomElementInefficiently().Value.Color;
                 sigilColor = GetUniqueSigilColor(backgroundColor);
             }
 
@@ -144,11 +120,11 @@ namespace Diplomacy.CivilWar.Actions
         {
             var background = GetRgb(backgroundColor);
 
-            var selectedColor = BannerManager.ColorPalette.Where(x => background.Compare(GetRgb(x.Value.Color), new Cie1976Comparison()) > 40).GetRandomElementInefficiently().Value.Color;
+            var selectedColor = BannerManager.Instance.ReadOnlyColorPalette.Where(x => background.Compare(GetRgb(x.Value.Color), new Cie1976Comparison()) > 40).GetRandomElementInefficiently().Value.Color;
             if (backgroundColor == RebelBackgroundColor)
             {
                 var currentSigilColors = KingdomExtensions.AllActiveKingdoms.Where(x => !x.IsEliminated && x.IsRebelKingdom()).Select(x => GetSecondaryBannerColor?.Invoke(x)).ToList();
-                var colors = BannerManager.ColorPalette.Select(x => x.Value.Color)
+                var colors = BannerManager.Instance.ReadOnlyColorPalette.Select(x => x.Value.Color)
                     .Where(x => background.Compare(GetRgb(x), new Cie1976Comparison()) > 40)
                     .Where(x => !currentSigilColors.Contains(x))
                     .ToList();

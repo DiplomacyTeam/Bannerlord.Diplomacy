@@ -7,6 +7,7 @@ using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection.ImageIdentifiers;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -107,10 +108,10 @@ namespace Diplomacy.ViewModel
         public HintViewModel PlayerCriticaExhaustionlHint { get; set; }
 
         [DataSourceProperty]
-        public ImageIdentifierVM Faction1Visual { get; set; } = null!;
+        public BannerImageIdentifierVM Faction1Visual { get; set; } = null!;
 
         [DataSourceProperty]
-        public ImageIdentifierVM Faction2Visual { get; set; } = null!;
+        public BannerImageIdentifierVM Faction2Visual { get; set; } = null!;
 
         [DataSourceProperty]
         public MBBindingList<WarExhaustionBreakdownVM> Breakdowns { get; set; }
@@ -148,9 +149,9 @@ namespace Diplomacy.ViewModel
             StatsLabel = GameTexts.FindText("str_stat").ToString();
             WarReportLabel = new TextObject("{=mCue7aFc}War Report").ToString();
             ActiveQuestWarning = "";
-            ActiveQuestHint = new(TextObject.Empty);
-            PlayerCriticaExhaustionlHint = new(TextObject.Empty);
-            OpponentCriticaExhaustionlHint = new(TextObject.Empty);
+            ActiveQuestHint = new(TextObject.GetEmpty());
+            PlayerCriticaExhaustionlHint = new(TextObject.GetEmpty());
+            OpponentCriticaExhaustionlHint = new(TextObject.GetEmpty());
 
             RefreshValues();
         }
@@ -160,8 +161,8 @@ namespace Diplomacy.ViewModel
             base.RefreshValues();
             var playerKingdom = Clan.PlayerClan.Kingdom;
 
-            Faction1Visual = new ImageIdentifierVM(BannerCode.CreateFrom(playerKingdom.Banner), true);
-            Faction2Visual = new ImageIdentifierVM(BannerCode.CreateFrom(_opposingKingdom.Banner), true);
+            Faction1Visual = new BannerImageIdentifierVM(playerKingdom.Banner, true);
+            Faction2Visual = new BannerImageIdentifierVM(_opposingKingdom.Banner, true);
 
             PlayerWarExhaustion = $"{Instance!.GetWarExhaustion(Clan.PlayerClan.Kingdom, _opposingKingdom):F1}%";
             OpponentWarExhaustion = $"{Instance!.GetWarExhaustion(_opposingKingdom, Clan.PlayerClan.Kingdom):F1}%";
@@ -188,7 +189,7 @@ namespace Diplomacy.ViewModel
                     break;
                 default:
                     ActiveQuestWarning = "";
-                    ActiveQuestHint = new(TextObject.Empty);
+                    ActiveQuestHint = new(TextObject.GetEmpty());
                     questStateWarningHeight = 0;
                     break;
             }
@@ -212,7 +213,7 @@ namespace Diplomacy.ViewModel
                     ["EXHAUSTED_FACTION"] = faction1.Name,
                     ["OTHER_FACTION"] = faction2.Name,
                     ["IS_CIVIL_WAR"] = (faction1.IsRebelKingdom() || faction2.IsRebelKingdom()) ? 1 : 0
-                })) : new(TextObject.Empty);
+                })) : new(TextObject.GetEmpty());
         }
 
         [UsedImplicitly]

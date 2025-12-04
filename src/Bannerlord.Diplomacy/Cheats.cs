@@ -1,7 +1,6 @@
 ﻿using Diplomacy.CivilWar;
 using Diplomacy.CivilWar.Actions;
 using Diplomacy.DiplomaticAction;
-using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.Extensions;
 using Diplomacy.WarExhaustion;
@@ -12,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Library;
 
@@ -57,7 +57,7 @@ namespace Diplomacy
             if (kingdom2 is null)
                 return "2nd kingdom ID not found: " + b2;
 
-            DeclareAllianceAction.Apply(kingdom1, kingdom2, bypassCosts: true);
+            Campaign.Current.GetCampaignBehavior<IAllianceCampaignBehavior>().StartAlliance(kingdom1, kingdom2);
             return $"Alliance formed between {kingdom1.Name} and {kingdom2.Name}!";
         }
 

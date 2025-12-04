@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LanguageData id="Polski">
- <LanguageFile xml_path="PL/civil_war_strings_xml.xml"/>
- <LanguageFile xml_path="PL/faction_names_xml.xml"/>
- <LanguageFile xml_path="PL/help_strings_xml.xml"/>
- <LanguageFile xml_path="PL/std_module_strings_xml.xml"/>
- <LanguageFile xml_path="PL/war_exhaustion_strings.xml"/>
-</LanguageData>

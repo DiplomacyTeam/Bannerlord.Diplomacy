@@ -40,12 +40,12 @@ namespace Diplomacy.Patches
             return true;
         }
 
-        private static bool ConsiderPeacePrefix(Clan clan, Clan otherClan, Kingdom kingdom, IFaction otherFaction, out MakePeaceKingdomDecision? decision, ref bool __result)
+        private static bool ConsiderPeacePrefix(Clan clan, Clan otherClan, IFaction otherFaction, out MakePeaceKingdomDecision? decision, ref bool __result)
         {
             decision = null;
 
             if (otherFaction is Kingdom otherKingdom
-                && !MakePeaceConditions.Instance.CanApply(kingdom, otherKingdom, bypassCosts: true))
+                && !MakePeaceConditions.Instance.CanApply(clan.Kingdom, otherKingdom, bypassCosts: true))
             {
                 __result = false;
                 return false;

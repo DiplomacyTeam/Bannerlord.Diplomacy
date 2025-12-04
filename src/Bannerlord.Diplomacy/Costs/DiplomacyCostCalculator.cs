@@ -1,6 +1,7 @@
 ﻿using Diplomacy.CivilWar.Factions;
 using Diplomacy.DiplomaticAction.WarPeace;
 using Diplomacy.Extensions;
+using Diplomacy.Messengers;
 using Diplomacy.WarExhaustion;
 
 using System;
@@ -164,12 +165,14 @@ namespace Diplomacy.Costs
 
         private static float GetKingdomWarLoad(Kingdom kingdom)
         {
-            return FactionManager.GetEnemyFactions(kingdom)?.Select(x => x.TotalStrength).Aggregate(0f, (result, item) => result + item) / kingdom.TotalStrength ?? 0f;
+            return kingdom.GetEnemyKingdoms()?.Select(x => x.CurrentTotalStrength)?.Aggregate(0f, (result, item) => result + item) / kingdom.CurrentTotalStrength ?? 0f;
         }
 
-        public static GoldCost DetermineCostForSendingMessenger()
+        public static GoldCost DetermineCostForSendingMessenger(Hero hero)
         {
-            return new(Hero.MainHero, Settings.Instance!.SendMessengerGoldCost);
+            float hourToArrive = MessengerManager.GetHourToArrive(hero);
+            float value = Settings.Instance!.SendMessengerMinimumGoldCost + Settings.Instance!.SendMessengerGoldHourlyCost * hourToArrive;
+            return new(Hero.MainHero, value);
         }
 
         private static int GetKingdomTierCount(Kingdom kingdom)

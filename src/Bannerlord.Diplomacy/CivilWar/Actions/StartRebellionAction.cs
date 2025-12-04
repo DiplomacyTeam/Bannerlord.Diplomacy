@@ -60,15 +60,11 @@ namespace Diplomacy.CivilWar.Actions
                 }
                 // make sure to retain influence
                 var influence = clan.Influence;
-                ChangeKingdomAction.ApplyByJoinToKingdom(clan, rebelFaction.RebelKingdom, false);
+                ChangeKingdomAction.ApplyByJoinToKingdom(clan, rebelFaction.RebelKingdom, showNotification: false);
                 clan.Influence = influence;
             }
 
-#if v100 || v101 || v102 || v103
-            DeclareWarAction.Apply(rebelFaction.RebelKingdom, rebelFaction.ParentKingdom);
-#else
             DeclareWarAction.ApplyByKingdomCreation(rebelFaction.RebelKingdom, rebelFaction.ParentKingdom);
-#endif
 
             var strVars = new Dictionary<string, object>
             {

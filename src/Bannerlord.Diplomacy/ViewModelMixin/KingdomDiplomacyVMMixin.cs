@@ -1,7 +1,6 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
 
-using Diplomacy.DiplomaticAction.Alliance;
 using Diplomacy.Events;
 using Diplomacy.Extensions;
 
@@ -11,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Diplomacy;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -66,15 +66,8 @@ namespace Diplomacy.ViewModelMixin
             DiplomacyText = _TDiplomacy.ToString();
 
             // No refresh needed on NAP because it doesn't move the item from one diplomacy group (At War / Alliances / At Peace) to another
-            DiplomacyEvents.AllianceFormed.AddNonSerializedListener(this, _ => ViewModel!.RefreshValues());
-            DiplomacyEvents.AllianceBroken.AddNonSerializedListener(this, _ => ViewModel!.RefreshValues());
-#if v100 || v101 || v102 || v103
-            CampaignEvents.MakePeace.AddNonSerializedListener(this, (_, _) => ViewModel!.RefreshValues());
-            CampaignEvents.WarDeclared.AddNonSerializedListener(this, (_, _) =>
-#else
             CampaignEvents.MakePeace.AddNonSerializedListener(this, (_, _, _) => ViewModel!.RefreshValues());
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, (_, _, _) =>
-#endif
             {
                 if (Hero.MainHero.MapFaction is Kingdom)
                     ViewModel!.RefreshValues();
@@ -110,7 +103,7 @@ namespace Diplomacy.ViewModelMixin
             RemoveRebelKingdoms(ViewModel!.PlayerTruces);
             RemoveRebelKingdoms(ViewModel!.PlayerWars);
 
-            var alliances = ViewModel!.PlayerTruces.Where(item => item.Faction1.IsAlliedWith(item.Faction2)).ToList();
+            var alliances = ViewModel!.PlayerTruces.Where(item => item.HasAlliance).ToList();
             foreach (var alliance in alliances) ViewModel!.PlayerTruces.Remove(alliance);
 
             foreach (var truce in ViewModel!.PlayerTruces.ToList())
@@ -150,7 +143,7 @@ namespace Diplomacy.ViewModelMixin
         [UsedImplicitly]
         public void BreakAlliance(KingdomDiplomacyItemVM item)
         {
-            BreakAllianceAction.Apply((Kingdom) item.Faction1, (Kingdom) item.Faction2);
+            Campaign.Current.GetCampaignBehavior<AllianceCampaignBehavior>().EndAlliance((Kingdom) item.Faction1, (Kingdom) item.Faction2);
             ViewModel!.RefreshDiplomacyList();
             OnRefresh();
         }
