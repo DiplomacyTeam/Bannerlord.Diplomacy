@@ -165,9 +165,9 @@
     -->
 
     <string id="sBw5Qzq3" text="Diplomacia do Reino"/>
-    <string id="tis8Ddzn" text="Permitir que o jogador reivindique feudos capturados pelo jogador"/>
+    <string id="tis8Ddzn" text="Permitir que o jogador reivindique feudos capturados"/>
     <string id="TfxLCxcD" text="Dá ao jogador a opção de reivindicar um feudo que ele tomou em vez de o deixar ir para uma eleição."/>
-    <string id="8VKC3jtN" text="Ativar a eliminação de Reino sem feudos"/>
+    <string id="8VKC3jtN" text="Habilitar a eliminação de Reino sem feudos"/>
     <string id="TlymwwPZ" text="Se ativado, reinos sem feudos são destruídos quando assinam um tratado de paz que termina a última guerra em andamento em que eles participam. Valor padrão está habilitado."/>
     <string id="w8Hi9jJf" text="Atrasar a eliminação do Reino sem feudos"/>
     <string id="GDctI4Kd" text="Se ativado, os reinos sem feudos só serão destruídos quando assinarem um tratado de paz que termine a última guerra em que estão envolvidos, não imediatamente após perderem seu último feudo. Valor padrão está habilitado."/>      
@@ -185,7 +185,7 @@
     <string id="KXLGZEPh" text="A duração (em dias) em que um pacto de não-agressão durará. O valor padrão é 84 (um ano padrão de jogo)."/>
     <string id="G8BhBnRG" text="Tendência do Pacto de Não Agressão"/>
     <string id="907ER5u9" text="Modificador de pontos afetando a tendência dos reinos de formarem alianças. Aumentando o modificador torna as alianças mais desejáveis para os reinos AI. O valor padrão é 0."/>
-    <string id="6m1SspFW" text="Ativar Controle de Diplomacia do Reino de Jogador"/>
+    <string id="6m1SspFW" text="Habilitar Controle da Diplomacia do Reino do Jogador"/>
     <string id="N5EouSSj" text="Dá ao jogador total controle sobre declarar guerra e fazer a paz no reino ao qual eles pertencem, mesmo que sejam apenas um vassalo e não o líder do reino. Valor padrão desabilitado."/>
     <string id="lhysZl9j" text="Tendência de ação"/>
     <string id="dRyU9E7Z" text="Sem guerras entre amigos"/>
@@ -201,17 +201,17 @@
     <string id="BGS6mUID" text="Se ativo, concederá um bônus de tendência à aliança quando clãs líder tiverem um casamento familiar entre eles. Valor padrão está ativo."/>
       
     <string id="ldLFTs92" text="Custos"/>      
-    <string id="Ckd1Lsoa" text="Custos de Ouro"/>
-    <string id="t4hNAoD7" text="Ativar custos de escala de ouro"/>
+    <string id="Ckd1Lsoa" text="Ouro"/>
+    <string id="t4hNAoD7" text="Habilitar custos em ouro"/>
     <string id="5MMIDE5A" text="Se ativado, isso irá dimensionar os custos de ouro das ações diplomáticas e reparações de guerra com base no tamanho do seu reino. Caso contrário, serão aplicados os multiplicadores genéricos de 100 para ações diplomáticas e 1000 para reparações de guerra. O valor padrão está ativado."/>
-    <string id="vD270X6H" text="Multiplicador de Custo de Ouro"/>
-    <string id="Gd52NzBP" text="Multiplicador para o custo de escala de ouro. O valor padrão é 5."/>
+    <string id="vD270X6H" text="Multiplicador de Custo em Ouro"/>
+    <string id="Gd52NzBP" text="Multiplicador para o custo de escala em ouro. O valor padrão é 5."/>
     <string id="HFtZsD6v" text="Multiplicador de Custo de Reparações de Guerra"/>
     <string id="MIhbrqbr" text="Multiplicador para a escala de reparações de guerra custos de ouro. O valor padrão é 50."/>
     <string id="Cr6a5Jap" text="Custo de Ouro para Reparações de Guerra Derrotadas"/>
     <string id="NH4GNKva" text="O custo base em ouro por perder uma guerra de desgaste contra outro reino. Afetado pelo dimensionamento e com o dimensionamento desativado será multiplicado por milhares. O valor padrão é 200."/>
 
-    <string id="SEViwYTl" text="Custos de influência"/>
+    <string id="SEViwYTl" text="Influência"/>
     <string id="WbOKuWbQ" text="Habilitar custos de influência"/>
     <string id="K2vLGalN" text="Se desativado, isto remove os custos de influência para ações de guerra e declaração de paz. O valor padrão é habilitado."/>
     <string id="9PlT57Nl" text="Custos de força/escala"/>
