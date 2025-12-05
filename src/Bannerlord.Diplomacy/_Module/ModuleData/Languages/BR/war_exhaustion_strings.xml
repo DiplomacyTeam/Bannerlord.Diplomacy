@@ -81,9 +81,9 @@
 
     <!-- Settings -->
     <string id="V542tneW" text="Exaustão de Guerra"/>
-    <string id="lSttctYC" text="Ativar Exaustão de Guerra"/>
-    <string id="Cxyn9ROT" text="Ativa a mecânica de exaustão de guerra. O valor padrão está ativado."/>
-    <string id="Yc2YUIva" text="Ativar retornos decrescentes"/>
+    <string id="lSttctYC" text="Habilitar Exaustão de Guerra"/>
+    <string id="Cxyn9ROT" text="Habilita a mecânica de exaustão de guerra. O valor padrão está ativado."/>
+    <string id="Yc2YUIva" text="Habilitar retornos decrescentes"/>
     <string id="CaxxEEdC" text="Permite retornos decrescentes para alguns eventos ao calcular a exaustão da guerra. O valor padrão está ativado."/>
     <string id="HPFINWrc" text="Taxas individuais de exaustão de guerra"/>
     <string id="LFVkLcIp" text="Habilita as taxas de exaustão de guerra individuais para facções. Se desativado, uma única taxa será calculada para cada guerra com base na força combinada das facções opostas. O valor padrão está ativado."/>
@@ -109,9 +109,9 @@
     <string id="541jGrpb" text="A quantidade de exaustão de guerra adicionada quando uma facção perde todos os seus feudos. Não é afetado pela taxa de exaustão de guerra. Potencialmente sujeito a retornos decrescentes. O valor padrão é 15,0%."/>
     <string id="pPHLRIml" text="Máximo de entradas na dica de ferramenta de detalhamento"/>
     <string id="YMf0mSqy" text="Número máximo de entradas em qualquer dica de ferramenta de detalhamento no relatório de exaustão de guerra. Defina isso para qualquer valor que seja conveniente para visualização. O valor padrão é 35."/>
-    <string id="F4iFH6un" text="Widget de mapa de campanha"/>
-    <string id="zTvbZ8Br" text="Ativa um widget de exaustão de guerra dedicado para cada guerra em andamento na parte superior da tela do mapa da campanha. O valor padrão está ativado."/>
-    <string id="jI9NSxtz" text="Ativar mensagens de depuração de exaustão de guerra do jogador"/>
+    <string id="F4iFH6un" text="Habilitar Widget de mapa de campanha"/>
+    <string id="zTvbZ8Br" text="Habilita um widget de exaustão de guerra dedicado para cada guerra em andamento na parte superior da tela do mapa da campanha. O valor padrão está ativado."/>
+    <string id="jI9NSxtz" text="Habilitar Debug: Exaustão de Guerra Jogador"/>
     <string id="LYyNbQds" text="Habilita mensagens de depuração para exaustão de guerra adicionadas ao reino do jogador. O valor padrão está desabilitado."/>
 
   </strings>
