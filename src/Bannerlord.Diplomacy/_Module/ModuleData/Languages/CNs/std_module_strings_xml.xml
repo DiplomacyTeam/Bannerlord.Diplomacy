@@ -23,263 +23,278 @@
 
     <string id="JmgAuONd" text="不好！信使在前往 {HERO_NAME} 的途中被一个暗影怪伏击并吃掉了！"/>
     <string id="YnRmSele" text="来自{FACTION1_NAME}的信使已经到达{ADDRESSEE_TEXT}。{BRIBE_TEXT}"/>
-    <string id="qNWMZP0z" text="来自{FACTION1_NAME}的信使将在{TRAVEL_TIME}天内到达{ADDRESSEE_TEXT}。"/>
-    <string id="nYrezEOX" text="信使被杀死了"/>
-    <string id="A5lug0JY" text="你的信使在试图到达{HERO NAME}时被拦路强盗伏击并杀害！"/>
-    <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\?}"/>
-    <string id="sQxAljGF" text="{NEW_LINE}{NEW_LINE}不幸的是，信使被拒绝进入堡垒，但他可以试图贿赂守卫。这将花费{?IS_FEMALE}她{?}他{\?}{GOLD_COST}{GOLD_ICON}并且你要支付{?CAN_AFFORD}.{?}, 你现在还负担不起。{\?}"/>
+    <string id="C7XPJZAM" text="来自{FACTION1_NAME}的信使将在{TRAVEL_TIME}天内到达{ADDRESSEE_TEXT}。"/>
+    <string id="k5i2F6UD" text="信使被杀死了"/>
+    <string id="qNWMZP0z" text="你的信使在试图到达{HERO NAME}时被拦路强盗伏击并杀害！"/>
+    <string id="G2NMbFDb" text="{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\?}"/>
+    <string id="gfZgMSYD" text="{NEW_LINE}{NEW_LINE}不幸的是，信使被拒绝进入堡垒，但他可以试图贿赂守卫。这将花费{?IS_FEMALE}她{?}他{\?}{GOLD_COST}{GOLD_ICON}并且你要支付{?CAN_AFFORD}.{?}, 你现在还负担不起。{\?}"/>
+    <string id="nYrezEOX" text="因为{REASON}，信使将无法到达收件人。"/>
+    <string id="A5lug0JY" text="信使要么不理解你的笑话，要么不喜欢你的笑话，然后拒绝了这个任务。"/>
+    <string id="1rYSIMfX" text="你对{HERO_NAME}了解得太少了，不能为信使指出来。"/>
+    <string id="J2T97gNx" text="{HERO_NAME} 死了。"/>
+    <string id="hOOW2DMD" text="{HERO_NAME} {?IS_MOBILE}被{?}在{\?} {DETENTION_PLACE}。"/>
+    <string id="hc52yW8O" text="{HERO_NAME} 是一个逃犯，不想被人找到。"/>
+    <string id="2rJDoi7N" text="{HERO_NAME}刚刚被释放，尚未准备好预约。"/>
+    <string id="VKqC9dl0" text="{HERO_NAME} 正在隐身旅行。"/>
+    <string id="vGyBQeEk" text="{HERO_NAME}经验不足，无法参加正式会议。"/>
+    <string id="sQxAljGF" text="和平提案"/>
 
-    <string id="bLR91Eob" text="因为{REASON}，信使将无法到达收件人。"/>
-    <string id="hPra5uwZ" text="信使要么不理解你的笑话，要么不喜欢你的笑话，然后拒绝了这个任务。"/>
-    <string id="1mlXBnSs" text="你对{HERO_NAME}了解得太少了，不能为信使指出来。"/>
+    <string id="bLR91Eob" text="同意"/>
+    <string id="hPra5uwZ" text="拒绝"/>
+    <string id="1mlXBnSs" text="发送信使"/>
+    <string id="HHgTlyyt" text="已占领的定居点。"/>
 
-    <string id="vhsHDMil" text="{HERO_NAME} 死了。"/>
-    <string id="CusN2JMb" text="{HERO_NAME} {?IS_MOBILE}被{?}在{\?} {DETENTION_PLACE}。"/>
-    <string id="1BISlFYx" text="{HERO_NAME} 是一个逃犯，不想被人找到。"/>
-    <string id="ze8KJ1oL" text="{HERO_NAME}刚刚被释放，尚未准备好预约。"/>
-    <string id="N5T6IXWJ" text="{HERO_NAME} 正在隐身旅行。"/>
-    <string id="3lknR86H" text="{HERO_NAME}经验不足，无法参加正式会议。"/>
+    <string id="vhsHDMil" text="作为{SETTLEMENT_NAME}的占领方，您有优先获得权。你想要这块封地吗？"/>
+    <string id="CusN2JMb" text="金币不足！"/>
+    <string id="1BISlFYx" text="授予封地"/>
+    <string id="ze8KJ1oL" text="授予 {CLAN_NAME} 封地"/>
+    <string id="N5T6IXWJ" text="封地已授予"/>
+    <string id="3lknR86H" text="{SETTLEMENT_NAME} 已被授予 {CLAN_NAME}。"/>
 
-    <string id="BkGSVccZ" text="和平提案"/>
-    <string id="3fTqLwkC" text="同意"/>
-    <string id="dRoMejb0" text="拒绝"/>
+    <string id="BkGSVccZ" text="你不能向自己家族授予封地。"/>
+    <string id="3fTqLwkC" text="你不是王国的领导者。"/>
+    <string id="dRoMejb0" text="你没有任何封地用来授予。"/>
 
-    <string id="cXfcwzPp" text="发送信使"/>
+    <string id="cXfcwzPp" text="在你的王国中授予家族封地"/>
 
-    <string id="N06wk0dB" text="已占领的定居点。"/>
-    <string id="Zy0yjTha" text="作为{SETTLEMENT_NAME}的占领方，您有优先获得权。你想要这块封地吗？"/>
+    <string id="N06wk0dB" text="你不能向雇佣军家族授予封地。"/>
+    <string id="Zy0yjTha" text="你们最近一直在打仗，没时间考虑结盟。战争已持续 {ELAPSED_DAYS} 天，至少需要 {REQUIRED_DAYS} 天才能结盟。"/>
 
-    <string id="IWZ91JVk" text="金币不足！"/>
+    <string id="IWZ91JVk" text="无法加入联盟。"/>
 
-    <string id="LpoyhORp" text="授予封地"/>
-    <string id="h3b1S5Wq" text="授予 {CLAN_NAME} 封地"/>
-    <string id="jznJfkfU" text="封地已授予"/>
-    <string id="cXbgaPSm" text="{SETTLEMENT_NAME} 已被授予 {CLAN_NAME}。"/>
+    <string id="LpoyhORp" text="不能处于战争状态。"/>
+    <string id="h3b1S5Wq" text="联盟已建立"/>
+    <string id="jznJfkfU" text="联盟提案"/>
+    <string id="cXbgaPSm" text="{KINGDOM} 提议与 {PLAYER_KINGDOM} 结盟。"/>
 
-    <string id="FqeN0fmR" text="你不能向自己家族授予封地。"/>
-    <string id="zdSYUnZQ" text="你不是王国的领导者。"/>
-    <string id="D61vzEC7" text="你没有任何封地用来授予。"/>
-    <string id="98hwXUTp" text="在你的王国中授予家族封地"/>
-    <string id="Q7jRqnez" text="你不能向雇佣军家族授予封地。"/>
+    <string id="FqeN0fmR" text="{KINGDOM} 破坏了与 {PLAYER_KINGDOM} 的结盟。"/>
+    <string id="zdSYUnZQ" text="联盟破裂"/>
+    <string id="D61vzEC7" text="建立联盟"/>
+    <string id="98hwXUTp" text="破坏联盟"/>
+    <string id="Q7jRqnez" text="这个派别对与你结成联盟没有兴趣。"/>
 
-    <string id="DrnXprup" text="你们最近一直在打仗，没时间考虑结盟。战争已持续 {ELAPSED_DAYS} 天，至少需要 {REQUIRED_DAYS} 天才能结盟。"/>
-    <string id="KHJyWj9H" text="无法加入联盟。"/>
-    <string id="UQZmdLzc" text="不能处于战争状态。"/>
-    <string id="qIa19an4" text="联盟已建立"/>
-    <string id="3pbwc8sh" text="联盟提案"/>
-    <string id="QbOqatd7" text="{KINGDOM} 提议与 {PLAYER_KINGDOM} 结盟。"/>
+    <string id="DrnXprup" text="这场联盟持续时间过短，不能解散！联盟已持续 {ELAPSED_DAYS} 天，至少需要 {REQUIRED_DAYS} 天才能解散。"/>
+    <string id="KHJyWj9H" text="盟友"/>
+    <string id="UQZmdLzc" text="联盟已禁用。"/>
+    <string id="qIa19an4" text="直接向{ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}提议"/>
+    <string id="3pbwc8sh" text="{?REPARATIONS_PAY}，支付 {REPARATIONS} 的战争赔款{?TRIBUTE_PAY} 以及 {TRIBUTE} 贡金/天。{?}{?TRIBUTE_GET}，但接受 {TRIBUTE} 贡金/天。.{?}{\?}{\?}{?}{?REPARATIONS_GET}，收到 {REPARATIONS} 的战争赔款{?TRIBUTE_PAY}，但支付 {TRIBUTE} 贡金/天。{?}{?TRIBUTE_GET} 以及 {TRIBUTE} 贡金/天。{?}{\?}{\?}{?}{?TRIBUTE_PAY}，支付{TRIBUTE}贡金/天{?}{?TRIBUTE_GET}接受 {TRIBUTE} 贡金/天。{?}.{\?}{\?}{\?}{\?}"/>
+    <string id="QbOqatd7" text="{?FIEFS_ANY} 你可能必须退回一些占领的封地！{?}{\?}"/>
 
-    <string id="384jX28Q" text="{KINGDOM} 破坏了与 {PLAYER_KINGDOM} 的结盟。"/>
-    <string id="D1ZQKZr1" text="联盟破裂"/>
+    <string id="384jX28Q" text="{VALUE}M"/>
+    <string id="D1ZQKZr1" text="{VALUE}K"/>
 
-    <string id="0WPWbx70" text="建立联盟"/>
-    <string id="K4GraLTn" text="破坏联盟"/>
+    <string id="0WPWbx70" text="在玩家被积极地围攻时不能与王国建立和平。"/>
+    <string id="K4GraLTn" text="关系。"/>
 
-    <string id="VvTTrRpl" text="这个派别对与你结成联盟没有兴趣。"/>
-    <string id="wst0lArp" text="这场联盟持续时间过短，不能解散！联盟已持续 {ELAPSED_DAYS} 天，至少需要 {REQUIRED_DAYS} 天才能解散。"/>
+    <string id="VvTTrRpl" text="与受赠者的关系"/>
+    <string id="wst0lArp" text="不能有一项有效的互不侵犯条约。"/>
 
-    <string id="KqfNSsBE" text="盟友"/>
-    <string id="Dirltd6Z" text="联盟已禁用。"/>
+    <string id="KqfNSsBE" text="联盟"/>
+    <string id="Dirltd6Z" text="战争"/>
 
-    <string id="Q8ItogIP" text="直接向{ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}提议"/>
-    <string id="BC7823G2" text="{?REPARATIONS_PAY}，支付 {REPARATIONS} 的战争赔款{?TRIBUTE_PAY} 以及 {TRIBUTE} 贡金/天。{?}{?TRIBUTE_GET}，但接受 {TRIBUTE} 贡金/天。.{?}{\?}{\?}{?}{?REPARATIONS_GET}，收到 {REPARATIONS} 的战争赔款{?TRIBUTE_PAY}，但支付 {TRIBUTE} 贡金/天。{?}{?TRIBUTE_GET} 以及 {TRIBUTE} 贡金/天。{?}{\?}{\?}{?}{?TRIBUTE_PAY}，支付{TRIBUTE}贡金/天{?}{?TRIBUTE_GET}接受 {TRIBUTE} 贡金/天。{?}.{\?}{\?}{\?}{\?}"/>
-    <string id="9CvcPwJA" text="{?FIEFS_ANY} 你可能必须退回一些占领的封地！{?}{\?}"/>
+    <string id="Q8ItogIP" text="互不侵犯条约"/>
+    <string id="BC7823G2" text="互不侵犯条约提案"/>
+    <string id="9CvcPwJA" text="{KINGDOM} 提议与 {PLAYER_KINGDOM} 签订互不侵犯条约。"/>
 
     <!--Millions and thousands-->
-    <string id="6xcW68Tw" text="{VALUE}M"/>
-    <string id="oD4fZ2tY" text="{VALUE}K"/>
+    <string id="6xcW68Tw" text="形式协议"/>
+    <string id="oD4fZ2tY" text="缔结为期{DAYS}天的互不侵犯条约。"/>
 
-    <string id="XlL50Ha9" text="在玩家被积极地围攻时不能与王国建立和平。"/>
+    <string id="XlL50Ha9" text="统计"/>
 
-    <string id="bCOCjOQM" text="关系。"/>
-    <string id="RxawrCjg" text="与受赠者的关系"/>
+    <string id="bCOCjOQM" text="概况"/>
+    <string id="RxawrCjg" text="在对抗与{ENEMY_KINGDOM}的战争中，{ALLIED_KINGDOM}正在加入他们的盟友{KINGDOM}。"/>
 
-    <string id="fXcEtO29" text="不能有一项有效的互不侵犯条约。"/>
+    <string id="fXcEtO29" text="互不侵犯条约到期"/>
 
-    <string id="zpNalMeA" text="联盟"/>
-    <string id="y5tXjbLK" text="战争"/>
-    <string id="noWHMN1W" text="互不侵犯条约"/>
+    <string id="zpNalMeA" text="{KINGDOM}和{OTHER_KINGDOM}之间的互不侵犯条约已过期。"/>
+    <string id="y5tXjbLK" text="腐败（封地太多）"/>
+    <string id="noWHMN1W" text="影响力衰减（影响力过大）"/>
 
-    <string id="yj4XFa5T" text="互不侵犯条约提案"/>
-    <string id="gyLjlpJB" text="{KINGDOM} 提议与 {PLAYER_KINGDOM} 签订互不侵犯条约。"/>
+    <string id="yj4XFa5T" text="最大影响力减少"/>
+    <string id="gyLjlpJB" text="取消信使"/>
 
-    <string id="9pY0NQrk" text="形式协议"/>
-    <string id="9zlQNtlX" text="缔结为期{DAYS}天的互不侵犯条约。"/>
+    <string id="9pY0NQrk" text="脆弱的派系"/>
+    <string id="9zlQNtlX" text="人际关系"/>
 
-    <string id="1occw3EF" text="统计"/>
-    <string id="OvbY5qxL" text="概况"/>
+    <string id="1occw3EF" text="与{ALLIED_KINGDOM}结盟"/>
+    <string id="OvbY5qxL" text="与 {ENEMY_KINGDOM} 开战"/>
 
-    <string id="UDC8eW7s" text="在对抗与{ENEMY_KINGDOM}的战争中，{ALLIED_KINGDOM}正在加入他们的盟友{KINGDOM}。"/>
+    <string id="UDC8eW7s" text="与 {KINGDOM} 签订互不侵犯条约"/>
 
-    <string id="pdI7Tjtj" text="互不侵犯条约到期"/>
-    <string id="uWY09LJb" text="{KINGDOM}和{OTHER_KINGDOM}之间的互不侵犯条约已过期。"/>
+    <string id="pdI7Tjtj" text="与 {KINGDOM} 领导家族联姻"/>
+    <string id="uWY09LJb" text="这个派别对与你缔结互不侵犯条约没有兴趣。"/>
 
-    <string id="dUCOV7km" text="腐败（封地太多）"/>
-    <string id="koTNaZUX" text="影响力衰减（影响力过大）"/>
-    <string id="uZc8Hg01" text="最大影响力减少"/>
+    <string id="dUCOV7km" text="捐献金币"/>
+    <string id="koTNaZUX" text="篡夺"/>
+    <string id="uZc8Hg01" text="篡夺这个王国的王位\n家族支持情况：{SUPPORTING_TIERS} / {OPPOSING_TIERS}"/>
 
-    <string id="kMjfN2fB" text="取消信使"/>
+    <string id="kMjfN2fB" text="扩张主义"/>
 
-    <string id="q5qphBwi" text="脆弱的派系"/>
-    <string id="sygtLRqA" text="人际关系"/>
+    <string id="q5qphBwi" text="联军营"/>
+    <string id="sygtLRqA" text="卡拉迪亚越来越警惕不可阻挡的扩张王国{EXPANSIONIST_KINGDOM}。一个由{COALITION_KINGDOM}领导的联盟已经成立，以对抗他们！"/>
 
-    <string id="cmOSpfyW" text="与{ALLIED_KINGDOM}结盟"/>
-    <string id="RqQ4oqvl" text="与 {ENEMY_KINGDOM} 开战"/>
-    <string id="t6YhBLj7" text="与 {KINGDOM} 签订互不侵犯条约"/>
-    <string id="BjkwaNot" text="与 {KINGDOM} 领导家族联姻"/>
+    <string id="cmOSpfyW" text="{KINGDOM}已同{OTHER_KINGDOM}缔结了一项互不侵犯条约。"/>
+    <string id="RqQ4oqvl" text="{KINGDOM}已与{OTHER_KINGDOM}结成联盟！"/>
+    <string id="t6YhBLj7" text="当前评分"/>
+    <string id="BjkwaNot" text="需要评分"/>
 
-    <string id="M4SGjzQP" text="这个派别对与你缔结互不侵犯条约没有兴趣。"/>
+    <string id="M4SGjzQP" text="剩余天数：{DAYS_LEFT}"/>
 
-    <string id="Gzq6VHPt" text="捐献金币"/>
-    <string id="N7goPgiq" text="篡夺"/>
-    <string id="WVe7QwhW" text="篡夺这个王国的王位\n家族支持情况：{SUPPORTING_TIERS} / {OPPOSING_TIERS}"/>
+    <string id="Gzq6VHPt" text="您必须在解锁此操作的主要任务中进一步前进。您可以在模组选项中禁用故事线保护。"/>
+    <string id="N7goPgiq" text="主故事线"/>
+    <string id="WVe7QwhW" text="通过篡夺王位，你在主要故事情节中承诺{STANCE}帝国。"/>
 
-    <string id="CxdpR6w4" text="扩张主义"/>
+    <string id="CxdpR6w4" text="统一"/>
 
-    <string id="ARNRwPrY" text="联军营"/>
-    <string id="qbLPBlIv" text="卡拉迪亚越来越警惕不可阻挡的扩张王国{EXPANSIONIST_KINGDOM}。一个由{COALITION_KINGDOM}领导的联盟已经成立，以对抗他们！"/>
+    <string id="ARNRwPrY" text="正在删除"/>
+    <string id="qbLPBlIv" text="您无权执行此操作。"/>
 
-    <string id="vB3RrMNf" text="{KINGDOM}已同{OTHER_KINGDOM}缔结了一项互不侵犯条约。"/>
-    <string id="PdN5g5ub" text="{KINGDOM}已与{OTHER_KINGDOM}结成联盟！"/>
-    <string id="5r6fsHgm" text="当前评分"/>
-    <string id="XIBUWDlT" text="需要评分"/>
+    <string id="vB3RrMNf" text="在你的王国中捐献家族的金币"/>
+    <string id="PdN5g5ub" text="金币花费：{GOLD_COST}"/>
+    <string id="5r6fsHgm" text="关系增益：{RELATION_GAIN}+"/>
+    <string id="XIBUWDlT" text="Diplomacy"/>
 
-    <string id="5znwaUVC" text="剩余天数：{DAYS_LEFT}"/>
+    <string id="5znwaUVC" text="王国外交"/>
 
-    <string id="Euy6Mwcq" text="您必须在解锁此操作的主要任务中进一步前进。您可以在模组选项中禁用故事线保护。"/>
-    <string id="fQxiCdBA" text="主故事线"/>
-    <string id="3wXqST66" text="通过篡夺王位，你在主要故事情节中承诺{STANCE}帝国。"/>
-    <string id="yAFwbD9B" text="统一"/>
-    <string id="IGJVx5XI" text="正在删除"/>
+    <string id="Euy6Mwcq" text="允许玩家认领玩家-领取居住区"/>
+    <string id="fQxiCdBA" text="让玩家选择他们已经接受的解决方案，而不是让它参加选举。"/>
+    <string id="3wXqST66" text="启用Fiefless王国移除"/>
+    <string id="yAFwbD9B" text="如果启用，没有任何封地的王国在签署和平条约以结束它们最近参加的战争时将被摧毁。 默认值为已启用。"/>
+    <string id="IGJVx5XI" text="延迟Fiefles王国删除"/>
 
-    <string id="lQAaLeSy" text="您无权执行此操作。"/>
+    <string id="lQAaLeSy" text="如果启用，没有任何封地的王国只有在签署和平条约以结束它们最近参与的战争时才会被摧毁。 他们失去了最后的封地后不会马上出现。 默认值已启用。"/>
 
-    <string id="7QvXkcxH" text="在你的王国中捐献家族的金币"/>
-    <string id="e7uxH1jc" text="金币花费：{GOLD_COST}"/>
-    <string id="4lG3JG2e" text="关系增益：{RELATION_GAIN}+"/>
+    <string id="7QvXkcxH" text="战争最短持续时间（天）"/>
+    <string id="e7uxH1jc" text="在推荐和平之前战争可以持续的最短持续时间(天数) 。默认值是21(标准游戏年数的四分之一)。"/>
+    <string id="4lG3JG2e" text="宣布战争冷却时间（天）"/>
 
-    <string id="Q2vXbwvC" text="Diplomacy"/>
+    <string id="Q2vXbwvC" text="在缔造和平后再次向同一王国宣战之前的最低持续时间(天数)，默认值为21(标准游戏年数的四分之一)。"/>
     
     <!--
     ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
     -->
 
-    <string id="sBw5Qzq3" text="王国外交"/>
-    <string id="tis8Ddzn" text="允许玩家认领玩家-领取居住区"/>
-    <string id="TfxLCxcD" text="让玩家选择他们已经接受的解决方案，而不是让它参加选举。"/>
-    <string id="8VKC3jtN" text="启用Fiefless王国移除"/>
-    <string id="TlymwwPZ" text="如果启用，没有任何封地的王国在签署和平条约以结束它们最近参加的战争时将被摧毁。 默认值为已启用。"/>
-    <string id="w8Hi9jJf" text="延迟Fiefles王国删除"/>
-    <string id="GDctI4Kd" text="如果启用，没有任何封地的王国只有在签署和平条约以结束它们最近参与的战争时才会被摧毁。 他们失去了最后的封地后不会马上出现。 默认值已启用。"/>      
-    <string id="ZRlNvsev" text="战争最短持续时间（天）"/>
-    <string id="vuFT5ns8" text="在推荐和平之前战争可以持续的最短持续时间(天数) 。默认值是21(标准游戏年数的四分之一)。"/>
-    <string id="4MzQHMVj" text="宣布战争冷却时间（天）"/>
-    <string id="q2duqN8d" text="在缔造和平后再次向同一王国宣战之前的最低持续时间(天数)，默认值为21(标准游戏年数的四分之一)。"/>
-    <string id="2XC8QHkl" text="启用联盟"/>
-    <string id="5YJBZx28" text="如果禁用，此功能将禁用玩家和 AI 王国组建联盟的能力。默认值已启用。"/>
-    <string id="H6XMjwpF" text="联盟最小持续时间（天）"/>
-    <string id="RrsWhIWi" text="联盟在中断前最短持续时间(天数) 。默认值为42(标准游戏年数的一半)。"/>
-    <string id="5a829TiT" text="联盟流行度"/>
-    <string id="7nSjs8UL" text="影响王国组建联盟趋势的分数修饰符。增加修饰符使联盟更适合于AI王国。默认值为0。"/>
-    <string id="V35hUfcc" text="互不侵略条约持续时间（天）"/>
-    <string id="KXLGZEPh" text="互不侵犯条约持续时间(天数)。默认值为84(一个标准游戏年数)。"/>
-    <string id="G8BhBnRG" text="互不侵犯条约趋势"/>
-    <string id="907ER5u9" text="影响王国形成互不侵犯条约趋势的分数修饰物。 增加修饰符使不侵犯协约更适合于AI 王国。默认值为0。"/>
-    <string id="6m1SspFW" text="启用玩家王国外交控制"/>
-    <string id="N5EouSSj" text="让玩家完全控制宣战并在他们所属的王国实现和平， 即使他们只是一只武断的，而不是王国的领导人。 默认值已禁用。"/>
-    <string id="lhysZl9j" text="动作流行率"/>
-    <string id="dRyU9E7Z" text="好友之间没有任何战争"/>
-    <string id="XyXJSTKr" text="如果活跃，作为朋友的王国领导人将不会彼此启动战争。默认值已启用。"/>
-    <string id="pWoKQ6HO" text="没有战争，如果有良好关系"/>
-    <string id="bOuGhbPt" text="如果活跃，如果关系高于战争开始关系，王国领导人之间的战争将不被允许。默认值将被启用。"/>
-    <string id="x0Aoiomr" text="无战争的良好关系阈值"/>
-    <string id="aH6rpjt6" text="王国领导人的关系值，在此之后王国不会彼此间发动战争。默认值是30。"/>
-    <string id="jwNKk8P7" text="已婚时不会有任何战争"/>
-    <string id="xcMzKH48" text="如果是活跃的，双方结婚的王国领导人将不会引发战争。默认值是有效的。"/>
-    <string id="xcMzKH48" text="如果是活跃的，双方结婚的王国领导人将不会引发战争。默认值是有效的。"/>
-    <string id="xXKKRp99" text="部族领袖家庭婚姻影响联盟"/>
-    <string id="BGS6mUID" text="如果活跃，当领导人部族之间有家庭婚姻时，联盟趋势将获得奖励。默认值是活跃的。"/>
+    <string id="sBw5Qzq3" text="启用联盟"/>
+    <string id="tis8Ddzn" text="如果禁用，此功能将禁用玩家和 AI 王国组建联盟的能力。默认值已启用。"/>
+    <string id="TfxLCxcD" text="联盟最小持续时间（天）"/>
+    <string id="8VKC3jtN" text="联盟在中断前最短持续时间(天数) 。默认值为42(标准游戏年数的一半)。"/>
+    <string id="TlymwwPZ" text="联盟流行度"/>
+    <string id="w8Hi9jJf" text="影响王国组建联盟趋势的分数修饰符。增加修饰符使联盟更适合于AI王国。默认值为0。"/>
+    <string id="GDctI4Kd" text="互不侵略条约持续时间（天）"/>      
+    <string id="ZRlNvsev" text="互不侵犯条约持续时间(天数)。默认值为84(一个标准游戏年数)。"/>
+    <string id="vuFT5ns8" text="互不侵犯条约趋势"/>
+    <string id="4MzQHMVj" text="影响王国形成互不侵犯条约趋势的分数修饰物。 增加修饰符使不侵犯协约更适合于AI 王国。默认值为0。"/>
+    <string id="q2duqN8d" text="启用玩家王国外交控制"/>
+    <string id="2XC8QHkl" text="让玩家完全控制宣战并在他们所属的王国实现和平， 即使他们只是一只武断的，而不是王国的领导人。 默认值已禁用。"/>
+    <string id="5YJBZx28" text="动作流行率"/>
+    <string id="H6XMjwpF" text="好友之间没有任何战争"/>
+    <string id="RrsWhIWi" text="如果活跃，作为朋友的王国领导人将不会彼此启动战争。默认值已启用。"/>
+    <string id="5a829TiT" text="没有战争，如果有良好关系"/>
+    <string id="7nSjs8UL" text="如果活跃，如果关系高于战争开始关系，王国领导人之间的战争将不被允许。默认值将被启用。"/>
+    <string id="V35hUfcc" text="无战争的良好关系阈值"/>
+    <string id="KXLGZEPh" text="王国领导人的关系值，在此之后王国不会彼此间发动战争。默认值是30。"/>
+    <string id="G8BhBnRG" text="已婚时不会有任何战争"/>
+    <string id="907ER5u9" text="如果是活跃的，双方结婚的王国领导人将不会引发战争。默认值是有效的。"/>
+    <string id="6m1SspFW" text="如果是活跃的，双方结婚的王国领导人将不会引发战争。默认值是有效的。"/>
+    <string id="N5EouSSj" text="部族领袖家庭婚姻影响联盟"/>
+    <string id="lhysZl9j" text="如果活跃，当领导人部族之间有家庭婚姻时，联盟趋势将获得奖励。默认值是活跃的。"/>
+    <string id="dRyU9E7Z" text="费用"/>
+    <string id="XyXJSTKr" text="金币消耗"/>
+    <string id="pWoKQ6HO" text="启用缩放金币成本"/>
+    <string id="bOuGhbPt" text="如果启用，这将根据你的王国大小来计算外交行动和战争赔偿的黄金费用。 否则，将适用外交行动100个通用乘数和1000个战争赔偿的通用乘数。默认值已启用。"/>
+    <string id="x0Aoiomr" text="缩放金币值加成"/>
+    <string id="aH6rpjt6" text="缩放黄金成本乘法。默认值为5。"/>
+    <string id="jwNKk8P7" text="缩减战争补偿金成本 乘数"/>
+    <string id="xcMzKH48" text="战争补偿金金的比例乘以。默认值为50。"/>
+    <string id="xcMzKH48" text="失败的战争补偿金成本"/>
+    <string id="xXKKRp99" text="失去对另一个王国的耗损战争的金基成本。 通过缩放和关闭缩放将被乘以千。默认值为200。"/>
+    <string id="BGS6mUID" text="影响力成本"/>
       
-    <string id="ldLFTs92" text="费用"/>      
-    <string id="Ckd1Lsoa" text="金币消耗"/>
-    <string id="t4hNAoD7" text="启用缩放金币成本"/>
-    <string id="5MMIDE5A" text="如果启用，这将根据你的王国大小来计算外交行动和战争赔偿的黄金费用。 否则，将适用外交行动100个通用乘数和1000个战争赔偿的通用乘数。默认值已启用。"/>
-    <string id="vD270X6H" text="缩放金币值加成"/>
-    <string id="Gd52NzBP" text="缩放黄金成本乘法。默认值为5。"/>
-    <string id="HFtZsD6v" text="缩减战争补偿金成本 乘数"/>
-    <string id="MIhbrqbr" text="战争补偿金金的比例乘以。默认值为50。"/>
-    <string id="Cr6a5Jap" text="失败的战争补偿金成本"/>
-    <string id="NH4GNKva" text="失去对另一个王国的耗损战争的金基成本。 通过缩放和关闭缩放将被乘以千。默认值为200。"/>
+    <string id="ldLFTs92" text="启用影响力成本"/>      
+    <string id="Ckd1Lsoa" text="如果禁用，将会移除战争与和平声明操作的影响力成本。默认值已启用。"/>
+    <string id="t4hNAoD7" text="影响成本/影响"/>
+    <string id="5MMIDE5A" text="启用缩放影响成本"/>
+    <string id="vD270X6H" text="如果启用，这将根据您的王国大小来缩放影响成本。否则使用平坦影响成本。默认值将被启用。"/>
+    <string id="Gd52NzBP" text="缩放影响成本乘数"/>
+    <string id="HFtZsD6v" text="缩放影响成本的倍数。默认值为5。"/>
+    <string id="MIhbrqbr" text="影响力成本/扁平性"/>
+    <string id="Cr6a5Jap" text="统一声明战争影响力成本"/>
+    <string id="NH4GNKva" text="对另一个王国宣战的影响力成本。默认值是500。"/>
 
-    <string id="SEViwYTl" text="影响力成本"/>
-    <string id="WbOKuWbQ" text="启用影响力成本"/>
-    <string id="K2vLGalN" text="如果禁用，将会移除战争与和平声明操作的影响力成本。默认值已启用。"/>
-    <string id="9PlT57Nl" text="影响成本/影响"/>
-    <string id="P1g6Ht1e" text="启用缩放影响成本"/>
-    <string id="xfVFBxfj" text="如果启用，这将根据您的王国大小来缩放影响成本。否则使用平坦影响成本。默认值将被启用。"/>
-    <string id="TvAYJv5Q" text="缩放影响成本乘数"/>
-    <string id="AQ5gRYN6" text="缩放影响成本的倍数。默认值为5。"/>
-    <string id="BazjeCZw" text="影响力成本/扁平性"/>
-    <string id="OnTeAgin" text="统一声明战争影响力成本"/>
-    <string id="O5XvybTI" text="对另一个王国宣战的影响力成本。默认值是500。"/>
-    <string id="iNsXQD2q" text="统一制造和平影响力成本"/>
-    <string id="WB5zdvdT" text="与其他王国建立和平的影响力成本。默认值为500。"/>
+    <string id="SEViwYTl" text="统一制造和平影响力成本"/>
+    <string id="WbOKuWbQ" text="与其他王国建立和平的影响力成本。默认值为500。"/>
+    <string id="K2vLGalN" text="送信人"/>
+    <string id="9PlT57Nl" text="启用信使故障"/>
+    <string id="P1g6Ht1e" text="如果启用，给送信者增加一个小的失败机会。 行程越长，路上发生事故的可能性越大。默认值已启用。"/>
+    <string id="xfVFBxfj" text="限制信使发送"/>
+    <string id="TvAYJv5Q" text="如果启用，您只能向您遇到的人或至少可能知道的人发送信使。 否则，无论您对收件人有何了解，您都可以向某人发送信使。默认值已启用。"/>
+    <string id="AQ5gRYN6" text="送信者旅行时间（天）"/>
+    <string id="BazjeCZw" text="送达收件人所需的最大时间(天数)。 直接影响送信员的旅行速度。默认值是 3。"/>
+    <string id="OnTeAgin" text="发送信使金币成本"/>
+    <string id="O5XvybTI" text="发送信使到另一个角色的金钱成本。默认值是 100。"/>
+    <string id="iNsXQD2q" text="关系"/>
+    <string id="WB5zdvdT" text="授予Fief Postiive 关系倍数"/>
 
-    <string id="nueOs6m9" text="送信人"/>
-    <string id="nwTyegdV" text="启用信使故障"/>
-    <string id="T7yybpw3" text="如果启用，给送信者增加一个小的失败机会。 行程越长，路上发生事故的可能性越大。默认值已启用。"/>
-    <string id="ysYCYvwT" text="限制信使发送"/>
-    <string id="5O87pSL3" text="如果启用，您只能向您遇到的人或至少可能知道的人发送信使。 否则，无论您对收件人有何了解，您都可以向某人发送信使。默认值已启用。"/>
-    <string id="nnXi6MmH" text="送信者旅行时间（天）"/>
-    <string id="zkvCGLuK" text="送达收件人所需的最大时间(天数)。 直接影响送信员的旅行速度。默认值是 3。"/>
-    <string id="nMwWHj4h" text="发送信使金币成本"/>
-    <string id="ehMf7xvE" text="发送信使到另一个角色的金钱成本。默认值是 100。"/>
+    <string id="nueOs6m9" text="授予封地时的关系增益倍数。默认值为1。"/>
+    <string id="nwTyegdV" text="准许盗窃关系处罚"/>
+    <string id="T7yybpw3" text="授予另一个部族的封地时所判的相对惩罚。默认值为 -2。"/>
+    <string id="ysYCYvwT" text="影响力平衡"/>
+    <string id="5O87pSL3" text="启用影响力平衡"/>
+    <string id="nnXi6MmH" text="控制影响衰变和腐败计算是否有效。可能需要禁用模组兼容性。"/>
+    <string id="zkvCGLuK" text="影响力衰退"/>
+    <string id="nMwWHj4h" text="启用影响力衰变率"/>
+    <string id="ehMf7xvE" text="启用影响衰减，每天影响力会逐渐衰减。默认值已启用。"/>
+    <string id="YolJlw95" text="影响力衰变阈值"/>
+    <string id="P5NWxY6F" text="免于影响衰变的影响力数量。默认值为 1000。"/>
+    <string id="Hkv9Peqa" text="每日最大影响力损失"/>
+    <string id="ckYA36t8" text="每日影响力损失的最大值。默认值为20。"/>
 
-    <string id="OfEMJWiR" text="关系"/>
-    <string id="6l9QNMrB" text="授予Fief Postiive 关系倍数"/>
-    <string id="FQaghHo7" text="授予封地时的关系增益倍数。默认值为1。"/>
-    <string id="9qKclHq3" text="准许盗窃关系处罚"/>
-    <string id="fgc8Dvg0" text="授予另一个部族的封地时所判的相对惩罚。默认值为 -2。"/>
+    <string id="OfEMJWiR" text="每日影响力下降百分比"/>
+    <string id="6l9QNMrB" text="每天影响力衰减的百分比。默认值为2.0。"/>
+    <string id="FQaghHo7" text="腐败"/>
+    <string id="9qKclHq3" text="启用腐败"/>
+    <string id="fgc8Dvg0" text="启用腐败，当持有太多封地时，每日逐渐消弱部族的影响。默认值已启用。"/>
 
-    <string id="8ZPKToTq" text="影响力平衡"/>
-    <string id="4jlYRUdZ" text="启用影响力平衡"/>
-    <string id="tOMN9DQD" text="控制影响衰变和腐败计算是否有效。可能需要禁用模组兼容性。"/>
+    <string id="8ZPKToTq" text="扩张主义"/>
+    <string id="4jlYRUdZ" text="联盟"/>
+    <string id="tOMN9DQD" text="每个封地的最小扩展性"/>
 
-    <string id="vzKRX2JA" text="影响力衰退"/>
-    <string id="szYr4OTG" text="启用影响力衰变率"/>
-    <string id="rKS9z4Sz" text="启用影响衰减，每天影响力会逐渐衰减。默认值已启用。"/>
+    <string id="vzKRX2JA" text="封地贡献的最小扩展量。默认值是 3。"/>
+    <string id="szYr4OTG" text="每个Siege人的扩张主义行为"/>
+    <string id="rKS9z4Sz" text="每次成功的围攻都添加扩张主义。默认值为20。"/>
 
-    <string id="pVE1yNlm" text="影响力衰变阈值"/>
-    <string id="MnLk08uW" text="免于影响衰变的影响力数量。默认值为 1000。"/>
-    <string id="WTeM4Rba" text="每日最大影响力损失"/>
-    <string id="CGixJ6ng" text="每日影响力损失的最大值。默认值为20。"/>
-    <string id="yob5ZHtz" text="每日影响力下降百分比"/>
-    <string id="IYFl4kJx" text="每天影响力衰减的百分比。默认值为2.0。"/>
+    <string id="pVE1yNlm" text="每日扩张主义衰变率"/>
+    <string id="MnLk08uW" text="每日衰落的扩张主义的数量。默认值为1。"/>
+    <string id="WTeM4Rba" text="启用联盟"/>
+    <string id="CGixJ6ng" text="启用联盟，允许派别与强大的扩张主义派别联合起来。默认值已启用。"/>
+    <string id="yob5ZHtz" text="扩张主义阈值"/>
+    <string id="IYFl4kJx" text="一个派别在与它结盟之前需要的扩张主义的数量。默认值为100。"/>
 
-    <string id="e5fHDXgl" text="腐败"/>
-    <string id="KWAH0S4h" text="启用腐败"/>
-    <string id="trgnZ0pn" text="启用腐败，当持有太多封地时，每日逐渐消弱部族的影响。默认值已启用。"/>
+    <string id="e5fHDXgl" text="联盟概率百分比（天）"/>
+    <string id="KWAH0S4h" text="一个针对一个派别组成的联盟在扩张主义门槛值上的百分比变动。默认值为5。"/>
+    <string id="trgnZ0pn" text="故事线保护"/>
 
-    <string id="ZqQaUIil" text="扩张主义"/>
-    <string id="2raR1ZHv" text="联盟"/>
-    <string id="Pr4dcRKm" text="每个封地的最小扩展性"/>
-    <string id="9qcAWjI7" text="封地贡献的最小扩展量。默认值是 3。"/>
-    <string id="MnhMW8iq" text="每个Siege人的扩张主义行为"/>
-    <string id="lCbie62E" text="每次成功的围攻都添加扩张主义。默认值为20。"/>
-    <string id="mEXGC0h3" text="每日扩张主义衰变率"/>
-    <string id="kgPeQvqE" text="每日衰落的扩张主义的数量。默认值为1。"/>
-    <string id="ZIf1tRII" text="启用联盟"/>
-    <string id="8v8q0OGu" text="启用联盟，允许派别与强大的扩张主义派别联合起来。默认值已启用。"/>
+    <string id="ZqQaUIil" text="启用后，将阻止玩家破坏主故障。 当使用 &quot;等模组时禁用。只要让我播放&quot;。默认值已启用。"/>
+    <string id="2raR1ZHv" text="未完成的功能"/>
+    <string id="Pr4dcRKm" text="启用超强精灵功能"/>
+    <string id="9qcAWjI7" text="启用后，这将允许玩家篡夺王国的王牌。 此功能不均衡，正在等待重新工作，因此不推荐。默认值是假的。"/>
+    <string id="MnhMW8iq" text="每次围城的扩张主义值"/>
+    <string id="lCbie62E" text="每次成功围城所增加的扩张主义值。默认值为20。"/>
+    <string id="mEXGC0h3" text="每日扩张主义衰减"/>
+    <string id="kgPeQvqE" text="每日衰减的扩张主义数值。默认值为1。"/>
+    <string id="ZIf1tRII" text="启用联盟机制"/>
+    <string id="8v8q0OGu" text="启用联盟机制，该机制允许各派系联合起来，共同对抗一个强大的扩张主义派系。默认值为开启。"/>
     <string id="1kSd88X5" text="扩张主义阈值"/>
-    <string id="EUnASoee" text="一个派别在与它结盟之前需要的扩张主义的数量。默认值为100。"/>
-    <string id="zwbL9BHe" text="联盟概率百分比（天）"/>
-    <string id="9ugCWA3v" text="一个针对一个派别组成的联盟在扩张主义门槛值上的百分比变动。默认值为5。"/>
+    <string id="EUnASoee" text="一个派系在招致联盟对抗前所需的扩张主义数值。默认值为100。"/>
+    <string id="zwbL9BHe" text="每日联盟触发概率百分比"/>
+    <string id="9ugCWA3v" text="超过扩张主义阈值后，每日形成联盟对抗该派系的概率百分比。默认值为5。"/>
 
-    <string id="lsyl0VSX" text="故事线保护"/>
-    <string id="EVrErrTR" text="启用后，将阻止玩家破坏主故障。 当使用 &quot;等模组时禁用。只要让我播放&quot;。默认值已启用。"/>
+    <string id="lsyl0VSX" text="战役模式剧情保护"/>
+    <string id="EVrErrTR" text="启用时，可防止玩家破坏主线剧情。使用&quot;Just Let Me Play&quot;等模组时请禁用此功能。默认值为开启。"/>
 
     <string id="f6n2UAEC" text="未完成的功能"/>
-    <string id="HSoZfvXH" text="启用超强精灵功能"/>
-    <string id="ZIAo4er4" text="启用后，这将允许玩家篡夺王国的王牌。 此功能不均衡，正在等待重新工作，因此不推荐。默认值是假的。"/>
+    <string id="HSoZfvXH" text="启用篡位功能"/>
+    <string id="ZIAo4er4" text="启用篡位功能。启用此选项后，玩家将可篡夺王国的王位。此功能目前尚不平衡，有待重做，因此不建议使用。默认值为关闭。"/>
   </strings>
 </base>
