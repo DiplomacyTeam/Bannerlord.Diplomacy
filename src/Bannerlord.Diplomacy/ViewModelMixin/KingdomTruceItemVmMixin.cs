@@ -46,12 +46,9 @@ namespace Diplomacy.ViewModelMixin
         private readonly Kingdom _faction2;
         private HintViewModel? _diplomaticActionHint;
         private string _actionName = null!;
-        private int _allianceGoldCost;
         private HintViewModel? _allianceHint;
-        private int _allianceInfluenceCost;
         private BasicTooltipViewModel? _allianceScoreHint;
         private bool _isAllianceVisible;
-        private bool _isAllianceAvailable;
         private bool _isNonAggressionPactVisible;
         private bool _isNonAggressionPactAvailable;
         private bool _isOptionAvailable;

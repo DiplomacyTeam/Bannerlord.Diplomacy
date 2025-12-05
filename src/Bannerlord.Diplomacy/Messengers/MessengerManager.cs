@@ -248,7 +248,8 @@ namespace Diplomacy.Messengers
         {
             return PartyBase.MainParty is not null
                    && PlayerEncounter.Current is null
-                   && GameStateManager.Current.ActiveState is MapState { AtMenu: false };
+                   && GameStateManager.Current.ActiveState is MapState { AtMenu: false }
+                   && PartyBase.MainParty.Position.IsOnLand;
         }
 
         internal void Sync()
@@ -423,6 +424,12 @@ namespace Diplomacy.Messengers
                 return false;
             }
 
+            if (targetHero.PartyBelongedTo is not null && !targetHero.PartyBelongedTo.Position.IsOnLand)
+            {
+                exception = new("{=HHgTlyyt}Rumor has it that {HERO_NAME} is sailing now. Best to wait until they land.", new() { ["HERO_NAME"] = targetHero.Name });
+                return false;
+            }
+
             var available = targetHero.IsActive || (targetHero.IsWanderer && targetHero.HeroState == Hero.CharacterStates.NotSpawned);
             if (!available)
             {
@@ -468,7 +475,9 @@ namespace Diplomacy.Messengers
 
         public static bool IsTargetHeroAvailableNow(Hero targetHero)
         {
-            return IsTargetHeroAvailable(targetHero) && targetHero.PartyBelongedTo?.MapEvent == null;
+            return
+                IsTargetHeroAvailable(targetHero) && targetHero.PartyBelongedTo?.MapEvent == null
+                && (targetHero.PartyBelongedTo is null || targetHero.PartyBelongedTo.Position.IsOnLand);
         }
 
         public static bool CanSendMessengerWithCost(Hero targetHero, GoldCost diplomacyCost)

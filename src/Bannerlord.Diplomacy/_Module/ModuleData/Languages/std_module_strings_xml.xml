@@ -42,6 +42,7 @@
     <string id="bLR91Eob" text="{REASON}The messenger won't be able to reach the addressee." />
     <string id="hPra5uwZ" text="The messenger either does not understand or does not like your joke and refuses the task." />
     <string id="1mlXBnSs" text="You know too little of {HERO_NAME} to point them out for a messenger." />
+    <string id="HHgTlyyt" text="Rumor has it that {HERO_NAME} is sailing now. Best to wait until they land." />
 
     <string id="vhsHDMil" text="{HERO_NAME} is dead. " />
     <string id="CusN2JMb" text="{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\?} {DETENTION_PLACE}. " />
