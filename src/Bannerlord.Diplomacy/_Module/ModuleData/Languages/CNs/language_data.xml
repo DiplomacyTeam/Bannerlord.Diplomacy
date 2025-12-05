@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LanguageData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguageData.xsd" id="简体中文" name="简体中文" subtitle_extension="zh-HANS" supported_iso="zh-HANS,zh,zho,chi,zh-cn,zh-sg" under_development="true">
+<LanguageData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguageData.xsd" id="简体中文" name="简体中文" subtitle_extension="zh-HANS" supported_iso="zh-HANS,zh,zho,chi,zh-cn,zh-sg" under_development="false">
     <LanguageFile xml_path="CNs/civil_war_strings_xml.xml"/>
     <LanguageFile xml_path="CNs/faction_names_xml.xml"/>
     <LanguageFile xml_path="CNs/help_strings_xml.xml"/>
