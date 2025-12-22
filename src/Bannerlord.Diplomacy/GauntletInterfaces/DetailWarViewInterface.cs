@@ -33,7 +33,7 @@ namespace Diplomacy.GauntletInterfaces
             ScreenManager.TrySetFocus(_layer);
             screenBase.AddLayer(_layer);
             _vm = new DetailWarVM(opposingKingdom, OnFinalize);
-            _movie = LoadMovie();
+            _layer.LoadMovie("DetailWarView", _vm);
         }
 
         [UsedImplicitly]

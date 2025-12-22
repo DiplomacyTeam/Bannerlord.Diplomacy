@@ -36,7 +36,7 @@ namespace Diplomacy.GauntletInterfaces
             ScreenManager.TrySetFocus(_layer);
             screenBase.AddLayer(_layer);
             _vm = new GrantFiefVM(hero, OnFinalize);
-            _movie = LoadMovie();
+            _layer.LoadMovie("GrantFief", _vm);
         }
 
         public void ShowFiefInterface(ScreenBase screenBase, Hero hero)

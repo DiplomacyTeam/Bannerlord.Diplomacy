@@ -31,7 +31,7 @@ namespace Diplomacy.GauntletInterfaces
             ScreenManager.TrySetFocus(_layer);
             screenBase.AddLayer(_layer);
             _vm = new RebelFactionsVM(kingdom, OnFinalize);
-            _movie = LoadMovie();
+            _layer.LoadMovie("RebelFactions", _vm);
         }
     }
 }
