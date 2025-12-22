@@ -35,19 +35,22 @@ namespace Diplomacy.ViewModelMixin
             "{?}{?TRIBUTE_PAY}, paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, receiving {TRIBUTE} tribute/day.{?}.{\\?}{\\?}{\\?}{\\?}";
         private const string _TFiefs = "{=9CvcPwJA}{?FIEFS_ANY} You may have to return some of the captured fiefs back!{?}{\\?}";
 
+        private static readonly TextObject _TMakePeace = new("{=}Make Peace");
+
         private readonly Kingdom _faction1;
         private readonly Kingdom _faction2;
-        private string? _diplomaticActionHelpText;
+        private string? _directActionExplanationText;
         private HintViewModel? _diplomaticActionHint;
         private int _goldCost;
-        private bool _isOptionAvailable;
+        private bool _isDirectActionVisible;
+        private bool _isDirectActionEnabled;
         private readonly List<KingdomWalletCost> _reparations;
 
         [DataSourceProperty]
         public DiplomacyPropertiesVM? DiplomacyProperties { get; private set; }
 
         [DataSourceProperty]
-        public string ActionName { get; }
+        public string DirectActionName { get; }
 
         [DataSourceProperty]
         [UsedImplicitly]
@@ -67,7 +70,7 @@ namespace Diplomacy.ViewModelMixin
         public string PactsText { get; }
 
         [DataSourceProperty]
-        public int InfluenceCost { get; }
+        public int DirectActionInfluenceCost { get; }
 
         [DataSourceProperty]
         public int GoldCost { get => _goldCost; set => SetField(ref _goldCost, value, nameof(GoldCost)); }
@@ -77,23 +80,26 @@ namespace Diplomacy.ViewModelMixin
         public bool IsGoldCostVisible { get; } = true;
 
         [DataSourceProperty]
-        public bool IsOptionAvailable { get => _isOptionAvailable; set => SetField(ref _isOptionAvailable, value, nameof(IsOptionAvailable)); }
+        public bool IsDirectActionVisible { get => _isDirectActionVisible; set => SetField(ref _isDirectActionVisible, value, nameof(IsDirectActionVisible)); }
 
         [DataSourceProperty]
-        public HintViewModel? DiplomaticActionHint { get => _diplomaticActionHint; set => SetField(ref _diplomaticActionHint, value, nameof(DiplomaticActionHint)); }
+        public bool IsDirectActionEnabled { get => _isDirectActionEnabled; set => SetField(ref _isDirectActionEnabled, value, nameof(IsDirectActionEnabled)); }
 
         [DataSourceProperty]
-        public string? DiplomaticActionHelpText { get => _diplomaticActionHelpText; set => SetField(ref _diplomaticActionHelpText, value, nameof(DiplomaticActionHelpText)); }
+        public HintViewModel? DirectActionHint { get => _diplomaticActionHint; set => SetField(ref _diplomaticActionHint, value, nameof(DirectActionHint)); }
+
+        [DataSourceProperty]
+        public string? DirectActionExplanationText { get => _directActionExplanationText; set => SetField(ref _directActionExplanationText, value, nameof(DirectActionExplanationText)); }
 
         public KingdomWarItemVMMixin(KingdomWarItemVM vm) : base(vm)
         {
             _faction1 = (Kingdom) ViewModel!.Faction1;
             _faction2 = (Kingdom) ViewModel!.Faction2;
             var costForMakingPeace = DiplomacyCostCalculator.DetermineCostForMakingPeace(_faction1, _faction2, true);
-            InfluenceCost = (int) costForMakingPeace.InfluenceCost.Value;
+            DirectActionInfluenceCost = (int) costForMakingPeace.InfluenceCost.Value;
             GoldCost = (int) costForMakingPeace.GoldCost.Value;
             _reparations = costForMakingPeace.KingdomWalletCosts;
-            ActionName = GameTexts.FindText("str_kingdom_propose_peace_action").ToString();
+            DirectActionName = _TMakePeace.ToString();
             AllianceText = _TAlliances.ToString();
             WarsText = _TWars.ToString();
             PactsText = _TNonAggressionPacts.ToString();
@@ -125,7 +131,7 @@ namespace Diplomacy.ViewModelMixin
 
         [DataSourceMethod]
         [UsedImplicitly]
-        public void ExecuteExecutiveAction()
+        public void ExecuteDirectAction()
         {
             KingdomPeaceAction.ApplyPeace(_faction1, _faction2, forcePlayerCharacterCosts: true, skipPlayerPrompts: true);
         }
@@ -133,12 +139,13 @@ namespace Diplomacy.ViewModelMixin
         private void UpdateActionAvailability()
         {
             var listOfExceptions = MakePeaceConditions.Instance.CanApplyExceptions(ViewModel!);
-            IsOptionAvailable = listOfExceptions.IsEmpty();
+            IsDirectActionVisible = true;
+            IsDirectActionEnabled = listOfExceptions.IsEmpty();
             var makePeaceException = listOfExceptions.FirstOrDefault();
-            if (IsOptionAvailable)
+            if (IsDirectActionEnabled)
             {
                 var tributeValue = TributeHelper.GetDailyTribute(_faction1, _faction2);
-                DiplomaticActionHelpText = new TextObject(_TDiplomaticActionHelpText, new()
+                DirectActionExplanationText = new TextObject(_TDiplomaticActionHelpText, new()
                 {
                     ["ENEMY_LEADER"] = _faction2.Leader.Name,
                     ["WAR_REPARATIONS_AND_TRIBUTE"] = new TextObject(_TPayments, new()
@@ -154,8 +161,13 @@ namespace Diplomacy.ViewModelMixin
                 }).ToString();
             }
             else
-                DiplomaticActionHelpText = string.Empty;
-            DiplomaticActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
+                DirectActionExplanationText = new TextObject(_TDiplomaticActionHelpText, new()
+                {
+                    ["ENEMY_LEADER"] = _faction2.Leader.Name,
+                    ["WAR_REPARATIONS_AND_TRIBUTE"] = TextObject.GetEmpty(),
+                    ["FIEFS_TO_RETURN"] = TextObject.GetEmpty(),
+                }).ToString();
+            DirectActionHint = makePeaceException is not null ? Compat.HintViewModel.Create(makePeaceException) : new HintViewModel();
         }
 
         private static string GetReparationsText(float value)

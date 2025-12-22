@@ -18,7 +18,6 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Diplomacy;
-using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -34,28 +33,34 @@ namespace Diplomacy.ViewModelMixin
         private static readonly TextObject _TAlliances = new("{=zpNalMeA}Alliances");
         private static readonly TextObject _TPacts = new(StringConstants.NonAggressionPacts);
 
+        private static readonly TextObject _TDirectActionExplanation = new("{=}Impose your will without calling a council");
+
         private static readonly TextObject _TNapHelpText = new("{=9zlQNtlX}Form a non-aggression pact lasting {DAYS} days.");
         private static readonly TextObject _TWarExhaustion = new("{=XmVTQ0bH}War Exhaustion");
 
         private static readonly TextObject _TBreakAlliance = new("{=K4GraLTn}Break Alliance");
+        private static readonly TextObject _TDeclareWar= new("{=}Declare War");
 
         private static readonly TextObject _TRequiredScore = new("{=XIBUWDlT}Required Score");
         private static readonly TextObject _TCurrentScore = new("{=5r6fsHgm}Current Score");
 
         private readonly Kingdom _faction1;
         private readonly Kingdom _faction2;
-        private HintViewModel? _diplomaticActionHint;
-        private string _actionName = null!;
+        private HintViewModel? _directActionHint;
+        private string _directActionName = null!;
         private HintViewModel? _allianceHint;
         private BasicTooltipViewModel? _allianceScoreHint;
         private bool _isAllianceVisible;
         private bool _isNonAggressionPactVisible;
         private bool _isNonAggressionPactAvailable;
-        private bool _isOptionAvailable;
+        private bool _isDirectActionEnabled;
+        private bool _isDirectActionVisible;
         private int _nonAggressionPactGoldCost;
         private HintViewModel? _nonAggressionPactHint;
         private int _nonAggressionPactInfluenceCost;
+        int _directActionInfluenceCost;
         private BasicTooltipViewModel? _nonAggressionPactScoreHint;
+        private string? _directActionExplanationText;
 
         [DataSourceProperty]
         public bool IsAllianceVisible { get => _isAllianceVisible; set => SetField(ref _isAllianceVisible, value, nameof(IsAllianceVisible)); }
@@ -73,7 +78,7 @@ namespace Diplomacy.ViewModelMixin
         public int NonAggressionPactGoldCost { get => _nonAggressionPactGoldCost; set => SetField(ref _nonAggressionPactGoldCost, value, nameof(NonAggressionPactGoldCost)); }
 
         [DataSourceProperty]
-        public string ActionName { get => _actionName; set => SetField(ref _actionName, value, nameof(ActionName)); }
+        public string DirectActionName { get => _directActionName; set => SetField(ref _directActionName, value, nameof(DirectActionName)); }
 
         [DataSourceProperty]
         public string NonAggressionPactActionName { get; }
@@ -88,13 +93,16 @@ namespace Diplomacy.ViewModelMixin
         public string PactsText { get; }
 
         [DataSourceProperty]
-        public int InfluenceCost { get; }
+        public int DirectActionInfluenceCost { get => _directActionInfluenceCost; set => SetField(ref _directActionInfluenceCost, value, nameof(DirectActionInfluenceCost)); }
 
         [DataSourceProperty]
-        public bool IsOptionAvailable { get => _isOptionAvailable; set => SetField(ref _isOptionAvailable, value, nameof(IsOptionAvailable)); }
+        public bool IsDirectActionEnabled { get => _isDirectActionEnabled; set => SetField(ref _isDirectActionEnabled, value, nameof(IsDirectActionEnabled)); }
 
         [DataSourceProperty]
-        public HintViewModel? DiplomaticActionHint { get => _diplomaticActionHint; set => SetField(ref _diplomaticActionHint, value, nameof(DiplomaticActionHint)); }
+        public bool IsDirectActionVisible { get => _isDirectActionVisible; set => SetField(ref _isDirectActionVisible, value, nameof(IsDirectActionVisible)); }
+
+        [DataSourceProperty]
+        public HintViewModel? DirectActionHint { get => _directActionHint; set => SetField(ref _directActionHint, value, nameof(DirectActionHint)); }
 
         [DataSourceProperty]
         public HintViewModel? AllianceHint { get => _allianceHint; set => SetField(ref _allianceHint, value, nameof(AllianceHint)); }
@@ -107,6 +115,9 @@ namespace Diplomacy.ViewModelMixin
 
         [DataSourceProperty]
         public BasicTooltipViewModel? NonAggressionPactScoreHint { get => _nonAggressionPactScoreHint; set => SetField(ref _nonAggressionPactScoreHint, value, nameof(NonAggressionPactScoreHint)); }
+
+        [DataSourceProperty]
+        public string? DirectActionExplanationText { get => _directActionExplanationText; set => SetField(ref _directActionExplanationText, value, nameof(DirectActionExplanationText)); }
 
         [DataSourceProperty]
         [UsedImplicitly]
@@ -122,13 +133,12 @@ namespace Diplomacy.ViewModelMixin
         {
             _faction1 = (Kingdom) ViewModel!.Faction1;
             _faction2 = (Kingdom) ViewModel!.Faction2;
+            DirectActionExplanationText = _TDirectActionExplanation.ToString();
             NonAggressionPactActionName = _TFormPact.ToString();
             AllianceText = _TAlliances.ToString();
             WarsText = _TWars.ToString();
             PactsText = _TPacts.ToString();
             NonAggressionPactHelpText = _TNapHelpText.SetTextVariable("DAYS", Settings.Instance!.NonAggressionPactDuration).ToString();
-            ActionName = ViewModel!.HasAlliance ? _TBreakAlliance.ToString() : GameTexts.FindText("str_kingdom_declate_war_action").ToString();
-            InfluenceCost = ViewModel!.HasAlliance ? 0 : (int) DiplomacyCostCalculator.DetermineCostForDeclaringWar(_faction1, true).Value;
             OnRefresh();
         }
 
@@ -158,23 +168,28 @@ namespace Diplomacy.ViewModelMixin
         {
             if (ViewModel!.HasAlliance)
             {
-                DiplomaticActionHint = new HintViewModel();
-                IsOptionAvailable = true;
+                DirectActionName = _TBreakAlliance.ToString();
+                DirectActionHint = new HintViewModel();
+                IsDirectActionVisible = true;
+                IsDirectActionEnabled = true;
                 IsAllianceVisible = false;
                 IsNonAggressionPactVisible = false;
                 return;
             }
 
-            IsOptionAvailable = DeclareWarConditions.Instance.CanApplyExceptions(ViewModel!).IsEmpty();
-
             var declareWarException = DeclareWarConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
             var napException = NonAggressionPactConditions.Instance.CanApplyExceptions(ViewModel!).FirstOrDefault();
 
+            DirectActionName = _TDeclareWar.ToString();
+            IsDirectActionVisible = true;
+            IsDirectActionEnabled = declareWarException is null;
+            DirectActionHint = declareWarException is not null ? Compat.HintViewModel.Create(declareWarException) : new HintViewModel();
+            DirectActionInfluenceCost = ViewModel!.HasAlliance ? 0 : (int) DiplomacyCostCalculator.DetermineCostForDeclaringWar(_faction1, true).Value;
+
             IsAllianceVisible = true;
+
             IsNonAggressionPactVisible = !DiplomaticAgreementManager.HasNonAggressionPact(_faction1, _faction2, out _);
             IsNonAggressionPactAvailable = napException is null;
-
-            DiplomaticActionHint = declareWarException is not null ? Compat.HintViewModel.Create(declareWarException) : new HintViewModel();
             NonAggressionPactHint = napException is not null ? Compat.HintViewModel.Create(napException) : new HintViewModel();
 
             var nonAggressionPactCost = DiplomacyCostCalculator.DetermineCostForFormingNonAggressionPact(_faction1, _faction2, true);
@@ -202,7 +217,7 @@ namespace Diplomacy.ViewModelMixin
 
         [DataSourceMethod]
         [UsedImplicitly]
-        public void ExecuteExecutiveAction()
+        public void ExecuteDirectAction()
         {
             if (ViewModel!.HasAlliance)
             {

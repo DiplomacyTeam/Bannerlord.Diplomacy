@@ -21,7 +21,7 @@
             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsHidden="@IsDestroyed">
               <Children>
                 <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Encyclopedia.SubPage.Element"  />
-                <MaskedTextureWidget Id="ElementImage" DataSource="{ImageIdentifier}" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" Brush="!BannerBrush" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="3" MarginLeft="3" MarginBottom="3" MarginTop="3" OverlayTextureScale="!ScaleFactor"/>
+                <MaskedTextureWidget Id="ElementImage" DataSource="{ImageIdentifier}" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" Brush="!BannerBrush" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="3" MarginLeft="3" MarginBottom="3" MarginTop="3" OverlayTextureScale="!ScaleFactor" TextureProviderName="@TextureProviderName"/>
               </Children>
             </Widget>
 
@@ -29,7 +29,7 @@
             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsVisible="@IsDestroyed">
               <Children>
                 <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Encyclopedia.SubPage.Element.Dead" />
-                <MaskedTextureWidget Id="ElementImage" DataSource="{ImageIdentifier}" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" Brush="!BannerBrush" HorizontalAlignment="Center" MarginRight="3" MarginLeft="3" MarginBottom="3" MarginTop="3" OverlayTextureScale="!ScaleFactor" Brush.SaturationFactor="-100"/>
+                <MaskedTextureWidget Id="ElementImage" DataSource="{ImageIdentifier}" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" Brush="!BannerBrush" HorizontalAlignment="Center" MarginRight="3" MarginLeft="3" MarginBottom="3" MarginTop="3" OverlayTextureScale="!ScaleFactor" Brush.SaturationFactor="-100" TextureProviderName="@TextureProviderName"/>
               </Children>
             </Widget>
 

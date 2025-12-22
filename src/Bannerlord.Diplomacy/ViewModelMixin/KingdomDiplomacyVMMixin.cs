@@ -27,9 +27,6 @@ namespace Diplomacy.ViewModelMixin
         private static readonly TextObject _TOverview = new("{=OvbY5qxL}Overview");
         private static readonly TextObject _TDiplomacy = new("{=Q2vXbwvC}Diplomacy");
 
-        private string _numOfPlayerAlliancesText = null!;
-
-        private MBBindingList<KingdomTruceItemVM> _playerAlliances;
         private bool _showOverview;
         private bool _showStats;
 
@@ -40,9 +37,6 @@ namespace Diplomacy.ViewModelMixin
         public bool ShowStats { get => _showStats; set => SetField(ref _showStats, value, nameof(ShowStats)); }
 
         [DataSourceProperty]
-        public string PlayerAlliancesText { get; }
-
-        [DataSourceProperty]
         public string StatsText { get; }
 
         [DataSourceProperty]
@@ -51,16 +45,8 @@ namespace Diplomacy.ViewModelMixin
         [DataSourceProperty]
         public string DiplomacyText { get; }
 
-        [DataSourceProperty]
-        public string NumOfPlayerAlliancesText { get => _numOfPlayerAlliancesText; set => SetField(ref _numOfPlayerAlliancesText, value, nameof(NumOfPlayerAlliancesText)); }
-
-        [DataSourceProperty]
-        public MBBindingList<KingdomTruceItemVM> PlayerAlliances { get => _playerAlliances; set => SetField(ref _playerAlliances, value, nameof(PlayerAlliances)); }
-
         public KingdomDiplomacyVMMixin(KingdomDiplomacyVM vm) : base(vm)
         {
-            _playerAlliances = new MBBindingList<KingdomTruceItemVM>();
-            PlayerAlliancesText = _TAlliances.ToString();
             StatsText = _TStats.ToString();
             OverviewText = _TOverview.ToString();
             DiplomacyText = _TDiplomacy.ToString();
@@ -72,6 +58,7 @@ namespace Diplomacy.ViewModelMixin
                 if (Hero.MainHero.MapFaction is Kingdom)
                     ViewModel!.RefreshValues();
             });
+            CampaignEvents.OnAllianceEndedEvent.AddNonSerializedListener(this, (_, _) => ViewModel!.RefreshValues());
 
             OnRefresh();
         }
@@ -103,16 +90,11 @@ namespace Diplomacy.ViewModelMixin
             RemoveRebelKingdoms(ViewModel!.PlayerTruces);
             RemoveRebelKingdoms(ViewModel!.PlayerWars);
 
-            var alliances = ViewModel!.PlayerTruces.Where(item => item.HasAlliance).ToList();
-            foreach (var alliance in alliances) ViewModel!.PlayerTruces.Remove(alliance);
-
             foreach (var truce in ViewModel!.PlayerTruces.ToList())
             {
                 var otherKingdom = truce.Faction2 as Kingdom;
                 if (otherKingdom!.IsRebelKingdom()) ViewModel!.PlayerTruces.Remove(truce);
             }
-
-            RefreshAlliances(alliances);
 
             GameTexts.SetVariable("STR", ViewModel!.PlayerTruces.Count);
             ViewModel!.NumOfPlayerTrucesText = GameTexts.FindText("str_STR_in_parentheses").ToString();
@@ -127,25 +109,6 @@ namespace Diplomacy.ViewModelMixin
                 var otherKingdom = item.Faction2 as Kingdom;
                 if (otherKingdom!.IsRebelKingdom()) items.Remove(item);
             }
-        }
-
-        private void RefreshAlliances(List<KingdomTruceItemVM> alliances)
-        {
-            PlayerAlliances.Clear();
-
-            foreach (var alliance in alliances) PlayerAlliances.Add(alliance);
-
-            GameTexts.SetVariable("STR", PlayerAlliances.Count);
-            NumOfPlayerAlliancesText = GameTexts.FindText("str_STR_in_parentheses").ToString();
-        }
-
-        [DataSourceMethod]
-        [UsedImplicitly]
-        public void BreakAlliance(KingdomDiplomacyItemVM item)
-        {
-            Campaign.Current.GetCampaignBehavior<AllianceCampaignBehavior>().EndAlliance((Kingdom) item.Faction1, (Kingdom) item.Faction2);
-            ViewModel!.RefreshDiplomacyList();
-            OnRefresh();
         }
     }
 }

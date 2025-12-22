@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Türkçe"/>
+  </tags>
+  <strings>
+    <string id="MYz8nKqq" text="Diplomasi"/>
+    <string id="hPERH3u4" text="Diplomasi Yüklendi"/>
+
+    <string id="TS1iV2pO" text="Yeterli Nüfuz Yok!"/>
+    <string id="XQFxDr11" text="Bunu engelleyen aktif bir görev var!"/>
+    <string id="ONNcmltF" text="Savaşın üzerinden yalnızca {ELAPSED_DAYS} gün geçti. Barış yapabilmek için en az {REQUIRED_DAYS} gün geçmeli."/>
+    <string id="GuPOCNNZ" text="Barışın üzerinden yalnızca {ELAPSED_DAYS} gün geçti. Savaş yapabilmek için en az {REQUIRED_DAYS} gün geçmeli."/>
+
+    <string id="v0cDMIcl" text="Bu krallığa savaş ilan edemezsiniz. "/>
+    <string id="Pqk3WuGz" text="Bu krallıkla barış yapamazsınız. "/>
+    <string id="9aaZ8Ed4" text="Savaş ilan edemezsiniz, krallar dost."/>
+    <string id="Zimavbgw" text="Savaş ilan edemezsiniz, kralların arası çok iyi."/>
+    <string id="pXD8Uf2e" text="Savaş ilan edemezsiniz, klanlar arasında yakın akrabalık var."/>
+      
+    <string id="zv12jjyW" text="Ulak gönderildi"/>
+    <string id="uy86VZX2" text="Ulak vardı"/>
+
+    <string id="JmgAuONd" text="Eyvah... Ulak, {HERO_NAME} adlı kişiye giderken pusuya düşürülüp öldürüldü!"/>
+    <string id="YnRmSele" text="{FACTION1_NAME} krallığından gelen ulak, {ADDRESSEE_TEXT} adlı kişiye vardı.{BRIBE_TEXT}"/>
+    <string id="C7XPJZAM" text="{FACTION1_NAME} krallığından gelen ulak, bir saatten kısa bir süre içinde {ADDRESSEE_TEXT} adlı kişiye varacak."/>
+    <string id="k5i2F6UD" text="{FACTION1_NAME} krallığından gelen ulak, {TRAVEL_TIME} gün içinde {ADDRESSEE_TEXT} adlı kişiye varacak."/>
+    <string id="qNWMZP0z" text="{FACTION1_NAME} krallığından gelen ulak, {TRAVEL_TIME} gün içinde {ADDRESSEE_TEXT} adlı kişiye varacak."/>
+    <string id="G2NMbFDb" text="{FACTION1_NAME} krallığından gelen ulak, {TRAVEL_TIME} saat içinde {ADDRESSEE_TEXT} adlı kişiye varacak."/>
+    <string id="gfZgMSYD" text="{FACTION1_NAME} krallığından gelen ulak, {TRAVEL_TIME} saat içinde {ADDRESSEE_TEXT} adlı kişiye varacak."/>
+    <string id="nYrezEOX" text="Ulak Öldürüldü"/>
+    <string id="A5lug0JY" text="Ulak, {HERO NAME} adlı kişiye giderken haydutlar tarafından pusuya düşürülüp öldürüldü!"/>
+    <string id="1rYSIMfX" text="Ulak, {HERO NAME} adlı kişiye giderken pusuya düşürülüp öldürüldü!"/>
+    <string id="J2T97gNx" text="Ulak yolunu kaybetti ve şimdi ortalıkta amaçsızca dolaşıyor."/>
+    <string id="hOOW2DMD" text="Ulak bir hazine haritası buldu ve mesajı iletmek yerine hazinenin peşine düştü."/>
+    <string id="hc52yW8O" text="Ulak mesajı unuttu, onu yeniden göndermeniz gerekecek."/>
+    <string id="2rJDoi7N" text="Ulak çok fazla içti ve şu an sızmış durumda."/>
+    <string id="VKqC9dl0" text="Ulak parayı alıp kaçtı."/>
+    <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION}, {FACTION2_NAME} krallığından{?}{\?}"/>
+    <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Maalesef ulağın kaleye girmesine izin verilmiyor, ama nöbetçilere rüşvet vermeyi deneyebilir. Bunun ona maliyeti {GOLD_COST}{GOLD_ICON} olur ve masrafı sizin karşılamanız gerekir{?CAN_AFFORD}.{?}, ama şu anda bunu karşılayamazsınız.{\?}"/>
+
+    <string id="bLR91Eob" text="{REASON}Ulak, alıcıya varamayacak."/>
+    <string id="hPra5uwZ" text="Ulak ya şakanızı anlamıyor ya da beğenmiyor ve görevi reddediyor."/>
+    <string id="1mlXBnSs" text="{HERO_NAME} hakkında ulağa tarif edebilecek kadar bilginiz yok."/>
+    <string id="HHgTlyyt" text="Söylentilere göre {HERO_NAME} şu anda denizde. Karaya çıkmasını beklemek en iyisi."/>
+
+    <string id="vhsHDMil" text="{HERO_NAME} Öldü. "/>
+    <string id="CusN2JMb" text="{HERO_NAME} {DETENTION_PLACE}{?IS_MOBILE} birliğinde{?} zindanında{\?} tutsak. "/>
+    <string id="1BISlFYx" text="{HERO_NAME} Kaçak ve bulunmak istemiyor. "/>
+    <string id="ze8KJ1oL" text="{HERO_NAME} tutsaklıktan yeni kurtuldu ve henüz görüşmeye hazır değil. "/>
+    <string id="N5T6IXWJ" text="{HERO_NAME} gizlice seyahat ediyor. "/>
+    <string id="3lknR86H" text="{HERO_NAME} soyluların toplantılarına katılmak için fazla tecrübesiz. "/>
+
+    <string id="BkGSVccZ" text="Barış Teklifi"/>
+    <string id="3fTqLwkC" text="Kabul Et"/>
+    <string id="dRoMejb0" text="Reddet"/>
+
+    <string id="cXfcwzPp" text="Ulak Gönder"/>
+
+    <string id="N06wk0dB" text="Yerleşke Ele Geçirildi"/>
+    <string id="Zy0yjTha" text="{SETTLEMENT_NAME} fatihi olarak, ilk söz hakkına sahipsiniz. Bu tımar üzerinde hak iddia etmek ister misiniz?"/>
+
+    <string id="IWZ91JVk" text="Yeterli altın yok!"/>
+
+    <string id="LpoyhORp" text="Tımar ver"/>
+    <string id="h3b1S5Wq" text="Tımarı {CLAN_NAME} klanına ver"/>
+    <string id="jznJfkfU" text="Tımar verildi"/>
+    <string id="cXbgaPSm" text="{SETTLEMENT_NAME}, {CLAN_NAME} klanına verildi."/>
+
+    <string id="FqeN0fmR" text="Kendi klanına tımar veremezsin."/>
+    <string id="zdSYUnZQ" text="Krallığının hükümdarı değilsin."/>
+    <string id="D61vzEC7" text="Verebileceğiniz tımar yok."/>
+    <string id="98hwXUTp" text="Krallığındaki klanlara tımar ver"/>
+    <string id="Q7jRqnez" text="Paralı asker klanlara tımar veremezsiniz."/>
+
+    <string id="DrnXprup" text="Savaşın üzerinden yalnızca {ELAPSED_DAYS} gün geçti. İttifak yapabilmek için en az {REQUIRED_DAYS} gün geçmeli."/>
+    <string id="KHJyWj9H" text="İttifakta iken olmaz."/>
+    <string id="UQZmdLzc" text="Savaşta iken olmaz."/>
+    <string id="qIa19an4" text="İttifak kuruldu"/>
+    <string id="3pbwc8sh" text="İttifak teklifi"/>
+    <string id="QbOqatd7" text="{KINGDOM}, {PLAYER_KINGDOM} ile bir ittifak kurmayı teklif etti."/>
+
+    <string id="384jX28Q" text="{KINGDOM}, {PLAYER_KINGDOM} ile olan ittifakı bozdu."/>
+    <string id="D1ZQKZr1" text="İttifak bozuldu"/>
+
+    <string id="0WPWbx70" text="İttifak kur"/>
+    <string id="K4GraLTn" text="İttifakı boz"/>
+
+    <string id="VvTTrRpl" text="Bu krallık sizinle ittifak yapmak istemiyor."/>
+    <string id="wst0lArp" text="İttifakın üzerinden yalnızca {ELAPSED_DAYS} gün geçti. İttifakı bozabilmek için en az {REQUIRED_DAYS} gün geçmeli."/>
+
+    <string id="KqfNSsBE" text="Müttefikler"/>
+    <string id="Dirltd6Z" text="İttifaklar devre dışı."/>
+
+    <string id="Q8ItogIP" text="Doğrudan {ENEMY_LEADER} hükümdarına {WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN} ile barış yapmayı teklif et"/>
+    <string id="BC7823G2" text="{?REPARATIONS_PAY}, {REPARATIONS} savaş tazminatı ödüyorsunuz{?TRIBUTE_PAY} ve günde {TRIBUTE} haraç veriyorsunuz.{?}{?TRIBUTE_GET}, ama günde {TRIBUTE} haraç alıyorsunuz.{?}{\?}{\?}{?}{?REPARATIONS_GET}, {REPARATIONS} savaş tazminatı alıyorsunuz{?TRIBUTE_PAY}, ama günde {TRIBUTE} haraç veriyorsunuz.{?}{?TRIBUTE_GET} ve günde {TRIBUTE} haraç alıyorsunuz.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, günde {TRIBUTE} haraç veriyorsunuz.{?}{?TRIBUTE_GET}, günde {TRIBUTE} haraç alıyorsunuz.{?}.{\?}{\?}{\?}{\?}"/>
+    <string id="9CvcPwJA" text="{?FIEFS_ANY} Ele geçirdiğiniz bazı tımarları geri vermek zorunda kalabilirsiniz!{?}{\?}"/>
+
+    <!--Millions and thousands-->
+    <string id="6xcW68Tw" text="{VALUE}M"/>
+    <string id="oD4fZ2tY" text="{VALUE}B"/>
+
+    <string id="XlL50Ha9" text="Aktif kuşatmanız varken bir krallıkla barış yapamazsınız."/>
+
+    <string id="bCOCjOQM" text="İlişki."/>
+    <string id="RxawrCjg" text="Tımar verilen kişiyle ilişki artışı"/>
+
+    <string id="fXcEtO29" text="Aktif bir saldırmazlık antlaşması varken olmaz."/>
+
+    <string id="zpNalMeA" text="İttifaklar"/>
+    <string id="y5tXjbLK" text="Savaşlar"/>
+    <string id="noWHMN1W" text="Saldırmazlık Antlaşmaları"/>
+
+    <string id="yj4XFa5T" text="Saldırmazlık Antlaşması Teklifi"/>
+    <string id="gyLjlpJB" text="{KINGDOM}, {PLAYER_KINGDOM} ile bir saldırmazlık antlaşması yapmayı teklif ediyor."/>
+
+    <string id="9pY0NQrk" text="Antlaşma Yap"/>
+    <string id="9zlQNtlX" text="{DAYS} gün sürecek bir saldırmazlık antlaşması yapın."/>
+
+    <string id="1occw3EF" text="İstatistikler"/>
+    <string id="OvbY5qxL" text="Genel Bakış"/>
+
+    <string id="UDC8eW7s" text="{ALLIED_KINGDOM}, {ENEMY_KINGDOM} ile olan savaşta müttefiki {KINGDOM} safına katılıyor."/>
+
+    <string id="pdI7Tjtj" text="Saldırmazlık Antlaşması Bitti"/>
+    <string id="uWY09LJb" text="{KINGDOM} ile {OTHER_KINGDOM} arasındaki saldırmazlık antlaşması sona erdi."/>
+
+    <string id="dUCOV7km" text="Yolsuzluk (çok fazla tımar)"/>
+    <string id="koTNaZUX" text="Nüfuz kaybı (çok fazla nüfuz)"/>
+    <string id="uZc8Hg01" text="Maksimum Nüfuz Kaybı"/>
+
+    <string id="kMjfN2fB" text="Ulağı geri çağır"/>
+
+    <string id="q5qphBwi" text="Zayıf Krallık"/>
+    <string id="sygtLRqA" text="İlişki"/>
+
+    <string id="cmOSpfyW" text="{ALLIED_KINGDOM} ile İttifak"/>
+    <string id="RqQ4oqvl" text="{ENEMY_KINGDOM} ile Savaş"/>
+    <string id="t6YhBLj7" text="{KINGDOM} ile Saldırmazlık Antlaşması"/>
+    <string id="BjkwaNot" text="{KINGDOM} ile yönetici klan evliliği"/>
+
+    <string id="M4SGjzQP" text="Bu krallık sizinle saldırmazlık antlaşması yapmak istemiyor."/>
+
+    <string id="Gzq6VHPt" text="Altın Bağışla"/>
+    <string id="N7goPgiq" text="Tahtı Gasp Et"/>
+    <string id="WVe7QwhW" text="Bu krallığın tahtını ele geçirin\nKlan desteği: {SUPPORTING_TIERS} / {OPPOSING_TIERS}"/>
+
+    <string id="CxdpR6w4" text="Yayılmacılık"/>
+
+    <string id="ARNRwPrY" text="Koalisyon Kuruldu"/>
+    <string id="qbLPBlIv" text="KALRADYA, {EXPANSIONIST_KINGDOM} krallığının durdurulamayan yayılmasından rahatsız olmaya başladı. Onlara karşı savaşmak için {COALITION_KINGDOM} önderliğinde bir koalisyon kuruldu!"/>
+
+    <string id="vB3RrMNf" text="{KINGDOM}, {OTHER_KINGDOM} ile bir saldırmazlık antlaşması yaptı."/>
+    <string id="PdN5g5ub" text="{KINGDOM}, {OTHER_KINGDOM} ile bir ittifak kurdu!"/>
+    <string id="5r6fsHgm" text="Mevcut Puan"/>
+    <string id="XIBUWDlT" text="Gerekli Puan"/>
+
+    <string id="5znwaUVC" text="Kalan Gün: {DAYS_LEFT}"/>
+
+    <string id="Euy6Mwcq" text="Bu eylemi açmak için ana görevde biraz daha ilerlemeniz gerekiyor. Ya da hikaye korumasını mod ayarlarından kapatabilirsiniz."/>
+    <string id="fQxiCdBA" text="Ana Hikaye"/>
+    <string id="3wXqST66" text="Bu tahtı ele geçirerek ana hikayedeki imparatorluğu {STANCE} yolunu seçmiş olursunuz."/>
+    <string id="yAFwbD9B" text="birleştirme"/>
+    <string id="IGJVx5XI" text="yıkma"/>
+
+    <string id="lQAaLeSy" text="Bu eylemi yapmak için yetkiniz yok."/>
+
+    <string id="7QvXkcxH" text="Krallığındaki klanlara altın bağışla"/>
+    <string id="e7uxH1jc" text="Altın Bedeli: {GOLD_COST}"/>
+    <string id="4lG3JG2e" text="İlişki Artışı: +{RELATION_GAIN}"/>
+
+    <string id="Q2vXbwvC" text="Diplomasi"/>
+    
+    <!--
+    ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
+    -->
+
+    <string id="sBw5Qzq3" text="Krallık Diplomasisi"/>
+    <string id="tis8Ddzn" text="Oyuncunun, ele geçirdiği yerleşkelerin üzerinde hak iddia etmesine izin ver"/>
+    <string id="TfxLCxcD" text="Oyuncuya, ele geçirdiği bir yerleşkeyi oylamaya gitmeden kendisi için talep etme seçeneği verir."/>
+    <string id="8VKC3jtN" text="Tımarsız Krallıkların Yok Edilmesini Etkinleştir"/>
+    <string id="TlymwwPZ" text="Etkinse, hiç tımarı olmayan krallıklar, dahil oldukları son savaşı bitiren bir barış antlaşması imzaladıklarında yok edilir. Varsayılan: etkin."/>
+    <string id="w8Hi9jJf" text="Tımarsız Krallıkların Yok Edilmesini Geciktir"/>
+    <string id="GDctI4Kd" text="Etkinse, tımarı kalmayan krallıklar, son katıldıkları savaş barışla bittikten sonra yok edilir; son tımarlarını kaybettikleri anda yok edilmezler. Varsayılan: etkin."/>      
+    <string id="ZRlNvsev" text="Minimum Savaş Süresi (gün)"/>
+    <string id="vuFT5ns8" text="Bir savaşa barış önerilmeden önce geçmesi gereken en az gün sayısı. Varsayılan: 21 (oyun yılının çeyreği)."/>
+    <string id="4MzQHMVj" text="Savaş İlanı Bekleme Süresi (gün)"/>
+    <string id="q2duqN8d" text="Barış yaptıktan sonra, Aynı krallığa yeniden savaş ilan edebilmek için geçmesi gereken minimum gün sayısı. Varsayılan: 21 (oyun yılının çeyreği)."/>
+    <string id="2XC8QHkl" text="İttifakları etkinleştir"/>
+    <string id="5YJBZx28" text="Devre dışı bırakılırsa hem oyuncu hem de yapay zeka için ittifak kurma imkanı kaldırılır. Varsayılan: etkin."/>
+    <string id="H6XMjwpF" text="Minimum İttifak Süresi (gün)"/>
+    <string id="RrsWhIWi" text="Bir ittifakın bozulabilmesi için geçmesi gereken minimum gün sayısı. Varsayılan: 42 (oyun yılının yarısı)."/>
+    <string id="5a829TiT" text="İttifak Eğilimi"/>
+    <string id="7nSjs8UL" text="Krallıkların ittifak kurma eğilimini etkileyen puan çarpanı. Değeri arttırmak, yapay zeka için ittifakları daha cazip hale getirir. Varsayılan: 0."/>
+    <string id="V35hUfcc" text="Saldırmazlık Antlaşması Süresi (gün)"/>
+    <string id="KXLGZEPh" text="Bir saldırmazlık antlaşmasının süresi (gün). Varsayılan: 84 (bir oyun yılı)."/>
+    <string id="G8BhBnRG" text="Saldırmazlık Antlaşması Eğilimi"/>
+    <string id="907ER5u9" text="Krallıkların saldırmazlık antlaşması yapma eğilimini etkileyen puan çarpanı. Değeri arttırmak, yapay zeka için bu antlaşmaları daha cazip hale getirir. Varsayılan: 0."/>
+    <string id="6m1SspFW" text="Oyuncu Krallığının Diplomasi Kontrolünü Etkinleştir"/>
+    <string id="N5EouSSj" text="Oyuncuya, sadece bir vasal olsa bile ait olduğu krallıkta savaş ilanı ve barış üzerinde tam kontrol verir; krallığın hükümdarı olması gerekmez. Varsayılan: devre dışı."/>
+    <string id="lhysZl9j" text="Eylem Eğilimi"/>
+    <string id="dRyU9E7Z" text="Dostlar Arasında Savaş Yok"/>
+    <string id="XyXJSTKr" text="Etkinse, dost olan krallar birbirlerine savaş açmaz. Varsayılan: etkin."/>
+    <string id="pWoKQ6HO" text="İlişkiler İyiyse Savaş Yok"/>
+    <string id="bOuGhbPt" text="Etkinse, aralarındaki ilişki savaş eşiğinin üzerindeyse krallar birbirine savaş açamaz. Varsayılan: etkin."/>
+    <string id="x0Aoiomr" text="Savaşı Engelleyen Minimum İlişki Değeri"/>
+    <string id="aH6rpjt6" text="Krallar arasındaki ilişki değeri bu sayının üzerindeyse krallıklar birbirine savaş açmaz. Varsayılan: 30."/>
+    <string id="jwNKk8P7" text="Evlilik Bağı Varsa Savaş Yok"/>
+    <string id="xcMzKH48" text="Etkinse, aralarında evlilik bağı olan yönetici klanları birbirine savaş açmaz. Varsayılan: etkin."/>
+    <string id="xcMzKH48" text="Etkinse, aralarında evlilik bağı olan yönetici klanları birbirine savaş açmaz. Varsayılan: etkin."/>
+    <string id="xXKKRp99" text="Yönetici Klan Evlilikleri İttifakı Etkilesin"/>
+    <string id="BGS6mUID" text="Etkinse, aralarında evlilik bağı olan yönetici klanlar için ittifak eğilimine bonus verir. Varsayılan: etkin."/>
+      
+    <string id="ldLFTs92" text="Maliyetler"/>      
+    <string id="Ckd1Lsoa" text="Altın Maliyetleri"/>
+    <string id="t4hNAoD7" text="Ölçeklenen Altın Maliyetlerini Etkinleştir"/>
+    <string id="5MMIDE5A" text="Etkinse, diplomasi eylemleri ve savaş tazminatlarının altın maliyetleri krallığınızın büyüklüğüne göre ölçeklenir. Aksi halde diplomasi için 100, savaş tazminatları için 1000 genel çarpanları kullanılır. Varsayılan: etkin."/>
+    <string id="vD270X6H" text="Ölçeklenen Altın Maliyeti Çarpanı"/>
+    <string id="Gd52NzBP" text="Ölçeklenen altın maliyetleri için çarpan. Varsayılan: 5."/>
+    <string id="HFtZsD6v" text="Ölçeklenen Savaş Tazminatı Altın Maliyeti Çarpanı"/>
+    <string id="MIhbrqbr" text="Savaş tazminatının ölçeklenen altın maliyeti için çarpan. Varsayılan: 50."/>
+    <string id="Cr6a5Jap" text="Kaybedilen Savaş Tazminatı Altın Maliyeti"/>
+    <string id="NH4GNKva" text="Bir başka krallığa karşı yıpratma savaşını kaybetmenin altın cinsinden taban maliyeti. Ölçeklemeden etkilenir; ölçekleme kapalıysa binle çarpılır. Varsayılan: 200."/>
+
+    <string id="SEViwYTl" text="Nüfuz Maliyetleri"/>
+    <string id="WbOKuWbQ" text="Nüfuz Maliyetlerini Etkinleştir"/>
+    <string id="K2vLGalN" text="Devre dışı bırakılırsa savaş ve barış ilanı için nüfuz maliyetleri kaldırılır. Varsayılan: etkin."/>
+    <string id="9PlT57Nl" text="Nüfuz Maliyetleri/Ölçekleme"/>
+    <string id="P1g6Ht1e" text="Ölçeklenen Nüfuz Maliyetlerini Etkinleştir"/>
+    <string id="xfVFBxfj" text="Etkinse, nüfuz maliyetleri krallığınızın büyüklüğüne göre ölçeklenir. Aksi halde sabit nüfuz maliyetleri kullanılır. Varsayılan: etkin."/>
+    <string id="TvAYJv5Q" text="Ölçeklenen Nüfuz Maliyeti Çarpanı"/>
+    <string id="AQ5gRYN6" text="Ölçeklenen nüfuz maliyetleri için çarpan. Varsayılan: 5."/>
+    <string id="BazjeCZw" text="Nüfuz Maliyetleri/Sabit"/>
+    <string id="OnTeAgin" text="Sabit Savaş İlanı Nüfuz Maliyeti"/>
+    <string id="O5XvybTI" text="Başka bir krallığa savaş ilan etmenin nüfuz maliyeti. Varsayılan: 500."/>
+    <string id="iNsXQD2q" text="Sabit Barış Yapma Nüfuz Maliyeti"/>
+    <string id="WB5zdvdT" text="Başka bir krallıkla barış yapmanın nüfuz maliyeti. Varsayılan: 500."/>
+
+    <string id="nueOs6m9" text="Ulaklar"/>
+    <string id="nwTyegdV" text="Ulak Kazalarını Etkinleştir"/>
+    <string id="T7yybpw3" text="Etkinse, ulaklar için küçük bir başarısızlık ihtimali ekler. Yolculuk uzadıkça yolda bir kaza yaşama ihtimali artar. Varsayılan: etkin."/>
+    <string id="ysYCYvwT" text="Ulak Gönderimini Kısıtla"/>
+    <string id="5O87pSL3" text="Etkinse, yalnızca tanıştığınız ya da hakkında bilginiz olması muhtemel kişilere ulak gönderebilirsiniz. Aksi halde alıcıyı tanımasanız bile ulak gönderebilirsiniz. Varsayılan: etkin."/>
+    <string id="nnXi6MmH" text="Ulak Yolculuk Süresi (gün)"/>
+    <string id="zkvCGLuK" text="Ulağın alıcıya ulaşması için geçecek olan maksimum gün sayısı. Ulakların yolculuk hızını doğrudan etkiler. Varsayılan: 3."/>
+    <string id="nMwWHj4h" text="Ulak Gönderme Altın Maliyeti"/>
+    <string id="ehMf7xvE" text="Bir kişiye ulak göndermenin altın maliyeti. Varsayılan: 100."/>
+    <string id="YolJlw95" text="Minimum Ulak Gönderme Maliyeti"/>
+    <string id="P5NWxY6F" text="Bir kişiye ulak göndermenin en düşük altın maliyeti. Varsayılan: 75."/>
+    <string id="Hkv9Peqa" text="Saat Başına Ulak Gönderme Maliyeti"/>
+    <string id="ckYA36t8" text="Ulağın bir kişiye ulaşmasının her saati için eklenen altın maliyeti. Varsayılan: 1."/>
+
+    <string id="OfEMJWiR" text="İlişki"/>
+    <string id="6l9QNMrB" text="Tımar Vermede Olumlu İlişki Çarpanı"/>
+    <string id="FQaghHo7" text="Tımar verdiğinizde alınan ilişki artışı için çarpan. Varsayılan: 1."/>
+    <string id="9qKclHq3" text="Tımar Vermede İlişki Cezası"/>
+    <string id="fgc8Dvg0" text="Başka bir klana tımar verdiğinizde uygulanan ilişki cezası. Varsayılan: -2."/>
+
+    <string id="8ZPKToTq" text="Nüfuz Dengesi"/>
+    <string id="4jlYRUdZ" text="Nüfuz Dengesini Etkinleştir"/>
+    <string id="tOMN9DQD" text="Nüfuz kaybı ve yolsuzluk hesaplamalarının etkin olup olmayacağını belirler. Bazı modlar ile uyum için kapatılması gerekebilir."/>
+
+    <string id="vzKRX2JA" text="Nüfuz Kaybı"/>
+    <string id="szYr4OTG" text="Nüfuz Kaybını Etkinleştir"/>
+    <string id="rKS9z4Sz" text="Her gün nüfuzun yavaş yavaş azalmasını sağlayan sistemi etkinleştirir. Varsayılan: etkin."/>
+
+    <string id="pVE1yNlm" text="Nüfuz Kaybı Eşiği"/>
+    <string id="MnLk08uW" text="Nüfuz kaybından muaf tutulan nüfuz miktarı. Varsayılan: 1000."/>
+    <string id="WTeM4Rba" text="Günlük Maksimum Nüfuz Kaybı"/>
+    <string id="CGixJ6ng" text="Bir günde kaybedilebilecek maksimum nüfuz miktarı. Varsayılan: 20."/>
+    <string id="yob5ZHtz" text="Günlük Nüfuz Kaybı Yüzdesi"/>
+    <string id="IYFl4kJx" text="Her gün eksilen nüfuz yüzdesi. Varsayılan: 2.0."/>
+
+    <string id="e5fHDXgl" text="Yolsuzluk"/>
+    <string id="KWAH0S4h" text="Yolsuzluğu Etkinleştir"/>
+    <string id="trgnZ0pn" text="Bir klanın çok fazla tımar tuttuğu durumlarda, her gün nüfuzunun yavaş yavaş azalmasına neden olur. Varsayılan: etkin."/>
+
+    <string id="ZqQaUIil" text="Yayılmacılık"/>
+    <string id="2raR1ZHv" text="Koalisyonlar"/>
+    <string id="Pr4dcRKm" text="Tımar Başına Minimum Yayılmacılık"/>
+    <string id="9qcAWjI7" text="Bir tımarın eklediği minimum yayılmacılık miktarı. Varsayılan: 3."/>
+    <string id="MnhMW8iq" text="Kuşatma Başına Yayılmacılık"/>
+    <string id="lCbie62E" text="Başarılı her kuşatmanın eklediği yayılmacılık miktarı. Varsayılan: 20."/>
+    <string id="mEXGC0h3" text="Günlük Yayılmacılık Azalması"/>
+    <string id="kgPeQvqE" text="Her gün eksilen yayılmacılık miktarı. Varsayılan: 1."/>
+    <string id="ZIf1tRII" text="Koalisyonları Etkinleştir"/>
+    <string id="8v8q0OGu" text="Güçlü ve yayılmacı bir krallığa karşı, krallıkların birlikte hareket etmesini sağlayan koalisyon sistemini etkinleştirir. Varsayılan: etkin."/>
+    <string id="1kSd88X5" text="Yayılmacılık Eşiği"/>
+    <string id="EUnASoee" text="Hakkında koalisyon kurulmadan önce bir krallığın ulaşması gereken yayılmacılık miktarı. Varsayılan: 100."/>
+    <string id="zwbL9BHe" text="Günlük Koalisyon İhtimali Yüzdesi"/>
+    <string id="9ugCWA3v" text="Yayılmacılık eşiğinin üzerindeki bir krallığa karşı her gün koalisyon kurulma ihtimali yüzdesi. Varsayılan: 5."/>
+
+    <string id="lsyl0VSX" text="Hikaye Koruması"/>
+    <string id="EVrErrTR" text="Etkinse, oyuncunun ana hikayenin dışına çıkmasını engeller. Bazı modlarla uyumsuz olabilir. Varsayılan: etkin."/>
+
+    <string id="f6n2UAEC" text="Tamamlanmamış Özellikler"/>
+    <string id="HSoZfvXH" text="Tahtı Ele Geçirme Özelliğini Etkinleştir"/>
+    <string id="ZIAo4er4" text="Etkinse, oyuncunun bir krallığın tahtını ele geçirmesine izin verir. Bu özellik dengeli değildir, üzerinde yeniden çalışılacaktır ve bu yüzden önerilmez. Varsayılan: kapalı."/>
+  </strings>
+</base>

@@ -20,7 +20,7 @@
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginRight="-1" UpdateChildrenStates="true">
                       <Children>
-                        <MaskedTextureWidget DataSource="{Faction1Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" Brush="Diplomacy.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="2.1" />
+                        <MaskedTextureWidget DataSource="{Faction1Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" Brush="Diplomacy.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="2.1" TextureProviderName="@TextureProviderName" />
                         <Widget WidthSizePolicy="Fixed" SuggestedWidth="5" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right">
                           <Children>
                             <CriticalThresholdTextWidget IsCritical="@IsCriticalFaction1" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" Brush="Map.WarExhaustionIndicator.Text" IsEnabled="false" IntText="@PlayerWarExhaustion" MarginRight="!RetreatIconMargin"/>
@@ -31,7 +31,7 @@
 
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" UpdateChildrenStates="true">
                       <Children>
-                        <MaskedTextureWidget DataSource="{Faction2Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" Brush="Diplomacy.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="2.1" />
+                        <MaskedTextureWidget DataSource="{Faction2Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" Brush="Diplomacy.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="2.1" TextureProviderName="@TextureProviderName" />
                         <Widget WidthSizePolicy="Fixed" SuggestedWidth="5" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left">
                           <Children>
                             <CriticalThresholdTextWidget IsCritical="@IsCriticalFaction2" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Brush="Map.WarExhaustionIndicator.Text" IsEnabled="false" IntText="@OpponentWarExhaustion" MarginLeft="!RetreatIconMargin"/>

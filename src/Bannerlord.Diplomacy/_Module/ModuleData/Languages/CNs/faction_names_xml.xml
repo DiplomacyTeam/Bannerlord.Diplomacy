@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="简体中文"/>
+  </tags>
+  <strings>
+    <!-- Faction Titles -->
+    <string id="MXAsjFdI" text="{CLAN_NAME} 阴谋"/>
+    <string id="LUzfk4tb" text="{CLAN_NAME} 联盟"/>
+
+    <!-- Aserai Titles -->
+    <string id="iLMqCvmk" text="{CLAN_NAME} 苏丹国"/>
+    <string id="EnpnMNRH" text="{CLAN_NAME} 帝国"/>
+    <string id="uzd9mxIC" text="本 {CLAN_NAME}"/>
+    <string id="NTFz3B56" text="{CLAN_NAME} 谢里夫国"/>
+
+    <!-- Battania Titles -->
+    <string id="kaU24WXu" text="{CLAN_NAME} 邦联"/>
+
+    <!-- Khuzait Titles -->
+    <string id="mEHufuep" text="{CLAN_NAME} 汗国"/>
+    <string id="DTBaowBi" text="{CLAN_NAME} 汗国"/>
+    <string id="pRgQF4WY" text="{CLAN_NAME} 王朝"/>
+
+    <!-- Sturgia Titles -->
+    <string id="z5VPFrfh" text="{CLAN_NAME} 伯爵国"/>
+
+    <!-- Vlandia Titles -->
+    <string id="A4zT7H5g" text="{CLAN_NAME} 大公国"/>
+
+
+    <!-- Generic Titles -->
+    <string id="kToqhmHh" text="{CLAN_NAME} 亲王国"/>
+    <string id="WjB3SM1f" text="{CLAN_NAME} 王国"/>
+    <string id="E63n30UM" text="{CLAN_NAME} 帝国"/>
+    <string id="lSQeaVfw" text="{CLAN_NAME} 帝国"/>
+
+
+
+    <!-- Aserai -->
+    <string id="j3bEr6n5" text="阿默拉德"/>
+    <string id="QBJk3ymm" text="巴瑞耶"/>
+    <string id="qWmWT0xA" text="都库巴"/>
+    <string id="X75ITMUL" text="沙瑞兹"/>
+    <string id="K7udl5FQ" text="巴拉达克"/>
+    <string id="OGwXFmDB" text="卡拉夫"/>
+    <string id="I7c8WNxV" text="都拉瑞"/>
+    <string id="M4UquaBO" text="加米耶德"/>
+    <string id="NndCJIzP" text="萨马拉"/>
+    <string id="tDQzTgry" text="沙拉瓦"/>
+    <string id="FSWiNAyj" text="特拉玛"/>
+    <string id="PEd8JgL2" text="卫耶哈"/>
+    <string id="ma2FmIjQ" text="阿波"/>
+    <string id="1lNXlUvm" text="阿安·阿苏迪"/>
+    <string id="i8y3UunL" text="黑巴伊"/>
+    <string id="uOld11Db" text="费沙拉"/>
+    <string id="FZQG8HZ0" text="哈巴"/>
+    <string id="cD8ZseSp" text="哈瓦哈"/>
+    <string id="rvsefzHq" text="奇巴伊"/>
+    <string id="OOGTpFKw" text="马维提"/>
+    <string id="wSlwO5jG" text="马兹根"/>
+    <string id="TU4Itb6v" text="米加耶特"/>
+    <string id="SmIIc4YA" text="米特·努恩"/>
+    <string id="mAT6Zajm" text="括乌特"/>
+    <string id="7C8DXcNT" text="鲁什戴尔"/>
+    <string id="T9VemCVx" text="巴库腾"/>
+    <string id="zTJ3Oaki" text="什巴·祖默"/>
+    <string id="seBpcqnW" text="塔姆努"/>
+    <string id="U6enpew6" text="塔居纳特"/>
+    <string id="AB8kd1kQ" text="提里姆萨"/>
+    <string id="Ug4D9NN0" text="乌丽亚"/>
+    <string id="lsMTtqa4" text="乌兹汗"/>
+
+    <!-- Battania -->
+    <string id="qAuhdK0v" text="克罗维亚"/>
+    <string id="o1ORogYL" text="哈西亚"/>
+    <string id="rfgjbrvw" text="乌维吉亚"/>
+    <string id="STzd8avo" text="塞奥莱斯"/>
+    <string id="22NuLUbK" text="阿契安"/>
+    <string id="AFlVSUFu" text="罗拉斯蒂安"/>
+    <string id="AIKEX745" text="弗雷纳克"/>
+    <string id="RJczxlW4" text="多卡德"/>
+    <string id="wGO3G6yy" text="温尼斯提尔"/>
+    <string id="q7wUF854" text="乌拉达尔"/>
+    <string id="aAZMAMx6" text="杜内里斯"/>
+    <string id="qe9NrPHL" text="巴托林萨姆"/>
+    <string id="x67QSESS" text="拉尼里克"/>
+    <string id="YzLeuoSR" text="伊米安内尔"/>
+    <string id="OoVKShKC" text="伯瑟南"/>
+
+    <!-- Khuzait -->
+    <string id="59uhOyuZ" text="库奈特"/>
+    <string id="KKgoCDJZ" text="埃夫鲁哈"/>
+    <string id="Z141AJ5X" text="布兰"/>
+    <string id="wOrNq16t" text="哈尔马尔"/>
+    <string id="HtX8KdgW" text="伊查穆尔"/>
+    <string id="zpmMniuA" text="纳拉"/>
+    <string id="xDWNd4sN" text="图尔加"/>
+    <string id="DLfwRFh1" text="阿苏甘"/>
+    <string id="UxASxuob" text="迪斯塔尔"/>
+    <string id="4stgAKam" text="马拉尤尔格"/>
+    <string id="04dkhDAi" text="孙盖切"/>
+    <string id="ZOIt9Lb6" text="图尔布克"/>
+    <string id="MzHLDXdO" text="乌洪"/>
+    <string id="XjbYmG6p" text="乌努兹达克"/>
+    <string id="vY8f12Qd" text="阿达库伦"/>
+    <string id="Blar1tNW" text="阿玛什克"/>
+    <string id="k3pz8N53" text="布哈拉班"/>
+    <string id="K7WMsExR" text="布鲁古尔"/>
+    <string id="6xB2dREA" text="达什比加"/>
+    <string id="cEL50k9K" text="迪里格阿班"/>
+    <string id="AJyY3SwF" text="杜甘"/>
+    <string id="54CFY7Y7" text="杜斯图里尔"/>
+    <string id="XExpkOg8" text="凯德尔克"/>
+    <string id="sp4R5ttP" text="佩什米"/>
+    <string id="OSSt9yPb" text="塔什库伦"/>
+    <string id="uAySGYSA" text="提斯米尔"/>
+    <string id="0Ex3esLT" text="图尔布克"/>
+    <string id="7h6VTRli" text="乌洪"/>
+    <string id="n0GNLDVS" text="扎古什"/>
+
+    <!-- Sturgia -->
+    <string id="78HmDOmh" text="特拉加拉"/>
+    <string id="2gxRtC4M" text="提赫尔"/>
+    <string id="1QRisNZ8" text="维尔切格"/>
+    <string id="mciKWCXz" text="阿尔伯克"/>
+    <string id="wquHRX1a" text="切尔贝克"/>
+    <string id="uOnd5NOi" text="库林"/>
+    <string id="eb1lTxcg" text="赫鲁斯"/>
+    <string id="Dvs5IlpE" text="杰尔博格"/>
+    <string id="C0Lxqtaa" text="鲁德"/>
+    <string id="LwGSxemg" text="提赫洛格"/>
+    <string id="QniO32gk" text="艾德伦"/>
+    <string id="SPWVORXL" text="安碧恩"/>
+    <string id="ggpOsqyQ" text="布尤恩"/>
+    <string id="HVMKm9TL" text="费尔辰"/>
+    <string id="vAsQx5yo" text="费纳达"/>
+    <string id="XUmidhIJ" text="吉西姆"/>
+    <string id="IkMHxdfH" text="哈恩"/>
+    <string id="nGAYbe0Z" text="杰耶克"/>
+    <string id="i3QpFo60" text="杰尔贝吉"/>
+    <string id="cckFsFjh" text="库卢姆"/>
+    <string id="0sU6mK84" text="奎恩"/>
+    <string id="5hFwgLgJ" text="梅钦"/>
+    <string id="aMbbajXx" text="奥达桑"/>
+    <string id="SeEJ2zuw" text="里齐"/>
+    <string id="MLvw1Pxt" text="鲁瓦尔"/>
+    <string id="IrIFkrHZ" text="乌迪尼亚德"/>
+    <string id="LHE0xjg1" text="瓦耶杰格"/>
+
+    <!-- Vlandia -->
+    <string id="FD8sniLW" text="埃切纳德"/>
+    <string id="8NkMfWHn" text="雷迪亚"/>
+    <string id="piyHeKyM" text="迪里姆"/>
+    <string id="8Y3wgpLi" text="普拉文"/>
+    <string id="yQlAJYuA" text="苏诺"/>
+    <string id="HUUOh35g" text="乌克斯哈尔"/>
+    <string id="e7h8mCpf" text="德基奥斯"/>
+    <string id="V9wYAqHZ" text="哈林戈斯"/>
+    <string id="5CVj9I06" text="凯尔雷丹"/>
+    <string id="uLOFze6g" text="莱恩迪"/>
+    <string id="QQA4T9vg" text="林迪亚尔"/>
+    <string id="xpLcu6bR" text="里贝莱特"/>
+    <string id="I0FOtfwt" text="塞努兹格达"/>
+    <string id="BKyLwpjT" text="特瓦林"/>
+    <string id="t1flBIrH" text="蒂尔博特"/>
+    <string id="udQOxzOj" text="文库尔德"/>
+    <string id="JNVa1azk" text="阿梅尔"/>
+    <string id="rFJC0mXH" text="阿兹加德"/>
+    <string id="1zlQk8RB" text="巴兰利"/>
+    <string id="V5T0fzsG" text="伯格伦"/>
+    <string id="bVjU79Tn" text="柴德"/>
+    <string id="dFxvU13H" text="埃尔伯尔"/>
+    <string id="7kLsltIf" text="埃勒达"/>
+    <string id="XJJ3nxkF" text="埃米林"/>
+    <string id="9fgZRhiC" text="吉西姆"/>
+    <string id="WPnVGzk8" text="伊比兰"/>
+    <string id="WKyofVcP" text="伊因达"/>
+    <string id="lz5Xr4F1" text="内梅贾"/>
+    <string id="ZkXPCZUE" text="诺马尔"/>
+    <string id="9jAc6grT" text="尔杜纳"/>
+    <string id="94L2s8cH" text="鲁伦斯"/>
+    <string id="kX4NIQxU" text="里贝莱特"/>
+    <string id="h2SaSr4e" text="塔德萨梅什"/>
+    <string id="SZLdfWI9" text="塔尔贝尔"/>
+    <string id="GiWgcvib" text="托斯达尔"/>
+    <string id="BzUpDzL0" text="奇布廷"/>
+    <string id="qDzxntWH" text="乌什库鲁"/>
+    <string id="6OPt8ox0" text="维达尔"/>
+    <string id="nZqhwdTJ" text="雅利贝"/>
+    <string id="8xTh5udH" text="亚拉加尔"/>
+
+
+    <!-- Empire -->
+    <string id="LGqYPQQD" text="拉蒙诺斯"/>
+    <string id="KJPW3yb4" text="纳苏斯"/>
+    <string id="OyLkibYo" text="提拉马霍斯"/>
+    <string id="gNbGiI9p" text="伊阿塞索斯"/>
+    <string id="ty1393cd" text="扎克里奥斯"/>
+    <string id="xJPv0Tzj" text="萨米索斯"/>
+    <string id="AiHcQH4G" text="索罗斯"/>
+    <string id="VuShnNy1" text="奥林匹莱"/>
+    <string id="WLGUwy9g" text="迪奥斯科尼亚"/>
+    <string id="XQzaMWsl" text="赞克拉卡"/>
+    <string id="s5p2LcPn" text="利萨达"/>
+    <string id="htjATdi1" text="阿尔提洛斯"/>
+    <string id="1cBpuRVl" text="瓦西里"/>
+    <string id="YC1VI5Vs" text="卡梅斯蒂亚斯"/>
+    <string id="6dTpjXIG" text="埃罗斯忒娜"/>
+    <string id="pzHthnN3" text="卡马拉扎"/>
+    <string id="ITwLbhNa" text="皮德尼皮亚"/>
+    <string id="qnRyyhx6" text="阿布多凯亚"/>
+    <string id="cIGCqXYr" text="艾塔内斯"/>
+    <string id="G375MfCN" text="瑟梅顿"/>
+    <string id="I4LbIJpd" text="拜扎马霍斯"/>
+    <string id="6QtcERL6" text="阿萨波利斯"/>
+    <string id="eYehtDrU" text="克诺萨福斯"/>
+    <string id="ax8cYBtr" text="埃庇迪基翁"/>
+    <string id="V3K7oVtB" text="索拉斯特罗"/>
+    <string id="KYas1WAV" text="皮塞尔纳"/>
+    <string id="opwrHv6z" text="科科尼亚"/>
+    <string id="zPkDoxkU" text="克尔科斯"/>
+    <string id="mpnSLYUt" text="阿西孔"/>
+    <string id="PiblnoTV" text="古尔纳福斯"/>
+  </strings>
+</base>

@@ -17,7 +17,7 @@
             <!--NOT Destroyed Element Image-->
             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
               <Children>
-                <MaskedTextureWidget Id="ElementImage" DataSource="{ImageIdentifier}" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" Brush="!BannerBrush" HorizontalAlignment="Center" MarginRight="3" MarginLeft="3" MarginBottom="3" MarginTop="3" OverlayTextureScale="!ScaleFactor"/>
+                <MaskedTextureWidget Id="ElementImage" DataSource="{ImageIdentifier}" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" Brush="!BannerBrush" HorizontalAlignment="Center" MarginRight="3" MarginLeft="3" MarginBottom="3" MarginTop="3" OverlayTextureScale="!ScaleFactor" TextureProviderName="@TextureProviderName"/>
               </Children>
             </Widget>
             <!--Element Hint-->

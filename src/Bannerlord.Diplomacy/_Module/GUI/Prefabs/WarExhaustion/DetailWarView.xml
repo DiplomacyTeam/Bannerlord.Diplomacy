@@ -26,9 +26,9 @@
                   <Children>
                     <Standard.Background />
                     <!--Banner-->
-                    <MaskedTextureWidget PositionXOffset="-100" DataSource="{Faction1Visual}" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="243" SuggestedHeight="398" HorizontalAlignment="Left" Brush="Encyclopedia.Faction.Banner" OverlayTextureScale="1.5"/>
+                    <MaskedTextureWidget PositionXOffset="-100" DataSource="{Faction1Visual}" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="243" SuggestedHeight="398" HorizontalAlignment="Left" Brush="Encyclopedia.Faction.Banner" OverlayTextureScale="1.5" TextureProviderName="@TextureProviderName"/>
                     <!--Banner-->
-                    <MaskedTextureWidget PositionXOffset="100" DataSource="{Faction2Visual}" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="243" SuggestedHeight="398" HorizontalAlignment="Right" Brush="Encyclopedia.Faction.Banner" OverlayTextureScale="1.5"/>
+                    <MaskedTextureWidget PositionXOffset="100" DataSource="{Faction2Visual}" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="243" SuggestedHeight="398" HorizontalAlignment="Right" Brush="Encyclopedia.Faction.Banner" OverlayTextureScale="1.5" TextureProviderName="@TextureProviderName"/>
 
                   </Children>
                 </Widget>
