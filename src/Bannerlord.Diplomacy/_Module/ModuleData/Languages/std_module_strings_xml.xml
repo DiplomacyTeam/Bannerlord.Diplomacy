@@ -85,6 +85,8 @@
 
     <string id="0WPWbx70" text="Form Alliance" />
     <string id="K4GraLTn" text="Break Alliance" />
+    <string id="5R7twvD2" text="Make Peace" />
+    <string id="nkOVblQ4" text="Declare War" />
 
     <string id="VvTTrRpl" text="This faction is not interested in forming an alliance with you." />
     <string id="wst0lArp" text="This alliance hasn't gone on long enough to consider breaking it! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
@@ -92,6 +94,7 @@
     <string id="KqfNSsBE" text="Allies" />
     <string id="Dirltd6Z" text="Alliances are disabled." />
 
+    <string id="tsY4iHnO" text="Impose your will without calling a council" />
     <string id="Q8ItogIP" text="Propose directly to {ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}" />
     <string id="BC7823G2" text="{?REPARATIONS_PAY}, paying {REPARATIONS} war reparations{?TRIBUTE_PAY} and {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, but receiving {TRIBUTE} tribute/day.{?}{\?}{\?}{?}{?REPARATIONS_GET}, receiving {REPARATIONS} war reparations{?TRIBUTE_PAY}, but paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET} and {TRIBUTE} tribute/day.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, paying {TRIBUTE} tribute/day.{?}{?TRIBUTE_GET}, receiving {TRIBUTE} tribute/day.{?}.{\?}{\?}{\?}{\?}" />
     <string id="9CvcPwJA" text="{?FIEFS_ANY} You may have to return some of the captured fiefs back!{?}{\?}" />
