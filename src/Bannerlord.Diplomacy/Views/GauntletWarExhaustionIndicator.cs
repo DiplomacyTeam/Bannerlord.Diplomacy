@@ -13,7 +13,6 @@ using TaleWorlds.ScreenSystem;
 namespace Diplomacy.Views
 {
     [ViewCreatorModule]
-    [OverrideView(typeof(MapWarExhaustionIndicatorView))]
     [UsedImplicitly]
     public class GauntletWarExhaustionIndicator : MapView
     {

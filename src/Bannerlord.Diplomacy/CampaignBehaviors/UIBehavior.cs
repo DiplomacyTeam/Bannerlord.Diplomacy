@@ -23,7 +23,7 @@ namespace Diplomacy.CampaignBehaviors
             }
             else if (Game.Current.GameStateManager.ActiveState is MapState)
             {
-                MapScreen.Instance.AddMapView<MapWarExhaustionIndicatorView>();
+                MapScreen.Instance.AddMapView<GauntletWarExhaustionIndicator>();
                 CampaignEvents.TickEvent.ClearListeners(this);
             }
         }
