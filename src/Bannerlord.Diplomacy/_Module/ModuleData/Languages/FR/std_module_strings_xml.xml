@@ -179,7 +179,7 @@
     -->
 
     <string id="sBw5Qzq3" text="Diplomatie du Royaume"/>
-    <string id="tis8Ddzn" text="Permet au joueur de revendiquer les fiefs qu'il a lui-même conquis"/>
+    <string id="tis8Ddzn" text="Autoriser le joueur à revendiquer les fiefs qu'il a lui-même conquis"/>
     <string id="TfxLCxcD" text="Le joueur peut réclamer une colonie qu'il a lui-même conquise plutôt que de la laisser être soumise à une élection."/>
     <string id="8VKC3jtN" text="Activer la destruction des royaumes sans fiefs"/>
     <string id="TlymwwPZ" text="Si cette option est activée, les royaumes sans fiefs sont détruits après avoir signé un traité de paix mettant fin à la dernière guerre à laquelle ils ont participé. Par défaut, cette option est activée."/>
