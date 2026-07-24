@@ -35,34 +35,21 @@ jobs:
 
         $implFX = $PWD.Path + '/bannerlord-implementationsFX';
         $implCore = $PWD.Path + '/bannerlord-implementationsCore';
-        $implFXNavalPatch = $PWD.Path + '/NavalDLCPatch/bannerlord-implementationsFX';
-        $implCoreNavalPatch = $PWD.Path + '/NavalDLCPatch/bannerlord-implementationsCore';
 
         $finalFX = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/';
         $finalCore = $path + '/Modules/Bannerlord.Diplomacy/bin/Gaming.Desktop.x64_Shipping_Client/';
-        $finalFXNavalPatch = $path + '/Modules/Bannerlord.DiplomacyNavalDLCPatch/bin/Win64_Shipping_Client/';
-        $finalCoreNavalPatch = $path + '/Modules/Bannerlord.DiplomacyNavalDLCPatch/bin/Gaming.Desktop.x64_Shipping_Client/';
 
         $proj = 'src/Bannerlord.Diplomacy/Bannerlord.Diplomacy.csproj';
-        $projNavalPatch = 'src/Bannerlord.DiplomacyNavalDLCPatch/Bannerlord.DiplomacyNavalDLCPatch.csproj';
 
         $pdllFX = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/Bannerlord.Diplomacy*.dll';
         $ppdbFX = $path + '/Modules/Bannerlord.Diplomacy/bin/Win64_Shipping_Client/Bannerlord.Diplomacy*.pdb';
         $pdllCore = $path + '/Modules/Bannerlord.Diplomacy/bin/Gaming.Desktop.x64_Shipping_Client/Bannerlord.Diplomacy*.dll';
         $ppdbCore = $path + '/Modules/Bannerlord.Diplomacy/bin/Gaming.Desktop.x64_Shipping_Client/Bannerlord.Diplomacy*.pdb';
 
-        $pdllFXNavalPatch = $path + '/Modules/Bannerlord.DiplomacyNavalDLCPatch/bin/Win64_Shipping_Client/Bannerlord.DiplomacyNavalDLCPatch*.dll';
-        $ppdbFXNavalPatch = $path + '/Modules/Bannerlord.DiplomacyNavalDLCPatch/bin/Win64_Shipping_Client/Bannerlord.DiplomacyNavalDLCPatch*.pdb';
-        $pdllCoreNavalPatch = $path + '/Modules/Bannerlord.DiplomacyNavalDLCPatch/bin/Gaming.Desktop.x64_Shipping_Client/Bannerlord.DiplomacyNavalDLCPatch*.dll';
-        $ppdbCoreNavalPatch = $path + '/Modules/Bannerlord.DiplomacyNavalDLCPatch/bin/Gaming.Desktop.x64_Shipping_Client/Bannerlord.DiplomacyNavalDLCPatch*.pdb';
-
         # The folders are required to be created before executing the script
         New-Item -ItemType directory -Force -Path $path;
         New-Item -ItemType directory -Force -Path $implFX;
         New-Item -ItemType directory -Force -Path $implCore;
-        # Naval DLC Patch
-        New-Item -ItemType directory -Force -Path $implFXNavalPatch;
-        New-Item -ItemType directory -Force -Path $implCoreNavalPatch;
 
         [string[]]$gameversions = Get-Content -Path supported-game-versions.txt;
         # Process all implementations
@@ -78,35 +65,21 @@ jobs:
             dotnet clean $proj --configuration Release;
             dotnet build $proj --configuration Release -p:OverrideGameVersion=$gameversion -p:GameFolder="$path" -p:ConstGameVersionWithPrefix="$constgameversion";
 
-            # Naval DLC Patch
-            dotnet clean $projNavalPatch --configuration Release;
-            dotnet build $projNavalPatch --configuration Release -p:OverrideGameVersion=$gameversion -p:GameFolder="$path" -p:ConstGameVersionWithPrefix="$constgameversion";
-            
             # Copy Main project Implementations to the Implementations folder
             Copy-Item $pdllFX $implFX/;
             Copy-Item $ppdbFX $implFX/;
             Copy-Item $pdllCore $implCore/;
             Copy-Item $ppdbCore $implCore/;
 
-            # Copy Naval DLC Patch Implementations to the Implementations folder
-            Copy-Item $pdllFXNavalPatch $implFXNavalPatch/;
-            Copy-Item $ppdbFXNavalPatch $implFXNavalPatch/;
-            Copy-Item $pdllCoreNavalPatch $implCoreNavalPatch/;
-            Copy-Item $ppdbCoreNavalPatch $implCoreNavalPatch/;
-
             echo "::endgroup::"
         }
         # Copy Implementations to the Module
         Copy-Item $implFX/* $finalFX;
         Copy-Item $implCore/* $finalCore;
-        Copy-Item $implFXNavalPatch/* $finalFXNavalPatch;
-        Copy-Item $implCoreNavalPatch/* $finalCoreNavalPatch;
 
         # Delete Implementations folder
         Remove-Item -Recurse $implFX;
         Remove-Item -Recurse $implCore;
-        Remove-Item -Recurse $implFXNavalPatch;
-        Remove-Item -Recurse $implCoreNavalPatch;
       shell: pwsh
 
     - name: Install and Run ChangelogParser

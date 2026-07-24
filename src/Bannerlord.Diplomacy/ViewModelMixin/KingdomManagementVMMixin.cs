@@ -12,7 +12,7 @@ using TaleWorlds.ScreenSystem;
 
 namespace Diplomacy.ViewModelMixin
 {
-    [ViewModelMixin]
+    [ViewModelMixin(true)]
     [UsedImplicitly]
     internal sealed class KingdomManagementVMMixin : BaseViewModelMixin<KingdomManagementVM>
     {
