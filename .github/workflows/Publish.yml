@@ -110,13 +110,13 @@ jobs:
     with:
       nexusmods_game_id: mountandblade2bannerlord
       nexusmods_mod_id: 832
+      nexusmods_file_group_id: 1910659
       mod_filename: Diplomacy
       mod_version: ${{ needs.build-module.outputs.mod_version }}
       mod_description: ${{ needs.build-module.outputs.mod_description }}
       artifact_name: Bannerlord.Diplomacy
     secrets:
       NEXUSMODS_APIKEY: ${{ secrets.NEXUSMODS_APIKEY }}
-      NEXUSMODS_SESSION_COOKIE: ${{ secrets.NEXUSMODS_SESSION_COOKIE }}
 
 ###########################
 #          STEAM          #
