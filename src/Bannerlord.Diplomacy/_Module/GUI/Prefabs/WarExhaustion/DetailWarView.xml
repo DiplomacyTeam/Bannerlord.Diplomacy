@@ -17,7 +17,7 @@
   <Window>
     <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
       <Children>
-        <BrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop" Brush="Frame1Canvas">
+        <BrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalTopToBottom" Brush="Frame1Canvas">
           <Children>
 
             <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="650" SuggestedHeight="@ReportHeight" Brush="Frame1.Border" IsEnabled="true">
@@ -40,11 +40,11 @@
 
                 <StaticDiplomacyButton Parameter.FontSize="24" HorizontalAlignment="Right" MarginRight="50" MarginTop="10" Parameter.HintDataSource="{HelpHint}" Parameter.YOffset="3" />
 
-                <ListPanel MarginTop="60" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Center">
+                <ListPanel MarginTop="60" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" HorizontalAlignment="Center">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
                       <Children>
-                        <ListPanel HorizontalAlignment="Left" MarginTop="10" MarginBottom="5" MarginLeft="5" MarginRight="20" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" DoNotPassEventsToChildren="true">
+                        <ListPanel HorizontalAlignment="Left" MarginTop="10" MarginBottom="5" MarginLeft="5" MarginRight="20" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" DoNotPassEventsToChildren="true">
                           <Children>
                             <TextWidget VerticalAlignment="Bottom" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="ArmyManagement.Army.Tuple.Name" Brush.TextHorizontalAlignment="Center" Text="@WarExhaustionLabel"/>
                             <CriticalThresholdTextWidget IsCritical="@PlayerWarExhaustionIsCritical" VerticalAlignment="Bottom" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Map.WarExhaustionReport.Text" Brush.TextHorizontalAlignment="Center" Text="@PlayerWarExhaustion" />
@@ -55,7 +55,7 @@
                         <ListPanel MarginBottom="5" MarginLeft="5" MarginRight="5" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
                           <Children>
                             <Relationship VerticalAlignment="Top" DataSource="{Kingdom}"/>
-                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" StackLayout.LayoutMethod="VerticalBottomToTop">
+                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" StackLayout.LayoutMethod="VerticalTopToBottom">
                               <Children>
                                 <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="7" Brush="Diplomacy.Icon.WarIcon" />
                                 <HintWidget DataSource="{RateHelpHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginTop="10" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="true">
@@ -70,7 +70,7 @@
                           </Children>
                         </ListPanel>
 
-                        <ListPanel HorizontalAlignment="Right" MarginTop="10" MarginBottom="5" MarginLeft="20" MarginRight="5" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" DoNotPassEventsToChildren="true">
+                        <ListPanel HorizontalAlignment="Right" MarginTop="10" MarginBottom="5" MarginLeft="20" MarginRight="5" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" DoNotPassEventsToChildren="true">
                           <Children>
                             <TextWidget VerticalAlignment="Bottom" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="ArmyManagement.Army.Tuple.Name" Brush.TextHorizontalAlignment="Center" Text="@WarExhaustionLabel"/>
                             <CriticalThresholdTextWidget IsCritical="@OpponentWarExhaustionIsCritical" VerticalAlignment="Bottom" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Map.WarExhaustionReport.Text" Brush.TextHorizontalAlignment="Center" Text="@OpponentWarExhaustion" />
@@ -91,7 +91,7 @@
 
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="10">
                       <Children>
-                        <ListPanel HorizontalAlignment="Center" DataSource="{Breakdowns}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel HorizontalAlignment="Center" DataSource="{Breakdowns}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <ItemTemplate>
                             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
                               <Children>
@@ -104,7 +104,7 @@
                             </ListPanel>
                           </ItemTemplate>
                         </ListPanel>
-                        <ListPanel DataSource="{Breakdowns}" MarginLeft="!StatMargin" MarginRight="!StatMargin" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel DataSource="{Breakdowns}" MarginLeft="!StatMargin" MarginRight="!StatMargin" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <ItemTemplate>
                             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
                               <Children>
@@ -113,7 +113,7 @@
                             </ListPanel>
                           </ItemTemplate>
                         </ListPanel>
-                        <ListPanel DataSource="{Breakdowns}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel DataSource="{Breakdowns}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <ItemTemplate>
                             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
                               <Children>
@@ -133,19 +133,19 @@
                     <TextWidget HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Encyclopedia.SubPage.Info.Text" Text="@StatsLabel"/>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="10">
                       <Children>
-                        <ListPanel HorizontalAlignment="Center" DataSource="{Stats}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel HorizontalAlignment="Center" DataSource="{Stats}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
                             <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="100" HeightSizePolicy="CoverChildren" Brush="Info.Text" Brush.TextHorizontalAlignment="Center" IntText="@TotalStrength"/>
                             <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="100" HeightSizePolicy="CoverChildren" Brush="Info.Text" Brush.TextHorizontalAlignment="Center" IntText="@Fiefs"/>
                           </Children>
                         </ListPanel>
-                        <ListPanel HorizontalAlignment="Center" MarginLeft="!StatMargin" MarginRight="!StatMargin" DataSource="{Stats}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel HorizontalAlignment="Center" MarginLeft="!StatMargin" MarginRight="!StatMargin" DataSource="{Stats}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
                             <TextWidget MarginLeft="25" MarginRight="25" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="Info.Text" Brush.TextHorizontalAlignment="Center" Text="@TotalStrengthLabel"/>
                             <TextWidget MarginLeft="25" MarginRight="25" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="Info.Text" Brush.TextHorizontalAlignment="Center" Text="@FiefsLabel"/>
                           </Children>
                         </ListPanel>
-                        <ListPanel HorizontalAlignment="Center" DataSource="{OpponentStats}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel HorizontalAlignment="Center" DataSource="{OpponentStats}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
                             <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="100" HeightSizePolicy="CoverChildren" Brush="Info.Text" Brush.TextHorizontalAlignment="Center" IntText="@TotalStrength"/>
                             <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="100" HeightSizePolicy="CoverChildren" Brush="Info.Text" Brush.TextHorizontalAlignment="Center" IntText="@Fiefs"/>

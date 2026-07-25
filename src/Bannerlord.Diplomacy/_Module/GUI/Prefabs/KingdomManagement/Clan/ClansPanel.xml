@@ -37,7 +37,7 @@
           <Children>
 
             <!--Left Panel-->
-            <BrushListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" VerticalAlignment="Bottom" MarginTop="6" MarginBottom="9" MarginLeft="0" Brush="Frame1Brush" StackLayout.LayoutMethod="VerticalBottomToTop" >
+            <BrushListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" VerticalAlignment="Bottom" MarginTop="6" MarginBottom="9" MarginLeft="0" Brush="Frame1Brush" StackLayout.LayoutMethod="VerticalTopToBottom" >
               <Children>
 
                 <!--Sort Buttons Horizontal Group-->
@@ -116,7 +116,7 @@
 												<NavigationScopeTargeter ScopeID="KingdomClanLeftPanelItemsContext" ScopeParent="..\ClanListClipRect" ScopeMovements="Vertical" />
                         <Widget Id="ClanListClipRect" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" ClipContents="true">
                           <Children>
-                            <NavigatableListPanel Id="ClanList" DataSource="{Clans}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                            <NavigatableListPanel Id="ClanList" DataSource="{Clans}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                               <ItemTemplate>
                                 <ClanTuple ButtonType="Radio" />
                               </ItemTemplate>
@@ -140,7 +140,7 @@
 
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="540" SuggestedHeight="923" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionYOffset="80" Sprite="background_illustration_clans" AlphaFactor="0.7" />
 
-                <ListPanel WidthSizePolicy = "StretchToParent" HeightSizePolicy = "CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" IsVisible="@IsAcceptableItemSelected">
+                <ListPanel WidthSizePolicy = "StretchToParent" HeightSizePolicy = "CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" IsVisible="@IsAcceptableItemSelected">
                   <Children>
                     <!--Clan Name-->
                     <TextWidget DataSource="{CurrentSelectedClan}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="Kingdom.TitleMedium.Text" Text="@Name" ClipContents="false" />
@@ -155,7 +155,7 @@
                       <Children>
 
                         <!--Members Panel-->
-                        <ListPanel Id="MembersList" UpdateChildrenStates="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel Id="MembersList" UpdateChildrenStates="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
 
                             <!--Divider-->
@@ -217,7 +217,7 @@
 
 
                         <!--Fiefs Panel-->
-                        <ListPanel Id="FiefsList" UpdateChildrenStates="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel Id="FiefsList" UpdateChildrenStates="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
 
                             <!--Divider-->
@@ -281,7 +281,7 @@
                     <NavigationScopeTargeter ScopeID="KingdomClanRightPanelActionButtonsScope" ScopeParent="..\." ScopeMovements="Horizontal" ExtendDiscoveryAreaRight="320" DiscoveryAreaOffsetY="-10" />
 
                     <!--Donate Gold-->
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginRight="10" VerticalAlignment="Bottom" PositionYOffset="-27">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MarginRight="10" VerticalAlignment="Bottom" PositionYOffset="-27">
                       <Children>
 
                         <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" Text="@DonateGoldExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
@@ -300,7 +300,7 @@
                     </ListPanel>
 
                     <!--Grant Fief-->
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginLeft="10" MarginRight="10" VerticalAlignment="Bottom" PositionYOffset="-27">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MarginLeft="10" MarginRight="10" VerticalAlignment="Bottom" PositionYOffset="-27">
                       <Children>
 
                         <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="@CanGrantFiefToClan" Text="@GrantFiefExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
@@ -322,7 +322,7 @@
                     </ListPanel>
 										
                     <!--Support-->
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginLeft="10" MarginRight="10" VerticalAlignment="Bottom">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MarginLeft="10" MarginRight="10" VerticalAlignment="Bottom">
                       <Children>
 
                         <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="@CanExpelCurrentClan" Text="@SupportActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
@@ -351,7 +351,7 @@
                     </ListPanel>
 
                     <!--Expel-->
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginLeft="10" VerticalAlignment="Bottom">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MarginLeft="10" VerticalAlignment="Bottom">
                       <Children>
 
                         <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" IsEnabled="@CanExpelCurrentClan" Text="@ExpelActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>

@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.4.7
+Game Versions: v1.4.x
+* Adapted for newer game versions, up to v1.4.7. (#312)
+* Fixed the War Exhaustion widget not appearing on the campaign map. (#304, #314)
+* War Sails DLC support is now built into the main module. If you installed the separate Bannerlord.DiplomacyNavalDLCPatch module, please delete it. (#310)
+* Fixed vertical layouts in custom interfaces being ordered bottom to top. (#311)
+* Updated dependencies. (#312)
+---------------------------------------------------------------------------------------------------
 Version: 1.3.3
 Game Versions: v1.3.x
 * Adapted for newer game versions.

@@ -10,7 +10,7 @@
   </Constants>
   <Window>
 
-    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalTopToBottom">
       <Children>
         <ButtonWidget Command.Click="ExecuteLink" DoNotPassEventsToChildren="true" WidthSizePolicy = "Fixed" HeightSizePolicy = "Fixed" SuggestedHeight="!Encyclopedia.SubPage.Element.Height" SuggestedWidth="!Encyclopedia.SubPage.Element.Width" HorizontalAlignment="Center" Brush="Encyclopedia.SubPage.Element" MarginLeft="7" MarginRight="7">
           <Children>

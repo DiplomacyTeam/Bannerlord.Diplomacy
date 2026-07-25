@@ -3,7 +3,7 @@
   </Constants>
 
   <Window>
-    <ListPanel HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod = "VerticalBottomToTop" DoNotAcceptEvents="true">
+    <ListPanel HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod = "VerticalTopToBottom" DoNotAcceptEvents="true">
       <Children>
 
         <!--Allies Divider-->

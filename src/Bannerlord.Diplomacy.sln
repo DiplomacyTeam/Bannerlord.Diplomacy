@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.9.34728.123
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11822.322 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bannerlord.Diplomacy", "Bannerlord.Diplomacy\Bannerlord.Diplomacy.csproj", "{AD3695A8-2BDD-44AF-A115-54F839A9EC2A}"
 EndProject
@@ -28,11 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		..\.github\workflows\Publish.yml = ..\.github\workflows\Publish.yml
 		..\.github\workflows\TestBuild.yml = ..\.github\workflows\TestBuild.yml
 		..\.github\workflows\verify-nexusmods-credentials.yml = ..\.github\workflows\verify-nexusmods-credentials.yml
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bannerlord.DiplomacyNavalDLCPatch", "Bannerlord.DiplomacyNavalDLCPatch\Bannerlord.DiplomacyNavalDLCPatch.csproj", "{927A1B71-90F5-4665-BC6B-B664D8E88BBE}"
-	ProjectSection(ProjectDependencies) = postProject
-		{AD3695A8-2BDD-44AF-A115-54F839A9EC2A} = {AD3695A8-2BDD-44AF-A115-54F839A9EC2A}
 	EndProjectSection
 EndProject
 Global
@@ -63,22 +58,6 @@ Global
 		{AD3695A8-2BDD-44AF-A115-54F839A9EC2A}.Stable_Debug|x64.Build.0 = Stable_Debug|x64
 		{AD3695A8-2BDD-44AF-A115-54F839A9EC2A}.Stable_Release|x64.ActiveCfg = Stable_Release|x64
 		{AD3695A8-2BDD-44AF-A115-54F839A9EC2A}.Stable_Release|x64.Build.0 = Stable_Release|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Beta_Debug|x64.ActiveCfg = Beta_Debug|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Beta_Debug|x64.Build.0 = Beta_Debug|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Beta_Release|x64.ActiveCfg = Beta_Release|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Beta_Release|x64.Build.0 = Beta_Release|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Debug|x64.ActiveCfg = Debug|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Debug|x64.Build.0 = Debug|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Minimal_Debug|x64.ActiveCfg = Stable_Release|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Minimal_Debug|x64.Build.0 = Stable_Release|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Minimal_Release|x64.ActiveCfg = Stable_Release|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Minimal_Release|x64.Build.0 = Stable_Release|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Release|x64.ActiveCfg = Release|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Release|x64.Build.0 = Release|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Stable_Debug|x64.ActiveCfg = Stable_Debug|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Stable_Debug|x64.Build.0 = Stable_Debug|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Stable_Release|x64.ActiveCfg = Stable_Release|x64
-		{927A1B71-90F5-4665-BC6B-B664D8E88BBE}.Stable_Release|x64.Build.0 = Stable_Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

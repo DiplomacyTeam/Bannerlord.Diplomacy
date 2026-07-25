@@ -28,7 +28,7 @@
           <Children>
 
             <!-- Left Panel -->
-            <BrushListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" VerticalAlignment="Bottom" MarginLeft="0" MarginTop="6" MarginBottom="9" Brush="Frame1Brush" StackLayout.LayoutMethod="VerticalBottomToTop">
+            <BrushListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" VerticalAlignment="Bottom" MarginLeft="0" MarginTop="6" MarginBottom="9" Brush="Frame1Brush" StackLayout.LayoutMethod="VerticalTopToBottom">
               <Children>
 
                 <!-- Header Horizontal Section -->
@@ -53,7 +53,7 @@
                           <NavigationScopeTargeter ScopeID="KingdomDiplomacyWarsScope" ScopeParent="..\WarsListClipRect" ScopeMovements="Vertical" DoNotAutoNavigateAfterSort="true" />
                           <Widget Id="WarsListClipRect" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" ClipContents="true">
                           <Children>
-                            <NavigatableListPanel Id="WarsList" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="0" StepSize="1000">
+                            <NavigatableListPanel Id="WarsList" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MinIndex="0" StepSize="1000">
                               <Children>
 
                                 <!--Player Wars Header-->
@@ -64,7 +64,7 @@
                                   <Children>
                                     <!-- Player Wars List -->
                                     <NavigationTargetSwitcher FromTarget="..\." ToTarget="..\PlayerWarsList" />
-                                    <NavigatableListPanel Id="PlayerWarsList" DataSource="{PlayerWars}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" UseSelfIndexForMinimum="true">
+                                    <NavigatableListPanel Id="PlayerWarsList" DataSource="{PlayerWars}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" UseSelfIndexForMinimum="true">
                                       <ItemTemplate>
                                         <WarTuple IsSelected="@IsSelected" />
                                       </ItemTemplate>
@@ -80,7 +80,7 @@
                                   <Children>
                                     <!-- Other Wars List -->
                                     <NavigationTargetSwitcher FromTarget="..\." ToTarget="..\OtherWarsList" />
-                                    <NavigatableListPanel Id="OtherWarsList" DataSource="{PlayerTruces}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" UseSelfIndexForMinimum="true">
+                                    <NavigatableListPanel Id="OtherWarsList" DataSource="{PlayerTruces}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom" UseSelfIndexForMinimum="true">
                                       <ItemTemplate>
                                         <TruceTuple IsSelected="@IsSelected" />
                                       </ItemTemplate>
@@ -137,7 +137,7 @@
 
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="540" SuggestedHeight="923" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionYOffset="80" Sprite="background_illustration_diplomacy" AlphaFactor="0.7"/>
 
-                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" MarginLeft="15" IsVisible="@IsAcceptableItemSelected" StackLayout.LayoutMethod="VerticalBottomToTop" >
+                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" MarginLeft="15" IsVisible="@IsAcceptableItemSelected" StackLayout.LayoutMethod="VerticalTopToBottom" >
                   <Children>
 
                     <!-- Title Container ListPanel -->
@@ -155,7 +155,7 @@
                                 <ImageIdentifierWidget DataSource="{ImageIdentifier}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" SuggestedHeight="100" MarginLeft="17" MarginRight="18" MarginTop="17" MarginBottom="18" AdditionalArgs="@AdditionalArgs" ImageId="@Id" TextureProviderName="@TextureProviderName" />
                               </Children>
                             </ButtonWidget>
-                            <ListPanel Id="NameAndClansContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="175" HorizontalAlignment="Right" VerticalAlignent="Bottom" StackLayout.LayoutMethod="VerticalBottomToTop">
+                            <ListPanel Id="NameAndClansContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="175" HorizontalAlignment="Right" VerticalAlignent="Bottom" StackLayout.LayoutMethod="VerticalTopToBottom">
                               <Children>
                                 <ListPanel Id="NameAndDividerContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="30" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                   <Children>
@@ -221,7 +221,7 @@
                         </Widget>
 
 
-                        <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="100" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="100" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
                             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren">
                               <Children>
@@ -252,7 +252,7 @@
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" >
                           <Children>
 
-                            <ListPanel Id="NameAndClansContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginRight="175" HorizontalAlignment="Left" VerticalAlignment="Bottom" StackLayout.LayoutMethod="VerticalBottomToTop">
+                            <ListPanel Id="NameAndClansContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginRight="175" HorizontalAlignment="Left" VerticalAlignment="Bottom" StackLayout.LayoutMethod="VerticalTopToBottom">
                               <Children>
                                 <ListPanel Id="NameAndDividerContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="30" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                   <Children>
@@ -374,9 +374,9 @@
 
                         <ScrollablePanel Id="ScrollPanel" VerticalAlignment="Center" HorizontalAlignment="Center"  WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" AutoHideScrollBars="false" ClipRect="StatsListRect" InnerPanel="StatsListRect\InnerPanel" VerticalScrollbar="..\RightSideScrollbar">
                           <Children>
-                            <Widget Id="StatsListRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                            <Widget Id="StatsListRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" LayoutImp.LayoutMethod="VerticalTopToBottom">
                               <Children>
-                                <ListPanel Id="InnerPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
+                                <ListPanel Id="InnerPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalTopToBottom" >
                                   <Children>
                                     <OverviewTab Id="OverviewTab" />
                                     <StatsTab Id="StatsTab" />
@@ -403,7 +403,7 @@
                   <Children>
                     <Widget DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@IsBehaviorSelectionEnabled">
                       <Children>
-                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
                             <TextWidget DataSource="{..}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Kingdom.TitleMedium.Text" Brush.FontSize="24" ClipContents="false" Text="@BehaviorSelectionTitle"/>
                             <DropdownWidget DataSource="{..\BehaviorSelection}" Id="DropdownParent" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginTop="2" ListPanel="SelectionList" Button="DropdownButton" CurrentSelectedIndex="@SelectedIndex" TextWidget="DropdownButton\SelectedTextWidget">
@@ -413,7 +413,7 @@
                                     <RichTextWidget Id="SelectedTextWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="1" Brush="SPOptions.Dropdown.Center.Text"/>
                                   </Children>
                                 </ButtonWidget>
-                                <ListPanel Id="SelectionList" DataSource="{ItemList}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="120" VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#100404FF" IsVisible="false" StackLayout.LayoutMethod="VerticalBottomToTop" UpdateChildrenStates="true">
+                                <ListPanel Id="SelectionList" DataSource="{ItemList}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="120" VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#100404FF" IsVisible="false" StackLayout.LayoutMethod="VerticalTopToBottom" UpdateChildrenStates="true">
                                   <ItemTemplate>
                                     <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" ButtonType="Radio" UpdateChildrenStates="true">
                                       <Children>
@@ -434,7 +434,7 @@
                 </Widget>
 
                 <!--Faction 2 Other Wars-->
-                <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="105" HorizontalAlignment="Right" VerticalAlignment="Top" MarginRight="110" MarginTop="122" StackLayout.LayoutMethod="VerticalBottomToTop" IsVisible="@IsFaction2OtherWarsVisible">
+                <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="105" HorizontalAlignment="Right" VerticalAlignment="Top" MarginRight="110" MarginTop="122" StackLayout.LayoutMethod="VerticalTopToBottom" IsVisible="@IsFaction2OtherWarsVisible">
                   <Children>
                     <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="36" SuggestedHeight="36" HorizontalAlignment="Center" PositionXOffset="-2" Sprite="SPKingdom\Diplomacy\diplomacy_war_icon" IsEnabled="false"/>
                     <GridWidget DataSource="{Faction2OtherWars}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="5" DefaultCellWidth="35" DefaultCellHeight="42" ColumnCount="3" LayoutImp.HorizontalLayoutMethod="Center">

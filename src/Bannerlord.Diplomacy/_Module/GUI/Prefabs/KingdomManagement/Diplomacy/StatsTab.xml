@@ -23,7 +23,7 @@
 				<Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" GamepadNavigationIndex="0" >
 				  <Children>
 
-					<ListPanel Id="WarLogs" DataSource="{CurrentSelectedDiplomacyItem\WarLog}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+					<ListPanel Id="WarLogs" DataSource="{CurrentSelectedDiplomacyItem\WarLog}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom">
 					  <ItemTemplate>
 						<DiplomacyWarLogElement/>
 					  </ItemTemplate>
@@ -56,10 +56,10 @@
 				<Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" ExtendCursorAreaLeft="-50" ExtendCursorAreaRight="-50" GamepadNavigationIndex="0" >
 				  <Children>
 
-					<ListPanel Id="StatBars" DataSource="{CurrentSelectedDiplomacyItem\Stats}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" >
+					<ListPanel Id="StatBars" DataSource="{CurrentSelectedDiplomacyItem\Stats}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom" >
 					  <ItemTemplate>
 
-						<ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+						<ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
 						  <Children>
 							<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" SuggestedHeight="!Stat.Name.Height" Brush="Kingdom.Wars.Stat.Name.Text" Text="@Name" />
 							<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="!Stat.Height" HorizontalAlignment="Center" MarginLeft="10" MarginRight="10" >
@@ -120,7 +120,7 @@
 		</Widget>
 		
 		<NavigationScopeTargeter ScopeID="KingdomDiplomacyChangeStatTypeScope" ScopeParent="..\StatTypes" ScopeMovements="Vertical" HasCircularMovement="false" />
-		<NavigatableListPanel Id="StatTypes" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="50" StackLayout.LayoutMethod="VerticalBottomToTop" IsVisible="@IsWar">
+		<NavigatableListPanel Id="StatTypes" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="50" StackLayout.LayoutMethod="VerticalTopToBottom" IsVisible="@IsWar">
 		  <Children>
 			<ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" Brush="Kingdom.Wars.CompareStats.Button" ButtonType="Radio" Command.Click="ExecuteShowStatComparisons" IsSelected="@IsDisplayingStatComparisons">
 			  <Children>

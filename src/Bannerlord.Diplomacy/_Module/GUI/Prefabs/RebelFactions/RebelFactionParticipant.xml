@@ -12,7 +12,7 @@
     <Constant Name="ScaleFactor" BooleanCheck="*IsBig" OnFalse="1.5" OnTrue="2.1" />
   </Constants>
   <Window>
-    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" DataSource="*ElementDataSource" HorizontalAlignment="Center">
+    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalTopToBottom" DataSource="*ElementDataSource" HorizontalAlignment="Center">
       <Children>
         <ButtonWidget DoNotPassEventsToChildren="true" Command.Click="ExecuteLink" HeightSizePolicy ="Fixed" SuggestedHeight="!Encyclopedia.SubPage.Element.Height" WidthSizePolicy="Fixed" SuggestedWidth="!Encyclopedia.SubPage.Element.Width" HorizontalAlignment="Center" >
           <Children>

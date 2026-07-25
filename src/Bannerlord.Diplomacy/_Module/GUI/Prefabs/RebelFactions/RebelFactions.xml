@@ -28,7 +28,7 @@
               </Children>
             </Widget>
 
-            <BrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop" Brush="Frame1Canvas">
+            <BrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalTopToBottom" Brush="Frame1Canvas">
               <Children>
                 <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="550" SuggestedHeight="750" Brush="Frame1.Border" IsEnabled="true">
                   <Children>
@@ -54,7 +54,7 @@
                           <Children>
                             <Widget Id="ClipRect" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" ClipContents="true">
                               <Children>
-                                <ListPanel Id="RebelFactionItems" DataSource="{RebelFactionItems}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
+                                <ListPanel Id="RebelFactionItems" DataSource="{RebelFactionItems}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalTopToBottom" >
                                   <ItemTemplate>
                                     <RebelFactionsItem />
                                   </ItemTemplate>

@@ -18,7 +18,7 @@
               <Children>
                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight" UpdateChildrenStates="true">
                   <Children>
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginRight="-1" UpdateChildrenStates="true">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MarginRight="-1" UpdateChildrenStates="true">
                       <Children>
                         <MaskedTextureWidget DataSource="{Faction1Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" Brush="Diplomacy.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="2.1" TextureProviderName="@TextureProviderName" />
                         <Widget WidthSizePolicy="Fixed" SuggestedWidth="5" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right">
@@ -29,7 +29,7 @@
                       </Children>
                     </ListPanel>
 
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" UpdateChildrenStates="true">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" UpdateChildrenStates="true">
                       <Children>
                         <MaskedTextureWidget DataSource="{Faction2Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" Brush="Diplomacy.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="2.1" TextureProviderName="@TextureProviderName" />
                         <Widget WidthSizePolicy="Fixed" SuggestedWidth="5" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left">

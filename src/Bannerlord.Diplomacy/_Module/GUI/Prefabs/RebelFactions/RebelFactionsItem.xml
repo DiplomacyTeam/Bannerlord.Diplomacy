@@ -34,18 +34,18 @@
         <ButtonWidget Brush="AddFactionButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" PositionXOffset="-30" HorizontalAlignment="Right" VerticalAlignment="Top" PositionYOffset="5" />
         <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="10" MarginRight="10" MarginTop="10" >
           <Children>
-            <ListPanel Id="InnerPanel" WidthSizePolicy="StretchToParent" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" >
+            <ListPanel Id="InnerPanel" WidthSizePolicy="StretchToParent" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalTopToBottom" >
               <Children>
                 <TextWidget Brush="Kingdom.PolicyDescription.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="true" Text="@FactionName" />
                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginBottom="10">
                   <Children>
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginRight="20" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginRight="20" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalTopToBottom">
                       <Children>
                         <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsEnabled="true" Text="@LeaderText"/>
                         <RebelFactionParticipant Parameter.ShowName="true" DataSource="{SponsorClan}" HorizontalAlignment="Center"/>
                       </Children>
                     </ListPanel>
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" LayoutImp.LayoutMethod="VerticalTopToBottom">
                       <Children>
                         <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" IsEnabled="true" Text="@Status" MarginLeft="5" MarginRight="5" MarginTop="5" MarginBottom="5"/>
                         <TextWidget Brush="Encyclopedia.SubPage.Info.Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" IsEnabled="true" Text="@Demand" MarginLeft="5" MarginRight="5" MarginTop="5" MarginBottom="5"/>
@@ -68,7 +68,7 @@
 							Balance of Power
 							-->
 
-                <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" MarginBottom="20" LayoutImp.LayoutMethod="VerticalBottomToTop" IsVisible="@ShouldShowBalanceOfPower">
+                <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" MarginBottom="20" LayoutImp.LayoutMethod="VerticalTopToBottom" IsVisible="@ShouldShowBalanceOfPower">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" >
                       <Children>

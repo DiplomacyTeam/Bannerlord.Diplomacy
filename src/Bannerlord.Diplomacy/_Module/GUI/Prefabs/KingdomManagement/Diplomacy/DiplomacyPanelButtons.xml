@@ -9,7 +9,7 @@
         <!-- Form Non-Aggression Pact Button -->
         <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="10" HeightSizePolicy="CoverChildren" IsVisible="@IsNonAggressionPactVisible" MarginRight="5">
           <Children>
-            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
+            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalTopToBottom">
               <Children>
                 <TextWidget HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" IsEnabled="true" Text="@NonAggressionPactHelpText" DoNotAcceptEvents="true" ClipContents="false"/>
                 <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ProposeNonAggressionPact" IsEnabled="@IsNonAggressionPactAvailable">
@@ -41,9 +41,9 @@
         </ListPanel>
 
         <!-- Make Peace Or Declare War Button -->
-        <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop" VerticalAlignment="Bottom" MarginBottom="10" HorizontalAlignment="Center" IsVisible="@IsDirectActionVisible" MarginLeft="5" MarginRight="5">
+        <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalTopToBottom" VerticalAlignment="Bottom" MarginBottom="10" HorizontalAlignment="Center" IsVisible="@IsDirectActionVisible" MarginLeft="5" MarginRight="5">
           <Children>
-            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom"  IsVisible="true" LayoutImp.LayoutMethod="VerticalBottomToTop">
+            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom"  IsVisible="true" LayoutImp.LayoutMethod="VerticalTopToBottom">
               <Children>
                 <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" IsEnabled="@IsDirectActionEnabled" Text="@DirectActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
                 <ButtonWidget HorizontalAlignment="Center" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ExecuteDirectAction" IsEnabled="@IsDirectActionEnabled"  >
@@ -68,7 +68,7 @@
           <Children>
             <ListPanel DataSource="{Actions}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
               <ItemTemplate>
-                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginLeft="5" MarginRight="5" VerticalAlignment="Bottom">
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MarginLeft="5" MarginRight="5" VerticalAlignment="Bottom">
                   <Children>
                     <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" Text="@Explanation" IsEnabled="@IsEnabled" DoNotAcceptEvents="true"/>
                     <NavigationScopeTargeter ScopeID="KingdomDiplomacyActionScope" ScopeParent="..\KingdomDiplomacyAction" ScopeMovements="Horizontal" ExtendDiscoveryAreaLeft="5" ExtendDiscoveryAreaRight="5" DiscoveryAreaOffsetY="-27"/>
