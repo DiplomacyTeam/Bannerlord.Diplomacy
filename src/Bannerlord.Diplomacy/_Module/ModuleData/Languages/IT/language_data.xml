@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguageData.xsd" id="Italiano" name="Italiano" subtitle_extension="it" supported_iso="it,ita,it-it,it-ch" under_development="false">
+    <LanguageFile xml_path="IT/civil_war_strings_xml.xml"/>
+    <LanguageFile xml_path="IT/faction_names_xml.xml"/>
+    <LanguageFile xml_path="IT/help_strings_xml.xml"/>
+    <LanguageFile xml_path="IT/std_module_strings_xml.xml"/>
+    <LanguageFile xml_path="IT/war_exhaustion_strings.xml"/>
+</LanguageData>
