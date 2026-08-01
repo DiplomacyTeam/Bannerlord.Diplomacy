@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Italiano"/>
+  </tags>
+  <strings>
+    <!--<string id="" text="" />-->
+    <string id="XmVTQ0bH" text="Stanchezza da guerra"/>
+
+    <string id="BXluvRnJ" text="Sconfitta amara"/>
+    <string id="0aZCy0at" text="Pace forzata"/>
+
+    <string id="vLfbqXjq" text="Il tuo popolo e i tuoi eserciti sono esausti dal conflitto con {ENEMY_KINGDOM} e non vogliono più combattere. Puoi accettare i termini della sconfitta e pagare {REPARATIONS}{GOLD_ICON} per le riparazioni di guerra. Queste spese saranno distribuite tra tutti i clan del regno.{?ADD_TRIBUTE}Inoltre dovrai anche pagare un tributo giornaliero di {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Oltre a questo, è necessario che tu restituisca {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} e {?}{\?}{FIEFS_TO_RETURN_LIST.END} indietro a {ENEMY_KINGDOM}.{NEW_LINE} {NEW_LINE}{?} {\?}La vergogna della sconfitta ti costerà {INFLUENCE} di influenza."/>
+    <string id="ghZCj7hb" text="Con il tuo ultimo insediamento che cade in mano ai tuoi nemici, non sei più in grado di combattere contro {ENEMY_KINGDOM}. Devi accettare i termini della sconfitta {?TO_BE_DESTROYED}. Senza alcun feudo, il tuo regno non esiste più.{?} dovrai anche pagare {REPARATIONS}{GOLD_ICON} per le riparazioni di guerra. Queste spese saranno distribuite tra tutti i clan del regno. {?ADD_TRIBUTE}Inoltre dovrai anche pagare un tributo giornaliero di {TRIBUTE}{GOLD_ICON}. {?}{\?}La vergogna della sconfitta ti costerà {INFLUENCE} di influenza.{\?}"/>
+    <string id="cKV5Jded" text="Gli eserciti e il popolo di {KINGDOM.NAME} sono esausti dal conflitto con {ENEMY_KINGDOM} e non vogliono più combattere. {KINGDOM_LEADER.NAME} deve accettare i termini della sconfitta e pagare {REPARATIONS}{GOLD_ICON} per le riparazioni di guerra (le spese verranno distribuite tra tutti i clan del regno).{?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Lei{?}Lui{\?} si impegna inoltre a pagare un tributo giornaliero di {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Oltre a ciò, {KINGDOM_LEADER.NAME} deve restituire indietro {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} e {?}{\?}{FIEFS_TO_RETURN_LIST.END} a {ENEMY_KINGDOM}.{NEW_LINE} {NEW_LINE}{?} {\?}La vergogna della sconfitta gli costerà {?KINGDOM_LEADER.GENDER}lei{?}lui{\?} {INFLUENCE} di influenza."/>
+    <string id="idAcjzXB" text="Con l'ultimo insediamento che cade in mano ai nemici, non è più in grado di combattere contro {ENEMY_KINGDOM}. {KINGDOM_LEADER.NAME} deve accettare i termini della sconfitta{?TO_BE_DESTROYED}Senza alcun feudo, il regno non esiste più.{?} e dovrà anche pagare {REPARATIONS}{GOLD_ICON} per le riparazioni di guerra (le spese verranno distribuite tra tutti i clan del regno). {?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Lei{?}Lui{\?} si impegna inoltre a pagare un tributo giornaliero di {TRIBUTE}{GOLD_ICON}. {?}{\?}La vergogna della sconfitta gli costerà {?KINGDOM_LEADER.GENDER}lei{?}lui{\?} {INFLUENCE} di influenza.{\?}"/>
+    <string id="a3W5zKQr" text="Entrambi gli eserciti e i popoli di {KINGDOM.NAME} e {ENEMY_KINGDOM} sono stanchi del conflitto e non vogliono più combattere. Non c'è altra scelta che fare la pace{?TO_BE_DESTROYED}, ma senza alcun feudo, {?IS_REBELLION}la tua ribellione è finita{?}il tuo regno non esiste più{\?}{?}{\?}."/>
+
+    <string id="6eTtSKO4" text="Alla luce degli ultimi avvenimenti, è evidente che la ribellione chiamata {REBEL_KINGDOM} ha avuto successo e un'ulteriore resistenza è inutile. È il momento di ammettere la sconfitta{?TO_BE_DESTROYED}, senza alcun feudo il tuo regno non può più esistere{?} metti da parte la tua divisa, il regno devastato dalla guerra ha oggi la possibilità di vivere in pace{\?}."/>
+    <string id="2ptArJem" text="Alla luce degli ultimi avvenimenti, è evidente che la tua ribellione è stata un fallimento. È arrivato il momento di ammettere la sconfitta e mettere da parte la divisa, {ORIGINAL_KINGDOM} esausto dalla guerra ha oggi la possibilità di riunirsi."/>
+
+    <string id="HWiDa4R1" text="Gli eserciti e il popolo di {KINGDOM.NAME} sono esausti dal conflitto con {PLAYER_KINGDOM} e non vogliono più combattere.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} propone un trattato di pace ed è disposto a pagare {REPARATIONS}{GOLD_ICON} per le riparazioni di guerra.{?ADD_TRIBUTE}{?KINGDOM_LEADER.GENDER}Lei{?}Lui{\?} si impegna inoltre a pagare un tributo giornaliero di {TRIBUTE}{GOLD_ICON}.{?}{\?}{?FIEFS_TO_RETURN_LIST.ANY}{NEW_LINE} {NEW_LINE}Oltre a questo, {KINGDOM_LEADER.NAME} deve restituire indietro {FIEFS_TO_RETURN_LIST.START}{?FIEFS_TO_RETURN_LIST.IS_PLURAL} e {?}{\?}{FIEFS_TO_RETURN_LIST.END} a {PLAYER_KINGDOM}.{?}{\?}"/>
+    <string id="t0ZS9maD" text="Con la caduta del loro ultimo insediamento, {KINGDOM.LINK} non è più in grado di combattere contro {PLAYER_KINGDOM}.{NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} propone un trattato di pace{?TO_BE_DESTROYED}, nonostante di fatto senza alcun feudo, il loro regno non esisterebbe più.{?} ed è disposto a pagare {REPARATIONS}{GOLD_ICON} per le riparazioni di guerra.{?ADD_TRIBUTE} {?KINGDOM_LEADER.GENDER}Lei{?}Lui{\?} si impegna inoltre a pagare un tributo giornaliero di {TRIBUTE}{GOLD_ICON}.{?}{\?}{\?}"/>
+    <string id="ZrwszZww" text=" Entrambi gli eserciti e i popoli di {KINGDOM.NAME} e {PLAYER_KINGDOM} sono stanchi del conflitto e non vogliono più combattere. {NEW_LINE} {NEW_LINE}{KINGDOM_LEADER.NAME} propone un trattato di pace{?TO_BE_DESTROYED}, anche se non possiede più un feudo, {?IS_REBELLION}la loro ribellione si è conclusa{?}il loro regno avrebbe cessato di esistere{\?}{?} senza porre condizioni{\?}."/>
+    <string id="q02T8cyI" text="Alla luce degli ultimi avvenimenti, è evidente che la ribellione chiamata {REBEL_KINGDOM} è stata un fallimento. È giunto il momento di accettare le loro richieste di pace e di perdono, dando così al vostro regno non più diviso e stanco della guerra la possibilità di riunirsi?"/>
+    <string id="PC5GdgKA" text="Alla luce degli ultimi avvenimenti, è evidente che la tua ribellione contro {ORIGINAL_KINGDOM.NAME} ha avuto successo - persino {ORIGINAL_KINGDOM_LEADER.NAME} lo ha ammesso! È giunto il momento di accettare la loro richiesta di pace, raggiungendo così i vostri obiettivi?"/>
+    <string id="13G0c8RE" text="Dato che il tuo regno è stato devastato dalla guerra, non hai altra scelta se non quella di accettare la pace."/>
+
+    <!-- Report -->
+    <string id="mCue7aFc" text="Rapporto di guerra"/>
+    <string id="hfa8LLqD" text="{EXHAUSTED_FACTION} è gravemente impoverita a causa della guerra con {OTHER_FACTION}. La loro capacità di continuare questa guerra è al limite, {?IS_CIVIL_WAR}che conferma sempre di più la loro comprensione dell'inevitabilità di fare la pace{?}rendendoli sempre più aperti alla possibilità di una pace{\?} visto che la stanchezza da guerra si avvicina sempre di più al suo massimo."/>
+    <string id="k0Dnf6cU" text="Hai una missione ancora in corso!"/>
+    <string id="xPHDtsC1" text="C'è una missione attiva che impedisce a questa guerra di terminare prematuramente. Per garantire la stabilità, la stanchezza da guerra non deve superare in nessun caso il {CRITICAL_THRESHOLD}% per entrambe le parti."/>
+    <string id="xoY6cYDK" text="Avevi una missione avviata in precedenza!"/>
+    <string id="UvjMFpHs" text="C'è stata una missione attiva che ha impedito che questa guerra finisse prematuramente. Di conseguenza, le cifre della ripartizione riportate nel rapporto potrebbero non corrispondere ai valori complessivi della stanchezza da guerra."/>
+    <string id="hAoIC2Iq" text="Data d'inizio: {START_DATE}"/>
+    <string id="qHrihV27" text="Durata della guerra: {WAR_DURATION} giorni"/>
+    <!-- Report breakdowns -->
+    <string id="IlFEeNkY" text="Rapporto sulla stanchezza da guerra"/>
+    <string id="zYVH0xYa" text="Perdite"/>
+    <string id="y7XY860U" text="Carovane saccheggiate"/>
+    <string id="elRjo1ab" text="Villaggi saccheggiati"/>
+    <string id="DrNBDhx3" text="Feudi perduti"/>
+    <string id="X1MIWYzy" text="Eroi imprigionati"/>
+    <string id="6FLtWxSp" text="Eroi caduti"/>
+    <string id="sCRuliNO" text="Feudi occupati"/>
+    <string id="XIPMI3gR" text="Durata della guerra"/>
+    <string id="FVyFJShW" text="Interventi divini"/>
+    <string id="1kGleqyk" text="Conseguenze della stanchezza da guerra"/>
+    <string id="i5VSEDE3" text="{START_DATE} - {END_DATE}: {?COUNT.PLURAL_FORM}Totale delle {COUNT} cifre precedenti{?}{COUNT} cifra precedente{\?}"/>
+
+    <string id="fnPa5bas" text="truppe di guarnigione"/>
+    <string id="rwFeQWky" text="Una carovana di {KINGDOM_NAME}"/>
+
+    <!-- Event records -->
+    <string id="Toa6V7RL" text="{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% al giorno per {VALUE} {?VALUE.PLURAL_FORM}giorni{?}giorno{\?} interi"/>
+    <string id="wMVdLssJ" text="{START_DATE} - {END_DATE}: {PER_DAY_VALUE}% al giorno per {VALUE} {?VALUE.PLURAL_FORM}giorni{?}giorno{\?} interi pur essendo senza feudi"/>
+    <string id="0nTpub9S" text="{START_DATE} - {END_DATE}: {VALUE} {?VALUE.PLURAL_FORM}perdite{?}perdita{\?} di guerra"/>
+    <string id="SeWNvf1N" text="{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}perdite{?}perdita{\?} in battaglia tra {FACTION_PARTY} e {OTHER_FACTION_PARTY}"/>
+    <string id="9V6S05X3" text="{DATE_STR}: {VALUE} {?VALUE.PLURAL_FORM}perdite{?}perdita{\?} in battaglia per {SETTLEMENT} combattuto tra {FACTION_PARTY} e {OTHER_FACTION_PARTY}"/>
+    <string id="vhBKtne1" text="{DATE_STR}: {RAIDED_CARAVAN} è stata saccheggiata da {OTHER_FACTION_PARTY}"/>
+    <string id="Hnxf9Ox3" text="{DATE_STR}: {RAIDED_VILLAGE} è stato saccheggiato da {OTHER_FACTION_PARTY}"/>
+    <string id="SXhzqm2N" text="{DATE_STR}: {RAIDED_VILLAGE} è stato saccheggiato da {OTHER_FACTION_PARTY} (influenzato da rendimenti decrescenti)"/>
+    <string id="6cSuGG87" text="{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} castello{?}{\?} difeso da {FACTION_PARTY} è stato preso da {OTHER_FACTION_PARTY}"/>
+    <string id="fuaTMWpt" text="{DATE_STR}: {SETTLEMENT.NAME}{?SETTLEMENT.IS_CASTLE} castello{?}{\?} difeso da {FACTION_PARTY} è stato ripreso da {OTHER_FACTION_PARTY} (influenzato da rendimenti decrescenti)"/>
+    <string id="yRvZ37cx" text="{DATE_STR}: {HERO} è stato fatto prigioniero da {OTHER_FACTION_PARTY}"/>
+    <string id="i2Moqprl" text="{DATE_STR}: {HERO} è stato fatto prigioniero da {OTHER_FACTION_PARTY} (influenzato da rendimenti decrescenti)"/>
+    <string id="QkSVPgDF" text="{DATE_STR}: {HERO} è morto per cause naturali{?YIELDS_DIMINISHING_RETURNS} (influenzato da rendimenti decrescenti){?}{\?}"/>
+    <string id="S0lkYB5P" text="{DATE_STR}: {HERO} è stato assassinato da {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (influenzato da rendimenti decrescenti){?}{\?}"/>
+    <string id="f6OIFaSj" text="{DATE_STR}: {HERO} è morta di parto{?YIELDS_DIMINISHING_RETURNS} (influenzato da rendimenti decrescenti){?}{\?}"/>
+    <string id="PmOPed8Y" text="{DATE_STR}: {HERO} è morto di vecchiaia{?YIELDS_DIMINISHING_RETURNS} (influenzato da rendimenti decrescenti){?}{\?}"/>
+    <string id="Pp6wYS5m" text="{DATE_STR}: {HERO} è morto in battaglia con {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (influenzato da rendimenti decrescenti){?}{\?}"/>
+    <string id="QvGjUrmL" text="{DATE_STR}: {HERO} è morto per ferite di guerra subite dopo una battaglia con {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (influenzato da rendimenti decrescenti){?}{\?}"/>
+    <string id="5tBkM1O4" text="{DATE_STR}: {HERO} è stato giustiziato da {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (influenzato da rendimenti decrescenti){?}{\?}"/>
+    <string id="moeUCyaq" text="{DATE_STR}: {HERO} è scomparso durante la battaglia con {OTHER_FACTION_PARTY}{?YIELDS_DIMINISHING_RETURNS} (influenzato da rendimenti decrescenti){?}{\?}"/>
+    <string id="VB1xpuMA" text="{DATE_STR}: {FACTION} è stata occupata interamente da {OTHER_FACTION}"/>
+    <string id="X9wHA6q3" text="{DATE_STR}: {FACTION} è stata occupata interamente da {OTHER_FACTION} (influenzato da rendimenti decrescenti)"/>
+    <string id="9vOZJpPu" text="{DATE_STR}: La stanchezza da guerra di {FACTION} è stata miracolosamente ridotta (alcuni dicono che sia stato un intervento divino)"/>
+    <string id="S5tDXkgK" text="{DATE_STR}: Si dice che qualche forza misteriosa abbia tentato d'influenzare gli sforzi bellici di {FACTION}, ma niente sembra essere cambiato"/>
+    <string id="fJE6Y9mB" text="{DATE_STR}: Il popolo di {FACTION} hanno improvvisamente perso la voglia di combattere (alcuni dicono che sia stato un intervento divino)"/>
+
+    <!-- Settings -->
+    <string id="V542tneW" text="Stanchezza da guerra"/>
+    <string id="lSttctYC" text="Abilita stanchezza da guerra"/>
+    <string id="Cxyn9ROT" text="Attiva la meccanica della stanchezza da guerra. Il valore predefinito è abilitato."/>
+    <string id="Yc2YUIva" text="Abilita rendimenti decrescenti"/>
+    <string id="CaxxEEdC" text="Consenti di diminuire i rendimenti per alcuni eventi quando viene calcolata la stanchezza da guerra. Il valore predefinito è abilitato."/>
+    <string id="HPFINWrc" text="Stime individuali per stanchezza da guerra"/>
+    <string id="LFVkLcIp" text="Abilita le stime della stanchezza da guerra individuali per le fazioni. Se disabilitato, per ogni guerra verrà calcolata una stima unica in base alla forza combinata delle fazioni avversarie. Il valore predefinito è abilitato."/>
+    <string id="gW3eVr5E" text="Abilita restituzione del feudo"/>
+    <string id="KEi0UykN" text="Se abilitato, i regni potrebbero essere costretti a restituire i feudi conquistati al proprietario originario se perdono la guerra. Il valore predefinito è abilitato."/>
+    <string id="8TFQWL55" text="Stanchezza da guerra al giorno"/>
+    <string id="lgza5wDq" text="La quantità di stanchezza da guerra aggiunta ogni giorno nel corso della guerra. Non influisce nella stima della stanchezza da guerra. Il valore predefinito è 0.25%."/>
+    <string id="PAmPVWgD" text="Moltiplicatore per la mancanza di feudi"/>
+    <string id="SdjYeYM5" text="Moltiplicatore per la quantità di stanchezza da guerra aggiunta ogni giorno per una fazione che non ha più feudi rispetto a una fazione che invece li ha. Il valore predefinito è 10."/>
+    <string id="s6dNpM6M" text="Stanchezza da guerra per perdite"/>
+    <string id="NcJtGeM7" text="La quantità di stanchezza da guerra aggiunta quando una fazione subisce una perdita in battaglia. Il valore predefinito è 0.02%."/>
+    <string id="kr5zAufg" text="Stanchezza da guerra per saccheggio di carovane"/>
+    <string id="PinVMCUE" text="La quantità di stanchezza da guerra aggiunta quando una carovana di una fazione viene saccheggiata. Il valore predefinito è 2.0%."/>
+    <string id="qFJ23KxQ" text="Stanchezza da guerra per eroe imprigionato"/>
+    <string id="wctCn9uO" text="La quantità di stanchezza da guerra aggiunta quando un nobile eroe di una fazione viene imprigionato. Influisce in base al significato di eroe per la fazione. Potenzialmente soggetto a rendimenti decrescenti. Il valore predefinito è 1.0%."/>
+    <string id="4vTzbsXD" text="Stanchezza da guerra per eroe caduto"/>
+    <string id="w80tUaVd" text="La quantità di stanchezza da guerra aggiunta quando un nobile eroe di una fazione viene ucciso. Influisce in base al significato di eroe per la fazione. Potenzialmente soggetto a rendimenti decrescenti quando vengono uccisi più eroi dello stesso clan. Il valore predefinito è 5.0%."/>
+    <string id="eWVGwf2m" text="Stanchezza da guerra per saccheggio"/>
+    <string id="ufHDJt8H" text="La quantità di stanchezza da guerra aggiunta quando un villaggio di una fazione viene saccheggiato. Potenzialmente soggetto a rendimenti decrescenti. Il valore predefinito è 3.0%."/>
+    <string id="gGIaLKHk" text="Stanchezza da guerra per assedio"/>
+    <string id="mCEa773h" text="La quantità di stanchezza da guerra aggiunta quando una fazione perde una città. Perdere un castello invece ne aggiunge la metà. Potenzialmente soggetto a rendimenti decrescenti. Il valore predefinito è 10.0%."/>
+    <string id="JmUPtZdw" text="Stanchezza da guerra senza feudi"/>
+    <string id="541jGrpb" text="La quantità di stanchezza da guerra aggiunta quando una fazione perde tutti i suoi feudi. Non influisce nella stima della stanchezza da guerra. Potenzialmente soggetto a rendimenti decrescenti. Il valore predefinito è 15.0%."/>
+    <string id="pPHLRIml" text="Voci massime nel rapporto di guerra"/>
+    <string id="YMf0mSqy" text="Numero massimo di voci nel rapporto della stanchezza da guerra. Impostare questo valore in base a una buona visualizzazione. Il valore predefinito è 35."/>
+    <string id="F4iFH6un" text="Widget mappa campagna"/>
+    <string id="zTvbZ8Br" text="Abilita un widget dedicato alla stanchezza da guerra per ogni guerra in corso nella parte superiore della schermata della mappa della campagna. Il valore predefinito è abilitato."/>
+    <string id="jI9NSxtz" text="Abilita messaggi debug per stanchezza da guerra del giocatore"/>
+    <string id="LYyNbQds" text="Abilita i messaggi di debug per la stanchezza da guerra aggiunta al regno del giocatore. Il valore predefinito è disabilitato."/>
+
+  </strings>
+</base>
