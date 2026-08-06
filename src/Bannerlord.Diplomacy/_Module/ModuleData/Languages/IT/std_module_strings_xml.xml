@@ -22,7 +22,7 @@
     <string id="uy86VZX2" text="Messaggero arrivato"/>
 
     <string id="JmgAuONd" text="Oh no. Il tuo messaggero è stato assalito e mangiato da un Gru mentre cercava di raggiungere {HERO_NAME}!"/>
-    <string id="YnRmSele" text="Il messaggero di {FACTION1_NAME} ha raggiunto {ADDRESSEE_TEXT}.{BRIBE_TEXT}"/>
+    <string id="YnRmSele" text="Il messaggero di {FACTION1_NAME} è arrivato a destinazione {ADDRESSEE_TEXT} {BRIBE_TEXT}"/>
     <string id="C7XPJZAM" text="Il messaggero di {FACTION1_NAME} arriverà a {ADDRESSEE_TEXT} tra meno di un'ora."/>
     <string id="k5i2F6UD" text="Il messaggero di {FACTION1_NAME} arriverà da {ADDRESSEE_TEXT} tra {TRAVEL_TIME} giorno."/>
     <string id="qNWMZP0z" text="Il messaggero di {FACTION1_NAME} arriverà da {ADDRESSEE_TEXT} tra {TRAVEL_TIME} giorni."/>
