@@ -23,17 +23,17 @@
 
     <string id="JmgAuONd" text="O nie. Posłaniec został napadnięty i zjedzony przez Grue podczas próby dotarcia do {HERO_NAME}!"/>
     <string id="YnRmSele" text="Posłaniec od {FACTION1_NAME} dotarł do {ADDRESSEE_TEXT}.{BRIBE_TEXT}"/>
-    <string id="C7XPJZAM" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} dni."/>
-    <string id="k5i2F6UD" text="Posłaniec został zabity"/>
-    <string id="qNWMZP0z" text="Twój posłaniec został napadnięty i zabity przez rozbójników podczas próby dotarcia do {HERO NAME}!"/>
-    <string id="G2NMbFDb" text="{HERO_NAME}{?HAS_FACTION} z {FACTION2_NAME}{?}{\?}"/>
-    <string id="gfZgMSYD" text="{NEW_LINE}{NEW_LINE}Niestety posłaniec nie ma dostępu do twierdzy, może jednak próbować przekupić strażników. Będzie to kosztować {?IS_FEMALE}ją{?}jego{\?} {GOLD_COST}{GOLD_ICON} a ty będziesz musiał pokryć te wydatki{?CAN_AFFORD}.{?}, na które w tej chwili cię nie stać.{\?}"/>
-    <string id="nYrezEOX" text="{REASON}Posłaniec nie będzie mógł dotrzeć do adresata."/>
-    <string id="A5lug0JY" text="Posłaniec albo nie rozumie, albo nie podoba mu się twój żart i odmawia wykonania zadania."/>
-    <string id="1rYSIMfX" text="Zbyt mało wiesz o {HERO_NAME}, aby wskazać go/ją posłańcowi."/>
-    <string id="J2T97gNx" text="{HERO_NAME} nie żyje. "/>
-    <string id="hOOW2DMD" text="{HERO_NAME} jest uwięziony {?IS_MOBILE}przez{?}w{\?} {DETENTION_PLACE}. "/>
-    <string id="hc52yW8O" text="{HERO_NAME} jest zbiegiem i nie chce zostać znaleziony. "/>
+    <string id="C7XPJZAM" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu godziny."/>
+    <string id="k5i2F6UD" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} dnia."/>
+    <string id="qNWMZP0z" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} dni."/>
+    <string id="G2NMbFDb" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} godziny."/>
+    <string id="gfZgMSYD" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} godzin."/>
+    <string id="nYrezEOX" text="Posłaniec został zabity"/>
+    <string id="A5lug0JY" text="Twój posłaniec został napadnięty i zabity przez rozbójników podczas próby dotarcia do {HERO NAME}!"/>
+    <string id="1rYSIMfX" text="Twój posłaniec został napadnięty i zjedzony przez Grue podczas próby dotarcia do {HERO_NAME}!"/>
+    <string id="J2T97gNx" text="Twój posłaniec zgubił drogę i błąka się teraz bez celu po świecie."/>
+    <string id="hOOW2DMD" text="Twój posłaniec znalazł mapę skarbów i zamiast dostarczyć wiadomość, szuka teraz skarbu."/>
+    <string id="hc52yW8O" text="Twój posłaniec zapomniał wiadomości. Musisz wysłać go ponownie."/>
     <string id="2rJDoi7N" text="{HERO_NAME} został właśnie zwolniony z aresztu i nie jest jeszcze gotowy do złożenia wizyt. "/>
     <string id="VKqC9dl0" text="{HERO_NAME} podróżuje incognito. "/>
     <string id="vGyBQeEk" text="{HERO_NAME} jest zbyt niedoświadczony, aby uczestniczyć w formalnych spotkaniach. "/>
