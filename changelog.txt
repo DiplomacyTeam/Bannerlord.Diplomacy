@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.5.1
+Game Versions: v1.4.8, v1.5.1 (beta)
+* Adapted for newer game versions, up to v1.4.8 stable and v1.5.1 beta.
+* Updated ButterLib to v2.11.1 and MCM to v5.12.3.
+---------------------------------------------------------------------------------------------------
 Version: 1.4.7
 Game Versions: v1.4.x
 * Adapted for newer game versions, up to v1.4.7. (#312)

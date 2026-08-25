@@ -41,7 +41,11 @@ namespace Diplomacy.CivilWar.Actions
                 rebelKingdomName,
                 rebelKingdomName,
                 rebelFaction.ParentKingdom.Culture,
-                rebelFaction.SponsorClan);
+                rebelFaction.SponsorClan
+#if BL15
+                , rebelKingdomName
+#endif
+                );
 
             var kingdom = Kingdom.All.FirstOrDefault(x => !x.IsEliminated && x.RulingClan == rebelFaction.SponsorClan);
             if (kingdom is null)
