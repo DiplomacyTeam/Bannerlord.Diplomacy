@@ -2,7 +2,7 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.4.7</Version>
+        <Version>1.5.1</Version>
         <GameVersion>1.0.0</GameVersion>
     </PropertyGroup>
 
@@ -13,9 +13,9 @@
         <!--Harmony Version-->
         <HarmonyVersion>2.4.2</HarmonyVersion>
         <!--ButterLib Version-->
-        <ButterLibVersion>2.11.0</ButterLibVersion>
+        <ButterLibVersion>2.11.1</ButterLibVersion>
         <!--MCM Version-->
-        <MCMVersion>5.12.1</MCMVersion>
+        <MCMVersion>5.12.3</MCMVersion>
         <!--UIExtenderEx Version-->
         <UIExtenderExVersion>2.13.2</UIExtenderExVersion>
         <!--BUTRShared Version-->
@@ -78,6 +78,15 @@
     <PropertyGroup Condition="$(OverrideGameVersion) != ''">
         <GameVersionWithPrefix>$(OverrideGameVersion)</GameVersionWithPrefix>
         <GameVersion>$(GameVersionWithPrefix.Substring(1))</GameVersion>
+    </PropertyGroup>
+
+    <!-- e1.5.0 introduced breaking changes to KingdomManager.CreateKingdom, Kingdom.ChangeKingdomName, and DiplomacyModel.GetRelationIncreaseFactor -->
+    <PropertyGroup>
+        <IsGameVersion150Plus>false</IsGameVersion150Plus>
+        <IsGameVersion150Plus Condition="$([MSBuild]::VersionGreaterThanOrEquals($(GameVersion), '1.5.0'))">true</IsGameVersion150Plus>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(IsGameVersion150Plus)">
+        <DefineConstants>$(DefineConstants);BL15</DefineConstants>
     </PropertyGroup>
 
     <!-- Game Folder(s) -->

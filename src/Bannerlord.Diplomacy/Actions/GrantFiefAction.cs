@@ -62,8 +62,12 @@ namespace Diplomacy.Actions
             // API compatibility, I simply removed them. But it's strange that this method is prefixed with
             // Preview as if you were going to see a breakdown.
             var relationChange = CalculateBaseRelationChange(settlement);
+#if BL15
+            var adjustedChange = Campaign.Current.Models.DiplomacyModel.GetEffectiveRelationChange(Hero.MainHero, hero, relationChange);
+#else
             var adjustedChange = Campaign.Current.Models.DiplomacyModel.GetRelationIncreaseFactor(Hero.MainHero, hero, relationChange);
-            return (int) Math.Floor(adjustedChange);
+#endif
+            return (int) Math.Floor((double) adjustedChange);
         }
 
         public static bool CanGrantFief(Clan targetClan, out string? reason)
