@@ -17,7 +17,15 @@ namespace Diplomacy.Patches
         protected override IEnumerable<Patch> Prepare() => new Patch[]
         {
             new Prefix(nameof(ConsiderWarPrefix), "ConsiderWar"),
+            new Prefix(nameof(ConsiderClanLeaveKingdomPrefix), "ConsiderClanLeaveKingdom"),
         };
+
+        // Vanilla's GetScoreOfClanToLeaveKingdom/GetRelationBetweenClans doesn't handle a kingdom
+        // without a ruling clan (interregnum), causing a NullReferenceException.
+        private static bool ConsiderClanLeaveKingdomPrefix(Clan clan)
+        {
+            return clan.Kingdom?.RulingClan != null;
+        }
 
         private static bool ConsiderWarPrefix(Clan clan, IFaction otherMapFaction)
         {
