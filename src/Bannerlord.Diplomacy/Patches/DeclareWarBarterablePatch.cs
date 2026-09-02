@@ -1,5 +1,6 @@
 using Diplomacy.PatchTools;
 
+using System;
 using System.Collections.Generic;
 
 using TaleWorlds.CampaignSystem;
@@ -12,6 +13,7 @@ namespace Diplomacy.Patches
         protected override IEnumerable<Patch> Prepare() => new Patch[]
         {
             new Prefix(nameof(GetUnitValueForFactionPrefix), "GetUnitValueForFaction"),
+            new Finalizer(nameof(GetUnitValueForFactionFinalizer), "GetUnitValueForFaction"),
         };
 
         // Vanilla doesn't handle a Kingdom without a ruling clan (interregnum) here, causing a
@@ -25,6 +27,20 @@ namespace Diplomacy.Patches
             }
 
             return true;
+        }
+
+        // Safety net: vanilla has other unguarded nulls in this method (e.g. a dead barterable
+        // owner) that surface during the same kind of post-civil-war turmoil. Rather than chase
+        // each one individually, swallow the NRE and treat the barter as worthless.
+        private static Exception? GetUnitValueForFactionFinalizer(Exception? __exception, ref int __result)
+        {
+            if (__exception is NullReferenceException)
+            {
+                __result = 0;
+                return null;
+            }
+
+            return __exception;
         }
     }
 }
