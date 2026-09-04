@@ -54,7 +54,8 @@ namespace Diplomacy.Actions
                         return;
 
                     //Cover from the kingdom prosperity
-                    var tolerableAmount = giverKingdom.Clans.Where(c => !c.IsUnderMercenaryService && !c.IsEliminated).Sum(c => c.Gold - Math.Min(c.Gold / 4, MaxRequiredClanGold));
+                    var tolerableAmountLong = giverKingdom.Clans.Where(c => !c.IsUnderMercenaryService && !c.IsEliminated).Sum(c => (long) (c.Gold - Math.Min(c.Gold / 4, MaxRequiredClanGold)));
+                    var tolerableAmount = (int) Math.Min(tolerableAmountLong, int.MaxValue);
                     if (tolerableAmount < amount)
                     {
                         var amountToCover = amount - tolerableAmount;

@@ -27,12 +27,16 @@ namespace Diplomacy.CivilWar.Scoring
         protected override IEnumerable<Tuple<TextObject, float>> GetMemberScore(Clan clan, RebelFaction rebelFaction)
         {
             List<Tuple<TextObject, float>> memberScores = new() { CalculateFiefDeficitScore(clan) };
-            memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Honor));
-            memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, rebelFaction.ParentKingdom.Leader, DefaultTraits.Valor));
-
-            if (rebelFaction.ParentKingdom.Leader.Clan.Tier < 6)
+            var kingdomLeader = rebelFaction.ParentKingdom.Leader;
+            if (kingdomLeader is not null)
             {
-                memberScores.Add(new Tuple<TextObject, float>(_TRulerNeedsRightToRule, 25f));
+                memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, kingdomLeader, DefaultTraits.Honor));
+                memberScores.AddRange(CalculateTraitScore(clan, rebelFaction, kingdomLeader, DefaultTraits.Valor));
+
+                if (kingdomLeader.Clan.Tier < 6)
+                {
+                    memberScores.Add(new Tuple<TextObject, float>(_TRulerNeedsRightToRule, 25f));
+                }
             }
 
             return memberScores;

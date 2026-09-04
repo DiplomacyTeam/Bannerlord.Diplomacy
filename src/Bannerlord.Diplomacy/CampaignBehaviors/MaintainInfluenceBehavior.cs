@@ -17,7 +17,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ReduceCorruption(Clan clan)
         {
-            if (!clan.MapFaction.IsKingdomFaction || clan.GetCorruption() <= 0 || clan.Leader.IsHumanPlayerCharacter)
+            if (!clan.MapFaction.IsKingdomFaction || clan.GetCorruption() <= 0 || clan.Leader is null || clan.Leader.IsHumanPlayerCharacter)
                 return;
 
             var influenceChange = Campaign.Current.Models.ClanPoliticsModel.CalculateInfluenceChange(clan).ResultNumber;

@@ -33,13 +33,13 @@ namespace Diplomacy.CivilWar.Factions
             {
                 {"PARENT_KINGDOM", ParentKingdom.Name},
                 {"REBELS", Name},
-                {"LEADER", ParentKingdom.Leader.Name},
+                {"LEADER", ParentKingdom.Leader?.Name ?? TextObject.GetEmpty()},
                 {"PLAYER_PARTICIPATION", GetPlayerParticipationText(true)}
             };
 
             ConsolidateKingdomsAction.Apply(this);
             RebelFactionManager.DestroyRebelFaction(this);
-            ParentKingdom.AddDecision(new KingSelectionKingdomDecision(SponsorClan, ParentKingdom.Leader.Clan), true);
+            ParentKingdom.AddDecision(new KingSelectionKingdomDecision(SponsorClan, ParentKingdom.Leader?.Clan), true);
 
             InformationManager.ShowInquiry(
                 new InquiryData(

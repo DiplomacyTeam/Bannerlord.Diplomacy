@@ -59,7 +59,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             {
                 NotifyPlayerOfPeace(kingdomMakingPeace, otherKingdom, isATie, diplomacyCost, dailyPeaceTributeToPay, fiefsToBeReturned, hasFiefsRemaining, shouldBeDestroyed);
             }
-            else if (!otherKingdom.Leader.IsHumanPlayerCharacter && !(otherKingdom == Clan.PlayerClan.Kingdom && Settings.Instance!.PlayerDiplomacyControl))
+            else if (!(otherKingdom.Leader?.IsHumanPlayerCharacter ?? false) && !(otherKingdom == Clan.PlayerClan.Kingdom && Settings.Instance!.PlayerDiplomacyControl))
             {
                 AcceptPeace(kingdomMakingPeace, otherKingdom, diplomacyCost, dailyPeaceTributeToPay, fiefsToBeReturned, shouldBeDestroyed);
             }
@@ -128,7 +128,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             else
             {
                 inquiryTitle = _TDefeatTitle;
-                if (kingdomMakingPeace.Leader.IsHumanPlayerCharacter)
+                if (kingdomMakingPeace.Leader?.IsHumanPlayerCharacter ?? false)
                 {
                     inquiryBody = new(hasFiefsRemaining ? _leaderDefeatedWithFiefs : _leaderDefeatedWithNoFiefs, strArgs);
                 }

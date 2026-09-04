@@ -93,7 +93,7 @@ namespace Diplomacy.CivilWar.Factions
                         break;
                     case RebelDemandType.Abdication:
                         desc = new TextObject("{=8A6JPMWp}The rebels demand that {LEADER} abdicates their throne.").SetTextVariable("LEADER",
-                            ParentKingdom.Leader.Name);
+                            ParentKingdom.Leader?.Name ?? TextObject.GetEmpty());
                         break;
                     default:
                         desc = TextObject.GetEmpty();

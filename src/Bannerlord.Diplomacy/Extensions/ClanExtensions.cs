@@ -59,8 +59,12 @@ namespace Diplomacy.Extensions
             }
         }
 
-        public static bool HasMarriedClanLeaderRelation(this Clan clan, Clan other)
+        public static bool HasMarriedClanLeaderRelation(this Clan? clan, Clan? other)
         {
+            // a leaderless clan (interregnum) has no marriages to speak of
+            if (clan?.Leader is null || other is null)
+                return false;
+
             // if any relatives are alive and married to other clan => "related by marriage"
             return clan.Leader.Spouse?.AllRelatedHeroes().Any(ownSpouseFamMember => ownSpouseFamMember.Clan == other) ?? false
                 || clan.Leader.AllRelatedHeroes().Any(famMember => famMember.IsAlive && (famMember.Spouse?.AllRelatedHeroes().Any(spouseFamMember => spouseFamMember.Clan == other) ?? false));

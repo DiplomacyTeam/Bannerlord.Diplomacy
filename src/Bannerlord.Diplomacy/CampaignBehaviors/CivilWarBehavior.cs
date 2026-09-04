@@ -129,7 +129,7 @@ namespace Diplomacy.CampaignBehaviors
         private void DailyTickClan(Clan clan)
         {
             // don't consider civil war if not in a kingdom or this clan is the kingdom leader
-            if (!clan.MapFaction.IsKingdomFaction || clan.MapFaction.Leader == clan.Leader || clan.IsMinorFaction || clan.IsUnderMercenaryService || clan.Leader.IsHumanPlayerCharacter || clan.Kingdom.IsRebelKingdom() || clan.IsEliminated)
+            if (!clan.MapFaction.IsKingdomFaction || clan.Leader is null || clan.MapFaction.Leader == clan.Leader || clan.IsMinorFaction || clan.IsUnderMercenaryService || clan.Leader.IsHumanPlayerCharacter || clan.Kingdom.IsRebelKingdom() || clan.IsEliminated)
                 return;
 
             var kingdom = (clan.MapFaction as Kingdom)!;

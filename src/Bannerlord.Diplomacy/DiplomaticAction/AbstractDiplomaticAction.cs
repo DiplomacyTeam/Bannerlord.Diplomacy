@@ -22,7 +22,7 @@ namespace Diplomacy.DiplomaticAction
         public abstract bool PassesConditions(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts, bool bypassCosts);
         protected void TryApply(Kingdom proposingKingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts, bool bypassCosts, float? customDurationInDays, bool queryPlayer)
         {
-            if (otherKingdom == Clan.PlayerClan.Kingdom && otherKingdom.Leader.IsHumanPlayerCharacter && queryPlayer)
+            if (otherKingdom == Clan.PlayerClan.Kingdom && (otherKingdom.Leader?.IsHumanPlayerCharacter ?? false) && queryPlayer)
             {
                 ShowPlayerInquiry(proposingKingdom, () => ApplyInternalWithCosts(proposingKingdom, otherKingdom, forcePlayerCharacterCosts, bypassCosts, customDurationInDays));
             }

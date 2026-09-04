@@ -15,6 +15,10 @@ namespace Diplomacy.DiplomaticAction.GenericConditions
         {
             textObject = null;
 
+            // a kingdom in interregnum has no leader to have relations with
+            if (kingdom.Leader is null || otherKingdom.Leader is null)
+                return true;
+
             // if kingdom leaders are friends, do not allow war
             if (Settings.Instance!.NoWarBetweenFriends && kingdom.Leader.IsFriend(otherKingdom.Leader))
             {
