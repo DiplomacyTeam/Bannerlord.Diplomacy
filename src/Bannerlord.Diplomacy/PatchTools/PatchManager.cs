@@ -85,9 +85,11 @@ namespace Diplomacy.PatchTools
         {
             new DeclareWarBarterablePatch(),
             new DefaultClanPoliticsModelPatch(),
+            new DefaultDiplomacyModelPatch(),
             new DiplomaticBartersBehaviorPatch(),
             new GameMenusCallbacksPatch(),
             new KingdomDecisionProposalBehaviorPatch(),
+            new KingdomPatch(),
             new SupportKingdomQuestPatch(),
             new DefaultEncyclopediaFactionPagePatch(),
             new KingdomManagementVMPatch(),
