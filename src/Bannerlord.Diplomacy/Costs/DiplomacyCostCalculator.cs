@@ -20,7 +20,7 @@ namespace Diplomacy.Costs
 
         public static InfluenceCost DetermineCostForDeclaringWar(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
         {
-            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
+            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader?.Clan ?? kingdom.RulingClan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
                 return new InfluenceCost(clanPayingInfluence, 0f);
             if (!Settings.Instance!.ScalingInfluenceCosts)
@@ -39,7 +39,7 @@ namespace Diplomacy.Costs
 
         internal static InfluenceCost DetermineInfluenceCostForMakingPeace(Kingdom kingdomMakingPeace, Kingdom otherKingdom, bool forcePlayerCharacterCosts, bool skipCost = false)
         {
-            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdomMakingPeace.Leader.Clan;
+            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdomMakingPeace.Leader?.Clan ?? kingdomMakingPeace.RulingClan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
                 return new InfluenceCost(clanPayingInfluence, 0f);
 
@@ -61,7 +61,7 @@ namespace Diplomacy.Costs
             var giver = forcePlayerCharacterCosts ? Hero.MainHero : kingdomMakingPeace.Leader;
 
             var baseGoldCost = skipCost ? 0 : 500;
-            int goldCost = Math.Min(baseGoldCost, kingdomMakingPeace.Leader.Gold);
+            int goldCost = Math.Min(baseGoldCost, kingdomMakingPeace.Leader?.Gold ?? 0);
             goldCost = 10 * (goldCost / 10);
 
             //This is a cost of organization process and thus has no addressee
@@ -143,7 +143,7 @@ namespace Diplomacy.Costs
 
         public static InfluenceCost DetermineInfluenceCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
         {
-            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
+            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader?.Clan ?? kingdom.RulingClan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
                 return new InfluenceCost(clanPayingInfluence, 0f);
             if (!Settings.Instance!.ScalingInfluenceCosts)
@@ -197,7 +197,7 @@ namespace Diplomacy.Costs
 
         private static InfluenceCost DetermineInfluenceCostForFormingAlliance(Kingdom kingdom, bool forcePlayerCharacterCosts = false)
         {
-            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
+            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader?.Clan ?? kingdom.RulingClan;
             if (!Settings.Instance!.EnableInfluenceCostsForDiplomacyActions)
                 return new InfluenceCost(clanPayingInfluence, 0f);
             if (!Settings.Instance!.ScalingInfluenceCosts)
