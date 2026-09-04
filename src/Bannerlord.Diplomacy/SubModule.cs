@@ -89,6 +89,7 @@ namespace Diplomacy
                 DiplomacyEvents.Instance = new DiplomacyEvents();
                 var gameStarter = (CampaignGameStarter) gameStarterObject;
 
+                gameStarter.AddBehavior(new KingdomRulerRepairBehavior());
                 gameStarter.AddBehavior(new DiplomaticAgreementBehavior());
                 gameStarter.AddBehavior(new CooldownBehavior());
                 gameStarter.AddBehavior(new MessengerBehavior());

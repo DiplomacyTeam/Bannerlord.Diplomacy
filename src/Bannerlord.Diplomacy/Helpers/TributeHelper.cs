@@ -33,6 +33,10 @@ namespace Diplomacy.Helpers
             if (kingdomInQuestion.IsRebelKingdomOf(otherKingdom) || otherKingdom.IsRebelKingdomOf(kingdomInQuestion))
                 return 0;
 
+            // no ruler to negotiate tribute with, and the vanilla models called below assume one exists
+            if (kingdomInQuestion.Leader is null || otherKingdom.Leader is null)
+                return 0;
+
             int valueForOtherKingdom = GetBaseValueForTrubute(kingdomInQuestion, otherKingdom);
 
             if (Settings.Instance!.EnableWarExhaustion)
