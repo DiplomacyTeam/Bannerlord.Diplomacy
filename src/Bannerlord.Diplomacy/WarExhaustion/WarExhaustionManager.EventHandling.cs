@@ -437,7 +437,7 @@ namespace Diplomacy.WarExhaustion
                 {
                     if (hero.IsFactionLeader)
                         return ImportanceEnum.MatterOfLifeAndDeath;
-                    if (faction.Leader.Clan is Clan factionLeaderClan && factionLeaderClan == clan)
+                    if (faction.Leader?.Clan is Clan factionLeaderClan && factionLeaderClan == clan)
                         return hero.IsNoncombatant ? ImportanceEnum.Important : ImportanceEnum.ExtremelyImportant;
 
                     int inportance = Math.Min(clan.Tier, 6) - (clan.IsUnderMercenaryService ? 5 : 3) + (hero.IsCommander ? 1 : 0) + (clan.Leader == hero ? 3 : 0) - (hero.IsLord ? 0 : 3) - (hero.IsNoncombatant ? 3 : 0);

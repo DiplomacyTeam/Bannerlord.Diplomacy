@@ -33,7 +33,7 @@ namespace Diplomacy.CampaignBehaviors
         private void ConsiderDiplomaticAgreements(Clan clan)
         {
             // only apply to kingdom leader clans
-            if (clan.MapFaction.IsKingdomFaction && clan.MapFaction.Leader == clan.Leader && !clan.Leader.IsHumanPlayerCharacter)
+            if (clan.Leader is not null && clan.MapFaction.IsKingdomFaction && clan.MapFaction.Leader == clan.Leader && !clan.Leader.IsHumanPlayerCharacter)
             {
                 ConsiderNonAggressionPact(clan.Kingdom);
             }

@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.5.2
+Game Versions: v1.4.x, v1.5.1, v1.5.2
+* Adapted for newer game versions, up to v1.5.2.
+* Restored dedicated builds for game versions v1.4.2, v1.4.3 and v1.4.4.
+* Fixed a family of crashes that occurred while a kingdom had no ruler: clan defection, kingdom decisions, trade agreements, peace proposals, war declaration barters, civil war scoring and abdication rebellions. (#322)
+* A kingdom left without a ruler now crowns a successor and holds a king selection vote instead of staying leaderless. (#322)
+* Fixed a crash when paying war reparations with very large sums of gold.
+* Shoutout to Wolvering420 who provided useful feedback and bug reports, and helped test the changes!
+---------------------------------------------------------------------------------------------------
 Version: 1.5.1
 Game Versions: v1.4.8, v1.5.1 (beta)
 * Adapted for newer game versions, up to v1.4.8 stable and v1.5.1 beta.
