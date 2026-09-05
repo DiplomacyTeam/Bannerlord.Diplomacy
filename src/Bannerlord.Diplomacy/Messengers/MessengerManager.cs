@@ -107,6 +107,8 @@ namespace Diplomacy.Messengers
 
         internal void CheckForAccidents()
         {
+            RemoveInvalidMessengers();
+
             if (!Settings.Instance!.EnableMessengerAccidents)
                 return;
 
@@ -145,6 +147,8 @@ namespace Diplomacy.Messengers
         public void UpdateMessengerPositions()
         {
             SyncMessengerHourlySpeed();
+            RemoveInvalidMessengers();
+
             foreach (var messenger in Messengers.ToList())
             {
                 if (IsTargetHeroAvailable(messenger.TargetHero) && !messenger.Arrived)
@@ -254,7 +258,17 @@ namespace Diplomacy.Messengers
 
         internal void Sync()
         {
+            RemoveInvalidMessengers();
             Messengers = new(_messengers);
+        }
+
+        private void RemoveInvalidMessengers()
+        {
+            _messengers ??= new();
+
+            // A hero reference can deserialize as null if its target was removed from the campaign.
+            if (_messengers.RemoveAll(messenger => messenger is null || messenger.TargetHero is null) > 0)
+                Messengers = new(_messengers);
         }
 
         public void StartDialogue(Hero targetHero, Messenger messenger)
@@ -406,12 +420,21 @@ namespace Diplomacy.Messengers
 
         public static bool IsTargetHeroAvailable(Hero targetHero)
         {
+            if (targetHero is null)
+                return false;
+
             var available = targetHero.IsActive || (targetHero.IsWanderer && targetHero.HeroState == Hero.CharacterStates.NotSpawned);
             return available && !targetHero.IsHumanPlayerCharacter;
         }
 
         public static bool IsTargetHeroAvailable(Hero targetHero, out TextObject exception)
         {
+            if (targetHero is null)
+            {
+                exception = new("{=T3mGu5K4}The messenger's intended recipient can no longer be found.");
+                return false;
+            }
+
             if (targetHero.IsHumanPlayerCharacter)
             {
                 exception = new("{=hPra5uwZ}The messenger either does not understand or does not like your joke and refuses the task.");
