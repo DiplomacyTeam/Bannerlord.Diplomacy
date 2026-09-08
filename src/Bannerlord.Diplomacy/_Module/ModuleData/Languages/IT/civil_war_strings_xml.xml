@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Italiano"/>
+  </tags>
+  <strings>
+    <string id="0WVHMfN8" text="Una ribellione si sta sgretolando"/>
+    <string id="BVNGIAMM" text="{PARENT_KINGDOM} ha represso la ribellione che stava devastando il loro regno. {PLAYER_PARTICIPATION}"/>
+    <string id="x5ThZR5A" text="Emerge un nuovo regno"/>
+    <string id="nRxyMIEE" text="{PARENT_KINGDOM} ha perso la guerra civile e non è riuscito a mantenere unito il loro regno. {KINGDOM} viene formato. {PLAYER_PARTICIPATION}"/>
+    <string id="1OQGJkqb" text="Emerge una fazione ribelle"/>
+    <string id="pqjZ6wck" text="Si viene a creare una fazione ribelle a {KINGDOM}. Guidati dal clan {CLAN_NAME}. {DEMAND}"/>
+    <string id="ZAfNviVS" text="Secessione"/>
+    <string id="wUspUo1y" text="Abdicazione"/>
+    <string id="LF19GulH" text="Allontanati dal regno. I membri di questa fazione formeranno un nuovo regno. Solo i clan di grado 4 o superiore potranno creare una fazione secessionista."/>
+    <string id="GK1seKeJ" text="Costringi il sovrano del tuo regno a scendere dal trono. Un'elezione deciderà chi sarà il nuovo sovrano."/>
+    <string id="brEXAKDb" text="I ribelli pretendono che le loro terre siano separate dal regno."/>
+    <string id="8A6JPMWp" text="I ribelli vogliono che {LEADER} abdichi al trono."/>
+    <string id="ChzQncc0" text="Ribellione"/>
+    <string id="WUAv0u4U" text="Raccogliendo consensi"/>
+    <string id="fw0k1KFl" text="Richiesta: {DEMAND_NAME}"/>
+    <string id="FajeZClv" text="{REBELS} (Ribelli di {KINGDOM})"/>
+    <string id="nAvLFv5Q" text="La guerra civile è iniziata"/>
+    <string id="2PpZkBOB" text="Una guerra civile è scoppiata a {KINGDOM}. {REBEL_KINGDOM} viene guidato dal clan {CLAN_NAME}. {DEMAND}"/>
+    <string id="o0HIAHqg" text="I regni ribelli non possono essere soggetti ad azioni diplomatiche."/>
+    <string id="GKSaZESx" text="Con l'elezione di un nuovo monarca e con il raggiungimento del loro obiettivo, i {REBELS} di {PARENT_KINGDOM} si sciolgono."/>
+    
+    <string id="BPcKHP0D" text="Come capo della ribellione, hai guadagnato {INFLUENCE} di influenza."/>
+    <string id="UoMvwnTb" text="Come capo della ribellione, hai perso {INFLUENCE} di influenza."/>
+    <string id="QiX6m5cp" text="Come membro della ribellione, hai guadagnato {INFLUENCE} di influenza."/>
+    <string id="yrz8GMUb" text="Come membro della ribellione, hai perso {INFLUENCE} di influenza."/>
+
+    <string id="SNLviWvc" text="Come capo dei lealisti, hai perso {INFLUENCE} di influenza."/>
+    <string id="2I1X5fAC" text="Come capo dei lealisti, hai guadagnato {INFLUENCE} di influenza."/>
+    <string id="4FfA8RL4" text="Come membro dei lealisti, hai perso {INFLUENCE} di influenza."/>
+    <string id="uUu7DEDU" text="Come membro dei lealisti, hai guadagnato {INFLUENCE} di influenza."/>
+    
+    <string id="f66sNaiz" text="Non puoi far parte di una ribellione"/>
+
+    <string id="DZ6dpEn3" text="Unisciti alla fazione"/>
+    <string id="uTCw0WiH" text="Lascia la fazione"/>
+    <string id="1OUDq7Ul" text="Equilibrio di potere"/>
+    <string id="5q7TvMGL" text="Inizia la ribellione"/>
+    <string id="Ysrttgis" text="Data d'inizio: {CAMPAIGN_TIME}"/>
+    <string id="o3w3jNzZ" text="Richiesta: {DEMAND_NAME}"/>
+    <string id="hbPiVQVK" text="Stato: {STATUS}"/>
+    <string id="TvSHYACm" text="Forza: {STRENGTH}"/>
+    <string id="dlANhHUd" text="Fazioni"/>
+    <string id="hBSo0Ziq" text="Crea una fazione"/>
+    <string id="2PglxF8k" text="Scegli la richiesta della fazione"/>
+    <string id="gypPPxUJ" text="Fazioni"/>
+    <string id="aWWzFITw" text="Un monarca abdica"/>
+    <string id="2Pv3DsVm" text="{PARENT_KINGDOM} ha perso la guerra civile a causa dei {REBELS}. {LEADER} abdicherà al trono. {PLAYER_PARTICIPATION}"/>
+    <string id="GkhKppOk" text="Non hai abbastanza feudi"/>
+    <string id="Jc1mCVuY" text="Tratto: Calcolatore"/>
+    <string id="cjbVV7E3" text="Grado del clan troppo basso"/>
+    <string id="Vp9EcnuC" text="Tendenza della fazione"/>
+    <string id="dr1OCcmL" text="Relazioni con il sovrano"/>
+    <string id="mouJZAAy" text="Relazioni con il capo"/>
+    <string id="FtX4LPXF" text="Grandezza del regno"/>
+    <string id="VFwDRHc7" text="Partecipanti"/>
+    <string id="IYO5TNTg" text="Diritto a regnare"/>
+    <string id="YLUocN5e" text="Il capo ha diritto a regnare"/>
+    <string id="qAcR4Yee" text="Clan amichevoli nella fazione"/>
+    <string id="1AZK0UVJ" text="Il sovrano non ha diritto a regnare"/>
+
+    <string id="ovgs58sT" text="Impossibile avviare una fazione durante una ribellione in corso."/>
+    <string id="VbpiW2bd" text="Impossibile creare una fazione così presto dopo una guerra civile."/>
+    <string id="JDk8ustS" text="I mercenari non possono creare fazioni."/>
+    <string id="quo5erz6" text="I sovrani non possono creare fazioni."/>
+    <string id="luvsD6Zn" text="Impossibile creare una fazione in un regno ribelle."/>
+    <string id="iXMeCmj0" text="Deve essere un clan di grado 4 o superiore."/>
+    <string id="Xu3rnEEa" text="Deve far parte del regno per poter creare una fazione di {KINGDOM_NAME}."/>
+    <string id="DxJH7ciY" text="Un regno può avere solo una fazione che chiede l'abdicazione."/>
+    <string id="zTZWwJfN" text="Non puoi guidare due fazioni."/>
+    
+    <!-- <string id="" text="" /> -->
+
+    <string id="EYB5Uggd" text="Il capo è {TRAIT}"/>
+    <string id="E00ywbqb" text="Il sovrano è {TRAIT}"/>
+
+    <string id="GeevRiNR" text="{LABEL}{newline} {newline}{REASON}"/>
+    <string id="ALSuNVzE" text="{EXCEPTION}{newline} {newline}{DEMAND_HINT}"/>
+
+    <!-- Settings -->
+    <string id="eDZeFUTH" text="Guerre civili"/>
+    <string id="VB97zQeJ" text="Intervallo minimo tra guerre civili (in giorni)"/>
+    <string id="5cUqaLk4" text="Il tempo minimo richiesto tra una guerra civile e il momento in cui nuove fazioni ribelli possono sorgere in un regno. Il valore predefinito è 240."/>
+    <string id="UdadyqpN" text="Possibilità giornaliera di creare una fazione ribelle"/>
+    <string id="yznXCi1d" text="La possibilità giornaliera per un clan di creare una fazione ribelle. Il valore predefinito è 100%."/>
+    <string id="r312b3Of" text="Possibilità giornaliera di unirsi a una fazione ribelle"/>
+    <string id="06oPGRj0" text="La possibilità giornaliera per un clan di unirsi a una fazione ribelle che appoggerebbe. Il valore predefinito è 100%."/>
+    <string id="lIbUuQB1" text="Possibilità giornaliera che si scateni una guerra civile"/>
+    <string id="zr10ZS3L" text="La possibilità giornaliera per una fazione con sufficiente sostegno di iniziare una guerra civile. Il valore predefinito è 50%."/>
+    <string id="VNILqmoY" text="Durata massima di una fazione (in giorni)"/>
+    <string id="rNJIvaSm" text="Il tempo massimo che una fazione può durare prima che possa scoppiare un’altra guerra civile. Il valore predefinito è 120 giorni."/>
+    <string id="6kNmdLxZ" text="Costo in influenza per creare una fazione"/>
+    <string id="EwbXg3va" text="Il costo in influenza per creare una nuova fazione. Il valore predefinito è 100."/>
+    <string id="7wK0mmw1" text="Tendenza della fazione"/>
+    <string id="aqvIdG7w" text="Modificatore del punteggio che influenza la propensione dei clan a creare o unirsi a fazioni. Aumentare il modificatore aumenta la partecipazione dei clan alle fazioni. Il valore predefinito è 0."/>
+    
+  </strings>
+</base>

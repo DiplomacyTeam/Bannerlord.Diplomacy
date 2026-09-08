@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
   <tags>
-    <tag language="Türkçe"/>
+    <tag language="Italiano"/>
   </tags>
   <strings>
     <!-- Faction Titles -->
-    <string id="MXAsjFdI" text="{CLAN_NAME} Komplosu"/>
-    <string id="LUzfk4tb" text="{CLAN_NAME} Birliği"/>
+    <string id="MXAsjFdI" text="Cospiratori di {CLAN_NAME}"/>
+    <string id="LUzfk4tb" text="Lega di {CLAN_NAME}"/>
 
     <!-- Aserai Titles -->
-    <string id="iLMqCvmk" text="{CLAN_NAME} Sultanlığı"/>
-    <string id="EnpnMNRH" text="{CLAN_NAME} Emirliği"/>
-    <string id="uzd9mxIC" text="Banu {CLAN_NAME}"/>
-    <string id="NTFz3B56" text="{CLAN_NAME} Şerifliği"/>
+    <string id="iLMqCvmk" text="Sultanato di {CLAN_NAME}"/>
+    <string id="EnpnMNRH" text="Emirato di {CLAN_NAME}"/>
+    <string id="uzd9mxIC" text="Tribù di {CLAN_NAME}"/>
+    <string id="NTFz3B56" text="Sceriffato di {CLAN_NAME}"/>
 
     <!-- Battania Titles -->
-    <string id="kaU24WXu" text="{CLAN_NAME} Konfederasyonu"/>
+    <string id="kaU24WXu" text="Confederazione di {CLAN_NAME}"/>
 
     <!-- Khuzait Titles -->
-    <string id="mEHufuep" text="{CLAN_NAME} Kağanlığı"/>
-    <string id="DTBaowBi" text="{CLAN_NAME} Kağanı"/>
-    <string id="pRgQF4WY" text="{CLAN_NAME} Hanedanı"/>
+    <string id="mEHufuep" text="Khanato di {CLAN_NAME}"/>
+    <string id="DTBaowBi" text="Khaganato di {CLAN_NAME}"/>
+    <string id="pRgQF4WY" text="Dinastia di {CLAN_NAME}"/>
 
     <!-- Sturgia Titles -->
-    <string id="z5VPFrfh" text="{CLAN_NAME} Kontluğu"/>
+    <string id="z5VPFrfh" text="Contea di {CLAN_NAME}"/>
 
     <!-- Vlandia Titles -->
-    <string id="A4zT7H5g" text="{CLAN_NAME} Büyük Dükalığı"/>
+    <string id="A4zT7H5g" text="Granducato di {CLAN_NAME}"/>
 
 
     <!-- Generic Titles -->
-    <string id="kToqhmHh" text="{CLAN_NAME} Prensliği"/>
-    <string id="WjB3SM1f" text="{CLAN_NAME} Krallığı"/>
-    <string id="E63n30UM" text="{CLAN_NAME} İmparatorluğu"/>
-    <string id="lSQeaVfw" text="{CLAN_NAME} İmparatorluğu"/>
+    <string id="kToqhmHh" text="Principato di {CLAN_NAME}"/>
+    <string id="WjB3SM1f" text="Regno di {CLAN_NAME}"/>
+    <string id="E63n30UM" text="Monarchia di {CLAN_NAME}"/>
+    <string id="lSQeaVfw" text="Impero di {CLAN_NAME}"/>
 
 
 
@@ -43,7 +43,7 @@
     <string id="qWmWT0xA" text="Durquba"/>
     <string id="X75ITMUL" text="Shariz"/>
     <string id="K7udl5FQ" text="Bardaq"/>
-    <string id="OGwXFmDB" text="Caraf"/>
+    <string id="OGwXFmDB" text="Bardaq"/>
     <string id="I7c8WNxV" text="Durrin"/>
     <string id="M4UquaBO" text="Jameyyed"/>
     <string id="NndCJIzP" text="Samarra"/>
@@ -127,8 +127,8 @@
     <string id="wquHRX1a" text="Chalbek"/>
     <string id="uOnd5NOi" text="Curin"/>
     <string id="eb1lTxcg" text="Hrus"/>
-    <string id="Dvs5IlpE" text="Jelbegi"/>
-    <string id="C0Lxqtaa" text="Knudarr"/>
+    <string id="Dvs5IlpE" text=""/>
+    <string id="C0Lxqtaa" text=""/>
     <string id="LwGSxemg" text="Tehlrog"/>
     <string id="QniO32gk" text="Aldelen"/>
     <string id="SPWVORXL" text="Ambean"/>
@@ -181,7 +181,7 @@
     <string id="9jAc6grT" text="Rduna"/>
     <string id="94L2s8cH" text="Ruluns"/>
     <string id="kX4NIQxU" text="Ryibelet"/>
-    <string id="h2SaSr4e" text="Tadsamesh"/>
+    <string id="h2SaSr4e" text=""/>
     <string id="SZLdfWI9" text="Tahlberl"/>
     <string id="GiWgcvib" text="Tosdhar"/>
     <string id="BzUpDzL0" text="Tshibtin"/>
@@ -195,7 +195,7 @@
     <string id="LGqYPQQD" text="Lamonnos"/>
     <string id="KJPW3yb4" text="Nasus"/>
     <string id="OyLkibYo" text="Tylamahos"/>
-    <string id="gNbGiI9p" text="Iasessos"/>
+    <string id="gNbGiI9p" text="Lasessos"/>
     <string id="ty1393cd" text="Zakrios"/>
     <string id="xJPv0Tzj" text="Samissos"/>
     <string id="AiHcQH4G" text="Thorosse"/>

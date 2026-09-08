@@ -23,153 +23,156 @@
 
     <string id="JmgAuONd" text="O nie. Posłaniec został napadnięty i zjedzony przez Grue podczas próby dotarcia do {HERO_NAME}!"/>
     <string id="YnRmSele" text="Posłaniec od {FACTION1_NAME} dotarł do {ADDRESSEE_TEXT}.{BRIBE_TEXT}"/>
-    <string id="C7XPJZAM" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} dni."/>
-    <string id="k5i2F6UD" text="Posłaniec został zabity"/>
-    <string id="qNWMZP0z" text="Twój posłaniec został napadnięty i zabity przez rozbójników podczas próby dotarcia do {HERO NAME}!"/>
-    <string id="G2NMbFDb" text="{HERO_NAME}{?HAS_FACTION} z {FACTION2_NAME}{?}{\?}"/>
-    <string id="gfZgMSYD" text="{NEW_LINE}{NEW_LINE}Niestety posłaniec nie ma dostępu do twierdzy, może jednak próbować przekupić strażników. Będzie to kosztować {?IS_FEMALE}ją{?}jego{\?} {GOLD_COST}{GOLD_ICON} a ty będziesz musiał pokryć te wydatki{?CAN_AFFORD}.{?}, na które w tej chwili cię nie stać.{\?}"/>
-    <string id="nYrezEOX" text="{REASON}Posłaniec nie będzie mógł dotrzeć do adresata."/>
-    <string id="A5lug0JY" text="Posłaniec albo nie rozumie, albo nie podoba mu się twój żart i odmawia wykonania zadania."/>
-    <string id="1rYSIMfX" text="Zbyt mało wiesz o {HERO_NAME}, aby wskazać go/ją posłańcowi."/>
-    <string id="J2T97gNx" text="{HERO_NAME} nie żyje. "/>
-    <string id="hOOW2DMD" text="{HERO_NAME} jest uwięziony {?IS_MOBILE}przez{?}w{\?} {DETENTION_PLACE}. "/>
-    <string id="hc52yW8O" text="{HERO_NAME} jest zbiegiem i nie chce zostać znaleziony. "/>
-    <string id="2rJDoi7N" text="{HERO_NAME} został właśnie zwolniony z aresztu i nie jest jeszcze gotowy do złożenia wizyt. "/>
-    <string id="VKqC9dl0" text="{HERO_NAME} podróżuje incognito. "/>
-    <string id="vGyBQeEk" text="{HERO_NAME} jest zbyt niedoświadczony, aby uczestniczyć w formalnych spotkaniach. "/>
-    <string id="sQxAljGF" text="Propozycja pokoju"/>
+    <string id="C7XPJZAM" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu godziny."/>
+    <string id="k5i2F6UD" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} dnia."/>
+    <string id="qNWMZP0z" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} dni."/>
+    <string id="G2NMbFDb" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} godziny."/>
+    <string id="gfZgMSYD" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} godzin."/>
+    <string id="nYrezEOX" text="Posłaniec został zabity"/>
+    <string id="A5lug0JY" text="Twój posłaniec został napadnięty i zabity przez rozbójników podczas próby dotarcia do {HERO NAME}!"/>
+    <string id="1rYSIMfX" text="Twój posłaniec został napadnięty i zjedzony przez Grue podczas próby dotarcia do {HERO_NAME}!"/>
+    <string id="J2T97gNx" text="Twój posłaniec zgubił drogę i błąka się teraz bez celu po świecie."/>
+    <string id="hOOW2DMD" text="Twój posłaniec znalazł mapę skarbów i zamiast dostarczyć wiadomość, szuka teraz skarbu."/>
+    <string id="hc52yW8O" text="Twój posłaniec zapomniał wiadomości. Musisz wysłać go ponownie."/>
+    <string id="2rJDoi7N" text="Twój posłaniec wypił za dużo i teraz odsypia."/>
+    <string id="VKqC9dl0" text="Twój posłaniec wziął pieniądze i uciekł."/>
+    <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} z {FACTION2_NAME}{?}{\?}"/>
+    <string id="sQxAljGF" text="{NEW_LINE}{NEW_LINE}Niestety posłaniec nie ma dostępu do twierdzy, może jednak próbować przekupić strażników. Będzie to kosztować {?IS_FEMALE}ją{?}jego{\?} {GOLD_COST}{GOLD_ICON} a ty będziesz musiał pokryć te wydatki{?CAN_AFFORD}.{?}, na które w tej chwili cię nie stać.{\?}"/>
 
-    <string id="bLR91Eob" text="Zaakceptuj"/>
-    <string id="hPra5uwZ" text="Odrzuć"/>
-    <string id="1mlXBnSs" text="Wyślij posłańca"/>
-    <string id="HHgTlyyt" text="Osada zdobyta"/>
+    <string id="bLR91Eob" text="{REASON}Posłaniec nie będzie mógł dotrzeć do adresata."/>
+    <string id="hPra5uwZ" text="Posłaniec albo nie rozumie, albo nie podoba mu się twój żart i odmawia wykonania zadania."/>
+    <string id="1mlXBnSs" text="Zbyt mało wiesz o {HERO_NAME}, aby wskazać go/ją posłańcowi."/>
+    <string id="HHgTlyyt" text="Krążą plotki, że {HERO_NAME} jest teraz na morzu. Lepiej poczekać, aż zejdzie na ląd."/>
 
-    <string id="vhsHDMil" text="Jako zdobywca {SETTLEMENT_NAME}, masz prawo pierwszeństwa do nabycia osady. Czy chcesz zagarnąć to lenno dla siebie?"/>
-    <string id="CusN2JMb" text="Za mało złota!"/>
-    <string id="1BISlFYx" text="Przyznaj lenno"/>
-    <string id="ze8KJ1oL" text="Przyznaj lenno klanowi {CLAN_NAME}"/>
-    <string id="N5T6IXWJ" text="Przyznano lenno"/>
-    <string id="3lknR86H" text="Osada {SETTLEMENT_NAME} została przyznana klanowi {CLAN_NAME}."/>
+    <string id="vhsHDMil" text="{HERO_NAME} nie żyje. "/>
+    <string id="CusN2JMb" text="{HERO_NAME} jest uwięziony {?IS_MOBILE}przez{?}w{\?} {DETENTION_PLACE}. "/>
+    <string id="1BISlFYx" text="{HERO_NAME} jest zbiegiem i nie chce zostać znaleziony. "/>
+    <string id="ze8KJ1oL" text="{HERO_NAME} został właśnie zwolniony z aresztu i nie jest jeszcze gotowy na spotkania. "/>
+    <string id="N5T6IXWJ" text="{HERO_NAME} podróżuje incognito. "/>
+    <string id="3lknR86H" text="{HERO_NAME} jest zbyt niedoświadczony, aby uczestniczyć w formalnych spotkaniach. "/>
 
-    <string id="BkGSVccZ" text="Nie możesz przyznać lenn swojemu klanowi."/>
-    <string id="3fTqLwkC" text="Nie jesteś przywódcą swojego królestwa."/>
-    <string id="dRoMejb0" text="Nie masz żadnych lenn do przyznania."/>
+    <string id="BkGSVccZ" text="Propozycja pokoju"/>
+    <string id="3fTqLwkC" text="Zaakceptuj"/>
+    <string id="dRoMejb0" text="Odrzuć"/>
 
-    <string id="cXfcwzPp" text="Przyznaj lenna klanom w swoim królestwie"/>
+    <string id="cXfcwzPp" text="Wyślij posłańca"/>
 
-    <string id="N06wk0dB" text="Nie możesz przyznać lenn klanom najemników."/>
-    <string id="Zy0yjTha" text="Niedawno byłeś w stanie wojny. Musi minąć {REQUIRED_DAYS} dni aby można było rozważyć zawarcie sojuszu. Aktualnie minęło {ELAPSED_DAYS} dni."/>
+    <string id="N06wk0dB" text="Osada zdobyta"/>
+    <string id="Zy0yjTha" text="Jako zdobywca {SETTLEMENT_NAME}, masz prawo pierwszeństwa do nabycia osady. Czy chcesz zagarnąć to lenno dla siebie?"/>
 
-    <string id="IWZ91JVk" text="Nie można zawrzeć sojuszu."/>
+    <string id="IWZ91JVk" text="Za mało złota!"/>
 
-    <string id="LpoyhORp" text="Nie można wywołać wojny."/>
-    <string id="h3b1S5Wq" text="Utworzono sojusz"/>
-    <string id="jznJfkfU" text="Propozycja sojuszu"/>
-    <string id="cXbgaPSm" text="{KINGDOM} proponuje sojusz z {PLAYER_KINGDOM}."/>
+    <string id="LpoyhORp" text="Przyznaj lenno"/>
+    <string id="h3b1S5Wq" text="Przyznaj lenno klanowi {CLAN_NAME}"/>
+    <string id="jznJfkfU" text="Przyznano lenno"/>
+    <string id="cXbgaPSm" text="Osada {SETTLEMENT_NAME} została przyznana klanowi {CLAN_NAME}."/>
 
-    <string id="FqeN0fmR" text="{KINGDOM} zrywa sojusz z {PLAYER_KINGDOM}."/>
-    <string id="zdSYUnZQ" text="Sojusz zerwany"/>
-    <string id="D61vzEC7" text="Utwórz sojusz"/>
-    <string id="98hwXUTp" text="Zerwij sojusz"/>
-    <string id="Q7jRqnez" text="Ta frakcja nie jest zainteresowana utworzeniem sojuszu z tobą."/>
+    <string id="FqeN0fmR" text="Nie możesz przyznać lenn swojemu klanowi."/>
+    <string id="zdSYUnZQ" text="Nie jesteś przywódcą swojego królestwa."/>
+    <string id="D61vzEC7" text="Nie masz żadnych lenn do przyznania."/>
+    <string id="98hwXUTp" text="Przyznaj lenna klanom w swoim królestwie"/>
+    <string id="Q7jRqnez" text="Nie możesz przyznać lenn klanom najemników."/>
 
-    <string id="DrnXprup" text="Ten sojusz nie trwał wystarczająco długo! Musi minąć {REQUIRED_DAYS} dni aby móc rozważyć jego zerwanie. Aktualnie minęło {ELAPSED_DAYS} dni."/>
-    <string id="KHJyWj9H" text="Sojusznicy"/>
-    <string id="UQZmdLzc" text="Sojusze są wyłączone."/>
-    <string id="qIa19an4" text="Zaproponuj bezpośrednio do&#10;{ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}"/>
-    <string id="3pbwc8sh" text="{?REPARATIONS_PAY}, płacąc {REPARATIONS} reparacji wojennych{?TRIBUTE_PAY} i {TRIBUTE} trybutu/dzień.{?}{?TRIBUTE_GET}, ale otrzymując {TRIBUTE} trybutu/dzień.{?}{\?}{\?}{?}{?REPARATIONS_GET}, otrzymując {REPARATIONS} reparacji wojennych{?TRIBUTE_PAY}, ale płacąc {TRIBUTE} trybutu/dzień.{?}{?TRIBUTE_GET} i {TRIBUTE} trybutu/dzień.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, płacąc {TRIBUTE} trybutu/dzień.{?}{?TRIBUTE_GET}, otrzymując {TRIBUTE} trybutu/dzień.{?}.{\?}{\?}{\?}{\?}"/>
-    <string id="QbOqatd7" text="{?FIEFS_ANY} Być może będziesz musiał zwrócić część zdobytych lenn!{?}{\?}"/>
+    <string id="DrnXprup" text="Niedawno byłeś w stanie wojny. Musi minąć {REQUIRED_DAYS} dni aby można było rozważyć zawarcie sojuszu. Aktualnie minęło {ELAPSED_DAYS} dni."/>
+    <string id="KHJyWj9H" text="Nie można zawrzeć sojuszu."/>
+    <string id="UQZmdLzc" text="Nie można wywołać wojny."/>
+    <string id="qIa19an4" text="Zawarto sojusz"/>
+    <string id="3pbwc8sh" text="Propozycja sojuszu"/>
+    <string id="QbOqatd7" text="{KINGDOM} proponuje sojusz z {PLAYER_KINGDOM}."/>
 
-    <string id="384jX28Q" text="{VALUE}mln"/>
-    <string id="D1ZQKZr1" text="{VALUE}tys."/>
+    <string id="384jX28Q" text="{KINGDOM} zrywa sojusz z {PLAYER_KINGDOM}."/>
+    <string id="D1ZQKZr1" text="Sojusz zerwany"/>
 
-    <string id="0WPWbx70" text="Nie można zawrzeć pokoju z królestwem, gdy gracz bierze udział w oblężeniu."/>
-    <string id="K4GraLTn" text="Relacja."/>
+    <string id="0WPWbx70" text="Zawrzyj sojusz"/>
+    <string id="K4GraLTn" text="Zerwij sojusz"/>
+    <string id="5R7twvD2" text="Zawrzyj pokój"/>
+    <string id="nkOVblQ4" text="Wypowiedz wojnę"/>
 
-    <string id="VvTTrRpl" text="Gwarantowany zysk relacji"/>
-    <string id="wst0lArp" text="Nie można mieć aktywnego paktu o nieagresji."/>
+    <string id="VvTTrRpl" text="Ta frakcja nie jest zainteresowana zawarciem sojuszu z tobą."/>
+    <string id="wst0lArp" text="Ten sojusz nie trwał wystarczająco długo! Musi minąć {REQUIRED_DAYS} dni aby móc rozważyć jego zerwanie. Aktualnie minęło {ELAPSED_DAYS} dni."/>
 
-    <string id="KqfNSsBE" text="Sojusze"/>
-    <string id="Dirltd6Z" text="Wojny"/>
+    <string id="KqfNSsBE" text="Sojusznicy"/>
+    <string id="Dirltd6Z" text="Sojusze są wyłączone."/>
 
-    <string id="Q8ItogIP" text="Pakty o nieagresji"/>
-    <string id="BC7823G2" text="Propozycja paktu o nieagresji"/>
-    <string id="9CvcPwJA" text="{KINGDOM} proponuje pakt o nieagresji z {PLAYER_KINGDOM}."/>
+    <string id="tsY4iHnO" text="Narzuć swoją wolę bez zwoływania rady"/>
+    <string id="Q8ItogIP" text="Zaproponuj bezpośrednio do&#10;{ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}"/>
+    <string id="BC7823G2" text="{?REPARATIONS_PAY}, płacąc {REPARATIONS} reparacji wojennych{?TRIBUTE_PAY} i {TRIBUTE} trybutu/dzień.{?}{?TRIBUTE_GET}, ale otrzymując {TRIBUTE} trybutu/dzień.{?}{\?}{\?}{?}{?REPARATIONS_GET}, otrzymując {REPARATIONS} reparacji wojennych{?TRIBUTE_PAY}, ale płacąc {TRIBUTE} trybutu/dzień.{?}{?TRIBUTE_GET} i {TRIBUTE} trybutu/dzień.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, płacąc {TRIBUTE} trybutu/dzień.{?}{?TRIBUTE_GET}, otrzymując {TRIBUTE} trybutu/dzień.{?}.{\?}{\?}{\?}{\?}"/>
+    <string id="9CvcPwJA" text="{?FIEFS_ANY} Być może będziesz musiał zwrócić część zdobytych lenn!{?}{\?}"/>
 
     <!--Millions and thousands-->
-    <string id="6xcW68Tw" text="Zawrzyj pakt"/>
-    <string id="oD4fZ2tY" text="Zawrzyj pakt o nieagresji trwający {DAYS} dni."/>
+    <string id="6xcW68Tw" text="{VALUE}mln"/>
+    <string id="oD4fZ2tY" text="{VALUE}tys."/>
 
-    <string id="XlL50Ha9" text="Statystyki"/>
+    <string id="XlL50Ha9" text="Nie można zawrzeć pokoju z królestwem, gdy gracz bierze udział w oblężeniu."/>
 
-    <string id="bCOCjOQM" text="Przegląd"/>
-    <string id="RxawrCjg" text="{ALLIED_KINGDOM} dołącza do sojusznika - {KINGDOM}, w wojnie przeciwko {ENEMY_KINGDOM}."/>
+    <string id="bCOCjOQM" text="Relacja."/>
+    <string id="RxawrCjg" text="Gwarantowany zysk relacji"/>
 
-    <string id="fXcEtO29" text="Pakt o nieagresji wygasł"/>
+    <string id="fXcEtO29" text="Nie można mieć aktywnego paktu o nieagresji."/>
 
-    <string id="zpNalMeA" text="Pakt o nieagresji pomiędzy {KINGDOM} i {OTHER_KINGDOM} wygasł."/>
-    <string id="y5tXjbLK" text="Korupcja (zbyt wiele lenn)"/>
-    <string id="noWHMN1W" text="Utrata wpływów (zbyt dużo wpływów)"/>
+    <string id="zpNalMeA" text="Sojusze"/>
+    <string id="y5tXjbLK" text="Wojny"/>
+    <string id="noWHMN1W" text="Pakty o nieagresji"/>
 
-    <string id="yj4XFa5T" text="Maksymalna utrata wpływów"/>
-    <string id="gyLjlpJB" text="Anuluj posłańca"/>
+    <string id="yj4XFa5T" text="Propozycja paktu o nieagresji"/>
+    <string id="gyLjlpJB" text="{KINGDOM} proponuje pakt o nieagresji z {PLAYER_KINGDOM}."/>
 
-    <string id="9pY0NQrk" text="Słaba frakcja"/>
-    <string id="9zlQNtlX" text="Relacja"/>
+    <string id="9pY0NQrk" text="Zawrzyj pakt"/>
+    <string id="9zlQNtlX" text="Zawrzyj pakt o nieagresji trwający {DAYS} dni."/>
 
-    <string id="1occw3EF" text="Sojusz z {ALLIED_KINGDOM}"/>
-    <string id="OvbY5qxL" text="Wojna z {ENEMY_KINGDOM}"/>
+    <string id="1occw3EF" text="Statystyki"/>
+    <string id="OvbY5qxL" text="Przegląd"/>
 
-    <string id="UDC8eW7s" text="Pakt o nieagresji z {KINGDOM}"/>
+    <string id="UDC8eW7s" text="{ALLIED_KINGDOM} dołącza do sojusznika - {KINGDOM}, w wojnie przeciwko {ENEMY_KINGDOM}."/>
 
-    <string id="pdI7Tjtj" text="Małżeństwo z wiodącym klanem {KINGDOM}"/>
-    <string id="uWY09LJb" text="Ta frakcja nie jest zainteresowana zawarciem z tobą paktu o nieagresji."/>
+    <string id="pdI7Tjtj" text="Pakt o nieagresji wygasł"/>
+    <string id="uWY09LJb" text="Pakt o nieagresji pomiędzy {KINGDOM} i {OTHER_KINGDOM} wygasł."/>
 
-    <string id="dUCOV7km" text="Przekaż złoto"/>
-    <string id="koTNaZUX" text="Uzurpuj tron"/>
-    <string id="uZc8Hg01" text="Uzurpuj sobie tron ​​​​tego królestwa\nWsparcie klanów: {SUPPORTING_TIERS} / {OPPOSING_TIERS}"/>
+    <string id="dUCOV7km" text="Korupcja (zbyt wiele lenn)"/>
+    <string id="koTNaZUX" text="Utrata wpływów (zbyt dużo wpływów)"/>
+    <string id="uZc8Hg01" text="Maksymalna utrata wpływów"/>
 
-    <string id="kMjfN2fB" text="Ekspansjonizm"/>
+    <string id="kMjfN2fB" text="Anuluj posłańca"/>
 
-    <string id="q5qphBwi" text="Koalicja utworzona"/>
-    <string id="sygtLRqA" text="Calradia staje się nieufna wobec nieubłaganej ekspansji {EXPANSIONIST_KINGDOM}. Aby z nimi walczyć, utworzono koalicję pod przewodnictwem {COALITION_KINGDOM}!"/>
+    <string id="q5qphBwi" text="Słaba frakcja"/>
+    <string id="sygtLRqA" text="Relacja"/>
 
-    <string id="cmOSpfyW" text="Królestwo {KINGDOM} zawarło pakt o nieagresji z {OTHER_KINGDOM}."/>
-    <string id="RqQ4oqvl" text="Królestwo {KINGDOM} utworzyło sojusz z {OTHER_KINGDOM}!"/>
-    <string id="t6YhBLj7" text="Obecny wynik"/>
-    <string id="BjkwaNot" text="Wymagany wynik"/>
+    <string id="cmOSpfyW" text="Sojusz z {ALLIED_KINGDOM}"/>
+    <string id="RqQ4oqvl" text="Wojna z {ENEMY_KINGDOM}"/>
+    <string id="t6YhBLj7" text="Pakt o nieagresji z {KINGDOM}"/>
+    <string id="BjkwaNot" text="Małżeństwo z wiodącym klanem {KINGDOM}"/>
 
-    <string id="M4SGjzQP" text="Pozostało dni: {DAYS_LEFT}"/>
+    <string id="M4SGjzQP" text="Ta frakcja nie jest zainteresowana zawarciem z tobą paktu o nieagresji."/>
 
-    <string id="Gzq6VHPt" text="Aby odblokować tę akcję, musisz przejść dalej w zadaniu głównym. Możesz wyłączyć ochronę głównego wątku fabularnego w opcjach modów."/>
-    <string id="N7goPgiq" text="Główny wątek fabularny"/>
-    <string id="WVe7QwhW" text="Uzurpując sobie ten tron, zobowiązujesz się do {STANCE} cesarstwa w głównym wątku fabularnym."/>
+    <string id="Gzq6VHPt" text="Przekaż złoto"/>
+    <string id="N7goPgiq" text="Uzurpuj tron"/>
+    <string id="WVe7QwhW" text="Uzurpuj sobie tron ​​​​tego królestwa\nWsparcie klanów: {SUPPORTING_TIERS} / {OPPOSING_TIERS}"/>
 
-    <string id="CxdpR6w4" text="zjednoczenia"/>
+    <string id="CxdpR6w4" text="Ekspansjonizm"/>
 
-    <string id="ARNRwPrY" text="zniszczenia"/>
-    <string id="qbLPBlIv" text="Nie masz uprawnień do wykonania tej czynności."/>
+    <string id="ARNRwPrY" text="Koalicja utworzona"/>
+    <string id="qbLPBlIv" text="Calradia staje się nieufna wobec nieubłaganej ekspansji {EXPANSIONIST_KINGDOM}. Aby z nimi walczyć, utworzono koalicję pod przewodnictwem {COALITION_KINGDOM}!"/>
 
-    <string id="vB3RrMNf" text="Przekaż złoto klanom w swoim królestwie"/>
-    <string id="PdN5g5ub" text="Koszt w złocie: {GOLD_COST}"/>
-    <string id="5r6fsHgm" text="Zysk w relacji: {RELATION_GAIN}+"/>
-    <string id="XIBUWDlT" text="Dyplomacja"/>
+    <string id="vB3RrMNf" text="Królestwo {KINGDOM} zawarło pakt o nieagresji z {OTHER_KINGDOM}."/>
+    <string id="PdN5g5ub" text="Królestwo {KINGDOM} utworzyło sojusz z {OTHER_KINGDOM}!"/>
+    <string id="5r6fsHgm" text="Obecny wynik"/>
+    <string id="XIBUWDlT" text="Wymagany wynik"/>
 
-    <string id="5znwaUVC" text="Dyplomacja królestwa"/>
+    <string id="5znwaUVC" text="Pozostało dni: {DAYS_LEFT}"/>
 
-    <string id="Euy6Mwcq" text="Gracz ma pierwszeństwo do osady"/>
-    <string id="fQxiCdBA" text="Daje graczowi możliwość nabycia osady jako pierwszemu zamiast poddania jej wyborom."/>
-    <string id="3wXqST66" text="Włącz eliminację królestw bez lenna"/>
-    <string id="yAFwbD9B" text="Jeśli włączone, królestwa bez żadnych lenn są niszczone, gdy podpisują traktat pokojowy kończący ostatnią trwającą wojnę, w której biorą udział. Domyślnie opcja jest włączona."/>
-    <string id="IGJVx5XI" text="Opóźnij eliminację królestw bez lenna"/>
+    <string id="Euy6Mwcq" text="Aby odblokować tę akcję, musisz posunąć się dalej w zadaniu głównym. Możesz wyłączyć ochronę głównego wątku fabularnego w opcjach moda."/>
+    <string id="fQxiCdBA" text="Główny wątek fabularny"/>
+    <string id="3wXqST66" text="Uzurpując sobie ten tron, zobowiązujesz się do {STANCE} cesarstwa w głównym wątku fabularnym."/>
+    <string id="yAFwbD9B" text="zjednoczenia"/>
+    <string id="IGJVx5XI" text="zniszczenia"/>
 
-    <string id="lQAaLeSy" text="Jeśli włączone, królestwa bez żadnych lenn zostaną zniszczone dopiero wtedy, gdy podpiszą traktat pokojowy kończący ostatnią trwającą wojnę, w której biorą udział, a nie natychmiast po utracie ostatniego lenna. Domyślnie opcja jest włączona."/>
+    <string id="lQAaLeSy" text="Nie masz uprawnień do wykonania tej czynności."/>
 
-    <string id="7QvXkcxH" text="Minimalny czas trwania wojny w dniach"/>
-    <string id="e7uxH1jc" text="Minimalny czas trwania wojny (w dniach), po którym można zaproponować pokój. Domyślna wartość to 21 dni (ćwierć standardowego roku gry)."/>
-    <string id="4lG3JG2e" text="Czas odnowienia do wypowiedzenia wojny w dniach"/>
+    <string id="7QvXkcxH" text="Przekaż złoto klanom w swoim królestwie"/>
+    <string id="e7uxH1jc" text="Koszt w złocie: {GOLD_COST}"/>
+    <string id="4lG3JG2e" text="Zysk w relacji: {RELATION_GAIN}+"/>
 
-    <string id="Q2vXbwvC" text="Minimalny czas trwania (w dniach) przed ponownym wypowiedzeniem wojny temu samemu królestwu po zawarciu pokoju. Domyślna wartość to 21 dni (ćwierć standardowego roku gry)."/>
+    <string id="Q2vXbwvC" text="Diplomacy"/>
     
     <!--
     ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
@@ -177,17 +180,17 @@
 
     <string id="sBw5Qzq3" text="Dyplomacja królestwa"/>
     <string id="tis8Ddzn" text="Gracz ma pierwszeństwo do osady"/>
-    <string id="TfxLCxcD" text="Daje graczowi możliwość nabycia osady jako pierwszemu zamiast poddania jej wyborom."/>
+    <string id="TfxLCxcD" text="Daje graczowi możliwość przejęcia osady, którą zdobył, zamiast poddawać ją pod głosowanie."/>
     <string id="8VKC3jtN" text="Włącz eliminację królestw bez lenna"/>
-    <string id="TlymwwPZ" text="Jeśli włączone, królestwa bez żadnych lenn są niszczone, gdy podpisują traktat pokojowy kończący ostatnią trwającą wojnę, w której biorą udział. Domyślnie opcja jest włączona."/>
+    <string id="TlymwwPZ" text="Jeśli opcja jest włączona, królestwa bez żadnych lenn są niszczone, gdy podpisują traktat pokojowy kończący ostatnią trwającą wojnę, w której biorą udział. Domyślnie opcja jest włączona."/>
     <string id="w8Hi9jJf" text="Opóźnij eliminację królestw bez lenna"/>
-    <string id="GDctI4Kd" text="Jeśli włączone, królestwa bez żadnych lenn zostaną zniszczone dopiero wtedy, gdy podpiszą traktat pokojowy kończący ostatnią trwającą wojnę, w której biorą udział, a nie natychmiast po utracie ostatniego lenna. Domyślnie opcja jest włączona."/>      
+    <string id="GDctI4Kd" text="Jeśli opcja jest włączona, królestwa bez żadnych lenn zostaną zniszczone dopiero wtedy, gdy podpiszą traktat pokojowy kończący ostatnią trwającą wojnę, w której biorą udział, a nie natychmiast po utracie ostatniego lenna. Domyślnie opcja jest włączona."/>      
     <string id="ZRlNvsev" text="Minimalny czas trwania wojny w dniach"/>
     <string id="vuFT5ns8" text="Minimalny czas trwania wojny (w dniach), po którym można zaproponować pokój. Domyślna wartość to 21 dni (ćwierć standardowego roku gry)."/>
     <string id="4MzQHMVj" text="Czas odnowienia do wypowiedzenia wojny w dniach"/>
     <string id="q2duqN8d" text="Minimalny czas trwania (w dniach) przed ponownym wypowiedzeniem wojny temu samemu królestwu po zawarciu pokoju. Domyślna wartość to 21 dni (ćwierć standardowego roku gry)."/>
     <string id="2XC8QHkl" text="Włącz sojusze"/>
-    <string id="5YJBZx28" text="Jeśli wyłączone, uniemożliwia to zawieranie sojuszy zarówno dla gracza, jak i królestw sterowanych przez sztuczną inteligencję. Domyślnie opcja jest włączona."/>
+    <string id="5YJBZx28" text="Jeśli opcja jest wyłączona, uniemożliwia to zawieranie sojuszy zarówno dla gracza, jak i królestw sterowanych przez sztuczną inteligencję. Domyślnie opcja jest włączona."/>
     <string id="H6XMjwpF" text="Minimalny czas trwania sojuszu w dniach"/>
     <string id="RrsWhIWi" text="Minimalny czas trwania sojuszu (w dniach), zanim będzie można go zerwać. Domyślna wartość to 42 dni (połowa standardowego roku gry)."/>
     <string id="5a829TiT" text="Tendencja do sojuszy"/>
@@ -200,9 +203,9 @@
     <string id="N5EouSSj" text="Daje graczowi pełną kontrolę nad wypowiadaniem wojny i zawieraniem pokoju w królestwie, do którego należy, nawet jeśli jest tylko wasalem, a nie przywódcą królestwa. Domyślnie opcja jest wyłączona."/>
     <string id="lhysZl9j" text="Tendencja do działania"/>
     <string id="dRyU9E7Z" text="Brak wojen między przyjaciółmi"/>
-    <string id="XyXJSTKr" text="Jeśli aktywne, przywódcy królestw, którzy są przyjaciółmi, nie będą rozpoczynać wojen między sobą. Domyślnie opcja jest włączona."/>
+    <string id="XyXJSTKr" text="Jeśli opcja jest włączona, przywódcy królestw, którzy są przyjaciółmi, nie będą rozpoczynać wojen między sobą. Domyślnie opcja jest włączona."/>
     <string id="pWoKQ6HO" text="Brak wojen przy dobrych relacjach"/>
-    <string id="bOuGhbPt" text="Jeśli aktywne, wojny między przywódcami królestw nie będą dozwolone, jeśli relacje są powyżej relacji umożliwiających rozpoczęcie wojny. Domyślnie opcja jest włączona."/>
+    <string id="bOuGhbPt" text="Jeśli opcja jest włączona, wojny między przywódcami królestw nie będą dozwolone, jeśli relacje są powyżej relacji umożliwiających rozpoczęcie wojny. Domyślnie opcja jest włączona."/>
     <string id="x0Aoiomr" text="Próg braku wojen przy dobrych relacjach"/>
     <string id="aH6rpjt6" text="Wartość relacji przywódców królestw, po której królestwa nie będą rozpoczynać wojen między sobą. Domyślna wartość to 30."/>
     <string id="jwNKk8P7" text="Brak wojen po zawarciu małżeństwa"/>
@@ -210,74 +213,74 @@
     <string id="xXKKRp99" text="Małżenstwo rodzinne przywódcy klanu ma wpływ na sojusz"/>
     <string id="BGS6mUID" text="Jeśli opcja jest włączona, przyzna bonus do tendencji zawierania sojuszu, gdy przywódcy klanów zawarli małżeństwo rodzinne między sobą. Domyślnie opcja jest włączona."/>
       
-    <string id="ldLFTs92" text="Włącz koszty wpływów"/>      
-    <string id="Ckd1Lsoa" text="Jeśli opcja jest wyłączona, usuwa koszty wpływów za wypowiadanie wojny i zawieranie pokoju. Domyślnie opcja jest włączona."/>
-    <string id="t4hNAoD7" text="Mnożnik kosztów wpływów"/>
-    <string id="5MMIDE5A" text="Włącz mnożnik kosztów wpływów"/>
-    <string id="vD270X6H" text="Jeśli opcja jest włączona, koszty wpływów będą mnożone w zależności od wielkości twojego królestwa. W przeciwnym razie stosowane są stałe koszty wpływów. Domyślnie opcja jest włączona."/>
-    <string id="Gd52NzBP" text="Mnożnik skalowania kosztów wpływów"/>
-    <string id="HFtZsD6v" text="Mnożnik dla skalowanych kosztów wpływów. Domyślna wartość to 5."/>
-    <string id="MIhbrqbr" text="Stały koszt wpływów"/>
-    <string id="Cr6a5Jap" text="Stały koszt wpływów za wypowiedzenie wojny"/>
-    <string id="NH4GNKva" text="Koszt wpływów za wypowiedzenie wojny innemu królestwu. Domyślna wartość to 500."/>
+    <string id="ldLFTs92" text="Koszty"/>      
+    <string id="Ckd1Lsoa" text="Koszty w złocie"/>
+    <string id="t4hNAoD7" text="Włącz mnożnik kosztów w złocie"/>
+    <string id="5MMIDE5A" text="Jeśli opcja jest włączona, mnożnik kosztów w złocie działań dyplomatycznych i reparacji wojennych będzie oparty na wielkości królestwa. W przeciwnym razie zostaną zastosowane ogólne mnożniki, 100 dla działań dyplomatycznych i 1000 dla reparacji wojennych. Domyślnie opcja jest włączona."/>
+    <string id="vD270X6H" text="Mnożnik kosztów w złocie"/>
+    <string id="Gd52NzBP" text="Mnożnik kosztów w złocie. Wartość domyślna to 5."/>
+    <string id="HFtZsD6v" text="Mnożnik kosztów w złocie za reparacje wojenne"/>
+    <string id="MIhbrqbr" text="Określa, jak szybko rosną koszty w złocie za reparacje wojenne. Domyślna wartość to 50."/>
+    <string id="Cr6a5Jap" text="Koszt w złocie za przegraną wojnę"/>
+    <string id="NH4GNKva" text="Podstawowy koszt w złocie za przegraną wojnę z innym królestwem. Wartość ta podlega skalowaniu. Gdy skalowanie jest wyłączone wartość zostaje pomnożona przez tysiąc. Domyślna wartość to 200."/>
 
-    <string id="SEViwYTl" text="Stały koszt wpływów za zawarcie pokoju"/>
-    <string id="WbOKuWbQ" text="Koszt wpływów za zawarcie pokoju z innym królestwem. Domyślna wartość to 500."/>
-    <string id="K2vLGalN" text="Posłańcy"/>
-    <string id="9PlT57Nl" text="Włącz wypadki posłańców"/>
-    <string id="P1g6Ht1e" text="Jeśl opcja jest włączona, istnieje niewielka szansa, że posłaniec poniesie porażkę. Im dłuższa podróż, tym większe ryzyko wypadku w drodze. Domyślnie opcja jest włączona."/>
-    <string id="xfVFBxfj" text="Ogranicz wysyłanie posłańców"/>
-    <string id="TvAYJv5Q" text="Jeśli opcja jest włączona, możesz wysyłać posłańców tylko do postaci, które spotkałeś lub o których istnieniu prawdopodobnie wiesz. W przeciwnym razie możesz wysyłać posłańców do dowolnej osoby, niezależnie od twojej wiedzy o adresacie. Domyślnie opcja jest włączona."/>
-    <string id="AQ5gRYN6" text="Czas podróży posłańca w dniach"/>
-    <string id="BazjeCZw" text="Maksymalny czas (w dniach), jaki może zająć posłańcowi dotarcie do adresata. Bezpośrednio wpływa na prędkość podróży posłańców. Domyślna wartość to 3."/>
-    <string id="OnTeAgin" text="Koszt w złocie za wysłanie posłańca"/>
-    <string id="O5XvybTI" text="Koszt w złocie za wysłanie posłańca do innej postaci. Domyślna wartość to 100."/>
-    <string id="iNsXQD2q" text="Relacje"/>
-    <string id="WB5zdvdT" text="Mnożnik pozytywnej relacji za nadanie lenna"/>
+    <string id="SEViwYTl" text="Koszty wpływów"/>
+    <string id="WbOKuWbQ" text="Włącz koszty wpływów"/>
+    <string id="K2vLGalN" text="Jeśli opcja jest wyłączona, usuwa koszty wpływów za wypowiadanie wojny i zawieranie pokoju. Domyślnie opcja jest włączona."/>
+    <string id="9PlT57Nl" text="Mnożnik kosztów wpływów"/>
+    <string id="P1g6Ht1e" text="Włącz mnożnik kosztów wpływów"/>
+    <string id="xfVFBxfj" text="Jeśli opcja jest włączona, koszty wpływów będą mnożone w zależności od wielkości twojego królestwa. W przeciwnym razie stosowane są stałe koszty wpływów. Domyślnie opcja jest włączona."/>
+    <string id="TvAYJv5Q" text="Mnożnik skalowania kosztów wpływów"/>
+    <string id="AQ5gRYN6" text="Mnożnik dla skalowanych kosztów wpływów. Domyślna wartość to 5."/>
+    <string id="BazjeCZw" text="Stały koszt wpływów"/>
+    <string id="OnTeAgin" text="Stały koszt wpływów za wypowiedzenie wojny"/>
+    <string id="O5XvybTI" text="Koszt wpływów za wypowiedzenie wojny innemu królestwu. Domyślna wartość to 500."/>
+    <string id="iNsXQD2q" text="Stały koszt wpływów za zawarcie pokoju"/>
+    <string id="WB5zdvdT" text="Koszt wpływów za zawarcie pokoju z innym królestwem. Domyślna wartość to 500."/>
 
-    <string id="nueOs6m9" text="Mnożnik przyrostu relacji po nadaniu lenna. Domyślna wartość to 1."/>
-    <string id="nwTyegdV" text="Kara do relacji za nadanie lenna"/>
-    <string id="T7yybpw3" text="Negatywna wartość relacji, która pojawia się przy nadaniu lenna innemu klanowi. Domyślna wartość to -2."/>
-    <string id="ysYCYvwT" text="Balansowanie wpływów"/>
-    <string id="5O87pSL3" text="Włącz balansowanie wpływów"/>
-    <string id="nnXi6MmH" text="Steruje aktywnością obliczeń utraty wpływów oraz korupcji. Może wymagać wyłączenia dla kompatybilności z innymi modami."/>
-    <string id="zkvCGLuK" text="Utrata wpływów"/>
-    <string id="nMwWHj4h" text="Włącz utratę wpływów"/>
-    <string id="ehMf7xvE" text="Włącza utratę wpływów, które stopniowo maleją każdego dnia. Domyślnie opcja jest włączona."/>
-    <string id="YolJlw95" text="Próg utraty wpływów"/>
-    <string id="P5NWxY6F" text="Ilość wpływów, która jest wolna od utraty. Domyślna wartość to 1000."/>
-    <string id="Hkv9Peqa" text="Dzienna maksymalna utrata wpływów"/>
-    <string id="ckYA36t8" text="Maksymalna dzienna utrata wpływów. Domyślna wartość to 20."/>
+    <string id="nueOs6m9" text="Posłańcy"/>
+    <string id="nwTyegdV" text="Włącz wypadki posłańców"/>
+    <string id="T7yybpw3" text="Jeśl opcja jest włączona, istnieje niewielka szansa, że posłaniec poniesie porażkę. Im dłuższa podróż, tym większe ryzyko wypadku w drodze. Domyślnie opcja jest włączona."/>
+    <string id="ysYCYvwT" text="Ogranicz wysyłanie posłańców"/>
+    <string id="5O87pSL3" text="Jeśli opcja jest włączona, możesz wysyłać posłańców tylko do postaci, które spotkałeś lub o których istnieniu prawdopodobnie wiesz. W przeciwnym razie możesz wysyłać posłańców do dowolnej osoby, niezależnie od twojej wiedzy o adresacie. Domyślnie opcja jest włączona."/>
+    <string id="nnXi6MmH" text="Czas podróży posłańca w dniach"/>
+    <string id="zkvCGLuK" text="Maksymalny czas (w dniach), jaki może zająć posłańcowi dotarcie do adresata. Bezpośrednio wpływa na prędkość podróży posłańców. Domyślna wartość to 3."/>
+    <string id="nMwWHj4h" text="Koszt w złocie za wysłanie posłańca"/>
+    <string id="ehMf7xvE" text="Koszt w złocie za wysłanie posłańca do innej postaci. Domyślna wartość to 100."/>
+    <string id="YolJlw95" text="Minimalny koszt w złocie za wysłania posłańca"/>
+    <string id="P5NWxY6F" text="Minimalny koszt w złocie za wysłanie posłańca do innej postaci. Domyślna wartość to 75."/>
+    <string id="Hkv9Peqa" text="Procent wpływów traconych każdego dnia. Domyślna wartość to 2.0."/>
+    <string id="ckYA36t8" text="Koszt w złocie za każdą godzinę podróży posłańca do innej postaci. Domyślna wartość to 1."/>
 
-    <string id="OfEMJWiR" text="Dzienny procent utraty wpływów"/>
-    <string id="6l9QNMrB" text="Procent wpływów traconych każdego dnia. Domyślna wartość to 2.0."/>
-    <string id="FQaghHo7" text="Korupcja"/>
-    <string id="9qKclHq3" text="Włącz korupcję"/>
-    <string id="fgc8Dvg0" text="Włącza korupcję, która stopniowo zmniejsza wpływy klanu każdego dnia, gdy posiada zbyt wiele lenn. Domyślnie opcja jest włączona."/>
+    <string id="OfEMJWiR" text="Relacje"/>
+    <string id="6l9QNMrB" text="Mnożnik pozytywnej relacji za nadanie lenna"/>
+    <string id="FQaghHo7" text="Mnożnik przyrostu relacji po nadaniu lenna. Domyślna wartość to 1."/>
+    <string id="9qKclHq3" text="Kara do relacji za nadanie lenna"/>
+    <string id="fgc8Dvg0" text="Negatywna wartość relacji, która pojawia się przy nadaniu lenna innemu klanowi. Domyślna wartość to -2."/>
 
-    <string id="8ZPKToTq" text="Ekspansjonizm"/>
-    <string id="4jlYRUdZ" text="Koalicje"/>
-    <string id="tOMN9DQD" text="Minimalna wartość ekspansjonizmu na lenno"/>
+    <string id="8ZPKToTq" text="Balansowanie wpływów"/>
+    <string id="4jlYRUdZ" text="Włącz balansowanie wpływów"/>
+    <string id="tOMN9DQD" text="Steruje aktywnością obliczeń utraty wpływów oraz korupcji. Może wymagać wyłączenia dla kompatybilności z innymi modami."/>
 
-    <string id="vzKRX2JA" text="Minimalna wartość ekspansjonizmu, jaką wnosi jedno lenno. Domyślna wartość to 3."/>
-    <string id="szYr4OTG" text="Ekspansjonizm za oblężenie"/>
-    <string id="rKS9z4Sz" text="Wartość ekspansjonizmu dodawana za udane oblężenie. Domyślna wartość to 20."/>
+    <string id="vzKRX2JA" text="Utrata wpływów"/>
+    <string id="szYr4OTG" text="Włącz utratę wpływów"/>
+    <string id="rKS9z4Sz" text="Włącza utratę wpływów, które stopniowo maleją każdego dnia. Domyślnie opcja jest włączona."/>
 
-    <string id="pVE1yNlm" text="Dzienna utrata ekspansjonizmu"/>
-    <string id="MnLk08uW" text="Ilość ekspansjonizmu tracona każdego dnia. Domyślna wartość to 1."/>
-    <string id="WTeM4Rba" text="Włącz koalicje"/>
-    <string id="CGixJ6ng" text="Włącza koalicje, które pozwalają frakcjom łączyć siły przeciwko innej, silnej, ekspansjonistycznej frakcji. Domyślnie opcja jest włączona."/>
-    <string id="yob5ZHtz" text="Próg ekspansjonizmu"/>
-    <string id="IYFl4kJx" text="Ilość ekspansjonizmu, którą frakcja musi osiągnąć, aby przeciwko niej została utworzona koalicja. Domyślna wartość to 100."/>
+    <string id="pVE1yNlm" text="Próg utraty wpływów"/>
+    <string id="MnLk08uW" text="Ilość wpływów, która jest wolna od utraty. Domyślna wartość to 1000."/>
+    <string id="WTeM4Rba" text="Dzienna maksymalna utrata wpływów"/>
+    <string id="CGixJ6ng" text="Maksymalna dzienna utrata wpływów. Domyślna wartość to 20."/>
+    <string id="yob5ZHtz" text="Dzienny procent utraty wpływów"/>
+    <string id="IYFl4kJx" text="Procent wpływów traconych każdego dnia. Domyślna wartość to 2.0."/>
 
-    <string id="e5fHDXgl" text="Dzienny procent szans na powstanie koalicji"/>
-    <string id="KWAH0S4h" text="Procentowa szansa na utworzenie koalicji przeciwko frakcji przekraczającej próg ekspansjonizmu. Domyślna wartość to 5."/>
-    <string id="trgnZ0pn" text="Ochrona linii fabularnej"/>
+    <string id="e5fHDXgl" text="Korupcja"/>
+    <string id="KWAH0S4h" text="Włącz korupcję"/>
+    <string id="trgnZ0pn" text="Włącza korupcję, która stopniowo zmniejsza wpływy klanu każdego dnia, gdy posiada zbyt wiele lenn. Domyślnie opcja jest włączona."/>
 
-    <string id="ZqQaUIil" text="Po włączeniu uniemożliwia graczowi zepsucie głównej linii fabularnej. Wyłącz przy używaniu modów takich jak &quot;Just Let Me Play&quot;. Domyślnie opcja jest włączona."/>
-    <string id="2raR1ZHv" text="Niedokończone funkcje"/>
-    <string id="Pr4dcRKm" text="Włącz funkcję uzurpacji tronu"/>
-    <string id="9qcAWjI7" text="Po włączeniu pozwala graczowi na przejęcie tronu królestwa. Funkcja jest niezbalansowana, oczekuje na przeróbkę i dlatego nie jest zalecana. Domyślnie opcja jest wyłączona."/>
+    <string id="ZqQaUIil" text="Ekspansjonizm"/>
+    <string id="2raR1ZHv" text="Koalicje"/>
+    <string id="Pr4dcRKm" text="Minimalna wartość ekspansjonizmu na lenno"/>
+    <string id="9qcAWjI7" text="Minimalna wartość ekspansjonizmu, jaką wnosi jedno lenno. Domyślna wartość to 3."/>
     <string id="MnhMW8iq" text="Ekspansjonizm za oblężenie"/>
     <string id="lCbie62E" text="Wartość ekspansjonizmu dodawana za udane oblężenie. Domyślna wartość to 20."/>
     <string id="mEXGC0h3" text="Dzienna utrata ekspansjonizmu"/>
