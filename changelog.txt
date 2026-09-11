@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.5.2
-Game Versions: v1.4.x, v1.5.1, v1.5.2
+Game Versions: v1.4.0, v1.4.1, v1.4.2, v1.4.3, v1.4.4, v1.4.5, v1.4.6, v1.4.7, v1.4.8, v1.5.1, v1.5.2
 * Adapted for newer game versions, up to v1.5.2.
 * Restored dedicated builds for game versions v1.4.2, v1.4.3 and v1.4.4.
 * Fixed a family of crashes that occurred while a kingdom had no ruler: clan defection, kingdom decisions, trade agreements, peace proposals, war declaration barters, civil war scoring and abdication rebellions. (#322)
