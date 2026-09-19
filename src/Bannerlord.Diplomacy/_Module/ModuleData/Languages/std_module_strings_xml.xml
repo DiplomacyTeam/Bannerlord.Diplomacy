@@ -5,7 +5,7 @@
   </tags>
   <strings>
     <string id="MYz8nKqq" text="Diplomacy" />
-    <string id="hPERH3u4" text="Loaded Diplomacy" />
+    <string id="hPERH3u4" text="Loaded {NAME}" />
 
     <string id="TS1iV2pO" text="Not enough influence!" />
     <string id="XQFxDr11" text="There is an active quest preventing it!" />
@@ -20,6 +20,7 @@
       
     <string id="zv12jjyW" text="Messenger Sent" />
     <string id="uy86VZX2" text="Messenger Arrived" />
+    <string id="kq3g73j2" text="Messenger Eaten" />
 
     <string id="JmgAuONd" text="Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
     <string id="YnRmSele" text="The messenger from {FACTION1_NAME} has arrived at {ADDRESSEE_TEXT}.{BRIBE_TEXT}" />
@@ -35,7 +36,7 @@
     <string id="hOOW2DMD" text="Your messenger found a treasure map and is now looking for the treasure, instead of delivering the message." />
     <string id="hc52yW8O" text="Your messenger forgot the message, you will have to send him again." />
     <string id="2rJDoi7N" text="Your messenger drank too much and is now sleeping it off." />
-    <string id="VKqC9dl0" text="Your messenger took the money and ran away." />
+    <string id="VKqC9dl0" text="Your messenger take the money and ran away." />
     <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\?}" />
     <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Unfortunately, the messenger is denied access to the keep, but can try to bribe the guards. It would cost {?IS_FEMALE}her{?}him{\?} {GOLD_COST}{GOLD_ICON} and you will have to cover the expenses{?CAN_AFFORD}.{?}, which you can't afford at the moment.{\?}" />
 
@@ -106,7 +107,7 @@
     <string id="XlL50Ha9" text="Can't make peace with a kingdom during an active player siege." />
 
     <string id="bCOCjOQM" text="Relat." />
-    <string id="RxawrCjg" text="Relationship Gain with Grantee"/>
+    <string id="RxawrCjg" text="Relationship Gain with Receiver"/>
 
     <string id="fXcEtO29" text="Cannot have an active non-aggression pact." />
 
@@ -128,17 +129,17 @@
     <string id="pdI7Tjtj" text="Non-Aggression Pact Expired"/>
     <string id="uWY09LJb" text="The non-aggression pact between {KINGDOM} and {OTHER_KINGDOM} has expired."/>
 
-    <string id="dUCOV7km" text="Corruption (too many fiefs)"/>
-    <string id="koTNaZUX" text="Influence Decay (too much influence)"/>
+    <string id="dUCOV7km" text="Corruption: Too Many Fiefs"/>
+    <string id="koTNaZUX" text="Decay of High Influence"/>
     <string id="uZc8Hg01" text="Maximum Influence Loss"/>
 
     <string id="kMjfN2fB" text="Cancel Messenger"/>
 
-    <string id="q5qphBwi" text="Weak Faction"/>
+    <string id="q5qphBwi" text="Weak Kingdom"/>
     <string id="sygtLRqA" text="Relationship"/>
 
-    <string id="cmOSpfyW" text="Alliance with {ALLIED_KINGDOM}"/>
-    <string id="RqQ4oqvl"  text="War with {ENEMY_KINGDOM}"/>
+    <string id="cmOSpfyW" text="Alliance with {KINGDOM}"/>
+    <string id="RqQ4oqvl"  text="War with {KINGDOM}"/>
     <string id="t6YhBLj7" text="Non-Aggression Pact with {KINGDOM}" />
     <string id="BjkwaNot" text="Marriage with leading clan of {KINGDOM}" />
 
@@ -167,6 +168,7 @@
     <string id="IGJVx5XI" text="destroying"/>
 
     <string id="lQAaLeSy" text="You don't have the authority to perform this action."/>
+    <string id="ke94ceNo" text="Faction has been eliminated."/>
 
     <string id="7QvXkcxH" text="Donate gold to clans in your kingdom"/>
     <string id="e7uxH1jc" text="Gold Cost: {GOLD_COST}"/>
