@@ -42,6 +42,8 @@ namespace Diplomacy.CampaignBehaviors
 
         private void DailyTick()
         {
+            ResolveOrphanedRebelFactions();
+
             var expiredFactions = RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Where(x => x.DateStarted.ElapsedDaysUntilNow > Settings.Instance!.MaximumFactionDurationInDays).Distinct().ToList();
             foreach (var rebelFaction in expiredFactions)
             {
@@ -232,8 +234,51 @@ namespace Diplomacy.CampaignBehaviors
         {
             foreach (var faction in RebelFactionManager.GetRebelFaction(destroyedKingdom).ToList())
             {
-                RebelFactionManager.DestroyRebelFaction(faction, faction.AtWar);
+                ResolveOrphanedRebelFaction(faction, parentIsGone: true);
             }
+
+            // A destroyed rebel kingdom leaves its faction registered under the parent, which would keep
+            // the parent flagged as having an active rebellion for the rest of the campaign.
+            foreach (var faction in RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x)
+                         .Where(x => x.RebelKingdom == destroyedKingdom).Distinct().ToList())
+            {
+                RebelFactionManager.DestroyRebelFaction(faction, rebelKingdomSurvived: false);
+            }
+        }
+
+        /// <summary>
+        /// Civil wars are normally resolved by <see cref="ResolveCivilWar"/>, which only runs when peace is
+        /// made. If one side is wiped out instead, no peace is ever declared, so the faction stays registered
+        /// and its kingdom stays flagged as a rebel kingdom - which hides it from the diplomacy tab and blocks
+        /// war declarations and hostile actions against it for the rest of the campaign.
+        /// </summary>
+        private static void ResolveOrphanedRebelFactions()
+        {
+            var orphanedFactions = RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x)
+                .Where(x => x.ParentKingdom.IsEliminated || (x.AtWar && x.RebelKingdom is { IsEliminated: true }))
+                .Distinct()
+                .ToList();
+
+            foreach (var rebelFaction in orphanedFactions)
+            {
+                ResolveOrphanedRebelFaction(rebelFaction, rebelFaction.ParentKingdom.IsEliminated);
+            }
+        }
+
+        private static void ResolveOrphanedRebelFaction(RebelFaction rebelFaction, bool parentIsGone)
+        {
+            var rebelKingdomSurvived = rebelFaction.RebelKingdom is { IsEliminated: false };
+
+            // The rebels outlived the kingdom they broke away from, so their demand is already satisfied.
+            // Only secession can be enforced at this point: every other demand acts on the parent kingdom,
+            // which no longer exists.
+            if (parentIsGone && rebelKingdomSurvived && rebelFaction.AtWar && rebelFaction is SecessionFaction)
+            {
+                rebelFaction.EnforceSuccess();
+                return;
+            }
+
+            RebelFactionManager.DestroyRebelFaction(rebelFaction, rebelKingdomSurvived);
         }
 
         private void OnGameLoadFinished() => _rebelFactionManager.OnAfterSaveLoaded();
