@@ -154,7 +154,10 @@ namespace Diplomacy.ViewModelMixin
                 if (ViewModel!.Stats.Count > 1 && ViewModel!.Stats[1].Name.Equals(_TWarExhaustion.ToString()))
                     ViewModel!.Stats.RemoveAt(1);
 
-                ViewModel!.Stats.Insert(1, new KingdomWarComparableStatVM(
+                // Stats is cleared and repopulated by UpdateDiplomacyProperties, so it can be empty here
+                var insertIndex = ViewModel!.Stats.Count > 0 ? 1 : 0;
+
+                ViewModel!.Stats.Insert(insertIndex, new KingdomWarComparableStatVM(
                     (int) WarExhaustionManager.Instance!.GetWarExhaustion(_faction1, _faction2),
                     (int) WarExhaustionManager.Instance!.GetWarExhaustion(_faction2, _faction1),
                     _TWarExhaustion,

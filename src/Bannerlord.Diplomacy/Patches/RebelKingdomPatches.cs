@@ -38,8 +38,13 @@ namespace Diplomacy.Patches
                 return;
             }
 
-            var conversationParty = Campaign.Current.ConversationManager.ConversationParty;
-            __result = !ShouldPreventHostileAction(conversationParty.MapFaction);
+            var conversationFaction = GetConversationFaction();
+            if (conversationFaction is null)
+            {
+                return;
+            }
+
+            __result = !ShouldPreventHostileAction(conversationFaction);
         }
 
         private static void PreventHostileActionsMenu(ref bool __result)
@@ -49,7 +54,12 @@ namespace Diplomacy.Patches
                 return;
             }
 
-            var village = Settlement.CurrentSettlement.Village;
+            var village = Settlement.CurrentSettlement?.Village;
+            if (village?.Owner is null)
+            {
+                return;
+            }
+
             __result = !ShouldPreventHostileAction(village.Owner.MapFaction);
         }
 
@@ -60,7 +70,12 @@ namespace Diplomacy.Patches
                 return;
             }
 
-            var conversationFaction = Campaign.Current.ConversationManager.ConversationParty?.MapFaction ?? Campaign.Current.ConversationManager.OneToOneConversationHero.MapFaction;
+            var conversationFaction = GetConversationFaction();
+            if (conversationFaction is null)
+            {
+                return;
+            }
+
             var shouldPreventAction = conversationFaction.MapFaction is Kingdom encounteredKingdom && encounteredKingdom.IsRebelKingdom();
             __result = !shouldPreventAction;
         }
@@ -72,10 +87,23 @@ namespace Diplomacy.Patches
                 return;
             }
 
-            var conversationParty = Campaign.Current.ConversationManager.ConversationParty;
-            var shouldPreventAction = conversationParty.MapFaction is Kingdom encounteredKingdom && encounteredKingdom.IsRebelKingdom() &&
-                                 Clan.PlayerClan.MapFaction != conversationParty.MapFaction;
+            var conversationFaction = GetConversationFaction();
+            if (conversationFaction is null)
+            {
+                return;
+            }
+
+            var shouldPreventAction = conversationFaction.MapFaction is Kingdom encounteredKingdom && encounteredKingdom.IsRebelKingdom() &&
+                                 Clan.PlayerClan.MapFaction != conversationFaction.MapFaction;
             __result = !shouldPreventAction;
+        }
+
+        // Neither the conversation party nor the one-to-one hero is guaranteed to be set while these
+        // conditions are evaluated, so both have to be treated as optional.
+        private static IFaction? GetConversationFaction()
+        {
+            var conversationManager = Campaign.Current?.ConversationManager;
+            return conversationManager?.ConversationParty?.MapFaction ?? conversationManager?.OneToOneConversationHero?.MapFaction;
         }
 
         private static bool ShouldPreventHostileAction(IFaction otherFaction)
