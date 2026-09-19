@@ -4,6 +4,8 @@ Game Versions: v1.4.0, v1.4.1, v1.4.2, v1.4.3, v1.4.4, v1.4.5, v1.4.6, v1.4.7, v
 * Adapted for the v1.5.3 beta game version.
 * Fixed a crash that took down every kingdom screen when war exhaustion stats were inserted into an empty list, including the screen opened from a kingdom vote notification. (#329)
 * Fixed messengers whose target hero was removed from the campaign lingering as invalid entries, causing errors. (#326)
+* Fixed civil wars never ending when one side was wiped out instead of making peace, which left the surviving rebel kingdom permanently treated as rebels: missing from the diplomacy tab, immune to war declarations and impossible to raid. Affected saves repair themselves on the next day.
+* Fixed a crash when talking to a lord while no conversation party was set.
 ---------------------------------------------------------------------------------------------------
 Version: 1.5.2
 Game Versions: v1.4.0, v1.4.1, v1.4.2, v1.4.3, v1.4.4, v1.4.5, v1.4.6, v1.4.7, v1.4.8, v1.5.1, v1.5.2
