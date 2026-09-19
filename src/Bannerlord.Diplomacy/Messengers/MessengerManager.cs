@@ -212,7 +212,7 @@ namespace Diplomacy.Messengers
             {
                 // FIXME: Definitely would like to remove the silliness here.
                 // Jiros: Added to catch crash when Hero and Target are in the same party. [v1.5.3-release]
-                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Eaten").ToString(),
+                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=kq3g73j2}Messenger Eaten").ToString(),
                     new TextObject("{=JmgAuONd}Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!", new() { ["HERO_NAME"] = messenger.TargetHero.Name })
                         .ToString(),
                     true,
