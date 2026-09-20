@@ -36,7 +36,7 @@
     <string id="hOOW2DMD" text="Your messenger found a treasure map and is now looking for the treasure, instead of delivering the message." />
     <string id="hc52yW8O" text="Your messenger forgot the message, you will have to send him again." />
     <string id="2rJDoi7N" text="Your messenger drank too much and is now sleeping it off." />
-    <string id="VKqC9dl0" text="Your messenger take the money and ran away." />
+    <string id="VKqC9dl0" text="Your messenger took the money and ran away." />
     <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} of {FACTION2_NAME}{?}{\?}" />
     <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Unfortunately, the messenger is denied access to the keep, but can try to bribe the guards. It would cost {?IS_FEMALE}her{?}him{\?} {GOLD_COST}{GOLD_ICON} and you will have to cover the expenses{?CAN_AFFORD}.{?}, which you can't afford at the moment.{\?}" />
 
