@@ -44,7 +44,7 @@
     <string id="Ysrttgis" text="开始日期：{CAMPAIGN_TIME}"/>
     <string id="o3w3jNzZ" text="要求：{DEMAND_NAME}"/>
     <string id="hbPiVQVK" text="状态：{STATUS}"/>
-    <string id="TvSHYACm" text="力量：{STRENGTH}"/>
+    <string id="TvSHYACm" text="力量"/>
     <string id="dlANhHUd" text="派系"/>
     <string id="hBSo0Ziq" text="创建派系"/>
     <string id="2PglxF8k" text="选择阵营需求"/>

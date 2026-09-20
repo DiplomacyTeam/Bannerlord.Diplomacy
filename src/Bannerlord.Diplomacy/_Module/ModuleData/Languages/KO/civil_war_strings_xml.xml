@@ -44,7 +44,7 @@
     <string id="Ysrttgis" text="선포 날짜: {CAMPAIGN_TIME}"/>
     <string id="o3w3jNzZ" text="요구사항: {DEMAND_NAME}"/>
     <string id="hbPiVQVK" text="현재상태: {STATUS}"/>
-    <string id="TvSHYACm" text="규모: {STRENGTH}"/>
+    <string id="TvSHYACm" text="규모"/>
     <string id="dlANhHUd" text="파벌"/>
     <string id="hBSo0Ziq" text="파벌 설립"/>
     <string id="2PglxF8k" text="파벌의 요구사항 선택"/>

@@ -134,8 +134,8 @@
     <string id="q5qphBwi" text="Zayıf Krallık"/>
     <string id="sygtLRqA" text="İlişki"/>
 
-    <string id="cmOSpfyW" text="{ALLIED_KINGDOM} ile İttifak"/>
-    <string id="RqQ4oqvl" text="{ENEMY_KINGDOM} ile Savaş"/>
+    <string id="cmOSpfyW" text="{KINGDOM} ile İttifak"/>
+    <string id="RqQ4oqvl" text="{KINGDOM} ile Savaş"/>
     <string id="t6YhBLj7" text="{KINGDOM} ile Saldırmazlık Antlaşması"/>
     <string id="BjkwaNot" text="{KINGDOM} ile yönetici klan evliliği"/>
 
