@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Français"/>
+  </tags>
+  <strings>
+    <string id="MYz8nKqq" text="Diplomatie"/>
+    <string id="hPERH3u4" text="Diplomatie - Chargée"/>
+
+    <string id="TS1iV2pO" text="Pas assez d'influence !"/>
+    <string id="XQFxDr11" text="Une quête en cours empêche ceci !"/>
+    <string id="ONNcmltF" text="Cette guerre a été déclarée trop récemment pour faire la paix. Il ne s'est écoulé que {ELAPSED_DAYS} jours sur les {REQUIRED_DAYS} jours requis."/>
+    <string id="GuPOCNNZ" text="La trêve a été conclue trop récemment pour la briser maintenant. Il ne s'est écoulé que {ELAPSED_DAYS} jours sur les {REQUIRED_DAYS} jours requis."/>
+
+    <string id="v0cDMIcl" text="Vous ne pouvez pas déclarer la guerre à ce royaume. "/>
+    <string id="Pqk3WuGz" text="Vous ne pouvez pas faire la paix avec ce royaume. "/>
+    <string id="9aaZ8Ed4" text="Vous ne pouvez pas déclarer la guerre aux souverains amis."/>
+    <string id="Zimavbgw" text="Vous ne pouvez pas déclarer la guerre à des souverains avec lesquelles vous entretenez d'excellentes relations."/>
+    <string id="pXD8Uf2e" text="Vous ne pouvez pas déclarer la guerre à des clans souverains liés à votre clan par des alliances matrimoniales."/>
+      
+    <string id="zv12jjyW" text="Messager envoyé"/>
+    <string id="uy86VZX2" text="Messager arrivé"/>
+
+    <string id="JmgAuONd" text="Hélas. Le messager a été pris dans une embuscade et mangé par un Grue en essayant d'atteindre {HERO_NAME} !"/>
+    <string id="YnRmSele" text="Le messager en provenance {.dl}{FACTION1_NAME} est arrivé à {ADDRESSEE_TEXT}.{BRIBE_TEXT}"/>
+    <string id="C7XPJZAM" text="Le messager en provenance {.dl}{FACTION1_NAME} arrivera à {ADDRESSEE_TEXT} dans moins d'une heure."/>
+    <string id="k5i2F6UD" text="Le messager en provenance {.dl}{FACTION1_NAME} arrivera à {ADDRESSEE_TEXT} dans {TRAVEL_TIME} jour."/>
+    <string id="qNWMZP0z" text="Le messager en provenance {.dl}{FACTION1_NAME} arrivera à {ADDRESSEE_TEXT} dans {TRAVEL_TIME} jours."/>
+    <string id="G2NMbFDb" text="Le messager en provenance {.dl}{FACTION1_NAME} arrivera à {ADDRESSEE_TEXT} dans {TRAVEL_TIME} heure."/>
+    <string id="gfZgMSYD" text="Le messager en provenance {.dl}{FACTION1_NAME} arrivera à {ADDRESSEE_TEXT} dans {TRAVEL_TIME} heures."/>
+    <string id="nYrezEOX" text="Messager tué"/>
+    <string id="A5lug0JY" text="Votre messager est tombé dans une embuscade et a été tué par des bandits de grand chemin en essayant d'atteindre {HERO NAME} !"/>
+    <string id="1rYSIMfX" text="Votre messager a été pris dans une embuscade et mangé par un Grue en essayant d'atteindre {HERO NAME} !"/>
+    <string id="J2T97gNx" text="Votre messager s'est perdu et erre maintenant dans le monde sans but."/>
+    <string id="hOOW2DMD" text="Votre messager a trouvé une carte au trésor. Il part à la recherche du butin plutôt que de délivrer le message."/>
+    <string id="hc52yW8O" text="Votre messager a oublié le message. Vous devez l'envoyer à nouveau."/>
+    <string id="2rJDoi7N" text="Votre messager est ivre et s'est endormi."/>
+    <string id="VKqC9dl0" text="Votre messager a pris l'or et s'est enfuit."/>
+    <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} de {FACTION2_NAME}{?}{\?}"/>
+    <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Hélas, le messager n'est pas autorisé à entrer dans le donjon, mais il peut tenter de corrompre les gardes. Cela lui coûtera {GOLD_COST}{GOLD_ICON} et vous devrez couvrir les frais{?CAN_AFFORD}.{?}, ce que vous ne pouvez pas vous permettre pour l'instant.{\?}"/>
+
+    <string id="bLR91Eob" text="{REASON}Le messager ne pourra pas atteindre le destinataire."/>
+    <string id="hPra5uwZ" text="Soit votre messager ne comprend, soit il n'a pas apprécié votre blague et refuse d'accomplir sa mission."/>
+    <string id="1mlXBnSs" text="Vous connaissez trop peu {HERO_NAME} pour lui envoyer un messager."/>
+    <string id="HHgTlyyt" text="D'après les rumeurs, {HERO_NAME} est en mer en ce moment. Mieux vaut attendre qu'{?IS_FEMALE}elle{?}il{\?} rejoigne la terre ferme."/>
+
+    <string id="vhsHDMil" text="{HERO_NAME} est mort. "/>
+    <string id="CusN2JMb" text="{HERO_NAME} est emprisonné {?IS_MOBILE}par{?}dans{\?} {DETENTION_PLACE}. "/>
+    <string id="1BISlFYx" text="{HERO_NAME} est en fuite et ne veut pas être retrouvé. "/>
+    <string id="ze8KJ1oL" text="{HERO_NAME} vient d'être libéré{?IS_FEMALE}e{?}{\?} et n'est pas encore en mesure de rencontrer quiconque. "/>
+    <string id="N5T6IXWJ" text="{HERO_NAME} voyage incognito. "/>
+    <string id="3lknR86H" text="{HERO_NAME} manque d'expérience pour assister à des rencontres officielles. "/>
+
+    <string id="BkGSVccZ" text="Accord de paix"/>
+    <string id="3fTqLwkC" text="Accepter"/>
+    <string id="dRoMejb0" text="Refuser"/>
+
+    <string id="cXfcwzPp" text="Envoyer un messager"/>
+
+    <string id="N06wk0dB" text="Colonie capturée"/>
+    <string id="Zy0yjTha" text="Vous avez conquis {SETTLEMENT_NAME} et êtes prioritaire pour en revendiquer la possession. Souhaitez-vous réclamer ce fief ?"/>
+
+    <string id="IWZ91JVk" text="Pas assez d'or !"/>
+
+    <string id="LpoyhORp" text="Octroyer un fief"/>
+    <string id="h3b1S5Wq" text="Octroyer un fief à {CLAN_NAME}"/>
+    <string id="jznJfkfU" text="Fief octroyé"/>
+    <string id="cXbgaPSm" text="{.L}{SETTLEMENT_NAME} a été octroyé à {CLAN_NAME}."/>
+
+    <string id="FqeN0fmR" text="Vous ne pouvez pas octroyer de fiefs à votre propre clan."/>
+    <string id="zdSYUnZQ" text="Vous n'êtes pas le souverain de votre royaume."/>
+    <string id="D61vzEC7" text="Vous n'avez pas de fiefs à octroyer."/>
+    <string id="98hwXUTp" text="Octroyer des fiefs aux clans de votre royaume"/>
+    <string id="Q7jRqnez" text="Vous ne pouvez pas octroyer de fiefs aux clans mercenaires."/>
+
+    <string id="DrnXprup" text="Vous avez été en guerre trop récemment pour conclure une alliance. Il ne s'est écoulé que {ELAPSED_DAYS} jours sur les {REQUIRED_DAYS} jours requis."/>
+    <string id="KHJyWj9H" text="Ne peut pas intégrer une alliance."/>
+    <string id="UQZmdLzc" text="Ne peut pas être en guerre."/>
+    <string id="qIa19an4" text="Alliance formée"/>
+    <string id="3pbwc8sh" text="Proposition d'Alliance"/>
+    <string id="QbOqatd7" text="{.L}{KINGDOM} propose une alliance avec {PLAYER_KINGDOM}."/>
+
+    <string id="384jX28Q" text="{.L}{KINGDOM} rompt son alliance avec {PLAYER_KINGDOM}."/>
+    <string id="D1ZQKZr1" text="Alliance Rompue"/>
+
+    <string id="0WPWbx70" text="Former une alliance"/>
+    <string id="K4GraLTn" text="Rompre l'alliance"/>
+    <string id="5R7twvD2" text="Faire la paix"/>
+    <string id="nkOVblQ4" text="Déclarer la guerre"/>
+
+    <string id="VvTTrRpl" text="Cette faction n’est pas intéressée par une alliance."/>
+    <string id="wst0lArp" text="Cette alliance est trop récente pour la rompre maintenant. Il ne s'est écoulé que {ELAPSED_DAYS} jours sur les {REQUIRED_DAYS} jours requis."/>
+
+    <string id="KqfNSsBE" text="Alliés"/>
+    <string id="Dirltd6Z" text="Les alliances sont désactivées."/>
+
+    <string id="tsY4iHnO" text="Imposer votre décision sans convoquer le conseil"/>
+    <string id="Q8ItogIP" text="Proposer directement {.a}{ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}"/>
+    <string id="BC7823G2" text="{?REPARATIONS_PAY}, paie {REPARATIONS} réparations de guerre{?TRIBUTE_PAY} et {TRIBUTE} tribut/jour.{?}{?TRIBUTE_GET}, mais reçoit {TRIBUTE} tribut/jour.{?}{\?}{\?}{?}{?REPARATIONS_GET}, reçoit {REPARATIONS} réparations de guerre{?TRIBUTE_PAY}, mais paie {TRIBUTE} tribut/jour.{?}{?TRIBUTE_GET} et {TRIBUTE} tribut/jour.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, paie {TRIBUTE} tribut/jour.{?}{?TRIBUTE_GET}, reçoit {TRIBUTE} tribut/jour.{?}.{\?}{\?}{\?}{\?}"/>
+    <string id="9CvcPwJA" text="{?FIEFS_ANY} Il se peut que certains fiefs conquis doivent être restitués.{?}{\?}"/>
+
+    <!--Millions and thousands-->
+    <string id="6xcW68Tw" text="{VALUE}M"/>
+    <string id="oD4fZ2tY" text="{VALUE}K"/>
+
+    <string id="XlL50Ha9" text="Impossible de faire la paix avec un royaume pendant un siège."/>
+
+    <string id="bCOCjOQM" text="Relat."/>
+    <string id="RxawrCjg" text="Gain de relation avec le bénéficiaire"/>
+
+    <string id="fXcEtO29" text="Ne peut pas avoir de pacte de non-agression en vigueur."/>
+
+    <string id="zpNalMeA" text="Alliances"/>
+    <string id="y5tXjbLK" text="Guerres"/>
+    <string id="noWHMN1W" text="Pactes de non-agression"/>
+
+    <string id="yj4XFa5T" text="Proposition de Pacte de Non-Agression"/>
+    <string id="gyLjlpJB" text="{.L}{KINGDOM} propose un pacte de non-agression avec {.l}{PLAYER_KINGDOM}."/>
+
+    <string id="9pY0NQrk" text="Signer un Pacte"/>
+    <string id="9zlQNtlX" text="Signer un pacte de non-agression d'une durée de {DAYS} jours."/>
+
+    <string id="1occw3EF" text="Statistiques"/>
+    <string id="OvbY5qxL" text="Vue d'ensemble"/>
+
+    <string id="UDC8eW7s" text="{.L}{ALLIED_KINGDOM} a rejoint son allié, {.l}{KINGDOM}, dans la guerre contre {.l}{ENEMY_KINGDOM}."/>
+
+    <string id="pdI7Tjtj" text="Pacte de non-agression expiré"/>
+    <string id="uWY09LJb" text="Le pacte de non-agression entre {.l}{KINGDOM} et {.l}{OTHER_KINGDOM} a expiré."/>
+
+    <string id="dUCOV7km" text="Corruption (trop de fiefs)"/>
+    <string id="koTNaZUX" text="Déclin de l'influence (trop d'influence)"/>
+    <string id="uZc8Hg01" text="Perte d'influence maximale"/>
+
+    <string id="kMjfN2fB" text="Annuler le messager"/>
+
+    <string id="q5qphBwi" text="Faction faible"/>
+    <string id="sygtLRqA" text="Relation"/>
+
+    <string id="cmOSpfyW" text="Alliance avec {.l}{ALLIED_KINGDOM}"/>
+    <string id="RqQ4oqvl" text="Guerre contre {.l}{ENEMY_KINGDOM}"/>
+    <string id="t6YhBLj7" text="Pacte de non-agression avec {.l}{KINGDOM}"/>
+    <string id="BjkwaNot" text="Mariage avec le clan souverain {.dl}{KINGDOM}"/>
+
+    <string id="M4SGjzQP" text="Cette faction n'est pas intéressée à signer un pacte de non-agression."/>
+
+    <string id="Gzq6VHPt" text="Donner de l'or"/>
+    <string id="N7goPgiq" text="Usurper le trône"/>
+    <string id="WVe7QwhW" text="Usurper le trône de ce royaume\nSoutien des clans : {SUPPORTING_TIERS} / {OPPOSING_TIERS}"/>
+
+    <string id="CxdpR6w4" text="Expansionnisme"/>
+
+    <string id="ARNRwPrY" text="Coalition Formée"/>
+    <string id="qbLPBlIv" text="Calradia s'inquiète de l'expansion inexorable de {EXPANSIONIST_KINGDOM}. Une coalition dirigée par {.l}{COALITION_KINGDOM} a été formée pour les combattre !"/>
+
+    <string id="vB3RrMNf" text="{.L}{KINGDOM} a signé un pacte de non-agression avec {.l}{OTHER_KINGDOM}."/>
+    <string id="PdN5g5ub" text="{.L}{KINGDOM} a formé une alliance avec {.l}{OTHER_KINGDOM}."/>
+    <string id="5r6fsHgm" text="Score actuel"/>
+    <string id="XIBUWDlT" text="Score requis"/>
+
+    <string id="5znwaUVC" text="Jours restants: {DAYS_LEFT}"/>
+
+    <string id="Euy6Mwcq" text="Vous devez progresser dans la quête principale pour débloquer cette action. Vous pouvez désactiver la protection du scénario dans les paramètres du mod."/>
+    <string id="fQxiCdBA" text="Quête principale"/>
+    <string id="3wXqST66" text="Usurper ce trône signifie que vous vous engagez à {STANCE} l'empire dans la quête principale."/>
+    <string id="yAFwbD9B" text="unifier"/>
+    <string id="IGJVx5XI" text="détruire"/>
+
+    <string id="lQAaLeSy" text="Vous n’avez pas l’autorité nécessaire pour effectuer cette action."/>
+
+    <string id="7QvXkcxH" text="Donner de l'or aux clans de votre royaume"/>
+    <string id="e7uxH1jc" text="Coût en or : {GOLD_COST}"/>
+    <string id="4lG3JG2e" text="Gain de relation : +{RELATION_GAIN}"/>
+
+    <string id="Q2vXbwvC" text="Diplomatie"/>
+    
+    <!--
+    ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
+    -->
+
+    <string id="sBw5Qzq3" text="Diplomatie du Royaume"/>
+    <string id="tis8Ddzn" text="Autoriser le joueur à revendiquer les fiefs qu'il a lui-même conquis"/>
+    <string id="TfxLCxcD" text="Le joueur peut réclamer une colonie qu'il a lui-même conquise plutôt que de la laisser être soumise à une élection."/>
+    <string id="8VKC3jtN" text="Activer la destruction des royaumes sans fiefs"/>
+    <string id="TlymwwPZ" text="Si cette option est activée, les royaumes sans fiefs sont détruits après avoir signé un traité de paix mettant fin à la dernière guerre à laquelle ils ont participé. Par défaut, cette option est activée."/>
+    <string id="w8Hi9jJf" text="Délai avant la destruction d'un royaume sans fiefs"/>
+    <string id="GDctI4Kd" text="Si cette option est activée, les royaumes sans fiefs ne seront détruits qu'après avoir signé un traité de paix mettant fin à la dernière guerre à laquelle ils ont participé, et non pas immédiatement après avoir perdu leur dernier fief. Par défaut, cette option est activée."/>      
+    <string id="ZRlNvsev" text="Durée minimale d'une guerre (en jours)"/>
+    <string id="vuFT5ns8" text="La durée minimale (en jours) d'une guerre avant de pouvoir proposer la paix. La valeur par défaut est 21 (quart d'une année de jeu standard)."/>
+    <string id="4MzQHMVj" text="Déclarer la guerre - Délai d'attente (en jours)"/>
+    <string id="q2duqN8d" text="La durée minimale (en jours) pour re-déclarer une guerre une fois la paix déclarée. La valeur par défaut est 21 (quart d'une année de jeu standard)."/>
+    <string id="2XC8QHkl" text="Activer les alliances"/>
+    <string id="5YJBZx28" text="Les royaumes joueurs et non-joueurs pourront former des alliances. Cette option est activée par défaut."/>
+    <string id="H6XMjwpF" text="Durée minimale des alliances (en jours)"/>
+    <string id="RrsWhIWi" text="La durée minimale (en jours) d'une alliance avant qu'elle ne puisse être rompue. La valeur par défaut est 42 (la moitié d'une année de jeu standard)."/>
+    <string id="5a829TiT" text="Probabilité - Alliances"/>
+    <string id="7nSjs8UL" text="Modificateur appliqué au score de décision des alliances. Une valeur plus élevée rend les alliances plus probables pour l’IA. La valeur par défaut est 0."/>
+    <string id="V35hUfcc" text="Durée des pactes de non-agression (en jours)"/>
+    <string id="KXLGZEPh" text="La durée (en jours) d'un pacte de non-agression. La valeur par défaut est 84 (une année de jeu standard)."/>
+    <string id="G8BhBnRG" text="Probabilité - Pacte de non-agression"/>
+    <string id="907ER5u9" text="Modificateur appliqué au score de décision des pactes de non-agression. Une valeur plus élevée rend les pactes de non-agression plus probables pour l’IA. La valeur par défaut est 0."/>
+    <string id="6m1SspFW" text="Activer le contrôle de la diplomatie du royaume par le joueur"/>
+    <string id="N5EouSSj" text="Accorde au joueur le contrôle complet des décisions de guerre et de paix du royaume auquel il appartient, même s'il n'en est pas le dirigeant. Par défaut : désactivé."/>
+    <string id="lhysZl9j" text="Probabilité - Actions"/>
+    <string id="dRyU9E7Z" text="Pas de guerre entre amis"/>
+    <string id="XyXJSTKr" text="Si activée, les dirigeants de royaumes qui entretiennent une relation amicale ne se feront pas la guerre. Par défaut : activée."/>
+    <string id="pWoKQ6HO" text="Bonnes relations = pas de guerre"/>
+    <string id="bOuGhbPt" text="Si activée, les guerres entre dirigeants de royaumes ne seront pas possibles si leur niveau de relation est supérieur au seuil de déclenchement de guerre. Par défaut : activée."/>
+    <string id="x0Aoiomr" text="Seuil de relation pour le déclenchement de guerre"/>
+    <string id="aH6rpjt6" text="Seuil de relation entre dirigeants de royaume à partir duquel les royaumes ne pourront pas se faire la guerre. Par défaut, la valeur est 30."/>
+    <string id="jwNKk8P7" text="Pas de guerre entre mariés"/>
+    <string id="xcMzKH48" text="Si activée, les clans dirigeants liés par le mariage ne se feront pas la guerre. Par défaut : activée."/>
+    <string id="xXKKRp99" text="Probabilité - Alliance lors du mariage entre chefs de clans"/>
+    <string id="BGS6mUID" text="Si activée, cette option augmente la propension à conclure des alliances lorsque des mariages lient les clans dirigeants. Valeur par défaut : activée."/>
+      
+    <string id="ldLFTs92" text="Coûts"/>      
+    <string id="Ckd1Lsoa" text="Coûts en or"/>
+    <string id="t4hNAoD7" text="Activer la variation des coûts en or"/>
+    <string id="5MMIDE5A" text="Si activée, le coût en or des actions diplomatiques et des réparations de guerre sera augmenté en fonction de la taille de votre royaume. Autrement, les multiplicateurs standards (100 pour les actions diplomatiques et 1000 pour les réparations de guerre) s'appliqueront. Par défaut : activée."/>
+    <string id="vD270X6H" text="Multiplicateur - Variation des coûts en or"/>
+    <string id="Gd52NzBP" text="Multiplicateur pour la variation des coûts en or. Par défaut : 5."/>
+    <string id="HFtZsD6v" text="Multiplicateur - Variation des coûts en or des réparations de guerre"/>
+    <string id="MIhbrqbr" text="Multiplicateur pour la variation des coûts en or des réparations de guerre. Par défaut : 50."/>
+    <string id="Cr6a5Jap" text="Réparations de guerre  - Coût en or du vaincu"/>
+    <string id="NH4GNKva" text="Coût de base en or pour avoir perdu une guerre d'usure contre un autre royaume. Ce coût est affecté par la variation ; si celle-ci est désactivée, il sera multiplié par mille. Par défaut : 200."/>
+
+    <string id="SEViwYTl" text="Coûts en influence"/>
+    <string id="WbOKuWbQ" text="Activer les coûts en influence"/>
+    <string id="K2vLGalN" text="Si désactivée, les déclarations de guerre et de paix ne coûteront pas en influence. Par défaut : désactivée."/>
+    <string id="9PlT57Nl" text="Variations des coûts en influence"/>
+    <string id="P1g6Ht1e" text="Activer la variation des coûts en influence"/>
+    <string id="xfVFBxfj" text="Si activée, les coûts en influence seront augmentés en fonction de la taille de votre royaume. Sinon, les coûts d'influence standards s'appliqueront. Par défaut : activée."/>
+    <string id="TvAYJv5Q" text="Variation des coûts en influence - Multiplicateur"/>
+    <string id="AQ5gRYN6" text="Multiplicateur pour la variation des coûts en influence. Par défaut : 5."/>
+    <string id="BazjeCZw" text="Coûts en influence - Valeur fixe"/>
+    <string id="OnTeAgin" text="Coût fixe en influence pour déclarer la guerre"/>
+    <string id="O5XvybTI" text="Coût en influence pour déclarer la guerre à un autre royaume. Par défaut : 500."/>
+    <string id="iNsXQD2q" text="Coût fixe en influence pour faire la paix"/>
+    <string id="WB5zdvdT" text="Coût en influence pour faire la paix avec un autre royaume. Par défaut : 500."/>
+
+    <string id="nueOs6m9" text="Messagers"/>
+    <string id="nwTyegdV" text="Messagers - Activer les accidents"/>
+    <string id="T7yybpw3" text="Si activée, il y aura une légère probabilité que les messagers s'accidentent. Plus le trajet sera long, plus le risque d'accident sera élevé sur la route. Par défaut : activée."/>
+    <string id="ysYCYvwT" text="Messagers - Restreindre l'envoi"/>
+    <string id="5O87pSL3" text="Si activée, les messagers ne pourront être envoyés qu'à des personnes déjà rencontrées ou susceptibles d'être connus. Sinon, les messagers pourront être envoyés à n'importe quelle personne. Par défaut : activée."/>
+    <string id="nnXi6MmH" text="Messagers - Durée des trajets"/>
+    <string id="zkvCGLuK" text="La durée maximale (en jours) du trajet des messagers. Affecte directement la vitesse de déplacement des messagers. Par défaut : 3."/>
+    <string id="nMwWHj4h" text="Messagers - Coût en or"/>
+    <string id="ehMf7xvE" text="Coût en or pour envoyer un messager à un autre personnage. Par défaut : 100."/>
+    <string id="YolJlw95" text="Messagers - Coût en or minimum"/>
+    <string id="P5NWxY6F" text="Coût en or minimum pour envoyer un messager à un autre personnage. Par défaut : 75."/>
+    <string id="Hkv9Peqa" text="Messagers - Coût en or par heure"/>
+    <string id="ckYA36t8" text="Coût en or par heure de trajet du messager. Par défaut : 1."/>
+
+    <string id="OfEMJWiR" text="Relation"/>
+    <string id="6l9QNMrB" text="Multiplicateur - Relations positives pour l'octroi d'un fief"/>
+    <string id="FQaghHo7" text="Multiplicateur du gain de relation après avoir octroyé un fief. Par défaut : 1."/>
+    <string id="9qKclHq3" text="Octroi de fief - Perte de relation"/>
+    <string id="fgc8Dvg0" text="La perte de relation lorsqu'un fief est octroyé à un autre clan. Par défaut : -2."/>
+
+    <string id="8ZPKToTq" text="Équilibrage de l'influence"/>
+    <string id="4jlYRUdZ" text="Activer l’équilibrage de l’influence"/>
+    <string id="tOMN9DQD" text="Active le calcul de la perte d’influence et de la corruption. Désactiver cette option peut être nécessaire pour la compatibilité avec les mods."/>
+
+    <string id="vzKRX2JA" text="Perte d’influence"/>
+    <string id="szYr4OTG" text="Activer la perte d'influence"/>
+    <string id="rKS9z4Sz" text="Active la perte d’influence, qui diminue progressivement l’influence chaque jour. Par défaut : activée."/>
+
+    <string id="pVE1yNlm" text="Perte d'influence - Seuil"/>
+    <string id="MnLk08uW" text="Quantité d’influence qui ne subira pas la perte quotidienne d’influence. Par défaut : 1000."/>
+    <string id="WTeM4Rba" text="Perte d'influence - Maximum par jour"/>
+    <string id="CGixJ6ng" text="Le montant maximal de perte d'influence journalière. Par défaut : 20."/>
+    <string id="yob5ZHtz" text="Perte d'influence - Pourçentage journalier"/>
+    <string id="IYFl4kJx" text="Le pourcentage de perte d'influence journalier. Par défaut : 2.0."/>
+
+    <string id="e5fHDXgl" text="Corruption"/>
+    <string id="KWAH0S4h" text="Activer la corruption"/>
+    <string id="trgnZ0pn" text="Active la corruption, qui diminue progressivement l'influence du clan chaque jour lorsqu'il détient trop de fiefs. Par défaut : activée."/>
+
+    <string id="ZqQaUIil" text="Expansionnisme"/>
+    <string id="2raR1ZHv" text="Coalitions"/>
+    <string id="Pr4dcRKm" text="Expansionisme minimum par fief"/>
+    <string id="9qcAWjI7" text="Le montant minimum d'expansionnisme par fief. Par défaut : 3."/>
+    <string id="MnhMW8iq" text="Expansionnisme par siège"/>
+    <string id="lCbie62E" text="Le montant d'expansionnisme généré par les sièges réussis. Par défaut : 20."/>
+    <string id="mEXGC0h3" text="Expansionnisme - Perte journalière"/>
+    <string id="kgPeQvqE" text="Montant de perte journalière d’expansionnisme. Par défaut : 1."/>
+    <string id="ZIf1tRII" text="Activer les coalitions"/>
+    <string id="8v8q0OGu" text="Active les coalitions. Elles permettent aux factions de s'unir contre les factions fortes et expansionnistes. Par défaut : activée."/>
+    <string id="1kSd88X5" text="Expansionnisme - Seuil"/>
+    <string id="EUnASoee" text="Le montant d'expansionnisme nécessaire avant qu'une faction coalition ne soit formée contre une faction. Par défaut : 100."/>
+    <string id="zwbL9BHe" text="Coalitions - Probabilité journalière"/>
+    <string id="9ugCWA3v" text="Pourcentage de probabilité qu'une coalition soit formée contre une faction ayant dépassé le seuil d'expansionnisme. Par défaut : 5."/>
+
+    <string id="lsyl0VSX" text="Protection de la quête principale"/>
+    <string id="EVrErrTR" text="Empêche le joueur de casser la quête principale. A désactiver si vous utilisez des mods comme &quot;Just Let Me Play&quot;. Par défaut : activée."/>
+
+    <string id="f6n2UAEC" text="Fonctionnalités inachevées"/>
+    <string id="HSoZfvXH" text="Activer l'usurpation de trône"/>
+    <string id="ZIAo4er4" text="Si activée, le joueur peut usurper le trône d'un royaume. Cette option est actuellement déséquilibrée et en cours de refonte, elle n’est donc pas conseillée. Par défaut : désactivée."/>
+  </strings>
+</base>
