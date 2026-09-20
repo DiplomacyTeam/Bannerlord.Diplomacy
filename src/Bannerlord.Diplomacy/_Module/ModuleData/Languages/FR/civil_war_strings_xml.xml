@@ -44,7 +44,7 @@
     <string id="Ysrttgis" text="Date de début : {CAMPAIGN_TIME}"/>
     <string id="o3w3jNzZ" text="Revendication : {DEMAND_NAME}"/>
     <string id="hbPiVQVK" text="Statut : {STATUS}"/>
-    <string id="TvSHYACm" text="Forces : {STRENGTH}"/>
+    <string id="TvSHYACm" text="Forces"/>
     <string id="dlANhHUd" text="Factions"/>
     <string id="hBSo0Ziq" text="Créer une faction"/>
     <string id="2PglxF8k" text="Choisir une revendication de faction"/>

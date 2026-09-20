@@ -123,8 +123,8 @@
     <string id="q5qphBwi" text="Schwache Fraktion"/>
     <string id="sygtLRqA" text="Verhältnis"/>
 
-    <string id="cmOSpfyW" text="Bündnis mit {ALLIED_KINGDOM}"/>
-    <string id="RqQ4oqvl" text="Krieg mit {ENEMY_KINGDOM}"/>
+    <string id="cmOSpfyW" text="Bündnis mit {KINGDOM}"/>
+    <string id="RqQ4oqvl" text="Krieg mit {KINGDOM}"/>
     <string id="t6YhBLj7" text="Nichtangriffspakt mit {KINGDOM}"/>
     <string id="BjkwaNot" text="Ehe mit führendem Clan von {KINGDOM}"/>
 

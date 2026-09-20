@@ -134,8 +134,8 @@
     <string id="q5qphBwi" text="羸弱派系"/>
     <string id="sygtLRqA" text="关系"/>
 
-    <string id="cmOSpfyW" text="与{ALLIED_KINGDOM}的联盟"/>
-    <string id="RqQ4oqvl" text="与{ENEMY_KINGDOM}的战争"/>
+    <string id="cmOSpfyW" text="与{KINGDOM}的联盟"/>
+    <string id="RqQ4oqvl" text="与{KINGDOM}的战争"/>
     <string id="t6YhBLj7" text="与{KINGDOM}签订互不侵犯条约"/>
     <string id="BjkwaNot" text="与{KINGDOM}统治家族的联姻"/>
 

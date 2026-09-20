@@ -44,10 +44,10 @@
     <string id="Ysrttgis" text="Start Date: {CAMPAIGN_TIME}" />
     <string id="o3w3jNzZ" text="Demand: {DEMAND_NAME}" />
     <string id="hbPiVQVK" text="Status: {STATUS}" />
-    <string id="TvSHYACm" text="Strength: {STRENGTH}" />
+    <string id="TvSHYACm" text="Strength" />
     <string id="dlANhHUd" text="Factions" />
     <string id="hBSo0Ziq" text="Create Faction" />
-    <string id="2PglxF8k" text="Choose Faction Demand" />
+    <string id="2PglxF8k" text="Choose a faction demand to create a faction.{newline}Cost: {INFLUENCE_COST}{INFLUENCE_ICON}" />
     <string id="gypPPxUJ" text="Factions" />
     <string id="aWWzFITw" text="A Monarch Abdicates" />
     <string id="2Pv3DsVm" text="{PARENT_KINGDOM} has lost its civil war to the {REBELS}. {LEADER} will abdicate the throne. {PLAYER_PARTICIPATION}" />

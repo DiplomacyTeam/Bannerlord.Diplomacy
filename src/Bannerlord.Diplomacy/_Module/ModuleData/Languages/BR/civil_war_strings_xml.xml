@@ -44,7 +44,7 @@
     <string id="Ysrttgis" text="Data de início: {CAMPAIGN_TIME}"/>
     <string id="o3w3jNzZ" text="Demanda: {DEMAND_NAME}"/>
     <string id="hbPiVQVK" text="Status: {STATUS}"/>
-    <string id="TvSHYACm" text="Força: {STRENGTH}"/>
+    <string id="TvSHYACm" text="Força"/>
     <string id="dlANhHUd" text="Facções"/>
     <string id="hBSo0Ziq" text="Criar Facção"/>
     <string id="2PglxF8k" text="Escolha a Demanda da Facção"/>
