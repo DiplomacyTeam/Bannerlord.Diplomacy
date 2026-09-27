@@ -42,6 +42,20 @@ namespace Diplomacy
             _expansionism[faction] = Math.Max(value, GetMinimumExpansionism(faction) - MinimumExpansionismPerFief) + SiegeExpansionism;
         }
 
+        /// <summary>
+        /// Walks expansionism back down, floored at the minimum the faction's remaining fiefs
+        /// imply. Handing a fief back is the only way a kingdom can actively undo the reputation
+        /// it earned by taking one.
+        /// </summary>
+        public void ReduceExpansionism(IFaction faction, float amount)
+        {
+            if (amount <= 0f)
+                return;
+
+            _expansionism.TryGetValue(faction, out var value);
+            _expansionism[faction] = Math.Max(value - amount, GetMinimumExpansionism(faction));
+        }
+
         private static float GetMinimumExpansionism(IFaction faction)
         {
             return faction.IsKingdomFaction ? (faction as Kingdom)!.GetMinimumExpansionism() : default;

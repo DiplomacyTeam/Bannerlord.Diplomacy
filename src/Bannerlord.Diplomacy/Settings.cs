@@ -203,6 +203,18 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingRelations)]
         public int GrantFiefRelationPenalty { get; set; } = -2;
 
+
+        [SettingPropertyBool("{=oPq3XkWv}Enable Returning Fiefs", RequireRestart = false, HintText = "{=bZmT7HdA}If enabled, you may hand a conquered fief back to the kingdom it was taken from in exchange for relations and a drop in expansionism. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingRelations)]
+        public bool EnableFiefReturn { get; set; } = true;
+
+        [SettingPropertyFloatingInteger("{=rTqK8wDm}Return Fief Relation Multiplier", 0f, 5f, RequireRestart = false, HintText = "{=xNvP2bLc}Multiplier for the relation gain when returning a conquered fief to the kingdom it was taken from. Default value is 2.")]
+        [SettingPropertyGroup(HeadingRelations)]
+        public float ReturnFiefRelationMultiplier { get; set; } = 2.0f;
+
+        [SettingPropertyInteger("{=Wq8nTpLv}Return Fief Cooldown", 0, 1000, RequireRestart = false, HintText = "{=Jm3cXrDt}Days that must pass before the same fief can be returned again, even if it has been retaken in the meantime. Default value is 90.")]
+        [SettingPropertyGroup(HeadingRelations)]
+        public int ReturnFiefCooldownInDays { get; set; } = 90;
         // Gold Costs
 
         [SettingPropertyBool(displayName: "{=t4hNAoD7}Enable Scaling Gold Costs", Order = 0, RequireRestart = false, HintText = "{=5MMIDE5A}If enabled, this will scale gold costs of diplomatic actions and war reparations based on your kingdom size. Otherwise, the generic multipliers of 100 for diplomatic actions and 1000 for war reparations will apply. The default value is enabled.")]
@@ -282,6 +294,10 @@ namespace Diplomacy
         [SettingPropertyInteger("{=mEXGC0h3}Expansionism Decay Per Day", 0, 100, RequireRestart = false, HintText = "{=kgPeQvqE}The amount of expansionism that decays each day. Default value is 1.")]
         [SettingPropertyGroup(HeadingExpansionism)]
         public int ExpansionismDecayPerDay { get; set; } = 1;
+
+        [SettingPropertyInteger("{=hW4mZpQj}Return Fief Expansionism Reduction", 0, 100, RequireRestart = false, HintText = "{=dF7sYkR3}Expansionism removed when a conquered fief is returned to the kingdom it was taken from. Default value is 20, matching the expansionism gained from a successful siege.")]
+        [SettingPropertyGroup(HeadingExpansionism)]
+        public int ReturnFiefExpansionismReduction { get; set; } = 20;
 
         // Misc
 

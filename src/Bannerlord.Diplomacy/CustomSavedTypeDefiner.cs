@@ -39,6 +39,8 @@ namespace Diplomacy
             AddClassDefinition(typeof(AbdicationFaction), 13);
             AddClassDefinition(typeof(SecessionFaction), 14);
             AddWarExhaustionEventRecordDefinitions();//19-39 with 8 in reserve
+            AddClassDefinition(typeof(FiefProvenanceManager), 40);
+            AddClassDefinition(typeof(FiefOwnershipRecord), 41);
         }
 
         private void AddWarExhaustionEventRecordDefinitions()
@@ -78,6 +80,7 @@ namespace Diplomacy
             ConstructContainerDefinition(typeof(List<Messenger>));
             ConstructContainerDefinition(typeof(Dictionary<IFaction, CampaignTime>));
             ConstructContainerDefinition(typeof(Dictionary<Kingdom, CampaignTime>));
+            ConstructContainerDefinition(typeof(Dictionary<string, CampaignTime>));
             //DiplomaticAgreements
             ConstructContainerDefinition(typeof(List<DiplomaticAgreement>));
             ConstructContainerDefinition(typeof(Dictionary<FactionPair, List<DiplomaticAgreement>>));
@@ -89,6 +92,9 @@ namespace Diplomacy
             ConstructContainerDefinition(typeof(Dictionary<string, WarExhaustionRecord>));
             ConstructContainerDefinition(typeof(List<WarExhaustionEventRecord>));
             ConstructContainerDefinition(typeof(Dictionary<string, List<WarExhaustionEventRecord>>));
+            //Fief provenance
+            ConstructContainerDefinition(typeof(List<FiefOwnershipRecord>));
+            ConstructContainerDefinition(typeof(Dictionary<string, List<FiefOwnershipRecord>>));
         }
     }
 }

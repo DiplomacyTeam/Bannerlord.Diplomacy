@@ -102,6 +102,7 @@ namespace Diplomacy
 
                 gameStarter.AddBehavior(new MaintainInfluenceBehavior());
                 gameStarter.AddBehavior(new ExpansionismBehavior());
+                gameStarter.AddBehavior(new FiefProvenanceBehavior());
                 gameStarter.AddBehavior(new CivilWarBehavior());
                 gameStarter.AddBehavior(new UIBehavior());
 
