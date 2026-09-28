@@ -74,6 +74,23 @@
     <string id="98hwXUTp" text="Grant fiefs to clans in your kingdom" />
     <string id="Q7jRqnez" text="You cannot grant fiefs to mercenary clans." />
 
+    <string id="Zx4nKpWr" text="Return Fief" />
+    <string id="Ld8vQmTc" text="Return Fief to {KINGDOM_NAME}" />
+    <string id="Hn2wKpRv" text="Hand back land you took from them." />
+    <string id="Cf6qWsNe" text="You hold no land taken from {KINGDOM}." />
+    <string id="Pw5jHnBq" text="Fief Returned" />
+    <string id="Rt9kVdXm" text="{SETTLEMENT_NAME} was returned to {CLAN_NAME}." />
+    <string id="Mf2hVqZa" text="The other clans of {KINGDOM} approve of your gesture. Relation with their leaders +{CHANGE}." />
+    <string id="8kQrWvN2" text="Returning fiefs has been disabled." />
+    <string id="Yj4mLpQd" text="You can only return fiefs held by your own clan." />
+    <string id="Tq7wBnXe" text="You cannot return a fief to your own kingdom." />
+    <string id="Vc2rHkZs" text="That kingdom no longer exists." />
+    <string id="Nd6pXtLw" text="You cannot return fiefs to a rebel kingdom." />
+    <string id="Bw6nRtLe" text="You cannot return fiefs to a kingdom you are at war with." />
+    <string id="Qs3vLpXa" text="{SETTLEMENT} is under siege and cannot be handed over." />
+    <string id="Gm5tRvWc" text="{SETTLEMENT} was handed back too recently. {DAYS} more days must pass." />
+    <string id="Kb9sRmTy" text="{SETTLEMENT} was not taken from {KINGDOM}." />
+
     <string id="DrnXprup" text="You have been at war too recently to consider an alliance. It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
     <string id="KHJyWj9H" text="Cannot be in an alliance." />
     <string id="UQZmdLzc" text="Cannot be at war." />
@@ -259,6 +276,12 @@
     <string id="FQaghHo7" text="Multiplier for the relation gain when granting fiefs. Default value is 1." />
     <string id="9qKclHq3" text="Grant Fief Relation Penalty" />
     <string id="fgc8Dvg0" text="The relation penalty assessed when granting a fief to another clan. Default value is -2."/>
+    <string id="oPq3XkWv" text="Enable Returning Fiefs" />
+    <string id="bZmT7HdA" text="If enabled, you may hand a conquered fief back to the kingdom it was taken from in exchange for relations and a drop in expansionism. Default value is enabled." />
+    <string id="rTqK8wDm" text="Return Fief Relation Multiplier" />
+    <string id="xNvP2bLc" text="Multiplier for the relation gain when returning a conquered fief to the kingdom it was taken from. Default value is 2." />
+    <string id="Wq8nTpLv" text="Return Fief Cooldown" />
+    <string id="Jm3cXrDt" text="Days that must pass before the same fief can be returned again, even if it has been retaken in the meantime. Default value is 90." />
 
     <string id="8ZPKToTq" text="Influence Balancing"/>
     <string id="4jlYRUdZ" text="Enable Influence Balancing"/>
@@ -287,6 +310,8 @@
     <string id="lCbie62E" text="Expanionism added per successful siege. Default value is 20."/>
     <string id="mEXGC0h3" text="Expansionism Decay Per Day"/>
     <string id="kgPeQvqE" text="The amount of expansionism that decays each day. Default value is 1."/>
+    <string id="hW4mZpQj" text="Return Fief Expansionism Reduction" />
+    <string id="dF7sYkR3" text="Expansionism removed when a conquered fief is returned to the kingdom it was taken from. Default value is 20, matching the expansionism gained from a successful siege." />
     <string id="ZIf1tRII" text="Enable Coalitions"/>
     <string id="8v8q0OGu" text="Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled."/>
     <string id="1kSd88X5" text="Expansionism Threshold"/>
