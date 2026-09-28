@@ -9,6 +9,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.Actions
@@ -27,6 +28,8 @@ namespace Diplomacy.Actions
         private static readonly TextObject _TKingdomGone = new("{=Vc2rHkZs}That kingdom no longer exists.");
         private static readonly TextObject _TRebelKingdom = new("{=Nd6pXtLw}You cannot return fiefs to a rebel kingdom.");
         private static readonly TextObject _TNotConquered = new("{=Kb9sRmTy}{SETTLEMENT} was not taken from {KINGDOM}.");
+        private static readonly TextObject _TAtWar = new("{=Bw6nRtLe}You cannot return fiefs to a kingdom you are at war with.");
+        private static readonly TextObject _TBystandersApprove = new("{=Mf2hVqZa}The other clans of {KINGDOM} approve of your gesture. Relation with their leaders +{CHANGE}.");
         private static readonly TextObject _TUnderSiege = new("{=Qs3vLpXa}{SETTLEMENT} is under siege and cannot be handed over.");
         private static readonly TextObject _TOnCooldown = new("{=Gm5tRvWc}{SETTLEMENT} was handed back too recently. {DAYS} more days must pass.");
 
@@ -51,10 +54,17 @@ namespace Diplomacy.Actions
             var bystanderChange = (int) Math.Round(relationChange * _bystanderRelationShare);
             if (bystanderChange > 0)
             {
+                // Applied quietly and only to each leader: the defaults would raise a notification per clan
+                // and also pass the change on to relatives, crediting heroes related to several leaders
+                // (the recipient's family included) more than once. One summary line replaces the notifications.
                 foreach (var clan in targetKingdom.Clans.Where(clan => clan != recipientClan
                                                                        && clan.Leader is not null
                                                                        && !clan.IsUnderMercenaryService))
-                    ChangeRelationAction.ApplyPlayerRelation(clan.Leader, bystanderChange);
+                    ChangeRelationAction.ApplyPlayerRelation(clan.Leader, bystanderChange, affectRelatives: false, showQuickNotification: false);
+
+                _TBystandersApprove.SetTextVariable("KINGDOM", targetKingdom.Name);
+                _TBystandersApprove.SetTextVariable("CHANGE", bystanderChange);
+                InformationManager.DisplayMessage(new InformationMessage(_TBystandersApprove.ToString()));
             }
 
             // The fief is gone, so the kingdom's minimum expansionism has already fallen with it.
@@ -101,6 +111,10 @@ namespace Diplomacy.Actions
                 reason = _TKingdomGone.ToString();
             else if (targetKingdom.IsRebelKingdom())
                 reason = _TRebelKingdom.ToString();
+            // The diplomacy screen only offers returns to kingdoms at peace, but the rule belongs here so the
+            // cheat and any future caller can't hand land to an active enemy.
+            else if (Clan.PlayerClan.MapFaction.IsAtWarWith(targetKingdom))
+                reason = _TAtWar.ToString();
             else if (settlement.IsUnderSiege)
             {
                 // Handing over a fief mid-siege would leave the besiegers attacking a kingdom they may be at peace with.

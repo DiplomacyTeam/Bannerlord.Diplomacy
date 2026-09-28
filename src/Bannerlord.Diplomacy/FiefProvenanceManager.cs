@@ -47,10 +47,12 @@ namespace Diplomacy
         /// raises no settlement event, but the fiefs now belong to a kingdom that didn't conquer them.
         /// Without this, a fief taken as another kingdom's vassal could be returned for payouts that the
         /// clan's new kingdom never earned.
+        /// A clan that held its fiefs without a kingdom took them itself, so founding or joining a kingdom
+        /// from there keeps the conquest record intact.
         /// </summary>
         public void RegisterKingdomChange(Clan clan, Kingdom? oldKingdom, Kingdom? newKingdom)
         {
-            if (oldKingdom == newKingdom)
+            if (oldKingdom is null || oldKingdom == newKingdom)
                 return;
 
             foreach (var town in clan.Fiefs.ToList())
