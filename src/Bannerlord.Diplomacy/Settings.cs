@@ -203,7 +203,6 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingRelations)]
         public int GrantFiefRelationPenalty { get; set; } = -2;
 
-
         [SettingPropertyBool("{=oPq3XkWv}Enable Returning Fiefs", RequireRestart = false, HintText = "{=bZmT7HdA}If enabled, you may hand a conquered fief back to the kingdom it was taken from in exchange for relations and a drop in expansionism. Default value is enabled.")]
         [SettingPropertyGroup(HeadingRelations)]
         public bool EnableFiefReturn { get; set; } = true;
@@ -215,6 +214,7 @@ namespace Diplomacy
         [SettingPropertyInteger("{=Wq8nTpLv}Return Fief Cooldown", 0, 1000, RequireRestart = false, HintText = "{=Jm3cXrDt}Days that must pass before the same fief can be returned again, even if it has been retaken in the meantime. Default value is 90.")]
         [SettingPropertyGroup(HeadingRelations)]
         public int ReturnFiefCooldownInDays { get; set; } = 90;
+
         // Gold Costs
 
         [SettingPropertyBool(displayName: "{=t4hNAoD7}Enable Scaling Gold Costs", Order = 0, RequireRestart = false, HintText = "{=5MMIDE5A}If enabled, this will scale gold costs of diplomatic actions and war reparations based on your kingdom size. Otherwise, the generic multipliers of 100 for diplomatic actions and 1000 for war reparations will apply. The default value is enabled.")]

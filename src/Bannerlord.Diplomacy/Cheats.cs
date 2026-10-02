@@ -288,30 +288,39 @@ namespace Diplomacy
                      + "was taken (default is a full year, so that it counts as long held): "
                      + "diplomacy.seize_fief [Settlement] [DaysAgo]";
 
-            var settlement = Settlement.All.FirstOrDefault(s => (s.IsTown || s.IsCastle)
-                && s.Name.ToString().ToLower().Replace(" ", "") == strings[0].ToLower());
-
+            var settlement = FindFief(strings[0]);
             if (settlement is null)
                 return "Settlement not found: " + strings[0];
 
             if (settlement.OwnerClan == Clan.PlayerClan)
                 return $"{settlement.Name} already belongs to your clan.";
 
-            var previousOwner = settlement.OwnerClan?.Leader;
-            var previousKingdom = settlement.OwnerClan?.Kingdom;
-
-            if (previousKingdom is null)
+            var ownerClan = settlement.OwnerClan;
+            if (ownerClan?.Kingdom is not { } previousKingdom)
                 return $"{settlement.Name} does not belong to a kingdom, so there is nobody to return it to.";
 
-            var daysAgo = strings.Count == 2 && float.TryParse(strings[1], out var parsed)
-                ? parsed
-                : CampaignTime.DaysInYear;
+            var daysAgo = ParseDaysAgo(strings);
+            var previousOwner = ownerClan.Leader;
 
             ChangeOwnerOfSettlementAction.ApplyBySiege(Hero.MainHero, Hero.MainHero, settlement);
 
+            if (!RecordSeizure(settlement, previousOwner, previousKingdom, daysAgo))
+                return "Fief provenance is not being tracked in this campaign.";
+
+            return $"{settlement.Name} taken from {previousKingdom.Name}, recorded as held for {daysAgo:0} days. "
+                 + $"Return it with: diplomacy.return_fief {strings[0]} {previousKingdom.Name.ToString().Replace(" ", "")}";
+        }
+
+        /// <summary>The optional second argument of seize_fief, defaulting to a full year so the fief counts as long held.</summary>
+        private static float ParseDaysAgo(List<string> strings) =>
+            strings.Count == 2 && float.TryParse(strings[1], out var parsed) ? parsed : CampaignTime.DaysInYear;
+
+        /// <summary>Makes sure a seized fief has a conquest record, then backdates it. False if provenance isn't tracked.</summary>
+        private static bool RecordSeizure(Settlement settlement, Hero? previousOwner, Kingdom previousKingdom, float daysAgo)
+        {
             var manager = FiefProvenanceManager.Instance;
             if (manager is null)
-                return "Fief provenance is not being tracked in this campaign.";
+                return false;
 
             // The siege should have been recorded through FiefProvenanceBehavior; if some other
             // path was taken, record it directly so the cheat still leaves something testable.
@@ -319,10 +328,18 @@ namespace Diplomacy
                 manager.RegisterTransfer(settlement, previousOwner, Hero.MainHero, true);
 
             manager.BackdateLastTransfer(settlement, daysAgo);
-
-            return $"{settlement.Name} taken from {previousKingdom.Name}, recorded as held for {daysAgo:0} days. "
-                 + $"Return it with: diplomacy.return_fief {strings[0]} {previousKingdom.Name.ToString().Replace(" ", "")}";
+            return true;
         }
+
+        /// <summary>A town or castle by its name with the spaces left out, as cheat arguments can't contain spaces.</summary>
+        private static Settlement? FindFief(string name) =>
+            Settlement.All.FirstOrDefault(s => (s.IsTown || s.IsCastle)
+                                               && s.Name.ToString().ToLower().Replace(" ", "") == name.ToLower());
+
+        private static Kingdom? FindKingdom(string name) =>
+            KingdomExtensions.AllActiveKingdoms.FirstOrDefault(k => k.Name.ToString().ToLower().Replace(" ", "") == name.ToLower());
+
+        private static float GetExpansionism(Kingdom? kingdom) => kingdom?.GetExpansionism() ?? 0f;
 
         [CommandLineFunctionality.CommandLineArgumentFunction("return_fief", "diplomacy")]
         [UsedImplicitly]
@@ -334,15 +351,11 @@ namespace Diplomacy
             if (CampaignCheats.CheckHelp(strings) || !CampaignCheats.CheckParameters(strings, 2))
                 return "Format uses a settlement name and a kingdom name without spaces: diplomacy.return_fief [Settlement] [Kingdom]";
 
-            var settlement = Settlement.All.FirstOrDefault(s => (s.IsTown || s.IsCastle)
-                && s.Name.ToString().ToLower().Replace(" ", "") == strings[0].ToLower());
-
+            var settlement = FindFief(strings[0]);
             if (settlement is null)
                 return "Settlement not found: " + strings[0];
 
-            var kingdom = KingdomExtensions.AllActiveKingdoms.FirstOrDefault(k =>
-                k.Name.ToString().ToLower().Replace(" ", "") == strings[1].ToLower());
-
+            var kingdom = FindKingdom(strings[1]);
             if (kingdom is null)
                 return "Kingdom not found: " + strings[1];
 
@@ -350,12 +363,12 @@ namespace Diplomacy
                 return reason ?? "That fief cannot be returned.";
 
             var playerKingdom = Clan.PlayerClan.Kingdom;
-            var expansionismBefore = playerKingdom?.GetExpansionism() ?? 0f;
+            var expansionismBefore = GetExpansionism(playerKingdom);
             var relationGain = ReturnFiefAction.PreviewRelationChange(settlement, kingdom);
 
             ReturnFiefAction.Apply(settlement, kingdom);
 
-            var expansionismAfter = playerKingdom?.GetExpansionism() ?? 0f;
+            var expansionismAfter = GetExpansionism(playerKingdom);
 
             return $"{settlement.Name} returned to {settlement.OwnerClan?.Name.ToString() ?? kingdom.Name.ToString()} of {kingdom.Name}. "
                  + $"Relation {relationGain:+#;-#;0}. Expansionism {expansionismBefore:0.#} -> {expansionismAfter:0.#}.";
@@ -387,10 +400,7 @@ namespace Diplomacy
             if (CampaignCheats.CheckHelp(strings) || !CampaignCheats.CheckParameters(strings, 1))
                 return "Format uses 1 settlement name parameter without spaces: diplomacy.fief_provenance [Settlement]";
 
-            var wantedName = strings[0].ToLower();
-            var settlement = Settlement.All.FirstOrDefault(s => (s.IsTown || s.IsCastle)
-                && s.Name.ToString().ToLower().Replace(" ", "") == wantedName);
-
+            var settlement = FindFief(strings[0]);
             if (settlement is null)
                 return "Settlement not found: " + strings[0];
 
@@ -408,14 +418,16 @@ namespace Diplomacy
                 $"{settlement.Name} has passed between kingdoms {manager.GetTimesChangedHands(settlement)} time(s). Held by {currentKingdom} since {manager.GetHeldByCurrentKingdomSince(settlement)}."
             };
 
-            foreach (var record in history)
-            {
-                var from = record.PreviousKingdom?.Name.ToString() ?? record.PreviousOwnerClan?.Name.ToString() ?? "nobody";
-                var to = record.NewKingdom?.Name.ToString() ?? record.NewOwnerClan?.Name.ToString() ?? "nobody";
-                report.Add($"  {record.TransferDate}: {from} -> {to}{(record.ByConquest ? " (by siege)" : string.Empty)}");
-            }
+            report.AddRange(history.Select(DescribeTransfer));
 
             return string.Join("\n", report);
+        }
+
+        private static string DescribeTransfer(FiefOwnershipRecord record)
+        {
+            var from = record.PreviousKingdom?.Name.ToString() ?? record.PreviousOwnerClan?.Name.ToString() ?? "nobody";
+            var to = record.NewKingdom?.Name.ToString() ?? record.NewOwnerClan?.Name.ToString() ?? "nobody";
+            return $"  {record.TransferDate}: {from} -> {to}{(record.ByConquest ? " (by siege)" : string.Empty)}";
         }
     }
 }

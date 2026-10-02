@@ -97,44 +97,68 @@ namespace Diplomacy.Actions
 
         public static bool CanReturnFief(Settlement settlement, Kingdom targetKingdom, out string? reason)
         {
-            reason = null;
+            reason = GetPlayerRefusal(settlement)
+                     ?? GetKingdomRefusal(targetKingdom)
+                     ?? GetFiefRefusal(settlement, targetKingdom);
 
+            return reason is null;
+        }
+
+        /// <summary>Why the player may not hand this fief to anyone at all, or null.</summary>
+        private static string? GetPlayerRefusal(Settlement settlement)
+        {
             if (!Settings.Instance!.EnableFiefReturn)
-                reason = _TDisabled.ToString();
-            else if (settlement.OwnerClan != Clan.PlayerClan)
-                reason = _TNotYourFief.ToString();
-            else if (Clan.PlayerClan.MapFaction?.Leader != Hero.MainHero)
-                reason = _TNotKingdomLeader.ToString();
-            else if (targetKingdom == Clan.PlayerClan.Kingdom)
-                reason = _TSameKingdom.ToString();
-            else if (targetKingdom.IsEliminated || targetKingdom.Leader is null)
-                reason = _TKingdomGone.ToString();
-            else if (targetKingdom.IsRebelKingdom())
-                reason = _TRebelKingdom.ToString();
+                return _TDisabled.ToString();
+            if (settlement.OwnerClan != Clan.PlayerClan)
+                return _TNotYourFief.ToString();
+            if (Clan.PlayerClan.MapFaction?.Leader != Hero.MainHero)
+                return _TNotKingdomLeader.ToString();
+
+            return null;
+        }
+
+        /// <summary>Why <paramref name="targetKingdom"/> cannot receive a fief from the player, or null.</summary>
+        private static string? GetKingdomRefusal(Kingdom targetKingdom)
+        {
+            if (targetKingdom == Clan.PlayerClan.Kingdom)
+                return _TSameKingdom.ToString();
+            if (targetKingdom.IsEliminated || targetKingdom.Leader is null)
+                return _TKingdomGone.ToString();
+            if (targetKingdom.IsRebelKingdom())
+                return _TRebelKingdom.ToString();
             // The diplomacy screen only offers returns to kingdoms at peace, but the rule belongs here so the
             // cheat and any future caller can't hand land to an active enemy.
-            else if (Clan.PlayerClan.MapFaction.IsAtWarWith(targetKingdom))
-                reason = _TAtWar.ToString();
-            else if (settlement.IsUnderSiege)
+            if (Clan.PlayerClan.MapFaction.IsAtWarWith(targetKingdom))
+                return _TAtWar.ToString();
+
+            return null;
+        }
+
+        /// <summary>Why this particular fief cannot go back to <paramref name="targetKingdom"/> right now, or null.</summary>
+        private static string? GetFiefRefusal(Settlement settlement, Kingdom targetKingdom)
+        {
+            if (settlement.IsUnderSiege)
             {
                 // Handing over a fief mid-siege would leave the besiegers attacking a kingdom they may be at peace with.
                 _TUnderSiege.SetTextVariable("SETTLEMENT", settlement.Name);
-                reason = _TUnderSiege.ToString();
+                return _TUnderSiege.ToString();
             }
-            else if (CooldownManager.HasFiefReturnCooldown(settlement, out var elapsedDays))
+
+            if (CooldownManager.HasFiefReturnCooldown(settlement, out var elapsedDays))
             {
                 _TOnCooldown.SetTextVariable("SETTLEMENT", settlement.Name);
                 _TOnCooldown.SetTextVariable("DAYS", (int) Math.Ceiling(Settings.Instance!.ReturnFiefCooldownInDays - elapsedDays));
-                reason = _TOnCooldown.ToString();
+                return _TOnCooldown.ToString();
             }
-            else if (!(FiefProvenanceManager.Instance?.WasConqueredFrom(settlement, targetKingdom, out _) ?? false))
+
+            if (!(FiefProvenanceManager.Instance?.WasConqueredFrom(settlement, targetKingdom, out _) ?? false))
             {
                 _TNotConquered.SetTextVariable("SETTLEMENT", settlement.Name);
                 _TNotConquered.SetTextVariable("KINGDOM", targetKingdom.Name);
-                reason = _TNotConquered.ToString();
+                return _TNotConquered.ToString();
             }
 
-            return reason is null;
+            return null;
         }
 
         private static int CalculateRelationChange(Settlement settlement)
