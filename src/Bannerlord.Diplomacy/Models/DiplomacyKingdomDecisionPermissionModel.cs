@@ -73,6 +73,12 @@ namespace Diplomacy.Models
 
         public override bool IsStartAllianceDecisionAllowedBetweenKingdoms(Kingdom kingdom1, Kingdom kingdom2, out TextObject reason)
         {
+            if (!Settings.Instance!.EnableAlliances)
+            {
+                reason = new TextObject(StringConstants.AlliancesDisabled);
+                return false;
+            }
+
             reason = TextObject.GetEmpty();
             return _previousModel?.IsStartAllianceDecisionAllowedBetweenKingdoms(kingdom1, kingdom2, out reason) ?? true;
         }
