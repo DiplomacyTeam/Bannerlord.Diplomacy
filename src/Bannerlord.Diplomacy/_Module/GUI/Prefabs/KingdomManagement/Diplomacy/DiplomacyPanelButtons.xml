@@ -40,6 +40,23 @@
           </Children>
         </ListPanel>
 
+        <!-- Return Fief Button -->
+        <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="10" HeightSizePolicy="CoverChildren" IsVisible="@IsReturnFiefVisible" MarginLeft="5" MarginRight="5">
+          <Children>
+            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalTopToBottom">
+              <Children>
+                <TextWidget HorizontalAlignment="Center" WidthSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" IsEnabled="@IsReturnFiefAvailable" Text="@ReturnFiefHelpText" DoNotAcceptEvents="true" ClipContents="false"/>
+                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="ExecuteReturnFief" IsEnabled="@IsReturnFiefAvailable">
+                  <Children>
+                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@ReturnFiefActionName" />
+                  </Children>
+                </ButtonWidget>
+                <HintWidget DataSource="{ReturnFiefHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+              </Children>
+            </ListPanel>
+          </Children>
+        </ListPanel>
+
         <!-- Make Peace Or Declare War Button -->
         <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalTopToBottom" VerticalAlignment="Bottom" MarginBottom="10" HorizontalAlignment="Center" IsVisible="@IsDirectActionVisible" MarginLeft="5" MarginRight="5">
           <Children>

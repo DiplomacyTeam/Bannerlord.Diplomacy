@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.SaveSystem;
 
 namespace Diplomacy
@@ -14,6 +15,9 @@ namespace Diplomacy
 
         internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime => Instance!._lastPeaceProposalTime;
         internal static Dictionary<string, CampaignTime> LastAllianceFormedTime => Instance!._lastAllianceFormedTime;
+
+        // Lazily created so that saves made before fief returns existed still load.
+        internal static Dictionary<string, CampaignTime> LastFiefReturnTime => Instance!._lastFiefReturnTime ??= new Dictionary<string, CampaignTime>();
 
         [SaveableField(1)]
         [UsedImplicitly]
@@ -27,6 +31,10 @@ namespace Diplomacy
         [UsedImplicitly]
         private Dictionary<string, CampaignTime> _lastAllianceFormedTime;
 
+        [SaveableField(4)]
+        [UsedImplicitly]
+        private Dictionary<string, CampaignTime> _lastFiefReturnTime;
+
         private static float MinimumDaysBetweenPeaceProposals => 5f;
 
         internal CooldownManager()
@@ -34,6 +42,7 @@ namespace Diplomacy
             _lastWarTime = new Dictionary<string, CampaignTime>();
             _lastPeaceProposalTime = new Dictionary<Kingdom, CampaignTime>();
             _lastAllianceFormedTime = new Dictionary<string, CampaignTime>();
+            _lastFiefReturnTime = new Dictionary<string, CampaignTime>();
             Instance = this;
         }
 
@@ -46,6 +55,24 @@ namespace Diplomacy
         {
             var key = CreateKey(kingdom1, kingdom2);
             _lastAllianceFormedTime[key] = campaignTime;
+        }
+
+        public void UpdateLastFiefReturnTime(Settlement settlement, CampaignTime campaignTime)
+        {
+            LastFiefReturnTime[settlement.StringId] = campaignTime;
+        }
+
+        /// <summary>
+        /// Whether a fief was handed back too recently to be handed back again. Retaking it does
+        /// not clear this, which is what stops a fief being farmed for relations and expansionism.
+        /// </summary>
+        public static bool HasFiefReturnCooldown(Settlement settlement, out float elapsedDaysUntilNow)
+        {
+            if (LastFiefReturnTime.TryGetValue(settlement.StringId, out var value))
+                return (elapsedDaysUntilNow = value.ElapsedDaysUntilNow) < Settings.Instance!.ReturnFiefCooldownInDays;
+
+            elapsedDaysUntilNow = default;
+            return false;
         }
 
         public static bool HasBreakAllianceCooldown(Kingdom kingdom1, Kingdom kingdom2, out float elapsedDaysUntilNow)

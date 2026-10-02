@@ -8,6 +8,7 @@ namespace Diplomacy.Events
     public sealed class DiplomacyEvents
     {
         private readonly MbEvent<Town> _fiefGranted = new();
+        private readonly MbEvent<Town> _fiefReturned = new();
         private readonly MbEvent<Kingdom> _kingdomBannerChanged = new();
         private readonly List<IMbEventBase> _listeners;
 
@@ -24,6 +25,7 @@ namespace Diplomacy.Events
             _listeners = new List<IMbEventBase>
             {
                 _fiefGranted,
+                _fiefReturned,
                 _messengerSent,
                 _peaceProposalSent,
                 _playerSettlementTaken,
@@ -40,6 +42,8 @@ namespace Diplomacy.Events
         public static IMbEvent<Kingdom> PeaceProposalSent => Instance._peaceProposalSent;
 
         public static IMbEvent<Town> FiefGranted => Instance._fiefGranted;
+
+        public static IMbEvent<Town> FiefReturned => Instance._fiefReturned;
 
         public static IMbEvent<Settlement> PlayerSettlementTaken => Instance._playerSettlementTaken;
 
@@ -62,6 +66,11 @@ namespace Diplomacy.Events
         internal void OnFiefGranted(Town fief)
         {
             Instance._fiefGranted.Invoke(fief);
+        }
+
+        internal void OnFiefReturned(Town fief)
+        {
+            Instance._fiefReturned.Invoke(fief);
         }
 
         internal void OnPlayerSettlementTaken(Settlement currentSettlement)

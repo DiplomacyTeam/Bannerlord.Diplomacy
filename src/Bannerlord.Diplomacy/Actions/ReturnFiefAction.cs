@@ -1,0 +1,194 @@
+﻿using Diplomacy.Character;
+using Diplomacy.Events;
+using Diplomacy.Extensions;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Library;
+using TaleWorlds.Localization;
+
+namespace Diplomacy.Actions
+{
+    /// <summary>
+    /// Hands a conquered fief back to the kingdom it was taken from. The relation gain is the
+    /// flavour; the payout that actually changes how the AI treats you is the drop in
+    /// expansionism, which feeds the coalition trigger and every diplomatic score.
+    /// </summary>
+    internal sealed class ReturnFiefAction
+    {
+        private static readonly TextObject _TNotKingdomLeader = new("{=zdSYUnZQ}You are not the leader of your kingdom.");
+        private static readonly TextObject _TDisabled = new("{=8kQrWvN2}Returning fiefs has been disabled.");
+        private static readonly TextObject _TNotYourFief = new("{=Yj4mLpQd}You can only return fiefs held by your own clan.");
+        private static readonly TextObject _TSameKingdom = new("{=Tq7wBnXe}You cannot return a fief to your own kingdom.");
+        private static readonly TextObject _TKingdomGone = new("{=Vc2rHkZs}That kingdom no longer exists.");
+        private static readonly TextObject _TRebelKingdom = new("{=Nd6pXtLw}You cannot return fiefs to a rebel kingdom.");
+        private static readonly TextObject _TNotConquered = new("{=Kb9sRmTy}{SETTLEMENT} was not taken from {KINGDOM}.");
+        private static readonly TextObject _TAtWar = new("{=Bw6nRtLe}You cannot return fiefs to a kingdom you are at war with.");
+        private static readonly TextObject _TBystandersApprove = new("{=Mf2hVqZa}The other clans of {KINGDOM} approve of your gesture. Relation with their leaders +{CHANGE}.");
+        private static readonly TextObject _TUnderSiege = new("{=Qs3vLpXa}{SETTLEMENT} is under siege and cannot be handed over.");
+        private static readonly TextObject _TOnCooldown = new("{=Gm5tRvWc}{SETTLEMENT} was handed back too recently. {DAYS} more days must pass.");
+
+        /// <summary>The share of the payout that the receiving kingdom's other clans feel.</summary>
+        private const float _bystanderRelationShare = 0.35f;
+
+        /// <summary>Damping applied per additional time a fief has passed between kingdoms.</summary>
+        private const float _churnPenaltyPerFlip = 0.25f;
+
+        public static void Apply(Settlement settlement, Kingdom targetKingdom)
+        {
+            var recipientClan = FiefProvenanceManager.Instance!.GetDispossessedClan(settlement, targetKingdom) ?? targetKingdom.Leader.Clan;
+            var relationChange = CalculateRelationChange(settlement);
+
+            // Captured before the transfer, because afterwards the fief belongs to someone else.
+            var relinquishingKingdom = settlement.OwnerClan?.Kingdom;
+
+            ChangeOwnerOfSettlementAction.ApplyByLeaveFaction(recipientClan.Leader, settlement);
+
+            ChangeRelationAction.ApplyPlayerRelation(recipientClan.Leader, relationChange);
+
+            var bystanderChange = (int) Math.Round(relationChange * _bystanderRelationShare);
+            if (bystanderChange > 0)
+            {
+                // Applied quietly and only to each leader: the defaults would raise a notification per clan
+                // and also pass the change on to relatives, crediting heroes related to several leaders
+                // (the recipient's family included) more than once. One summary line replaces the notifications.
+                foreach (var clan in targetKingdom.Clans.Where(clan => clan != recipientClan
+                                                                       && clan.Leader is not null
+                                                                       && !clan.IsUnderMercenaryService))
+                    ChangeRelationAction.ApplyPlayerRelation(clan.Leader, bystanderChange, affectRelatives: false, showQuickNotification: false);
+
+                _TBystandersApprove.SetTextVariable("KINGDOM", targetKingdom.Name);
+                _TBystandersApprove.SetTextVariable("CHANGE", bystanderChange);
+                InformationManager.DisplayMessage(new InformationMessage(_TBystandersApprove.ToString()));
+            }
+
+            // The fief is gone, so the kingdom's minimum expansionism has already fallen with it.
+            // This gives back the score the siege that took it added on top.
+            if (relinquishingKingdom is not null)
+                ExpansionismManager.Instance!.ReduceExpansionism(relinquishingKingdom, Settings.Instance!.ReturnFiefExpansionismReduction);
+
+            PlayerCharacterTraitEventExperience.FiefReturned.Apply();
+
+            DiplomacyEvents.Instance.OnFiefReturned(settlement.Town);
+        }
+
+        public static int PreviewRelationChange(Settlement settlement, Kingdom targetKingdom)
+        {
+            var recipient = FiefProvenanceManager.Instance!.GetDispossessedClan(settlement, targetKingdom)?.Leader ?? targetKingdom.Leader;
+            var relationChange = CalculateRelationChange(settlement);
+#if BL15
+            var adjustedChange = Campaign.Current.Models.DiplomacyModel.GetEffectiveRelationChange(Hero.MainHero, recipient, relationChange);
+#else
+            var adjustedChange = Campaign.Current.Models.DiplomacyModel.GetRelationIncreaseFactor(Hero.MainHero, recipient, relationChange);
+#endif
+            return (int) Math.Floor((double) adjustedChange);
+        }
+
+        /// <summary>The fiefs of the player's own clan that were taken from the given kingdom.</summary>
+        public static IEnumerable<Settlement> GetReturnableFiefs(Kingdom targetKingdom) =>
+            Clan.PlayerClan.GetPermanentFiefs()
+                .Select(town => town.Settlement)
+                .Where(settlement => CanReturnFief(settlement, targetKingdom, out _));
+
+        public static bool CanReturnFief(Settlement settlement, Kingdom targetKingdom, out string? reason)
+        {
+            reason = GetPlayerRefusal(settlement)
+                     ?? GetKingdomRefusal(targetKingdom)
+                     ?? GetFiefRefusal(settlement, targetKingdom);
+
+            return reason is null;
+        }
+
+        /// <summary>Why the player may not hand this fief to anyone at all, or null.</summary>
+        private static string? GetPlayerRefusal(Settlement settlement)
+        {
+            if (!Settings.Instance!.EnableFiefReturn)
+                return _TDisabled.ToString();
+            if (settlement.OwnerClan != Clan.PlayerClan)
+                return _TNotYourFief.ToString();
+            if (Clan.PlayerClan.MapFaction?.Leader != Hero.MainHero)
+                return _TNotKingdomLeader.ToString();
+
+            return null;
+        }
+
+        /// <summary>Why <paramref name="targetKingdom"/> cannot receive a fief from the player, or null.</summary>
+        private static string? GetKingdomRefusal(Kingdom targetKingdom)
+        {
+            if (targetKingdom == Clan.PlayerClan.Kingdom)
+                return _TSameKingdom.ToString();
+            if (targetKingdom.IsEliminated || targetKingdom.Leader is null)
+                return _TKingdomGone.ToString();
+            if (targetKingdom.IsRebelKingdom())
+                return _TRebelKingdom.ToString();
+            // The diplomacy screen only offers returns to kingdoms at peace, but the rule belongs here so the
+            // cheat and any future caller can't hand land to an active enemy.
+            if (Clan.PlayerClan.MapFaction.IsAtWarWith(targetKingdom))
+                return _TAtWar.ToString();
+
+            return null;
+        }
+
+        /// <summary>Why this particular fief cannot go back to <paramref name="targetKingdom"/> right now, or null.</summary>
+        private static string? GetFiefRefusal(Settlement settlement, Kingdom targetKingdom)
+        {
+            if (settlement.IsUnderSiege)
+            {
+                // Handing over a fief mid-siege would leave the besiegers attacking a kingdom they may be at peace with.
+                _TUnderSiege.SetTextVariable("SETTLEMENT", settlement.Name);
+                return _TUnderSiege.ToString();
+            }
+
+            if (CooldownManager.HasFiefReturnCooldown(settlement, out var elapsedDays))
+            {
+                _TOnCooldown.SetTextVariable("SETTLEMENT", settlement.Name);
+                _TOnCooldown.SetTextVariable("DAYS", (int) Math.Ceiling(Settings.Instance!.ReturnFiefCooldownInDays - elapsedDays));
+                return _TOnCooldown.ToString();
+            }
+
+            if (!(FiefProvenanceManager.Instance?.WasConqueredFrom(settlement, targetKingdom, out _) ?? false))
+            {
+                _TNotConquered.SetTextVariable("SETTLEMENT", settlement.Name);
+                _TNotConquered.SetTextVariable("KINGDOM", targetKingdom.Name);
+                return _TNotConquered.ToString();
+            }
+
+            return null;
+        }
+
+        private static int CalculateRelationChange(Settlement settlement)
+        {
+            var baseChange = Math.Max(5d, Math.Log(settlement.Town.Prosperity / 1000, 1.1f));
+            var scaled = baseChange
+                         * Settings.Instance!.ReturnFiefRelationMultiplier
+                         * GetHoldFactor(settlement)
+                         * GetChurnFactor(settlement);
+
+            return Math.Max(1, (int) Math.Round(scaled));
+        }
+
+        /// <summary>
+        /// A fief handed straight back is barely a sacrifice, and returning one the moment it is
+        /// taken would otherwise be farmable. Value ramps to full over a year of ownership.
+        /// </summary>
+        private static float GetHoldFactor(Settlement settlement)
+        {
+            var heldSince = FiefProvenanceManager.Instance!.GetHeldByCurrentKingdomSince(settlement);
+            return heldSince == CampaignTime.Zero
+                ? 1f
+                : Math.Min(1f, heldSince.ElapsedDaysUntilNow / CampaignTime.DaysInYear);
+        }
+
+        /// <summary>Damps the payout for fiefs that have been passed back and forth.</summary>
+        private static float GetChurnFactor(Settlement settlement)
+        {
+            var flips = FiefProvenanceManager.Instance!.GetTimesChangedHands(settlement);
+            return 1f / (1f + (_churnPenaltyPerFlip * Math.Max(0, flips - 1)));
+        }
+    }
+}

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Settlements;
 
 namespace Diplomacy.CampaignBehaviors
 {
@@ -21,6 +22,15 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.MakePeace.AddNonSerializedListener(this, RegisterDeclareWarCooldown);
             DiplomacyEvents.PeaceProposalSent.AddNonSerializedListener(this, RegisterPeaceProposalCooldown);
             CampaignEvents.OnAllianceStartedEvent.AddNonSerializedListener(this, RegisterAllianceFormedCooldown);
+            DiplomacyEvents.FiefReturned.AddNonSerializedListener(this, RegisterFiefReturnCooldown);
+        }
+
+        private void RegisterFiefReturnCooldown(Town fief)
+        {
+            LogFactory.Get<CooldownBehavior>()
+                .LogTrace($"[{CampaignTime.Now}] {fief.Name} was returned and cannot be handed back again for a while.");
+
+            _cooldownManager.UpdateLastFiefReturnTime(fief.Settlement, CampaignTime.Now);
         }
 
         private void RegisterAllianceFormedCooldown(Kingdom kingdom1, Kingdom kingdom2)

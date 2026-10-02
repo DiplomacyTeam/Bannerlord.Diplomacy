@@ -17,6 +17,10 @@ namespace Diplomacy.ViewModel
         private readonly Action<GrantFiefItemVM> _onSelect;
 
         public GrantFiefItemVM(Settlement settlement, Hero targetHero, Action<GrantFiefItemVM> onSelect)
+            : this(settlement, GrantFiefAction.PreviewPositiveRelationChange(settlement, targetHero), onSelect) { }
+
+        /// <summary>Used where the relation preview comes from something other than a grant.</summary>
+        public GrantFiefItemVM(Settlement settlement, int relationBonus, Action<GrantFiefItemVM> onSelect)
         {
             Settlement = settlement;
             Name = settlement.Name.ToString();
@@ -35,7 +39,7 @@ namespace Diplomacy.ViewModel
             }
             Garrison = Settlement.Town.GarrisonParty?.Party.NumberOfAllMembers ?? 0;
             _onSelect = onSelect;
-            RelationBonus = string.Concat(new[] { GrantFiefAction.PreviewPositiveRelationChange(Settlement, targetHero).ToString(), "+" });
+            RelationBonus = string.Concat(new[] { relationBonus.ToString(), "+" });
         }
 
         [UsedImplicitly]
