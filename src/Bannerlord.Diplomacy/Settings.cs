@@ -58,11 +58,15 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int AllianceTendency { get; set; } = 0;
 
-        [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 32, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance will last before it can be broken. Default value is 42 (half of a standard game year).")]
+        [SettingPropertyInteger("{=Qk3vTzAe}Alliance Threat Threshold", 0, 1000, Order = 32, RequireRestart = false, HintText = "{=Rm8xPdLu}Kingdoms only consider an alliance when both of them have a neighbor whose threat score exceeds this value. The game's default of 430 requires a neighbor roughly 1.2 to 1.9 times stronger, which rarely happens on a balanced map. Lower it to make alliances more common; 0 lets any neighbor count. Default value is 430.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public int AllianceThreatThreshold { get; set; } = 430;
+
+        [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 33, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance will last before it can be broken. Default value is 42 (half of a standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int MinimumAllianceDuration { get; set; } = 42;
 
-        [SettingPropertyBool("{=xXKKRp99}Leader Clan Family Marriage Affects Alliance", Order = 33, RequireRestart = false, HintText = "{=BGS6mUID}If active, will grant a bonus to alliance tendency when leader clans have a family marriage between them. Default value is active.")]
+        [SettingPropertyBool("{=xXKKRp99}Leader Clan Family Marriage Affects Alliance", Order = 34, RequireRestart = false, HintText = "{=BGS6mUID}If active, will grant a bonus to alliance tendency when leader clans have a family marriage between them. Default value is active.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool LeaderClanMarriageAffectsAlliance { get; set; } = true;
 

@@ -1,4 +1,8 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.5.4
+Game Versions: v1.4.0, v1.4.1, v1.4.2, v1.4.3, v1.4.4, v1.4.5, v1.4.6, v1.4.7, v1.4.8, v1.5.1, v1.5.2, v1.5.3
+* Wired the alliance settings back up. Since 1.3.0 alliances have been the game's own, and "Enable Alliances" and "Alliance Tendency" did nothing. The game only lets two realms ally when each has a neighbor roughly 1.2 to 1.9 times stronger, which is why alliances almost never formed and the player was always told the other realm "is not seeking alliances at the moment". The new "Alliance Threat Threshold" setting makes that bar configurable, "Alliance Tendency" is added to the game's alliance score, and "Enable Alliances" blocks alliances for both player and AI kingdoms again.
+---------------------------------------------------------------------------------------------------
 Version: 1.5.3
 Game Versions: v1.4.0, v1.4.1, v1.4.2, v1.4.3, v1.4.4, v1.4.5, v1.4.6, v1.4.7, v1.4.8, v1.5.1, v1.5.2, v1.5.3
 * Adapted for the v1.5.3 beta game version.

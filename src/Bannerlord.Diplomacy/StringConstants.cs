@@ -5,6 +5,7 @@
         public const string AtWar = "{=UQZmdLzc}Cannot be at war.";
         public const string NotEnoughInfluence = "{=TS1iV2pO}Not enough influence!";
         public const string InAlliance = "{=KHJyWj9H}Cannot be in an alliance.";
+        public const string AlliancesDisabled = "{=Hj2nWqYs}Alliances are disabled in the Diplomacy mod settings.";
         public const string NotEnoughGold = "{=IWZ91JVk}Not enough gold!";
         public const string Accept = "{=Y94H6XnK}Accept";
         public const string Decline = "{=cOgmdp9e}Decline";

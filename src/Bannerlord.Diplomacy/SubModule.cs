@@ -112,6 +112,12 @@ namespace Diplomacy
 
                 gameStarter.AddModel(new DiplomacyKingdomDecisionPermissionModel(currentKingdomDecisionPermissionModel));
 
+                var currentAllianceModel = GetGameModel<AllianceModel>(gameStarterObject);
+                if (currentAllianceModel is null)
+                    Log.LogWarning("No default AllianceModel found!");
+
+                gameStarter.AddModel(new DiplomacyAllianceModel(currentAllianceModel));
+
                 Log.LogDebug("Campaign session started.");
             }
         }
