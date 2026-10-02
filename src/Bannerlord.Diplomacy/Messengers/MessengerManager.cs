@@ -53,6 +53,10 @@ namespace Diplomacy.Messengers
         private Messenger? _activeMessenger;
         private Mission? _currentMission;
 
+        private static readonly List<PendingDialogue> PendingDialogues = new();
+        private static MessengerManager? _runningDialogueManager;
+        private static Messenger? _runningMessenger;
+
         private delegate int GetBribeInternalDelegate(DefaultBribeCalculationModel instance, Settlement settlement);
         private static readonly GetBribeInternalDelegate? deGetBribeInternal = AccessTools2.GetDelegate<GetBribeInternalDelegate>(typeof(DefaultBribeCalculationModel), "GetBribeInternal");
 
@@ -62,6 +66,7 @@ namespace Diplomacy.Messengers
 
         internal MessengerManager()
         {
+            ResetDialogueQueue();
             _messengers = new();
             Messengers = new(_messengers);
         }
@@ -230,11 +235,10 @@ namespace Diplomacy.Messengers
                     GetMessengerArrivedText(Hero.MainHero.MapFaction, messenger.TargetHero.MapFaction, messenger.TargetHero, out var additionalExpenses).ToString(), additionalExpenses?.CanPayCost() ?? true, true,
                     GameTexts.FindText("str_ok").ToString(), new TextObject("{=kMjfN2fB}Cancel Messenger").ToString(), delegate
                     {
-                        _activeMessenger = messenger;
                         int bribeValue = (int) (additionalExpenses?.Value ?? 0f);
                         if (bribeValue > 0)
                             BribeGuardsAction.Apply(messenger.TargetHero.CurrentSettlement, bribeValue);
-                        StartDialogue(messenger.TargetHero, messenger);
+                        QueueDialogue(messenger.TargetHero, messenger);
                     },
                     () => { RemoveMessenger(messenger); }), true);
                 return true;
@@ -258,6 +262,7 @@ namespace Diplomacy.Messengers
 
         internal void Sync()
         {
+            ResetDialogueQueue();
             RemoveInvalidMessengers();
             Messengers = new(_messengers);
         }
@@ -269,6 +274,81 @@ namespace Diplomacy.Messengers
             // A hero reference can deserialize as null if its target was removed from the campaign.
             if (_messengers.RemoveAll(messenger => messenger is null || messenger.TargetHero is null) > 0)
                 Messengers = new(_messengers);
+        }
+
+        private void QueueDialogue(Hero targetHero, Messenger messenger)
+        {
+            if (PendingDialogues.Any(p => ReferenceEquals(p.Manager, this) && ReferenceEquals(p.Messenger, messenger)))
+                return;
+
+            PendingDialogues.Add(new PendingDialogue(this, targetHero, messenger));
+        }
+
+        internal static void OnGameStateTick(GameStateManager gameStateManager)
+        {
+            if (_runningDialogueManager is not null)
+            {
+                if (_runningDialogueManager._currentMission is null && gameStateManager.ActiveState is MapState)
+                {
+                    _runningDialogueManager = null;
+                    _runningMessenger = null;
+                }
+                else
+                    return;
+            }
+
+            if (PendingDialogues.Count == 0)
+                return;
+
+            var pending = PendingDialogues[0];
+
+            if (pending.TargetHero is null
+                || pending.Messenger is null
+                || pending.TargetHero.IsDead
+                || !ReferenceEquals(pending.Messenger.TargetHero, pending.TargetHero)
+                || !pending.Manager.Messengers.Contains(pending.Messenger))
+            {
+                PendingDialogues.RemoveAt(0);
+                return;
+            }
+
+            if (InformationManager.IsAnyInquiryActive()
+                || gameStateManager.ActiveStateDisabledByUser
+                || MBCommon.IsPaused
+                || gameStateManager.ActiveState is not MapState
+                || pending.Manager._currentMission is not null
+                || !IsPlayerHeroAvailable()
+                || !IsTargetHeroAvailableNow(pending.TargetHero))
+                return;
+
+            pending.Manager._activeMessenger = pending.Messenger;
+            PendingDialogues.RemoveAt(0);
+
+            pending.Manager.StartDialogue(pending.TargetHero, pending.Messenger);
+
+            _runningDialogueManager = pending.Manager;
+            _runningMessenger = pending.Messenger;
+        }
+
+        private static void ResetDialogueQueue()
+        {
+            PendingDialogues.Clear();
+            _runningDialogueManager = null;
+            _runningMessenger = null;
+        }
+
+        private sealed class PendingDialogue
+        {
+            internal MessengerManager Manager { get; }
+            internal Hero TargetHero { get; }
+            internal Messenger Messenger { get; }
+
+            internal PendingDialogue(MessengerManager manager, Hero targetHero, Messenger messenger)
+            {
+                Manager = manager;
+                TargetHero = targetHero;
+                Messenger = messenger;
+            }
         }
 
         public void StartDialogue(Hero targetHero, Messenger messenger)
