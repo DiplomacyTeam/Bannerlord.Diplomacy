@@ -21,9 +21,26 @@ namespace Diplomacy.CivilWar.Actions
         {
             if (!CanApply(clan, rebelFaction, out _))
                 return false;
+            // a clan pledged to the player's faction doesn't join another faction until the pledge ends
+            if (FactionRecruitmentManager.Instance?.GetPledgedFaction(clan) is { } pledgedFaction && pledgedFaction != rebelFaction)
+                return false;
             var score = RebelFactionScoringModel.GetDemandScore(clan, rebelFaction);
             return score.ResultNumber >= RebelFactionScoringModel.RequiredScore;
         }
+
+        public static bool ShouldRemain(Clan clan, RebelFaction rebelFaction)
+        {
+            if (!rebelFaction.Clans.Contains(clan) || !IsEligibleMember(clan, rebelFaction))
+                return false;
+            return (FactionRecruitmentManager.Instance?.HasActivePledge(clan, rebelFaction) ?? false)
+                   || RebelFactionScoringModel.GetDemandScore(clan, rebelFaction).ResultNumber >= RebelFactionScoringModel.RequiredScore;
+        }
+
+        /// <summary>
+        /// Whether an existing member still meets the membership rules, regardless of its support score.
+        /// </summary>
+        internal static bool IsEligibleMember(Clan clan, RebelFaction rebelFaction)
+            => !GetExceptions(clan, rebelFaction, existingMember: true).Any();
 
         public static bool CanApply(Clan clan, RebelFaction rebelFaction, out TextObject? reason)
         {
@@ -43,11 +60,15 @@ namespace Diplomacy.CivilWar.Actions
         /// in the UI, currently supplying empty TextObjects.
         /// </returns>
         public static IEnumerable<TextObject> CanApply(Clan clan, RebelFaction rebelFaction)
+            => GetExceptions(clan, rebelFaction, existingMember: false);
+
+        private static IEnumerable<TextObject> GetExceptions(Clan clan, RebelFaction rebelFaction, bool existingMember)
         {
             // can only join a faction of a kingdom that they're in
             if (rebelFaction.ParentKingdom != clan.Kingdom)
             {
                 yield return TextObject.GetEmpty();
+                yield break;
             }
 
             // rebel kingdom members can't join factions
@@ -75,19 +96,19 @@ namespace Diplomacy.CivilWar.Actions
             }
 
             // faction sponsors can't join another faction 
-            if (clan.Kingdom.GetRebelFactions().Any(x => x.SponsorClan == clan))
+            if (clan.Kingdom.GetRebelFactions().Any(x => x.SponsorClan == clan && (!existingMember || x != rebelFaction)))
             {
                 yield return TextObject.GetEmpty();
             }
 
             // can't join a faction you're already a member of
-            if (rebelFaction.Clans.Contains(clan))
+            if (!existingMember && rebelFaction.Clans.Contains(clan))
             {
                 yield return TextObject.GetEmpty();
             }
 
             // can't join a faction when member of a secession faction
-            if (clan.Kingdom.GetRebelFactions().Any(x => x.Clans.Contains(clan) && x.RebelDemandType == RebelDemandType.Secession))
+            if (clan.Kingdom.GetRebelFactions().Any(x => x.Clans.Contains(clan) && x.RebelDemandType == RebelDemandType.Secession && (!existingMember || x != rebelFaction)))
             {
                 yield return TextObject.GetEmpty();
             }

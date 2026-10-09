@@ -41,6 +41,8 @@ namespace Diplomacy
             AddWarExhaustionEventRecordDefinitions();//19-39 with 8 in reserve
             AddClassDefinition(typeof(FiefProvenanceManager), 40);
             AddClassDefinition(typeof(FiefOwnershipRecord), 41);
+            AddClassDefinition(typeof(FactionRecruitmentManager), 42);
+            AddClassDefinition(typeof(FactionRecruitmentRecord), 43);
         }
 
         private void AddWarExhaustionEventRecordDefinitions()
@@ -88,6 +90,7 @@ namespace Diplomacy
             ConstructContainerDefinition(typeof(List<RebelFaction>));
             ConstructContainerDefinition(typeof(Dictionary<Kingdom, List<RebelFaction>>));
             ConstructContainerDefinition(typeof(Dictionary<Town, Clan>));
+            ConstructContainerDefinition(typeof(List<FactionRecruitmentRecord>));
             //WarExhaustion
             ConstructContainerDefinition(typeof(Dictionary<string, WarExhaustionRecord>));
             ConstructContainerDefinition(typeof(List<WarExhaustionEventRecord>));

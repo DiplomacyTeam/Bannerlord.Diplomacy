@@ -343,6 +343,26 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingCivilWar)]
         public int FactionTendency { get; internal set; } = 0;
 
+        [SettingPropertyBool("{=FRsetOn1}Enable Player Faction Recruitment", Order = 10, RequireRestart = false, HintText = "{=FRsetOn2}Lets faction leaders ask or persuade clans to support abdication and secession. Disabling stops new recruitment; existing pledges expire normally. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public bool EnablePlayerFactionRecruitment { get; set; } = true;
+
+        [SettingPropertyInteger("{=FRsetCo1}Faction Recruitment Influence Cost", 0, 1000, Order = 11, RequireRestart = false, HintText = "{=FRsetCo2}Influence spent per persuasion attempt, including failed or abandoned attempts. Asking an already willing clan is free. Default value is 25.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionRecruitmentInfluenceCost { get; set; } = 25;
+
+        [SettingPropertyInteger("{=FRsetBo1}Faction Recruitment Persuasion Bonus", 0, 100, Order = 12, RequireRestart = false, HintText = "{=FRsetBo2}Extra support score granted by successful persuasion for admission to a faction. The total must reach 100. Applies to new attempts. Default value is 25.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionRecruitmentPersuasionBonus { get; set; } = 25;
+
+        [SettingPropertyInteger("{=FRsetCd1}Faction Recruitment Cooldown", 0, 1000, Order = 13, RequireRestart = false, HintText = "{=FRsetCd2}Days before you can approach the same clan again, across all factions. Applies to new attempts. Default value is 14.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionRecruitmentCooldownInDays { get; set; } = 14;
+
+        [SettingPropertyInteger("{=FRsetPl1}Faction Recruitment Pledge Duration", 0, 1000, Order = 14, RequireRestart = false, HintText = "{=FRsetPl2}Days a recruited clan promises to remain before normal support checks resume. A change of leader, kingdom, or eligibility ends the pledge early. Applies to new attempts. Default value is 30.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionRecruitmentPledgeInDays { get; set; } = 30;
+
         /*
 [SettingPropertyBool("{=ZIf1tRII}Enable Coalitions", RequireRestart = false, HintText = "{=8v8q0OGu}Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled.")]
 [SettingPropertyGroup(HeadingCoalitions, IsMainToggle = true, GroupOrder = (int)GroupOrder.HeadingCoalitions)]

@@ -32,7 +32,12 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@master
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: |
+          6.0.x
+          8.0.x
+
+    - name: Test faction recruitment rules
+      run: dotnet test tests/Recruitment.Tests/Recruitment.Tests.csproj --configuration Release
 
     - name: Build Diplomacy Module for testing
       run: |

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="../../src/Bannerlord.Diplomacy/CivilWar/FactionRecruitment*.cs" Link="Production/%(Filename)%(Extension)" />
+    <Compile Include="../../src/Bannerlord.Diplomacy/CivilWar/Actions/RecruitFactionSupportAction.cs" Link="Production/RecruitFactionSupportAction.cs" />
+    <Compile Include="../../src/Bannerlord.Diplomacy/CivilWar/Actions/JoinFactionAction.cs" Link="Production/JoinFactionAction.cs" />
+    <Compile Include="../../src/Bannerlord.Diplomacy/Costs/InfluenceCost.cs" Link="Production/InfluenceCost.cs" />
+    <Compile Include="../../src/Bannerlord.Diplomacy/Costs/AbstractDiplomacyCost.cs" Link="Production/AbstractDiplomacyCost.cs" />
+    <Compile Include="../../src/Bannerlord.Diplomacy/Costs/IDiplomacyCost.cs" Link="Production/IDiplomacyCost.cs" />
+  </ItemGroup>
+</Project>

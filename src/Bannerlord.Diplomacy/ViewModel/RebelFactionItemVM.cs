@@ -1,9 +1,13 @@
 ﻿using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
+using Diplomacy.CivilWar.Scoring;
+using Diplomacy.Extensions;
 
 using JetBrains.Annotations;
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameState;
@@ -30,6 +34,7 @@ namespace Diplomacy.ViewModel
         private bool _shouldAllowStartRebellion;
         private bool _shouldShowLeave;
         private bool _shouldShowStartRebellion;
+        private bool _shouldShowRecruitSupport;
         private RebelFactionParticipantVM _sponsorClan = null!;
 
         public RebelFaction RebelFaction { get; }
@@ -59,6 +64,12 @@ namespace Diplomacy.ViewModel
 
         [DataSourceProperty]
         public bool ShouldAllowStartRebellion { get => _shouldAllowStartRebellion; set => SetField(ref _shouldAllowStartRebellion, value, nameof(ShouldAllowStartRebellion)); }
+
+        [DataSourceProperty]
+        public bool ShouldShowRecruitSupport { get => _shouldShowRecruitSupport; set => SetField(ref _shouldShowRecruitSupport, value, nameof(ShouldShowRecruitSupport)); }
+
+        [DataSourceProperty]
+        public string RecruitSupportLabel => new TextObject("{=FRrecBtn}Recruit Support").ToString();
 
         [DataSourceProperty]
         public string ParticipantsText { get; set; }
@@ -145,6 +156,9 @@ namespace Diplomacy.ViewModel
             ShouldShowBalanceOfPower = !RebelFaction.AtWar;
             ShouldShowStartRebellion = RebelFaction.SponsorClan == Clan.PlayerClan;
             ShouldAllowStartRebellion = ShouldShowStartRebellion && FactionStrength > LoyalistStrength;
+            ShouldShowRecruitSupport = Settings.Instance!.EnablePlayerFactionRecruitment
+                                       && RebelFaction.SponsorClan == Clan.PlayerClan && Clan.PlayerClan.Leader == Hero.MainHero
+                                       && !RebelFaction.ParentKingdom.GetRebelFactions().Any(f => f.AtWar);
             FactionName = RebelFaction.Name.ToString();
 
             var bopSize = 300;
@@ -164,6 +178,57 @@ namespace Diplomacy.ViewModel
         {
             RebelFaction.RemoveClan(Clan.PlayerClan);
             _refreshParent();
+        }
+
+        [UsedImplicitly]
+        public void OnRecruitSupport()
+        {
+            RefreshValues();
+            if (!ShouldShowRecruitSupport
+                || RebelFaction.ParentKingdom != Clan.PlayerClan.Kingdom)
+                return;
+            var candidates = new List<InquiryElement>();
+            var scores = RebelFaction.ParentKingdom.Clans.Where(c => c != Clan.PlayerClan && !c.IsEliminated
+                         && !c.IsMinorFaction && !c.IsUnderMercenaryService && c.Leader is not null && !RebelFaction.Clans.Contains(c))
+                .Select(c => (Clan: c, Score: RebelFactionScoringModel.GetDemandScore(c, RebelFaction)))
+                .OrderByDescending(c => c.Score.ResultNumber);
+            foreach (var candidate in scores)
+            {
+                var clan = candidate.Clan;
+                var score = candidate.Score;
+                var hint = new TextObject("{=FRcanHint}Military strength: {STRENGTH}{newline}Support: {SCORE} / {REQUIRED}{newline}{REASONS}")
+                    .SetTextVariable("STRENGTH", (int) clan.CurrentTotalStrength)
+                    .SetTextVariable("SCORE", (int) score.ResultNumber)
+                    .SetTextVariable("REQUIRED", (int) RebelFactionScoringModel.RequiredScore)
+                    .SetTextVariable("REASONS", string.Join(Environment.NewLine, score.GetLines().Select(l => $"{l.Item1}: {l.Item2:+0.##;-0.##;0}")));
+                if (!RecruitFactionSupportAction.CanRecruit(clan, RebelFaction, out var reason)
+                    || (score.ResultNumber < RebelFactionScoringModel.RequiredScore
+                        && !RecruitFactionSupportAction.CanPersuade(clan, RebelFaction, out reason)))
+                    hint = new TextObject("{=FRcanBlock}{DETAILS}{newline}{REASON}").SetTextVariable("DETAILS", hint).SetTextVariable("REASON", reason);
+                var label = new TextObject("{=FRcanName}{CLAN} - Support: {SCORE} / {REQUIRED}")
+                    .SetTextVariable("CLAN", clan.Name).SetTextVariable("SCORE", (int) score.ResultNumber)
+                    .SetTextVariable("REQUIRED", (int) RebelFactionScoringModel.RequiredScore);
+                candidates.Add(new InquiryElement(clan.Leader, label.ToString(), null, true, hint.ToString()));
+            }
+            if (candidates.Count == 0)
+            {
+                InformationManager.ShowInquiry(new InquiryData(RecruitSupportLabel,
+                    new TextObject("{=FRnoClans}There are no other clans to approach in this kingdom.").ToString(), true, false,
+                    GameTexts.FindText("str_ok").ToString(), null, null, null), true);
+                return;
+            }
+            MBInformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(
+                RecruitSupportLabel,
+                new TextObject("{=FRcanDesc}Choose a clan leader to approach. Speak to them about supporting your faction, in person or through Send Messenger on their encyclopedia page.").ToString(),
+                candidates, true, 1, 1, new TextObject("{=FRviewLdr}View Clan Leader").ToString(),
+                GameTexts.FindText("str_cancel").ToString(), selected =>
+                {
+                    if (selected.FirstOrDefault()?.Identifier is Hero hero)
+                    {
+                        Campaign.Current.EncyclopediaManager.GoToLink(hero.EncyclopediaLink);
+                        _onComplete();
+                    }
+                }, null), true);
         }
 
         [UsedImplicitly]

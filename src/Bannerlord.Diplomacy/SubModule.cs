@@ -104,6 +104,7 @@ namespace Diplomacy
                 gameStarter.AddBehavior(new ExpansionismBehavior());
                 gameStarter.AddBehavior(new FiefProvenanceBehavior());
                 gameStarter.AddBehavior(new CivilWarBehavior());
+                gameStarter.AddBehavior(new FactionRecruitmentBehavior());
                 gameStarter.AddBehavior(new UIBehavior());
 
                 var currentKingdomDecisionPermissionModel = GetGameModel<KingdomDecisionPermissionModel>(gameStarterObject);

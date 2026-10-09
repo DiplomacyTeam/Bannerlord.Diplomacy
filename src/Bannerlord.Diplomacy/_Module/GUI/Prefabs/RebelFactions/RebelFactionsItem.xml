@@ -131,6 +131,11 @@
                     </ButtonWidget>
                   </Children>
                 </ListPanel>
+                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Width" SuggestedHeight="!Button.Height" HorizontalAlignment="Center" Brush="Popup.Done.Button" Command.Click="OnRecruitSupport" IsVisible="@ShouldShowRecruitSupport" UpdateChildrenStates="true">
+                  <Children>
+                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@RecruitSupportLabel"/>
+                  </Children>
+                </ButtonWidget>
                 <Widget WidthSizePolicy = "StretchToParent" HeightSizePolicy = "Fixed" SuggestedHeight="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Sprite="GradientDivider_9" AlphaFactor="0.4" MarginLeft="10" MarginRight="10"/>
               </Children>
             </ListPanel>

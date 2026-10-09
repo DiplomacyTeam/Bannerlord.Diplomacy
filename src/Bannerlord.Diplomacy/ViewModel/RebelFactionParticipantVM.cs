@@ -1,4 +1,5 @@
-﻿using Diplomacy.CivilWar.Factions;
+﻿using Diplomacy.CivilWar;
+using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
 using Diplomacy.Helpers;
 
@@ -45,6 +46,10 @@ namespace Diplomacy.ViewModel
             list.Add(new TooltipProperty(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
             list.Add(new TooltipProperty(_TRequiredScore.ToString(), $"{RebelFactionScoringModel.RequiredScore:0.##}", 0, false,
                 TooltipProperty.TooltipPropertyFlags.RundownResult));
+            var pledgeDays = FactionRecruitmentManager.Instance?.GetPledgeDaysRemaining(clan, rebelFaction) ?? 0;
+            if (pledgeDays > 0)
+                list.Add(new TooltipProperty(new TextObject("{=FRpledgeT}Recruitment pledge remaining").ToString(),
+                    new TextObject("{=FRdaysTxt}{DAYS} days").SetTextVariable("DAYS", pledgeDays).ToString(), 0));
             Hint = new BasicTooltipViewModel(() => list);
         }
 
