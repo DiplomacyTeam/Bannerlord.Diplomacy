@@ -16,7 +16,7 @@ namespace Diplomacy.DiplomaticAction.GenericConditions
             var eliminated = !(kingdom.IsEliminated || otherKingdom.IsEliminated);
 
             if (!eliminated)
-                textObject = new TextObject("{=lQAaLeSy}Faction has been eliminated.");
+                textObject = new TextObject("{=ke94ceNo}Faction has been eliminated.");
 
             return eliminated;
         }

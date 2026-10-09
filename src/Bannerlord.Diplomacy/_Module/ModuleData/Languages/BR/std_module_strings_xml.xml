@@ -123,8 +123,8 @@
     <string id="q5qphBwi" text="Facção Fraca"/>
     <string id="sygtLRqA" text="Relação"/>
 
-    <string id="cmOSpfyW" text="Aliança com {ALLIED_KINGDOM}"/>
-    <string id="RqQ4oqvl" text="Guerra com {ENEMY_KINGDOM}"/>
+    <string id="cmOSpfyW" text="Aliança com {KINGDOM}"/>
+    <string id="RqQ4oqvl" text="Guerra com {KINGDOM}"/>
     <string id="t6YhBLj7" text="Pacto de não-agressão com {KINGDOM}"/>
     <string id="BjkwaNot" text="Casamento com um clã líder de {KINGDOM}"/>
 

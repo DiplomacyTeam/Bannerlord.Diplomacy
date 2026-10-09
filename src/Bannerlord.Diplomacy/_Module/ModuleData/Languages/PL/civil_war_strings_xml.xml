@@ -44,7 +44,7 @@
     <string id="Ysrttgis" text="Data wybuchu: {CAMPAIGN_TIME}"/>
     <string id="o3w3jNzZ" text="Żądanie: {DEMAND_NAME}"/>
     <string id="hbPiVQVK" text="Status: {STATUS}"/>
-    <string id="TvSHYACm" text="Siła: {STRENGTH}"/>
+    <string id="TvSHYACm" text="Siła"/>
     <string id="dlANhHUd" text="Frakcje"/>
     <string id="hBSo0Ziq" text="Utwórz frakcję"/>
     <string id="2PglxF8k" text="Wybierz żądanie frakcji"/>

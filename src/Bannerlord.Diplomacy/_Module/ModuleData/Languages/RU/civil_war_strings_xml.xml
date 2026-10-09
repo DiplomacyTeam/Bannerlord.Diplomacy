@@ -44,7 +44,7 @@
     <string id="Ysrttgis" text="Дата начала: {CAMPAIGN_TIME}"/>
     <string id="o3w3jNzZ" text="Требовать: {DEMAND_NAME}"/>
     <string id="hbPiVQVK" text="Статус: {STATUS}"/>
-    <string id="TvSHYACm" text="Сила: {STRENGTH}"/>
+    <string id="TvSHYACm" text="Сила"/>
     <string id="dlANhHUd" text="Фракций"/>
     <string id="hBSo0Ziq" text="Создать фракцию"/>
     <string id="2PglxF8k" text="Выберите требование фракции"/>

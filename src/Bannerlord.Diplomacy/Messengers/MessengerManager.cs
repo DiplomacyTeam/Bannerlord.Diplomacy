@@ -46,7 +46,7 @@ namespace Diplomacy.Messengers
             "{=hOOW2DMD}Your messenger found a treasure map and is now looking for the treasure, instead of delivering the message.",
             "{=hc52yW8O}Your messenger forgot the message, you will have to send him again.",
             "{=2rJDoi7N}Your messenger drank too much and is now sleeping it off.",
-            "{=VKqC9dl0}Your messenger take the money and run away."
+            "{=VKqC9dl0}Your messenger took the money and ran away."
         };
 
         private CampaignVec2 _position = CampaignVec2.Invalid;
@@ -212,7 +212,7 @@ namespace Diplomacy.Messengers
             {
                 // FIXME: Definitely would like to remove the silliness here.
                 // Jiros: Added to catch crash when Hero and Target are in the same party. [v1.5.3-release]
-                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=uy86VZX2}Messenger Eaten").ToString(),
+                InformationManager.ShowInquiry(new InquiryData(new TextObject("{=kq3g73j2}Messenger Eaten").ToString(),
                     new TextObject("{=JmgAuONd}Oh no. The messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!", new() { ["HERO_NAME"] = messenger.TargetHero.Name })
                         .ToString(),
                     true,

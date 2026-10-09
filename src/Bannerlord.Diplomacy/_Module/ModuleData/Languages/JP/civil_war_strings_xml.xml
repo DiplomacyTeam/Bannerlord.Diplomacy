@@ -44,7 +44,7 @@
     <string id="Ysrttgis" text="開始日: {CAMPAIGN_TIME}"/>
     <string id="o3w3jNzZ" text="要求: {DEMAND_NAME}"/>
     <string id="hbPiVQVK" text="状態: {STATUS}"/>
-    <string id="TvSHYACm" text="強さ: {STRENGTH}"/>
+    <string id="TvSHYACm" text="強さ"/>
     <string id="dlANhHUd" text="派閥"/>
     <string id="hBSo0Ziq" text="派閥を結成する"/>
     <string id="2PglxF8k" text="派閥の要求を選択"/>

@@ -58,11 +58,15 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int AllianceTendency { get; set; } = 0;
 
-        [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 32, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance will last before it can be broken. Default value is 42 (half of a standard game year).")]
+        [SettingPropertyInteger("{=Qk3vTzAe}Alliance Threat Threshold", 0, 1000, Order = 32, RequireRestart = false, HintText = "{=Rm8xPdLu}Kingdoms only consider an alliance when both of them have a neighbor whose threat score exceeds this value. The game's default of 430 requires a neighbor roughly 1.2 to 1.9 times stronger, which rarely happens on a balanced map. Lower it to make alliances more common; 0 lets any neighbor count. Default value is 430.")]
+        [SettingPropertyGroup(HeadingKingdomDiplomacy)]
+        public int AllianceThreatThreshold { get; set; } = 430;
+
+        [SettingPropertyInteger("{=H6XMjwpF}Minimum Alliance Duration in Days", 0, 500, Order = 33, RequireRestart = false, HintText = "{=RrsWhIWi}The minimum duration (in days) that an alliance will last before it can be broken. Default value is 42 (half of a standard game year).")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public int MinimumAllianceDuration { get; set; } = 42;
 
-        [SettingPropertyBool("{=xXKKRp99}Leader Clan Family Marriage Affects Alliance", Order = 33, RequireRestart = false, HintText = "{=BGS6mUID}If active, will grant a bonus to alliance tendency when leader clans have a family marriage between them. Default value is active.")]
+        [SettingPropertyBool("{=xXKKRp99}Leader Clan Family Marriage Affects Alliance", Order = 34, RequireRestart = false, HintText = "{=BGS6mUID}If active, will grant a bonus to alliance tendency when leader clans have a family marriage between them. Default value is active.")]
         [SettingPropertyGroup(HeadingKingdomDiplomacy)]
         public bool LeaderClanMarriageAffectsAlliance { get; set; } = true;
 
@@ -203,6 +207,18 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingRelations)]
         public int GrantFiefRelationPenalty { get; set; } = -2;
 
+        [SettingPropertyBool("{=oPq3XkWv}Enable Returning Fiefs", RequireRestart = false, HintText = "{=bZmT7HdA}If enabled, you may hand a conquered fief back to the kingdom it was taken from in exchange for relations and a drop in expansionism. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingRelations)]
+        public bool EnableFiefReturn { get; set; } = true;
+
+        [SettingPropertyFloatingInteger("{=rTqK8wDm}Return Fief Relation Multiplier", 0f, 5f, RequireRestart = false, HintText = "{=xNvP2bLc}Multiplier for the relation gain when returning a conquered fief to the kingdom it was taken from. Default value is 2.")]
+        [SettingPropertyGroup(HeadingRelations)]
+        public float ReturnFiefRelationMultiplier { get; set; } = 2.0f;
+
+        [SettingPropertyInteger("{=Wq8nTpLv}Return Fief Cooldown", 0, 1000, RequireRestart = false, HintText = "{=Jm3cXrDt}Days that must pass before the same fief can be returned again, even if it has been retaken in the meantime. Default value is 90.")]
+        [SettingPropertyGroup(HeadingRelations)]
+        public int ReturnFiefCooldownInDays { get; set; } = 90;
+
         // Gold Costs
 
         [SettingPropertyBool(displayName: "{=t4hNAoD7}Enable Scaling Gold Costs", Order = 0, RequireRestart = false, HintText = "{=5MMIDE5A}If enabled, this will scale gold costs of diplomatic actions and war reparations based on your kingdom size. Otherwise, the generic multipliers of 100 for diplomatic actions and 1000 for war reparations will apply. The default value is enabled.")]
@@ -283,6 +299,10 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingExpansionism)]
         public int ExpansionismDecayPerDay { get; set; } = 1;
 
+        [SettingPropertyInteger("{=hW4mZpQj}Return Fief Expansionism Reduction", 0, 100, RequireRestart = false, HintText = "{=dF7sYkR3}Expansionism removed when a conquered fief is returned to the kingdom it was taken from. Default value is 20, matching the expansionism gained from a successful siege.")]
+        [SettingPropertyGroup(HeadingExpansionism)]
+        public int ReturnFiefExpansionismReduction { get; set; } = 20;
+
         // Misc
 
         [SettingPropertyBool("{=lsyl0VSX}Storyline Protection", Order = -2, RequireRestart = false, HintText = "{=EVrErrTR}When enabled, prevents the player from breaking the main storyline. Disable when using mods like \"Just Let Me Play\". Default value is enabled.")]
@@ -322,6 +342,38 @@ namespace Diplomacy
         [SettingPropertyInteger("{=7wK0mmw1}Faction Tendency", -100, 100, Order = 5, RequireRestart = false, HintText = "{=aqvIdG7w}Score modifier affecting the tendency of clans to create or join factions. Increasing the modifier increases faction participation. Default value is 0.")]
         [SettingPropertyGroup(HeadingCivilWar)]
         public int FactionTendency { get; internal set; } = 0;
+
+        [SettingPropertyFloatingInteger("{=kT4rWq8Z}Required Faction Strength", 0, 1, "#0%", Order = 6, RequireRestart = false, HintText = "{=mB2xNv6P}Share of the kingdom's total strength an AI-led faction needs before it can start a civil war. Leaders with high Valor need up to 15 percentage points less. Raise it to make civil wars rarer. Default value is 65%.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public float RequiredFactionStrength { get; set; } = 0.65f;
+
+        [SettingPropertyBool("{=FRsetOn1}Enable Player Faction Recruitment", Order = 10, RequireRestart = false, HintText = "{=FRsetOn2}Lets faction leaders ask or persuade clans to support abdication and secession. Disabling stops new recruitment; existing pledges expire normally. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public bool EnablePlayerFactionRecruitment { get; set; } = true;
+
+        [SettingPropertyInteger("{=FRsetCo1}Faction Recruitment Influence Cost", 0, 1000, Order = 11, RequireRestart = false, HintText = "{=FRsetCo2}Influence spent per persuasion attempt, including failed or abandoned attempts. Asking an already willing clan is free. Default value is 25.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionRecruitmentInfluenceCost { get; set; } = 25;
+
+        [SettingPropertyInteger("{=FRsetBo1}Faction Recruitment Persuasion Bonus", 0, 100, Order = 12, RequireRestart = false, HintText = "{=FRsetBo2}Extra support score granted by successful persuasion for admission to a faction. The total must reach 100. Applies to new attempts. Default value is 25.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionRecruitmentPersuasionBonus { get; set; } = 25;
+
+        [SettingPropertyInteger("{=FRsetCd1}Faction Recruitment Cooldown", 0, 1000, Order = 13, RequireRestart = false, HintText = "{=FRsetCd2}Days before you can approach the same clan again, across all factions. Applies to new attempts. Default value is 14.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionRecruitmentCooldownInDays { get; set; } = 14;
+
+        [SettingPropertyInteger("{=FRsetPl1}Faction Recruitment Pledge Duration", 0, 1000, Order = 14, RequireRestart = false, HintText = "{=FRsetPl2}Days a recruited clan promises to remain before normal support checks resume. A change of leader, kingdom, or eligibility ends the pledge early. Applies to new attempts. Default value is 30.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionRecruitmentPledgeInDays { get; set; } = 30;
+
+        [SettingPropertyBool("{=FRsetRe1}Enable Recruitment Relationship Effect", Order = 15, RequireRestart = false, HintText = "{=FRsetRe2}Uses your relationship with the clan leader to adjust recruitment persuasion chances. Charm and traits still contribute. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public bool EnableFactionRecruitmentRelationshipEffect { get; set; } = true;
+
+        [SettingPropertyInteger("{=FRsetRw1}Faction Recruitment Relationship Effect", 0, 100, Order = 16, RequireRestart = false, HintText = "{=FRsetRw2}Maximum change to persuasion success chance at +100 or -100 relation, in percentage points. At +50 relation, half this bonus applies; negative relations apply a penalty. Default value is 25 percentage points.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionRecruitmentRelationshipEffect { get; set; } = 25;
 
         /*
 [SettingPropertyBool("{=ZIf1tRII}Enable Coalitions", RequireRestart = false, HintText = "{=8v8q0OGu}Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled.")]

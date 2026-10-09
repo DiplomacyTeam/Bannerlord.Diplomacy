@@ -1,10 +1,13 @@
 ﻿using Bannerlord.UIExtenderEx.Attributes;
 using Bannerlord.UIExtenderEx.ViewModels;
 
+using Diplomacy.Actions;
 using Diplomacy.Costs;
 using Diplomacy.DiplomaticAction;
 using Diplomacy.DiplomaticAction.NonAggressionPact;
 using Diplomacy.DiplomaticAction.WarPeace;
+using Diplomacy.Extensions;
+using Diplomacy.GauntletInterfaces;
 using Diplomacy.Helpers;
 using Diplomacy.ViewModel;
 using Diplomacy.WarExhaustion;
@@ -21,6 +24,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Diplomacy;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.ScreenSystem;
 
 namespace Diplomacy.ViewModelMixin
 {
@@ -41,11 +45,19 @@ namespace Diplomacy.ViewModelMixin
         private static readonly TextObject _TBreakAlliance = new("{=K4GraLTn}Break Alliance");
         private static readonly TextObject _TDeclareWar = new("{=nkOVblQ4}Declare War");
 
+        private static readonly TextObject _TReturnFief = new("{=Zx4nKpWr}Return Fief");
+        private static readonly TextObject _TReturnFiefHelp = new("{=Hn2wKpRv}Hand back land you took from them.");
+        private static readonly TextObject _TNothingToReturn = new("{=Cf6qWsNe}You hold no land taken from {KINGDOM}.");
+
         private static readonly TextObject _TRequiredScore = new("{=XIBUWDlT}Required Score");
         private static readonly TextObject _TCurrentScore = new("{=5r6fsHgm}Current Score");
 
         private readonly Kingdom _faction1;
         private readonly Kingdom _faction2;
+        private readonly ReturnFiefInterface _returnFiefInterface = new();
+        private bool _isReturnFiefVisible;
+        private bool _isReturnFiefAvailable;
+        private HintViewModel? _returnFiefHint;
         private HintViewModel? _directActionHint;
         private string _directActionName = null!;
         private HintViewModel? _allianceHint;
@@ -63,7 +75,7 @@ namespace Diplomacy.ViewModelMixin
         private string? _directActionExplanationText;
 
         [DataSourceProperty]
-        public bool IsAllianceVisible { get => _isAllianceVisible; set => SetField(ref _isAllianceVisible, value, nameof(IsAllianceVisible)); }
+                public bool IsAllianceVisible { get => _isAllianceVisible; set => SetField(ref _isAllianceVisible, value, nameof(IsAllianceVisible)); }
 
         [DataSourceProperty]
         public bool IsNonAggressionPactVisible { get => _isNonAggressionPactVisible; set => SetField(ref _isNonAggressionPactVisible, value, nameof(IsNonAggressionPactVisible)); }
@@ -129,6 +141,21 @@ namespace Diplomacy.ViewModelMixin
         [DataSourceProperty]
         public DiplomacyPropertiesVM? DiplomacyProperties { get; set; }
 
+        [DataSourceProperty]
+        public bool IsReturnFiefVisible { get => _isReturnFiefVisible; set => SetField(ref _isReturnFiefVisible, value, nameof(IsReturnFiefVisible)); }
+
+        [DataSourceProperty]
+        public bool IsReturnFiefAvailable { get => _isReturnFiefAvailable; set => SetField(ref _isReturnFiefAvailable, value, nameof(IsReturnFiefAvailable)); }
+
+        [DataSourceProperty]
+        public HintViewModel? ReturnFiefHint { get => _returnFiefHint; set => SetField(ref _returnFiefHint, value, nameof(ReturnFiefHint)); }
+
+        [DataSourceProperty]
+        public string ReturnFiefActionName { get; }
+
+        [DataSourceProperty]
+        public string ReturnFiefHelpText { get; }
+
         public KingdomTruceItemVMMixin(KingdomTruceItemVM vm) : base(vm)
         {
             _faction1 = (Kingdom) ViewModel!.Faction1;
@@ -139,6 +166,8 @@ namespace Diplomacy.ViewModelMixin
             WarsText = _TWars.ToString();
             PactsText = _TPacts.ToString();
             NonAggressionPactHelpText = _TNapHelpText.SetTextVariable("DAYS", Settings.Instance!.NonAggressionPactDuration).ToString();
+            ReturnFiefActionName = _TReturnFief.ToString();
+            ReturnFiefHelpText = _TReturnFiefHelp.ToString();
             OnRefresh();
         }
 
@@ -148,6 +177,7 @@ namespace Diplomacy.ViewModelMixin
 
             DiplomacyProperties.UpdateDiplomacyProperties();
             UpdateActionAvailability();
+            UpdateReturnFiefAvailability();
 
             if (Settings.Instance!.EnableWarExhaustion)
             {
@@ -201,6 +231,47 @@ namespace Diplomacy.ViewModelMixin
 
             var napScore = NonAggressionPactScoringModel.Instance.GetScore(_faction2, _faction1, true);
             NonAggressionPactScoreHint = UpdateDiplomacyTooltip(napScore);
+        }
+
+        private void UpdateReturnFiefAvailability()
+        {
+            IsReturnFiefVisible = Settings.Instance!.EnableFiefReturn
+                                  && Clan.PlayerClan.MapFaction?.Leader == Hero.MainHero;
+
+            if (!IsReturnFiefVisible)
+                return;
+
+            var takenFromThem = Clan.PlayerClan.GetPermanentFiefs()
+                .Select(town => town.Settlement)
+                .Where(settlement => FiefProvenanceManager.Instance?.WasConqueredFrom(settlement, _faction2, out _) ?? false)
+                .ToList();
+
+            IsReturnFiefAvailable = takenFromThem.Any(settlement => ReturnFiefAction.CanReturnFief(settlement, _faction2, out _));
+
+            if (IsReturnFiefAvailable)
+            {
+                ReturnFiefHint = new HintViewModel();
+                return;
+            }
+
+            // Holding land of theirs means the refusal is specific - usually a cooldown - and so
+            // worth showing in place of the generic explanation.
+            string? reason = null;
+            foreach (var settlement in takenFromThem)
+            {
+                ReturnFiefAction.CanReturnFief(settlement, _faction2, out reason);
+                if (reason is not null)
+                    break;
+            }
+
+            ReturnFiefHint = Compat.HintViewModel.Create(new TextObject(reason ?? _TNothingToReturn.SetTextVariable("KINGDOM", _faction2.Name).ToString()));
+        }
+
+        [DataSourceMethod]
+        [UsedImplicitly]
+        public void ExecuteReturnFief()
+        {
+            _returnFiefInterface.ShowReturnFiefInterface(ScreenManager.TopScreen, _faction2, OnRefresh);
         }
 
         private BasicTooltipViewModel UpdateDiplomacyTooltip(ExplainedNumber explainedNumber)

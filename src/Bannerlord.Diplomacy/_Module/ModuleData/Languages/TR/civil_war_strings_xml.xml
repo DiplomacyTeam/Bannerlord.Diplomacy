@@ -44,7 +44,7 @@
     <string id="Ysrttgis" text="Başlangıç Tarihi: {CAMPAIGN_TIME}"/>
     <string id="o3w3jNzZ" text="Talep: {DEMAND_NAME}"/>
     <string id="hbPiVQVK" text="Durum: {STATUS}"/>
-    <string id="TvSHYACm" text="Güç: {STRENGTH}"/>
+    <string id="TvSHYACm" text="Güç"/>
     <string id="dlANhHUd" text="İsyanlar ve İç Savaş"/>
     <string id="hBSo0Ziq" text="İsyan Başlat"/>
     <string id="2PglxF8k" text="İsyan Talebini Seç"/>

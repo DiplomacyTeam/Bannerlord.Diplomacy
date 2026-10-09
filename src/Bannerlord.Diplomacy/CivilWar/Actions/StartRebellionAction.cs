@@ -43,7 +43,7 @@ namespace Diplomacy.CivilWar.Actions
                 rebelFaction.ParentKingdom.Culture,
                 rebelFaction.SponsorClan
 #if BL15
-                , rebelKingdomName
+                , formalName: rebelKingdomName
 #endif
                 );
 

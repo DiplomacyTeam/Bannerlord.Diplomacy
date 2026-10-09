@@ -102,7 +102,9 @@ namespace Diplomacy
 
                 gameStarter.AddBehavior(new MaintainInfluenceBehavior());
                 gameStarter.AddBehavior(new ExpansionismBehavior());
+                gameStarter.AddBehavior(new FiefProvenanceBehavior());
                 gameStarter.AddBehavior(new CivilWarBehavior());
+                gameStarter.AddBehavior(new FactionRecruitmentBehavior());
                 gameStarter.AddBehavior(new UIBehavior());
 
                 var currentKingdomDecisionPermissionModel = GetGameModel<KingdomDecisionPermissionModel>(gameStarterObject);
@@ -110,6 +112,18 @@ namespace Diplomacy
                     Log.LogWarning("No default KingdomDecisionPermissionModel found!");
 
                 gameStarter.AddModel(new DiplomacyKingdomDecisionPermissionModel(currentKingdomDecisionPermissionModel));
+
+                var currentAllianceModel = GetGameModel<AllianceModel>(gameStarterObject);
+                if (currentAllianceModel is null)
+                    Log.LogWarning("No default AllianceModel found!");
+
+                gameStarter.AddModel(new DiplomacyAllianceModel(currentAllianceModel));
+
+                var currentPersuasionModel = GetGameModel<PersuasionModel>(gameStarterObject);
+                if (currentPersuasionModel is null)
+                    Log.LogWarning("No default PersuasionModel found!");
+
+                gameStarter.AddModel(new DiplomacyPersuasionModel(currentPersuasionModel));
 
                 Log.LogDebug("Campaign session started.");
             }

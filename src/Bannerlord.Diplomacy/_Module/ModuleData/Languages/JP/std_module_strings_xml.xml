@@ -123,8 +123,8 @@
     <string id="q5qphBwi" text="弱小国"/>
     <string id="sygtLRqA" text="好感度"/>
 
-    <string id="cmOSpfyW" text="{ALLIED_KINGDOM}との同盟"/>
-    <string id="RqQ4oqvl" text="{ENEMY_KINGDOM}との戦争"/>
+    <string id="cmOSpfyW" text="{KINGDOM}との同盟"/>
+    <string id="RqQ4oqvl" text="{KINGDOM}との戦争"/>
     <string id="t6YhBLj7" text="{KINGDOM}との不戦協定"/>
     <string id="BjkwaNot" text="{KINGDOM}の君主のクランと婚姻する"/>
 

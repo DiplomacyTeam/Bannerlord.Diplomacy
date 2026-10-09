@@ -44,10 +44,10 @@
     <string id="Ysrttgis" text="Start Date: {CAMPAIGN_TIME}" />
     <string id="o3w3jNzZ" text="Demand: {DEMAND_NAME}" />
     <string id="hbPiVQVK" text="Status: {STATUS}" />
-    <string id="TvSHYACm" text="Strength: {STRENGTH}" />
+    <string id="TvSHYACm" text="Strength" />
     <string id="dlANhHUd" text="Factions" />
     <string id="hBSo0Ziq" text="Create Faction" />
-    <string id="2PglxF8k" text="Choose Faction Demand" />
+    <string id="2PglxF8k" text="Choose a faction demand to create a faction.{newline}Cost: {INFLUENCE_COST}{INFLUENCE_ICON}" />
     <string id="gypPPxUJ" text="Factions" />
     <string id="aWWzFITw" text="A Monarch Abdicates" />
     <string id="2Pv3DsVm" text="{PARENT_KINGDOM} has lost its civil war to the {REBELS}. {LEADER} will abdicate the throne. {PLAYER_PARTICIPATION}" />
@@ -98,6 +98,75 @@
     <string id="EwbXg3va" text="The influence cost of starting a faction. Default value is 100." />
     <string id="7wK0mmw1" text="Faction Tendency" />
     <string id="aqvIdG7w" text="Score modifier affecting the tendency of clans to create or join factions. Increasing the modifier increases faction participation. Default value is 0." />
+    <string id="kT4rWq8Z" text="Required Faction Strength" />
+    <string id="mB2xNv6P" text="Share of the kingdom&apos;s total strength an AI-led faction needs before it can start a civil war. Leaders with high Valor need up to 15 percentage points less. Raise it to make civil wars rarer. Default value is 65%." />
     
+    <!-- Player faction recruitment -->
+    <string id="FRabdGen" text="Your clan&apos;s service deserves a fairer share of land and influence. Stand with us." />
+    <string id="FRabdHon" text="Our kingdom deserves a ruler who honors its clans. Help us choose better leadership." />
+    <string id="FRalready" text="This clan already supports your demand. Ask for its support directly." />
+    <string id="FRargLoss" text="That does not convince me." />
+    <string id="FRargOne" text="{FACTION_RECRUITMENT_ARGUMENT_0}" />
+    <string id="FRargTwo" text="{FACTION_RECRUITMENT_ARGUMENT_1}" />
+    <string id="FRargWin" text="You make a compelling case." />
+    <string id="FRaskSup" text="Will your clan support {RECRUITMENT_FACTION_NAME} and our demand?" />
+    <string id="FRcancelA" text="I will leave it at that." />
+    <string id="FRcanDesc" text="Choose a clan leader to approach. Speak to them about supporting your faction, in person or through Send Messenger on their encyclopedia page." />
+    <string id="FRcanHint" text="Military strength: {STRENGTH}{newline}Support: {SCORE} / {REQUIRED}{newline}Relation with leader: {RELATION}{newline}Persuasion relationship modifier: up to {RELATION_EFFECT} percentage points{newline}{REASONS}" />
+    <string id="FRcanName" text="{CLAN} - Support: {SCORE} / {REQUIRED}" />
+    <string id="FRchanged" text="Circumstances have changed. This clan can no longer be recruited." />
+    <string id="FRdaysTxt" text="{DAYS} days" />
+    <string id="FRdecision" text="Then what is your decision?" />
+    <string id="FReliminated" text="This clan has been eliminated." />
+    <string id="FRfailed" text="You have not convinced me. My clan will not join your faction." />
+    <string id="FRgoodbye" text="Very well. Let us speak of something else." />
+    <string id="FRhearArg" text="Tell me why I should take this risk with you." />
+    <string id="FRhesitnt" text="I am not ready to support your demand. You will have to convince me." />
+    <string id="FRintroTx" text="{FACTION_RECRUITMENT_RESPONSE}" />
+    <string id="FRisMember" text="This clan already supports your faction." />
+    <string id="FRjoinLog" text="{CLAN} has joined {FACTION}." />
+    <string id="FRjoinNow" text="My clan will stand with {FACTION_NAME}." />
+    <string id="FRjoinYou" text="{CLAN} has joined your faction, {FACTION}." />
+    <string id="FRleadsOther" text="This clan leads {FACTION_NAME} and cannot join another faction." />
+    <string id="FRmakeCas" text="Let me make my case. (Cost: {RECRUITMENT_COST} influence.)" />
+    <string id="FRmercenary" text="Mercenary clans cannot join a rebel faction." />
+    <string id="FRminor" text="Minor factions cannot be recruited into a rebel faction." />
+    <string id="FRnoClans" text="No clans are available to recruit right now. Improve clan relations, build influence, or wait for recruitment cooldowns to expire." />
+    <string id="FRnoLeader" text="This clan has no leader to approach." />
+    <string id="FRnotAct" text="Recruitment is only available while your faction is gathering support." />
+    <string id="FRnotLed" text="You must lead this faction to recruit supporters." />
+    <string id="FRonCool" text="You must wait {DAYS} more days before approaching this clan again." />
+    <string id="FRopposed" text="This clan is too opposed to your demand. Improve its reasons to support you before trying persuasion." />
+    <string id="FRotherRealm" text="This clan belongs to a different kingdom." />
+    <string id="FRpending" text="You are already making your case to this clan." />
+    <string id="FRpledged" text="My clan will stand with {FACTION_NAME}. I pledge our support for {DAYS} days." />
+    <string id="FRpledgeT" text="Recruitment pledge remaining" />
+    <string id="FRprisoner" text="This clan&apos;s leader is a prisoner and cannot pledge support." />
+    <string id="FRreactTx" text="{FACTION_RECRUITMENT_RESPONSE}" />
+    <string id="FRrebelling" text="Clans cannot join a faction after its rebellion has begun." />
+    <string id="FRrebelRealm" text="Clans in a rebel kingdom cannot join another rebel faction." />
+    <string id="FRrecBtn" text="Recruit Support" />
+    <string id="FRrecOff" text="Player faction recruitment is disabled." />
+    <string id="FRrespTxt" text="{FACTION_RECRUITMENT_RESPONSE}" />
+    <string id="FRruler" text="The ruling clan cannot join a rebel faction." />
+    <string id="FRsecCal" text="Our clans can prosper as an independent kingdom. We should decide our own future." />
+    <string id="FRsecession" text="This clan supports {FACTION_NAME}, a secession faction, and cannot join another faction." />
+    <string id="FRsecVal" text="Together our clans can defend a realm of our own. Let us stand together." />
+    <string id="FRsetBo1" text="Faction Recruitment Persuasion Bonus" />
+    <string id="FRsetBo2" text="Extra support score granted by successful persuasion for admission to a faction. The total must reach 100. Applies to new attempts. Default value is 25." />
+    <string id="FRsetCd1" text="Faction Recruitment Cooldown" />
+    <string id="FRsetCd2" text="Days before you can approach the same clan again, across all factions. Applies to new attempts. Default value is 14." />
+    <string id="FRsetCo1" text="Faction Recruitment Influence Cost" />
+    <string id="FRsetCo2" text="Influence spent per persuasion attempt, including failed or abandoned attempts. Asking an already willing clan is free. Default value is 25." />
+    <string id="FRsetOn1" text="Enable Player Faction Recruitment" />
+    <string id="FRsetOn2" text="Lets faction leaders ask or persuade clans to support abdication and secession. Disabling stops new recruitment; existing pledges expire normally. Default value is enabled." />
+    <string id="FRsetPl1" text="Faction Recruitment Pledge Duration" />
+    <string id="FRsetPl2" text="Days a recruited clan promises to remain before normal support checks resume. A change of leader, kingdom, or eligibility ends the pledge early. Applies to new attempts. Default value is 30." />
+    <string id="FRsetRe1" text="Enable Recruitment Relationship Effect" />
+    <string id="FRsetRe2" text="Uses your relationship with the clan leader to adjust recruitment persuasion chances. Charm and traits still contribute. Default value is enabled." />
+    <string id="FRsetRw1" text="Faction Recruitment Relationship Effect" />
+    <string id="FRsetRw2" text="Maximum change to persuasion success chance at +100 or -100 relation, in percentage points. At +50 relation, half this bonus applies; negative relations apply a penalty. Default value is 25 percentage points." />
+    <string id="FRunavailable" text="This clan&apos;s leader is currently unavailable." />
+    <string id="FRviewLdr" text="View Clan Leader" />
   </strings>
 </base>
