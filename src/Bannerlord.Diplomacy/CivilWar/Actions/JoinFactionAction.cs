@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 
 namespace Diplomacy.CivilWar.Actions
@@ -14,8 +15,21 @@ namespace Diplomacy.CivilWar.Actions
     {
         public static void Apply(Clan clan, RebelFaction rebelFaction)
         {
+            if (rebelFaction.Clans.Contains(clan))
+                return;
             rebelFaction.AddClan(clan);
+
+            // announce new supporters of factions in the player's kingdom
+            if (rebelFaction.ParentKingdom == Clan.PlayerClan.Kingdom && clan != Clan.PlayerClan)
+                InformationManager.DisplayMessage(new InformationMessage(GetJoinedText(clan, rebelFaction).ToString()));
         }
+
+        private static TextObject GetJoinedText(Clan clan, RebelFaction rebelFaction)
+            => (rebelFaction.SponsorClan == Clan.PlayerClan
+                    ? new TextObject("{=FRjoinYou}{CLAN} has joined your faction, {FACTION}.")
+                    : new TextObject("{=FRjoinLog}{CLAN} has joined {FACTION}."))
+                .SetTextVariable("CLAN", clan.Name)
+                .SetTextVariable("FACTION", rebelFaction.Name);
 
         public static bool ShouldApply(Clan clan, RebelFaction rebelFaction)
         {

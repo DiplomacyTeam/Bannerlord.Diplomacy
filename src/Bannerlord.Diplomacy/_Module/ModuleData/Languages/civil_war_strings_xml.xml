@@ -124,7 +124,9 @@
     <string id="FRhesitnt" text="I am not ready to support your demand. You will have to convince me." />
     <string id="FRintroTx" text="{FACTION_RECRUITMENT_RESPONSE}" />
     <string id="FRisMember" text="This clan already supports your faction." />
+    <string id="FRjoinLog" text="{CLAN} has joined {FACTION}." />
     <string id="FRjoinNow" text="My clan will stand with {FACTION_NAME}." />
+    <string id="FRjoinYou" text="{CLAN} has joined your faction, {FACTION}." />
     <string id="FRleadsOther" text="This clan leads {FACTION_NAME} and cannot join another faction." />
     <string id="FRmakeCas" text="Let me make my case. (Cost: {RECRUITMENT_COST} influence.)" />
     <string id="FRmercenary" text="Mercenary clans cannot join a rebel faction." />

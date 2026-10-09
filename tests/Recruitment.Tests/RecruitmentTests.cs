@@ -4,6 +4,7 @@ using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
 
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Library;
 
 using Xunit;
 
@@ -29,6 +30,7 @@ namespace Recruitment.Tests
             Hero.MainHero = _player.Leader;
             _kingdom.RulingClan = new() { Kingdom = _kingdom };
             _faction = NewFaction(RebelDemandType.Abdication);
+            InformationManager.Messages.Clear();
         }
 
         private RebelFaction NewFaction(RebelDemandType demand)
@@ -48,6 +50,55 @@ namespace Recruitment.Tests
 
         private void Recruit()
             => Assert.True(RecruitFactionSupportAction.TryCompletePersuasion(Begin(), true, out _));
+
+        [Fact]
+        public void ClanJoiningYourFactionIsAnnounced()
+        {
+            _target.Name = new("Clan Dey Meroc");
+            _faction.Name = new("The Meroc Pact");
+            JoinFactionAction.Apply(_target, _faction);
+            Assert.Equal("Clan Dey Meroc has joined your faction, The Meroc Pact.", Assert.Single(InformationManager.Messages).Information);
+        }
+
+        [Fact]
+        public void ClanJoiningAnotherFactionInYourKingdomIsAnnounced()
+        {
+            var other = NewFaction(RebelDemandType.Secession);
+            other.SponsorClan = new() { Kingdom = _kingdom };
+            _target.Name = new("Clan Dey Meroc");
+            JoinFactionAction.Apply(_target, other);
+            Assert.Equal("Clan Dey Meroc has joined Other faction.", Assert.Single(InformationManager.Messages).Information);
+        }
+
+        [Theory]
+        [InlineData("other kingdom")]
+        [InlineData("player clan")]
+        [InlineData("already a member")]
+        public void OtherJoinsAreNotAnnounced(string change)
+        {
+            var clan = _target;
+            var faction = _faction;
+            switch (change)
+            {
+                case "other kingdom":
+                    var kingdom = new Kingdom();
+                    clan = new() { Kingdom = kingdom };
+                    faction = new() { SponsorClan = new() { Kingdom = kingdom }, ParentKingdom = kingdom };
+                    break;
+                case "player clan":
+                    clan = _player;
+                    faction = NewFaction(RebelDemandType.Secession);
+                    faction.SponsorClan = new() { Kingdom = _kingdom };
+                    faction.Clans.Remove(_player);
+                    break;
+                case "already a member":
+                    _faction.AddClan(_target);
+                    break;
+            }
+            JoinFactionAction.Apply(clan, faction);
+            Assert.Empty(InformationManager.Messages);
+            Assert.Single(faction.Clans, clan);
+        }
 
         [Theory]
         [InlineData(RebelDemandType.Abdication)]

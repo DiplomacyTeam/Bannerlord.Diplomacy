@@ -15,6 +15,7 @@ namespace TaleWorlds.CampaignSystem
     public sealed class Clan
     {
         public static Clan PlayerClan { get; set; } = null!;
+        public TaleWorlds.Localization.TextObject Name { get; set; } = new("Clan");
         public Hero Leader { get; set; } = new();
         public Kingdom Kingdom { get; set; } = null!;
         public bool IsEliminated { get; set; }
