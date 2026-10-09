@@ -178,7 +178,7 @@ namespace Diplomacy.CampaignBehaviors
         {
             foreach (var faction in RebelFactionManager.GetRebelFaction(clan.Kingdom).Where(x => x.Clans.Contains(clan) && clan != x.SponsorClan).ToList())
             {
-                if (!JoinFactionAction.ShouldApply(clan, faction))
+                if (!JoinFactionAction.ShouldRemain(clan, faction))
                 {
                     LeaveFactionAction.Apply(clan, faction);
                 }
