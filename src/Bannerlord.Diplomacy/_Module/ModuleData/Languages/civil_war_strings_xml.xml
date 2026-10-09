@@ -110,7 +110,7 @@
     <string id="FRaskSup" text="Will your clan support {RECRUITMENT_FACTION_NAME} and our demand?" />
     <string id="FRcancelA" text="I will leave it at that." />
     <string id="FRcanDesc" text="Choose a clan leader to approach. Speak to them about supporting your faction, in person or through Send Messenger on their encyclopedia page." />
-    <string id="FRcanHint" text="Military strength: {STRENGTH}{newline}Support: {SCORE} / {REQUIRED}{newline}{REASONS}" />
+    <string id="FRcanHint" text="Military strength: {STRENGTH}{newline}Support: {SCORE} / {REQUIRED}{newline}Relation with leader: {RELATION}{newline}Persuasion relationship modifier: up to {RELATION_EFFECT} percentage points{newline}{REASONS}" />
     <string id="FRcanName" text="{CLAN} - Support: {SCORE} / {REQUIRED}" />
     <string id="FRchanged" text="Circumstances have changed. This clan can no longer be recruited." />
     <string id="FRdaysTxt" text="{DAYS} days" />
@@ -158,6 +158,10 @@
     <string id="FRsetOn2" text="Lets faction leaders ask or persuade clans to support abdication and secession. Disabling stops new recruitment; existing pledges expire normally. Default value is enabled." />
     <string id="FRsetPl1" text="Faction Recruitment Pledge Duration" />
     <string id="FRsetPl2" text="Days a recruited clan promises to remain before normal support checks resume. A change of leader, kingdom, or eligibility ends the pledge early. Applies to new attempts. Default value is 30." />
+    <string id="FRsetRe1" text="Enable Recruitment Relationship Effect" />
+    <string id="FRsetRe2" text="Uses your relationship with the clan leader to adjust recruitment persuasion chances. Charm and traits still contribute. Default value is enabled." />
+    <string id="FRsetRw1" text="Faction Recruitment Relationship Effect" />
+    <string id="FRsetRw2" text="Maximum change to persuasion success chance at +100 or -100 relation, in percentage points. At +50 relation, half this bonus applies; negative relations apply a penalty. Default value is 25 percentage points." />
     <string id="FRunavailable" text="This clan&apos;s leader is currently unavailable." />
     <string id="FRviewLdr" text="View Clan Leader" />
   </strings>

@@ -363,6 +363,14 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingCivilWar)]
         public int FactionRecruitmentPledgeInDays { get; set; } = 30;
 
+        [SettingPropertyBool("{=FRsetRe1}Enable Recruitment Relationship Effect", Order = 15, RequireRestart = false, HintText = "{=FRsetRe2}Uses your relationship with the clan leader to adjust recruitment persuasion chances. Charm and traits still contribute. Default value is enabled.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public bool EnableFactionRecruitmentRelationshipEffect { get; set; } = true;
+
+        [SettingPropertyInteger("{=FRsetRw1}Faction Recruitment Relationship Effect", 0, 100, Order = 16, RequireRestart = false, HintText = "{=FRsetRw2}Maximum change to persuasion success chance at +100 or -100 relation, in percentage points. At +50 relation, half this bonus applies; negative relations apply a penalty. Default value is 25 percentage points.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public int FactionRecruitmentRelationshipEffect { get; set; } = 25;
+
         /*
 [SettingPropertyBool("{=ZIf1tRII}Enable Coalitions", RequireRestart = false, HintText = "{=8v8q0OGu}Enables coalitions, which allow factions to band together against a strong, expansionist faction. Default value is enabled.")]
 [SettingPropertyGroup(HeadingCoalitions, IsMainToggle = true, GroupOrder = (int)GroupOrder.HeadingCoalitions)]

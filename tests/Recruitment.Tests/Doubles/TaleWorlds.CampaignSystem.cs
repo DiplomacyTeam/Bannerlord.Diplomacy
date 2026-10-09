@@ -5,6 +5,9 @@ namespace TaleWorlds.CampaignSystem
     public sealed class Hero
     {
         public static Hero MainHero { get; set; } = null!;
+        public static Hero? OneToOneConversationHero { get; set; }
+        public float RelationWithPlayer { get; set; }
+        public float GetRelationWithPlayer() => RelationWithPlayer;
         public bool IsActive { get; set; } = true;
         public bool IsPrisoner { get; set; }
     }
@@ -38,4 +41,6 @@ namespace TaleWorlds.CampaignSystem
         public static CampaignTime Zero => new(0);
         public static CampaignTime DaysFromNow(float days) => new(NowDays + days);
     }
+
+    public sealed class CharacterObject { }
 }

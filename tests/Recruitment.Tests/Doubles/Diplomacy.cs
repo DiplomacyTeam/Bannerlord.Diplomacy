@@ -8,6 +8,8 @@ namespace Diplomacy
         public int FactionRecruitmentPersuasionBonus { get; set; } = 25;
         public int FactionRecruitmentCooldownInDays { get; set; } = 14;
         public int FactionRecruitmentPledgeInDays { get; set; } = 30;
+        public bool EnableFactionRecruitmentRelationshipEffect { get; set; } = true;
+        public int FactionRecruitmentRelationshipEffect { get; set; } = 25;
     }
 
     internal static class StringConstants

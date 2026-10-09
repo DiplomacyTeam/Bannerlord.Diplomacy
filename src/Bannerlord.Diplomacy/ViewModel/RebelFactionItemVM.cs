@@ -1,4 +1,5 @@
-﻿using Diplomacy.CivilWar.Actions;
+﻿using Diplomacy.CivilWar;
+using Diplomacy.CivilWar.Actions;
 using Diplomacy.CivilWar.Factions;
 using Diplomacy.CivilWar.Scoring;
 using Diplomacy.Extensions;
@@ -197,10 +198,15 @@ namespace Diplomacy.ViewModel
             {
                 var clan = candidate.Clan;
                 var score = candidate.Score;
-                var hint = new TextObject("{=FRcanHint}Military strength: {STRENGTH}{newline}Support: {SCORE} / {REQUIRED}{newline}{REASONS}")
+                var relation = clan.Leader.GetRelationWithPlayer();
+                var relationEffect = FactionRecruitmentPersuasion.GetRelationshipEffect(relation,
+                    Settings.Instance!.EnableFactionRecruitmentRelationshipEffect ? Settings.Instance!.FactionRecruitmentRelationshipEffect : 0);
+                var hint = new TextObject("{=FRcanHint}Military strength: {STRENGTH}{newline}Support: {SCORE} / {REQUIRED}{newline}Relation with leader: {RELATION}{newline}Persuasion relationship modifier: up to {RELATION_EFFECT} percentage points{newline}{REASONS}")
                     .SetTextVariable("STRENGTH", (int) clan.CurrentTotalStrength)
                     .SetTextVariable("SCORE", (int) score.ResultNumber)
                     .SetTextVariable("REQUIRED", (int) RebelFactionScoringModel.RequiredScore)
+                    .SetTextVariable("RELATION", (int) relation)
+                    .SetTextVariable("RELATION_EFFECT", $"{relationEffect * 100f:+0.##;-0.##;0}")
                     .SetTextVariable("REASONS", string.Join(Environment.NewLine, score.GetLines().Select(l => $"{l.Item1}: {l.Item2:+0.##;-0.##;0}")));
                 var label = new TextObject("{=FRcanName}{CLAN} - Support: {SCORE} / {REQUIRED}")
                     .SetTextVariable("CLAN", clan.Name).SetTextVariable("SCORE", (int) score.ResultNumber)

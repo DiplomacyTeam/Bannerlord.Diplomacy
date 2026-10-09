@@ -20,11 +20,9 @@ namespace Diplomacy.CampaignBehaviors
         private RebelFaction? _faction;
         private Clan? _target;
         private FactionRecruitmentRecord? _attempt;
-        private PersuasionOptionArgs[]? _arguments;
         private TextObject _response = TextObject.GetEmpty();
         private bool _joined;
         private bool _persuaded;
-        private bool _ownsPersuasion;
 
         public override void RegisterEvents()
         {
@@ -44,6 +42,7 @@ namespace Diplomacy.CampaignBehaviors
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
+            FactionRecruitmentPersuasion.End();
             Campaign.Current.ConversationManager.ConversationEnd += EndConversation;
             starter.AddPlayerLine("diplomacy_recruit_support", "lord_talk_speak_diplomacy_2", "diplomacy_recruit_response",
                 "{=FRaskSup}Will your clan support {RECRUITMENT_FACTION_NAME} and our demand?", RecruitmentOnCondition, AskForSupport,
@@ -63,7 +62,7 @@ namespace Diplomacy.CampaignBehaviors
                 starter.AddPlayerLine("diplomacy_recruit_argument_" + i, "diplomacy_recruit_arguments", "diplomacy_recruit_reaction",
                     i == 0 ? "{=FRargOne}{FACTION_RECRUITMENT_ARGUMENT_0}" : "{=FRargTwo}{FACTION_RECRUITMENT_ARGUMENT_1}",
                     () => ArgumentOnCondition(index), null,
-                    persuasionOptionDelegate: () => _arguments![index]);
+                    persuasionOptionDelegate: () => FactionRecruitmentPersuasion.Arguments![index]);
             }
             starter.AddPlayerLine("diplomacy_recruit_cancel_argument", "diplomacy_recruit_arguments", "lord_pretalk",
                 "{=FRcancelA}I will leave it at that.", null, EndConversation, 1);
@@ -141,9 +140,8 @@ namespace Diplomacy.CampaignBehaviors
             _attempt = RecruitFactionSupportAction.TryBeginPersuasion(_target, _faction, out _response);
             if (_attempt is null)
                 return;
-            _arguments = CreateArguments(_target.Leader, _faction.RebelDemandType);
+            FactionRecruitmentPersuasion.Begin(_target.Leader, CreateArguments(_target.Leader, _faction.RebelDemandType));
             ConversationManager.StartPersuasion(1f, 1f, 0f, 1f, 0f, 0f, PersuasionDifficulty.Medium);
-            _ownsPersuasion = true;
         }
 
         private bool ArgumentIntroOnCondition()
@@ -155,9 +153,10 @@ namespace Diplomacy.CampaignBehaviors
 
         private bool ArgumentOnCondition(int index)
         {
-            if (!_ownsPersuasion || _arguments is null || _arguments[index].IsBlocked)
+            var arguments = FactionRecruitmentPersuasion.Arguments;
+            if (arguments is null || arguments[index].IsBlocked)
                 return false;
-            MBTextManager.SetTextVariable("FACTION_RECRUITMENT_ARGUMENT_" + index, _arguments[index].Line);
+            MBTextManager.SetTextVariable("FACTION_RECRUITMENT_ARGUMENT_" + index, arguments[index].Line);
             return true;
         }
 
@@ -195,10 +194,10 @@ namespace Diplomacy.CampaignBehaviors
 
         private void StopPersuasion()
         {
-            if (_ownsPersuasion)
-                ConversationManager.EndPersuasion();
-            _ownsPersuasion = false;
-            _arguments = null;
+            if (!FactionRecruitmentPersuasion.IsActive)
+                return;
+            FactionRecruitmentPersuasion.End();
+            ConversationManager.EndPersuasion();
         }
 
         private void EndConversation()

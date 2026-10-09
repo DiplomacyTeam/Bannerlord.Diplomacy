@@ -119,6 +119,12 @@ namespace Diplomacy
 
                 gameStarter.AddModel(new DiplomacyAllianceModel(currentAllianceModel));
 
+                var currentPersuasionModel = GetGameModel<PersuasionModel>(gameStarterObject);
+                if (currentPersuasionModel is null)
+                    Log.LogWarning("No default PersuasionModel found!");
+
+                gameStarter.AddModel(new DiplomacyPersuasionModel(currentPersuasionModel));
+
                 Log.LogDebug("Campaign session started.");
             }
         }
