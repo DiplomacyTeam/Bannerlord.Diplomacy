@@ -188,9 +188,10 @@ namespace Diplomacy.ViewModel
                 || RebelFaction.ParentKingdom != Clan.PlayerClan.Kingdom)
                 return;
             var candidates = new List<InquiryElement>();
-            var scores = RebelFaction.ParentKingdom.Clans.Where(c => c != Clan.PlayerClan && !c.IsEliminated
-                         && !c.IsMinorFaction && !c.IsUnderMercenaryService && c.Leader is not null && !RebelFaction.Clans.Contains(c))
+            var scores = RebelFaction.ParentKingdom.Clans.Where(c => c != Clan.PlayerClan
+                         && RecruitFactionSupportAction.CanRecruit(c, RebelFaction, out _))
                 .Select(c => (Clan: c, Score: RebelFactionScoringModel.GetDemandScore(c, RebelFaction)))
+                .Where(c => RecruitFactionSupportAction.CanSeekSupport(c.Score.ResultNumber, out _))
                 .OrderByDescending(c => c.Score.ResultNumber);
             foreach (var candidate in scores)
             {
@@ -201,10 +202,6 @@ namespace Diplomacy.ViewModel
                     .SetTextVariable("SCORE", (int) score.ResultNumber)
                     .SetTextVariable("REQUIRED", (int) RebelFactionScoringModel.RequiredScore)
                     .SetTextVariable("REASONS", string.Join(Environment.NewLine, score.GetLines().Select(l => $"{l.Item1}: {l.Item2:+0.##;-0.##;0}")));
-                if (!RecruitFactionSupportAction.CanRecruit(clan, RebelFaction, out var reason)
-                    || (score.ResultNumber < RebelFactionScoringModel.RequiredScore
-                        && !RecruitFactionSupportAction.CanPersuade(clan, RebelFaction, out reason)))
-                    hint = new TextObject("{=FRcanBlock}{DETAILS}{newline}{REASON}").SetTextVariable("DETAILS", hint).SetTextVariable("REASON", reason);
                 var label = new TextObject("{=FRcanName}{CLAN} - Support: {SCORE} / {REQUIRED}")
                     .SetTextVariable("CLAN", clan.Name).SetTextVariable("SCORE", (int) score.ResultNumber)
                     .SetTextVariable("REQUIRED", (int) RebelFactionScoringModel.RequiredScore);
@@ -213,7 +210,7 @@ namespace Diplomacy.ViewModel
             if (candidates.Count == 0)
             {
                 InformationManager.ShowInquiry(new InquiryData(RecruitSupportLabel,
-                    new TextObject("{=FRnoClans}There are no other clans to approach in this kingdom.").ToString(), true, false,
+                    new TextObject("{=FRnoClans}No clans are available to recruit right now. Improve clan relations, build influence, or wait for recruitment cooldowns to expire.").ToString(), true, false,
                     GameTexts.FindText("str_ok").ToString(), null, null, null), true);
                 return;
             }

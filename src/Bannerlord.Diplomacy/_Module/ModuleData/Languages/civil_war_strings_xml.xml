@@ -108,7 +108,6 @@
     <string id="FRargTwo" text="{FACTION_RECRUITMENT_ARGUMENT_1}" />
     <string id="FRargWin" text="You make a compelling case." />
     <string id="FRaskSup" text="Will your clan support {RECRUITMENT_FACTION_NAME} and our demand?" />
-    <string id="FRcanBlock" text="{DETAILS}{newline}{REASON}" />
     <string id="FRcancelA" text="I will leave it at that." />
     <string id="FRcanDesc" text="Choose a clan leader to approach. Speak to them about supporting your faction, in person or through Send Messenger on their encyclopedia page." />
     <string id="FRcanHint" text="Military strength: {STRENGTH}{newline}Support: {SCORE} / {REQUIRED}{newline}{REASONS}" />
@@ -116,27 +115,38 @@
     <string id="FRchanged" text="Circumstances have changed. This clan can no longer be recruited." />
     <string id="FRdaysTxt" text="{DAYS} days" />
     <string id="FRdecision" text="Then what is your decision?" />
+    <string id="FReliminated" text="This clan has been eliminated." />
     <string id="FRfailed" text="You have not convinced me. My clan will not join your faction." />
     <string id="FRgoodbye" text="Very well. Let us speak of something else." />
     <string id="FRhearArg" text="Tell me why I should take this risk with you." />
     <string id="FRhesitnt" text="I am not ready to support your demand. You will have to convince me." />
     <string id="FRintroTx" text="{FACTION_RECRUITMENT_RESPONSE}" />
+    <string id="FRisMember" text="This clan already supports your faction." />
     <string id="FRjoinNow" text="My clan will stand with {FACTION_NAME}." />
+    <string id="FRleadsOther" text="This clan leads {FACTION_NAME} and cannot join another faction." />
     <string id="FRmakeCas" text="Let me make my case. (Cost: {RECRUITMENT_COST} influence.)" />
-    <string id="FRnoClans" text="There are no other clans to approach in this kingdom." />
+    <string id="FRmercenary" text="Mercenary clans cannot join a rebel faction." />
+    <string id="FRminor" text="Minor factions cannot be recruited into a rebel faction." />
+    <string id="FRnoClans" text="No clans are available to recruit right now. Improve clan relations, build influence, or wait for recruitment cooldowns to expire." />
+    <string id="FRnoLeader" text="This clan has no leader to approach." />
     <string id="FRnotAct" text="Recruitment is only available while your faction is gathering support." />
-    <string id="FRnotCan" text="This clan cannot join your faction. Only available clan leaders in your kingdom can be recruited." />
     <string id="FRnotLed" text="You must lead this faction to recruit supporters." />
     <string id="FRonCool" text="You must wait {DAYS} more days before approaching this clan again." />
     <string id="FRopposed" text="This clan is too opposed to your demand. Improve its reasons to support you before trying persuasion." />
+    <string id="FRotherRealm" text="This clan belongs to a different kingdom." />
     <string id="FRpending" text="You are already making your case to this clan." />
     <string id="FRpledged" text="My clan will stand with {FACTION_NAME}. I pledge our support for {DAYS} days." />
     <string id="FRpledgeT" text="Recruitment pledge remaining" />
+    <string id="FRprisoner" text="This clan&apos;s leader is a prisoner and cannot pledge support." />
     <string id="FRreactTx" text="{FACTION_RECRUITMENT_RESPONSE}" />
+    <string id="FRrebelling" text="Clans cannot join a faction after its rebellion has begun." />
+    <string id="FRrebelRealm" text="Clans in a rebel kingdom cannot join another rebel faction." />
     <string id="FRrecBtn" text="Recruit Support" />
     <string id="FRrecOff" text="Player faction recruitment is disabled." />
     <string id="FRrespTxt" text="{FACTION_RECRUITMENT_RESPONSE}" />
+    <string id="FRruler" text="The ruling clan cannot join a rebel faction." />
     <string id="FRsecCal" text="Our clans can prosper as an independent kingdom. We should decide our own future." />
+    <string id="FRsecession" text="This clan supports {FACTION_NAME}, a secession faction, and cannot join another faction." />
     <string id="FRsecVal" text="Together our clans can defend a realm of our own. Let us stand together." />
     <string id="FRsetBo1" text="Faction Recruitment Persuasion Bonus" />
     <string id="FRsetBo2" text="Extra support score granted by successful persuasion for admission to a faction. The total must reach 100. Applies to new attempts. Default value is 25." />
@@ -148,6 +158,7 @@
     <string id="FRsetOn2" text="Lets faction leaders ask or persuade clans to support abdication and secession. Disabling stops new recruitment; existing pledges expire normally. Default value is enabled." />
     <string id="FRsetPl1" text="Faction Recruitment Pledge Duration" />
     <string id="FRsetPl2" text="Days a recruited clan promises to remain before normal support checks resume. A change of leader, kingdom, or eligibility ends the pledge early. Applies to new attempts. Default value is 30." />
+    <string id="FRunavailable" text="This clan&apos;s leader is currently unavailable." />
     <string id="FRviewLdr" text="View Clan Leader" />
   </strings>
 </base>

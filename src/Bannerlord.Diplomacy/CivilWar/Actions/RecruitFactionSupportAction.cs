@@ -13,35 +13,67 @@ namespace Diplomacy.CivilWar.Actions
     {
         public static bool CanRecruit(Clan clan, RebelFaction faction, out TextObject reason, bool checkCooldown = true)
         {
-            reason = TextObject.GetEmpty();
+            var refusal = GetFactionRefusal(faction) ?? GetClanRefusal(clan, faction) ?? (checkCooldown ? GetCooldownRefusal(clan) : null);
+            reason = refusal ?? TextObject.GetEmpty();
+            return refusal is null;
+        }
+
+        private static TextObject? GetFactionRefusal(RebelFaction faction)
+        {
             if (!Settings.Instance!.EnablePlayerFactionRecruitment)
-                reason = new("{=FRrecOff}Player faction recruitment is disabled.");
-            else if (faction.SponsorClan != Clan.PlayerClan || faction.SponsorClan.Leader != Hero.MainHero)
-                reason = new("{=FRnotLed}You must lead this faction to recruit supporters.");
-            else if (!RebelFactionManager.GetRebelFaction(faction.ParentKingdom).Contains(faction)
-                     || faction.ParentKingdom.IsEliminated || faction.AtWar
-                     || RebelFactionManager.GetRebelFaction(faction.ParentKingdom).Any(f => f.AtWar))
-                reason = new("{=FRnotAct}Recruitment is only available while your faction is gathering support.");
-            else if (clan.Leader is null || !clan.Leader.IsActive || clan.Leader.IsPrisoner || clan.IsMinorFaction
-                     || !JoinFactionAction.CanApply(clan, faction, out _))
-                reason = new("{=FRnotCan}This clan cannot join your faction. Only available clan leaders in your kingdom can be recruited.");
-            else if (checkCooldown && FactionRecruitmentManager.Instance!.HasPendingAttempt(clan))
-                reason = new("{=FRpending}You are already making your case to this clan.");
-            else if (checkCooldown && FactionRecruitmentManager.Instance!.GetCooldownDaysRemaining(clan) is var days && days > 0)
-                reason = new TextObject("{=FRonCool}You must wait {DAYS} more days before approaching this clan again.").SetTextVariable("DAYS", days);
-            else
-                return true;
-            return false;
+                return new("{=FRrecOff}Player faction recruitment is disabled.");
+            if (faction.SponsorClan != Clan.PlayerClan || faction.SponsorClan.Leader != Hero.MainHero)
+                return new("{=FRnotLed}You must lead this faction to recruit supporters.");
+            var kingdomFactions = RebelFactionManager.GetRebelFaction(faction.ParentKingdom);
+            if (!kingdomFactions.Contains(faction) || faction.ParentKingdom.IsEliminated || kingdomFactions.Any(f => f.AtWar))
+                return new("{=FRnotAct}Recruitment is only available while your faction is gathering support.");
+            return null;
+        }
+
+        private static TextObject? GetClanRefusal(Clan clan, RebelFaction faction)
+        {
+            if (clan.Leader is null)
+                return new("{=FRnoLeader}This clan has no leader to approach.");
+            if (clan.Leader.IsPrisoner)
+                return new("{=FRprisoner}This clan's leader is a prisoner and cannot pledge support.");
+            if (!clan.Leader.IsActive)
+                return new("{=FRunavailable}This clan's leader is currently unavailable.");
+            if (clan.IsMinorFaction)
+                return new("{=FRminor}Minor factions cannot be recruited into a rebel faction.");
+            return JoinFactionAction.CanApply(clan, faction, out var joinReason) ? null : joinReason;
+        }
+
+        private static TextObject? GetCooldownRefusal(Clan clan)
+        {
+            if (FactionRecruitmentManager.Instance!.HasPendingAttempt(clan))
+                return new("{=FRpending}You are already making your case to this clan.");
+            var days = FactionRecruitmentManager.Instance!.GetCooldownDaysRemaining(clan);
+            return days > 0
+                ? new TextObject("{=FRonCool}You must wait {DAYS} more days before approaching this clan again.").SetTextVariable("DAYS", days)
+                : null;
         }
 
         public static float GetSupport(Clan clan, RebelFaction faction)
             => RebelFactionScoringModel.GetDemandScore(clan, faction).ResultNumber;
 
-        public static bool CanPersuade(Clan clan, RebelFaction faction, out TextObject reason)
+        public static bool CanSeekSupport(Clan clan, RebelFaction faction, out TextObject reason)
+            => CanRecruit(clan, faction, out reason) && CanSeekSupport(GetSupport(clan, faction), out reason);
+
+        /// <summary>
+        /// For a clan that already passed <see cref="CanRecruit"/>, so callers that need the score can compute it once.
+        /// </summary>
+        public static bool CanSeekSupport(float score, out TextObject reason)
         {
-            if (!CanRecruit(clan, faction, out reason))
-                return false;
-            var score = GetSupport(clan, faction);
+            reason = TextObject.GetEmpty();
+            return score >= RebelFactionScoringModel.RequiredScore || CanPersuade(score, out reason);
+        }
+
+        public static bool CanPersuade(Clan clan, RebelFaction faction, out TextObject reason)
+            => CanRecruit(clan, faction, out reason) && CanPersuade(GetSupport(clan, faction), out reason);
+
+        private static bool CanPersuade(float score, out TextObject reason)
+        {
+            reason = TextObject.GetEmpty();
             if (score >= RebelFactionScoringModel.RequiredScore)
             {
                 reason = new("{=FRalready}This clan already supports your demand. Ask for its support directly.");

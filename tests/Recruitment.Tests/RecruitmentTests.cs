@@ -307,5 +307,74 @@ namespace Recruitment.Tests
             Assert.False(RecruitFactionSupportAction.CanRecruit(_target, _faction, out _));
             Assert.False(JoinFactionAction.ShouldApply(_target, _faction));
         }
+
+        [Theory]
+        [InlineData(100, 0, 25, true)]
+        [InlineData(75, 25, 25, true)]
+        [InlineData(74.99f, 100, 25, false)]
+        [InlineData(75, 24, 25, false)]
+        [InlineData(99, 100, 0, false)]
+        [InlineData(100, 0, 0, true)]
+        [InlineData(0, 25, 100, true)]
+        public void CandidatesMustBeWillingOrReachableThroughAffordablePersuasion(float score, float influence, int bonus, bool eligible)
+        {
+            _target.Support = score;
+            _player.Influence = influence;
+            Settings.Instance.FactionRecruitmentPersuasionBonus = bonus;
+            Assert.Equal(eligible, RecruitFactionSupportAction.CanSeekSupport(_target, _faction, out _));
+            Assert.Equal(influence, _player.Influence);
+            Assert.Equal(0, _manager.GetCooldownDaysRemaining(_target));
+        }
+
+        [Theory]
+        [InlineData("member", "already supports")]
+        [InlineData("leader", "leads Other faction")]
+        [InlineData("secession", "supports Other faction")]
+        [InlineData("ruler", "ruling clan")]
+        [InlineData("mercenary", "Mercenary")]
+        [InlineData("prisoner", "prisoner")]
+        [InlineData("inactive", "unavailable")]
+        [InlineData("no leader", "no leader")]
+        [InlineData("minor", "Minor factions")]
+        [InlineData("eliminated", "eliminated")]
+        [InlineData("kingdom", "different kingdom")]
+        [InlineData("no kingdom", "different kingdom")]
+        [InlineData("rebel kingdom", "rebel kingdom")]
+        public void UnavailableClansAreExcludedAndTheirDialogueExplainsWhy(string condition, string explanation)
+        {
+            _target.Support = 100;
+            switch (condition)
+            {
+                case "member": _faction.AddClan(_target); break;
+                case "leader": NewFaction(RebelDemandType.Abdication).SponsorClan = _target; break;
+                case "secession":
+                    var other = NewFaction(RebelDemandType.Secession);
+                    other.SponsorClan = new() { Kingdom = _kingdom };
+                    other.AddClan(_target);
+                    break;
+                case "ruler": _kingdom.RulingClan = _target; break;
+                case "mercenary": _target.IsUnderMercenaryService = true; break;
+                case "prisoner": _target.Leader.IsPrisoner = true; _target.Leader.IsActive = false; break;
+                case "inactive": _target.Leader.IsActive = false; break;
+                case "no leader": _target.Leader = null!; break;
+                case "minor": _target.IsMinorFaction = true; break;
+                case "eliminated": _target.IsEliminated = true; break;
+                case "kingdom": _target.Kingdom = new(); break;
+                case "no kingdom": _target.Kingdom = null!; break;
+                case "rebel kingdom": _kingdom.Rebel = true; break;
+            }
+            Assert.False(RecruitFactionSupportAction.CanSeekSupport(_target, _faction, out var reason));
+            Assert.Contains(explanation, reason.ToString());
+        }
+
+        [Fact]
+        public void CandidatesOnCooldownAreHiddenUntilTheyCanBeApproachedAgain()
+        {
+            Begin().Resolve(false);
+            Assert.False(RecruitFactionSupportAction.CanSeekSupport(_target, _faction, out var reason));
+            Assert.Contains("wait 14 more days", reason.ToString());
+            CampaignTime.NowDays += 14;
+            Assert.True(RecruitFactionSupportAction.CanSeekSupport(_target, _faction, out _));
+        }
     }
 }

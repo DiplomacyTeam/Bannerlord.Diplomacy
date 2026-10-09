@@ -94,7 +94,7 @@ namespace Diplomacy.CampaignBehaviors
             var faction = GetPlayerFaction();
             var clan = Hero.OneToOneConversationHero?.Clan;
             reason = TextObject.GetEmpty();
-            return faction is not null && clan is not null && RecruitFactionSupportAction.CanRecruit(clan, faction, out reason);
+            return faction is not null && clan is not null && RecruitFactionSupportAction.CanSeekSupport(clan, faction, out reason);
         }
 
         private void AskForSupport()

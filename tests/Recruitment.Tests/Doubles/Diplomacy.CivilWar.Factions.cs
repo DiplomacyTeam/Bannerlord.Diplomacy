@@ -4,6 +4,7 @@ namespace Diplomacy.CivilWar.Factions
 
     public sealed class RebelFaction
     {
+        public TaleWorlds.Localization.TextObject Name { get; set; } = new("Other faction");
         public TaleWorlds.CampaignSystem.Clan SponsorClan { get; set; } = null!;
         public TaleWorlds.CampaignSystem.Kingdom ParentKingdom { get; set; } = null!;
         public RebelDemandType RebelDemandType { get; set; }
