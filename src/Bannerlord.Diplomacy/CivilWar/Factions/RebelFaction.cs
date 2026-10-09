@@ -63,10 +63,10 @@ namespace Diplomacy.CivilWar.Factions
             get
             {
                 var valor = SponsorClan.Leader.GetTraitLevel(DefaultTraits.Valor) + Math.Abs(DefaultTraits.Valor.MinValue);
-                var maxRequiredStrengthRatio = 0.65f;
-                var minRequiredStrengthRatio = 0.5f;
+                var maxRequiredStrengthRatio = Settings.Instance!.RequiredFactionStrength;
+                var minRequiredStrengthRatio = maxRequiredStrengthRatio - 0.15f;
                 var ratio = maxRequiredStrengthRatio - (maxRequiredStrengthRatio - minRequiredStrengthRatio) / 4 * valor;
-                return ratio;
+                return MBMath.ClampFloat(ratio, 0f, 1f);
             }
         }
 

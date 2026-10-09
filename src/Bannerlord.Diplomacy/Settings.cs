@@ -343,6 +343,10 @@ namespace Diplomacy
         [SettingPropertyGroup(HeadingCivilWar)]
         public int FactionTendency { get; internal set; } = 0;
 
+        [SettingPropertyFloatingInteger("{=kT4rWq8Z}Required Faction Strength", 0, 1, "#0%", Order = 6, RequireRestart = false, HintText = "{=mB2xNv6P}Share of the kingdom's total strength an AI-led faction needs before it can start a civil war. Leaders with high Valor need up to 15 percentage points less. Raise it to make civil wars rarer. Default value is 65%.")]
+        [SettingPropertyGroup(HeadingCivilWar)]
+        public float RequiredFactionStrength { get; set; } = 0.65f;
+
         [SettingPropertyBool("{=FRsetOn1}Enable Player Faction Recruitment", Order = 10, RequireRestart = false, HintText = "{=FRsetOn2}Lets faction leaders ask or persuade clans to support abdication and secession. Disabling stops new recruitment; existing pledges expire normally. Default value is enabled.")]
         [SettingPropertyGroup(HeadingCivilWar)]
         public bool EnablePlayerFactionRecruitment { get; set; } = true;
