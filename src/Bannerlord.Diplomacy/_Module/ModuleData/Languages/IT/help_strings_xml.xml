@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Italiano"/>
+  </tags>
+  <strings>
+    <string id="bAkTqxmf" text="Una fazione è un gruppo di clan in un regno che condividono un obiettivo comune. Se una fazione ottiene abbastanza supporto, inizieranno una guerra civile. Se i ribelli vincono la guerra, la loro richiesta sarà accolta. Se invece a vincere sono i lealisti, i clan ribelli torneranno nel regno. I clan vittoriosi acquisiranno influenza e relazioni con i loro compagni vincitori. I clan sconfitti perderanno influenza. I clan potranno creare una fazione spendendo influenza."/>
+	
+	<string id="XXUwW6TM" text="La stanchezza da guerra indica quanto un regno sia vicino alla resa. Quando la stanchezza da guerra raggiunge il 100%, il regno si arrenderà. Le perdite in battaglia, la perdita dei feudi, i villaggi saccheggiati e la durata della guerra contribuiscono tutti ad aumentare la stanchezza da guerra. Quando un regno perde il suo ultimo feudo, non è più in grado di sostenere efficacemente lo sforzo bellico. Questo provoca non solo un aumento immediato della stanchezza da guerra attuale, ma anche un forte incremento della quantità di stanchezza da guerra accumulata ogni giorno, finché il regno non si arrende oppure non riconquista almeno un feudo."/>
+	
+	<string id="dh2NE8Of" text="Il tasso per la stanchezza da guerra è di fatto il tasso al quale la stanchezza si accumula nella guerra. La stanchezza da guerra si accumula più lentamente nelle guerre tra regni più grandi."/>
+  </strings>
+</base>
