@@ -168,5 +168,12 @@
     <string id="FRsetRw2" text="Maximum change to persuasion success chance at +100 or -100 relation, in percentage points. At +50 relation, half this bonus applies; negative relations apply a penalty. Default value is 25 percentage points." />
     <string id="FRunavailable" text="This clan&apos;s leader is currently unavailable." />
     <string id="FRviewLdr" text="View Clan Leader" />
+
+    <!-- Faction and kingdom naming -->
+    <string id="FNkdmTtl" text="Name Your Kingdom" />
+    <string id="FNkdmTxt" text="Your lands have broken away from {PARENT_KINGDOM}. Choose a name for your new kingdom." />
+    <string id="FNnameTtl" text="Name Your Faction" />
+    <string id="FNnameTxt" text="Choose the name your faction will be known by." />
+    <string id="FNrenBtn" text="Rename Faction" />
   </strings>
 </base>
