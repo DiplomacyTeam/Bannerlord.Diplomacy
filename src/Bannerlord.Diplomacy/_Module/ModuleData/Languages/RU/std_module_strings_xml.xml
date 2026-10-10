@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Русский" />
+  </tags>
+  <strings>
+    <string id="MYz8nKqq" text="Дипломатия" />
+    <string id="hPERH3u4" text="Загружено: {NAME}" />
+    <string id="TS1iV2pO" text="Недостаточно влияния!" />
+    <string id="XQFxDr11" text="Этому мешает активное задание!" />
+    <string id="ONNcmltF" text="Война идёт слишком мало, чтобы говорить о мире. Прошло {ELAPSED_DAYS} дн. из необходимых {REQUIRED_DAYS}." />
+    <string id="GuPOCNNZ" text="Перемирие заключено слишком недавно, чтобы его нарушать. Прошло {ELAPSED_DAYS} дн. из необходимых {REQUIRED_DAYS}." />
+    <string id="v0cDMIcl" text="Нельзя объявить войну этому королевству. " />
+    <string id="Pqk3WuGz" text="Нельзя заключить мир с этим королевством. " />
+    <string id="9aaZ8Ed4" text="Нельзя объявить войну: правители королевств дружат." />
+    <string id="Zimavbgw" text="Нельзя объявить войну: личные отношения правителей превосходны." />
+    <string id="pXD8Uf2e" text="Нельзя объявить войну: правящие кланы связаны близким браком." />
+    <string id="zv12jjyW" text="Гонец отправлен" />
+    <string id="uy86VZX2" text="Гонец прибыл" />
+    <string id="kq3g73j2" text="Гонца съели" />
+    <string id="JmgAuONd" text="О нет. Гонца, который шёл к {HERO_NAME}, подстерег и съел гру!" />
+    <string id="YnRmSele" text="Гонец от {FACTION1_NAME} прибыл к {ADDRESSEE_TEXT}.{BRIBE_TEXT}" />
+    <string id="C7XPJZAM" text="Гонец от {FACTION1_NAME} будет у {ADDRESSEE_TEXT} меньше чем через час." />
+    <string id="k5i2F6UD" text="Гонец от {FACTION1_NAME} будет у {ADDRESSEE_TEXT} через {TRAVEL_TIME} дн." />
+    <string id="qNWMZP0z" text="Гонец от {FACTION1_NAME} будет у {ADDRESSEE_TEXT} через {TRAVEL_TIME} дн." />
+    <string id="G2NMbFDb" text="Гонец от {FACTION1_NAME} будет у {ADDRESSEE_TEXT} через {TRAVEL_TIME} ч." />
+    <string id="gfZgMSYD" text="Гонец от {FACTION1_NAME} будет у {ADDRESSEE_TEXT} через {TRAVEL_TIME} ч." />
+    <string id="nYrezEOX" text="Гонец убит" />
+    <string id="A5lug0JY" text="Вашего гонца, который шёл к {HERO NAME}, подстерегли и убили разбойники!" />
+    <string id="1rYSIMfX" text="Вашего гонца, который шёл к {HERO NAME}, подстерег и съел гру!" />
+    <string id="J2T97gNx" text="Ваш гонец сбился с пути и теперь бесцельно бродит по свету." />
+    <string id="hOOW2DMD" text="Ваш гонец нашёл карту сокровищ и ищет клад вместо того, чтобы доставить послание." />
+    <string id="hc52yW8O" text="Ваш гонец забыл послание. Придётся отправить его снова." />
+    <string id="2rJDoi7N" text="Ваш гонец слишком много выпил и теперь отсыпается." />
+    <string id="VKqC9dl0" text="Ваш гонец взял деньги и сбежал." />
+    <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} из {FACTION2_NAME}{?}{\?}" />
+    <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}К сожалению, гонца не пускают в замок, но стражу можно подкупить. Это будет стоить {?IS_FEMALE}ей{?}ему{\?} {GOLD_COST}{GOLD_ICON}, и расходы придётся покрыть вам{?CAN_AFFORD}.{?}, а сейчас вам это не по карману.{\?}" />
+    <string id="bLR91Eob" text="{REASON}Гонец не сможет добраться до адресата." />
+    <string id="hPra5uwZ" text="Гонец либо не понял шутки, либо она ему не понравилась, и от задания он отказался." />
+    <string id="1mlXBnSs" text="Вы слишком мало знаете о {HERO_NAME}, чтобы указать этого человека гонцу." />
+    <string id="HHgTlyyt" text="Поговаривают, что {HERO_NAME} сейчас в море. Лучше дождаться возвращения к берегу." />
+    <string id="vhsHDMil" text="{HERO_NAME} мертв. " />
+    <string id="CusN2JMb" text="{HERO_NAME} в плену {?IS_MOBILE}у{?}в{\?} {DETENTION_PLACE}. " />
+    <string id="1BISlFYx" text="{HERO_NAME} в бегах и не хочет, чтобы этого человека нашли. " />
+    <string id="ze8KJ1oL" text="{HERO_NAME} только что вышел на свободу и ещё не готов к встречам. " />
+    <string id="N5T6IXWJ" text="{HERO_NAME} путешествует инкогнито. " />
+    <string id="3lknR86H" text="{HERO_NAME} слишком неопытен для официальных встреч. " />
+    <string id="BkGSVccZ" text="Предложение мира" />
+    <string id="3fTqLwkC" text="Принять" />
+    <string id="dRoMejb0" text="Отклонить" />
+    <string id="cXfcwzPp" text="Отправить гонца" />
+    <string id="N06wk0dB" text="Поселение захвачено" />
+    <string id="Zy0yjTha" text="Вы захватили {SETTLEMENT_NAME} и имеете право первого выбора. Хотите забрать этот феод себе?" />
+    <string id="IWZ91JVk" text="Недостаточно золота!" />
+    <string id="LpoyhORp" text="Даровать феод" />
+    <string id="h3b1S5Wq" text="Даровать феод клану {CLAN_NAME}" />
+    <string id="jznJfkfU" text="Феод дарован" />
+    <string id="cXbgaPSm" text="{SETTLEMENT_NAME} даровано клану {CLAN_NAME}." />
+    <string id="FqeN0fmR" text="Нельзя даровать феод собственному клану." />
+    <string id="zdSYUnZQ" text="Вы не правитель своего королевства." />
+    <string id="D61vzEC7" text="У вас нет феодов, которые можно даровать." />
+    <string id="98hwXUTp" text="Даровать феоды кланам своего королевства" />
+    <string id="Q7jRqnez" text="Нельзя даровать феоды наёмным кланам." />
+    <string id="Zx4nKpWr" text="Вернуть феод" />
+    <string id="Ld8vQmTc" text="Вернуть феод королевству {KINGDOM_NAME}" />
+    <string id="Hn2wKpRv" text="Вернуть землю, которую вы у них отняли." />
+    <string id="Cf6qWsNe" text="У вас нет земель, отнятых у {KINGDOM}." />
+    <string id="Pw5jHnBq" text="Феод возвращён" />
+    <string id="Rt9kVdXm" text="{SETTLEMENT_NAME} возвращено клану {CLAN_NAME}." />
+    <string id="Mf2hVqZa" text="Остальные кланы {KINGDOM} одобряют ваш жест. Отношения с их лидерами +{CHANGE}." />
+    <string id="8kQrWvN2" text="Возврат феодов отключён." />
+    <string id="Yj4mLpQd" text="Вернуть можно только феод, которым владеет ваш собственный клан." />
+    <string id="Tq7wBnXe" text="Нельзя вернуть феод своему королевству." />
+    <string id="Vc2rHkZs" text="Этого королевства больше нет." />
+    <string id="Nd6pXtLw" text="Нельзя вернуть феод мятежному королевству." />
+    <string id="Bw6nRtLe" text="Нельзя вернуть феод королевству, с которым вы воюете." />
+    <string id="Qs3vLpXa" text="{SETTLEMENT} в осаде, и передать его нельзя." />
+    <string id="Gm5tRvWc" text="{SETTLEMENT} возвращали слишком недавно. Должно пройти ещё {DAYS} дн." />
+    <string id="Kb9sRmTy" text="{SETTLEMENT} не было отнято у {KINGDOM}." />
+    <string id="DrnXprup" text="Вы слишком недавно воевали, чтобы говорить о союзе. Прошло {ELAPSED_DAYS} дн. из необходимых {REQUIRED_DAYS}." />
+    <string id="KHJyWj9H" text="Нельзя состоять в союзе." />
+    <string id="UQZmdLzc" text="Нельзя быть в состоянии войны." />
+    <string id="qIa19an4" text="Союз заключён" />
+    <string id="3pbwc8sh" text="Предложение союза" />
+    <string id="QbOqatd7" text="{KINGDOM} предлагает союз королевству {PLAYER_KINGDOM}." />
+    <string id="384jX28Q" text="{KINGDOM} разрывает союз с {PLAYER_KINGDOM}." />
+    <string id="D1ZQKZr1" text="Союз разорван" />
+    <string id="0WPWbx70" text="Заключить союз" />
+    <string id="K4GraLTn" text="Разорвать союз" />
+    <string id="5R7twvD2" text="Заключить мир" />
+    <string id="nkOVblQ4" text="Объявить войну" />
+    <string id="VvTTrRpl" text="Эта сторона не хочет заключать с вами союз." />
+    <string id="wst0lArp" text="Союз длится слишком мало, чтобы его разрывать. Прошло {ELAPSED_DAYS} дн. из необходимых {REQUIRED_DAYS}." />
+    <string id="KqfNSsBE" text="Союзники" />
+    <string id="Dirltd6Z" text="Союзы отключены." />
+    <string id="tsY4iHnO" text="Навязать свою волю, не созывая совет" />
+    <string id="Q8ItogIP" text="Предложить напрямую правителю {ENEMY_LEADER}{WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}" />
+    <string id="BC7823G2" text="{?REPARATIONS_PAY}, выплачивая репарации {REPARATIONS}{?TRIBUTE_PAY} и дань {TRIBUTE} в день.{?}{?TRIBUTE_GET}, но получая дань {TRIBUTE} в день.{?}{\?}{\?}{?}{?REPARATIONS_GET}, получая репарации {REPARATIONS}{?TRIBUTE_PAY}, но платя дань {TRIBUTE} в день.{?}{?TRIBUTE_GET} и дань {TRIBUTE} в день.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, платя дань {TRIBUTE} в день.{?}{?TRIBUTE_GET}, получая дань {TRIBUTE} в день.{?}.{\?}{\?}{\?}{\?}" />
+    <string id="9CvcPwJA" text="{?FIEFS_ANY} Возможно, придётся вернуть часть захваченных феодов!{?}{\?}" />
+    <string id="6xcW68Tw" text="{VALUE} млн" />
+    <string id="oD4fZ2tY" text="{VALUE} тыс." />
+    <string id="XlL50Ha9" text="Нельзя заключить мир, пока вы сами ведёте осаду." />
+    <string id="bCOCjOQM" text="Отнош." />
+    <string id="RxawrCjg" text="Прирост отношений с адресатом" />
+    <string id="fXcEtO29" text="Нельзя иметь действующий пакт о ненападении." />
+    <string id="zpNalMeA" text="Союзы" />
+    <string id="y5tXjbLK" text="Войны" />
+    <string id="noWHMN1W" text="Пакты о ненападении" />
+    <string id="yj4XFa5T" text="Предложение пакта о ненападении" />
+    <string id="gyLjlpJB" text="{KINGDOM} предлагает пакт о ненападении королевству {PLAYER_KINGDOM}." />
+    <string id="9pY0NQrk" text="Заключить пакт" />
+    <string id="9zlQNtlX" text="Заключить пакт о ненападении на {DAYS} дн." />
+    <string id="1occw3EF" text="Показатели" />
+    <string id="OvbY5qxL" text="Обзор" />
+    <string id="UDC8eW7s" text="{ALLIED_KINGDOM} вступает в войну союзника {KINGDOM} против {ENEMY_KINGDOM}." />
+    <string id="pdI7Tjtj" text="Пакт о ненападении истёк" />
+    <string id="uWY09LJb" text="Пакт о ненападении между {KINGDOM} и {OTHER_KINGDOM} истёк." />
+    <string id="dUCOV7km" text="Коррупция: слишком много феодов" />
+    <string id="koTNaZUX" text="Убыль высокого влияния" />
+    <string id="uZc8Hg01" text="Максимальная потеря влияния" />
+    <string id="kMjfN2fB" text="Отменить гонца" />
+    <string id="q5qphBwi" text="Слабое королевство" />
+    <string id="sygtLRqA" text="Отношения" />
+    <string id="cmOSpfyW" text="Союз с {KINGDOM}" />
+    <string id="RqQ4oqvl" text="Война с {KINGDOM}" />
+    <string id="t6YhBLj7" text="Пакт о ненападении с {KINGDOM}" />
+    <string id="BjkwaNot" text="Брак с правящим кланом {KINGDOM}" />
+    <string id="M4SGjzQP" text="Эта сторона не хочет заключать с вами пакт о ненападении." />
+    <string id="Gzq6VHPt" text="Пожертвовать золото" />
+    <string id="N7goPgiq" text="Захватить трон" />
+    <string id="WVe7QwhW" text="Захватить трон этого королевства\nПоддержка кланов: {SUPPORTING_TIERS} / {OPPOSING_TIERS}" />
+    <string id="CxdpR6w4" text="Экспансия" />
+    <string id="ARNRwPrY" text="Коалиция собрана" />
+    <string id="qbLPBlIv" text="Кальрадия насторожилась из-за неудержимой экспансии {EXPANSIONIST_KINGDOM}. Коалиция во главе с {COALITION_KINGDOM} собралась, чтобы дать им отпор!" />
+    <string id="vB3RrMNf" text="{KINGDOM} заключило пакт о ненападении с {OTHER_KINGDOM}." />
+    <string id="PdN5g5ub" text="{KINGDOM} заключило союз с {OTHER_KINGDOM}!" />
+    <string id="5r6fsHgm" text="Текущий счёт" />
+    <string id="XIBUWDlT" text="Нужный счёт" />
+    <string id="5znwaUVC" text="Осталось дней: {DAYS_LEFT}" />
+    <string id="Euy6Mwcq" text="Сначала продвиньтесь дальше по основному заданию. Защиту сюжета можно отключить в настройках мода." />
+    <string id="fQxiCdBA" text="Основной сюжет" />
+    <string id="3wXqST66" text="Захватывая этот трон, вы берёте на себя обязательство {STANCE} империю в основном сюжете." />
+    <string id="yAFwbD9B" text="объединить" />
+    <string id="IGJVx5XI" text="уничтожить" />
+    <string id="lQAaLeSy" text="У вас нет полномочий на это действие." />
+    <string id="ke94ceNo" text="Фракция уничтожена." />
+    <string id="7QvXkcxH" text="Пожертвовать золото кланам своего королевства" />
+    <string id="e7uxH1jc" text="Цена в золоте: {GOLD_COST}" />
+    <string id="4lG3JG2e" text="Прирост отношений: {RELATION_GAIN}+" />
+    <string id="Q2vXbwvC" text="Дипломатия" />
+    <string id="sBw5Qzq3" text="Дипломатия королевства" />
+    <string id="tis8Ddzn" text="Игрок может забирать захваченные им поселения" />
+    <string id="TfxLCxcD" text="Игрок может забрать поселение, которое захватил сам, вместо того чтобы отдавать его на голосование." />
+    <string id="8VKC3jtN" text="Уничтожать королевства без феодов" />
+    <string id="TlymwwPZ" text="Королевство без феодов уничтожается, когда подписывает мир, которым заканчивается его последняя война. По умолчанию включено." />
+    <string id="w8Hi9jJf" text="Откладывать уничтожение королевств без феодов" />
+    <string id="GDctI4Kd" text="Королевство без феодов уничтожается не сразу после потери последнего феода, а когда подписывает мир в своей последней войне. По умолчанию включено." />
+    <string id="ZRlNvsev" text="Минимальная длительность войны, в днях" />
+    <string id="vuFT5ns8" text="Сколько дней должна длиться война, прежде чем можно предлагать мир. По умолчанию 21 (четверть игрового года)." />
+    <string id="4MzQHMVj" text="Перезарядка объявления войны, в днях" />
+    <string id="q2duqN8d" text="Сколько дней должно пройти после мира, прежде чем можно снова объявить войну тому же королевству. По умолчанию 21 (четверть игрового года)." />
+    <string id="2XC8QHkl" text="Союзы" />
+    <string id="5YJBZx28" text="Если выключить, союзы не смогут заключать ни игрок, ни королевства ИИ. По умолчанию включено." />
+    <string id="H6XMjwpF" text="Минимальная длительность союза, в днях" />
+    <string id="RrsWhIWi" text="Сколько дней союз должен продержаться, прежде чем его можно разорвать. По умолчанию 42 (половина игрового года)." />
+    <string id="5a829TiT" text="Склонность к союзам" />
+    <string id="7nSjs8UL" text="Поправка к желанию королевств заключать союзы. Чем выше значение, тем охотнее ИИ идёт на союз. По умолчанию 0." />
+    <string id="Qk3vTzAe" text="Порог угрозы для союза" />
+    <string id="Rm8xPdLu" text="Королевства думают о союзе, только если у обоих есть сосед, чья угроза выше этого значения. Игровые 430 означают соседа примерно в 1,2–1,9 раза сильнее, а на ровной карте такое редко. Снизьте значение, чтобы союзы случались чаще; 0 учитывает любого соседа. По умолчанию 430." />
+    <string id="Hj2nWqYs" text="Союзы отключены в настройках Diplomacy." />
+    <string id="Vb7cKfGe" text="Склонность к союзам (настройка Diplomacy)" />
+    <string id="V35hUfcc" text="Длительность пакта о ненападении, в днях" />
+    <string id="KXLGZEPh" text="Сколько дней длится пакт о ненападении. По умолчанию 84 (один игровой год)." />
+    <string id="G8BhBnRG" text="Склонность к пактам о ненападении" />
+    <string id="907ER5u9" text="Поправка к желанию королевств заключать пакты о ненападении. Чем выше значение, тем охотнее ИИ идёт на пакт. По умолчанию 0." />
+    <string id="6m1SspFW" text="Игрок управляет дипломатией королевства" />
+    <string id="N5EouSSj" text="Игрок может объявлять войну и заключать мир в своём королевстве, даже если он вассал, а не правитель. По умолчанию выключено." />
+    <string id="lhysZl9j" text="Склонность к действиям" />
+    <string id="dRyU9E7Z" text="Друзья не воюют" />
+    <string id="XyXJSTKr" text="Правители-друзья не начинают войны друг с другом. По умолчанию включено." />
+    <string id="pWoKQ6HO" text="Нет войн при хороших отношениях" />
+    <string id="bOuGhbPt" text="Правители королевств не начинают войну, если их отношения выше порога. По умолчанию включено." />
+    <string id="x0Aoiomr" text="Порог отношений, при котором нет войн" />
+    <string id="aH6rpjt6" text="Если отношения правителей выше этого значения, королевства не начинают войну. По умолчанию 30." />
+    <string id="jwNKk8P7" text="Нет войн при браке" />
+    <string id="xcMzKH48" text="Правящие кланы, связанные браком, не начинают войны. По умолчанию включено." />
+    <string id="xXKKRp99" text="Брак правящих кланов влияет на союз" />
+    <string id="BGS6mUID" text="Брак между правящими кланами даёт бонус к склонности заключить союз. По умолчанию включено." />
+    <string id="ldLFTs92" text="Цены" />
+    <string id="Ckd1Lsoa" text="Цены в золоте" />
+    <string id="t4hNAoD7" text="Масштабировать цены в золоте" />
+    <string id="5MMIDE5A" text="Цены дипломатических действий и репараций зависят от размера королевства. Иначе действуют множители 100 для дипломатии и 1000 для репараций. По умолчанию включено." />
+    <string id="vD270X6H" text="Множитель масштаба цены в золоте" />
+    <string id="Gd52NzBP" text="Множитель масштабируемой цены в золоте. По умолчанию 5." />
+    <string id="HFtZsD6v" text="Множитель масштаба репараций" />
+    <string id="MIhbrqbr" text="Множитель масштабируемых репараций в золоте. По умолчанию 50." />
+    <string id="Cr6a5Jap" text="Репарации за проигранную войну" />
+    <string id="NH4GNKva" text="Базовая цена в золоте за проигрыш войны на истощение. Зависит от масштаба; без масштаба умножается на тысячу. По умолчанию 200." />
+    <string id="SEViwYTl" text="Цены во влиянии" />
+    <string id="WbOKuWbQ" text="Цены во влиянии" />
+    <string id="K2vLGalN" text="Если выключить, объявление войны и заключение мира не стоят влияния. По умолчанию включено." />
+    <string id="9PlT57Nl" text="Цены во влиянии и масштаб" />
+    <string id="P1g6Ht1e" text="Масштабировать цены во влиянии" />
+    <string id="xfVFBxfj" text="Цена во влиянии зависит от размера королевства. Иначе берётся фиксированная цена. По умолчанию включено." />
+    <string id="TvAYJv5Q" text="Множитель масштаба влияния" />
+    <string id="AQ5gRYN6" text="Множитель масштабируемой цены во влиянии. По умолчанию 5." />
+    <string id="BazjeCZw" text="Фиксированные цены во влиянии" />
+    <string id="OnTeAgin" text="Фиксированная цена объявления войны" />
+    <string id="O5XvybTI" text="Влияние за объявление войны другому королевству. По умолчанию 500." />
+    <string id="iNsXQD2q" text="Фиксированная цена заключения мира" />
+    <string id="WB5zdvdT" text="Влияние за заключение мира с другим королевством. По умолчанию 500." />
+    <string id="nueOs6m9" text="Гонцы" />
+    <string id="nwTyegdV" text="Случайности с гонцами" />
+    <string id="T7yybpw3" text="У гонца есть небольшой шанс не дойти. Чем длиннее путь, тем выше риск. По умолчанию включено." />
+    <string id="ysYCYvwT" text="Ограничить отправку гонцов" />
+    <string id="5O87pSL3" text="Гонца можно послать только к тем, кого вы встречали или о ком должны знать. Иначе гонца можно послать к кому угодно. По умолчанию включено." />
+    <string id="nnXi6MmH" text="Время в пути гонца, в днях" />
+    <string id="zkvCGLuK" text="Сколько дней гонец может идти до адресата. От этого зависит его скорость. По умолчанию 3." />
+    <string id="nMwWHj4h" text="Цена отправки гонца" />
+    <string id="ehMf7xvE" text="Золото за отправку гонца другому персонажу. По умолчанию 100." />
+    <string id="YolJlw95" text="Минимальная цена отправки гонца" />
+    <string id="P5NWxY6F" text="Минимальное золото за отправку гонца. По умолчанию 75." />
+    <string id="Hkv9Peqa" text="Цена гонца за час пути" />
+    <string id="ckYA36t8" text="Золото за каждый час, который гонец будет в пути. По умолчанию 1." />
+    <string id="OfEMJWiR" text="Отношения" />
+    <string id="6l9QNMrB" text="Множитель отношений за дарование феода" />
+    <string id="FQaghHo7" text="Множитель прироста отношений при даровании феода. По умолчанию 1." />
+    <string id="9qKclHq3" text="Штраф отношений за дарование феода" />
+    <string id="fgc8Dvg0" text="На сколько падают отношения, когда феод даруют другому клану. По умолчанию −2." />
+    <string id="oPq3XkWv" text="Возврат феодов" />
+    <string id="bZmT7HdA" text="Завоёванный феод можно вернуть королевству, у которого его отняли, в обмен на отношения и снижение экспансии. По умолчанию включено." />
+    <string id="rTqK8wDm" text="Множитель отношений за возврат феода" />
+    <string id="xNvP2bLc" text="Множитель прироста отношений, когда завоёванный феод возвращают прежнему королевству. По умолчанию 2." />
+    <string id="Wq8nTpLv" text="Перезарядка возврата феода" />
+    <string id="Jm3cXrDt" text="Сколько дней должно пройти, прежде чем тот же феод можно вернуть снова, даже если его успели отбить. По умолчанию 90." />
+    <string id="8ZPKToTq" text="Баланс влияния" />
+    <string id="4jlYRUdZ" text="Баланс влияния" />
+    <string id="tOMN9DQD" text="Включает расчёт убыли влияния и коррупции. Для совместимости с другими модами можно выключить." />
+    <string id="vzKRX2JA" text="Убыль влияния" />
+    <string id="szYr4OTG" text="Убыль влияния" />
+    <string id="rKS9z4Sz" text="Влияние каждый день постепенно убывает. По умолчанию включено." />
+    <string id="pVE1yNlm" text="Порог убыли влияния" />
+    <string id="MnLk08uW" text="Столько влияния не затрагивает убыль. По умолчанию 1000." />
+    <string id="WTeM4Rba" text="Максимальная потеря влияния за день" />
+    <string id="CGixJ6ng" text="Сколько влияния можно потерять за день. По умолчанию 20." />
+    <string id="yob5ZHtz" text="Процент убыли влияния за день" />
+    <string id="IYFl4kJx" text="Какой процент влияния убывает за день. По умолчанию 2,0." />
+    <string id="e5fHDXgl" text="Коррупция" />
+    <string id="KWAH0S4h" text="Коррупция" />
+    <string id="trgnZ0pn" text="Если у клана слишком много феодов, его влияние каждый день убывает. По умолчанию включено." />
+    <string id="ZqQaUIil" text="Экспансия" />
+    <string id="2raR1ZHv" text="Коалиции" />
+    <string id="Pr4dcRKm" text="Минимальная экспансия за феод" />
+    <string id="9qcAWjI7" text="Минимум экспансии, который даёт один феод. По умолчанию 3." />
+    <string id="MnhMW8iq" text="Экспансия за осаду" />
+    <string id="lCbie62E" text="Экспансия за успешную осаду. По умолчанию 20." />
+    <string id="mEXGC0h3" text="Убыль экспансии за день" />
+    <string id="kgPeQvqE" text="Сколько экспансии убывает за день. По умолчанию 1." />
+    <string id="hW4mZpQj" text="Снижение экспансии за возврат феода" />
+    <string id="dF7sYkR3" text="Сколько экспансии снимается, когда завоёванный феод возвращают прежнему королевству. По умолчанию 20, как прирост за успешную осаду." />
+    <string id="ZIf1tRII" text="Коалиции" />
+    <string id="8v8q0OGu" text="Фракции могут объединяться против сильной экспансионистской стороны. По умолчанию включено." />
+    <string id="1kSd88X5" text="Порог экспансии" />
+    <string id="EUnASoee" text="Сколько экспансии нужно стороне, чтобы против неё собрали коалицию. По умолчанию 100." />
+    <string id="zwbL9BHe" text="Шанс коалиции за день, %" />
+    <string id="9ugCWA3v" text="Процент шанса, что за день против стороны выше порога экспансии соберётся коалиция. По умолчанию 5." />
+    <string id="lsyl0VSX" text="Защита сюжета" />
+    <string id="EVrErrTR" text="Не даёт игроку сломать основной сюжет. Выключите, если пользуетесь модами вроде &quot;Just Let Me Play&quot;. По умолчанию включено." />
+    <string id="f6n2UAEC" text="Незавершённые возможности" />
+    <string id="HSoZfvXH" text="Захват трона" />
+    <string id="ZIAo4er4" text="Игрок может захватить трон королевства. Возможность несбалансирована и ждёт переделки, включать не рекомендуется. По умолчанию выключено." />
+  </strings>
+</base>
