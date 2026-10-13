@@ -29,8 +29,8 @@
     <string id="G2NMbFDb" text="{FACTION1_NAME}的使者将在{TRAVEL_TIME}小时内抵达{ADDRESSEE_TEXT}处。"/>
     <string id="gfZgMSYD" text="{FACTION1_NAME}的使者将在{TRAVEL_TIME}小时内抵达{ADDRESSEE_TEXT}处。"/>
     <string id="nYrezEOX" text="信使已死亡"/>
-    <string id="A5lug0JY" text="您的信使在试图前往{HERO NAME}的途中遭遇伏击，并被强盗杀害了！"/>
-    <string id="1rYSIMfX" text="您的信使在试图前往{HERO NAME}的途中遭遇伏击，并被一只Grue吞食了！"/>
+    <string id="A5lug0JY" text="您的信使在试图前往{HERO_NAME}的途中遭遇伏击，并被强盗杀害了！"/>
+    <string id="1rYSIMfX" text="您的信使在试图前往{HERO_NAME}的途中遭遇伏击，并被一只Grue吞食了！"/>
     <string id="J2T97gNx" text="您的信使迷失了方向，如今正漫无目的地游荡于世。"/>
     <string id="hOOW2DMD" text="您的信使发现了一张藏宝图，现在正寻找宝藏，而非传递消息。"/>
     <string id="hc52yW8O" text="您的信使忘记了口信，您需要重新派遣他。"/>

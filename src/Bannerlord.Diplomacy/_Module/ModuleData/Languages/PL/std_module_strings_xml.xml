@@ -25,7 +25,7 @@
     <string id="YnRmSele" text="Posłaniec od {FACTION1_NAME} dotarł do {ADDRESSEE_TEXT}.{BRIBE_TEXT}"/>
     <string id="C7XPJZAM" text="Posłaniec od {FACTION1_NAME} dotrze do {ADDRESSEE_TEXT} w ciągu {TRAVEL_TIME} dni."/>
     <string id="k5i2F6UD" text="Posłaniec został zabity"/>
-    <string id="qNWMZP0z" text="Twój posłaniec został napadnięty i zabity przez rozbójników podczas próby dotarcia do {HERO NAME}!"/>
+    <string id="qNWMZP0z" text="Twój posłaniec został napadnięty i zabity przez rozbójników podczas próby dotarcia do {HERO_NAME}!"/>
     <string id="G2NMbFDb" text="{HERO_NAME}{?HAS_FACTION} z {FACTION2_NAME}{?}{\?}"/>
     <string id="gfZgMSYD" text="{NEW_LINE}{NEW_LINE}Niestety posłaniec nie ma dostępu do twierdzy, może jednak próbować przekupić strażników. Będzie to kosztować {?IS_FEMALE}ją{?}jego{\?} {GOLD_COST}{GOLD_ICON} a ty będziesz musiał pokryć te wydatki{?CAN_AFFORD}.{?}, na które w tej chwili cię nie stać.{\?}"/>
     <string id="nYrezEOX" text="{REASON}Posłaniec nie będzie mógł dotrzeć do adresata."/>

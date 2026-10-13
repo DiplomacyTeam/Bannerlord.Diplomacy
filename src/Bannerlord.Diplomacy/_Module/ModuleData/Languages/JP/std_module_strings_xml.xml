@@ -25,7 +25,7 @@
     <string id="YnRmSele" text="{FACTION1_NAME}の使者が{ADDRESSEE_TEXT}に到着した。{BRIBE_TEXT}"/>
     <string id="qNWMZP0z" text="{FACTION1_NAME}からの使者は{TRAVEL_TIME}日以内に{ADDRESSEE_TEXT}のもとへ到着するだろう。"/>
     <string id="nYrezEOX" text="使者が殺害された"/>
-    <string id="A5lug0JY" text="{HERO NAME}のもとへ向かった使者が街道強盗の待ち伏せを受け殺されてしまった!"/>
+    <string id="A5lug0JY" text="{HERO_NAME}のもとへ向かった使者が街道強盗の待ち伏せを受け殺されてしまった!"/>
     <string id="vGyBQeEk" text="{?HAS_FACTION}{FACTION2_NAME}の{?}{\\?}{HERO_NAME}"/>
     <string id="sQxAljGF" text="{NEW_LINE}{NEW_LINE}不運にも使者は面会を拒否された。しかし衛兵の買収を試せる。{GOLD_COST}{GOLD_ICON}{?CAN_AFFORD}を渡した。{?}ほど渡す必要がありそうだが、今は所持金が足りなかった。{\\?}"/>
 

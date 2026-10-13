@@ -26,8 +26,8 @@
     <string id="G2NMbFDb" text="Гонец от {FACTION1_NAME} будет у {ADDRESSEE_TEXT} через {TRAVEL_TIME} ч." />
     <string id="gfZgMSYD" text="Гонец от {FACTION1_NAME} будет у {ADDRESSEE_TEXT} через {TRAVEL_TIME} ч." />
     <string id="nYrezEOX" text="Гонец убит" />
-    <string id="A5lug0JY" text="Вашего гонца, который шёл к {HERO NAME}, подстерегли и убили разбойники!" />
-    <string id="1rYSIMfX" text="Вашего гонца, который шёл к {HERO NAME}, подстерег и съел гру!" />
+    <string id="A5lug0JY" text="Вашего гонца, который шёл к {HERO_NAME}, подстерегли и убили разбойники!" />
+    <string id="1rYSIMfX" text="Вашего гонца, который шёл к {HERO_NAME}, подстерег и съел гру!" />
     <string id="J2T97gNx" text="Ваш гонец сбился с пути и теперь бесцельно бродит по свету." />
     <string id="hOOW2DMD" text="Ваш гонец нашёл карту сокровищ и ищет клад вместо того, чтобы доставить послание." />
     <string id="hc52yW8O" text="Ваш гонец забыл послание. Придётся отправить его снова." />
