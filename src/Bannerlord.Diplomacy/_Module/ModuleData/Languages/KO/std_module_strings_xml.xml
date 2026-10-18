@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="한국어"/>
+  </tags>
+  <strings>
+    <string id="MYz8nKqq" text="Diplomacy"/>
+    <string id="hPERH3u4" text="Diplomacy 모드 로딩 완료"/>
+
+    <string id="TS1iV2pO" text="영향력이 부족합니다!"/>
+    <string id="XQFxDr11" text="충돌하는 진행중 퀘스트가 있습니다!"/>
+    <string id="ONNcmltF" text="전쟁기간이 평화 조약을 맺기엔 너무 짧습니다. 최소 {REQUIRED_DAYS} 일이 지나야 하며, 지금은 {ELAPSED_DAYS} 일이 지났습니다."/>
+    <string id="GuPOCNNZ" text="평화 조약을 파기하기엔 너무 최근에 평화 조약을 체결했습니다! 평화 조약을 파기하기 위해선 최소 {REQUIRED_DAYS} 일이 지나야 하며, 지금까지 {ELAPSED_DAYS} 일이 지났습니다."/>
+
+    <string id="v0cDMIcl" text="이 왕국에 전쟁을 선포할 수 없습니다. "/>
+    <string id="Pqk3WuGz" text="이 왕국과 평화 조약을 맺을 수 없습니다. "/>
+    <string id="9aaZ8Ed4" text="전쟁을 선포할 수 없습니다, 양국의 국가 지도자들이 친구 관계입니다."/>
+    <string id="Zimavbgw" text="전쟁을 선포할 수 없습니다. 양국의 국가 지도자 간의 관계가 너무 좋습니다."/>
+    <string id="pXD8Uf2e" text="전쟁을 선포할 수 없습니다. 양국의 국가 지도자 가문 간에 가까운 혼인 관계가 있습니다."/>
+      
+    <string id="zv12jjyW" text="전령 출발"/>
+    <string id="uy86VZX2" text="전령 도착"/>
+
+    <string id="JmgAuONd" text="이런! 전령이 {HERO_NAME}에게 가는 도중 괴수에게 공격받아 잡아먹혔습니다!"/>
+    <string id="YnRmSele" text="{FACTION1_NAME}에서 온 전령이 {ADDRESSEE_TEXT}에 도착했습니다.{BRIBE_TEXT}"/>
+    <string id="C7XPJZAM" text="{FACTION1_NAME}에서 온 전령이 {ADDRESSEE_TEXT}에 한 시간 내로 도착할 것입니다."/>
+    <string id="k5i2F6UD" text="{FACTION1_NAME}에서 온 전령이 {ADDRESSEE_TEXT}에 {TRAVEL_TIME} 일 내로 도착할 것입니다."/>
+    <string id="qNWMZP0z" text="{FACTION1_NAME}에서 온 전령이 {ADDRESSEE_TEXT}에 {TRAVEL_TIME} 일 내로 도착할 것입니다."/>
+    <string id="G2NMbFDb" text="{FACTION1_NAME}에서 온 전령이 {ADDRESSEE_TEXT}에 {TRAVEL_TIME} 시간 내로 도착할 것입니다."/>
+    <string id="gfZgMSYD" text="{FACTION1_NAME}에서 온 전령이 {ADDRESSEE_TEXT}에 {TRAVEL_TIME} 시간 내로 도착할 것입니다."/>
+    <string id="nYrezEOX" text="전령 피살"/>
+    <string id="A5lug0JY" text="당신의 전령이 {HERO NAME}에게 가는 도중 노상강도의 공격을 받아 사망했습니다!"/>
+    <string id="1rYSIMfX" text="당신의 전령이 {HERO NAME}에게 가는 도중 괴수의 공격을 받아 잡아먹혔습니다!"/>
+    <string id="J2T97gNx" text="당신의 전령이 길을 잃어 세계를 정처없이 떠돌게 되었습니다."/>
+    <string id="hOOW2DMD" text="당신의 전령이 보물지도를 발견하여 임무를 버리고 보물을 찾아 떠났습니다."/>
+    <string id="hc52yW8O" text="당신의 전령이 서신을 잃어버렸습니다. 전령을 다시 보내야 합니다."/>
+    <string id="2rJDoi7N" text="당신의 전령이 과음을 하여 늦잠을 잤습니다."/>
+    <string id="VKqC9dl0" text="당신의 전령이 돈을 받고 도망갔습니다."/>
+    <string id="vGyBQeEk" text="{?HAS_FACTION}{FACTION2_NAME}의{?}{\?} {HERO_NAME}"/>
+    <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}불행하게도, 전령이 성에 진입하는 것이 저지되었습니다. 하지만 경비병을 매수할 수 있습니다. 이것은 {?IS_FEMALE}그녀{?}그{\?} 에게 {GOLD_COST}{GOLD_ICON} 의 비용을 발생시킬 것이며, 당신이 그 돈을 갚아야할 것입니다{?CAN_AFFORD}.{?}. 그러나 지금 당신은 그 돈을 낼 수 없습니다.{\?}"/>
+
+    <string id="bLR91Eob" text="{REASON}전령이 목적지에 닿을 수 없습니다."/>
+    <string id="hPra5uwZ" text="전령은 당신의 농담이 맘에 안들었던 것 같습니다. 그는 당신의 요청을 거부했습니다."/>
+    <string id="1mlXBnSs" text="당신은 {HERO_NAME}에 대해 아는 것이 너무 적어서 전령을 보낼 수 없습니다."/>
+    <string id="HHgTlyyt" text="소문에 따르면 {HERO_NAME}는 지금 항해중입니다. 그들이 육지에 올라올 때까지 기다리는 것이 좋습니다."/>
+
+    <string id="vhsHDMil" text="{HERO_NAME}는 죽었습니다. "/>
+    <string id="CusN2JMb" text="{HERO_NAME} 는 {DETENTION_PLACE} {?IS_MOBILE}에게{?}에{\?} 포로로 잡혀 있습니다. "/>
+    <string id="1BISlFYx" text="{HERO_NAME} 는 도망자이며, 발견되기를 거부합니다. "/>
+    <string id="ze8KJ1oL" text="{HERO_NAME} 는 이제 막 성인이 되었으며, 아직 공적인 일을 할 준비가 되지 않았습니다. "/>
+    <string id="N5T6IXWJ" text="{HERO_NAME} 는 은둔자입니다. "/>
+    <string id="3lknR86H" text="{HERO_NAME} 는 공적인 만남을 가지기엔 너무 어립니다. "/>
+
+    <string id="BkGSVccZ" text="평화 제안"/>
+    <string id="3fTqLwkC" text="수락"/>
+    <string id="dRoMejb0" text="거절"/>
+
+    <string id="cXfcwzPp" text="전령 보내기"/>
+
+    <string id="N06wk0dB" text="정착지 점령"/>
+    <string id="Zy0yjTha" text="{SETTLEMENT_NAME}의 점령자로서, 당신은 소유권을 가장 먼저 주장할 권리가 주어집니다. 이 영지에 대한 소유권을 주장하겠습니까?"/>
+
+    <string id="IWZ91JVk" text="데나르가 부족합니다!"/>
+
+    <string id="LpoyhORp" text="영지 수여"/>
+    <string id="h3b1S5Wq" text="{CLAN_NAME}에게 영지 수여"/>
+    <string id="jznJfkfU" text="영지 수여됨"/>
+    <string id="cXbgaPSm" text="{SETTLEMENT_NAME}은 {CLAN_NAME}에게 수여되었습니다."/>
+
+    <string id="FqeN0fmR" text="당신의 가문에게 영지를 수여할 수 없습니다."/>
+    <string id="zdSYUnZQ" text="당신은 왕국의 국가 지도자가 아닙니다."/>
+    <string id="D61vzEC7" text="수여할 수 있는 영지가 없습니다."/>
+    <string id="98hwXUTp" text="왕국 내 가문에게 영지를 수여합니다"/>
+    <string id="Q7jRqnez" text="용병 가문에게 영지를 수여할 수 없습니다."/>
+
+    <string id="DrnXprup" text="최근까지 전쟁 중이었으므로 동맹을 결성할 수 없습니다. 전쟁이 끝나고 최소 {REQUIRED_DAYS}일이 지나야 하며, 지금까지 {ELAPSED_DAYS}일이 지났습니다."/>
+    <string id="KHJyWj9H" text="동맹을 결성할 수 없습니다."/>
+    <string id="UQZmdLzc" text="전쟁을 할 수 없습니다."/>
+    <string id="qIa19an4" text="동맹 결성"/>
+    <string id="3pbwc8sh" text="동맹 제의"/>
+    <string id="QbOqatd7" text="{KINGDOM}이(가) {PLAYER_KINGDOM}에게 동맹을 제안했습니다."/>
+
+    <string id="384jX28Q" text="{KINGDOM}이(가) {PLAYER_KINGDOM}와(과)의 동맹을 파기했습니다."/>
+    <string id="D1ZQKZr1" text="동맹 파기"/>
+
+    <string id="0WPWbx70" text="동맹 결성"/>
+    <string id="K4GraLTn" text="동맹 파기"/>
+    <string id="5R7twvD2" text="평화 선언"/>
+    <string id="nkOVblQ4" text="전쟁 선포"/>
+
+    <string id="VvTTrRpl" text="이 국가는 당신과 동맹을 결성할 생각이 없습니다."/>
+    <string id="wst0lArp" text="동맹을 파기하기엔 동맹 기간이 너무 짧습니다! 동맹 결성 후 최소 {REQUIRED_DAYS}일이 지나야 하며, 지금까지 {ELAPSED_DAYS}일 지났습니다."/>
+
+    <string id="KqfNSsBE" text="동맹"/>
+    <string id="Dirltd6Z" text="동맹 기능이 비활성화 되어 있습니다."/>
+
+    <string id="tsY4iHnO" text="왕령 선포"/>
+    <string id="Q8ItogIP" text="{ENEMY_LEADER}에게 직접 {WAR_REPARATIONS_AND_TRIBUTE}{FIEFS_TO_RETURN}를 제안합니다"/>
+    <string id="BC7823G2" text="{?REPARATIONS_PAY}, 매일 {REPARATIONS}의 전쟁배상금{?TRIBUTE_PAY} 과 {TRIBUTE}의 공물을 지불함.{?}{?TRIBUTE_GET}, 그러나 매일 {TRIBUTE}의 공물을 받음.{?}{\?}{\?}{?}{?REPARATIONS_GET}, 매일 {REPARATIONS}의 전쟁배상금을 받음{?TRIBUTE_PAY}, 그러나 매일 {TRIBUTE}의 공물을 지불함.{?}{?TRIBUTE_GET} 또한, 매일 {TRIBUTE}의 공물을 지불함.{?}{\?}{\?}{?}{?TRIBUTE_PAY}, 매일 {TRIBUTE}의 공물을 지불함.{?}{?TRIBUTE_GET}, 매일 {TRIBUTE}의 공물을 받음.{?}.{\?}{\?}{\?}{\?}"/>
+    <string id="9CvcPwJA" text="{?FIEFS_ANY} 점령한 영지 중 일부를 반환해야 할 수도 있습니다!{?}{\?}"/>
+
+    <!--Millions and thousands-->
+    <string id="6xcW68Tw" text="{VALUE}백만"/>
+    <string id="oD4fZ2tY" text="{VALUE}천"/>
+
+    <string id="XlL50Ha9" text="플레이어가 공성전에 참여중일 때에는 평화 선언을 할 수 없습니다."/>
+
+    <string id="bCOCjOQM" text="관계도"/>
+    <string id="RxawrCjg" text="수혜자와 관계도 증진"/>
+
+    <string id="fXcEtO29" text="유효한 불가침조약을 맺을 수 없습니다."/>
+
+    <string id="zpNalMeA" text="동맹"/>
+    <string id="y5tXjbLK" text="전쟁"/>
+    <string id="noWHMN1W" text="불가침조약"/>
+
+    <string id="yj4XFa5T" text="불가침조약 제안"/>
+    <string id="gyLjlpJB" text="{KINGDOM}이(가) {PLAYER_KINGDOM}에게 불가침조약을 제안합니다."/>
+
+    <string id="9pY0NQrk" text="조약 체결"/>
+    <string id="9zlQNtlX" text="{DAYS}일 동안 불가침조약을 체결합니다."/>
+
+    <string id="1occw3EF" text="통계"/>
+    <string id="OvbY5qxL" text="개요"/>
+
+    <string id="UDC8eW7s" text="{ALLIED_KINGDOM}이(가) {KINGDOM}와(과)의 동맹을 이행하여 {ENEMY_KINGDOM}에게 전쟁을 선포합니다."/>
+
+    <string id="pdI7Tjtj" text="불가침조약 만료"/>
+    <string id="uWY09LJb" text="{KINGDOM}와(과) {OTHER_KINGDOM} 간에 맺어진 불가침조약이 만료되었습니다."/>
+
+    <string id="dUCOV7km" text="부패 (너무 많은 영지)"/>
+    <string id="koTNaZUX" text="영향력 감소 (너무 많은 영향력)"/>
+    <string id="uZc8Hg01" text="영향력 최대치 감소"/>
+
+    <string id="kMjfN2fB" text="전령 취소"/>
+
+    <string id="q5qphBwi" text="약소국"/>
+    <string id="sygtLRqA" text="관계"/>
+
+    <string id="cmOSpfyW" text="{ALLIED_KINGDOM} 와(과) 동맹"/>
+    <string id="RqQ4oqvl" text="{ENEMY_KINGDOM} 와(과) 전쟁"/>
+    <string id="t6YhBLj7" text="{KINGDOM} 와(과) 불가침 조약"/>
+    <string id="BjkwaNot" text="{KINGDOM}의 국가 지도자 클랜과 혼인"/>
+
+    <string id="M4SGjzQP" text="이 국가는 당신과 불가침 조약을 맺는데 관심이 없습니다."/>
+
+    <string id="Gzq6VHPt" text="기부"/>
+    <string id="N7goPgiq" text="왕위 찬탈"/>
+    <string id="WVe7QwhW" text="이 왕국의 왕위를 찬탈합니다\n가문들의 지지: {SUPPORTING_TIERS} / {OPPOSING_TIERS}"/>
+
+    <string id="CxdpR6w4" text="팽창주의"/>
+
+    <string id="ARNRwPrY" text="연합 결성"/>
+    <string id="qbLPBlIv" text="칼라디아는 {EXPANSIONIST_KINGDOM}의 멈출 수 없는 확장에 경계심을 키우고 있습니다. 그들을 막기 위해 {COALITION_KINGDOM}이 주도하는 연합이 결성되었습니다!"/>
+
+    <string id="vB3RrMNf" text="{KINGDOM} 이(가) {OTHER_KINGDOM} 와(과) 불가침 조약을 체결했습니다."/>
+    <string id="PdN5g5ub" text="{KINGDOM} 이(가) {OTHER_KINGDOM} 와(과) 동맹을 결성했습니다!"/>
+    <string id="5r6fsHgm" text="현재 점수"/>
+    <string id="XIBUWDlT" text="필요 점수"/>
+
+    <string id="5znwaUVC" text="남은 일 수: {DAYS_LEFT}"/>
+
+    <string id="Euy6Mwcq" text="이 행동을 하기 위해선 메인 퀘스트를 더 진행해야 합니다. 모드 옵션에서 스토리라인 보호 기능을 끌 수 있습니다."/>
+    <string id="fQxiCdBA" text="메인 스토리라인"/>
+    <string id="3wXqST66" text="이 왕위를 찬탈함으로써, 당신은 메인 스토리라인에서 제국에 {STANCE}를 취하기로 결심하는 것입니다."/>
+    <string id="yAFwbD9B" text="통합 중"/>
+    <string id="IGJVx5XI" text="붕괴 중"/>
+
+    <string id="lQAaLeSy" text="당신은 이 행동을 취할 권한이 없습니다."/>
+
+    <string id="7QvXkcxH" text="당신의 왕국에 있는 클랜에게 돈을 기부합니다"/>
+    <string id="e7uxH1jc" text="데나르 비용: {GOLD_COST}"/>
+    <string id="4lG3JG2e" text="관계도 상승: {RELATION_GAIN}+"/>
+
+    <string id="Q2vXbwvC" text="외교"/>
+    
+    <!--
+    ||||||||||||||||||||||||||| Mod Options |||||||||||||||||||||||||||
+    -->
+
+    <string id="sBw5Qzq3" text="왕국 외교"/>
+    <string id="tis8Ddzn" text="점령지 소유권 주장"/>
+    <string id="TfxLCxcD" text="플레이어에게 점령지를 선거 없이 가져갈 수 있도록 하는 선택지를 제공합니다."/>
+    <string id="8VKC3jtN" text="&quot;영토 없는 왕국 멸망&quot; 활성화"/>
+    <string id="TlymwwPZ" text="활성화 시, 영토 없는 왕국이 참여 중인 마지막 전쟁이 끝날 때 그 왕국이 멸망하게 합니다. 기본값은 활성화."/>
+    <string id="w8Hi9jJf" text="&quot;영토 없는 왕국 멸망&quot; 유예기간"/>
+    <string id="GDctI4Kd" text="활성화 시, 영토 없는 왕국이 참여 중인 마지막 전쟁이 끝날 때 그 왕국이 약간의 시간을 두고 멸망하게 합니다. 기본값은 활성화."/>      
+    <string id="ZRlNvsev" text="전쟁 최소 일수"/>
+    <string id="vuFT5ns8" text="평화를 제안하기까지 최소한의 전쟁 기간 일수입니다. 기본값은 21일 (게임 내 1년의 1/4)."/>
+    <string id="4MzQHMVj" text="전쟁 선포 쿨다운 일 수"/>
+    <string id="q2duqN8d" text="같은 왕국에 전쟁을 다시 선포하기까지 필요한 최소한의 휴식기간 일수 입니다. 기본값은 21일 (게임 내 1년의 1/4)."/>
+    <string id="2XC8QHkl" text="동맹 활성화"/>
+    <string id="5YJBZx28" text="비활성화시, 플레이어 왕국과 AI 왕국 간에 동맹을 결성할 수 없습니다. 기본값은 활성화."/>
+    <string id="H6XMjwpF" text="동맹 최소 기간"/>
+    <string id="RrsWhIWi" text="동맹이 깨어지기까지 최소한의 기간입니다. 기본값은 42일 (게임 내 1년의 1/2)."/>
+    <string id="5a829TiT" text="동맹 선호도"/>
+    <string id="7nSjs8UL" text="왕국들이 동맹을 결성하는 행동을 선호하는 정도입니다. 수치를 높이면 AI들은 더 적극적으로 동맹을 결성하려 합니다. 기본값은 0."/>
+    <string id="V35hUfcc" text="불가침조약 기간"/>
+    <string id="KXLGZEPh" text="불가침조약이 지속되는 기간입니다. 기본값은 84일 (게임 내 1년)."/>
+    <string id="G8BhBnRG" text="불가침조약 선호도"/>
+    <string id="907ER5u9" text="왕국들이 불가침조약을 맺는 행동을 선호하는 정도입니다. 수치를 높이면 AI들은 더 적극적으로 불가침조약을 맺으려 합니다. 기본값은 0."/>
+    <string id="6m1SspFW" text="플레이어 왕국 외교 컨트롤 활성화"/>
+    <string id="N5EouSSj" text="플레이어가 국가 지도자가 아니더라도 소속된 왕국의 전쟁, 평화와 관련된 모든 것을 조종할 수 있도록 합니다. 기본값은 비활성화."/>
+    <string id="lhysZl9j" text="행동 선호도"/>
+    <string id="dRyU9E7Z" text="친구 관계 전쟁 없음"/>
+    <string id="XyXJSTKr" text="활성화 시, 서로 친구인 국가 지도자들 끼리는 전쟁을 하지 않습니다. 기본값은 활성화."/>
+    <string id="pWoKQ6HO" text="좋은 관계 전쟁 없음"/>
+    <string id="bOuGhbPt" text="활성화 시, 서로 관계가 전쟁 선포 조건보다 높은 좋은 국가 지도자들 끼리는 전쟁을 하지 않습니다. 기본값은 활성화."/>
+    <string id="x0Aoiomr" text="전쟁 선포 관계도 기준"/>
+    <string id="aH6rpjt6" text="왕국 지도자들 간의 관계 값으로, 이 값 이상일 경우 왕국들은 서로 전쟁을 시작하지 않습니다. 기본값은 30입니다."/>
+    <string id="jwNKk8P7" text="혼인 관계 전쟁 없음"/>
+    <string id="xcMzKH48" text="활성화 시, 국가 지도자의 가문 간에 혼인 관계가 있을 경우 전쟁을 하지 않습니다. 기본값은 활성화."/>
+    <string id="xXKKRp99" text="국가 지도자 가족 결혼이 동맹에 영향을 줌"/>
+    <string id="BGS6mUID" text="활성화 시, 국가 지도자 가문 간에 결혼 관계가 있을 경우 동맹 선호도에 보너스를 부여합니다. 기본값은 활성화."/>
+      
+    <string id="ldLFTs92" text="비용"/>      
+    <string id="Ckd1Lsoa" text="데나르 비용"/>
+    <string id="t4hNAoD7" text="데나르 비용 스케일링 활성화"/>
+    <string id="5MMIDE5A" text="이 옵션이 활성화되면, 왕국 규모에 따라 외교 행동과 전쟁 배상금의 금 비용이 조정됩니다. 그렇지 않으면 외교 행동에는 100, 전쟁 배상금에는 1000이라는 기본 배율이 적용됩니다. 기본값은 활성화."/>
+    <string id="vD270X6H" text="데나르 비용 배율"/>
+    <string id="Gd52NzBP" text="데나르 비용을 스케일링하는 배율입니다. 기본값은 5."/>
+    <string id="HFtZsD6v" text="전쟁배상금 배율"/>
+    <string id="MIhbrqbr" text="전쟁배상금을 스케일링하는 배율입니다. 기본값은 50."/>
+    <string id="Cr6a5Jap" text="패전국 전쟁배상금 비용"/>
+    <string id="NH4GNKva" text="다른 왕국과의 소모전에서 패배할 경우 발생하는 기본 데나르 비용. 스케일링 적용 시 변동되며, 스케일링이 비활성화된 경우 천 배로 증가합니다. 기본값은 200."/>
+
+    <string id="SEViwYTl" text="영향력 비용"/>
+    <string id="WbOKuWbQ" text="영향력 비용 활성화"/>
+    <string id="K2vLGalN" text="비활성화 시, 전쟁과 평화를 선언할 때 영향력 비용이 발생하지 않습니다. 기본값은 활성화."/>
+    <string id="9PlT57Nl" text="영향력 비용/스케일링"/>
+    <string id="P1g6Ht1e" text="영향력 비용 활성화"/>
+    <string id="xfVFBxfj" text="활성화 시, 영향력 비용은 왕국 크기에 따라 변화합니다. 비활성화 시, 항상 같은 비용이 발생합니다. 기본값은 활성화."/>
+    <string id="TvAYJv5Q" text="영향력 비용 배율"/>
+    <string id="AQ5gRYN6" text="영향력 비용 스케일링하는 배율입니다. 기본값은 5."/>
+    <string id="BazjeCZw" text="영향력 비용/균일"/>
+    <string id="OnTeAgin" text="전쟁 선포 영향력 비용 균일화"/>
+    <string id="O5XvybTI" text="다른 왕국에 전쟁을 선포하기 위한 영향력 비용입니다. 기본값은 500."/>
+    <string id="iNsXQD2q" text="균일한 평화 선언 영향력 비용"/>
+    <string id="WB5zdvdT" text="다른 왕국과 평화를 선언하기 위한 영향력 비용입니다. 기본값은 500."/>
+
+    <string id="nueOs6m9" text="전령"/>
+    <string id="nwTyegdV" text="전령 돌발사고 활성화"/>
+    <string id="T7yybpw3" text="활성화 시, 낮은 확률로 전령들이 임무를 실패합니다. 목적지가 멀 수록 사고 발생률이 증가합니다. 기본값은 활성화."/>
+    <string id="ysYCYvwT" text="전령 보내기 제한"/>
+    <string id="5O87pSL3" text="활성화 시, 만난 적 있거나 누군지 아는 사람에게만 전령을 보낼 수 있습니다. 비활성화 시, 만난 적 없는 사람에게도 전령을 보낼 수 있습니다. 기본값은 활성화."/>
+    <string id="nnXi6MmH" text="전령 이동 일 수"/>
+    <string id="zkvCGLuK" text="전령이 수신자에게 도달하는 데 걸릴 수 있는 최대 시간(일 단위). 전령의 이동 속도에 직접적인 영향을 미칩니다. 기본값은 3."/>
+    <string id="nMwWHj4h" text="전령 비용"/>
+    <string id="ehMf7xvE" text="다른 캐릭터에게 전령을 보내는데 드는 비용입니다. 기본값은 100."/>
+    <string id="YolJlw95" text="전령 최소 비용"/>
+    <string id="P5NWxY6F" text="다른 캐릭터에게 전령을 보내는데 드는 최소비용입니다. 기본값은 75."/>
+    <string id="Hkv9Peqa" text="전령 시간당 비용"/>
+    <string id="ckYA36t8" text="전령이 다른 캐릭터에게 가는 동안 한 시간마다 추가되는 비용입니다. 기본값은 1."/>
+
+    <string id="OfEMJWiR" text="관계"/>
+    <string id="6l9QNMrB" text="영지 수여 관계 개선 배율"/>
+    <string id="FQaghHo7" text="영지를 수여할 때 관계가 개선되는 배율입니다. 기본값은 1."/>
+    <string id="9qKclHq3" text="영지 수여 관계 악화"/>
+    <string id="fgc8Dvg0" text="다른 가문에게 영지를 수여했을 때 관계가 하락하는 수치입니다. 기본값은 -2."/>
+
+    <string id="8ZPKToTq" text="영향력 밸런스"/>
+    <string id="4jlYRUdZ" text="영향력 밸런싱 활성화"/>
+    <string id="tOMN9DQD" text="영향력 감소 및 부패 계산의 활성화 여부를 제어합니다. 모드 호환성을 위해 비활성화해야 할 수 있습니다."/>
+
+    <string id="vzKRX2JA" text="영향력 감소"/>
+    <string id="szYr4OTG" text="영향력 감소 활성화"/>
+    <string id="rKS9z4Sz" text="영향력 감쇠를 활성화합니다. 이는 매일 영향력을 점진적으로 감소시킵니다. 기본값은 활성화 상태입니다."/>
+
+    <string id="pVE1yNlm" text="영향력 감소 기준"/>
+    <string id="MnLk08uW" text="영향력 감소가 시작되는 기준 값. 기본값은 1000입니다."/>
+    <string id="WTeM4Rba" text="하루 최대 영향력 감소치"/>
+    <string id="CGixJ6ng" text="하루에 영향력이 감소하는 최대치입니다. 기본값은 20."/>
+    <string id="yob5ZHtz" text="하루 영향력 감소 비율"/>
+    <string id="IYFl4kJx" text="하루에 영향력이 감소하는 비율입니다. 기본값은 2%."/>
+
+    <string id="e5fHDXgl" text="부패"/>
+    <string id="KWAH0S4h" text="부패 활성화"/>
+    <string id="trgnZ0pn" text="부패를 활성화합니다. 이는 가문이 너무 많은 영지를 보유할 경우 매일 점진적으로 가문의 영향력을 감소시킵니다. 기본값은 활성화."/>
+
+    <string id="ZqQaUIil" text="팽창주의"/>
+    <string id="2raR1ZHv" text="연합"/>
+    <string id="Pr4dcRKm" text="영지당 최소 팽창주의"/>
+    <string id="9qcAWjI7" text="영지가 기여하는 최소한의 팽창주의 수치. 기본값은 3."/>
+    <string id="MnhMW8iq" text="공성전 당 팽창주의"/>
+    <string id="lCbie62E" text="공성전에서 승리할 때 마다 팽창주의 수치가 추가됩니다. 기본값은 20."/>
+    <string id="mEXGC0h3" text="하루 팽창주의 수치 감소량"/>
+    <string id="kgPeQvqE" text="하루에 팽창주의 수치가 감소하는 양입니다. 기본값은 1."/>
+    <string id="ZIf1tRII" text="연합 활성화"/>
+    <string id="8v8q0OGu" text="연합을 활성화하여 세력들이 강력하고 팽창주의적인 세력에 맞서 함께 뭉칠 수 있게 합니다. 기본값은 활성화."/>
+    <string id="1kSd88X5" text="팽창주의 기준"/>
+    <string id="EUnASoee" text="한 세력이 연합을 형성하기 전에 요구하는 팽창주의 수준. 기본값은 100입니다."/>
+    <string id="zwbL9BHe" text="매일 연합 형성 확률"/>
+    <string id="9ugCWA3v" text="팽창주의 수치 기준을 초과하여 특정 파벌에 대항하는 연합이 형성될 확률 변화율. 기본값은 5입니다."/>
+
+    <string id="lsyl0VSX" text="스토리라인 보호"/>
+    <string id="EVrErrTR" text="활성화 시 플레이어가 메인 스토리를 방해하지 못하게 합니다. &quot;Just Let Me Play&quot; 같은 모드를 사용할 때는 비활성화하세요. 기본값은 활성화."/>
+
+    <string id="f6n2UAEC" text="아직 작업 중인 기능"/>
+    <string id="HSoZfvXH" text="왕위 찬탈 기능 활성화"/>
+    <string id="ZIAo4er4" text="이 기능을 활성화하면 플레이어가 왕국의 왕좌를 찬탈할 수 있습니다. 이 기능은 밸런스가 맞지 않아 재작업이 예정되어 있으므로 권장하지 않습니다. 기본값은 비활성화."/>
+  </strings>
+</base>
