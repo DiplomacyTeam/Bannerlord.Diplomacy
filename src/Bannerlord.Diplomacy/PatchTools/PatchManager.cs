@@ -88,6 +88,7 @@ namespace Diplomacy.PatchTools
             new DefaultDiplomacyModelPatch(),
             new DiplomaticBartersBehaviorPatch(),
             new GameMenusCallbacksPatch(),
+            new GameStateManagerPatch(),
             new KingdomDecisionProposalBehaviorPatch(),
             new KingdomPatch(),
             new SupportKingdomQuestPatch(),
