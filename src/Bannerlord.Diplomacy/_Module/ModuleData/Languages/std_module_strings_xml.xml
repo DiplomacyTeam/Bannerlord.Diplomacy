@@ -30,8 +30,8 @@
     <string id="G2NMbFDb" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hour." />
     <string id="gfZgMSYD" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hours." />
     <string id="nYrezEOX" text="Messenger killed" />
-    <string id="A5lug0JY" text="Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!" />
-    <string id="1rYSIMfX" text="Your messenger was ambushed and eaten by a Grue while trying to reach {HERO NAME}!" />
+    <string id="A5lug0JY" text="Your messenger was ambushed and killed by highwaymen while trying to reach {HERO_NAME}!" />
+    <string id="1rYSIMfX" text="Your messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
     <string id="J2T97gNx" text="Your messenger lost his way and is now wandering the world aimlessly." />
     <string id="hOOW2DMD" text="Your messenger found a treasure map and is now looking for the treasure, instead of delivering the message." />
     <string id="hc52yW8O" text="Your messenger forgot the message, you will have to send him again." />
