@@ -101,6 +101,7 @@ namespace Diplomacy.PatchTools
         private static readonly PatchClass[] _campaignPatchClasses = new PatchClass[]
         {
             new RebelKingdomPatches(),
+            new NPCEquipmentsCampaignBehaviorPatch(),
         };
     }
 }
