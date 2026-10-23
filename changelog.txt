@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.5.5
+Game Versions: v1.4.0, v1.4.1, v1.4.2, v1.4.3, v1.4.4, v1.4.5, v1.4.6, v1.4.7, v1.4.8, v1.5.1, v1.5.2, v1.5.3, v1.5.4, v1.5.5
+* Adapted for the v1.5.5 beta game version.
+* You can name the factions you lead. Creating a faction asks for its name, with the generated one filled in, and Rename Faction changes it until the rebellion starts. If your secession succeeds, you name the new kingdom.
+* Fixed a crash when a civil war creates a kingdom and a custom culture has no suitable ruler equipment. New and former rulers keep their current outfit when its replacement is missing.
+* Corrected hero-name placeholders in messenger accident messages and their translations. (#343)
+* Added the missing English localization entry for messengers whose recipient can no longer be found. (#342)
+* Added missing Russian translations for faction names, module messages, war exhaustion and faction recruitment, and corrected existing civil-war translations. Thanks to manfromhell for the translations! (#341)
+* Enabled the game's French text processor for French grammar and text formatting. (#305)
+* Fixed packaged builds occasionally containing an empty SubModule.xml by building the two target frameworks sequentially.
+---------------------------------------------------------------------------------------------------
 Version: 1.5.4
 Game Versions: v1.4.0, v1.4.1, v1.4.2, v1.4.3, v1.4.4, v1.4.5, v1.4.6, v1.4.7, v1.4.8, v1.5.1, v1.5.2, v1.5.3, v1.5.4
 * Adapted for the v1.5.4 beta game version.

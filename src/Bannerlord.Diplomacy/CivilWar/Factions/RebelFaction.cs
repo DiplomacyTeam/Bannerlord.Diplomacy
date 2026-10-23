@@ -127,6 +127,11 @@ namespace Diplomacy.CivilWar.Factions
             foreach (var fief in ParentKingdom.Fiefs.Union(rebelKingdom.Fiefs)) OriginalFiefOwners[fief] = fief.OwnerClan;
         }
 
+        public void Rename(TextObject name)
+        {
+            Name = name;
+        }
+
         public void AddClan(Clan clan)
         {
             if (clan != null && !_participatingClans.Contains(clan))

@@ -170,8 +170,13 @@ namespace Diplomacy.ViewModel
                     throw new MBException("Should have a type of demand when creating a faction");
             }
 
-            CreateFactionAction.Apply(rebelFaction);
-            RefreshValues();
+            // Canceling the name leaves the faction unregistered, so nothing is created or paid for.
+            FactionNameInquiry.ShowForFaction(rebelFaction.Name, name =>
+            {
+                rebelFaction.Rename(name);
+                CreateFactionAction.Apply(rebelFaction);
+                RefreshValues();
+            });
         }
     }
 }
