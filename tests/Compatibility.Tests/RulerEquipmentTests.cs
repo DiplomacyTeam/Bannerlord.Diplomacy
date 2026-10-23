@@ -43,18 +43,15 @@ namespace Compatibility.Tests
         }
 
         [Theory]
-        [InlineData("new battle")]
-        [InlineData("new civilian")]
-        [InlineData("old battle")]
-        [InlineData("old civilian")]
-        [InlineData("all")]
-        [InlineData("none")]
-        public void MissingOutfitsArePreservedAndValidOutfitsStillApply(string missing)
+        [InlineData("new battle", 1, "test_hero")]
+        [InlineData("new civilian", 1, "test_hero")]
+        [InlineData("old battle", 1, "old_ruler")]
+        [InlineData("old civilian", 1, "old_ruler")]
+        [InlineData("all", 4, null)]
+        [InlineData("none", 0, null)]
+        public void MissingOutfitsArePreservedAndValidOutfitsStillApply(string missing, int expectedWarnings, string? expectedHeroId)
         {
-            if (missing is "new battle" or "all") _behavior.NewBattle = null;
-            if (missing is "new civilian" or "all") _behavior.NewCivilian = null;
-            if (missing is "old battle" or "all") _behavior.OldBattle = null;
-            if (missing is "old civilian" or "all") _behavior.OldCivilian = null;
+            SetMissingOutfits(missing);
 
             _behavior.RaiseRulingClanChanged(_kingdom, _oldClan);
 
@@ -63,10 +60,17 @@ namespace Compatibility.Tests
             Assert.Equal(_behavior.NewCivilian?.Outfit ?? "existing outfit", _kingdom.Leader.CivilianEquipment.Outfit);
             Assert.Equal(_behavior.OldBattle?.Outfit ?? "existing outfit", _oldClan.Leader.BattleEquipment.Outfit);
             Assert.Equal(_behavior.OldCivilian?.Outfit ?? "existing outfit", _oldClan.Leader.CivilianEquipment.Outfit);
-            Assert.Equal(missing == "none" ? 0 : missing == "all" ? 4 : 1, LogFactory.Warnings.Count);
+            Assert.Equal(expectedWarnings, LogFactory.Warnings.Count);
             Assert.All(LogFactory.Warnings, warning => Assert.Contains("custom_culture", warning));
-            if (missing.StartsWith("old")) Assert.Contains("old_ruler", Assert.Single(LogFactory.Warnings));
-            if (missing.StartsWith("new")) Assert.Contains("test_hero", Assert.Single(LogFactory.Warnings));
+            if (expectedHeroId is not null) Assert.Contains(expectedHeroId, Assert.Single(LogFactory.Warnings));
+        }
+
+        private void SetMissingOutfits(string missing)
+        {
+            if (missing is "new battle" or "all") _behavior.NewBattle = null;
+            if (missing is "new civilian" or "all") _behavior.NewCivilian = null;
+            if (missing is "old battle" or "all") _behavior.OldBattle = null;
+            if (missing is "old civilian" or "all") _behavior.OldCivilian = null;
         }
 
         [Fact]
