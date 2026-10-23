@@ -36,6 +36,7 @@ namespace Diplomacy.ViewModel
         private bool _shouldShowLeave;
         private bool _shouldShowStartRebellion;
         private bool _shouldShowRecruitSupport;
+        private bool _shouldShowRename;
         private RebelFactionParticipantVM _sponsorClan = null!;
 
         public RebelFaction RebelFaction { get; }
@@ -71,6 +72,12 @@ namespace Diplomacy.ViewModel
 
         [DataSourceProperty]
         public string RecruitSupportLabel => new TextObject("{=FRrecBtn}Recruit Support").ToString();
+
+        [DataSourceProperty]
+        public bool ShouldShowRename { get => _shouldShowRename; set => SetField(ref _shouldShowRename, value, nameof(ShouldShowRename)); }
+
+        [DataSourceProperty]
+        public string RenameLabel => new TextObject("{=FNrenBtn}Rename Faction").ToString();
 
         [DataSourceProperty]
         public string ParticipantsText { get; set; }
@@ -160,6 +167,8 @@ namespace Diplomacy.ViewModel
             ShouldShowRecruitSupport = Settings.Instance!.EnablePlayerFactionRecruitment
                                        && RebelFaction.SponsorClan == Clan.PlayerClan && Clan.PlayerClan.Leader == Hero.MainHero
                                        && !RebelFaction.ParentKingdom.GetRebelFactions().Any(f => f.AtWar);
+            // Once the rebellion starts, the rebel kingdom has already taken its name from the faction.
+            ShouldShowRename = RebelFaction.SponsorClan == Clan.PlayerClan && !RebelFaction.AtWar;
             FactionName = RebelFaction.Name.ToString();
 
             var bopSize = 300;
@@ -232,6 +241,19 @@ namespace Diplomacy.ViewModel
                         _onComplete();
                     }
                 }, null), true);
+        }
+
+        [UsedImplicitly]
+        public void OnRename()
+        {
+            RefreshValues();
+            if (!ShouldShowRename)
+                return;
+            FactionNameInquiry.ShowForFaction(RebelFaction.Name, name =>
+            {
+                RebelFaction.Rename(name);
+                RefreshValues();
+            });
         }
 
         [UsedImplicitly]

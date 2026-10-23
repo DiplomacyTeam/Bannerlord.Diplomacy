@@ -40,8 +40,8 @@ namespace Diplomacy.Messengers
 
         private static readonly List<string> Accidents = new()
         {
-            "{=A5lug0JY}Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!",
-            "{=1rYSIMfX}Your messenger was ambushed and eaten by a Grue while trying to reach {HERO NAME}!",
+            "{=A5lug0JY}Your messenger was ambushed and killed by highwaymen while trying to reach {HERO_NAME}!",
+            "{=1rYSIMfX}Your messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!",
             "{=J2T97gNx}Your messenger lost his way and is now wandering the world aimlessly.",
             "{=hOOW2DMD}Your messenger found a treasure map and is now looking for the treasure, instead of delivering the message.",
             "{=hc52yW8O}Your messenger forgot the message, you will have to send him again.",

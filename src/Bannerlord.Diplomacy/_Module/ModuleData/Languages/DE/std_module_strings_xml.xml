@@ -25,7 +25,7 @@
     <string id="YnRmSele" text="Der Bote von {FACTION1_NAME} ist bei {ADDRESSEE_TEXT}angekommen.{BRIBE_TEXT}"/>
     <string id="qNWMZP0z" text="Der Bote von {FACTION1_NAME} wird bei {ADDRESSEE_TEXT} innerhalb von {TRAVEL_TIME} Tagen ankommen."/>
     <string id="nYrezEOX" text="Bote getötet"/>
-    <string id="A5lug0JY" text="Euer Bote wurde von den Wegelagerern überfallen und getötet, als er versuchte {HERO NAME} zu erreichen!"/>
+    <string id="A5lug0JY" text="Euer Bote wurde von den Wegelagerern überfallen und getötet, als er versuchte {HERO_NAME} zu erreichen!"/>
     <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} von {FACTION2_NAME}{?}{\?}"/>
     <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Leider wird dem Boten der Zugang zur Festung verwehrt, er kann aber versuchen die Wachen zu bestechen. Es würde {?IS_FEMALE}ihr{?}ihm{\?} {GOLD_COST}{GOLD_ICON} kosten und Ihr müsstet die Ausgaben decken{?CAN_AFFORD}.{?}, welche Ihr Euch im Moment nicht leisten könnt.{\?}"/>
 

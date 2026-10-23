@@ -29,8 +29,8 @@
     <string id="G2NMbFDb" text="{FACTION1_NAME} krallığından gelen ulak, {TRAVEL_TIME} saat içinde {ADDRESSEE_TEXT} adlı kişiye varacak."/>
     <string id="gfZgMSYD" text="{FACTION1_NAME} krallığından gelen ulak, {TRAVEL_TIME} saat içinde {ADDRESSEE_TEXT} adlı kişiye varacak."/>
     <string id="nYrezEOX" text="Ulak öldürüldü"/>
-    <string id="A5lug0JY" text="Ulak, {HERO NAME} adlı kişiye giderken haydutlar tarafından pusuya düşürülüp öldürüldü!"/>
-    <string id="1rYSIMfX" text="Ulak, {HERO NAME} adlı kişiye giderken pusuya düşürülüp öldürüldü!"/>
+    <string id="A5lug0JY" text="Ulak, {HERO_NAME} adlı kişiye giderken haydutlar tarafından pusuya düşürülüp öldürüldü!"/>
+    <string id="1rYSIMfX" text="Ulak, {HERO_NAME} adlı kişiye giderken pusuya düşürülüp öldürüldü!"/>
     <string id="J2T97gNx" text="Ulak yolunu kaybetti ve şimdi ortalıkta amaçsızca dolaşıyor."/>
     <string id="hOOW2DMD" text="Ulak bir hazine haritası buldu ve mesajı iletmek yerine hazinenin peşine düştü."/>
     <string id="hc52yW8O" text="Ulak mesajı unuttu, onu yeniden göndermeniz gerekecek."/>

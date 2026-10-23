@@ -39,6 +39,9 @@ jobs:
     - name: Test faction recruitment rules
       run: dotnet test tests/Recruitment.Tests/Recruitment.Tests.csproj --configuration Release
 
+    - name: Test ruler equipment compatibility
+      run: dotnet test tests/Compatibility.Tests/Compatibility.Tests.csproj --configuration Release
+
     - name: Build Diplomacy Module for testing
       run: |
         $path = $PWD.Path + '/bannerlord';

@@ -27,23 +27,51 @@ namespace Diplomacy.CivilWar.Factions
 
         protected override void ApplyDemand()
         {
-            var kingdomName = FactionNameGenerator.GenerateKingdomName(this);
             var newKingdom = RebelKingdom!;
-#if BL15
-            newKingdom.ChangeKingdomName(kingdomName, kingdomName, kingdomName);
-#else
-            newKingdom.ChangeKingdomName(kingdomName, kingdomName);
-#endif
+            RenameKingdom(newKingdom, FactionNameGenerator.GenerateKingdomName(this));
 
+            var playerParticipation = GetPlayerParticipationText(true);
+
+            ChangeKingdomBannerAction.Apply(newKingdom);
+            RebelFactionManager.DestroyRebelFaction(this, true);
+
+            if (newKingdom.RulingClan == Clan.PlayerClan)
+            {
+                FactionNameInquiry.Show(
+                    new TextObject("{=FNkdmTtl}Name Your Kingdom"),
+                    new TextObject("{=FNkdmTxt}Your lands have broken away from {PARENT_KINGDOM}. Choose a name for your new kingdom.")
+                        .SetTextVariable("PARENT_KINGDOM", ParentKingdom.Name),
+                    newKingdom.Name,
+                    name =>
+                    {
+                        RenameKingdom(newKingdom, name);
+                        ShowNewKingdomInquiry(newKingdom, playerParticipation);
+                    },
+                    canCancel: false);
+            }
+            else
+            {
+                ShowNewKingdomInquiry(newKingdom, playerParticipation);
+            }
+        }
+
+        private static void RenameKingdom(Kingdom kingdom, TextObject name)
+        {
+#if BL15
+            kingdom.ChangeKingdomName(name, name, name);
+#else
+            kingdom.ChangeKingdomName(name, name);
+#endif
+        }
+
+        private void ShowNewKingdomInquiry(Kingdom newKingdom, TextObject playerParticipation)
+        {
             var strVars = new Dictionary<string, object>
             {
                 {"PARENT_KINGDOM", ParentKingdom.Name},
                 {"KINGDOM", newKingdom.Name},
-                {"PLAYER_PARTICIPATION", GetPlayerParticipationText(true)}
+                {"PLAYER_PARTICIPATION", playerParticipation}
             };
-
-            ChangeKingdomBannerAction.Apply(newKingdom);
-            RebelFactionManager.DestroyRebelFaction(this, true);
 
             InformationManager.ShowInquiry(
                 new InquiryData(

@@ -9,6 +9,9 @@
 
     <PropertyGroup>
         <TargetFrameworks>net472;net6</TargetFrameworks>
+        <!-- Each target framework rewrites the module's SubModule.xml after building. Building them in parallel
+             lets the rewrites overlap and can leave an empty SubModule.xml, so build them one at a time. -->
+        <BuildInParallel>false</BuildInParallel>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <Platforms>x64</Platforms>

@@ -30,8 +30,8 @@
     <string id="G2NMbFDb" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hour." />
     <string id="gfZgMSYD" text="The messenger from {FACTION1_NAME} will arrive at {ADDRESSEE_TEXT} within {TRAVEL_TIME} hours." />
     <string id="nYrezEOX" text="Messenger killed" />
-    <string id="A5lug0JY" text="Your messenger was ambushed and killed by highwaymen while trying to reach {HERO NAME}!" />
-    <string id="1rYSIMfX" text="Your messenger was ambushed and eaten by a Grue while trying to reach {HERO NAME}!" />
+    <string id="A5lug0JY" text="Your messenger was ambushed and killed by highwaymen while trying to reach {HERO_NAME}!" />
+    <string id="1rYSIMfX" text="Your messenger was ambushed and eaten by a Grue while trying to reach {HERO_NAME}!" />
     <string id="J2T97gNx" text="Your messenger lost his way and is now wandering the world aimlessly." />
     <string id="hOOW2DMD" text="Your messenger found a treasure map and is now looking for the treasure, instead of delivering the message." />
     <string id="hc52yW8O" text="Your messenger forgot the message, you will have to send him again." />
@@ -44,6 +44,7 @@
     <string id="hPra5uwZ" text="The messenger either does not understand or does not like your joke and refuses the task." />
     <string id="1mlXBnSs" text="You know too little of {HERO_NAME} to point them out for a messenger." />
     <string id="HHgTlyyt" text="Rumor has it that {HERO_NAME} is sailing now. Best to wait until they land." />
+    <string id="T3mGu5K4" text="The messenger's intended recipient can no longer be found." />
 
     <string id="vhsHDMil" text="{HERO_NAME} is dead. " />
     <string id="CusN2JMb" text="{HERO_NAME} is imprisoned {?IS_MOBILE}by{?}in{\?} {DETENTION_PLACE}. " />

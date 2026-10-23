@@ -5,12 +5,12 @@
   </tags>
   <strings>
     <string id="0WVHMfN8" text="Восстание подавлено"/>
-    <string id="BVNGIAMM" text="{PARENT_KINGDOM} разгромил восстание, разрушившее их королевство. {PLAYER_PARTICIPATION}"/>
+    <string id="BVNGIAMM" text="{PARENT_KINGDOM} разгромило восстание, разорявшее королевство. {PLAYER_PARTICIPATION}"/>
     <string id="x5ThZR5A" text="Возникает новое Королевство"/>
     <string id="nRxyMIEE" text="{PARENT_KINGDOM} потерпело поражение в гражданской войне и не смогло сохранить единство своих земель. Возникло {KINGDOM}. {PLAYER_PARTICIPATION}"/>
     <string id="1OQGJkqb" text="Появилась группа бунтовщиков"/>
     <string id="pqjZ6wck" text="В {KINGDOM} возникла группа бунтовщиков под руководством {CLAN_NAME}. {DEMAND}"/>
-    <string id="ZAfNviVS" text="Независимость"/>
+    <string id="ZAfNviVS" text="Отделение"/>
     <string id="wUspUo1y" text="Отречение"/>
     <string id="LF19GulH" text="Выйти из состава королевства. Члены этой фракции образуют новое королевство. Только кланы 4-го уровня и выше могут основать фракцию отделения."/>
     <string id="GK1seKeJ" text="Заставьте лидера королевства уйти в отставку. На выборах будет выбран новый лидер королевства."/>
@@ -28,7 +28,7 @@
     <string id="BPcKHP0D" text="Как лидер восстания, вы получили {INFLUENCE} влияния."/>
     <string id="UoMvwnTb" text="Как лидер восстания, вы потеряли {INFLUENCE} влияния."/>
     <string id="QiX6m5cp" text="Будучи членом восстания, вы получили {INFLUENCE} влияния."/>
-    <string id="yrz8GMUb" text="Будучи участником восстания, вы потеряли влияние {INFLUENCE}."/>
+    <string id="yrz8GMUb" text="Как участник восстания, вы потеряли {INFLUENCE} влияния."/>
 
     <string id="SNLviWvc" text="Как лидер лоялистов, вы потеряли {INFLUENCE} влияния."/>
     <string id="2I1X5fAC" text="Как лидер лоялистов, вы получили {INFLUENCE} влияния."/>
@@ -45,14 +45,14 @@
     <string id="o3w3jNzZ" text="Требовать: {DEMAND_NAME}"/>
     <string id="hbPiVQVK" text="Статус: {STATUS}"/>
     <string id="TvSHYACm" text="Сила"/>
-    <string id="dlANhHUd" text="Фракций"/>
+    <string id="dlANhHUd" text="Фракции"/>
     <string id="hBSo0Ziq" text="Создать фракцию"/>
-    <string id="2PglxF8k" text="Выберите требование фракции"/>
+    <string id="2PglxF8k" text="Выберите требование, чтобы создать фракцию.{newline}Цена: {INFLUENCE_COST}{INFLUENCE_ICON}"/>
     <string id="gypPPxUJ" text="Фракции"/>
     <string id="aWWzFITw" text="Монарх отрекается от престола"/>
     <string id="2Pv3DsVm" text="{PARENT_KINGDOM} проиграл гражданскую войну {REBELS}. {LEADER} отрекается от престола. {PLAYER_PARTICIPATION}"/>
-    <string id="GkhKppOk" text="Недостаточно Появлений"/>
-    <string id="Jc1mCVuY" text="Черта: Вычисление"/>
+    <string id="GkhKppOk" text="Недостаточно феодов"/>
+    <string id="Jc1mCVuY" text="Черта: расчётливость"/>
     <string id="cjbVV7E3" text="Слишком низкий уровень клана"/>
     <string id="Vp9EcnuC" text="Склонность к фракциям"/>
     <string id="dr1OCcmL" text="Отношения с правителем"/>
@@ -99,5 +99,75 @@
     <string id="7wK0mmw1" text="Склонность к фракциям"/>
     <string id="aqvIdG7w" text="Модификатор очков, влияющий на склонность кланов создавать или вступать во фракции. Увеличение модификатора повышает участие во фракциях. Значение по умолчанию равно 0."/>
     
+
+    <!-- Player faction recruitment and required strength -->
+    <string id="kT4rWq8Z" text="Требуемая сила фракции"/>
+    <string id="mB2xNv6P" text="Доля общей силы королевства, которая нужна фракции под управлением ИИ, чтобы начать гражданскую войну. Лидерам с высокой доблестью нужно на 15 процентных пунктов меньше. Повысьте значение, чтобы гражданские войны случались реже. По умолчанию 65%."/>
+    <string id="FRabdGen" text="Служба вашего клана заслуживает более справедливой доли земель и влияния. Встаньте с нами."/>
+    <string id="FRabdHon" text="Наше королевство заслуживает правителя, который чтит свои кланы. Помогите выбрать лучшего."/>
+    <string id="FRalready" text="Этот клан уже поддерживает ваше требование. Попросите о поддержке напрямую."/>
+    <string id="FRargLoss" text="Это меня не убеждает."/>
+    <string id="FRargOne" text="{FACTION_RECRUITMENT_ARGUMENT_0}"/>
+    <string id="FRargTwo" text="{FACTION_RECRUITMENT_ARGUMENT_1}"/>
+    <string id="FRargWin" text="Доводы убедительны."/>
+    <string id="FRaskSup" text="Поддержит ли ваш клан {RECRUITMENT_FACTION_NAME} и наше требование?"/>
+    <string id="FRcancelA" text="На этом и закончим."/>
+    <string id="FRcanDesc" text="Выберите главу клана. Поговорите о поддержке вашей фракции лично или через «Отправить гонца» на странице энциклопедии."/>
+    <string id="FRcanHint" text="Военная сила: {STRENGTH}{newline}Поддержка: {SCORE} / {REQUIRED}{newline}Отношения с лидером: {RELATION}{newline}Поправка убеждения от отношений: до {RELATION_EFFECT} п. п.{newline}{REASONS}"/>
+    <string id="FRcanName" text="{CLAN}. Поддержка: {SCORE} / {REQUIRED}"/>
+    <string id="FRchanged" text="Обстоятельства изменились. Этот клан больше нельзя привлечь."/>
+    <string id="FRdaysTxt" text="{DAYS} дн."/>
+    <string id="FRdecision" text="Каково же ваше решение?"/>
+    <string id="FReliminated" text="Этот клан уничтожен."/>
+    <string id="FRfailed" text="Вы меня не убедили. Мой клан не присоединится к вашей фракции."/>
+    <string id="FRgoodbye" text="Хорошо. Поговорим о другом."/>
+    <string id="FRhearArg" text="Скажите, почему мне стоит так рисковать вместе с вами."/>
+    <string id="FRhesitnt" text="Я ещё не готов поддержать ваше требование. Придётся меня убедить."/>
+    <string id="FRintroTx" text="{FACTION_RECRUITMENT_RESPONSE}"/>
+    <string id="FRisMember" text="Этот клан уже поддерживает вашу фракцию."/>
+    <string id="FRjoinLog" text="{CLAN} присоединился к {FACTION}."/>
+    <string id="FRjoinNow" text="Мой клан встанет на сторону {FACTION_NAME}."/>
+    <string id="FRjoinYou" text="{CLAN} присоединился к вашей фракции, {FACTION}."/>
+    <string id="FRleadsOther" text="Этот клан возглавляет {FACTION_NAME} и не может вступить в другую фракцию."/>
+    <string id="FRmakeCas" text="Позвольте изложить доводы. (Цена: {RECRUITMENT_COST} влияния.)"/>
+    <string id="FRmercenary" text="Наёмные кланы не могут вступить в повстанческую фракцию."/>
+    <string id="FRminor" text="Малые фракции нельзя привлечь в повстанческую фракцию."/>
+    <string id="FRnoClans" text="Сейчас некого вербовать. Улучшите отношения, накопите влияние или дождитесь окончания перезарядки."/>
+    <string id="FRnoLeader" text="У этого клана нет главы, к которому можно обратиться."/>
+    <string id="FRnotAct" text="Вербовка доступна, только пока ваша фракция собирает поддержку."/>
+    <string id="FRnotLed" text="Чтобы вербовать сторонников, вы должны возглавлять эту фракцию."/>
+    <string id="FRonCool" text="Подождите ещё {DAYS} дн., прежде чем снова обращаться к этому клану."/>
+    <string id="FRopposed" text="Этот клан слишком против вашего требования. Сначала дайте ему больше причин вас поддержать."/>
+    <string id="FRotherRealm" text="Этот клан принадлежит другому королевству."/>
+    <string id="FRpending" text="Вы уже убеждаете этот клан."/>
+    <string id="FRpledged" text="Мой клан встанет на сторону {FACTION_NAME}. Обещаю поддержку на {DAYS} дн."/>
+    <string id="FRpledgeT" text="Осталось по обещанию вербовки"/>
+    <string id="FRprisoner" text="Глава этого клана в плену и не может обещать поддержку."/>
+    <string id="FRreactTx" text="{FACTION_RECRUITMENT_RESPONSE}"/>
+    <string id="FRrebelling" text="Кланы не могут вступить во фракцию после начала восстания."/>
+    <string id="FRrebelRealm" text="Кланы мятежного королевства не могут вступить в другую повстанческую фракцию."/>
+    <string id="FRrecBtn" text="Вербовать поддержку"/>
+    <string id="FRrecOff" text="Вербовка игроком отключена."/>
+    <string id="FRrespTxt" text="{FACTION_RECRUITMENT_RESPONSE}"/>
+    <string id="FRruler" text="Правящий клан не может вступить в повстанческую фракцию."/>
+    <string id="FRsecCal" text="Наши кланы могут процветать как независимое королевство. Мы сами должны решать своё будущее."/>
+    <string id="FRsecession" text="Этот клан поддерживает {FACTION_NAME}, фракцию отделения, и не может вступить в другую."/>
+    <string id="FRsecVal" text="Вместе наши кланы удержат собственное королевство. Встанем рядом."/>
+    <string id="FRsetBo1" text="Бонус убеждения при вербовке во фракцию"/>
+    <string id="FRsetBo2" text="Дополнительные очки поддержки за успешное убеждение при приёме во фракцию. Нужно набрать 100. Действует на новые попытки. По умолчанию 25."/>
+    <string id="FRsetCd1" text="Перезарядка вербовки во фракцию"/>
+    <string id="FRsetCd2" text="Сколько дней ждать перед повторным обращением к тому же клану, для всех фракций. Действует на новые попытки. По умолчанию 14."/>
+    <string id="FRsetCo1" text="Цена вербовки во фракцию во влиянии"/>
+    <string id="FRsetCo2" text="Влияние за попытку убеждения, включая неудачные и прерванные. Просьба к уже согласному клану бесплатна. По умолчанию 25."/>
+    <string id="FRsetOn1" text="Вербовка во фракцию игроком"/>
+    <string id="FRsetOn2" text="Лидеры фракций могут просить или убеждать кланы поддержать отречение и отделение. Если выключить, новая вербовка прекратится, а уже данные обещания истекут как обычно. По умолчанию включено."/>
+    <string id="FRsetPl1" text="Срок обещания при вербовке"/>
+    <string id="FRsetPl2" text="Сколько дней привлечённый клан обещает оставаться, пока не возобновятся обычные проверки поддержки. Смена лидера, королевства или условий заканчивает обещание раньше. Действует на новые попытки. По умолчанию 30."/>
+    <string id="FRsetRe1" text="Учитывать отношения при вербовке"/>
+    <string id="FRsetRe2" text="Отношения с главой клана меняют шанс убеждения. Обаяние и черты по-прежнему учитываются. По умолчанию включено."/>
+    <string id="FRsetRw1" text="Сила влияния отношений на вербовку"/>
+    <string id="FRsetRw2" text="Максимальное изменение шанса успеха при отношениях +100 или −100, в процентных пунктах. При +50 действует половина бонуса, при отрицательных отношениях — штраф. По умолчанию 25 процентных пунктов."/>
+    <string id="FRunavailable" text="Глава этого клана сейчас недоступен."/>
+    <string id="FRviewLdr" text="К главе клана"/>
   </strings>
 </base>

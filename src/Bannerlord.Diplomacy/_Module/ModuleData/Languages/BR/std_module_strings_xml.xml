@@ -25,7 +25,7 @@
     <string id="YnRmSele" text="O mensageiro de {FACTION1_NAME} chegou ao {ADDRESSEE_TEXT}.{BRIBE_TEXT}"/>
     <string id="qNWMZP0z" text="O mensageiro de {FACTION1_NAME} chegará a {ADDRESSEE_TEXT} em {TRAVEL_TIME} dias."/>
     <string id="nYrezEOX" text="Mensageiro foi morto"/>
-    <string id="A5lug0JY" text="O seu mensageiro foi emboscado e morto por bandidos enquanto tentava chegar em {HERO NAME}!"/>
+    <string id="A5lug0JY" text="O seu mensageiro foi emboscado e morto por bandidos enquanto tentava chegar em {HERO_NAME}!"/>
     <string id="vGyBQeEk" text="{HERO_NAME}{?HAS_FACTION} de {FACTION2_NAME}{?}{\?}"/>
     <string id="sQxAljGF" text="{NEW_LINE} {NEW_LINE}Infelizmente, o mensageiro não tem acesso à fortaleza, mas pode tentar subornar os guardas. Isso custaria {?IS_FEMALE}a{?}ele{\?} {GOLD_COST}{GOLD_ICON} e você teria que cobrir as despesas{?CAN_AFFORD}.{?}, que você não pode pagar no momento.{ \?}"/>
 
