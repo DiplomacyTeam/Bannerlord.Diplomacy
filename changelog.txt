@@ -17,6 +17,7 @@ Game Versions: v1.4.0, v1.4.1, v1.4.2, v1.4.3, v1.4.4, v1.4.5, v1.4.6, v1.4.7, v
 * Fixed a fief returned with Return Fief being put to a vote in the receiving kingdom, which could hand it to a different clan.
 * Fixed fiefs no longer being returnable to the kingdom they were conquered from after the clan holding them left its kingdom.
 * Fixed a single large battle during the main storyline deciding a war's victor while war exhaustion was capped, which could later make the wrong kingdom pay reparations.
+* Fixed the action buttons at the bottom of the kingdom Diplomacy tab overlapping the kingdom list and running off the screen when you rule a kingdom.
 * The war exhaustion campaign map widget no longer lists destroyed kingdoms, and turning it on or off from the main menu no longer causes an error.
 * Fixed messengers whose recipient died on the way never being cleared.
 * Fixed messengers being eaten by a Grue while the player was a prisoner, and that message repeating every hour until dismissed.
