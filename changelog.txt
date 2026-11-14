@@ -1,4 +1,29 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.5.7
+Game Versions: v1.4.0, v1.4.1, v1.4.2, v1.4.3, v1.4.4, v1.4.5, v1.4.6, v1.4.7, v1.4.8, v1.5.1, v1.5.2, v1.5.3, v1.5.4, v1.5.5, v1.5.6, v1.5.7
+* Adapted for the v1.5.6 and v1.5.7 beta game versions.
+* Requires UIExtenderEx v3.0.3 and Mod Configuration Menu v5.13.1 or newer.
+* Fixed a crash when a kingdom voted on who gets a conquered fief, or a clan sold a fief to reduce corruption, after a clan without fiefs had joined the kingdom.
+* Fixed rebellions whose clans held no fiefs collapsing the moment they started, which left the rebel clans stuck in a kingdom that no longer existed.
+* Fixed rebel kingdoms vanishing when they lost their last fief. The civil war now ends in peace as usual: the rebels rejoin their kingdom and the fiefs they took go back to their original owners.
+* Fixed some clans losing all their influence when rebels rejoined their kingdom at the end of a civil war.
+* Fixed the kingdom that made peace always being treated as the loser of a civil war, even when it had won or the war was a tie.
+* Fixed an abdication rebellion's victory leaving the king on the throne when the faction's leading clan had died during the war.
+* Fixed abdicating the throne during an abdication civil war holding two king elections, the second overriding the first.
+* Fixed a ruler who came to the throne without an election staying in a rebel faction, and taking part in a rebellion against their own kingdom.
+* Fixed creating a faction always costing 100 influence instead of the "Faction Creation Influence Cost" setting.
+* Fixed fiefs taken after a garrison sallied out and lost not counting towards war exhaustion, and never being returned in peace terms.
+* Fixed peace terms sometimes asking a defeated kingdom to give back a town it had retaken.
+* Fixed a fief returned with Return Fief being put to a vote in the receiving kingdom, which could hand it to a different clan.
+* Fixed fiefs no longer being returnable to the kingdom they were conquered from after the clan holding them left its kingdom.
+* Fixed a single large battle during the main storyline deciding a war's victor while war exhaustion was capped, which could later make the wrong kingdom pay reparations.
+* Fixed the action buttons at the bottom of the kingdom Diplomacy tab overlapping the kingdom list and running off the screen when you rule a kingdom.
+* The war exhaustion campaign map widget no longer lists destroyed kingdoms, and turning it on or off from the main menu no longer causes an error.
+* Fixed messengers whose recipient died on the way never being cleared.
+* Fixed messengers being eaten by a Grue while the player was a prisoner, and that message repeating every hour until dismissed.
+* Fixed non-aggression pacts staying active after an ally's call to war put the two kingdoms at war.
+* Fixed non-aggression pacts with destroyed kingdoms announcing their expiry.
+---------------------------------------------------------------------------------------------------
 Version: 1.5.5
 Game Versions: v1.4.0, v1.4.1, v1.4.2, v1.4.3, v1.4.4, v1.4.5, v1.4.6, v1.4.7, v1.4.8, v1.5.1, v1.5.2, v1.5.3, v1.5.4, v1.5.5
 * Adapted for the v1.5.5 beta game version.

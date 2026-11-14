@@ -37,6 +37,7 @@ namespace Diplomacy.CampaignBehaviors
 
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, RegisterWarExhaustion);
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ClearWarExhaustion);
+            CampaignEvents.KingdomDestroyedEvent.AddNonSerializedListener(this, ClearWarExhaustion);
 
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, OnGameLoadFinished);
         }
@@ -48,6 +49,9 @@ namespace Diplomacy.CampaignBehaviors
                 _warExhaustionManager.ClearWarExhaustion(kingdom1, kingdom2);
             }
         }
+
+        // Without this a destroyed kingdom's records stay in the save for good, and the map widget keeps listing it.
+        private void ClearWarExhaustion(Kingdom destroyedKingdom) => _warExhaustionManager.ClearWarExhaustion(destroyedKingdom);
 
         private void RegisterWarExhaustion(IFaction faction1, IFaction faction2, DeclareWarAction.DeclareWarDetail declareWarDetail)
         {
@@ -84,26 +88,27 @@ namespace Diplomacy.CampaignBehaviors
                 return;
             }
 
-            //Sieges and occupation
-            if (mapEvent.MapEventSettlement is not null && mapEvent.MapEventSettlement.IsFortification && mapEvent.BattleState == BattleState.AttackerVictory && mapEvent.EventType == MapEvent.BattleTypes.Siege)
-            {
-                _warExhaustionManager.AddSiegeWarExhaustion(kingdoms, mapEvent);
-                if (!defender!.Fiefs.Any(f => f != mapEvent.MapEventSettlement.Town))
-                {
-                    _warExhaustionManager.AddOccupiedWarExhaustion(kingdoms);
-                }
-            }
-
-            //Caravans
+            //a separate key combination for clearer who gets what logic
             var winningSide = mapEvent.GetMapEventSide(mapEvent.WinningSide);
             var defeatedSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
-            //a separate key combination for clearer who gets what logic
             if (!VerifyEventSides(winningSide.LeaderParty, defeatedSide.LeaderParty, out var winnerKingdom, out var defeatedKingdom))
                 return;
             CreateKey(winnerKingdom!, defeatedKingdom!, out kingdoms);
             if (kingdoms is null)
                 return;
 
+            //Sieges and occupation. The settlement still belongs to the defeated side here: the game hands it
+            //over only after this event.
+            if (CapturesSettlement(mapEvent))
+            {
+                _warExhaustionManager.AddSiegeWarExhaustion(kingdoms, mapEvent);
+                if (!defeatedKingdom!.Fiefs.Any(f => f != mapEvent.MapEventSettlement.Town))
+                {
+                    _warExhaustionManager.AddOccupiedWarExhaustion(kingdoms);
+                }
+            }
+
+            //Caravans
             var defeatedCaravanParties = defeatedSide.Parties.Where(p => p.Party.IsMobile && p.Party.MobileParty.IsCaravan).Select(p => p.Party.MobileParty).ToList();
             defeatedCaravanParties.ForEach(cp => _warExhaustionManager.AddCaravanRaidWarExhaustion(kingdoms, cp, winningSide));
         }
@@ -138,6 +143,21 @@ namespace Diplomacy.CampaignBehaviors
             }
 
             _warExhaustionManager.AddHeroPerishedWarExhaustion(kingdoms, victim, killer.PartyBelongedTo?.Name ?? effector!.Name, detail);
+        }
+
+        // Mirrors KingdomManager.SiegeCompleted, which hands the fortification over for these outcomes. In a
+        // sally-out the garrison is the attacker, so the besiegers take the settlement by winning as defenders.
+        private static bool CapturesSettlement(MapEvent mapEvent)
+        {
+            if (mapEvent.MapEventSettlement is not { IsFortification: true })
+                return false;
+
+            return mapEvent.EventType switch
+            {
+                MapEvent.BattleTypes.Siege => mapEvent.BattleState == BattleState.AttackerVictory,
+                MapEvent.BattleTypes.SallyOut or MapEvent.BattleTypes.BlockadeSallyOutBattle => mapEvent.BattleState == BattleState.DefenderVictory,
+                _ => false,
+            };
         }
 
         private static bool VerifyEventSides(PartyBase attackerSideLeaderParty, PartyBase defenderSideLeaderParty, out Kingdom? attacker, out Kingdom? defender)
@@ -205,7 +225,14 @@ namespace Diplomacy.CampaignBehaviors
             _warExhaustionManager.ProcessWarExhaustion(Log);
         }
 
-        public void OnGameLoadFinished() => _warExhaustionManager.OnAfterSaveLoaded();
+        public void OnGameLoadFinished()
+        {
+            _warExhaustionManager.OnAfterSaveLoaded();
+
+            // Saves from before kingdom destruction was handled still carry records for kingdoms that are gone.
+            foreach (var kingdom in Kingdom.All.Where(k => k.IsEliminated).ToList())
+                ClearWarExhaustion(kingdom);
+        }
 
         public override void SyncData(IDataStore dataStore)
         {

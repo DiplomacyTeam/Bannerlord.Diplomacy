@@ -62,6 +62,10 @@ namespace Diplomacy.CivilWar.Actions
                     rebelFaction.RemoveClan(clan);
                     continue;
                 }
+                // The sponsor founded the kingdom and is already in it. Joining it again raises a kingdom change
+                // from the rebel kingdom, which the game uses to destroy a kingdom that has no settlements.
+                if (clan.Kingdom == rebelFaction.RebelKingdom)
+                    continue;
                 // make sure to retain influence
                 var influence = clan.Influence;
                 ChangeKingdomAction.ApplyByJoinToKingdom(clan, rebelFaction.RebelKingdom, showNotification: false);

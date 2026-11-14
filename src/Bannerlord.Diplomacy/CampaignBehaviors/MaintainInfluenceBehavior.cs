@@ -48,8 +48,10 @@ namespace Diplomacy.CampaignBehaviors
             if (settlementToTrade is null)
                 return default;
 
+            // A clan whose mid-settlement can't be restored can't value the fief, so it can't buy it.
             var targetClan = ((Kingdom) ownerClan.MapFaction).Clans
-                .Where(c => c != ownerClan && !c.HasMaximumFiefs() && !c.IsUnderMercenaryService && c != Clan.PlayerClan)
+                .Where(c => c != ownerClan && !c.HasMaximumFiefs() && !c.IsUnderMercenaryService && c != Clan.PlayerClan
+                            && MidSettlementRepairBehavior.EnsureMidSettlement(c))
                 .OrderByDescending(c => GetGoldValueForFief(c, settlementToTrade))
                 .FirstOrDefault();
 

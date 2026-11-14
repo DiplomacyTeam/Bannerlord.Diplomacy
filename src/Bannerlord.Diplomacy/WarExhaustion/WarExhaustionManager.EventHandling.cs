@@ -273,8 +273,10 @@ namespace Diplomacy.WarExhaustion
             float defenderSideWarExhaustion = Settings.Instance!.WarExhaustionPerSiege * importanceFactor * GetDiminishingReturnsFactor<Settlement, SiegeRecord>(kingdoms, eventRelatedSettlement, out var yieldsDiminishingReturns);
             var hasActiveQuest = !IsValidQuestState(kingdoms.Kingdom1, kingdoms.Kingdom2);
 
-            TextObject attackerSidePartyName = mapEvent.AttackerSide.LeaderParty?.Name ?? kingdoms.Kingdom1.Name;
-            TextObject defenderSidePartyName = mapEvent.DefenderSide.LeaderParty?.Name ?? new("{=fnPa5bas}garrisoned troops");
+            // "Attacker" here means the side that took the settlement. In a sally-out that is the battle's
+            // defender, so name the sides by who won rather than by who attacked.
+            TextObject attackerSidePartyName = mapEvent.GetMapEventSide(mapEvent.WinningSide).LeaderParty?.Name ?? kingdoms.Kingdom1.Name;
+            TextObject defenderSidePartyName = mapEvent.GetMapEventSide(mapEvent.DefeatedSide).LeaderParty?.Name ?? new("{=fnPa5bas}garrisoned troops");
 
             var rates = GetWarExhaustionRates(kingdoms);
             if (kingdoms.ReversedKeyOrder)

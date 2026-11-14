@@ -27,7 +27,8 @@ namespace Diplomacy.WarExhaustion
 
             Faction1Value = MBMath.ClampFloat(faction1Value, minScore, effectiveMaxScore);
             Faction2Value = MBMath.ClampFloat(faction2Value, minScore, effectiveMaxScore);
-            VictoriousFaction = CalculateVictorIfApplicable(faction1Value, faction2Value, victoriousFaction, maxScore);
+            // Judged on the stored values: while a story quest caps them below the maximum, nobody can win yet.
+            VictoriousFaction = CalculateVictorIfApplicable(Faction1Value, Faction2Value, victoriousFaction, maxScore);
 
             QuestState = activeQuest;
             RecordStats = (Faction1Value != faction1Value, Faction2Value != faction2Value, VictoriousFaction != victoriousFaction);

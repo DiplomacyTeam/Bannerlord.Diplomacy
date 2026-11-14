@@ -11,7 +11,10 @@ namespace Diplomacy.CivilWar.Actions
     {
         internal static void Apply(Kingdom rebelKingdom, Kingdom parentKingdom)
         {
-            var rebelKingdomClans = rebelKingdom.Clans.Where(c => !c.IsEliminated).ToList();
+            // The game destroys a kingdom left without settlements as soon as a clan leaves it, and every clan
+            // still in it is pushed out with no influence. Moving the clans that hold fiefs last keeps the
+            // kingdom's settlements until no other clan is left to lose its influence.
+            var rebelKingdomClans = rebelKingdom.Clans.Where(c => !c.IsEliminated).OrderBy(c => c.Settlements.Count > 0).ToList();
 
             foreach (var clan in rebelKingdomClans)
             {
@@ -21,7 +24,9 @@ namespace Diplomacy.CivilWar.Actions
                 clan.Influence = influence;
             }
 
-            DestroyKingdomAction.Apply(rebelKingdom);
+            // The last clan leaving may already have made the game destroy it.
+            if (!rebelKingdom.IsEliminated)
+                DestroyKingdomAction.Apply(rebelKingdom);
         }
 
         public static void Apply(RebelFaction rebelFaction)

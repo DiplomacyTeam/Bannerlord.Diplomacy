@@ -34,10 +34,16 @@ namespace Diplomacy.CampaignBehaviors
                                               Hero capturerHero,
                                               ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
         {
+            // A clan leaving its kingdom is taken out of it before its fiefs pass to the ruler, so by now the old
+            // owner has no kingdom. The fief never left the ruler's kingdom; recording it as coming from no kingdom
+            // would erase which kingdom it was conquered from.
+            var leftKingdom = detail == ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.ByLeaveFaction && oldOwner?.Clan?.Kingdom is null;
+
             _fiefProvenanceManager.RegisterTransfer(settlement,
                                                     oldOwner,
                                                     newOwner,
-                                                    detail == ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.BySiege);
+                                                    detail == ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.BySiege,
+                                                    leftKingdom ? newOwner?.MapFaction as Kingdom : null);
         }
     }
 }
