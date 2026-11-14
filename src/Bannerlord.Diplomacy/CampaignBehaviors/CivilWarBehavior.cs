@@ -31,8 +31,26 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
             CampaignEvents.OnClanDestroyedEvent.AddNonSerializedListener(this, OnClanDesroyed);
             CampaignEvents.KingdomDestroyedEvent.AddNonSerializedListener(this, OnKingdomDestroyed);
+            CampaignEvents.CanKingdomBeDiscontinuedEvent.AddNonSerializedListener(this, KeepRebelKingdomAtWar);
 
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, OnGameLoadFinished);
+        }
+
+        /// <summary>
+        /// The game destroys an AI kingdom as soon as it has no settlements: when a clan leaves it, when its last
+        /// fief is taken, and on every load. A rebel kingdom whose clans hold no fiefs would vanish the moment the
+        /// rebellion starts, and one that loses its last fief would vanish without its clans rejoining the parent
+        /// or the original fief owners getting their fiefs back. Keep it while the civil war is on and it still
+        /// has clans, so the war ends through peace and the faction resolves as usual.
+        /// </summary>
+        private static void KeepRebelKingdomAtWar(Kingdom kingdom, ref bool canBeDiscontinued)
+        {
+            if (canBeDiscontinued
+                && RebelFactionManager.GetRebelFactionForRebelKingdom(kingdom) is { AtWar: true }
+                && kingdom.Clans.Any(clan => !clan.IsEliminated))
+            {
+                canBeDiscontinued = false;
+            }
         }
 
         public CivilWarBehavior()
