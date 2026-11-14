@@ -37,6 +37,7 @@ namespace Diplomacy.CampaignBehaviors
 
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, RegisterWarExhaustion);
             CampaignEvents.MakePeace.AddNonSerializedListener(this, ClearWarExhaustion);
+            CampaignEvents.KingdomDestroyedEvent.AddNonSerializedListener(this, ClearWarExhaustion);
 
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, OnGameLoadFinished);
         }
@@ -48,6 +49,9 @@ namespace Diplomacy.CampaignBehaviors
                 _warExhaustionManager.ClearWarExhaustion(kingdom1, kingdom2);
             }
         }
+
+        // Without this a destroyed kingdom's records stay in the save for good, and the map widget keeps listing it.
+        private void ClearWarExhaustion(Kingdom destroyedKingdom) => _warExhaustionManager.ClearWarExhaustion(destroyedKingdom);
 
         private void RegisterWarExhaustion(IFaction faction1, IFaction faction2, DeclareWarAction.DeclareWarDetail declareWarDetail)
         {
@@ -214,7 +218,14 @@ namespace Diplomacy.CampaignBehaviors
             _warExhaustionManager.ProcessWarExhaustion(Log);
         }
 
-        public void OnGameLoadFinished() => _warExhaustionManager.OnAfterSaveLoaded();
+        public void OnGameLoadFinished()
+        {
+            _warExhaustionManager.OnAfterSaveLoaded();
+
+            // Saves from before kingdom destruction was handled still carry records for kingdoms that are gone.
+            foreach (var kingdom in Kingdom.All.Where(k => k.IsEliminated).ToList())
+                ClearWarExhaustion(kingdom);
+        }
 
         public override void SyncData(IDataStore dataStore)
         {

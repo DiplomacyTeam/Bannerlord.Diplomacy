@@ -98,6 +98,20 @@ namespace Diplomacy.WarExhaustion
             }
         }
 
+        /// <summary>
+        /// Removes every record involving <paramref name="destroyedKingdom"/>. Its wars end without a MakePeace
+        /// event, because the game only removes the stances of a destroyed kingdom.
+        /// </summary>
+        internal void ClearWarExhaustion(Kingdom destroyedKingdom)
+        {
+            foreach (var kingdom in Kingdom.All)
+            {
+                var key = kingdom != destroyedKingdom ? CreateKey(destroyedKingdom, kingdom, out _, checkStates: false) : null;
+                if (key is not null && (_warExhaustionScores.ContainsKey(key) || _warExhaustionRates.ContainsKey(key) || _warExhaustionEventRecords.ContainsKey(key)))
+                    ClearWarExhaustion(destroyedKingdom, kingdom);
+            }
+        }
+
         internal void RegisterWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
             var key = CreateKey(kingdom1, kingdom2, out var kingdoms, checkStates: false);
