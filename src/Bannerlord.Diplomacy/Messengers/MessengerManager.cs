@@ -151,6 +151,14 @@ namespace Diplomacy.Messengers
 
             foreach (var messenger in Messengers.ToList())
             {
+                // A messenger only travels while its target is available, so one whose target died or became the
+                // player on the way would never arrive and never be removed.
+                if (messenger.TargetHero.IsDead || messenger.TargetHero.IsHumanPlayerCharacter)
+                {
+                    RemoveMessenger(messenger);
+                    continue;
+                }
+
                 if (IsTargetHeroAvailable(messenger.TargetHero) && !messenger.Arrived)
                     UpdateMessengerPosition(messenger);
 
