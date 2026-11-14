@@ -51,6 +51,35 @@ namespace Diplomacy.DiplomaticAction
                 Instance!.Agreements[factionMapping] = new List<DiplomaticAgreement> { diplomaticAgreement };
             }
         }
+        /// <summary>
+        /// Announces agreements that have just expired and forgets the ones that are over. Nothing reads an
+        /// agreement once it has expired, and keeping them grows the save with every pact ever formed.
+        /// </summary>
+        internal void UpdateAgreements()
+        {
+            foreach (var factions in _agreements.Keys.ToList())
+            {
+                var agreements = _agreements[factions];
+
+                // A pact with a kingdom that no longer exists is dropped without announcing its expiry.
+                if (factions.Faction1 is null or { IsEliminated: true } || factions.Faction2 is null or { IsEliminated: true })
+                {
+                    _agreements.Remove(factions);
+                    continue;
+                }
+
+                foreach (var agreement in agreements.ToList())
+                {
+                    agreement.TryExpireNotification();
+                    if (agreement.ExpireNotified)
+                        agreements.Remove(agreement);
+                }
+
+                if (agreements.Count == 0)
+                    _agreements.Remove(factions);
+            }
+        }
+
         public void Sync()
         {
             Instance = this;

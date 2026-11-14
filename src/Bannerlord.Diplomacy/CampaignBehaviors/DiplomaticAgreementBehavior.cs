@@ -66,13 +66,7 @@ namespace Diplomacy.CampaignBehaviors
             }
         }
 
-        private void UpdateDiplomaticAgreements()
-        {
-            DiplomaticAgreementManager.Instance!.Agreements.Values
-            .SelectMany(x => x)
-            .ToList()
-            .ForEach(x => x.TryExpireNotification());
-        }
+        private void UpdateDiplomaticAgreements() => DiplomaticAgreementManager.Instance!.UpdateAgreements();
 
         private void ExpireNonAggressionPact(Kingdom kingdom1, Kingdom kingdom2)
         {
