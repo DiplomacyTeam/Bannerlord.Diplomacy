@@ -32,9 +32,10 @@ namespace Diplomacy
         }
 
         /// <summary>Records a change of ownership, newest first. Only towns and castles are tracked.</summary>
-        public void RegisterTransfer(Settlement settlement, Hero? oldOwner, Hero? newOwner, bool byConquest)
+        /// <param name="oldKingdom">The kingdom the fief belonged to, when it is no longer the old owner's.</param>
+        public void RegisterTransfer(Settlement settlement, Hero? oldOwner, Hero? newOwner, bool byConquest, Kingdom? oldKingdom = null)
         {
-            AddRecord(settlement, new FiefOwnershipRecord(oldOwner?.MapFaction as Kingdom,
+            AddRecord(settlement, new FiefOwnershipRecord(oldKingdom ?? oldOwner?.MapFaction as Kingdom,
                                                           oldOwner?.Clan,
                                                           newOwner?.MapFaction as Kingdom,
                                                           newOwner?.Clan,
