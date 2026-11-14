@@ -322,7 +322,7 @@ namespace Diplomacy.DiplomaticAction.WarPeace
             if (kingdoms is null || eventRecords.IsEmpty())
                 return new();
 
-            var settlementsCaptured = eventRecords.OfType<SiegeRecord>().Where(sr => !sr.YieldsDiminishingReturns && kingdoms.ReversedKeyOrder ? sr.Faction1Effected : sr.Faction2Effected).Select(sr => sr.Settlement).Distinct().ToList();
+            var settlementsCaptured = eventRecords.OfType<SiegeRecord>().Where(sr => !sr.YieldsDiminishingReturns && (kingdoms.ReversedKeyOrder ? sr.Faction1Effected : sr.Faction2Effected)).Select(sr => sr.Settlement).Distinct().ToList();
             return kingdomMakingPeace.Fiefs.Where(f => settlementsCaptured.Contains(f.Settlement)).ToList();
         }
     }

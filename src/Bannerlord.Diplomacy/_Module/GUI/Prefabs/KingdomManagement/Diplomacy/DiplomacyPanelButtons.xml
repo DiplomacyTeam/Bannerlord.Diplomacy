@@ -1,6 +1,9 @@
 ﻿<Prefab>
   <Constants>
-    <Constant Name="ButtonWidth" Value="227" />
+    <!-- A ruler at peace with a kingdom gets six actions in this row: pact, return fief, direct war and the
+         game's three proposals. The game's 227 leaves the row wider than the panel at 16:9, overlapping the
+         kingdom list on the left and running off the screen on the right. -->
+    <Constant Name="ButtonWidth" Value="180" />
   </Constants>
   <Window>
     <ListPanel WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginRight="42">

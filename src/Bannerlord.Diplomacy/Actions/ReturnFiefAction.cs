@@ -47,7 +47,9 @@ namespace Diplomacy.Actions
             // Captured before the transfer, because afterwards the fief belongs to someone else.
             var relinquishingKingdom = settlement.OwnerClan?.Kingdom;
 
-            ChangeOwnerOfSettlementAction.ApplyByLeaveFaction(recipientClan.Leader, settlement);
+            // Not ApplyByLeaveFaction: that opens the fortification to a claim, and the receiving kingdom would vote
+            // it away from the clan it was returned to.
+            ChangeOwnerOfSettlementAction.ApplyByDefault(recipientClan.Leader, settlement);
 
             ChangeRelationAction.ApplyPlayerRelation(recipientClan.Leader, relationChange);
 

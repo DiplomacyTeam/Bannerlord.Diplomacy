@@ -15,7 +15,7 @@ namespace Diplomacy.CivilWar.Actions
 {
     public class CreateFactionAction
     {
-        private const float InfluenceCost = 100f;
+        private static float InfluenceCost => Settings.Instance!.FactionCreationInfluenceCost;
 
         public static void Apply(RebelFaction rebelFaction)
         {
@@ -131,7 +131,7 @@ namespace Diplomacy.CivilWar.Actions
                 }
             }
 
-            if (!new InfluenceCost(clan, Settings.Instance!.FactionCreationInfluenceCost).CanPayCost())
+            if (!new InfluenceCost(clan, InfluenceCost).CanPayCost())
             {
                 yield return new TextObject(StringConstants.NotEnoughInfluence);
             }

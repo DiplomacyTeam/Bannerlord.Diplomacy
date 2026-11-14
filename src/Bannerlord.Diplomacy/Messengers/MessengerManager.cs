@@ -151,6 +151,14 @@ namespace Diplomacy.Messengers
 
             foreach (var messenger in Messengers.ToList())
             {
+                // A messenger only travels while its target is available, so one whose target died or became the
+                // player on the way would never arrive and never be removed.
+                if (messenger.TargetHero.IsDead || messenger.TargetHero.IsHumanPlayerCharacter)
+                {
+                    RemoveMessenger(messenger);
+                    continue;
+                }
+
                 if (IsTargetHeroAvailable(messenger.TargetHero) && !messenger.Arrived)
                     UpdateMessengerPosition(messenger);
 
@@ -208,8 +216,13 @@ namespace Diplomacy.Messengers
 
         private bool MessengerArrived(Messenger messenger)
         {
-            if (messenger.TargetHero.PartyBelongedTo == Hero.MainHero.PartyBelongedTo)
+            // A captured player and a target staying in a settlement both have no party, which is not "the same
+            // party": the messenger waits until the player is free instead.
+            if (Hero.MainHero.PartyBelongedTo is { } playerParty && messenger.TargetHero.PartyBelongedTo == playerParty)
             {
+                // Removed now rather than when the message is dismissed: it doesn't pause the game, and the
+                // messenger would otherwise be reported eaten again every hour until then.
+                RemoveMessenger(messenger);
                 // FIXME: Definitely would like to remove the silliness here.
                 // Jiros: Added to catch crash when Hero and Target are in the same party. [v1.5.3-release]
                 InformationManager.ShowInquiry(new InquiryData(new TextObject("{=kq3g73j2}Messenger Eaten").ToString(),
@@ -219,7 +232,7 @@ namespace Diplomacy.Messengers
                     false,
                     GameTexts.FindText("str_ok").ToString(),
                     null,
-                    delegate { RemoveMessenger(messenger); },
+                    null,
                     null));
                 return false;
             }

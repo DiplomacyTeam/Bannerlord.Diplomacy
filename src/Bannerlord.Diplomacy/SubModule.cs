@@ -90,6 +90,7 @@ namespace Diplomacy
                 var gameStarter = (CampaignGameStarter) gameStarterObject;
 
                 gameStarter.AddBehavior(new KingdomRulerRepairBehavior());
+                gameStarter.AddBehavior(new MidSettlementRepairBehavior());
                 gameStarter.AddBehavior(new DiplomaticAgreementBehavior());
                 gameStarter.AddBehavior(new CooldownBehavior());
                 gameStarter.AddBehavior(new MessengerBehavior());

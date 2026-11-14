@@ -31,8 +31,27 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
             CampaignEvents.OnClanDestroyedEvent.AddNonSerializedListener(this, OnClanDesroyed);
             CampaignEvents.KingdomDestroyedEvent.AddNonSerializedListener(this, OnKingdomDestroyed);
+            CampaignEvents.CanKingdomBeDiscontinuedEvent.AddNonSerializedListener(this, KeepRebelKingdomAtWar);
+            CampaignEvents.RulingClanChanged.AddNonSerializedListener(this, (kingdom, _) => RemoveRulerFromFactions(kingdom));
 
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, OnGameLoadFinished);
+        }
+
+        /// <summary>
+        /// The game destroys an AI kingdom as soon as it has no settlements: when a clan leaves it, when its last
+        /// fief is taken, and on every load. A rebel kingdom whose clans hold no fiefs would vanish the moment the
+        /// rebellion starts, and one that loses its last fief would vanish without its clans rejoining the parent
+        /// or the original fief owners getting their fiefs back. Keep it while the civil war is on and it still
+        /// has clans, so the war ends through peace and the faction resolves as usual.
+        /// </summary>
+        private static void KeepRebelKingdomAtWar(Kingdom kingdom, ref bool canBeDiscontinued)
+        {
+            if (canBeDiscontinued
+                && RebelFactionManager.GetRebelFactionForRebelKingdom(kingdom) is { AtWar: true }
+                && kingdom.Clans.Any(clan => !clan.IsEliminated))
+            {
+                canBeDiscontinued = false;
+            }
         }
 
         public CivilWarBehavior()
@@ -69,6 +88,23 @@ namespace Diplomacy.CampaignBehaviors
             }
         }
 
+        /// <summary>
+        /// The throne can change hands without a vote: the game crowns a clan directly when a ruler dies without
+        /// an heir or abdicates, and so does KingdomRulerRepairBehavior. A ruler never reconsiders its faction
+        /// membership, so without this it would stay in the faction, and a rebellion would take the parent
+        /// kingdom's ruling clan into the rebel kingdom.
+        /// </summary>
+        private static void RemoveRulerFromFactions(Kingdom kingdom)
+        {
+            if (kingdom.RulingClan is not { } rulingClan)
+                return;
+
+            foreach (var rebelFaction in RebelFactionManager.GetRebelFaction(kingdom).Where(x => x.Clans.Contains(rulingClan)).ToList())
+            {
+                LeaveFactionAction.Apply(rulingClan, rebelFaction);
+            }
+        }
+
         private void NewKing(KingdomDecision decision, DecisionOutcome chosenOutcome, bool arg3)
         {
             if (decision is not KingSelectionKingdomDecision)
@@ -91,7 +127,8 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ResolveCivilWar(IFaction factionMakingPeace, IFaction otherFaction, MakePeaceAction.MakePeaceDetail makePeaceDetail)
         {
-            //Need to check if this runs before or after WarExhaustionBehavior
+            // The war exhaustion record must still exist when the loser is decided. Event listeners run newest
+            // first, and this behavior is added after WarExhaustionBehavior, so this runs before it clears the record.
             if (factionMakingPeace is Kingdom kingdomMakingPeace && otherFaction is Kingdom otherKingdom)
             {
                 var kingdomMakingPeaceIsRebel = kingdomMakingPeace.IsRebelKingdomOf(otherKingdom);
@@ -224,7 +261,9 @@ namespace Diplomacy.CampaignBehaviors
 
         private void OnClanDesroyed(Clan destroyedClan)
         {
-            foreach (var faction in RebelFactionManager.GetRebelFaction(destroyedClan.Kingdom).Where(x => x.Clans.Contains(destroyedClan)).ToList())
+            // Factions are registered under the parent kingdom, but during a civil war their clans are in the
+            // rebel kingdom, so look the clan up in every faction rather than by its kingdom.
+            foreach (var faction in RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Where(x => x.Clans.Contains(destroyedClan)).Distinct().ToList())
             {
                 LeaveFactionAction.Apply(destroyedClan, faction);
             }

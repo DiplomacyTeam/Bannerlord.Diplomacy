@@ -2,7 +2,7 @@
 
     <!--Module Version-->
     <PropertyGroup>
-        <Version>1.5.5</Version>
+        <Version>1.5.7</Version>
         <GameVersion>1.0.0</GameVersion>
     </PropertyGroup>
 
@@ -15,9 +15,9 @@
         <!--ButterLib Version-->
         <ButterLibVersion>2.11.1</ButterLibVersion>
         <!--MCM Version-->
-        <MCMVersion>5.12.3</MCMVersion>
+        <MCMVersion>5.13.1</MCMVersion>
         <!--UIExtenderEx Version-->
-        <UIExtenderExVersion>2.13.2</UIExtenderExVersion>
+        <UIExtenderExVersion>3.0.3</UIExtenderExVersion>
         <!--BUTRShared Version-->
         <BUTRSharedVersion>3.0.0.142</BUTRSharedVersion>
         <!--BUTRModuleManager Version-->

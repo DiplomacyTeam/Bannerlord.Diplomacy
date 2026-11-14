@@ -115,17 +115,25 @@ namespace Diplomacy.Patches
             return shouldPreventAction1 || shouldPreventAction2;
         }
 
-        private static void HandleThroneAbdication(Kingdom kingdom)
+        private static bool HandleThroneAbdication(Kingdom kingdom)
         {
+            RebelFaction? enforcedFaction = null;
+
             if (kingdom.Clans.Count <= 1 && kingdom.HasRebellion())
             {
-                kingdom.GetRebelFactions().First().EnforceSuccess();
+                enforcedFaction = kingdom.GetRebelFactions().First();
+                enforcedFaction.EnforceSuccess();
             }
 
             if (kingdom.Clans.Count > 1 && kingdom.HasRebellion() && kingdom.GetRebelFactions().FirstOrDefault() is AbdicationFaction abdicationFaction)
             {
+                enforcedFaction = abdicationFaction;
                 abdicationFaction.EnforceSuccess();
             }
+
+            // An abdication faction's success already puts the throne to a vote. The game's abdication would then
+            // hand the throne to another clan and hold a second, enforced vote.
+            return enforcedFaction is not AbdicationFaction;
         }
     }
 }

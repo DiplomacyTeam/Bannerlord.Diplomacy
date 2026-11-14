@@ -51,6 +51,9 @@ namespace Diplomacy.ViewModel
             CampaignEvents.OnClanChangedKingdomEvent.ClearListeners(this);
             DiplomacyEvents.WarExhaustionInitialized.ClearListeners(this);
             DiplomacyEvents.WarExhaustionAdded.ClearListeners(this);
+            // The settings outlive the campaign, so a handler left here keeps this campaign alive and runs
+            // from the main menu.
+            Settings.Instance!.PropertyChanged -= Settings_PropertyChanged;
         }
 
         public void UpdateBanners()
@@ -74,7 +77,7 @@ namespace Diplomacy.ViewModel
 
         private void Settings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Settings.Instance.EnableWarExhaustionCampaignMapWidget))
+            if (e.PropertyName == nameof(Settings.Instance.EnableWarExhaustionCampaignMapWidget) && Campaign.Current is not null)
             {
                 RefreshValues();
             }

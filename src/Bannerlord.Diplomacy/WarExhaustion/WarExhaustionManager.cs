@@ -98,6 +98,20 @@ namespace Diplomacy.WarExhaustion
             }
         }
 
+        /// <summary>
+        /// Removes every record involving <paramref name="destroyedKingdom"/>. Its wars end without a MakePeace
+        /// event, because the game only removes the stances of a destroyed kingdom.
+        /// </summary>
+        internal void ClearWarExhaustion(Kingdom destroyedKingdom)
+        {
+            foreach (var kingdom in Kingdom.All)
+            {
+                var key = kingdom != destroyedKingdom ? CreateKey(destroyedKingdom, kingdom, out _, checkStates: false) : null;
+                if (key is not null && (_warExhaustionScores.ContainsKey(key) || _warExhaustionRates.ContainsKey(key) || _warExhaustionEventRecords.ContainsKey(key)))
+                    ClearWarExhaustion(destroyedKingdom, kingdom);
+            }
+        }
+
         internal void RegisterWarExhaustion(Kingdom kingdom1, Kingdom kingdom2)
         {
             var key = CreateKey(kingdom1, kingdom2, out var kingdoms, checkStates: false);
@@ -180,9 +194,13 @@ namespace Diplomacy.WarExhaustion
             return GetWarExhaustion(kingdom1, kingdom2) >= MaxWarExhaustion;
         }
 
-        public WarResult GetWarResult(Kingdom kingdom1, Kingdom kingdom2)
+        /// <param name="checkStates">
+        /// <see langword="false"/> to read the result of a war that has just ended: the game makes the kingdoms
+        /// neutral before it raises the MakePeace event, but the record is cleared only afterwards.
+        /// </param>
+        public WarResult GetWarResult(Kingdom kingdom1, Kingdom kingdom2, bool checkStates = true)
         {
-            var key = CreateKey(kingdom1, kingdom2, out var kingdoms);
+            var key = CreateKey(kingdom1, kingdom2, out var kingdoms, checkStates);
             if (key is null || kingdoms is null || !_warExhaustionScores.TryGetValue(key, out var warExhaustionRec) || Math.Max(warExhaustionRec.Faction1Value, warExhaustionRec.Faction2Value) < MaxWarExhaustion)
                 return WarResult.None;
 
