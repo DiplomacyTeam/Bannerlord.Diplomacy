@@ -147,11 +147,18 @@ namespace Diplomacy.CampaignBehaviors
 
         // Mirrors KingdomManager.SiegeCompleted, which hands the fortification over for these outcomes. In a
         // sally-out the garrison is the attacker, so the besiegers take the settlement by winning as defenders.
-        private static bool CapturesSettlement(MapEvent mapEvent) =>
-            mapEvent.MapEventSettlement is { IsFortification: true }
-            && (mapEvent.EventType == MapEvent.BattleTypes.Siege && mapEvent.BattleState == BattleState.AttackerVictory
-                || (mapEvent.EventType is MapEvent.BattleTypes.SallyOut or MapEvent.BattleTypes.BlockadeSallyOutBattle)
-                   && mapEvent.BattleState == BattleState.DefenderVictory);
+        private static bool CapturesSettlement(MapEvent mapEvent)
+        {
+            if (mapEvent.MapEventSettlement is not { IsFortification: true })
+                return false;
+
+            return mapEvent.EventType switch
+            {
+                MapEvent.BattleTypes.Siege => mapEvent.BattleState == BattleState.AttackerVictory,
+                MapEvent.BattleTypes.SallyOut or MapEvent.BattleTypes.BlockadeSallyOutBattle => mapEvent.BattleState == BattleState.DefenderVictory,
+                _ => false,
+            };
+        }
 
         private static bool VerifyEventSides(PartyBase attackerSideLeaderParty, PartyBase defenderSideLeaderParty, out Kingdom? attacker, out Kingdom? defender)
         {
