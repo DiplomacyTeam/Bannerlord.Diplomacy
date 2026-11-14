@@ -32,6 +32,7 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.OnClanDestroyedEvent.AddNonSerializedListener(this, OnClanDesroyed);
             CampaignEvents.KingdomDestroyedEvent.AddNonSerializedListener(this, OnKingdomDestroyed);
             CampaignEvents.CanKingdomBeDiscontinuedEvent.AddNonSerializedListener(this, KeepRebelKingdomAtWar);
+            CampaignEvents.RulingClanChanged.AddNonSerializedListener(this, (kingdom, _) => RemoveRulerFromFactions(kingdom));
 
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, OnGameLoadFinished);
         }
@@ -84,6 +85,23 @@ namespace Diplomacy.CampaignBehaviors
                     var otherKingdom = kingdom.IsRebelKingdom() ? rebelFaction.ParentKingdom : rebelFaction.RebelKingdom!;
                     KingdomPeaceAction.ApplyPeace(kingdom, otherKingdom);
                 }
+            }
+        }
+
+        /// <summary>
+        /// The throne can change hands without a vote: the game crowns a clan directly when a ruler dies without
+        /// an heir or abdicates, and so does KingdomRulerRepairBehavior. A ruler never reconsiders its faction
+        /// membership, so without this it would stay in the faction, and a rebellion would take the parent
+        /// kingdom's ruling clan into the rebel kingdom.
+        /// </summary>
+        private static void RemoveRulerFromFactions(Kingdom kingdom)
+        {
+            if (kingdom.RulingClan is not { } rulingClan)
+                return;
+
+            foreach (var rebelFaction in RebelFactionManager.GetRebelFaction(kingdom).Where(x => x.Clans.Contains(rulingClan)).ToList())
+            {
+                LeaveFactionAction.Apply(rulingClan, rebelFaction);
             }
         }
 
