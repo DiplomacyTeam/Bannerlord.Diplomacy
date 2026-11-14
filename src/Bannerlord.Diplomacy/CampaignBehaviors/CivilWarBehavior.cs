@@ -243,7 +243,9 @@ namespace Diplomacy.CampaignBehaviors
 
         private void OnClanDesroyed(Clan destroyedClan)
         {
-            foreach (var faction in RebelFactionManager.GetRebelFaction(destroyedClan.Kingdom).Where(x => x.Clans.Contains(destroyedClan)).ToList())
+            // Factions are registered under the parent kingdom, but during a civil war their clans are in the
+            // rebel kingdom, so look the clan up in every faction rather than by its kingdom.
+            foreach (var faction in RebelFactionManager.AllRebelFactions.Values.SelectMany(x => x).Where(x => x.Clans.Contains(destroyedClan)).Distinct().ToList())
             {
                 LeaveFactionAction.Apply(destroyedClan, faction);
             }
