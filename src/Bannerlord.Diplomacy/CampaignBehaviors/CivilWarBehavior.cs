@@ -91,7 +91,8 @@ namespace Diplomacy.CampaignBehaviors
 
         private void ResolveCivilWar(IFaction factionMakingPeace, IFaction otherFaction, MakePeaceAction.MakePeaceDetail makePeaceDetail)
         {
-            //Need to check if this runs before or after WarExhaustionBehavior
+            // The war exhaustion record must still exist when the loser is decided. Event listeners run newest
+            // first, and this behavior is added after WarExhaustionBehavior, so this runs before it clears the record.
             if (factionMakingPeace is Kingdom kingdomMakingPeace && otherFaction is Kingdom otherKingdom)
             {
                 var kingdomMakingPeaceIsRebel = kingdomMakingPeace.IsRebelKingdomOf(otherKingdom);

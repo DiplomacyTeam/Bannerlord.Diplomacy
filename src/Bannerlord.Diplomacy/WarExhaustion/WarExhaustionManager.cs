@@ -180,9 +180,13 @@ namespace Diplomacy.WarExhaustion
             return GetWarExhaustion(kingdom1, kingdom2) >= MaxWarExhaustion;
         }
 
-        public WarResult GetWarResult(Kingdom kingdom1, Kingdom kingdom2)
+        /// <param name="checkStates">
+        /// <see langword="false"/> to read the result of a war that has just ended: the game makes the kingdoms
+        /// neutral before it raises the MakePeace event, but the record is cleared only afterwards.
+        /// </param>
+        public WarResult GetWarResult(Kingdom kingdom1, Kingdom kingdom2, bool checkStates = true)
         {
-            var key = CreateKey(kingdom1, kingdom2, out var kingdoms);
+            var key = CreateKey(kingdom1, kingdom2, out var kingdoms, checkStates);
             if (key is null || kingdoms is null || !_warExhaustionScores.TryGetValue(key, out var warExhaustionRec) || Math.Max(warExhaustionRec.Faction1Value, warExhaustionRec.Faction2Value) < MaxWarExhaustion)
                 return WarResult.None;
 

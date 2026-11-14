@@ -106,9 +106,13 @@ namespace Diplomacy.CivilWar
             return AllRebelFactions.Values.SelectMany(x => x).FirstOrDefault(rf => rebelKingdom == rf.RebelKingdom);
         }
 
+        /// <remarks>
+        /// Also called from the MakePeace event, after the kingdoms are already neutral, so the war result is
+        /// read without requiring them to still be at war.
+        /// </remarks>
         public static Kingdom GetCivilWarLoser(Kingdom kingdomMakingPeace, Kingdom otherKingdom)
         {
-            return (WarExhaustionManager.Instance?.GetWarResult(kingdomMakingPeace, otherKingdom) ?? WarExhaustionManager.WarResult.None) switch
+            return (WarExhaustionManager.Instance?.GetWarResult(kingdomMakingPeace, otherKingdom, checkStates: false) ?? WarExhaustionManager.WarResult.None) switch
             {
                 WarExhaustionManager.WarResult.Tie when kingdomMakingPeace.Fiefs.Count > 0 => TributeHelper.GetBaseValueForTrubute(kingdomMakingPeace, otherKingdom) < 0 ? otherKingdom : kingdomMakingPeace,
                 >= WarExhaustionManager.WarResult.PyrrhicVictory => otherKingdom,
