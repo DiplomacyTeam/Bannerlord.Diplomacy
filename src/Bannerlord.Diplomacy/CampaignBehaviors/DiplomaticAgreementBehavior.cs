@@ -28,6 +28,12 @@ namespace Diplomacy.CampaignBehaviors
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, UpdateDiplomaticAgreements);
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, ConsiderDiplomaticAgreements);
             CampaignEvents.OnAllianceStartedEvent.AddNonSerializedListener(this, ExpireNonAggressionPact);
+            // Diplomacy blocks war between pact partners, but an ally's call to war bypasses that check.
+            CampaignEvents.WarDeclared.AddNonSerializedListener(this, (faction1, faction2, _) =>
+            {
+                if (faction1 is Kingdom kingdom1 && faction2 is Kingdom kingdom2)
+                    ExpireNonAggressionPact(kingdom1, kingdom2);
+            });
         }
 
         private void ConsiderDiplomaticAgreements(Clan clan)
